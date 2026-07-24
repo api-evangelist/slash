@@ -1,0 +1,178 @@
+openapi: 3.1.0
+info:
+  title: Slash Public Account Card Product API
+  description: API description
+  version: 0.0.1
+  contact: {}
+servers:
+- url: https://api.slash.com
+  description: production
+security:
+- api_key: []
+- partner_api_key: []
+- bearer: []
+- developer_application: []
+tags:
+- name: Card Product
+paths:
+  /card-product:
+    x-reference-path: paths/card-product/route.yaml
+    get:
+      description: Get all card products
+      parameters:
+      - name: cursor
+        required: false
+        in: query
+        schema:
+          type: string
+        description: A cursor string to fetch the next page of results
+        x-reference-path: schemas/Pagination/CursorParameter.yaml
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/CardProduct'
+                      x-entrypoint:
+                        virtualPath: schemas/CardProduct
+                        sourcePath: schemas/CardProduct.yaml
+                        title: CardProduct
+                        origin: ./src/publicApi
+                  metadata:
+                    $ref: '#/components/schemas/Pagination.PaginationResponse'
+                    x-entrypoint:
+                      virtualPath: schemas/Pagination/PaginationResponse
+                      sourcePath: schemas/Pagination/PaginationResponse.yaml
+                      title: PaginationResponse
+                      origin: ./src/publicApi
+                required:
+                - items
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '429':
+          description: TooManyRequests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+      - api_key: []
+      tags:
+      - Card Product
+components:
+  schemas:
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+        name:
+          type: string
+        identifier:
+          type: string
+        rawStatus:
+          type: number
+        meta:
+          type: object
+          additionalProperties: true
+      required:
+      - message
+      - name
+      - identifier
+      - rawStatus
+      x-entrypoint:
+        origin: ./src/publicApi
+        sourcePath: ./src/publicApi/main.yaml
+        title: Error
+        virtualPath: components/Error
+      title: Error
+    CardProduct:
+      type: object
+      properties:
+        id:
+          type: string
+        prefix:
+          type: string
+        status:
+          type: string
+          enum:
+          - active
+          - inactive
+      required:
+      - id
+      - prefix
+      - status
+      x-entrypoint:
+        virtualPath: schemas/CardProduct
+        sourcePath: schemas/CardProduct.yaml
+        title: CardProduct
+        origin: ./src/publicApi
+      title: CardProduct
+    Pagination.PaginationResponse:
+      type: object
+      description: Response sent when requesting a list of data
+      properties:
+        nextCursor:
+          type: string
+          description: The cursor to use to retrieve the next page of data. If this is not sent, there is no more data to retrieve.
+        count:
+          type: number
+          description: The number of items in the current page of data.
+      x-entrypoint:
+        virtualPath: schemas/Pagination/PaginationResponse
+        sourcePath: schemas/Pagination/PaginationResponse.yaml
+        title: PaginationResponse
+        origin: ./src/publicApi
+      title: PaginationResponse
+  securitySchemes:
+    api_key:
+      type: apiKey
+      description: "API key authentication for public API requests.\n\nKeys come in two flavors:\n\n- *Legal-entity-scoped keys* are pinned to a single legal entity.\n  Minted via the dashboard under a specific entity; every request\n  acts on that entity.\n- *User-scoped keys* are pinned to a user and span every legal\n  entity that user has access to. Every request made with a\n  user-scoped key (except `GET /legal-entity`, which lists the\n  legal entities the user can access) must include an\n  `x-legal-entity` header naming the legal entity the request is\n  operating on. Requests without the header are rejected with\n  `400`. The authenticated user must have an active permission\n  role on the supplied legal entity, otherwise the request is\n  rejected with `403`.\n"
+      name: X-API-Key
+      in: header
+    partner_api_key:
+      type: apiKey
+      description: 'Partner-program API key authentication.
+
+
+        Keys are minted in the partner dashboard (Developers → API Keys),
+
+        are scoped to a single partner program, and are prefixed with
+
+        `sk_partner_`. Partner keys are only accepted by routes that
+
+        declare this scheme; they are rejected by `api_key` routes and
+
+        vice versa.
+
+        '
+      name: X-API-Key
+      in: header
+    bearer:
+      type: http
+      scheme: bearer
+    developer_application:
+      type: http
+      scheme: basic

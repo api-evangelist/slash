@@ -1,0 +1,146 @@
+openapi: 3.1.0
+info:
+  title: Slash Public Account Tokens API
+  description: API description
+  version: 0.0.1
+  contact: {}
+servers:
+- url: https://api.slash.com
+  description: production
+security:
+- api_key: []
+- partner_api_key: []
+- bearer: []
+- developer_application: []
+tags:
+- name: Tokens
+paths:
+  /tokens/prices:
+    x-reference-path: paths/tokens/prices/route.yaml
+    get:
+      summary: Get Token Prices
+      description: Returns real-time prices for major crypto tokens. This endpoint is publicly accessible without authentication.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        symbol:
+                          type: string
+                          description: Token symbol (e.g., BTC, ETH, SOL)
+                        price:
+                          type: object
+                          properties:
+                            currency:
+                              type: string
+                              enum:
+                              - usd
+                              description: Currency code
+                            value:
+                              type: string
+                              description: Price value as a string rounded to 2 decimal places (e.g., "178.14")
+                            lastUpdatedAt:
+                              type: string
+                              format: date-time
+                              description: ISO datetime when the price was last updated
+                          required:
+                          - currency
+                          - value
+                          - lastUpdatedAt
+                      required:
+                      - symbol
+                      - price
+                required:
+                - items
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '429':
+          description: TooManyRequests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security: []
+      tags:
+      - Tokens
+components:
+  schemas:
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+        name:
+          type: string
+        identifier:
+          type: string
+        rawStatus:
+          type: number
+        meta:
+          type: object
+          additionalProperties: true
+      required:
+      - message
+      - name
+      - identifier
+      - rawStatus
+      x-entrypoint:
+        origin: ./src/publicApi
+        sourcePath: ./src/publicApi/main.yaml
+        title: Error
+        virtualPath: components/Error
+      title: Error
+  securitySchemes:
+    api_key:
+      type: apiKey
+      description: "API key authentication for public API requests.\n\nKeys come in two flavors:\n\n- *Legal-entity-scoped keys* are pinned to a single legal entity.\n  Minted via the dashboard under a specific entity; every request\n  acts on that entity.\n- *User-scoped keys* are pinned to a user and span every legal\n  entity that user has access to. Every request made with a\n  user-scoped key (except `GET /legal-entity`, which lists the\n  legal entities the user can access) must include an\n  `x-legal-entity` header naming the legal entity the request is\n  operating on. Requests without the header are rejected with\n  `400`. The authenticated user must have an active permission\n  role on the supplied legal entity, otherwise the request is\n  rejected with `403`.\n"
+      name: X-API-Key
+      in: header
+    partner_api_key:
+      type: apiKey
+      description: 'Partner-program API key authentication.
+
+
+        Keys are minted in the partner dashboard (Developers → API Keys),
+
+        are scoped to a single partner program, and are prefixed with
+
+        `sk_partner_`. Partner keys are only accepted by routes that
+
+        declare this scheme; they are rejected by `api_key` routes and
+
+        vice versa.
+
+        '
+      name: X-API-Key
+      in: header
+    bearer:
+      type: http
+      scheme: bearer
+    developer_application:
+      type: http
+      scheme: basic

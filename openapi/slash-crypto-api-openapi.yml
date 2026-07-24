@@ -1,0 +1,265 @@
+openapi: 3.1.0
+info:
+  title: Slash Public Account Crypto API
+  description: API description
+  version: 0.0.1
+  contact: {}
+servers:
+- url: https://api.slash.com
+  description: production
+security:
+- api_key: []
+- partner_api_key: []
+- bearer: []
+- developer_application: []
+tags:
+- name: Crypto
+paths:
+  /crypto/offramp:
+    x-reference-path: paths/crypto/offramp/route.yaml
+    post:
+      summary: Retrieve a list of crypto offramp options
+      tags:
+      - Crypto
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                virtualAccountId:
+                  type: string
+                  description: The id of the virtual account to offramp funds to.
+                paymentRail:
+                  type: string
+                  enum:
+                  - ach
+                  - wire
+                currency:
+                  type: string
+                  enum:
+                  - usdt
+                  - usdc
+              required:
+              - virtualAccountId
+              - paymentRail
+              - currency
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  wallet:
+                    $ref: '#/components/schemas/Crypto.Wallet'
+                    x-entrypoint:
+                      virtualPath: schemas/Crypto/Wallet
+                      sourcePath: schemas/Crypto/Wallet.yaml
+                      title: Wallet
+                      origin: ./src/publicApi
+                  addresses:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Crypto.Address'
+                      x-entrypoint:
+                        virtualPath: schemas/Crypto/Address
+                        sourcePath: schemas/Crypto/Address.yaml
+                        title: Address
+                        origin: ./src/publicApi
+                required:
+                - wallet
+                - addresses
+        '400':
+          description: NOT ENROLLED
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    enum:
+                    - NOT_ENROLLED
+                  message:
+                    type: string
+                    enum:
+                    - You are not enrolled in crypto offramping. You can enroll by logging into your account, clicking “Move Money”, “Add Funds”, and selecting “USDC / USDT”.
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '429':
+          description: TooManyRequests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+      - api_key: []
+components:
+  schemas:
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+        name:
+          type: string
+        identifier:
+          type: string
+        rawStatus:
+          type: number
+        meta:
+          type: object
+          additionalProperties: true
+      required:
+      - message
+      - name
+      - identifier
+      - rawStatus
+      x-entrypoint:
+        origin: ./src/publicApi
+        sourcePath: ./src/publicApi/main.yaml
+        title: Error
+        virtualPath: components/Error
+      title: Error
+    Crypto.Address:
+      type: object
+      properties:
+        id:
+          type: string
+        walletId:
+          type: string
+        status:
+          type: string
+          enum:
+          - pending_active
+          - active
+          - deactivated
+        currency:
+          type: string
+          enum:
+          - usdc
+          - usdt
+        chain:
+          type: string
+          enum:
+          - ethereum
+          - avalanche
+          - base
+          - ethereum
+          - optimism
+          - polygon
+          - arbitrum
+          - solana
+          - stellar
+          - base
+          - tron
+        address:
+          type: string
+        method:
+          type: string
+          enum:
+          - wire
+          - ach
+        blockchainMemo:
+          type: string
+        timestamp:
+          type: string
+          format: date-time
+      required:
+      - id
+      - walletId
+      - currency
+      - chain
+      - address
+      - timestamp
+      - status
+      x-entrypoint:
+        virtualPath: schemas/Crypto/Address
+        sourcePath: schemas/Crypto/Address.yaml
+        title: Address
+        origin: ./src/publicApi
+      title: Address
+    Crypto.Wallet:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+          enum:
+          - off_ramp
+        status:
+          type: string
+          enum:
+          - pending_active
+          - active
+          - deactivated
+        subaccountId:
+          type: string
+        slashAccountGroupId:
+          type: string
+        timestamp:
+          type: string
+          format: date-time
+      required:
+      - id
+      - type
+      - status
+      - subaccountId
+      - slashAccountGroupId
+      - timestamp
+      x-entrypoint:
+        virtualPath: schemas/Crypto/Wallet
+        sourcePath: schemas/Crypto/Wallet.yaml
+        title: Wallet
+        origin: ./src/publicApi
+      title: Wallet
+  securitySchemes:
+    api_key:
+      type: apiKey
+      description: "API key authentication for public API requests.\n\nKeys come in two flavors:\n\n- *Legal-entity-scoped keys* are pinned to a single legal entity.\n  Minted via the dashboard under a specific entity; every request\n  acts on that entity.\n- *User-scoped keys* are pinned to a user and span every legal\n  entity that user has access to. Every request made with a\n  user-scoped key (except `GET /legal-entity`, which lists the\n  legal entities the user can access) must include an\n  `x-legal-entity` header naming the legal entity the request is\n  operating on. Requests without the header are rejected with\n  `400`. The authenticated user must have an active permission\n  role on the supplied legal entity, otherwise the request is\n  rejected with `403`.\n"
+      name: X-API-Key
+      in: header
+    partner_api_key:
+      type: apiKey
+      description: 'Partner-program API key authentication.
+
+
+        Keys are minted in the partner dashboard (Developers → API Keys),
+
+        are scoped to a single partner program, and are prefixed with
+
+        `sk_partner_`. Partner keys are only accepted by routes that
+
+        declare this scheme; they are rejected by `api_key` routes and
+
+        vice versa.
+
+        '
+      name: X-API-Key
+      in: header
+    bearer:
+      type: http
+      scheme: bearer
+    developer_application:
+      type: http
+      scheme: basic

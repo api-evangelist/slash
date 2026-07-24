@@ -1,0 +1,188 @@
+openapi: 3.1.0
+info:
+  title: Slash Public Account Analytics API
+  description: API description
+  version: 0.0.1
+  contact: {}
+servers:
+- url: https://api.slash.com
+  description: production
+security:
+- api_key: []
+- partner_api_key: []
+- bearer: []
+- developer_application: []
+tags:
+- name: Analytics
+paths:
+  /analytics:
+    x-reference-path: paths/analytics/route.yaml
+    post:
+      description: 'Execute a SQL query against the user''s data.
+
+
+        The endpoint provides read-only access to secure views (transactions, cards, accounts, etc.) scoped to the authenticated user''s entities.
+
+
+        **SQL Dialect**: Uses Snowflake SQL syntax.
+
+
+        **Data Freshness**: Data may be up to 1 hour behind real-time.
+
+
+        Use `SHOW TABLES` to list available tables and `DESCRIBE <table>` to see columns.
+
+        '
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/paths.analytics._dto.PostRequest'
+              x-entrypoint:
+                virtualPath: paths/analytics/_dto/PostRequest
+                sourcePath: paths/analytics/_dto/PostRequest.yaml
+                title: PostRequest
+                origin: ./src/publicApi
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/paths.analytics._dto.PostResponse'
+                x-entrypoint:
+                  virtualPath: paths/analytics/_dto/PostResponse
+                  sourcePath: paths/analytics/_dto/PostResponse.yaml
+                  title: PostResponse
+                  origin: ./src/publicApi
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '429':
+          description: TooManyRequests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+      - api_key: []
+      - bearer: []
+      tags:
+      - Analytics
+components:
+  schemas:
+    paths.analytics._dto.PostRequest:
+      type: object
+      properties:
+        query:
+          type: string
+          description: SQL query to execute
+      required:
+      - query
+      x-entrypoint:
+        virtualPath: paths/analytics/_dto/PostRequest
+        sourcePath: paths/analytics/_dto/PostRequest.yaml
+        title: PostRequest
+        origin: ./src/publicApi
+      title: PostRequest
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+        name:
+          type: string
+        identifier:
+          type: string
+        rawStatus:
+          type: number
+        meta:
+          type: object
+          additionalProperties: true
+      required:
+      - message
+      - name
+      - identifier
+      - rawStatus
+      x-entrypoint:
+        origin: ./src/publicApi
+        sourcePath: ./src/publicApi/main.yaml
+        title: Error
+        virtualPath: components/Error
+      title: Error
+    paths.analytics._dto.PostResponse:
+      type: object
+      properties:
+        columns:
+          type: array
+          items:
+            type: string
+          description: Ordered list of column names in the result set.
+        rows:
+          type: array
+          items:
+            type: object
+            additionalProperties: true
+          description: Array of row objects keyed by column name.
+        rowCount:
+          type: integer
+          description: Total number of rows returned.
+        error:
+          type: string
+          description: SQL error message when the query fails.
+      required:
+      - columns
+      - rows
+      - rowCount
+      x-entrypoint:
+        virtualPath: paths/analytics/_dto/PostResponse
+        sourcePath: paths/analytics/_dto/PostResponse.yaml
+        title: PostResponse
+        origin: ./src/publicApi
+      title: PostResponse
+  securitySchemes:
+    api_key:
+      type: apiKey
+      description: "API key authentication for public API requests.\n\nKeys come in two flavors:\n\n- *Legal-entity-scoped keys* are pinned to a single legal entity.\n  Minted via the dashboard under a specific entity; every request\n  acts on that entity.\n- *User-scoped keys* are pinned to a user and span every legal\n  entity that user has access to. Every request made with a\n  user-scoped key (except `GET /legal-entity`, which lists the\n  legal entities the user can access) must include an\n  `x-legal-entity` header naming the legal entity the request is\n  operating on. Requests without the header are rejected with\n  `400`. The authenticated user must have an active permission\n  role on the supplied legal entity, otherwise the request is\n  rejected with `403`.\n"
+      name: X-API-Key
+      in: header
+    partner_api_key:
+      type: apiKey
+      description: 'Partner-program API key authentication.
+
+
+        Keys are minted in the partner dashboard (Developers → API Keys),
+
+        are scoped to a single partner program, and are prefixed with
+
+        `sk_partner_`. Partner keys are only accepted by routes that
+
+        declare this scheme; they are rejected by `api_key` routes and
+
+        vice versa.
+
+        '
+      name: X-API-Key
+      in: header
+    bearer:
+      type: http
+      scheme: bearer
+    developer_application:
+      type: http
+      scheme: basic

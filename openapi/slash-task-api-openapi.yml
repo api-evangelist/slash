@@ -1,0 +1,621 @@
+openapi: 3.1.0
+info:
+  title: Slash Public Account Task API
+  description: API description
+  version: 0.0.1
+  contact: {}
+servers:
+- url: https://api.slash.com
+  description: production
+security:
+- api_key: []
+- partner_api_key: []
+- bearer: []
+- developer_application: []
+tags:
+- name: Task
+paths:
+  /task:
+    x-reference-path: paths/task/route.yaml
+    get:
+      description: 'List tasks visible to the calling principal. User-scoped callers (OAuth bearer, user-scoped api keys) see tasks they''re assigned to; entity-scoped api keys see all tasks in the legal entity the key is bound to. Each row carries an `actions` list describing what the caller can do on the task right now — an empty list means read-only. Supports filtering by type, status, and type-specific attributes via filter:attr.
+
+        '
+      parameters:
+      - name: cursor
+        required: false
+        in: query
+        schema:
+          type: string
+        description: A cursor string to fetch the next page of results
+        x-reference-path: schemas/Pagination/CursorParameter.yaml
+      - name: filter:type
+        description: Filter by task type (e.g., payment_approval).
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: filter:status
+        description: Filter by task status.
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - action_required
+          - pending
+          - completed
+          - rejected
+          - expired
+          - canceled
+      - name: filter:attr
+        description: 'Type-specific attribute filters. Format: filter:attr[field]=value for equality, or filter:attr[field][op]=value for other operators (gte, lte, gt, lt, in, contains). Use GET /task/schema to discover available fields and operators per type.
+
+          '
+        in: query
+        required: false
+        style: deepObject
+        schema:
+          type: object
+          additionalProperties: true
+      - name: sort
+        description: Sort field. Default is by timestamp descending.
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - timestamp
+          - status
+          - type
+      - name: sortDirection
+        description: Sort direction. Defaults to DESC.
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - ASC
+          - DESC
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/paths.task._dto.TaskResponse'
+                      x-entrypoint:
+                        virtualPath: entity/Task/ITaskWithActionsModel
+                        sourcePath: entity/Task/ITaskWithActionsModel.yaml
+                        title: ITaskWithActionsModel
+                        origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+                        globalImport: true
+                        typescript:
+                          importPath: import  * as models from '@slashfi/models';
+                          symbolValue: models.entity.Task.ITaskWithActionsModel
+                          typeValue: models.entity.Task.ITaskWithActionsModel
+                  metadata:
+                    $ref: '#/components/schemas/Pagination.PaginationResponse'
+                    x-entrypoint:
+                      virtualPath: schemas/Pagination/PaginationResponse
+                      sourcePath: schemas/Pagination/PaginationResponse.yaml
+                      title: PaginationResponse
+                      origin: ./src/publicApi
+                required:
+                - items
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '429':
+          description: TooManyRequests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+      - api_key: []
+      - bearer: []
+      tags:
+      - Task
+  /task/schema:
+    x-reference-path: paths/task/schema/route.yaml
+    get:
+      description: List registered task types with their attribute schemas, filterable fields, supported operators, and available actions. Use this to discover what can be filtered on via filter:attr.
+      parameters:
+      - name: filter:type
+        description: Filter to a specific task type.
+        in: query
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  schemas:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        type:
+                          type: string
+                          description: The task type key.
+                        attributes:
+                          type: object
+                          description: Attribute definitions keyed by field name.
+                          additionalProperties:
+                            type: object
+                            properties:
+                              type:
+                                type: string
+                                description: The attribute data type.
+                                enum:
+                                - string
+                                - number
+                                - boolean
+                                - enum
+                                - money
+                                - date
+                                - ref
+                                - refs
+                              options:
+                                type: array
+                                items:
+                                  type: string
+                                description: Valid values (for enum type only).
+                              operators:
+                                type: array
+                                items:
+                                  type: string
+                                description: Supported filter operators for this field type.
+                            required:
+                            - type
+                            - operators
+                        actions:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              key:
+                                type: string
+                              label:
+                                type: string
+                            required:
+                            - key
+                            - label
+                      required:
+                      - type
+                      - attributes
+                      - actions
+                required:
+                - schemas
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '429':
+          description: TooManyRequests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+      - api_key: []
+      - bearer: []
+      tags:
+      - Task
+  /task/{taskId}:
+    x-reference-path: paths/task/{taskId}/route.yaml
+    get:
+      description: Get a single task by ID.
+      parameters:
+      - name: taskId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  task:
+                    $ref: '#/components/schemas/paths.task._dto.TaskResponse'
+                    x-entrypoint:
+                      virtualPath: entity/Task/ITaskWithActionsModel
+                      sourcePath: entity/Task/ITaskWithActionsModel.yaml
+                      title: ITaskWithActionsModel
+                      origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+                      globalImport: true
+                      typescript:
+                        importPath: import  * as models from '@slashfi/models';
+                        symbolValue: models.entity.Task.ITaskWithActionsModel
+                        typeValue: models.entity.Task.ITaskWithActionsModel
+                required:
+                - task
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '429':
+          description: TooManyRequests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+      - api_key: []
+      - bearer: []
+      tags:
+      - Task
+  /task/{taskId}/act:
+    x-reference-path: paths/task/{taskId}/act/route.yaml
+    post:
+      description: Execute an action on a task (e.g., approve, reject). Available actions depend on the task type — use GET /task/schema to discover them.
+      parameters:
+      - name: taskId
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                action:
+                  type: string
+                  description: The action key to execute (e.g., approve, reject).
+                payload:
+                  type: object
+                  additionalProperties: true
+                  description: Optional action-specific payload. Schema is defined per-action by the task definition and exposed via GET /task/schema.
+              required:
+              - action
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                required:
+                - success
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '429':
+          description: TooManyRequests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+      - api_key: []
+      - bearer: []
+      tags:
+      - Task
+components:
+  schemas:
+    slashfi.models.entity.Task.ITaskActionModel.yaml:
+      title: ITaskActionModel
+      type: object
+      description: 'An action the current caller can perform on a task, resolved per task + caller by the internal app''s GET /task endpoint.
+
+        '
+      properties:
+        key:
+          type: string
+          description: Stable action identifier used when dispatching via POST /task/{id}/act.
+        label:
+          type: string
+          description: Human-readable button label.
+        style:
+          type: string
+          enum:
+          - primary
+          - danger
+          description: UI button style hint.
+        role:
+          type: string
+          enum:
+          - actor
+          - originator
+          - observer
+          description: Stakeholder role the action was resolved through.
+        isDisabled:
+          type: boolean
+          description: 'Whether the action can currently be executed. `true` means the task is in a state that blocks the action — e.g. a completion action whose task still has unsatisfied `meta.isRequired` attributes. Clients should render the button disabled (with `missingAttributes` explaining why) and avoid dispatching it; the act endpoint will also reject with a 400 if called.
+
+            '
+        missingAttributes:
+          type: array
+          description: 'When `isDisabled` is `true` because required attributes aren''t populated, the attribute keys that still need values. Empty when the action isn''t gated or when all requirements are met.
+
+            '
+          items:
+            type: string
+      required:
+      - key
+      - label
+      - isDisabled
+      - missingAttributes
+      x-entrypoint:
+        virtualPath: entity/Task/ITaskActionModel
+        sourcePath: entity/Task/ITaskActionModel.yaml
+        title: ITaskActionModel
+        origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+        globalImport: true
+    slashfi.models.entity.Task.ITaskModel.yaml:
+      title: ITaskModel
+      type: object
+      description: 'Public shape of a task row on the wire. Serialized identically by every task-returning endpoint (list, single-task GET, etc.) so the same consumer type works across surfaces.
+
+        Consumers that resolve per-caller action capability (today: the internal app''s GET /task) extend this with the `actions` list via `ITaskWithActionsModel`. The public API only returns the base shape — it doesn''t expose caller-specific state.
+
+        '
+      properties:
+        id:
+          type: string
+          description: Unique task ID.
+        type:
+          type: string
+          description: 'Task type key (e.g. `payment_approval`, `expense_submission`). The `data` and `meta` shapes vary by type — use GET /task/schema to discover the attribute shape per type.
+
+            '
+        status:
+          type: string
+          description: Normalized task status.
+          enum:
+          - action_required
+          - pending
+          - completed
+          - rejected
+          - expired
+          - canceled
+        data:
+          type: object
+          description: 'Primitive attribute values for the task. Keys and value types vary by `type`; hidden/internal attributes are stripped before the response leaves the server.
+
+            '
+          additionalProperties: true
+        meta:
+          type: object
+          description: 'Per-instance attribute branding, keyed by attribute name. Today the only branding key is `isRequired`, which signals whether the attribute must be satisfied for the task to complete. Absent attribute keys mean the schema default applies.
+
+            '
+          additionalProperties:
+            $ref: '#/components/schemas/slashfi.models.entity.Task.ITaskAttributeMetaModel.yaml'
+            x-entrypoint:
+              virtualPath: entity/Task/ITaskAttributeMetaModel
+              sourcePath: entity/Task/ITaskAttributeMetaModel.yaml
+              title: ITaskAttributeMetaModel
+              origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+              globalImport: true
+        timestamp:
+          type: string
+          format: date-time
+          description: ISO-8601 timestamp of when the task was created.
+        updatedAt:
+          type: string
+          format: date-time
+          description: ISO-8601 timestamp of the latest meaningful task status/data update.
+      required:
+      - id
+      - type
+      - status
+      - data
+      - meta
+      - timestamp
+      - updatedAt
+      x-entrypoint:
+        virtualPath: entity/Task/ITaskModel
+        sourcePath: entity/Task/ITaskModel.yaml
+        title: ITaskModel
+        origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+        globalImport: true
+    Pagination.PaginationResponse:
+      type: object
+      description: Response sent when requesting a list of data
+      properties:
+        nextCursor:
+          type: string
+          description: The cursor to use to retrieve the next page of data. If this is not sent, there is no more data to retrieve.
+        count:
+          type: number
+          description: The number of items in the current page of data.
+      x-entrypoint:
+        virtualPath: schemas/Pagination/PaginationResponse
+        sourcePath: schemas/Pagination/PaginationResponse.yaml
+        title: PaginationResponse
+        origin: ./src/publicApi
+      title: PaginationResponse
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+        name:
+          type: string
+        identifier:
+          type: string
+        rawStatus:
+          type: number
+        meta:
+          type: object
+          additionalProperties: true
+      required:
+      - message
+      - name
+      - identifier
+      - rawStatus
+      x-entrypoint:
+        origin: ./src/publicApi
+        sourcePath: ./src/publicApi/main.yaml
+        title: Error
+        virtualPath: components/Error
+      title: Error
+    slashfi.models.entity.Task.ITaskWithActionsModel.yaml:
+      title: ITaskWithActionsModel
+      description: '`ITaskModel` enriched with the caller''s per-task action list. Returned by surfaces that do caller-specific authorization (today the internal app''s GET /task, which resolves allowed actions from the current user''s role on the task). Not emitted by the public API — external consumers receive the bare `ITaskModel` shape.
+
+        '
+      allOf:
+      - $ref: '#/components/schemas/slashfi.models.entity.Task.ITaskModel.yaml'
+        x-entrypoint:
+          virtualPath: entity/Task/ITaskModel
+          sourcePath: entity/Task/ITaskModel.yaml
+          title: ITaskModel
+          origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+          globalImport: true
+      - type: object
+        properties:
+          actions:
+            type: array
+            description: Actions the current caller can perform on this task.
+            items:
+              $ref: '#/components/schemas/slashfi.models.entity.Task.ITaskActionModel.yaml'
+              x-entrypoint:
+                virtualPath: entity/Task/ITaskActionModel
+                sourcePath: entity/Task/ITaskActionModel.yaml
+                title: ITaskActionModel
+                origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+                globalImport: true
+        required:
+        - actions
+      x-entrypoint:
+        virtualPath: entity/Task/ITaskWithActionsModel
+        sourcePath: entity/Task/ITaskWithActionsModel.yaml
+        title: ITaskWithActionsModel
+        origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+        globalImport: true
+    slashfi.models.entity.Task.ITaskAttributeMetaModel.yaml:
+      title: ITaskAttributeMetaModel
+      type: object
+      properties:
+        isRequired:
+          type: boolean
+          description: True when this attribute must be set for this task instance.
+      x-entrypoint:
+        virtualPath: entity/Task/ITaskAttributeMetaModel
+        sourcePath: entity/Task/ITaskAttributeMetaModel.yaml
+        title: ITaskAttributeMetaModel
+        origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+        globalImport: true
+    paths.task._dto.TaskResponse:
+      $ref: '#/components/schemas/slashfi.models.entity.Task.ITaskWithActionsModel.yaml'
+      x-entrypoint:
+        virtualPath: entity/Task/ITaskWithActionsModel
+        sourcePath: entity/Task/ITaskWithActionsModel.yaml
+        title: ITaskWithActionsModel
+        origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+        globalImport: true
+        typescript:
+          importPath: import  * as models from '@slashfi/models';
+          symbolValue: models.entity.Task.ITaskWithActionsModel
+          typeValue: models.entity.Task.ITaskWithActionsModel
+  securitySchemes:
+    api_key:
+      type: apiKey
+      description: "API key authentication for public API requests.\n\nKeys come in two flavors:\n\n- *Legal-entity-scoped keys* are pinned to a single legal entity.\n  Minted via the dashboard under a specific entity; every request\n  acts on that entity.\n- *User-scoped keys* are pinned to a user and span every legal\n  entity that user has access to. Every request made with a\n  user-scoped key (except `GET /legal-entity`, which lists the\n  legal entities the user can access) must include an\n  `x-legal-entity` header naming the legal entity the request is\n  operating on. Requests without the header are rejected with\n  `400`. The authenticated user must have an active permission\n  role on the supplied legal entity, otherwise the request is\n  rejected with `403`.\n"
+      name: X-API-Key
+      in: header
+    partner_api_key:
+      type: apiKey
+      description: 'Partner-program API key authentication.
+
+
+        Keys are minted in the partner dashboard (Developers → API Keys),
+
+        are scoped to a single partner program, and are prefixed with
+
+        `sk_partner_`. Partner keys are only accepted by routes that
+
+        declare this scheme; they are rejected by `api_key` routes and
+
+        vice versa.
+
+        '
+      name: X-API-Key
+      in: header
+    bearer:
+      type: http
+      scheme: bearer
+    developer_application:
+      type: http
+      scheme: basic

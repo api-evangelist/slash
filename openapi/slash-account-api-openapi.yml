@@ -1,0 +1,791 @@
+openapi: 3.1.0
+info:
+  title: Slash Public Account API
+  description: API description
+  version: 0.0.1
+  contact: {}
+servers:
+- url: https://api.slash.com
+  description: production
+security:
+- api_key: []
+- partner_api_key: []
+- bearer: []
+- developer_application: []
+tags:
+- name: Account
+paths:
+  /account:
+    x-reference-path: paths/account/route.yaml
+    get:
+      parameters:
+      - name: filter:legalEntityId
+        in: query
+        description: Pass in a legal entity ID to filter for accounts under a specific legal entity.
+        required: false
+        schema:
+          type: string
+      description: List all accounts you have access to
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Account'
+                      x-entrypoint:
+                        virtualPath: schemas/Account
+                        sourcePath: schemas/Account.yaml
+                        title: Account
+                        origin: ./src/publicApi
+                  metadata:
+                    $ref: '#/components/schemas/Pagination.PaginationResponse'
+                    x-entrypoint:
+                      virtualPath: schemas/Pagination/PaginationResponse
+                      sourcePath: schemas/Pagination/PaginationResponse.yaml
+                      title: PaginationResponse
+                      origin: ./src/publicApi
+                required:
+                - items
+                - metadata
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '429':
+          description: TooManyRequests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+      - api_key: []
+      - bearer: []
+      tags:
+      - Account
+  /account/{accountId}:
+    parameters:
+    - name: accountId
+      in: path
+      schema:
+        type: string
+      required: true
+    x-reference-path: paths/account/{accountId}/route.yaml
+    get:
+      description: Get a single account by Id
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Account'
+                x-entrypoint:
+                  virtualPath: schemas/Account
+                  sourcePath: schemas/Account.yaml
+                  title: Account
+                  origin: ./src/publicApi
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '429':
+          description: TooManyRequests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+      - api_key: []
+      - bearer: []
+      tags:
+      - Account
+  /account/{accountId}/balance:
+    parameters:
+    - name: accountId
+      in: path
+      schema:
+        type: string
+      required: true
+    x-reference-path: paths/account/{accountId}/balance/route.yaml
+    get:
+      description: "Retrieve a list of balances for an account. \nThe balances are returned in an array, with each item representing a balance for that account.\n\nFor charge_card accounts, there will be two balances returned: \"cash\" and \"credit\".\nFor debit accounts, there will only be one balance returned: \"debit\".\n"
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  balances:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Balance'
+                      x-entrypoint:
+                        virtualPath: schemas/Balance
+                        sourcePath: schemas/Balance.yaml
+                        title: Balance
+                        origin: ./src/publicApi
+                required:
+                - balances
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '429':
+          description: TooManyRequests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+      - api_key: []
+      - bearer: []
+      tags:
+      - Account
+  /account/{accountId}/authorization-webhook:
+    parameters:
+    - name: accountId
+      in: path
+      schema:
+        type: string
+      required: true
+    x-reference-path: paths/account/{accountId}/authorization-webhook/route.yaml
+    get:
+      description: 'Retrieve the authorization webhook configuration for an account.
+
+        This webhook is called during card authorization requests to allow external systems
+
+        to approve or reject transactions in real-time.
+
+        '
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthorizationWebhook'
+                x-entrypoint:
+                  virtualPath: schemas/AuthorizationWebhook
+                  sourcePath: schemas/AuthorizationWebhook.yaml
+                  title: AuthorizationWebhook
+                  origin: ./src/publicApi
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '429':
+          description: TooManyRequests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+      - api_key: []
+      - bearer: []
+      tags:
+      - Account
+    put:
+      description: "Create or update the authorization webhook configuration for an account. This will upsert the webhook configuration, creating it if it doesn't exist or updating it if it does. \n\nThe secret for a webhook remains static after it is initially created. If you would like to retrieve the secret before sending requests,\ncreate the authorization webhook in status 'inactive' first and then update it to 'active' after.\n"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                webhookUrl:
+                  type: string
+                  description: The URL where authorization webhook events will be sent
+                status:
+                  type: string
+                  enum:
+                  - active
+                  - inactive
+                  description: Current status of the webhook
+                config:
+                  $ref: '#/components/schemas/AuthorizationWebhookConfig'
+                  description: Configuration specific to the authorization webhook
+                  x-entrypoint:
+                    virtualPath: schemas/AuthorizationWebhookConfig
+                    sourcePath: schemas/AuthorizationWebhookConfig.yaml
+                    title: AuthorizationWebhookConfig
+                    origin: ./src/publicApi
+              required:
+              - webhookUrl
+              - status
+              - config
+      responses:
+        '200':
+          description: Authorization webhook created or updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthorizationWebhook'
+                x-entrypoint:
+                  virtualPath: schemas/AuthorizationWebhook
+                  sourcePath: schemas/AuthorizationWebhook.yaml
+                  title: AuthorizationWebhook
+                  origin: ./src/publicApi
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '429':
+          description: TooManyRequests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+      - api_key: []
+      - bearer: []
+      tags:
+      - Account
+    patch:
+      description: 'Partially update the authorization webhook configuration for an account.
+
+        Only the provided fields will be updated.
+
+        '
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                webhookUrl:
+                  type: string
+                  description: The URL where authorization webhook events will be sent
+                status:
+                  type: string
+                  enum:
+                  - active
+                  - inactive
+                  description: Current status of the webhook
+                config:
+                  $ref: '#/components/schemas/AuthorizationWebhookConfig'
+                  description: Configuration specific to the authorization webhook
+                  x-entrypoint:
+                    virtualPath: schemas/AuthorizationWebhookConfig
+                    sourcePath: schemas/AuthorizationWebhookConfig.yaml
+                    title: AuthorizationWebhookConfig
+                    origin: ./src/publicApi
+      responses:
+        '200':
+          description: Authorization webhook updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthorizationWebhook'
+                x-entrypoint:
+                  virtualPath: schemas/AuthorizationWebhook
+                  sourcePath: schemas/AuthorizationWebhook.yaml
+                  title: AuthorizationWebhook
+                  origin: ./src/publicApi
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '429':
+          description: TooManyRequests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+      - api_key: []
+      - bearer: []
+      tags:
+      - Account
+components:
+  schemas:
+    AuthorizationWebhook:
+      type: object
+      properties:
+        webhookUrl:
+          type: string
+          description: The URL where authorization webhook events will be sent
+        signingSecret:
+          type: string
+          description: Secret used for signing webhook payloads
+        status:
+          type: string
+          enum:
+          - active
+          - inactive
+          description: Current status of the webhook
+        timeoutDurationMs:
+          type: integer
+          description: The timeout duration in milliseconds for webhook requests
+        config:
+          $ref: '#/components/schemas/AuthorizationWebhookConfig'
+          description: Configuration specific to the authorization webhook
+          x-entrypoint:
+            virtualPath: schemas/AuthorizationWebhookConfig
+            sourcePath: schemas/AuthorizationWebhookConfig.yaml
+            title: AuthorizationWebhookConfig
+            origin: ./src/publicApi
+        createdAt:
+          type: string
+          format: date-time
+          description: When the webhook was created
+        updatedAt:
+          type: string
+          format: date-time
+          description: When the webhook was last updated
+      required:
+      - webhookUrl
+      - signingSecret
+      - status
+      - timeoutDurationMs
+      - config
+      - createdAt
+      - updatedAt
+      x-entrypoint:
+        virtualPath: schemas/AuthorizationWebhook
+        sourcePath: schemas/AuthorizationWebhook.yaml
+        title: AuthorizationWebhook
+        origin: ./src/publicApi
+      title: AuthorizationWebhook
+    Money:
+      type: object
+      description: Represents a monetary value
+      properties:
+        amountCents:
+          type: integer
+          description: The amount in cents
+      required:
+      - amountCents
+      x-entrypoint:
+        virtualPath: schemas/Money
+        sourcePath: schemas/Money.yaml
+        title: Money
+        origin: ./src/publicApi
+      title: Money
+    Pagination.PaginationResponse:
+      type: object
+      description: Response sent when requesting a list of data
+      properties:
+        nextCursor:
+          type: string
+          description: The cursor to use to retrieve the next page of data. If this is not sent, there is no more data to retrieve.
+        count:
+          type: number
+          description: The number of items in the current page of data.
+      x-entrypoint:
+        virtualPath: schemas/Pagination/PaginationResponse
+        sourcePath: schemas/Pagination/PaginationResponse.yaml
+        title: PaginationResponse
+        origin: ./src/publicApi
+      title: PaginationResponse
+    AuthorizationWebhookConfig:
+      description: 'Configuration specific to the authorization webhook, discriminated on `fallbackBehavior`.
+
+
+        The fallback behavior is used when the webhook cannot produce an answer — it fails to send a response in time, sends an invalid response, or cannot be reached (including while Slash is operating in a degraded mode where external webhooks cannot be consulted):
+
+        - `reject`: the transaction is declined.
+
+        - `default`: the transaction continues through Slash''s standard authorization flow (balance and limit checks still apply). If a `when` condition is provided, only transactions matching the condition continue; non-matching transactions are declined.
+
+        '
+      oneOf:
+      - type: object
+        description: Always decline the transaction when the webhook cannot produce an answer.
+        properties:
+          fallbackBehavior:
+            type: string
+            enum:
+            - reject
+            description: The transaction will be declined.
+        required:
+        - fallbackBehavior
+      - type: object
+        description: 'Continue the transaction through the standard authorization flow when the webhook cannot produce an answer — for every transaction, or only for transactions matching the optional `when` condition.
+
+          '
+        properties:
+          fallbackBehavior:
+            type: string
+            enum:
+            - default
+            description: The transaction will continue to run through the standard authorization flow (e.g. the balance check).
+          when:
+            $ref: '#/components/schemas/AuthorizationWebhookCondition'
+            description: 'Optional condition restricting which transactions the `default` fallback applies to: matching transactions continue through the standard authorization flow, non-matching transactions are declined. Omit to apply the `default` fallback to every transaction.
+
+              '
+            x-entrypoint:
+              virtualPath: schemas/AuthorizationWebhookCondition
+              sourcePath: schemas/AuthorizationWebhookCondition.yaml
+              title: AuthorizationWebhookCondition
+              origin: ./src/publicApi
+        required:
+        - fallbackBehavior
+      x-entrypoint:
+        virtualPath: schemas/AuthorizationWebhookConfig
+        sourcePath: schemas/AuthorizationWebhookConfig.yaml
+        title: AuthorizationWebhookConfig
+        origin: ./src/publicApi
+      title: AuthorizationWebhookConfig
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+        name:
+          type: string
+        identifier:
+          type: string
+        rawStatus:
+          type: number
+        meta:
+          type: object
+          additionalProperties: true
+      required:
+      - message
+      - name
+      - identifier
+      - rawStatus
+      x-entrypoint:
+        origin: ./src/publicApi
+        sourcePath: ./src/publicApi/main.yaml
+        title: Error
+        virtualPath: components/Error
+      title: Error
+    Balance:
+      type: object
+      properties:
+        accountId:
+          type: string
+          description: The ID of the account associated with the balance.
+        type:
+          type: string
+          description: 'The type of balance.
+
+            - "cash" represents the excess balance not used as collateral for the charge card. Not applicable to debit accounts.
+
+            - "credit" represents the balance that can be spent on the charge card. Not applicable to debit accounts.
+
+            - "debit" represents the balance that can be spent or withdrawn. Not applicable to charge card accounts.
+
+            '
+          enum:
+          - cash
+          - credit
+          - debit
+        available:
+          allOf:
+          - $ref: '#/components/schemas/Money'
+            x-entrypoint:
+              virtualPath: schemas/Money
+              sourcePath: schemas/Money.yaml
+              title: Money
+              origin: ./src/publicApi
+          - description: "The amount of money that is immediately available to use. \n- For \"credit\" balances, this is the immediately available amount that can be spent on the charge card.\n- For \"cash\" balances, this value represents the immediately available excess cash that is not being used as collateral for the charge card. You can choose to transfer more than these funds to your bank account, but any amount not coverable by the available balance will be removed from the charge card's collateral balance (the \"credit\" balance).\n- For \"debit\" balances, this is the amount of money available that can be spent or withdrawn immediately.\n"
+        posted:
+          allOf:
+          - $ref: '#/components/schemas/Money'
+            x-entrypoint:
+              virtualPath: schemas/Money
+              sourcePath: schemas/Money.yaml
+              title: Money
+              origin: ./src/publicApi
+          - description: 'The amount of money that has been posted to the account. This value does not include any pending transactions and instead represents the amount of money that has been posted to the balance.
+
+              '
+        timestamp:
+          type: string
+          format: date-time
+          description: The UTC timestamp associated with the balance. Since the balance can change rapidly, the timestamp is included to indicate the time when the balance was computed.
+      required:
+      - accountId
+      - type
+      - available
+      - posted
+      - timestamp
+      x-entrypoint:
+        virtualPath: schemas/Balance
+        sourcePath: schemas/Balance.yaml
+        title: Balance
+        origin: ./src/publicApi
+      title: Balance
+    Account:
+      type: object
+      properties:
+        id:
+          type: string
+        status:
+          type: string
+          enum:
+          - open
+          - closed
+        name:
+          type: string
+        accountNumber:
+          type: string
+        routingNumber:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        type:
+          type: string
+          description: The type of account. - "debit" represents a debit card account - "charge_card" represents a charge card account
+          enum:
+          - debit
+          - charge_card
+        balances:
+          type: array
+          items:
+            type: string
+            description: 'The balances on the account. See the Balance object for more details.
+
+              '
+            enum:
+            - debit
+            - cash
+            - credit
+      required:
+      - id
+      - type
+      - status
+      - name
+      - accountNumber
+      - routingNumber
+      - createdAt
+      - balances
+      x-entrypoint:
+        virtualPath: schemas/Account
+        sourcePath: schemas/Account.yaml
+        title: Account
+        origin: ./src/publicApi
+      title: Account
+    AuthorizationWebhookCondition:
+      description: 'A condition expression evaluated against a card authorization, used to decide whether the `default` fallback behavior applies to that transaction.
+
+
+        Conditions form a small expression tree:
+
+        - Logical nodes (`and` / `or`) combine two sub-conditions and can be nested.
+
+        - Comparison leaves (`lte`, `lt`, `gte`, `gt`, `eq`) test the transaction amount (`amountCents`, the absolute amount in USD cents).
+
+        - Set-membership leaves (`in`) test whether the transaction''s `merchantCategoryCode` (4-digit MCC) or `merchantCountry` (ISO 3166-1 alpha-2, as delivered on the authorization request event''s `merchant.location.country`) is one of the given values.
+
+
+        A condition over a field the authorization request did not carry evaluates to false.
+
+        '
+      oneOf:
+      - type: object
+        description: 'Logical node: combines two sub-conditions with `and` (both must match) or `or` (either must match). Sub-conditions may themselves be logical nodes.
+
+          '
+        properties:
+          operator:
+            type: string
+            enum:
+            - and
+            - or
+            description: How the two sub-conditions are combined.
+          left:
+            $ref: '#/components/schemas/AuthorizationWebhookCondition'
+            description: The first sub-condition.
+            x-entrypoint:
+              virtualPath: schemas/AuthorizationWebhookCondition
+              sourcePath: schemas/AuthorizationWebhookCondition.yaml
+              title: AuthorizationWebhookCondition
+              origin: ./src/publicApi
+          right:
+            $ref: '#/components/schemas/AuthorizationWebhookCondition'
+            description: The second sub-condition.
+            x-entrypoint:
+              virtualPath: schemas/AuthorizationWebhookCondition
+              sourcePath: schemas/AuthorizationWebhookCondition.yaml
+              title: AuthorizationWebhookCondition
+              origin: ./src/publicApi
+        required:
+        - operator
+        - left
+        - right
+      - type: object
+        description: 'Amount comparison leaf: tests the absolute transaction amount in USD cents against `value`.
+
+          '
+        properties:
+          operator:
+            type: string
+            enum:
+            - lte
+            - lt
+            - gte
+            - gt
+            - eq
+            description: 'The comparison to apply: less-than-or-equal, less-than, greater-than-or-equal, greater-than, or equal.'
+          field:
+            type: string
+            enum:
+            - amountCents
+            description: The transaction field being compared. Amounts are compared as absolute values in USD cents.
+          value:
+            type: integer
+            description: The amount in USD cents to compare against.
+        required:
+        - operator
+        - field
+        - value
+      - type: object
+        description: 'Set-membership leaf: tests whether the transaction''s merchant category code or merchant country is one of `values`.
+
+          '
+        properties:
+          operator:
+            type: string
+            enum:
+            - in
+            description: Matches when the transaction's field value is one of `values`.
+          field:
+            type: string
+            enum:
+            - merchantCategoryCode
+            - merchantCountry
+            description: '`merchantCategoryCode` is the 4-digit MCC; `merchantCountry` is the ISO 3166-1 alpha-2 merchant country.'
+          values:
+            type: array
+            items:
+              type: string
+            description: The set of values to match against.
+        required:
+        - operator
+        - field
+        - values
+      x-entrypoint:
+        virtualPath: schemas/AuthorizationWebhookCondition
+        sourcePath: schemas/AuthorizationWebhookCondition.yaml
+        title: AuthorizationWebhookCondition
+        origin: ./src/publicApi
+      title: AuthorizationWebhookCondition
+  securitySchemes:
+    api_key:
+      type: apiKey
+      description: "API key authentication for public API requests.\n\nKeys come in two flavors:\n\n- *Legal-entity-scoped keys* are pinned to a single legal entity.\n  Minted via the dashboard under a specific entity; every request\n  acts on that entity.\n- *User-scoped keys* are pinned to a user and span every legal\n  entity that user has access to. Every request made with a\n  user-scoped key (except `GET /legal-entity`, which lists the\n  legal entities the user can access) must include an\n  `x-legal-entity` header naming the legal entity the request is\n  operating on. Requests without the header are rejected with\n  `400`. The authenticated user must have an active permission\n  role on the supplied legal entity, otherwise the request is\n  rejected with `403`.\n"
+      name: X-API-Key
+      in: header
+    partner_api_key:
+      type: apiKey
+      description: 'Partner-program API key authentication.
+
+
+        Keys are minted in the partner dashboard (Developers → API Keys),
+
+        are scoped to a single partner program, and are prefixed with
+
+        `sk_partner_`. Partner keys are only accepted by routes that
+
+        declare this scheme; they are rejected by `api_key` routes and
+
+        vice versa.
+
+        '
+      name: X-API-Key
+      in: header
+    bearer:
+      type: http
+      scheme: bearer
+    developer_application:
+      type: http
+      scheme: basic

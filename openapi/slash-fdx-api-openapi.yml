@@ -1,0 +1,2174 @@
+openapi: 3.1.0
+info:
+  title: Slash Public Account Fdx API
+  description: API description
+  version: 0.0.1
+  contact: {}
+servers:
+- url: https://api.slash.com
+  description: production
+security:
+- api_key: []
+- partner_api_key: []
+- bearer: []
+- developer_application: []
+tags:
+- name: Fdx
+paths:
+  /fdx/customers/current:
+    x-reference-path: paths/fdx/customers/current/route.yaml
+    get:
+      description: Get current authenticated customer ID
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  customerId:
+                    type: string
+                required:
+                - customerId
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '429':
+          description: TooManyRequests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+      - api_key: []
+      - bearer: []
+      tags:
+      - Fdx
+  /fdx/accounts:
+    x-reference-path: paths/fdx/accounts/route.yaml
+    get:
+      parameters:
+      - name: offset
+        in: query
+        required: false
+        schema:
+          type: string
+        description: The number of items to skip before starting to collect the result set
+      - name: limit
+        in: query
+        required: false
+        schema:
+          type: string
+        description: The number of items to return (default 100, max 1000)
+      description: List all accounts
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  page:
+                    type: object
+                    properties:
+                      nextOffset:
+                        type: string
+                  accounts:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/paths.fdx.accounts._dto.Account'
+                      x-entrypoint:
+                        virtualPath: paths/fdx/accounts/_dto/Account
+                        sourcePath: paths/fdx/accounts/_dto/Account.yaml
+                        title: Account
+                        origin: ./src/publicApi
+                required:
+                - accounts
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '429':
+          description: TooManyRequests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+      - api_key: []
+      - bearer: []
+      tags:
+      - Fdx
+  /fdx/accounts/{accountId}:
+    x-reference-path: paths/fdx/accounts/{accountId}/route.yaml
+    get:
+      parameters:
+      - name: accountId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Account ID
+      description: Get account balances and liabilities
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/paths.fdx.accounts._dto.AccountWithBalance'
+                x-entrypoint:
+                  virtualPath: paths/fdx/accounts/_dto/AccountWithBalance
+                  sourcePath: paths/fdx/accounts/_dto/AccountWithBalance.yaml
+                  title: AccountWithBalance
+                  origin: ./src/publicApi
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '429':
+          description: TooManyRequests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+      - api_key: []
+      - bearer: []
+      tags:
+      - Fdx
+  /fdx/accounts/{accountId}/contact:
+    x-reference-path: paths/fdx/accounts/{accountId}/contact/route.yaml
+    get:
+      parameters:
+      - name: accountId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Account ID
+      description: Get an account's contact information
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  holders:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        name:
+                          type: object
+                          properties:
+                            first:
+                              type: string
+                            middle:
+                              type: string
+                            last:
+                              type: string
+                            suffix:
+                              type: string
+                            prefix:
+                              type: string
+                          required:
+                          - first
+                          - middle
+                          - last
+                      required:
+                      - name
+                      - relationship
+                  emails:
+                    type: array
+                    items:
+                      type: string
+                  addresses:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        line1:
+                          type: string
+                        line2:
+                          type: string
+                        line3:
+                          type: string
+                        city:
+                          type: string
+                        region:
+                          type: string
+                          description: State or province or territory.
+                        postalCode:
+                          type: string
+                        country:
+                          type: string
+                          description: Iso3166CountryCode
+                      required:
+                      - line1
+                      - line2
+                      - city
+                      - country
+                  telephones:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        type:
+                          type: string
+                          enum:
+                          - HOME
+                          - BUSINESS
+                          - CELL
+                          - FAX
+                        country:
+                          type: string
+                          description: Country calling codes defined by ITU-T recommendations E.123 and E.164
+                        number:
+                          type: string
+                          description: Telephone subscriber number defined by ITU-T recommendation E.164
+                      required:
+                      - type
+                      - number
+                required:
+                - holders
+                - emails
+                - addresses
+                - telephones
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '429':
+          description: TooManyRequests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+      - api_key: []
+      - bearer: []
+      tags:
+      - Fdx
+  /fdx/accounts/{accountId}/statements:
+    x-reference-path: paths/fdx/accounts/{accountId}/statements/route.yaml
+    get:
+      parameters:
+      - name: accountId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Account ID
+      - name: startTime
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Start time for use in retrieval of statements (ISO 8601).
+      - name: endTime
+        in: query
+        required: false
+        schema:
+          type: string
+        description: End time for use in retrieval of statements (ISO 8601).
+      - name: offset
+        in: query
+        required: false
+        schema:
+          type: string
+        description: The ID of the last item in the previous page of results
+      - name: limit
+        in: query
+        required: false
+        schema:
+          type: string
+        description: The number of items to return (default 100, max 1000)
+      description: Search for statements
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  page:
+                    type: object
+                    properties:
+                      nextOffset:
+                        type: string
+                  statements:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        accountId:
+                          type: string
+                          description: Long-term persistent identity of the account, though not an account number.
+                        statementId:
+                          type: string
+                          description: Long-term persistent identity of the statement.
+                        statementDate:
+                          type: string
+                          description: The date of the statement.
+                        description:
+                          type: string
+                          description: A description of the statement.
+                        links:
+                          type: array
+                          description: Will only contain one element, which is a link to the /accounts/{accountId}/statements/{statementId} endpoint.
+                          items:
+                            type: object
+                            properties:
+                              href:
+                                type: string
+                              rel:
+                                type: string
+                              action:
+                                type: string
+                                enum:
+                                - GET
+                              types:
+                                type: array
+                                items:
+                                  type: string
+                                  enum:
+                                  - application/pdf
+                            required:
+                            - href
+                        status:
+                          type: string
+                          enum:
+                          - AVAILABLE
+                          - PROCESSING
+                          - FAILED
+                      required:
+                      - accountId
+                      - statementId
+                      - statementDate
+                      - description
+                      - links
+                      - status
+                required:
+                - statements
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '429':
+          description: TooManyRequests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+      - api_key: []
+      - bearer: []
+      tags:
+      - Fdx
+  /fdx/accounts/{accountId}/statements/{statementId}:
+    x-reference-path: paths/fdx/accounts/{accountId}/statements/{statementId}/route.yaml
+    get:
+      parameters:
+      - name: accountId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Account ID
+      - name: statementId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Statement ID returned by /accounts/{accountId}/statements
+      description: Get account statement PDF.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/pdf:
+              schema:
+                type: string
+                format: binary
+        '401':
+          description: Unauthorized
+          content:
+            application/pdf:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Forbidden
+          content:
+            application/pdf:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '429':
+          description: TooManyRequests
+          content:
+            application/pdf:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal Error
+          content:
+            application/pdf:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+      - api_key: []
+      - bearer: []
+      tags:
+      - Fdx
+  /fdx/accounts/{accountId}/transactions:
+    x-reference-path: paths/fdx/accounts/{accountId}/transactions/route.yaml
+    get:
+      parameters:
+      - name: accountId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Account ID
+      - name: startTime
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Start time for use in retrieval of transactions (ISO 8601).
+      - name: endTime
+        in: query
+        required: false
+        schema:
+          type: string
+        description: End time for use in retrieval of transactions (ISO 8601).
+      - name: offset
+        in: query
+        required: false
+        schema:
+          type: string
+        description: The ID of the last item in the previous page of results
+      - name: limit
+        in: query
+        required: false
+        schema:
+          type: string
+        description: The number of items to return (default 100, max 1000)
+      description: Search for transactions
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  page:
+                    type: object
+                    properties:
+                      nextOffset:
+                        type: string
+                  transactions:
+                    type: array
+                    items:
+                      oneOf:
+                      - type: object
+                        properties:
+                          depositTransaction:
+                            $ref: '#/components/schemas/paths.fdx.accounts._param_accountId.transactions._dto.DepositTransaction'
+                            x-entrypoint:
+                              virtualPath: paths/fdx/accounts/{accountId}/transactions/_dto/DepositTransaction
+                              sourcePath: paths/fdx/accounts/{accountId}/transactions/_dto/DepositTransaction.yaml
+                              title: DepositTransaction
+                              origin: ./src/publicApi
+                        required:
+                        - depositTransaction
+                      - type: object
+                        properties:
+                          loanTransaction:
+                            $ref: '#/components/schemas/paths.fdx.accounts._param_accountId.transactions._dto.LoanTransaction'
+                            x-entrypoint:
+                              virtualPath: paths/fdx/accounts/{accountId}/transactions/_dto/LoanTransaction
+                              sourcePath: paths/fdx/accounts/{accountId}/transactions/_dto/LoanTransaction.yaml
+                              title: LoanTransaction
+                              origin: ./src/publicApi
+                        required:
+                        - loanTransaction
+                      - type: object
+                        properties:
+                          locTransaction:
+                            $ref: '#/components/schemas/paths.fdx.accounts._param_accountId.transactions._dto.LineOfCreditTransaction'
+                            x-entrypoint:
+                              virtualPath: paths/fdx/accounts/{accountId}/transactions/_dto/LineOfCreditTransaction
+                              sourcePath: paths/fdx/accounts/{accountId}/transactions/_dto/LineOfCreditTransaction.yaml
+                              title: LineOfCreditTransaction
+                              origin: ./src/publicApi
+                        required:
+                        - locTransaction
+                      - type: object
+                        properties:
+                          investmentTransaction:
+                            $ref: '#/components/schemas/paths.fdx.accounts._param_accountId.transactions._dto.InvestmentTransaction'
+                            x-entrypoint:
+                              virtualPath: paths/fdx/accounts/{accountId}/transactions/_dto/InvestmentTransaction
+                              sourcePath: paths/fdx/accounts/{accountId}/transactions/_dto/InvestmentTransaction.yaml
+                              title: InvestmentTransaction
+                              origin: ./src/publicApi
+                        required:
+                        - investmentTransaction
+                required:
+                - transactions
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '429':
+          description: TooManyRequests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+      - api_key: []
+      - bearer: []
+      tags:
+      - Fdx
+  /fdx/accounts/{accountId}/payment-networks:
+    x-reference-path: paths/fdx/accounts/{accountId}/payment-networks/route.yaml
+    get:
+      parameters:
+      - name: accountId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Account ID
+      - name: offset
+        in: query
+        required: false
+        schema:
+          type: string
+        description: The ID of the last item in the previous page of results
+      - name: limit
+        in: query
+        required: false
+        schema:
+          type: string
+        description: The number of items to return (default 100, max 1000)
+      description: Get payment networks supported by the account
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  page:
+                    type: object
+                    properties:
+                      nextOffset:
+                        type: string
+                  paymentNetworks:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        bankId:
+                          type: string
+                          description: Bank identifier used by the payment network ie. Routing Number
+                        identifier:
+                          type: string
+                          description: The number used to identify the account within the payment network.
+                        type:
+                          type: string
+                          enum:
+                          - US_ACH
+                          - US_FEDWIRE
+                          - US_CHIPS
+                          - US_RTP
+                          - CA_ACSS
+                          - CA_LVTS
+                        transferIn:
+                          type: boolean
+                          description: Indicates if the account can receive transfers from the payment network. If the account is closed or locked, this will be false.
+                        transferOut:
+                          type: boolean
+                          description: Indicates if the account can send transfers to the payment network. If the account is closed or locked, this will be false.
+                      required:
+                      - bankId
+                      - identifier
+                      - type
+                      - transferIn
+                      - transferOut
+                required:
+                - paymentNetworks
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '429':
+          description: TooManyRequests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+      - api_key: []
+      - bearer: []
+      tags:
+      - Fdx
+components:
+  schemas:
+    paths.fdx.accounts._dto.InsuranceAccount:
+      type: object
+      description: An insurance account. For example, whole life insurance or short-term disability.
+      properties:
+        accountId:
+          type: string
+          description: Long-term persistent identity of the account, though not an account number.
+        accountNumberDisplay:
+          type: string
+          description: A masked version of the account number, which includes the last 4 digits in plain text.
+        productName:
+          type: string
+          description: Marketed product name for this account. You can use this in UIs to assist in account selection. For example, "Slash Platinum".
+        nickname:
+          type: string
+          description: A nickname or label for the account. This will be unique to the account, even if the user has multiple accounts with the same product name. You can use this in UIs to assist in account selection.
+        status:
+          type: string
+          enum:
+          - CLOSED
+          - DELINQUENT
+          - NEGATIVECURRENTBALANCE
+          - OPEN
+          - PAID
+          - PENDINGCLOSE
+          - PENDINGOPEN
+          - RESTRICTED
+        currency:
+          type: object
+          properties:
+            currencyCode:
+              type: string
+              description: The ISO 4217 currency code for the currency that the account is denominated in. For example, "USD" for US Dollars.
+          required:
+          - currencyCode
+        accountType:
+          type: string
+          enum:
+          - LONGTERMDISABILITY
+          - SHORTTERMDISABILITY
+          - UNIVERSALLIFE
+          - WHOLELIFE
+      required:
+      - accountId
+      - productName
+      - status
+      - currency
+      - accountType
+      x-entrypoint:
+        virtualPath: paths/fdx/accounts/_dto/InsuranceAccount
+        sourcePath: paths/fdx/accounts/_dto/InsuranceAccount.yaml
+        title: InsuranceAccount
+        origin: ./src/publicApi
+      title: InsuranceAccount
+    paths.fdx.accounts._dto.InvestmentAccount:
+      type: object
+      description: An investment account. For example, a 401K or IRA.
+      properties:
+        accountId:
+          type: string
+          description: Long-term persistent identity of the account, though not an account number.
+        accountNumberDisplay:
+          type: string
+          description: A masked version of the account number, which includes the last 4 digits in plain text.
+        productName:
+          type: string
+          description: Marketed product name for this account. You can use this in UIs to assist in account selection. For example, "Slash Platinum".
+        nickname:
+          type: string
+          description: A nickname or label for the account. This will be unique to the account, even if the user has multiple accounts with the same product name. You can use this in UIs to assist in account selection.
+        status:
+          type: string
+          enum:
+          - CLOSED
+          - DELINQUENT
+          - NEGATIVECURRENTBALANCE
+          - OPEN
+          - PAID
+          - PENDINGCLOSE
+          - PENDINGOPEN
+          - RESTRICTED
+        currency:
+          type: object
+          properties:
+            currencyCode:
+              type: string
+              description: The ISO 4217 currency code for the currency that the account is denominated in. For example, "USD" for US Dollars.
+          required:
+          - currencyCode
+        accountType:
+          type: string
+          enum:
+          - 401A
+          - 401K
+          - 403B
+          - '529'
+          - BROKERAGEPRODUCT
+          - COVERDELL
+          - DIGITALASSET
+          - DEFINEDBENEFIT
+          - ESOP
+          - GUARDIAN
+          - INSTITUTIONALTRUST
+          - IRA
+          - KEOGH
+          - NONQUALIFIEDPLAN
+          - OTHERINVESTMENT
+          - ROLLOVER
+          - ROTH
+          - SARSEP
+          - TAXABLE
+          - TDA
+          - TRUST
+          - TERM
+          - UGMA
+          - UTMA
+      required:
+      - accountId
+      - productName
+      - status
+      - currency
+      - accountType
+      x-entrypoint:
+        virtualPath: paths/fdx/accounts/_dto/InvestmentAccount
+        sourcePath: paths/fdx/accounts/_dto/InvestmentAccount.yaml
+        title: InvestmentAccount
+        origin: ./src/publicApi
+      title: InvestmentAccount
+    paths.fdx.accounts._param_accountId.transactions._dto.LoanTransaction:
+      type: object
+      properties:
+        transactionId:
+          type: string
+          description: Long-term persistent identity of the transaction.
+        referenceTransactionId:
+          type: string
+          description: For reverse postings, the identity of the transaction being reversed. For the correction transaction, the identity of the reversing post. For credit card posting transactions, the identity of the authorization transaction
+        postedTimestamp:
+          type: string
+          description: The ISO 8601 date and time that the transaction was posted to the account. This will be included if status is POSTED.
+        transactionTimestamp:
+          type: string
+          description: The ISO 8601 date and time that the transaction was initiated.
+        description:
+          type: string
+          description: A description of the transaction.
+        debitCreditMemo:
+          type: string
+          description: The posting type of a transaction. The transaction amount is an absolute value, and this parameter indicates the direction of the transaction. This will always be DEBIT or CREDIT.
+          enum:
+          - DEBIT
+          - CREDIT
+          - MEMO
+        category:
+          type: string
+          description: The merchant category code (MCC) of the transaction, if available.
+        subCategory:
+          type: string
+          description: Additional information about the transaction category, if available.
+        status:
+          type: string
+          description: The status of the transaction. This will always be PENDING or POSTED.
+          enum:
+          - AUTHORIZATION
+          - MEMO
+          - PENDING
+          - POSTED
+        amount:
+          type: number
+          description: The amount of money in the account currency in that currency's standard unit (e.g. dollars for USD). The amount is an absolute value. The debitCreditMemo parameter indicates the direction of the transaction.
+        foreignAmount:
+          type: number
+          description: This value is only included if the transaction's currency is different than the account's default currency.
+        foreignCurrency:
+          $ref: '#/components/schemas/paths.fdx.accounts._param_accountId.transactions._dto.Iso4217CurrencyCode'
+          description: ISO 4217 currency code. This value is only included if the transaction's currency is different than the account's default currency.
+          x-entrypoint:
+            virtualPath: paths/fdx/accounts/{accountId}/transactions/_dto/Iso4217CurrencyCode
+            sourcePath: paths/fdx/accounts/{accountId}/transactions/_dto/Iso4217CurrencyCode.yaml
+            title: Iso4217CurrencyCode
+            origin: ./src/publicApi
+        transactionType:
+          type: string
+          enum:
+          - ADJUSTMENT
+          - FEE
+          - INTEREST
+          - PAYMENT
+          - LUMP_SUM_PAYMENT
+          - SKIP_PAYMENT
+          - DOUBLE_UP_PAYMENT
+          - PAYOFF
+      required:
+      - transactionId
+      - transactionTimestamp
+      - description
+      - debitCreditMemo
+      - status
+      - amount
+      x-entrypoint:
+        virtualPath: paths/fdx/accounts/{accountId}/transactions/_dto/LoanTransaction
+        sourcePath: paths/fdx/accounts/{accountId}/transactions/_dto/LoanTransaction.yaml
+        title: LoanTransaction
+        origin: ./src/publicApi
+      title: LoanTransaction
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+        name:
+          type: string
+        identifier:
+          type: string
+        rawStatus:
+          type: number
+        meta:
+          type: object
+          additionalProperties: true
+      required:
+      - message
+      - name
+      - identifier
+      - rawStatus
+      x-entrypoint:
+        origin: ./src/publicApi
+        sourcePath: ./src/publicApi/main.yaml
+        title: Error
+        virtualPath: components/Error
+      title: Error
+    paths.fdx.accounts._dto.LineOfCreditAccount:
+      type: object
+      description: A line-of-credit account. For example, a credit card or home equity line of credit.
+      properties:
+        accountId:
+          type: string
+          description: Long-term persistent identity of the account, though not an account number.
+        accountNumberDisplay:
+          type: string
+          description: A masked version of the account number, which includes the last 4 digits in plain text.
+        productName:
+          type: string
+          description: Marketed product name for this account. You can use this in UIs to assist in account selection. For example, "Slash Platinum".
+        nickname:
+          type: string
+          description: A nickname or label for the account. This will be unique to the account, even if the user has multiple accounts with the same product name. You can use this in UIs to assist in account selection.
+        status:
+          type: string
+          enum:
+          - CLOSED
+          - DELINQUENT
+          - NEGATIVECURRENTBALANCE
+          - OPEN
+          - PAID
+          - PENDINGCLOSE
+          - PENDINGOPEN
+          - RESTRICTED
+        currency:
+          type: object
+          properties:
+            currencyCode:
+              type: string
+              description: The ISO 4217 currency code for the currency that the account is denominated in. For example, "USD" for US Dollars.
+          required:
+          - currencyCode
+        accountType:
+          type: string
+          enum:
+          - LINEOFCREDIT
+          - CHARGE
+          - CREDITCARD
+          - HOMELINEOFCREDIT
+      required:
+      - accountId
+      - productName
+      - status
+      - currency
+      - accountType
+      x-entrypoint:
+        virtualPath: paths/fdx/accounts/_dto/LineOfCreditAccount
+        sourcePath: paths/fdx/accounts/_dto/LineOfCreditAccount.yaml
+        title: LineOfCreditAccount
+        origin: ./src/publicApi
+      title: LineOfCreditAccount
+    paths.fdx.accounts._param_accountId.transactions._dto.DepositTransaction:
+      type: object
+      properties:
+        transactionId:
+          type: string
+          description: Long-term persistent identity of the transaction.
+        referenceTransactionId:
+          type: string
+          description: For reverse postings, the identity of the transaction being reversed. For the correction transaction, the identity of the reversing post. For credit card posting transactions, the identity of the authorization transaction
+        postedTimestamp:
+          type: string
+          description: The ISO 8601 date and time that the transaction was posted to the account. This will be included if status is POSTED.
+        transactionTimestamp:
+          type: string
+          description: The ISO 8601 date and time that the transaction was initiated.
+        description:
+          type: string
+          description: A description of the transaction.
+        debitCreditMemo:
+          type: string
+          description: The posting type of a transaction. The transaction amount is an absolute value, and this parameter indicates the direction of the transaction. This will always be DEBIT or CREDIT.
+          enum:
+          - DEBIT
+          - CREDIT
+          - MEMO
+        category:
+          type: string
+          description: The merchant category code (MCC) of the transaction, if available.
+        subCategory:
+          type: string
+          description: Additional information about the transaction category, if available.
+        status:
+          type: string
+          description: The status of the transaction. This will always be PENDING or POSTED.
+          enum:
+          - AUTHORIZATION
+          - MEMO
+          - PENDING
+          - POSTED
+        amount:
+          type: number
+          description: The amount of money in the account currency in that currency's standard unit (e.g. dollars for USD). The amount is an absolute value. The debitCreditMemo parameter indicates the direction of the transaction.
+        foreignAmount:
+          type: number
+          description: This value is only included if the transaction's currency is different than the account's default currency.
+        foreignCurrency:
+          $ref: '#/components/schemas/paths.fdx.accounts._param_accountId.transactions._dto.Iso4217CurrencyCode'
+          description: ISO 4217 currency code. This value is only included if the transaction's currency is different than the account's default currency.
+          x-entrypoint:
+            virtualPath: paths/fdx/accounts/{accountId}/transactions/_dto/Iso4217CurrencyCode
+            sourcePath: paths/fdx/accounts/{accountId}/transactions/_dto/Iso4217CurrencyCode.yaml
+            title: Iso4217CurrencyCode
+            origin: ./src/publicApi
+        payee:
+          type: string
+          maxLength: 255
+        checkNumber:
+          type: string
+          description: The check number of the transaction, if available. Only included if this is a check transaction.
+      required:
+      - transactionId
+      - transactionTimestamp
+      - description
+      - debitCreditMemo
+      - status
+      - amount
+      x-entrypoint:
+        virtualPath: paths/fdx/accounts/{accountId}/transactions/_dto/DepositTransaction
+        sourcePath: paths/fdx/accounts/{accountId}/transactions/_dto/DepositTransaction.yaml
+        title: DepositTransaction
+        origin: ./src/publicApi
+      title: DepositTransaction
+    paths.fdx.accounts._dto.DepositAccountBalance:
+      type: object
+      properties:
+        currentBalance:
+          type: number
+          description: The current balance of the account in the standard unit of the currency (e.g., dollars for USD). Current balance is the balance that is currently in the account, including any pending transactions.
+        availableBalance:
+          type: number
+          description: The available balance of the account in the standard unit of the currency (e.g., dollars for USD). Available balance is the balance that is available to spend/withdraw.
+      required:
+      - currentBalance
+      - availableBalance
+      x-entrypoint:
+        virtualPath: paths/fdx/accounts/_dto/DepositAccountBalance
+        sourcePath: paths/fdx/accounts/_dto/DepositAccountBalance.yaml
+        title: DepositAccountBalance
+        origin: ./src/publicApi
+      title: DepositAccountBalance
+    paths.fdx.accounts._dto.LineOfCreditAccountBalance:
+      type: object
+      properties:
+        creditLine:
+          type: number
+          description: The total credit line available on the account in the standard unit of the currency (e.g., dollars for USD).
+        availableCredit:
+          type: number
+          description: The currently available credit on the account in the standard unit of the currency (e.g., dollars for USD).
+        nextPaymentAmount:
+          type: number
+          description: The amount of the next payment due on the account in the standard unit of the currency (e.g., dollars for USD).
+        nextPaymentDate:
+          type: string
+          description: The date the next payment is due.
+        principalBalance:
+          type: number
+          description: The principal balance on the account in the standard unit of the currency (e.g., dollars for USD).
+        currentBalance:
+          type: number
+          description: The current balance on the account in the standard unit of the currency (e.g., dollars for USD). This includes any outstanding charges, fees, and interest.
+        minimumPaymentAmount:
+          type: number
+          description: The minimum payment due on the account in the standard unit of the currency (e.g., dollars for USD).
+        lastPaymentAmount:
+          type: number
+          description: The amount of the last payment made on the account in the standard unit of the currency (e.g., dollars for USD).
+        lastPaymentDate:
+          type: string
+          description: The date the last payment was made.
+        pastDueAmount:
+          type: number
+          description: The amount past due on the account in the standard unit of the currency (e.g., dollars for USD).
+        lastStmtBalance:
+          type: number
+          description: The balance on the account as of the last statement date in the standard unit of the currency (e.g., dollars for USD).
+        lastStmtDate:
+          type: string
+          description: The date of the last statement.
+        purchasesApr:
+          type: number
+          description: The annual percentage rate (APR) for purchases on the account.
+        advancesApr:
+          type: number
+          description: The annual percentage rate (APR) for cash advances on the account.
+      required:
+      - availableCredit
+      - currentBalance
+      x-entrypoint:
+        virtualPath: paths/fdx/accounts/_dto/LineOfCreditAccountBalance
+        sourcePath: paths/fdx/accounts/_dto/LineOfCreditAccountBalance.yaml
+        title: LineOfCreditAccountBalance
+        origin: ./src/publicApi
+      title: LineOfCreditAccountBalance
+    paths.fdx.accounts._dto.CommercialAccount:
+      type: object
+      description: A commercial account. For example, a business deposit account.
+      properties:
+        accountId:
+          type: string
+          description: Long-term persistent identity of the account, though not an account number.
+        accountNumberDisplay:
+          type: string
+          description: A masked version of the account number, which includes the last 4 digits in plain text.
+        productName:
+          type: string
+          description: Marketed product name for this account. You can use this in UIs to assist in account selection. For example, "Slash Platinum".
+        nickname:
+          type: string
+          description: A nickname or label for the account. This will be unique to the account, even if the user has multiple accounts with the same product name. You can use this in UIs to assist in account selection.
+        status:
+          type: string
+          enum:
+          - CLOSED
+          - DELINQUENT
+          - NEGATIVECURRENTBALANCE
+          - OPEN
+          - PAID
+          - PENDINGCLOSE
+          - PENDINGOPEN
+          - RESTRICTED
+        currency:
+          type: object
+          properties:
+            currencyCode:
+              type: string
+              description: The ISO 4217 currency code for the currency that the account is denominated in. For example, "USD" for US Dollars.
+          required:
+          - currencyCode
+        accountType:
+          type: string
+          enum:
+          - COMMERCIALDEPOSIT
+          - COMMERCIALLOAN
+          - COMMERCIALLINEOFCREDIT
+          - COMMERCIALINVESTMENT
+      required:
+      - accountId
+      - productName
+      - status
+      - currency
+      - accountType
+      x-entrypoint:
+        virtualPath: paths/fdx/accounts/_dto/CommercialAccount
+        sourcePath: paths/fdx/accounts/_dto/CommercialAccount.yaml
+        title: CommercialAccount
+        origin: ./src/publicApi
+      title: CommercialAccount
+    paths.fdx.accounts._dto.LoanAccount:
+      type: object
+      description: A loan account. For example, mortgage, student loan or auto loan.
+      properties:
+        accountId:
+          type: string
+          description: Long-term persistent identity of the account, though not an account number.
+        accountNumberDisplay:
+          type: string
+          description: A masked version of the account number, which includes the last 4 digits in plain text.
+        productName:
+          type: string
+          description: Marketed product name for this account. You can use this in UIs to assist in account selection. For example, "Slash Platinum".
+        nickname:
+          type: string
+          description: A nickname or label for the account. This will be unique to the account, even if the user has multiple accounts with the same product name. You can use this in UIs to assist in account selection.
+        status:
+          type: string
+          enum:
+          - CLOSED
+          - DELINQUENT
+          - NEGATIVECURRENTBALANCE
+          - OPEN
+          - PAID
+          - PENDINGCLOSE
+          - PENDINGOPEN
+          - RESTRICTED
+        currency:
+          type: object
+          properties:
+            currencyCode:
+              type: string
+              description: The ISO 4217 currency code for the currency that the account is denominated in. For example, "USD" for US Dollars.
+          required:
+          - currencyCode
+        accountType:
+          type: string
+          enum:
+          - AUTOLOAN
+          - HOMEEQUITYLOAN
+          - INSTALLMENT
+          - LOAN
+          - MILITARYLOAN
+          - MORTGAGE
+          - PERSONALLOAN
+          - SMBLOAN
+          - STUDENTLOAN
+      required:
+      - accountId
+      - productName
+      - status
+      - currency
+      - accountType
+      x-entrypoint:
+        virtualPath: paths/fdx/accounts/_dto/LoanAccount
+        sourcePath: paths/fdx/accounts/_dto/LoanAccount.yaml
+        title: LoanAccount
+        origin: ./src/publicApi
+      title: LoanAccount
+    paths.fdx.accounts._param_accountId.transactions._dto.InvestmentTransaction:
+      type: object
+      properties:
+        transactionId:
+          type: string
+          description: Long-term persistent identity of the transaction.
+        referenceTransactionId:
+          type: string
+          description: For reverse postings, the identity of the transaction being reversed. For the correction transaction, the identity of the reversing post. For credit card posting transactions, the identity of the authorization transaction
+        postedTimestamp:
+          type: string
+          description: The ISO 8601 date and time that the transaction was posted to the account. This will be included if status is POSTED.
+        transactionTimestamp:
+          type: string
+          description: The ISO 8601 date and time that the transaction was initiated.
+        description:
+          type: string
+          description: A description of the transaction.
+        debitCreditMemo:
+          type: string
+          description: The posting type of a transaction. The transaction amount is an absolute value, and this parameter indicates the direction of the transaction. This will always be DEBIT or CREDIT.
+          enum:
+          - DEBIT
+          - CREDIT
+          - MEMO
+        category:
+          type: string
+          description: The merchant category code (MCC) of the transaction, if available.
+        subCategory:
+          type: string
+          description: Additional information about the transaction category, if available.
+        status:
+          type: string
+          description: The status of the transaction. This will always be PENDING or POSTED.
+          enum:
+          - AUTHORIZATION
+          - MEMO
+          - PENDING
+          - POSTED
+        amount:
+          type: number
+          description: The amount of money in the account currency in that currency's standard unit (e.g. dollars for USD). The amount is an absolute value. The debitCreditMemo parameter indicates the direction of the transaction.
+        foreignAmount:
+          type: number
+          description: This value is only included if the transaction's currency is different than the account's default currency.
+        foreignCurrency:
+          $ref: '#/components/schemas/paths.fdx.accounts._param_accountId.transactions._dto.Iso4217CurrencyCode'
+          description: ISO 4217 currency code. This value is only included if the transaction's currency is different than the account's default currency.
+          x-entrypoint:
+            virtualPath: paths/fdx/accounts/{accountId}/transactions/_dto/Iso4217CurrencyCode
+            sourcePath: paths/fdx/accounts/{accountId}/transactions/_dto/Iso4217CurrencyCode.yaml
+            title: Iso4217CurrencyCode
+            origin: ./src/publicApi
+        transactionType:
+          type: string
+          enum:
+          - ADJUSTMENT
+          - ATM
+          - CASH
+          - CHECK
+          - CLOSURE
+          - CLOSUREOPT
+          - CONTRIBUTION
+          - DEP
+          - DEPOSIT
+          - DIRECTDEBIT
+          - DIRECTDEP
+          - DIV
+          - DIVIDEND
+          - DIVIDENDREINVEST
+          - EXPENSE
+          - FEE
+          - INCOME
+          - INTEREST
+          - INVEXPENSE
+          - JRNLFUND
+          - JRNLSEC
+          - MARGININTEREST
+          - OPTIONEXERCISE
+          - OPTIONEXPIRATION
+          - OTHER
+          - PAYMENT
+          - POS
+          - PURCHASED
+          - PURCHASEDTOCOVER
+          - PURCHASETOCLOSE
+          - PURCHASETOOPEN
+          - REINVESTOFINCOME
+          - REPEATPMT
+          - RETURNOFCAPITAL
+          - SOLD
+          - SOLDTOCLOSE
+          - SOLDTOOPEN
+          - SPLIT
+          - SRVCHG
+          - TRANSFER
+          - XFER
+        securityId:
+          type: string
+          description: The security identifier for the transaction, if applicable.
+        securityIdType:
+          type: string
+          enum:
+          - CINS
+          - CMC
+          - CME
+          - CUSIP
+          - ISIN
+          - ITSA
+          - NASDAQ
+          - SEDOL
+          - SICC
+          - VALOR
+          - WKN
+        securityType:
+          type: string
+          enum:
+          - BOND
+          - DEBT
+          - DIGITALASSET
+          - MUTUALFUND
+          - OPTION
+          - OTHER
+          - STOCK
+          - SWEEP
+        symbol:
+          type: string
+          description: Ticker symbol
+        commission:
+          type: number
+        fees:
+          type: number
+        unitPrice:
+          type: number
+        units:
+          type: number
+        unitType:
+          type: string
+          enum:
+          - CURRENCY
+          - SHARES
+        fiAttributes:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              value:
+                type: string
+            required:
+            - name
+            - value
+      required:
+      - transactionId
+      - transactionTimestamp
+      - description
+      - debitCreditMemo
+      - status
+      - amount
+      - fees
+      x-entrypoint:
+        virtualPath: paths/fdx/accounts/{accountId}/transactions/_dto/InvestmentTransaction
+        sourcePath: paths/fdx/accounts/{accountId}/transactions/_dto/InvestmentTransaction.yaml
+        title: InvestmentTransaction
+        origin: ./src/publicApi
+      title: InvestmentTransaction
+    paths.fdx.accounts._dto.LoanAccountBalance:
+      type: object
+      properties:
+        principalBalance:
+          type: number
+          description: The principal balance of the loan account in the standard unit of the currency (e.g., dollars for USD). Principal balance is the amount of the loan that is still owed.
+        escrowBalance:
+          type: number
+          description: The escrow balance of the loan account in the standard unit of the currency (e.g., dollars for USD). Escrow balance is the amount of money held in escrow to pay for property taxes and insurance.
+        originalPrincipal:
+          type: number
+          description: The original principal balance of the loan account in the standard unit of the currency (e.g., dollars for USD). Original principal balance is the amount of the loan when it was first taken out.
+        originatingDate:
+          type: string
+          description: The date the loan was originated.
+        loanTerm:
+          type: string
+          description: The term of the loan in months.
+        nextPaymentAmount:
+          type: number
+          description: The amount of the next payment due on the loan in the standard unit of the currency (e.g., dollars for USD).
+        nextPaymentDate:
+          type: string
+          description: The date the next payment is due.
+        lastPaymentAmount:
+          type: number
+          description: The amount of the last payment made on the loan in the standard unit of the currency (e.g., dollars for USD).
+        lastPaymentDate:
+          type: string
+          description: The date the last payment was made.
+        maturityDate:
+          type: string
+          description: The date the loan is scheduled to be paid off.
+        interestPaidYearToDate:
+          type: number
+          description: The amount of interest paid on the loan year-to-date in the standard unit of the currency (e.g., dollars for USD).
+        interestRate:
+          type: number
+          description: The interest rate on the loan as a floating point number. For example, 0.05 for 5%.
+        interestRateType:
+          type: string
+          enum:
+          - FIXED
+          - VARIABLE
+          description: The type of interest rate on the loan.
+      required:
+      - principalBalance
+      - interestRate
+      - interestRateType
+      x-entrypoint:
+        virtualPath: paths/fdx/accounts/_dto/LoanAccountBalance
+        sourcePath: paths/fdx/accounts/_dto/LoanAccountBalance.yaml
+        title: LoanAccountBalance
+        origin: ./src/publicApi
+      title: LoanAccountBalance
+    paths.fdx.accounts._dto.DepositAccount:
+      type: object
+      description: A deposit account. For example, a checking, savings or money market account.
+      properties:
+        accountId:
+          type: string
+          description: Long-term persistent identity of the account, though not an account number.
+        accountNumberDisplay:
+          type: string
+          description: A masked version of the account number, which includes the last 4 digits in plain text.
+        productName:
+          type: string
+          description: Marketed product name for this account. You can use this in UIs to assist in account selection. For example, "Slash Platinum".
+        nickname:
+          type: string
+          description: A nickname or label for the account. This will be unique to the account, even if the user has multiple accounts with the same product name. You can use this in UIs to assist in account selection.
+        status:
+          type: string
+          enum:
+          - CLOSED
+          - DELINQUENT
+          - NEGATIVECURRENTBALANCE
+          - OPEN
+          - PAID
+          - PENDINGCLOSE
+          - PENDINGOPEN
+          - RESTRICTED
+        currency:
+          type: object
+          properties:
+            currencyCode:
+              type: string
+              description: The ISO 4217 currency code for the currency that the account is denominated in. For example, "USD" for US Dollars.
+          required:
+          - currencyCode
+        accountType:
+          type: string
+          enum:
+          - CHECKING
+          - SAVINGS
+          - CD
+          - ESCROW
+          - MONEYMARKET
+          - OTHERDEPOSIT
+      required:
+      - accountId
+      - productName
+      - status
+      - currency
+      - accountType
+      x-entrypoint:
+        virtualPath: paths/fdx/accounts/_dto/DepositAccount
+        sourcePath: paths/fdx/accounts/_dto/DepositAccount.yaml
+        title: DepositAccount
+        origin: ./src/publicApi
+      title: DepositAccount
+    paths.fdx.accounts._param_accountId.transactions._dto.LineOfCreditTransaction:
+      type: object
+      properties:
+        transactionId:
+          type: string
+          description: Long-term persistent identity of the transaction.
+        referenceTransactionId:
+          type: string
+          description: For reverse postings, the identity of the transaction being reversed. For the correction transaction, the identity of the reversing post. For credit card posting transactions, the identity of the authorization transaction
+        postedTimestamp:
+          type: string
+          description: The ISO 8601 date and time that the transaction was posted to the account. This will be included if status is POSTED.
+        transactionTimestamp:
+          type: string
+          description: The ISO 8601 date and time that the transaction was initiated.
+        description:
+          type: string
+          description: A description of the transaction.
+        debitCreditMemo:
+          type: string
+          description: The posting type of a transaction. The transaction amount is an absolute value, and this parameter indicates the direction of the transaction. This will always be DEBIT or CREDIT.
+          enum:
+          - DEBIT
+          - CREDIT
+          - MEMO
+        category:
+          type: string
+          description: The merchant category code (MCC) of the transaction, if available.
+        subCategory:
+          type: string
+          description: Additional information about the transaction category, if available.
+        status:
+          type: string
+          description: The status of the transaction. This will always be PENDING or POSTED.
+          enum:
+          - AUTHORIZATION
+          - MEMO
+          - PENDING
+          - POSTED
+        amount:
+          type: number
+          description: The amount of money in the account currency in that currency's standard unit (e.g. dollars for USD). The amount is an absolute value. The debitCreditMemo parameter indicates the direction of the transaction.
+        foreignAmount:
+          type: number
+          description: This value is only included if the transaction's currency is different than the account's default currency.
+        foreignCurrency:
+          $ref: '#/components/schemas/paths.fdx.accounts._param_accountId.transactions._dto.Iso4217CurrencyCode'
+          description: ISO 4217 currency code. This value is only included if the transaction's currency is different than the account's default currency.
+          x-entrypoint:
+            virtualPath: paths/fdx/accounts/{accountId}/transactions/_dto/Iso4217CurrencyCode
+            sourcePath: paths/fdx/accounts/{accountId}/transactions/_dto/Iso4217CurrencyCode.yaml
+            title: Iso4217CurrencyCode
+            origin: ./src/publicApi
+        transactionType:
+          type: string
+          enum:
+          - ADJUSTMENT
+          - CHECK
+          - FEE
+          - INTEREST
+          - PAYMENT
+          - WITHDRAWAL
+        checkNumber:
+          type: number
+          description: The check number of the transaction, if available. Only included if transactionType is CHECK.
+      required:
+      - transactionId
+      - transactionTimestamp
+      - description
+      - debitCreditMemo
+      - status
+      - amount
+      x-entrypoint:
+        virtualPath: paths/fdx/accounts/{accountId}/transactions/_dto/LineOfCreditTransaction
+        sourcePath: paths/fdx/accounts/{accountId}/transactions/_dto/LineOfCreditTransaction.yaml
+        title: LineOfCreditTransaction
+        origin: ./src/publicApi
+      title: LineOfCreditTransaction
+    paths.fdx.accounts._dto.AnnuityAccount:
+      type: object
+      description: An annuity account. For example, a fixed or variable annuity account.
+      properties:
+        accountId:
+          type: string
+          description: Long-term persistent identity of the account, though not an account number.
+        accountNumberDisplay:
+          type: string
+          description: A masked version of the account number, which includes the last 4 digits in plain text.
+        productName:
+          type: string
+          description: Marketed product name for this account. You can use this in UIs to assist in account selection. For example, "Slash Platinum".
+        nickname:
+          type: string
+          description: A nickname or label for the account. This will be unique to the account, even if the user has multiple accounts with the same product name. You can use this in UIs to assist in account selection.
+        status:
+          type: string
+          enum:
+          - CLOSED
+          - DELINQUENT
+          - NEGATIVECURRENTBALANCE
+          - OPEN
+          - PAID
+          - PENDINGCLOSE
+          - PENDINGOPEN
+          - RESTRICTED
+        currency:
+          type: object
+          properties:
+            currencyCode:
+              type: string
+              description: The ISO 4217 currency code for the currency that the account is denominated in. For example, "USD" for US Dollars.
+          required:
+          - currencyCode
+        accountType:
+          type: string
+          enum:
+          - ANNUITY
+          - FIXEDANNUITY
+          - VARIABLEANNUITY
+      required:
+      - accountId
+      - productName
+      - status
+      - currency
+      - accountType
+      x-entrypoint:
+        virtualPath: paths/fdx/accounts/_dto/AnnuityAccount
+        sourcePath: paths/fdx/accounts/_dto/AnnuityAccount.yaml
+        title: AnnuityAccount
+        origin: ./src/publicApi
+      title: AnnuityAccount
+    paths.fdx.accounts._param_accountId.transactions._dto.Iso4217CurrencyCode:
+      type: string
+      description: ISO 4217 currency code, per the FDX / Plaid Core Exchange specification.
+      enum:
+      - AED
+      - AFN
+      - ALL
+      - AMD
+      - ANG
+      - AOA
+      - ARS
+      - AUD
+      - AWG
+      - AZN
+      - BAM
+      - BBD
+      - BDT
+      - BGN
+      - BHD
+      - BIF
+      - BMD
+      - BND
+      - BOB
+      - BOV
+      - BRL
+      - BSD
+      - BTN
+      - BWP
+      - BYN
+      - BZD
+      - CAD
+      - CDF
+      - CHE
+      - CHF
+      - CHW
+      - CLF
+      - CLP
+      - CNY
+      - COP
+      - COU
+      - CRC
+      - CUC
+      - CUP
+      - CVE
+      - CZK
+      - DJF
+      - DKK
+      - DOP
+      - DZD
+      - EGP
+      - ERN
+      - ETB
+      - EUR
+      - FJD
+      - FKP
+      - GBP
+      - GEL
+      - GHS
+      - GIP
+      - GMD
+      - GNF
+      - GTQ
+      - GYD
+      - HKD
+      - HNL
+      - HTG
+      - HUF
+      - IDR
+      - ILS
+      - INR
+      - IQD
+      - IRR
+      - ISK
+      - JMD
+      - JOD
+      - JPY
+      - KES
+      - KGS
+      - KHR
+      - KMF
+      - KPW
+      - KRW
+      - KWD
+      - KYD
+      - KZT
+      - LAK
+      - LBP
+      - LKR
+      - LRD
+      - LSL
+      - LYD
+      - MAD
+      - MDL
+      - MGA
+      - MKD
+      - MMK
+      - MNT
+      - MOP
+      - MRU
+      - MUR
+      - MVR
+      - MWK
+      - MXN
+      - MXV
+      - MYR
+      - MZN
+      - NAD
+      - NGN
+      - NIO
+      - NOK
+      - NPR
+      - NZD
+      - OMR
+      - PAB
+      - PEN
+      - PGK
+      - PHP
+      - PKR
+      - PLN
+      - PYG
+      - QAR
+      - RON
+      - RSD
+      - RUB
+      - RWF
+      - SAR
+      - SBD
+      - SCR
+      - SDG
+      - SEK
+      - SGD
+      - SHP
+      - SLE
+      - SLL
+      - SOS
+      - SRD
+      - SSP
+      - STN
+      - SVC
+      - SYP
+      - SZL
+      - THB
+      - TJS
+      - TMT
+      - TND
+      - TOP
+      - TRY
+      - TTD
+      - TWD
+      - TZS
+      - UAH
+      - UGX
+      - USD
+      - USN
+      - UYI
+      - UYU
+      - UYW
+      - UZS
+      - VED
+      - VES
+      - VND
+      - VUV
+      - WST
+      - XAF
+      - XAG
+      - XAU
+      - XBA
+      - XBB
+      - XBC
+      - XBD
+      - XCD
+      - XDR
+      - XOF
+      - XPD
+      - XPF
+      - XPT
+      - XSU
+      - XTS
+      - XUA
+      - XXX
+      - YER
+      - ZAR
+      - ZMW
+      - ZWL
+      x-entrypoint:
+        virtualPath: paths/fdx/accounts/{accountId}/transactions/_dto/Iso4217CurrencyCode
+        sourcePath: paths/fdx/accounts/{accountId}/transactions/_dto/Iso4217CurrencyCode.yaml
+        title: Iso4217CurrencyCode
+        origin: ./src/publicApi
+      title: Iso4217CurrencyCode
+    paths.fdx.accounts._dto.Account:
+      oneOf:
+      - type: object
+        properties:
+          depositAccount:
+            $ref: '#/components/schemas/paths.fdx.accounts._dto.DepositAccount'
+            x-entrypoint:
+              virtualPath: paths/fdx/accounts/_dto/DepositAccount
+              sourcePath: paths/fdx/accounts/_dto/DepositAccount.yaml
+              title: DepositAccount
+              origin: ./src/publicApi
+        required:
+        - depositAccount
+      - type: object
+        properties:
+          loanAccount:
+            $ref: '#/components/schemas/paths.fdx.accounts._dto.LoanAccount'
+            x-entrypoint:
+              virtualPath: paths/fdx/accounts/_dto/LoanAccount
+              sourcePath: paths/fdx/accounts/_dto/LoanAccount.yaml
+              title: LoanAccount
+              origin: ./src/publicApi
+        required:
+        - loanAccount
+      - type: object
+        properties:
+          locAccount:
+            $ref: '#/components/schemas/paths.fdx.accounts._dto.LineOfCreditAccount'
+            x-entrypoint:
+              virtualPath: paths/fdx/accounts/_dto/LineOfCreditAccount
+              sourcePath: paths/fdx/accounts/_dto/LineOfCreditAccount.yaml
+              title: LineOfCreditAccount
+              origin: ./src/publicApi
+        required:
+        - locAccount
+      - type: object
+        properties:
+          investmentAccount:
+            $ref: '#/components/schemas/paths.fdx.accounts._dto.InvestmentAccount'
+            x-entrypoint:
+              virtualPath: paths/fdx/accounts/_dto/InvestmentAccount
+              sourcePath: paths/fdx/accounts/_dto/InvestmentAccount.yaml
+              title: InvestmentAccount
+              origin: ./src/publicApi
+        required:
+        - investmentAccount
+      - type: object
+        properties:
+          insuranceAccount:
+            $ref: '#/components/schemas/paths.fdx.accounts._dto.InsuranceAccount'
+            x-entrypoint:
+              virtualPath: paths/fdx/accounts/_dto/InsuranceAccount
+              sourcePath: paths/fdx/accounts/_dto/InsuranceAccount.yaml
+              title: InsuranceAccount
+              origin: ./src/publicApi
+        required:
+        - insuranceAccount
+      - type: object
+        properties:
+          annuityAccount:
+            $ref: '#/components/schemas/paths.fdx.accounts._dto.AnnuityAccount'
+            x-entrypoint:
+              virtualPath: paths/fdx/accounts/_dto/AnnuityAccount
+              sourcePath: paths/fdx/accounts/_dto/AnnuityAccount.yaml
+              title: AnnuityAccount
+              origin: ./src/publicApi
+        required:
+        - annuityAccount
+      - type: object
+        properties:
+          commercialAccount:
+            $ref: '#/components/schemas/paths.fdx.accounts._dto.CommercialAccount'
+            x-entrypoint:
+              virtualPath: paths/fdx/accounts/_dto/CommercialAccount
+              sourcePath: paths/fdx/accounts/_dto/CommercialAccount.yaml
+              title: CommercialAccount
+              origin: ./src/publicApi
+        required:
+        - commercialAccount
+      x-entrypoint:
+        virtualPath: paths/fdx/accounts/_dto/Account
+        sourcePath: paths/fdx/accounts/_dto/Account.yaml
+        title: Account
+        origin: ./src/publicApi
+      title: Account
+    paths.fdx.accounts._dto.InvestmentAccountBalance:
+      type: object
+      properties:
+        availableCashBalance:
+          type: number
+          description: The amount of cash available in the account across all sub-accounts, including sweep funds, in the standard unit of the currency (e.g., dollars for USD).
+        balanceAsOf:
+          type: string
+          description: The date and time the balance was last updated.
+        currentValue:
+          type: number
+          description: The total current value of all investments in the standard unit of the currency (e.g., dollars for USD).
+        holdings:
+          type: array
+          description: The holdings in the account.
+          items:
+            type: object
+            properties:
+              securityId:
+                type: string
+                description: The unique identifier of the security. Either securityId and securityIdType or symbol will be provided.
+              securityIdType:
+                type: string
+                description: The type of the security identifier.
+                enum:
+                - CINS
+                - CMC
+                - CME
+                - CUSIP
+                - ISIN
+                - ITSA
+                - NASDAQ
+                - SEDOL
+                - SICC
+                - VALOR
+                - WKN
+              holdingName:
+                type: string
+                description: The name of the security.
+              holdingType:
+                type: string
+                description: The type of the holding.
+                enum:
+                - ANNUITY
+                - BOND
+                - CD
+                - DIGITALASSET
+                - MUTUALFUND
+                - OPTION
+                - OTHER
+                - STOCK
+              holdingSubType:
+                type: string
+                enum:
+                - CASH
+                - MONEYMARKET
+              symbol:
+                type: string
+                description: The symbol of the security. Either securityId and securityIdType or symbol will be provided.
+              purchasedPrice:
+                type: number
+                description: The price at which the security was purchased in the standard unit of the currency (e.g., dollars for USD).
+              currentUnitPrice:
+                type: number
+                description: The current unit price of the security in the standard unit of the currency (e.g., dollars for USD).
+              currentUnitPriceDate:
+                type: string
+                format: date
+                description: The date (YYYY-MM-DD) the current unit price was last updated.
+              units:
+                type: number
+                description: The number of units of the security held.
+              marketValue:
+                type: number
+                description: The market value of the holding in the standard unit of the currency (e.g., dollars for USD).
+              faceValue:
+                type: number
+                description: The face value of the holding in the standard unit of the currency (e.g., dollars for USD).
+              cashAccount:
+                type: boolean
+                description: If true, indicates that this holding is used to maintain proceeds from sales, dividends, and other cash postings to the investment account.
+              currency:
+                type: object
+                properties:
+                  currencyCode:
+                    type: string
+                    description: The ISO 4217 currency code.
+                required:
+                - currencyCode
+              fiAttributes:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                    value:
+                      type: string
+                  required:
+                  - name
+                  - value
+            required:
+            - marketValue
+            - cashAccount
+      required:
+      - availableCashBalance
+      - currentValue
+      x-entrypoint:
+        virtualPath: paths/fdx/accounts/_dto/InvestmentAccountBalance
+        sourcePath: paths/fdx/accounts/_dto/InvestmentAccountBalance.yaml
+        title: InvestmentAccountBalance
+        origin: ./src/publicApi
+      title: InvestmentAccountBalance
+    paths.fdx.accounts._dto.AccountWithBalance:
+      oneOf:
+      - type: object
+        properties:
+          depositAccount:
+            allOf:
+            - $ref: '#/components/schemas/paths.fdx.accounts._dto.DepositAccount'
+              x-entrypoint:
+                virtualPath: paths/fdx/accounts/_dto/DepositAccount
+                sourcePath: paths/fdx/accounts/_dto/DepositAccount.yaml
+                title: DepositAccount
+                origin: ./src/publicApi
+            - $ref: '#/components/schemas/paths.fdx.accounts._dto.DepositAccountBalance'
+              x-entrypoint:
+                virtualPath: paths/fdx/accounts/_dto/DepositAccountBalance
+                sourcePath: paths/fdx/accounts/_dto/DepositAccountBalance.yaml
+                title: DepositAccountBalance
+                origin: ./src/publicApi
+        required:
+        - depositAccount
+      - type: object
+        properties:
+          loanAccount:
+            allOf:
+            - $ref: '#/components/schemas/paths.fdx.accounts._dto.LoanAccount'
+              x-entrypoint:
+                virtualPath: paths/fdx/accounts/_dto/LoanAccount
+                sourcePath: paths/fdx/accounts/_dto/LoanAccount.yaml
+                title: LoanAccount
+                origin: ./src/publicApi
+            - $ref: '#/components/schemas/paths.fdx.accounts._dto.LoanAccountBalance'
+              x-entrypoint:
+                virtualPath: paths/fdx/accounts/_dto/LoanAccountBalance
+                sourcePath: paths/fdx/accounts/_dto/LoanAccountBalance.yaml
+                title: LoanAccountBalance
+                origin: ./src/publicApi
+        required:
+        - loanAccount
+      - type: object
+        properties:
+          locAccount:
+            allOf:
+            - $ref: '#/components/schemas/paths.fdx.accounts._dto.LineOfCreditAccount'
+              x-entrypoint:
+                virtualPath: paths/fdx/accounts/_dto/LineOfCreditAccount
+                sourcePath: paths/fdx/accounts/_dto/LineOfCreditAccount.yaml
+                title: LineOfCreditAccount
+                origin: ./src/publicApi
+            - $ref: '#/components/schemas/paths.fdx.accounts._dto.LineOfCreditAccountBalance'
+              x-entrypoint:
+                virtualPath: paths/fdx/accounts/_dto/LineOfCreditAccountBalance
+                sourcePath: paths/fdx/accounts/_dto/LineOfCreditAccountBalance.yaml
+                title: LineOfCreditAccountBalance
+                origin: ./src/publicApi
+        required:
+        - locAccount
+      - type: object
+        properties:
+          investmentAccount:
+            allOf:
+            - $ref: '#/components/schemas/paths.fdx.accounts._dto.InvestmentAccount'
+              x-entrypoint:
+                virtualPath: paths/fdx/accounts/_dto/InvestmentAccount
+                sourcePath: paths/fdx/accounts/_dto/InvestmentAccount.yaml
+                title: InvestmentAccount
+                origin: ./src/publicApi
+            - $ref: '#/components/schemas/paths.fdx.accounts._dto.InvestmentAccountBalance'
+              x-entrypoint:
+                virtualPath: paths/fdx/accounts/_dto/InvestmentAccountBalance
+                sourcePath: paths/fdx/accounts/_dto/InvestmentAccountBalance.yaml
+                title: InvestmentAccountBalance
+                origin: ./src/publicApi
+        required:
+        - investmentAccount
+      x-entrypoint:
+        virtualPath: paths/fdx/accounts/_dto/AccountWithBalance
+        sourcePath: paths/fdx/accounts/_dto/AccountWithBalance.yaml
+        title: AccountWithBalance
+        origin: ./src/publicApi
+      title: AccountWithBalance
+  securitySchemes:
+    api_key:
+      type: apiKey
+      description: "API key authentication for public API requests.\n\nKeys come in two flavors:\n\n- *Legal-entity-scoped keys* are pinned to a single legal entity.\n  Minted via the dashboard under a specific entity; every request\n  acts on that entity.\n- *User-scoped keys* are pinned to a user and span every legal\n  entity that user has access to. Every request made with a\n  user-scoped key (except `GET /legal-entity`, which lists the\n  legal entities the user can access) must include an\n  `x-legal-entity` header naming the legal entity the request is\n  operating on. Requests without the header are rejected with\n  `400`. The authenticated user must have an active permission\n  role on the supplied legal entity, otherwise the request is\n  rejected with `403`.\n"
+      name: X-API-Key
+      in: header
+    partner_api_key:
+      type: apiKey
+      description: 'Partner-program API key authentication.
+
+
+        Keys are minted in the partner dashboard (Developers → API Keys),
+
+        are scoped to a single partner program, and are prefixed with
+
+        `sk_partner_`. Partner keys are only accepted by routes that
+
+        declare this scheme; they are rejected by `api_key` routes and
+
+        vice versa.
+
+        '
+      name: X-API-Key
+      in: header
+    bearer:
+      type: http
+      scheme: bearer
+    developer_application:
+      type: http
+      scheme: basic

@@ -1,0 +1,308 @@
+openapi: 3.1.0
+info:
+  title: Slash Public Account Agent Requests API
+  description: API description
+  version: 0.0.1
+  contact: {}
+servers:
+- url: https://api.slash.com
+  description: production
+security:
+- api_key: []
+- partner_api_key: []
+- bearer: []
+- developer_application: []
+tags:
+- name: Agent Requests
+paths:
+  /agent-request:
+    x-reference-path: paths/agent-request/route.yaml
+    get:
+      description: 'List all agent requests created by this API key.
+
+
+        Agent requests are created when a read-only API key makes a write request (POST, PUT, PATCH, DELETE) to the Public API. This endpoint returns all such requests, paginated.
+
+        '
+      summary: List agent requests
+      tags:
+      - Agent Requests
+      parameters:
+      - name: cursor
+        required: false
+        in: query
+        schema:
+          type: string
+        description: A cursor string to fetch the next page of results
+        x-reference-path: schemas/Pagination/CursorParameter.yaml
+      - name: filter:status
+        in: query
+        description: Filter by request status
+        required: false
+        schema:
+          type: string
+          enum:
+          - pending
+          - approved
+          - rejected
+          - expired
+          - executed
+          - failed
+          - running
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/AgentRequest'
+                      x-entrypoint:
+                        virtualPath: schemas/AgentRequest
+                        sourcePath: schemas/AgentRequest.yaml
+                        title: AgentRequest
+                        origin: ./src/publicApi
+                  metadata:
+                    $ref: '#/components/schemas/Pagination.PaginationResponse'
+                    x-entrypoint:
+                      virtualPath: schemas/Pagination/PaginationResponse
+                      sourcePath: schemas/Pagination/PaginationResponse.yaml
+                      title: PaginationResponse
+                      origin: ./src/publicApi
+                required:
+                - items
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '429':
+          description: TooManyRequests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+      - api_key: []
+  /agent-request/{agentRequestId}:
+    parameters:
+    - name: agentRequestId
+      in: path
+      schema:
+        type: string
+      required: true
+      description: The unique identifier of the agent request (returned in x-deferred-action-id header)
+    x-reference-path: paths/agent-request/{agentRequestId}/route.yaml
+    get:
+      description: 'Get the status and details of an agent request by ID.
+
+
+        Agent requests are created when a read-only API key makes a write request (POST, PUT, PATCH, DELETE) to the Public API. Instead of executing immediately, these requests are deferred and require approval from an authorized user.
+
+
+        Use this endpoint to check the status of a pending request or retrieve the result after execution.
+
+        '
+      summary: Get agent request
+      tags:
+      - Agent Requests
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AgentRequest'
+                x-entrypoint:
+                  virtualPath: schemas/AgentRequest
+                  sourcePath: schemas/AgentRequest.yaml
+                  title: AgentRequest
+                  origin: ./src/publicApi
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '429':
+          description: TooManyRequests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+      - api_key: []
+components:
+  schemas:
+    AgentRequest:
+      type: object
+      description: A pending or completed agent request
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the agent request
+        status:
+          type: string
+          enum:
+          - pending
+          - approved
+          - rejected
+          - expired
+          - executed
+          - failed
+          - running
+          description: Current status of the request
+        display:
+          type: object
+          description: Human-readable display information
+          properties:
+            title:
+              type: string
+              description: A brief title describing the action
+            description:
+              type: string
+              description: Detailed description of what the action will do
+            sections:
+              type: array
+              description: Key-value details about the request
+              items:
+                type: object
+                properties:
+                  label:
+                    type: string
+                  value:
+                    oneOf:
+                    - type: string
+                    - type: object
+                      properties:
+                        oldValue:
+                          type: string
+                        newValue:
+                          type: string
+                      required:
+                      - newValue
+                required:
+                - label
+                - value
+          required:
+          - title
+          - sections
+        result:
+          type: object
+          description: The result of the executed action. Only present when status is "executed".
+          additionalProperties: true
+        createdAt:
+          type: string
+          format: date-time
+          description: When the request was created
+      required:
+      - id
+      - status
+      - display
+      - createdAt
+      x-entrypoint:
+        virtualPath: schemas/AgentRequest
+        sourcePath: schemas/AgentRequest.yaml
+        title: AgentRequest
+        origin: ./src/publicApi
+      title: AgentRequest
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+        name:
+          type: string
+        identifier:
+          type: string
+        rawStatus:
+          type: number
+        meta:
+          type: object
+          additionalProperties: true
+      required:
+      - message
+      - name
+      - identifier
+      - rawStatus
+      x-entrypoint:
+        origin: ./src/publicApi
+        sourcePath: ./src/publicApi/main.yaml
+        title: Error
+        virtualPath: components/Error
+      title: Error
+    Pagination.PaginationResponse:
+      type: object
+      description: Response sent when requesting a list of data
+      properties:
+        nextCursor:
+          type: string
+          description: The cursor to use to retrieve the next page of data. If this is not sent, there is no more data to retrieve.
+        count:
+          type: number
+          description: The number of items in the current page of data.
+      x-entrypoint:
+        virtualPath: schemas/Pagination/PaginationResponse
+        sourcePath: schemas/Pagination/PaginationResponse.yaml
+        title: PaginationResponse
+        origin: ./src/publicApi
+      title: PaginationResponse
+  securitySchemes:
+    api_key:
+      type: apiKey
+      description: "API key authentication for public API requests.\n\nKeys come in two flavors:\n\n- *Legal-entity-scoped keys* are pinned to a single legal entity.\n  Minted via the dashboard under a specific entity; every request\n  acts on that entity.\n- *User-scoped keys* are pinned to a user and span every legal\n  entity that user has access to. Every request made with a\n  user-scoped key (except `GET /legal-entity`, which lists the\n  legal entities the user can access) must include an\n  `x-legal-entity` header naming the legal entity the request is\n  operating on. Requests without the header are rejected with\n  `400`. The authenticated user must have an active permission\n  role on the supplied legal entity, otherwise the request is\n  rejected with `403`.\n"
+      name: X-API-Key
+      in: header
+    partner_api_key:
+      type: apiKey
+      description: 'Partner-program API key authentication.
+
+
+        Keys are minted in the partner dashboard (Developers → API Keys),
+
+        are scoped to a single partner program, and are prefixed with
+
+        `sk_partner_`. Partner keys are only accepted by routes that
+
+        declare this scheme; they are rejected by `api_key` routes and
+
+        vice versa.
+
+        '
+      name: X-API-Key
+      in: header
+    bearer:
+      type: http
+      scheme: bearer
+    developer_application:
+      type: http
+      scheme: basic

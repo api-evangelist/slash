@@ -1,0 +1,368 @@
+openapi: 3.1.0
+info:
+  title: Slash Public Account Developer Account API
+  description: API description
+  version: 0.0.1
+  contact: {}
+servers:
+- url: https://api.slash.com
+  description: production
+security:
+- api_key: []
+- partner_api_key: []
+- bearer: []
+- developer_application: []
+tags:
+- name: Developer Account
+paths:
+  /developer-account/{developerAccountId}/application:
+    parameters:
+    - name: developerAccountId
+      in: path
+      schema:
+        type: string
+      required: true
+    x-reference-path: paths/developer-account/{developerAccountId}/application/route.yaml
+    post:
+      summary: Create a DeveloperApplication
+      tags:
+      - Developer Account
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                type:
+                  $ref: '#/components/schemas/DeveloperApplication.DeveloperApplicationType'
+                  x-entrypoint:
+                    virtualPath: schemas/DeveloperApplication/DeveloperApplicationType
+                    sourcePath: schemas/DeveloperApplication/DeveloperApplicationType.yaml
+                    title: DeveloperApplicationType
+                    origin: ./src/publicApi
+                data:
+                  $ref: '#/components/schemas/DeveloperApplication.DeveloperApplicationData'
+                  x-entrypoint:
+                    virtualPath: schemas/DeveloperApplication/DeveloperApplicationData
+                    sourcePath: schemas/DeveloperApplication/DeveloperApplicationData.yaml
+                    title: DeveloperApplicationData
+                    origin: ./src/publicApi
+              required:
+              - name
+              - type
+              - data
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeveloperApplication.DeveloperApplicationModel'
+                x-entrypoint:
+                  virtualPath: schemas/DeveloperApplication/DeveloperApplicationModel
+                  sourcePath: schemas/DeveloperApplication/DeveloperApplicationModel.yaml
+                  title: DeveloperApplicationModel
+                  origin: ./src/publicApi
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '429':
+          description: TooManyRequests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+      - api_key: []
+components:
+  schemas:
+    DeveloperApplication.PermissionKeyTypes.LegalEntityPermissionPolicyKey:
+      type: string
+      enum:
+      - legal_entity.home.view
+      - legal_entity.view
+      - legal_entity.users.view
+      - legal_entity.users.modify
+      - legal_entity.users.card_groups.view
+      - legal_entity.users.card_groups.modify
+      - legal_entity.subscriptions.view
+      - legal_entity.subscriptions.modify
+      - legal_entity.accounting.view
+      - legal_entity.accounting.modify
+      - legal_entity.contacts.view
+      - legal_entity.contacts.modify
+      - legal_entity.third_party_credentials.view
+      - legal_entity.third_party_credentials.modify
+      - legal_entity.authorized_third_parties.view
+      - legal_entity.authorized_third_parties.modify
+      - legal_entity.api_key.view
+      - legal_entity.api_key.modify
+      - legal_entity.applications.view
+      - legal_entity.applications.modify
+      - legal_entity.permission_roles.view
+      - legal_entity.automation_rules.view
+      - legal_entity.automation_rules.modify
+      - legal_entity.developer_account.view
+      - legal_entity.developer_account.modify
+      - legal_entity.cashback.view
+      - legal_entity.cashback.modify
+      - legal_entity.webhooks.view
+      - legal_entity.webhooks.modify
+      - legal_entity.ticket_reconciliation.view
+      - legal_entity.analytics.view
+      - legal_entity.transactions.crypto_deposit.accelerate
+      x-entrypoint:
+        virtualPath: schemas/DeveloperApplication/PermissionKeyTypes/LegalEntityPermissionPolicyKey
+        sourcePath: schemas/DeveloperApplication/PermissionKeyTypes/LegalEntityPermissionPolicyKey.yaml
+        title: LegalEntityPermissionPolicyKey
+        origin: ./src/publicApi
+      title: LegalEntityPermissionPolicyKey
+    DeveloperApplication.DeveloperApplicationData:
+      type: object
+      properties:
+        description:
+          type: string
+          description: A short description of the application that will be shown to users when they authorize the application.
+        logoUrl:
+          type: string
+          description: The URL of the application's logo that will be shown to users when they authorize the application.
+        termsOfServiceUrl:
+          type: string
+          description: The URL of the application's terms of service that will be shown to users when they authorize the application.
+        privacyPolicyUrl:
+          type: string
+          description: The URL of the application's privacy policy that will be shown to users when they authorize the application.
+        redirectUris:
+          type: array
+          items:
+            type: string
+          description: The URLs of the application's redirect URIs that will be used when the application is authorized. The redirect URIs must match the ones registered here, or the authorization will fail.
+        testUserEmails:
+          type: array
+          items:
+            type: string
+          description: A list of users that are allowed to test the application before it is approved for production. Max 10 users.
+        type:
+          type: string
+          enum:
+          - service
+        scopes:
+          type: array
+          description: The scopes that the application will request access to.
+          items:
+            $ref: '#/components/schemas/DeveloperApplication.PermissionKeyTypes.PermissionPolicyKey'
+            x-entrypoint:
+              virtualPath: schemas/DeveloperApplication/PermissionKeyTypes/PermissionPolicyKey
+              sourcePath: schemas/DeveloperApplication/PermissionKeyTypes/PermissionPolicyKey.yaml
+              title: PermissionPolicyKey
+              origin: ./src/publicApi
+        allowedOrigins:
+          type: array
+          description: The URLs or IP addresses that the application is allowed to make token exchange requests from. If the application makes a token exchange request from a URL that is not in this list, the request will be blocked.
+          items:
+            type: string
+      required:
+      - description
+      - type
+      - scopes
+      - allowedOrigins
+      x-entrypoint:
+        virtualPath: schemas/DeveloperApplication/DeveloperApplicationData
+        sourcePath: schemas/DeveloperApplication/DeveloperApplicationData.yaml
+        title: DeveloperApplicationData
+        origin: ./src/publicApi
+      title: DeveloperApplicationData
+    DeveloperApplication.DeveloperApplicationType:
+      type: string
+      enum:
+      - service
+      x-entrypoint:
+        virtualPath: schemas/DeveloperApplication/DeveloperApplicationType
+        sourcePath: schemas/DeveloperApplication/DeveloperApplicationType.yaml
+        title: DeveloperApplicationType
+        origin: ./src/publicApi
+      title: DeveloperApplicationType
+    DeveloperApplication.PermissionKeyTypes.SlashAccountPermissionPolicyKey:
+      type: string
+      enum:
+      - slash_accounts.view
+      - slash_accounts.home.view
+      - slash_accounts.cards.physical.view
+      - slash_accounts.cards.physical.modify
+      - slash_accounts.cards.virtual.view
+      - slash_accounts.cards.virtual.modify
+      - slash_accounts.incoming_transactions.view
+      - slash_accounts.transactions.view
+      - slash_accounts.transactions.ach_pull.initiate
+      - slash_accounts.transactions.ach_push.initiate
+      - slash_accounts.transactions.wire.initiate
+      - slash_accounts.transactions.between_accounts.initiate
+      - slash_accounts.transactions.rtp.initiate
+      - slash_accounts.balance.view
+      - slash_accounts.subaccounts.view
+      - slash_accounts.subaccounts.modify
+      - slash_accounts.merchant_allowlist.view
+      - slash_accounts.merchant_allowlist.modify
+      - slash_accounts.integrations.view
+      - slash_accounts.integrations.modify
+      x-entrypoint:
+        virtualPath: schemas/DeveloperApplication/PermissionKeyTypes/SlashAccountPermissionPolicyKey
+        sourcePath: schemas/DeveloperApplication/PermissionKeyTypes/SlashAccountPermissionPolicyKey.yaml
+        title: SlashAccountPermissionPolicyKey
+        origin: ./src/publicApi
+      title: SlashAccountPermissionPolicyKey
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+        name:
+          type: string
+        identifier:
+          type: string
+        rawStatus:
+          type: number
+        meta:
+          type: object
+          additionalProperties: true
+      required:
+      - message
+      - name
+      - identifier
+      - rawStatus
+      x-entrypoint:
+        origin: ./src/publicApi
+        sourcePath: ./src/publicApi/main.yaml
+        title: Error
+        virtualPath: components/Error
+      title: Error
+    DeveloperApplication.PermissionKeyTypes.PermissionPolicyKey:
+      oneOf:
+      - $ref: '#/components/schemas/DeveloperApplication.PermissionKeyTypes.LegalEntityPermissionPolicyKey'
+        x-entrypoint:
+          virtualPath: schemas/DeveloperApplication/PermissionKeyTypes/LegalEntityPermissionPolicyKey
+          sourcePath: schemas/DeveloperApplication/PermissionKeyTypes/LegalEntityPermissionPolicyKey.yaml
+          title: LegalEntityPermissionPolicyKey
+          origin: ./src/publicApi
+      - $ref: '#/components/schemas/DeveloperApplication.PermissionKeyTypes.SlashAccountPermissionPolicyKey'
+        x-entrypoint:
+          virtualPath: schemas/DeveloperApplication/PermissionKeyTypes/SlashAccountPermissionPolicyKey
+          sourcePath: schemas/DeveloperApplication/PermissionKeyTypes/SlashAccountPermissionPolicyKey.yaml
+          title: SlashAccountPermissionPolicyKey
+          origin: ./src/publicApi
+      x-entrypoint:
+        virtualPath: schemas/DeveloperApplication/PermissionKeyTypes/PermissionPolicyKey
+        sourcePath: schemas/DeveloperApplication/PermissionKeyTypes/PermissionPolicyKey.yaml
+        title: PermissionPolicyKey
+        origin: ./src/publicApi
+      title: PermissionPolicyKey
+    DeveloperApplication.DeveloperApplicationModel:
+      type: object
+      properties:
+        id:
+          type: string
+        developerAccountId:
+          type: string
+        name:
+          type: string
+        status:
+          $ref: '#/components/schemas/DeveloperApplication.DeveloperApplicationStatus'
+          x-entrypoint:
+            virtualPath: schemas/DeveloperApplication/DeveloperApplicationStatus
+            sourcePath: schemas/DeveloperApplication/DeveloperApplicationStatus.yaml
+            title: DeveloperApplicationStatus
+            origin: ./src/publicApi
+        type:
+          $ref: '#/components/schemas/DeveloperApplication.DeveloperApplicationType'
+          x-entrypoint:
+            virtualPath: schemas/DeveloperApplication/DeveloperApplicationType
+            sourcePath: schemas/DeveloperApplication/DeveloperApplicationType.yaml
+            title: DeveloperApplicationType
+            origin: ./src/publicApi
+        data:
+          $ref: '#/components/schemas/DeveloperApplication.DeveloperApplicationData'
+          x-entrypoint:
+            virtualPath: schemas/DeveloperApplication/DeveloperApplicationData
+            sourcePath: schemas/DeveloperApplication/DeveloperApplicationData.yaml
+            title: DeveloperApplicationData
+            origin: ./src/publicApi
+        timestamp:
+          type: string
+        oauthClientId:
+          type: string
+        oauthClientSecret:
+          type: string
+      required:
+      - id
+      - developerAccountId
+      - name
+      - status
+      - type
+      - data
+      - timestamp
+      x-entrypoint:
+        virtualPath: schemas/DeveloperApplication/DeveloperApplicationModel
+        sourcePath: schemas/DeveloperApplication/DeveloperApplicationModel.yaml
+        title: DeveloperApplicationModel
+        origin: ./src/publicApi
+      title: DeveloperApplicationModel
+    DeveloperApplication.DeveloperApplicationStatus:
+      type: string
+      enum:
+      - test
+      - under_review
+      - production
+      x-entrypoint:
+        virtualPath: schemas/DeveloperApplication/DeveloperApplicationStatus
+        sourcePath: schemas/DeveloperApplication/DeveloperApplicationStatus.yaml
+        title: DeveloperApplicationStatus
+        origin: ./src/publicApi
+      title: DeveloperApplicationStatus
+  securitySchemes:
+    api_key:
+      type: apiKey
+      description: "API key authentication for public API requests.\n\nKeys come in two flavors:\n\n- *Legal-entity-scoped keys* are pinned to a single legal entity.\n  Minted via the dashboard under a specific entity; every request\n  acts on that entity.\n- *User-scoped keys* are pinned to a user and span every legal\n  entity that user has access to. Every request made with a\n  user-scoped key (except `GET /legal-entity`, which lists the\n  legal entities the user can access) must include an\n  `x-legal-entity` header naming the legal entity the request is\n  operating on. Requests without the header are rejected with\n  `400`. The authenticated user must have an active permission\n  role on the supplied legal entity, otherwise the request is\n  rejected with `403`.\n"
+      name: X-API-Key
+      in: header
+    partner_api_key:
+      type: apiKey
+      description: 'Partner-program API key authentication.
+
+
+        Keys are minted in the partner dashboard (Developers → API Keys),
+
+        are scoped to a single partner program, and are prefixed with
+
+        `sk_partner_`. Partner keys are only accepted by routes that
+
+        declare this scheme; they are rejected by `api_key` routes and
+
+        vice versa.
+
+        '
+      name: X-API-Key
+      in: header
+    bearer:
+      type: http
+      scheme: bearer
+    developer_application:
+      type: http
+      scheme: basic

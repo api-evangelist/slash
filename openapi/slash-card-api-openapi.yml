@@ -1,0 +1,1215 @@
+openapi: 3.1.0
+info:
+  title: Slash Public Account Card API
+  description: API description
+  version: 0.0.1
+  contact: {}
+servers:
+- url: https://api.slash.com
+  description: production
+security:
+- api_key: []
+- partner_api_key: []
+- bearer: []
+- developer_application: []
+tags:
+- name: Card
+paths:
+  /card:
+    x-reference-path: paths/card/route.yaml
+    get:
+      description: List all cards you have access to.
+      parameters:
+      - name: filter:legalEntityId
+        in: query
+        description: Pass in a legal entity ID to filter for cards in accounts under a specific legal entity.
+        required: false
+        schema:
+          type: string
+      - name: filter:accountId
+        in: query
+        description: Pass in an account ID to filter for cards under a specific account.
+        required: false
+        schema:
+          type: string
+      - name: filter:virtualAccountId
+        in: query
+        description: Pass in a virtual account ID to filter for cards under a specific virtual account.
+        required: false
+        schema:
+          type: string
+      - name: cursor
+        required: false
+        in: query
+        schema:
+          type: string
+        description: A cursor string to fetch the next page of results
+        x-reference-path: schemas/Pagination/CursorParameter.yaml
+      - name: filter:status
+        description: Returns all cards matching the status passed in.
+        in: query
+        schema:
+          type: string
+          enum:
+          - active
+          - paused
+          - closed
+          - inactive
+        required: false
+      - name: filter:cardGroupId
+        description: Pass in a card group ID, This will return all cards that belong to the card group ID passed in. Cannot be combined with filter:cardGroupName.
+        in: query
+        schema:
+          type: string
+        required: false
+      - name: filter:cardGroupName
+        description: Pass in a card group name, This will return all cards that belong to the card group name passed in. Cannot be combined with filter:cardGroupId.
+        in: query
+        schema:
+          type: string
+        required: false
+      - name: filter:modifier
+        description: Filter cards by modifier. Format is "modifier_name:value" (e.g., "only_allow_recurring_payments:true"). Returns cards where the specified modifier has the given value.
+        in: query
+        schema:
+          type: string
+        required: false
+      - name: sort
+        description: Sorts card by creation date or name.
+        in: query
+        schema:
+          type: string
+          enum:
+          - createdAt
+          - name
+        required: false
+      - name: sortDirection
+        description: The direction to apply the sort filter by. Default ASC.
+        in: query
+        schema:
+          type: string
+          enum:
+          - ASC
+          - DESC
+        required: false
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Card'
+                      x-entrypoint:
+                        virtualPath: schemas/Card
+                        sourcePath: schemas/Card.yaml
+                        title: Card
+                        origin: ./src/publicApi
+                  metadata:
+                    $ref: '#/components/schemas/Pagination.PaginationResponse'
+                    x-entrypoint:
+                      virtualPath: schemas/Pagination/PaginationResponse
+                      sourcePath: schemas/Pagination/PaginationResponse.yaml
+                      title: PaginationResponse
+                      origin: ./src/publicApi
+                required:
+                - items
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '429':
+          description: TooManyRequests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+      - api_key: []
+      - bearer: []
+      tags:
+      - Card
+    post:
+      description: Create a card
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                accountId:
+                  type: string
+                  description: The ID of the account to create the card under. You can get this by calling `GET /account`. This field is required unless you are authenticating via API key, in which case it will default to your first commercial account. We recommend supplying this even if you are authenticating via API key.
+                virtualAccountId:
+                  type: string
+                  description: The ID of the virtual account to create the card under. Virtual accounts can be retrieved by calling `GET /virtual-account`.
+                type:
+                  type: string
+                  description: Specify the type of card you'd like to create. At the moment, only virtual cards are supported.
+                  enum:
+                  - virtual
+                name:
+                  type: string
+                spendingConstraint:
+                  $ref: '#/components/schemas/SpendingConstraint'
+                  x-entrypoint:
+                    virtualPath: schemas/SpendingConstraint
+                    sourcePath: schemas/SpendingConstraint.yaml
+                    title: SpendingConstraint
+                    origin: ./src/publicApi
+                isSingleUse:
+                  type: boolean
+                  description: Defaults to false. When set to true, the card will be automatically closed after a single authorization attempt. Note that the card will be closed even if the authorization declines or drops
+                userData:
+                  type: object
+                  description: Arbitrary information that can be attached to the card. This should be a JSON object and cannot exceed 4kb.
+                  additionalProperties: true
+                cardGroupId:
+                  type: string
+                cardProductId:
+                  description: The ID of the card product to use when creating this card, if not specified a random card product will be chosen.
+                  type: string
+              required:
+              - name
+              - type
+      responses:
+        '201':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Card'
+                x-entrypoint:
+                  virtualPath: schemas/Card
+                  sourcePath: schemas/Card.yaml
+                  title: Card
+                  origin: ./src/publicApi
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '429':
+          description: TooManyRequests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+      - api_key: []
+      - bearer: []
+      tags:
+      - Card
+  /card/{cardId}:
+    parameters:
+    - name: cardId
+      in: path
+      schema:
+        type: string
+      required: true
+    x-reference-path: paths/card/{cardId}/route.yaml
+    patch:
+      description: Update a card
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                status:
+                  $ref: '#/components/schemas/CardStatus'
+                  x-entrypoint:
+                    virtualPath: schemas/CardStatus
+                    sourcePath: schemas/CardStatus.yaml
+                    title: CardStatus
+                    origin: ./src/publicApi
+                cardGroupId:
+                  type: string
+                  nullable: true
+                  description: Explicitly set this value to null to remove the card from a group. Omitting this field entirely will not affect the group the card belongs to.
+                spendingConstraint:
+                  nullable: true
+                  description: Explicitly set this value to null to remove all card level spending constraints.
+                  $ref: '#/components/schemas/SpendingConstraint'
+                  x-entrypoint:
+                    virtualPath: schemas/SpendingConstraint
+                    sourcePath: schemas/SpendingConstraint.yaml
+                    title: SpendingConstraint
+                    origin: ./src/publicApi
+                userData:
+                  nullable: true
+                  description: Arbitrary information that can be attached to the card. This should be a JSON object and cannot exceed 4kb.
+                  type: object
+                  additionalProperties: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Card'
+                x-entrypoint:
+                  virtualPath: schemas/Card
+                  sourcePath: schemas/Card.yaml
+                  title: Card
+                  origin: ./src/publicApi
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '429':
+          description: TooManyRequests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+      - api_key: []
+      - bearer: []
+      tags:
+      - Card
+    get:
+      description: Fetch details for a single card by card ID
+      parameters:
+      - in: query
+        name: include_pan
+        schema:
+          type: string
+          enum:
+          - 'true'
+          - 'false'
+        required: false
+      - in: query
+        name: include_cvv
+        schema:
+          type: string
+          enum:
+          - 'true'
+          - 'false'
+        required: false
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Card'
+                x-entrypoint:
+                  virtualPath: schemas/Card
+                  sourcePath: schemas/Card.yaml
+                  title: Card
+                  origin: ./src/publicApi
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '429':
+          description: TooManyRequests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+      - api_key: []
+      - bearer: []
+      tags:
+      - Card
+  /card/{cardId}/utilization:
+    parameters:
+    - name: cardId
+      in: path
+      schema:
+        type: string
+      required: true
+    x-reference-path: paths/card/{cardId}/utilization/route.yaml
+    get:
+      description: Get a card's current utilization
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CardGroupUtilization'
+                x-entrypoint:
+                  virtualPath: schemas/CardGroupUtilization
+                  sourcePath: schemas/CardGroupUtilization.yaml
+                  title: CardGroupUtilization
+                  origin: ./src/publicApi
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '429':
+          description: TooManyRequests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+      - api_key: []
+      - bearer: []
+      tags:
+      - Card
+  /card/{cardId}/modifier:
+    parameters:
+    - name: cardId
+      in: path
+      schema:
+        type: string
+      required: true
+    x-reference-path: paths/card/{cardId}/modifier/route.yaml
+    get:
+      description: Get all modifiers for a card.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  modifiers:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/CardModifier'
+                      x-entrypoint:
+                        virtualPath: schemas/CardModifier
+                        sourcePath: schemas/CardModifier.yaml
+                        title: CardModifier
+                        origin: ./src/publicApi
+                required:
+                - modifiers
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '429':
+          description: TooManyRequests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+      - api_key: []
+      - bearer: []
+      tags:
+      - Card
+    put:
+      description: Set a modifier for a card.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CardModifier'
+              x-entrypoint:
+                virtualPath: schemas/CardModifier
+                sourcePath: schemas/CardModifier.yaml
+                title: CardModifier
+                origin: ./src/publicApi
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                required:
+                - success
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '429':
+          description: TooManyRequests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+      - api_key: []
+      - bearer: []
+      tags:
+      - Card
+  /card/{cardId}/spending-constraint:
+    parameters:
+    - name: cardId
+      in: path
+      schema:
+        type: string
+      required: true
+    x-reference-path: paths/card/{cardId}/spending-constraint/route.yaml
+    patch:
+      description: Apply a partial update to a card's spending constraint while preserving current properties applied. Properties set to "null" will be removed from the spending constraint.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PartialSpendingConstraint'
+              x-entrypoint:
+                virtualPath: schemas/PartialSpendingConstraint
+                sourcePath: schemas/PartialSpendingConstraint.yaml
+                title: PartialSpendingConstraint
+                origin: ./src/publicApi
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SpendingConstraint'
+                x-entrypoint:
+                  virtualPath: schemas/SpendingConstraint
+                  sourcePath: schemas/SpendingConstraint.yaml
+                  title: SpendingConstraint
+                  origin: ./src/publicApi
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '429':
+          description: TooManyRequests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+      - api_key: []
+      - bearer: []
+      tags:
+      - Card
+    put:
+      description: Fully replace a card's spending constraint.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SpendingConstraint'
+              x-entrypoint:
+                virtualPath: schemas/SpendingConstraint
+                sourcePath: schemas/SpendingConstraint.yaml
+                title: SpendingConstraint
+                origin: ./src/publicApi
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SpendingConstraint'
+                x-entrypoint:
+                  virtualPath: schemas/SpendingConstraint
+                  sourcePath: schemas/SpendingConstraint.yaml
+                  title: SpendingConstraint
+                  origin: ./src/publicApi
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '429':
+          description: TooManyRequests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+      - api_key: []
+      - bearer: []
+      tags:
+      - Card
+components:
+  schemas:
+    CardStatus:
+      type: string
+      enum:
+      - active
+      - paused
+      - inactive
+      - closed
+      x-entrypoint:
+        virtualPath: schemas/CardStatus
+        sourcePath: schemas/CardStatus.yaml
+        title: CardStatus
+        origin: ./src/publicApi
+      title: CardStatus
+    Restriction:
+      type: string
+      enum:
+      - allowlist
+      - blacklist
+      x-entrypoint:
+        virtualPath: schemas/Restriction
+        sourcePath: schemas/Restriction.yaml
+        title: Restriction
+        origin: ./src/publicApi
+      title: Restriction
+    Money:
+      type: object
+      description: Represents a monetary value
+      properties:
+        amountCents:
+          type: integer
+          description: The amount in cents
+      required:
+      - amountCents
+      x-entrypoint:
+        virtualPath: schemas/Money
+        sourcePath: schemas/Money.yaml
+        title: Money
+        origin: ./src/publicApi
+      title: Money
+    CardModifier:
+      oneOf:
+      - type: object
+        required:
+        - name
+        - value
+        properties:
+          name:
+            type: string
+            enum:
+            - only_allow_recurring_payments
+          value:
+            description: Whether to only allow recurring payments. The default value for newly created cards is false.
+            type: boolean
+      x-entrypoint:
+        virtualPath: schemas/CardModifier
+        sourcePath: schemas/CardModifier.yaml
+        title: CardModifier
+        origin: ./src/publicApi
+      title: CardModifier
+    Pagination.PaginationResponse:
+      type: object
+      description: Response sent when requesting a list of data
+      properties:
+        nextCursor:
+          type: string
+          description: The cursor to use to retrieve the next page of data. If this is not sent, there is no more data to retrieve.
+        count:
+          type: number
+          description: The number of items in the current page of data.
+      x-entrypoint:
+        virtualPath: schemas/Pagination/PaginationResponse
+        sourcePath: schemas/Pagination/PaginationResponse.yaml
+        title: PaginationResponse
+        origin: ./src/publicApi
+      title: PaginationResponse
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+        name:
+          type: string
+        identifier:
+          type: string
+        rawStatus:
+          type: number
+        meta:
+          type: object
+          additionalProperties: true
+      required:
+      - message
+      - name
+      - identifier
+      - rawStatus
+      x-entrypoint:
+        origin: ./src/publicApi
+        sourcePath: ./src/publicApi/main.yaml
+        title: Error
+        virtualPath: components/Error
+      title: Error
+    SpendingConstraint:
+      type: object
+      description: A constraint that can be applied to a CardGroupSpendingRule
+      properties:
+        merchantCategoryRule:
+          type: object
+          nullable: true
+          properties:
+            merchantCategories:
+              type: array
+              items:
+                type: string
+            restriction:
+              $ref: '#/components/schemas/Restriction'
+              x-entrypoint:
+                virtualPath: schemas/Restriction
+                sourcePath: schemas/Restriction.yaml
+                title: Restriction
+                origin: ./src/publicApi
+          required:
+          - merchantCategories
+          - restriction
+        merchantRule:
+          type: object
+          nullable: true
+          properties:
+            merchants:
+              type: array
+              items:
+                type: string
+            restriction:
+              $ref: '#/components/schemas/Restriction'
+              x-entrypoint:
+                virtualPath: schemas/Restriction
+                sourcePath: schemas/Restriction.yaml
+                title: Restriction
+                origin: ./src/publicApi
+          required:
+          - merchants
+          - restriction
+        spendingRule:
+          type: object
+          nullable: true
+          properties:
+            utilizationLimit:
+              type: object
+              properties:
+                timezone:
+                  type: string
+                  description: IANA timezone string. Limits always reset at midnight of the timezone specified. If no timezone is specified, then UTC time is used.
+                limitAmount:
+                  $ref: '#/components/schemas/Money'
+                  x-entrypoint:
+                    virtualPath: schemas/Money
+                    sourcePath: schemas/Money.yaml
+                    title: Money
+                    origin: ./src/publicApi
+                preset:
+                  type: string
+                  enum:
+                  - daily
+                  - weekly
+                  - monthly
+                  - yearly
+                  - collective
+                startDate:
+                  type: string
+                  description: Format ISO-8601. A day that equals today or the past. This is optional.If the `preset` is "daily", this value is ignored. If the `preset` is "weekly", "monthly" or "yearly", then the this value is used to compute when the limit should start limit.
+              required:
+              - limitAmount
+              - preset
+            utilizationLimitV2:
+              type: array
+              items:
+                type: object
+                properties:
+                  timezone:
+                    type: string
+                    description: IANA timezone string. Limits always reset at midnight of the timezone specified. If no timezone is specified, then UTC time is used.
+                  limitAmount:
+                    $ref: '#/components/schemas/Money'
+                    x-entrypoint:
+                      virtualPath: schemas/Money
+                      sourcePath: schemas/Money.yaml
+                      title: Money
+                      origin: ./src/publicApi
+                  preset:
+                    type: string
+                    enum:
+                    - daily
+                    - weekly
+                    - monthly
+                    - yearly
+                    - collective
+                  startDate:
+                    type: string
+                    description: Format ISO-8601. A day that equals today or the past. This is optional.If the `preset` is "daily", this value is ignored. If the `preset` is "weekly", "monthly" or "yearly", then the this value is used to compute when the limit should start limit.
+                required:
+                - limitAmount
+                - preset
+            transactionSizeLimit:
+              type: object
+              properties:
+                minimum:
+                  $ref: '#/components/schemas/Money'
+                  x-entrypoint:
+                    virtualPath: schemas/Money
+                    sourcePath: schemas/Money.yaml
+                    title: Money
+                    origin: ./src/publicApi
+                maximum:
+                  $ref: '#/components/schemas/Money'
+                  x-entrypoint:
+                    virtualPath: schemas/Money
+                    sourcePath: schemas/Money.yaml
+                    title: Money
+                    origin: ./src/publicApi
+        countryRule:
+          type: object
+          nullable: true
+          properties:
+            countries:
+              description: A 2 digit country code
+              type: array
+              items:
+                type: string
+            restriction:
+              $ref: '#/components/schemas/Restriction'
+              x-entrypoint:
+                virtualPath: schemas/Restriction
+                sourcePath: schemas/Restriction.yaml
+                title: Restriction
+                origin: ./src/publicApi
+          required:
+          - countries
+          - restriction
+        merchantCategoryCodeRule:
+          type: object
+          nullable: true
+          properties:
+            merchantCategoryCodes:
+              type: array
+              items:
+                type: string
+            restriction:
+              $ref: '#/components/schemas/Restriction'
+              x-entrypoint:
+                virtualPath: schemas/Restriction
+                sourcePath: schemas/Restriction.yaml
+                title: Restriction
+                origin: ./src/publicApi
+          required:
+          - merchantCategoryCodes
+          - restriction
+      x-entrypoint:
+        virtualPath: schemas/SpendingConstraint
+        sourcePath: schemas/SpendingConstraint.yaml
+        title: SpendingConstraint
+        origin: ./src/publicApi
+      title: SpendingConstraint
+    CardGroupUtilization:
+      type: object
+      properties:
+        nextResetDate:
+          type: string
+          format: date-time
+          description: The date the next reset will occur, undefined if collective
+        spend:
+          $ref: '#/components/schemas/Money'
+          description: The amount of money spent in the current period
+          x-entrypoint:
+            virtualPath: schemas/Money
+            sourcePath: schemas/Money.yaml
+            title: Money
+            origin: ./src/publicApi
+        availableBalance:
+          $ref: '#/components/schemas/Money'
+          description: The amount of money available in the current period. Only returned if the card or card group has a spend limit.
+          x-entrypoint:
+            virtualPath: schemas/Money
+            sourcePath: schemas/Money.yaml
+            title: Money
+            origin: ./src/publicApi
+      required:
+      - spend
+      x-entrypoint:
+        virtualPath: schemas/CardGroupUtilization
+        sourcePath: schemas/CardGroupUtilization.yaml
+        title: CardGroupUtilization
+        origin: ./src/publicApi
+      title: CardGroupUtilization
+    Card:
+      type: object
+      properties:
+        id:
+          type: string
+        accountId:
+          type: string
+          description: The account that this card is associated with
+        virtualAccountId:
+          type: string
+          description: The virtual account that this card is associated with
+        last4:
+          type: string
+          description: The last 4 digits of the card number
+        name:
+          type: string
+          description: The name assigned to the card that appears on the user dashboard
+        expiryMonth:
+          type: string
+          description: The month the card expires formatted as MM (01, 02, ..., 12)
+        expiryYear:
+          type: string
+          description: The year the card expires formatted as YYYY (2024, 2025, ...)
+        status:
+          allOf:
+          - $ref: '#/components/schemas/CardStatus'
+            x-entrypoint:
+              virtualPath: schemas/CardStatus
+              sourcePath: schemas/CardStatus.yaml
+              title: CardStatus
+              origin: ./src/publicApi
+          - description: The status of the card
+        isPhysical:
+          type: boolean
+          description: When true, a physical card has been issued. Otherwise, this is a virtual card.
+        isSingleUse:
+          type: boolean
+          description: When true, the card will be automatically closed after a single authorization attempt. Note that the card will be closed even if the authorization declines or drops
+        pan:
+          type: string
+          description: This field contains the full PAN which will only be sent on a request for a single card when you set the query param "include_pan" to "true"
+        cvv:
+          type: string
+          description: This field will contain full CVV which will only be sent on a request for a single card when you set the query param "include_pan" to "true"
+        cardGroupId:
+          type: string
+          description: The card group the card belongs to.
+        cardGroupName:
+          type: string
+          description: The name of the card group the card belongs to.
+        createdAt:
+          type: string
+          format: date-time
+        spendingConstraint:
+          $ref: '#/components/schemas/SpendingConstraint'
+          description: The spending constraint applied to the card
+          x-entrypoint:
+            virtualPath: schemas/SpendingConstraint
+            sourcePath: schemas/SpendingConstraint.yaml
+            title: SpendingConstraint
+            origin: ./src/publicApi
+        userData:
+          type: object
+          description: Arbitrary information that can be attached to the card. See the [`PATCH /card/{cardId}`](api-reference/card-patch) endpoint for more details on how to add user data.
+        cardProductId:
+          type: string
+          description: The ID of the card product this card was created with.
+        modifiers:
+          type: array
+          items:
+            $ref: '#/components/schemas/CardModifier'
+            x-entrypoint:
+              virtualPath: schemas/CardModifier
+              sourcePath: schemas/CardModifier.yaml
+              title: CardModifier
+              origin: ./src/publicApi
+          description: The modifiers applied to this card. Modifiers control card behavior like restricting to recurring payments only.
+      required:
+      - id
+      - accountId
+      - last4
+      - name
+      - expiryMonth
+      - expiryYear
+      - status
+      - isPhysical
+      x-entrypoint:
+        virtualPath: schemas/Card
+        sourcePath: schemas/Card.yaml
+        title: Card
+        origin: ./src/publicApi
+      title: Card
+    PartialSpendingConstraint:
+      type: object
+      description: A partial spending constraint update that can be applied to a CardGroupSpendingRule
+      properties:
+        merchantCategoryRule:
+          type: object
+          nullable: true
+          properties:
+            merchantCategories:
+              type: array
+              items:
+                type: string
+            restriction:
+              $ref: '#/components/schemas/Restriction'
+              x-entrypoint:
+                virtualPath: schemas/Restriction
+                sourcePath: schemas/Restriction.yaml
+                title: Restriction
+                origin: ./src/publicApi
+        merchantRule:
+          type: object
+          nullable: true
+          properties:
+            merchants:
+              type: array
+              items:
+                type: string
+            restriction:
+              $ref: '#/components/schemas/Restriction'
+              x-entrypoint:
+                virtualPath: schemas/Restriction
+                sourcePath: schemas/Restriction.yaml
+                title: Restriction
+                origin: ./src/publicApi
+        spendingRule:
+          type: object
+          nullable: true
+          properties:
+            utilizationLimit:
+              type: object
+              properties:
+                timezone:
+                  type: string
+                  description: IANA timezone string. Limits always reset at midnight of the timezone specified. If no timezone is specified, then UTC time is used.
+                limitAmount:
+                  $ref: '#/components/schemas/Money'
+                  x-entrypoint:
+                    virtualPath: schemas/Money
+                    sourcePath: schemas/Money.yaml
+                    title: Money
+                    origin: ./src/publicApi
+                preset:
+                  type: string
+                  enum:
+                  - daily
+                  - weekly
+                  - monthly
+                  - yearly
+                  - collective
+                startDate:
+                  type: string
+                  description: Format ISO-8601. A day that equals today or the past. This is optional.If the `preset` is "daily", this value is ignored. If the `preset` is "weekly", "monthly" or "yearly", then the this value is used to compute when the limit should start limit.
+            utilizationLimitV2:
+              type: array
+              items:
+                type: object
+                properties:
+                  timezone:
+                    type: string
+                    description: IANA timezone string. Limits always reset at midnight of the timezone specified. If no timezone is specified, then UTC time is used.
+                  limitAmount:
+                    $ref: '#/components/schemas/Money'
+                    x-entrypoint:
+                      virtualPath: schemas/Money
+                      sourcePath: schemas/Money.yaml
+                      title: Money
+                      origin: ./src/publicApi
+                  preset:
+                    type: string
+                    enum:
+                    - daily
+                    - weekly
+                    - monthly
+                    - yearly
+                    - collective
+                  startDate:
+                    type: string
+                    description: Format ISO-8601. A day that equals today or the past. This is optional.If the `preset` is "daily", this value is ignored. If the `preset` is "weekly", "monthly" or "yearly", then the this value is used to compute when the limit should start limit.
+            transactionSizeLimit:
+              type: object
+              properties:
+                minimum:
+                  $ref: '#/components/schemas/Money'
+                  x-entrypoint:
+                    virtualPath: schemas/Money
+                    sourcePath: schemas/Money.yaml
+                    title: Money
+                    origin: ./src/publicApi
+                maximum:
+                  $ref: '#/components/schemas/Money'
+                  x-entrypoint:
+                    virtualPath: schemas/Money
+                    sourcePath: schemas/Money.yaml
+                    title: Money
+                    origin: ./src/publicApi
+        countryRule:
+          type: object
+          nullable: true
+          properties:
+            countries:
+              description: A 2 digit country code
+              type: array
+              items:
+                type: string
+            restriction:
+              $ref: '#/components/schemas/Restriction'
+              x-entrypoint:
+                virtualPath: schemas/Restriction
+                sourcePath: schemas/Restriction.yaml
+                title: Restriction
+                origin: ./src/publicApi
+        merchantCategoryCodeRule:
+          type: object
+          nullable: true
+          properties:
+            merchantCategoryCodes:
+              type: array
+              items:
+                type: string
+            restriction:
+              $ref: '#/components/schemas/Restriction'
+              x-entrypoint:
+                virtualPath: schemas/Restriction
+                sourcePath: schemas/Restriction.yaml
+                title: Restriction
+                origin: ./src/publicApi
+      x-entrypoint:
+        virtualPath: schemas/PartialSpendingConstraint
+        sourcePath: schemas/PartialSpendingConstraint.yaml
+        title: PartialSpendingConstraint
+        origin: ./src/publicApi
+      title: PartialSpendingConstraint
+  securitySchemes:
+    api_key:
+      type: apiKey
+      description: "API key authentication for public API requests.\n\nKeys come in two flavors:\n\n- *Legal-entity-scoped keys* are pinned to a single legal entity.\n  Minted via the dashboard under a specific entity; every request\n  acts on that entity.\n- *User-scoped keys* are pinned to a user and span every legal\n  entity that user has access to. Every request made with a\n  user-scoped key (except `GET /legal-entity`, which lists the\n  legal entities the user can access) must include an\n  `x-legal-entity` header naming the legal entity the request is\n  operating on. Requests without the header are rejected with\n  `400`. The authenticated user must have an active permission\n  role on the supplied legal entity, otherwise the request is\n  rejected with `403`.\n"
+      name: X-API-Key
+      in: header
+    partner_api_key:
+      type: apiKey
+      description: 'Partner-program API key authentication.
+
+
+        Keys are minted in the partner dashboard (Developers → API Keys),
+
+        are scoped to a single partner program, and are prefixed with
+
+        `sk_partner_`. Partner keys are only accepted by routes that
+
+        declare this scheme; they are rejected by `api_key` routes and
+
+        vice versa.
+
+        '
+      name: X-API-Key
+      in: header
+    bearer:
+      type: http
+      scheme: bearer
+    developer_application:
+      type: http
+      scheme: basic

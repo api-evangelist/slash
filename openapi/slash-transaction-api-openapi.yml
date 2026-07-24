@@ -1,0 +1,1504 @@
+openapi: 3.1.0
+info:
+  title: Slash Public Account Transaction API
+  description: API description
+  version: 0.0.1
+  contact: {}
+servers:
+- url: https://api.slash.com
+  description: production
+security:
+- api_key: []
+- partner_api_key: []
+- bearer: []
+- developer_application: []
+tags:
+- name: Transaction
+paths:
+  /transaction:
+    x-reference-path: paths/transaction/route.yaml
+    get:
+      description: Get all transactions
+      parameters:
+      - name: cursor
+        required: false
+        in: query
+        schema:
+          type: string
+        description: A cursor string to fetch the next page of results
+        x-reference-path: schemas/Pagination/CursorParameter.yaml
+      - name: accountId
+        deprecated: true
+        description: Use filter:accountId to filter by account ID
+        in: query
+        schema:
+          type: string
+        required: false
+      - name: filter:legalEntityId
+        in: query
+        description: Pass in a legal entity ID to filter transactions by accounts under a specific legal entity.
+        required: false
+        schema:
+          type: string
+      - name: filter:accountId
+        description: Pass in an account ID to filter transactions by account ID. This will return all transactions that match the account ID passed in.
+        in: query
+        schema:
+          type: string
+        required: false
+      - name: filter:virtualAccountId
+        description: Pass in a virtual account ID to filter transactions by virtual account ID. This will return all transactions that match the virtual account ID passed in.
+        in: query
+        schema:
+          type: string
+        required: false
+      - name: filter:from_date
+        description: Pass in a unix timestamp in milliseconds to filter transactions by date. This will return all transactions that occurred on or after the date passed in.
+        in: query
+        schema:
+          type: string
+        required: false
+      - name: filter:to_date
+        description: Pass in a unix timestamp in milliseconds to filter transactions by date. This will return all transactions that occurred on or before the date passed in.
+        in: query
+        schema:
+          type: string
+        required: false
+      - name: filter:from_authorized_at
+        description: Pass in a unix timestamp in milliseconds to filter transactions by authorization time. This will return all transactions that are authorized on or after the date passed in.
+        in: query
+        schema:
+          type: string
+        required: false
+      - name: filter:to_authorized_at
+        description: Pass in a unix timestamp in milliseconds to filter transactions by authorization time. This will return all transactions that are authorized on or before the date passed in.
+        in: query
+        schema:
+          type: string
+        required: false
+      - name: filter:status
+        description: Filter transactions by status
+        in: query
+        schema:
+          type: string
+          description: '`pending` - The transaction is pending and has not been posted to the account yet (the balance doesn''t reflect the transaction yet).
+
+            `posted` - The transaction has been posted to the account and the balance reflects the transaction.
+
+            `failed` - The transaction failed to post to the account
+
+            '
+          enum:
+          - pending
+          - posted
+          - failed
+      - name: filter:detailed_status
+        description: Filter transactions by detailed status
+        in: query
+        schema:
+          type: string
+          description: '- `pending`: Used for any transaction type that has not posted to the account yet, but is affecting the account''s available balance.
+
+            - `canceled`: Used for any transaction that was canceled.
+
+            - `failed`: Used for any transaction that failed to post to the account.
+
+            - `settled`: Used for any transaction that has posted to the account, except for card refunds, which use the `refund` status, and ACH returns, which use the `returned` status.
+
+            - `declined`: Used for card transactions that were declined.
+
+            - `refund`: Used for card transactions that were refunded, increasing the account''s available and posted balances.
+
+            - `reversed`: Used for card transactions that were authorized, but reversed by the merchant.
+
+            - `returned`: Used for ACH returns. In the case of an ACH return, there are two possibilities: (1) if the ACH settled and then returned, then there will be one transaction with status `settled` for the ACH settling, and one transaction with status `returned` for the ACH return. Both of these are posted transactions. (2) if the ACH returned before settling, then there will only be one transaction with status `canceled`.
+
+            - `dispute`: Used for disputed card transactions.
+
+            '
+          enum:
+          - pending
+          - canceled
+          - failed
+          - settled
+          - declined
+          - refund
+          - reversed
+          - returned
+          - dispute
+      - name: filter:cardId
+        description: Filter transactions by cardId
+        in: query
+        schema:
+          type: string
+        required: false
+      - name: filter:category
+        description: Filter transactions by category type
+        in: query
+        schema:
+          type: string
+          description: 'Filter by transaction category:
+
+            - `card`: Card transactions (authorizations, purchases, refunds)
+
+            - `ach`: ACH transfers (credits and debits)
+
+            - `wire`: Domestic wire transfers
+
+            - `international_wire`: International wire transfers
+
+            - `rtp`: Real-time payments
+
+            - `fee`: Fees (card fees, transfer fees, subscription fees)
+
+            - `internal`: Internal transfers (between accounts, treasury transfers)
+
+            '
+          enum:
+          - card
+          - ach
+          - wire
+          - international_wire
+          - rtp
+          - fee
+          - internal
+        required: false
+      - name: filter:cardGroupId
+        description: Filter transactions by card group ID. This will return all card transactions that belong to cards in the specified card group.
+        in: query
+        schema:
+          type: string
+        required: false
+      - name: filter:providerAuthorizationId
+        description: Filter transactions by provider authorization ID
+        in: query
+        schema:
+          type: string
+        required: false
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Transaction'
+                      x-entrypoint:
+                        virtualPath: schemas/Transaction
+                        sourcePath: schemas/Transaction.yaml
+                        title: Transaction
+                        origin: ./src/publicApi
+                  metadata:
+                    $ref: '#/components/schemas/Pagination.PaginationResponse'
+                    x-entrypoint:
+                      virtualPath: schemas/Pagination/PaginationResponse
+                      sourcePath: schemas/Pagination/PaginationResponse.yaml
+                      title: PaginationResponse
+                      origin: ./src/publicApi
+                required:
+                - items
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '429':
+          description: TooManyRequests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+      - api_key: []
+      - bearer: []
+      tags:
+      - Transaction
+  /transaction/aggregation:
+    x-reference-path: paths/transaction/aggregation/route.yaml
+    get:
+      description: Get transaction aggregations
+      parameters:
+      - name: accountId
+        deprecated: true
+        description: Use filter:accountId to filter by account ID
+        in: query
+        schema:
+          type: string
+        required: false
+      - name: filter:legalEntityId
+        in: query
+        description: Pass in a legal entity ID to filter transactions by accounts under a specific legal entity.
+        required: false
+        schema:
+          type: string
+      - name: filter:accountId
+        description: Pass in an account ID to filter transactions by account ID. This will return all transactions that match the account ID passed in.
+        in: query
+        schema:
+          type: string
+        required: false
+      - name: filter:virtualAccountId
+        description: Pass in a virtual account ID to filter transactions by virtual account ID. This will return all transactions that match the virtual account ID passed in.
+        in: query
+        schema:
+          type: string
+        required: false
+      - name: filter:from_date
+        description: Pass in a unix timestamp in milliseconds to filter transactions by date. This will return all transactions that occurred on or after the date passed in.
+        in: query
+        schema:
+          type: string
+        required: false
+      - name: filter:to_date
+        description: Pass in a unix timestamp in milliseconds to filter transactions by date. This will return all transactions that occurred on or before the date passed in.
+        in: query
+        schema:
+          type: string
+        required: false
+      - name: filter:from_authorized_at
+        description: Pass in a unix timestamp in milliseconds to filter transactions by authorization time. This will return all transactions that are authorized on or after the date passed in.
+        in: query
+        schema:
+          type: string
+        required: false
+      - name: filter:to_authorized_at
+        description: Pass in a unix timestamp in milliseconds to filter transactions by authorization time. This will return all transactions that are authorized on or before the date passed in.
+        in: query
+        schema:
+          type: string
+        required: false
+      - name: filter:status
+        description: Filter transactions by status
+        in: query
+        schema:
+          type: string
+          description: '`pending` - The transaction is pending and has not been posted to the account yet (the balance doesn''t reflect the transaction yet).
+
+            `posted` - The transaction has been posted to the account and the balance reflects the transaction.
+
+            `failed` - The transaction failed to post to the account
+
+            '
+          enum:
+          - pending
+          - posted
+          - failed
+      - name: filter:detailed_status
+        description: Filter transactions by detailed status
+        in: query
+        schema:
+          type: string
+          description: '- `pending`: Used for any transaction type that has not posted to the account yet, but is affecting the account''s available balance.
+
+            - `canceled`: Used for any transaction that was canceled.
+
+            - `failed`: Used for any transaction that failed to post to the account.
+
+            - `settled`: Used for any transaction that has posted to the account, except for card refunds, which use the `refund` status, and ACH returns, which use the `returned` status.
+
+            - `declined`: Used for card transactions that were declined.
+
+            - `refund`: Used for card transactions that were refunded, increasing the account''s available and posted balances.
+
+            - `reversed`: Used for card transactions that were authorized, but reversed by the merchant.
+
+            - `returned`: Used for ACH returns. In the case of an ACH return, there are two possibilities: (1) if the ACH settled and then returned, then there will be one transaction with status `settled` for the ACH settling, and one transaction with status `returned` for the ACH return. Both of these are posted transactions. (2) if the ACH returned before settling, then there will only be one transaction with status `canceled`.
+
+            - `dispute`: Used for disputed card transactions.
+
+            '
+          enum:
+          - pending
+          - canceled
+          - failed
+          - settled
+          - declined
+          - refund
+          - reversed
+          - returned
+          - dispute
+      - name: filter:cardId
+        description: Filter transactions by cardId
+        in: query
+        schema:
+          type: string
+        required: false
+      - name: filter:category
+        description: Filter transactions by category type
+        in: query
+        schema:
+          type: string
+          description: 'Filter by transaction category:
+
+            - `card`: Card transactions (authorizations, purchases, refunds)
+
+            - `ach`: ACH transfers (credits and debits)
+
+            - `wire`: Domestic wire transfers
+
+            - `international_wire`: International wire transfers
+
+            - `rtp`: Real-time payments
+
+            - `fee`: Fees (card fees, transfer fees, subscription fees)
+
+            - `internal`: Internal transfers (between accounts, treasury transfers)
+
+            '
+          enum:
+          - card
+          - ach
+          - wire
+          - international_wire
+          - rtp
+          - fee
+          - internal
+        required: false
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: number
+                    description: The total count of transactions.
+                  totalIn:
+                    type: number
+                    description: The total amount of money that arrived into the account, in cents.
+                  totalOut:
+                    type: number
+                    description: The total amount of money that was sent out of the account, in cents.
+                  netChange:
+                    type: number
+                    description: The net change, which is `totalIn` + `totalOut`.
+                required:
+                - count
+                - totalIn
+                - totalOut
+                - netChange
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '429':
+          description: TooManyRequests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+      - api_key: []
+      - bearer: []
+      tags:
+      - Transaction
+  /transaction/{transactionId}:
+    parameters:
+    - name: transactionId
+      in: path
+      schema:
+        type: string
+      required: true
+    x-reference-path: paths/transaction/{transactionId}/route.yaml
+    get:
+      description: Fetch details for a single transaction by ID
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Transaction'
+                x-entrypoint:
+                  virtualPath: schemas/Transaction
+                  sourcePath: schemas/Transaction.yaml
+                  title: Transaction
+                  origin: ./src/publicApi
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '429':
+          description: TooManyRequests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+      - api_key: []
+      - bearer: []
+      tags:
+      - Transaction
+  /transaction/{transactionId}/note:
+    parameters:
+    - name: transactionId
+      required: true
+      in: path
+      schema:
+        type: string
+    x-reference-path: paths/transaction/{transactionId}/note/route.yaml
+    patch:
+      description: Update note for a transaction
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                note:
+                  type: string
+              required:
+              - note
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                required:
+                - success
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '429':
+          description: TooManyRequests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+      - api_key: []
+      - bearer: []
+      tags:
+      - Transaction
+  /transaction/{transactionId}/fee-details:
+    parameters:
+    - name: transactionId
+      in: path
+      schema:
+        type: string
+      required: true
+    x-reference-path: paths/transaction/{transactionId}/fee-details/route.yaml
+    get:
+      description: Fetch breakdown of a fee transaction
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/FeeTransaction'
+                      x-entrypoint:
+                        virtualPath: schemas/FeeTransaction
+                        sourcePath: schemas/FeeTransaction.yaml
+                        title: FeeTransaction
+                        origin: ./src/publicApi
+                required:
+                - items
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '429':
+          description: TooManyRequests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+      - api_key: []
+      - bearer: []
+      tags:
+      - Transaction
+components:
+  schemas:
+    CardStatus:
+      type: string
+      enum:
+      - active
+      - paused
+      - inactive
+      - closed
+      x-entrypoint:
+        virtualPath: schemas/CardStatus
+        sourcePath: schemas/CardStatus.yaml
+        title: CardStatus
+        origin: ./src/publicApi
+      title: CardStatus
+    FeeTransaction:
+      type: object
+      properties:
+        id:
+          type: string
+        dateCharged:
+          type: string
+        feeAmountCents:
+          type: number
+        feeType:
+          type: string
+        accountId:
+          type: string
+        originalTransaction:
+          $ref: '#/components/schemas/Transaction'
+          x-entrypoint:
+            virtualPath: schemas/Transaction
+            sourcePath: schemas/Transaction.yaml
+            title: Transaction
+            origin: ./src/publicApi
+        card:
+          $ref: '#/components/schemas/Card'
+          x-entrypoint:
+            virtualPath: schemas/Card
+            sourcePath: schemas/Card.yaml
+            title: Card
+            origin: ./src/publicApi
+      required:
+      - id
+      - dateCharged
+      - feeAmountCents
+      - feeType
+      - accountId
+      x-entrypoint:
+        virtualPath: schemas/FeeTransaction
+        sourcePath: schemas/FeeTransaction.yaml
+        title: FeeTransaction
+        origin: ./src/publicApi
+      title: FeeTransaction
+    Money:
+      type: object
+      description: Represents a monetary value
+      properties:
+        amountCents:
+          type: integer
+          description: The amount in cents
+      required:
+      - amountCents
+      x-entrypoint:
+        virtualPath: schemas/Money
+        sourcePath: schemas/Money.yaml
+        title: Money
+        origin: ./src/publicApi
+      title: Money
+    Restriction:
+      type: string
+      enum:
+      - allowlist
+      - blacklist
+      x-entrypoint:
+        virtualPath: schemas/Restriction
+        sourcePath: schemas/Restriction.yaml
+        title: Restriction
+        origin: ./src/publicApi
+      title: Restriction
+    CardModifier:
+      oneOf:
+      - type: object
+        required:
+        - name
+        - value
+        properties:
+          name:
+            type: string
+            enum:
+            - only_allow_recurring_payments
+          value:
+            description: Whether to only allow recurring payments. The default value for newly created cards is false.
+            type: boolean
+      x-entrypoint:
+        virtualPath: schemas/CardModifier
+        sourcePath: schemas/CardModifier.yaml
+        title: CardModifier
+        origin: ./src/publicApi
+      title: CardModifier
+    OriginalCurrency:
+      type: object
+      description: 'The original currency of the transaction. This is only applicable to transactions. If this field is not sent, the original currency is in USD.
+
+        '
+      properties:
+        code:
+          type: string
+          description: The original currency code of the transaction
+        amountCents:
+          type: number
+          description: The amount of the transaction in its original currency in cents.
+        conversionRate:
+          type: number
+          description: The conversion rate used to convert the transaction amount from its original currency to the account currency. The currency rate is computed at the time of the transaction.
+      required:
+      - code
+      - amountCents
+      - conversionRate
+      x-entrypoint:
+        virtualPath: schemas/OriginalCurrency
+        sourcePath: schemas/OriginalCurrency.yaml
+        title: OriginalCurrency
+        origin: ./src/publicApi
+      title: OriginalCurrency
+    TransactionFxFeeInfo:
+      type: object
+      description: Foreign exchange fee charged for this transaction. This is only present when an FX fee has been created for the transaction.
+      properties:
+        amountCents:
+          type: number
+          description: The FX fee amount charged for this transaction, in USD cents.
+      required:
+      - amountCents
+      x-entrypoint:
+        virtualPath: schemas/TransactionFxFeeInfo
+        sourcePath: schemas/TransactionFxFeeInfo.yaml
+        title: TransactionFxFeeInfo
+        origin: ./src/publicApi
+      title: TransactionFxFeeInfo
+    TransactionCashbackInfo:
+      type: object
+      description: Cashback earned for this transaction. This is only present when cashback is known and currently applies to eligible card transactions.
+      properties:
+        amountCents:
+          type: number
+          description: The cashback amount earned for this transaction, in cents.
+        rate:
+          type: number
+          description: The cashback rate applied to this transaction.
+      required:
+      - amountCents
+      - rate
+      x-entrypoint:
+        virtualPath: schemas/TransactionCashbackInfo
+        sourcePath: schemas/TransactionCashbackInfo.yaml
+        title: TransactionCashbackInfo
+        origin: ./src/publicApi
+      title: TransactionCashbackInfo
+    Pagination.PaginationResponse:
+      type: object
+      description: Response sent when requesting a list of data
+      properties:
+        nextCursor:
+          type: string
+          description: The cursor to use to retrieve the next page of data. If this is not sent, there is no more data to retrieve.
+        count:
+          type: number
+          description: The number of items in the current page of data.
+      x-entrypoint:
+        virtualPath: schemas/Pagination/PaginationResponse
+        sourcePath: schemas/Pagination/PaginationResponse.yaml
+        title: PaginationResponse
+        origin: ./src/publicApi
+      title: PaginationResponse
+    TransactionDetailedStatus:
+      type: string
+      description: '- `pending_approval`: Used for any transaction type that is pending approval. This does not affect the account''s available or posted balances.
+
+        - `pending`: Used for any transaction type that has not posted to the account yet, but is affecting the account''s available balance.
+
+        - `canceled`: Used for any transaction that was canceled.
+
+        - `failed`: Used for any transaction that failed to post to the account.
+
+        - `settled`: Used for any transaction that has posted to the account, except for card refunds, which use the `refund` status, and ACH returns, which use the `returned` status.
+
+        - `declined`: Used for card transactions that were declined.
+
+        - `refund`: Used for card transactions that were refunded, increasing the account''s available and posted balances.
+
+        - `reversed`: Used for card transactions that were authorized, but reversed by the merchant.
+
+        - `returned`: Used for ACH returns. In the case of an ACH return, there are two possibilities: (1) if the ACH settled and then returned, then there will be one transaction with status `settled` for the ACH settling, and one transaction with status `returned` for the ACH return. Both of these are posted transactions. (2) if the ACH returned before settling, then there will only be one transaction with status `canceled`.
+
+        - `dispute`: Used for disputed card transactions.
+
+        '
+      enum:
+      - pending
+      - pending_approval
+      - in_review
+      - canceled
+      - failed
+      - settled
+      - declined
+      - refund
+      - reversed
+      - returned
+      - dispute
+      x-entrypoint:
+        virtualPath: schemas/TransactionDetailedStatus
+        sourcePath: schemas/TransactionDetailedStatus.yaml
+        title: TransactionDetailedStatus
+        origin: ./src/publicApi
+      title: TransactionDetailedStatus
+    TransactionMerchant:
+      type: object
+      properties:
+        description:
+          type: string
+          description: The raw description provided by the merchant for the transaction.
+        categoryCode:
+          type: string
+          description: The merchant's category code (MCC)
+        location:
+          $ref: '#/components/schemas/TransactionMerchantLocation'
+          description: Location details for the merchant/transaction.
+          x-entrypoint:
+            virtualPath: schemas/TransactionMerchantLocation
+            sourcePath: schemas/TransactionMerchantLocation.yaml
+            title: TransactionMerchantLocation
+            origin: ./src/publicApi
+      required:
+      - description
+      - categoryCode
+      x-entrypoint:
+        virtualPath: schemas/TransactionMerchant
+        sourcePath: schemas/TransactionMerchant.yaml
+        title: TransactionMerchant
+        origin: ./src/publicApi
+      title: TransactionMerchant
+    SpendingConstraint:
+      type: object
+      description: A constraint that can be applied to a CardGroupSpendingRule
+      properties:
+        merchantCategoryRule:
+          type: object
+          nullable: true
+          properties:
+            merchantCategories:
+              type: array
+              items:
+                type: string
+            restriction:
+              $ref: '#/components/schemas/Restriction'
+              x-entrypoint:
+                virtualPath: schemas/Restriction
+                sourcePath: schemas/Restriction.yaml
+                title: Restriction
+                origin: ./src/publicApi
+          required:
+          - merchantCategories
+          - restriction
+        merchantRule:
+          type: object
+          nullable: true
+          properties:
+            merchants:
+              type: array
+              items:
+                type: string
+            restriction:
+              $ref: '#/components/schemas/Restriction'
+              x-entrypoint:
+                virtualPath: schemas/Restriction
+                sourcePath: schemas/Restriction.yaml
+                title: Restriction
+                origin: ./src/publicApi
+          required:
+          - merchants
+          - restriction
+        spendingRule:
+          type: object
+          nullable: true
+          properties:
+            utilizationLimit:
+              type: object
+              properties:
+                timezone:
+                  type: string
+                  description: IANA timezone string. Limits always reset at midnight of the timezone specified. If no timezone is specified, then UTC time is used.
+                limitAmount:
+                  $ref: '#/components/schemas/Money'
+                  x-entrypoint:
+                    virtualPath: schemas/Money
+                    sourcePath: schemas/Money.yaml
+                    title: Money
+                    origin: ./src/publicApi
+                preset:
+                  type: string
+                  enum:
+                  - daily
+                  - weekly
+                  - monthly
+                  - yearly
+                  - collective
+                startDate:
+                  type: string
+                  description: Format ISO-8601. A day that equals today or the past. This is optional.If the `preset` is "daily", this value is ignored. If the `preset` is "weekly", "monthly" or "yearly", then the this value is used to compute when the limit should start limit.
+              required:
+              - limitAmount
+              - preset
+            utilizationLimitV2:
+              type: array
+              items:
+                type: object
+                properties:
+                  timezone:
+                    type: string
+                    description: IANA timezone string. Limits always reset at midnight of the timezone specified. If no timezone is specified, then UTC time is used.
+                  limitAmount:
+                    $ref: '#/components/schemas/Money'
+                    x-entrypoint:
+                      virtualPath: schemas/Money
+                      sourcePath: schemas/Money.yaml
+                      title: Money
+                      origin: ./src/publicApi
+                  preset:
+                    type: string
+                    enum:
+                    - daily
+                    - weekly
+                    - monthly
+                    - yearly
+                    - collective
+                  startDate:
+                    type: string
+                    description: Format ISO-8601. A day that equals today or the past. This is optional.If the `preset` is "daily", this value is ignored. If the `preset` is "weekly", "monthly" or "yearly", then the this value is used to compute when the limit should start limit.
+                required:
+                - limitAmount
+                - preset
+            transactionSizeLimit:
+              type: object
+              properties:
+                minimum:
+                  $ref: '#/components/schemas/Money'
+                  x-entrypoint:
+                    virtualPath: schemas/Money
+                    sourcePath: schemas/Money.yaml
+                    title: Money
+                    origin: ./src/publicApi
+                maximum:
+                  $ref: '#/components/schemas/Money'
+                  x-entrypoint:
+                    virtualPath: schemas/Money
+                    sourcePath: schemas/Money.yaml
+                    title: Money
+                    origin: ./src/publicApi
+        countryRule:
+          type: object
+          nullable: true
+          properties:
+            countries:
+              description: A 2 digit country code
+              type: array
+              items:
+                type: string
+            restriction:
+              $ref: '#/components/schemas/Restriction'
+              x-entrypoint:
+                virtualPath: schemas/Restriction
+                sourcePath: schemas/Restriction.yaml
+                title: Restriction
+                origin: ./src/publicApi
+          required:
+          - countries
+          - restriction
+        merchantCategoryCodeRule:
+          type: object
+          nullable: true
+          properties:
+            merchantCategoryCodes:
+              type: array
+              items:
+                type: string
+            restriction:
+              $ref: '#/components/schemas/Restriction'
+              x-entrypoint:
+                virtualPath: schemas/Restriction
+                sourcePath: schemas/Restriction.yaml
+                title: Restriction
+                origin: ./src/publicApi
+          required:
+          - merchantCategoryCodes
+          - restriction
+      x-entrypoint:
+        virtualPath: schemas/SpendingConstraint
+        sourcePath: schemas/SpendingConstraint.yaml
+        title: SpendingConstraint
+        origin: ./src/publicApi
+      title: SpendingConstraint
+    TransactionMerchantLocation:
+      type: object
+      properties:
+        city:
+          type: string
+          description: The city of the merchant.
+        state:
+          type: string
+          description: The state/province of the merchant.
+        country:
+          type: string
+          description: The country of the merchant.
+        zip:
+          type: string
+          description: The ZIP/postal code of the merchant.
+      required:
+      - city
+      - state
+      - country
+      - zip
+      x-entrypoint:
+        virtualPath: schemas/TransactionMerchantLocation
+        sourcePath: schemas/TransactionMerchantLocation.yaml
+        title: TransactionMerchantLocation
+        origin: ./src/publicApi
+      title: TransactionMerchantLocation
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+        name:
+          type: string
+        identifier:
+          type: string
+        rawStatus:
+          type: number
+        meta:
+          type: object
+          additionalProperties: true
+      required:
+      - message
+      - name
+      - identifier
+      - rawStatus
+      x-entrypoint:
+        origin: ./src/publicApi
+        sourcePath: ./src/publicApi/main.yaml
+        title: Error
+        virtualPath: components/Error
+      title: Error
+    Transaction:
+      type: object
+      properties:
+        id:
+          type: string
+        date:
+          description: The date in UTC time when the transaction was posted. If the transaction is pending or failed, this is the date the transaction was created.
+          type: string
+        description:
+          type: string
+        memo:
+          description: The memo associated with the transaction. For virtual account transfers, this is the memo provided when creating the transfer. For ACH transactions, this is the company entry description. For wire transactions, this is the sender reference.
+          type: string
+        merchantDescription:
+          type: string
+          description: DEPRECATED. Use `merchantData.description` instead. For card transactions, the description of the transaction as reported by the merchant. For other transactions, this field is undefined.
+          deprecated: true
+        merchantData:
+          $ref: '#/components/schemas/TransactionMerchant'
+          description: 'For card transactions, contains description of the transaction as reported by the merchant, merchant category code, and location of the merchant or origin of the transaction.
+
+            For other transactions, this field is undefined.
+
+            '
+          x-entrypoint:
+            virtualPath: schemas/TransactionMerchant
+            sourcePath: schemas/TransactionMerchant.yaml
+            title: TransactionMerchant
+            origin: ./src/publicApi
+        amountCents:
+          description: The amount of the transaction in cents in USD. If the transaction amount is negative, the transaction is a debit. If the transaction amount is positive, the transaction is a credit.
+          type: number
+        status:
+          $ref: '#/components/schemas/TransactionStatus'
+          x-entrypoint:
+            virtualPath: schemas/TransactionStatus
+            sourcePath: schemas/TransactionStatus.yaml
+            title: TransactionStatus
+            origin: ./src/publicApi
+        detailedStatus:
+          $ref: '#/components/schemas/TransactionDetailedStatus'
+          x-entrypoint:
+            virtualPath: schemas/TransactionDetailedStatus
+            sourcePath: schemas/TransactionDetailedStatus.yaml
+            title: TransactionDetailedStatus
+            origin: ./src/publicApi
+        accountId:
+          description: The account ID associated with the transaction
+        virtualAccountId:
+          description: The virtual account ID where the transaction occurred
+          type: string
+        accountSubtype:
+          description: For charge cards, specifies if the transaction belongs to the cash or credit account. For debit accounts, this field is always cash.
+          type: string
+          enum:
+          - cash
+          - credit
+        cardId:
+          description: The card ID associated with the transaction. If the transaction is not associated with a card, this field is not sent.
+          type: string
+        cashbackInfo:
+          $ref: '#/components/schemas/TransactionCashbackInfo'
+          x-entrypoint:
+            virtualPath: schemas/TransactionCashbackInfo
+            sourcePath: schemas/TransactionCashbackInfo.yaml
+            title: TransactionCashbackInfo
+            origin: ./src/publicApi
+        fxFeeInfo:
+          $ref: '#/components/schemas/TransactionFxFeeInfo'
+          x-entrypoint:
+            virtualPath: schemas/TransactionFxFeeInfo
+            sourcePath: schemas/TransactionFxFeeInfo.yaml
+            title: TransactionFxFeeInfo
+            origin: ./src/publicApi
+        originalCurrency:
+          $ref: '#/components/schemas/OriginalCurrency'
+          x-entrypoint:
+            virtualPath: schemas/OriginalCurrency
+            sourcePath: schemas/OriginalCurrency.yaml
+            title: OriginalCurrency
+            origin: ./src/publicApi
+        orderId:
+          description: The order ID, as reported by the merchant, associated with the specific transaction.
+          type: string
+        referenceNumber:
+          description: The reference number provided by Visa for this transaction.
+          type: string
+        authorizedAt:
+          description: The UTC timestamp of when the transaction was authorized. Only exists for card transactions.
+          type: string
+        declineReason:
+          type: string
+          description: The reason for the decline. Only exists for card transactions with `detailedStatus` = `declined`.
+        approvalReason:
+          type: string
+          description: The reason for the approval. Only exists for card transactions with `detailedStatus` = `pending` or `settled`.
+        providerAuthorizationId:
+          type: string
+          description: The provider authorization ID for the transaction. Only exists for card transactions.
+        wireInfo:
+          type: object
+          description: Information about the associated wire transfer if the transaction is a wire transfer.
+          properties:
+            counterpartyBank:
+              type: string
+              description: The name of the bank or financial institution of the counterparty in the wire transfer
+            typeCode:
+              type: string
+              description: A code that identifies the type of wire transfer (e.g., domestic, international)
+            subtypeCode:
+              type: string
+              description: A code that identifies the specific type or subtype of the wire transfer
+            omad:
+              type: string
+              description: Outgoing Message Authentication Data - a unique identifier assigned by the originating bank for the outgoing wire transfer. If the other bank is an account with Column N.A., this field is empty.
+            imad:
+              type: string
+              description: Incoming Message Authentication Data - a unique identifier assigned by the receiving bank for the incoming wire transfer.  If the other bank is an account with Column N.A., this field is empty.
+            senderReference:
+              type: string
+              description: A reference number or identifier provided by the sender of the wire transfer for tracking purposes
+            businessFunctionCode:
+              type: string
+              description: A code that identifies the business function or purpose of the wire transfer (e.g., customer transfer, bank transfer, etc.)
+          required:
+          - subtypeCode
+          - omad
+          - imad
+          - senderReference
+          - businessFunctionCode
+          - typeCode
+        achInfo:
+          type: object
+          description: Information about the associated ACH transfer if the transaction is an ACH transfer.
+          properties:
+            counterpartyBank:
+              type: string
+              description: The name of the bank or financial institution of the counterparty in the ACH transfer
+            receiverId:
+              type: string
+              description: The unique identifier for the receiver of the ACH transfer
+            companyId:
+              type: string
+              description: The company identification number assigned by the originating depository financial institution
+            companyDiscretionaryData:
+              type: string
+              description: Optional data field that can be used by the originating company for internal purposes
+            companyEntryDescription:
+              type: string
+              description: An optional description of the purpose of the ACH entry as provided by the originating company
+            traceNumber:
+              type: string
+              description: A unique number assigned by the originating depository financial institution to identify the ACH entry
+            entryClassCode:
+              type: string
+              description: A three-character code that identifies the type of ACH entry (e.g., PPD for Prearranged Payment and Deposit, CCD for Corporate Credit or Debit)
+            paymentRelatedInfo:
+              type: string
+              description: Additional information related to the payment, such as invoice numbers, payment references, or other payment-specific details
+          required:
+          - receiverId
+          - companyId
+          - companyDiscretionaryData
+          - traceNumber
+          - entryClassCode
+          - paymentRelatedInfo
+        rtpInfo:
+          type: object
+          description: Information about the associated Real-Time Payment (RTP) transfer if the transaction is a real-time transfer.
+          properties:
+            counterpartyBank:
+              type: string
+              description: The name of the bank or financial institution of the counterparty in the real-time transfer
+            endToEndId:
+              type: string
+              description: A unique end-to-end identifier for the real-time payment transaction that remains with the payment throughout its lifecycle
+            routingNumber:
+              type: string
+              description: The routing number of the counterparty's bank
+            originatorName:
+              type: string
+              description: The name of the originator of the real-time payment
+            description:
+              type: string
+              description: Additional description or purpose of the real-time payment
+        sepaInfo:
+          type: object
+          description: Information about the associated SEPA (Single Euro Payments Area) transfer if the transaction is a SEPA deposit into a Global USD account.
+          properties:
+            senderName:
+              type: string
+              description: The name of the originator of the SEPA transfer.
+            recipientName:
+              type: string
+              description: The name of the recipient of the SEPA transfer.
+            reference:
+              type: string
+              description: The free-form reference field set by the originator on the SEPA transfer.
+            iban:
+              type: string
+              description: The full IBAN of the counterparty on the SEPA transfer.
+            ibanLast4:
+              type: string
+              description: The last 4 characters of the IBAN of the counterparty on the SEPA transfer.
+            bic:
+              type: string
+              description: The BIC of the counterparty bank on the SEPA transfer.
+            uetr:
+              type: string
+              description: The unique end-to-end transaction reference (UETR) for the SEPA transfer.
+            paymentScheme:
+              type: string
+              description: The SEPA payment scheme used (e.g., `sepa_credit_transfer`, `sepa_instant`).
+        pixInfo:
+          type: object
+          description: Information about the associated PIX (Brazilian instant-payment) transfer if the transaction is a PIX deposit into a Global USD account.
+          properties:
+            senderName:
+              type: string
+              description: The name of the originator of the PIX transfer.
+            description:
+              type: string
+              description: A description of the PIX transfer provided by the originator.
+            reference:
+              type: string
+              description: The free-form reference field set by the originator on the PIX transfer.
+            trackingNumber:
+              type: string
+              description: The PIX network tracking number (`endToEndId`) for the transfer.
+        speiInfo:
+          type: object
+          description: Information about the associated SPEI (Mexican real-time payment) transfer if the transaction is a SPEI deposit into a Global USD account.
+          properties:
+            senderName:
+              type: string
+              description: The name of the originator of the SPEI transfer.
+            description:
+              type: string
+              description: A description of the SPEI transfer provided by the originator.
+            reference:
+              type: string
+              description: The free-form reference field (concepto de pago) set by the originator on the SPEI transfer.
+            clabe:
+              type: string
+              description: The CLABE of the counterparty on the SPEI transfer.
+            trackingNumber:
+              type: string
+              description: The SPEI network tracking number (clave de rastreo) for the transfer.
+        fpsInfo:
+          type: object
+          description: Information about the associated Faster Payments transfer if the transaction is a Faster Payments deposit into a Global USD account.
+          properties:
+            senderName:
+              type: string
+              description: The name of the originator of the Faster Payments transfer.
+            recipientName:
+              type: string
+              description: The name of the recipient of the Faster Payments transfer.
+            reference:
+              type: string
+              description: The free-form reference field set by the originator on the Faster Payments transfer.
+            accountNumber:
+              type: string
+              description: The account number of the counterparty on the Faster Payments transfer.
+            last4:
+              type: string
+              description: The last 4 digits of the account number of the counterparty on the Faster Payments transfer.
+            sortCode:
+              type: string
+              description: The sort code of the counterparty bank on the Faster Payments transfer.
+            uetr:
+              type: string
+              description: The unique end-to-end transaction reference (UETR) for the Faster Payments transfer.
+        feeInfo:
+          type: object
+          description: Information populated if this transaction is a fee assessed by Slash.
+          properties:
+            relatedTransaction:
+              type: object
+              required:
+              - id
+              - amount
+              properties:
+                id:
+                  type: string
+                amount:
+                  type: number
+        cryptoInfo:
+          type: object
+          description: Information populated if this transaction is a crypto on/off-ramp transaction.
+          properties:
+            txHash:
+              type: string
+              description: The transaction hash of the crypto on/off-ramp transaction.
+            senderAddress:
+              type: string
+              description: The sender address of the crypto on/off-ramp transaction.
+      required:
+      - id
+      - date
+      - description
+      - amountCents
+      - status
+      - detailedStatus
+      - accountId
+      - accountSubtype
+      x-entrypoint:
+        virtualPath: schemas/Transaction
+        sourcePath: schemas/Transaction.yaml
+        title: Transaction
+        origin: ./src/publicApi
+      title: Transaction
+    Card:
+      type: object
+      properties:
+        id:
+          type: string
+        accountId:
+          type: string
+          description: The account that this card is associated with
+        virtualAccountId:
+          type: string
+          description: The virtual account that this card is associated with
+        last4:
+          type: string
+          description: The last 4 digits of the card number
+        name:
+          type: string
+          description: The name assigned to the card that appears on the user dashboard
+        expiryMonth:
+          type: string
+          description: The month the card expires formatted as MM (01, 02, ..., 12)
+        expiryYear:
+          type: string
+          description: The year the card expires formatted as YYYY (2024, 2025, ...)
+        status:
+          allOf:
+          - $ref: '#/components/schemas/CardStatus'
+            x-entrypoint:
+              virtualPath: schemas/CardStatus
+              sourcePath: schemas/CardStatus.yaml
+              title: CardStatus
+              origin: ./src/publicApi
+          - description: The status of the card
+        isPhysical:
+          type: boolean
+          description: When true, a physical card has been issued. Otherwise, this is a virtual card.
+        isSingleUse:
+          type: boolean
+          description: When true, the card will be automatically closed after a single authorization attempt. Note that the card will be closed even if the authorization declines or drops
+        pan:
+          type: string
+          description: This field contains the full PAN which will only be sent on a request for a single card when you set the query param "include_pan" to "true"
+        cvv:
+          type: string
+          description: This field will contain full CVV which will only be sent on a request for a single card when you set the query param "include_pan" to "true"
+        cardGroupId:
+          type: string
+          description: The card group the card belongs to.
+        cardGroupName:
+          type: string
+          description: The name of the card group the card belongs to.
+        createdAt:
+          type: string
+          format: date-time
+        spendingConstraint:
+          $ref: '#/components/schemas/SpendingConstraint'
+          description: The spending constraint applied to the card
+          x-entrypoint:
+            virtualPath: schemas/SpendingConstraint
+            sourcePath: schemas/SpendingConstraint.yaml
+            title: SpendingConstraint
+            origin: ./src/publicApi
+        userData:
+          type: object
+          description: Arbitrary information that can be attached to the card. See the [`PATCH /card/{cardId}`](api-reference/card-patch) endpoint for more details on how to add user data.
+        cardProductId:
+          type: string
+          description: The ID of the card product this card was created with.
+        modifiers:
+          type: array
+          items:
+            $ref: '#/components/schemas/CardModifier'
+            x-entrypoint:
+              virtualPath: schemas/CardModifier
+              sourcePath: schemas/CardModifier.yaml
+              title: CardModifier
+              origin: ./src/publicApi
+          description: The modifiers applied to this card. Modifiers control card behavior like restricting to recurring payments only.
+      required:
+      - id
+      - accountId
+      - last4
+      - name
+      - expiryMonth
+      - expiryYear
+      - status
+      - isPhysical
+      x-entrypoint:
+        virtualPath: schemas/Card
+        sourcePath: schemas/Card.yaml
+        title: Card
+        origin: ./src/publicApi
+      title: Card
+    TransactionStatus:
+      type: string
+      description: '- `pending`: The transaction is pending and has not been posted to the account yet (the account''s posted balance doesn''t reflect the transaction yet, but the account''s available balance does).
+
+        - `posted`: The transaction has been posted to the account and the account''s posted balance and available balances both reflect the transaction.
+
+        - `failed`: The transaction failed to post to the account and no longer affects the account''s available or posted balances.
+
+        '
+      enum:
+      - pending
+      - posted
+      - failed
+      x-entrypoint:
+        virtualPath: schemas/TransactionStatus
+        sourcePath: schemas/TransactionStatus.yaml
+        title: TransactionStatus
+        origin: ./src/publicApi
+      title: TransactionStatus
+  securitySchemes:
+    api_key:
+      type: apiKey
+      description: "API key authentication for public API requests.\n\nKeys come in two flavors:\n\n- *Legal-entity-scoped keys* are pinned to a single legal entity.\n  Minted via the dashboard under a specific entity; every request\n  acts on that entity.\n- *User-scoped keys* are pinned to a user and span every legal\n  entity that user has access to. Every request made with a\n  user-scoped key (except `GET /legal-entity`, which lists the\n  legal entities the user can access) must include an\n  `x-legal-entity` header naming the legal entity the request is\n  operating on. Requests without the header are rejected with\n  `400`. The authenticated user must have an active permission\n  role on the supplied legal entity, otherwise the request is\n  rejected with `403`.\n"
+      name: X-API-Key
+      in: header
+    partner_api_key:
+      type: apiKey
+      description: 'Partner-program API key authentication.
+
+
+        Keys are minted in the partner dashboard (Developers → API Keys),
+
+        are scoped to a single partner program, and are prefixed with
+
+        `sk_partner_`. Partner keys are only accepted by routes that
+
+        declare this scheme; they are rejected by `api_key` routes and
+
+        vice versa.
+
+        '
+      name: X-API-Key
+      in: header
+    bearer:
+      type: http
+      scheme: bearer
+    developer_application:
+      type: http
+      scheme: basic

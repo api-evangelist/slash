@@ -1,0 +1,421 @@
+openapi: 3.1.0
+info:
+  title: Slash Public Account Webhook API
+  description: API description
+  version: 0.0.1
+  contact: {}
+servers:
+- url: https://api.slash.com
+  description: production
+security:
+- api_key: []
+- partner_api_key: []
+- bearer: []
+- developer_application: []
+tags:
+- name: Webhook
+paths:
+  /webhook:
+    x-reference-path: paths/webhook/route.yaml
+    get:
+      description: Get all webhooks
+      parameters:
+      - name: filter:legalEntityId
+        in: query
+        description: Pass in a legal entity ID to filter for webhooks under a specific legal entity.
+        required: false
+        schema:
+          type: string
+      - name: cursor
+        required: false
+        in: query
+        schema:
+          type: string
+        description: A cursor string to fetch the next page of results
+        x-reference-path: schemas/Pagination/CursorParameter.yaml
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Webhook'
+                      x-entrypoint:
+                        virtualPath: schemas/Webhook
+                        sourcePath: schemas/Webhook.yaml
+                        title: Webhook
+                        origin: ./src/publicApi
+                  metadata:
+                    $ref: '#/components/schemas/Pagination.PaginationResponse'
+                    x-entrypoint:
+                      virtualPath: schemas/Pagination/PaginationResponse
+                      sourcePath: schemas/Pagination/PaginationResponse.yaml
+                      title: PaginationResponse
+                      origin: ./src/publicApi
+                required:
+                - items
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '429':
+          description: TooManyRequests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+      - api_key: []
+      - bearer: []
+      tags:
+      - Webhook
+    post:
+      description: Create a new webhook endpoint
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                legalEntityId:
+                  type: string
+                  description: The ID of the LegalEntity to create the webhook for. You can get this by calling `GET /legal-entity`. This field is required unless you are authenticating via API key.
+                url:
+                  type: string
+                  description: The URL that will receive the webhook payload
+                name:
+                  type: string
+              required:
+              - url
+              - name
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Webhook'
+                x-entrypoint:
+                  virtualPath: schemas/Webhook
+                  sourcePath: schemas/Webhook.yaml
+                  title: Webhook
+                  origin: ./src/publicApi
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Webhook'
+                x-entrypoint:
+                  virtualPath: schemas/Webhook
+                  sourcePath: schemas/Webhook.yaml
+                  title: Webhook
+                  origin: ./src/publicApi
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '429':
+          description: TooManyRequests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+      - api_key: []
+      - bearer: []
+      tags:
+      - Webhook
+  /webhook/{webhookId}:
+    x-reference-path: paths/webhook/{webhookId}/route.yaml
+    get:
+      description: Get a webhook endpoint by ID
+      parameters:
+      - name: webhookId
+        in: path
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Webhook'
+                x-entrypoint:
+                  virtualPath: schemas/Webhook
+                  sourcePath: schemas/Webhook.yaml
+                  title: Webhook
+                  origin: ./src/publicApi
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '429':
+          description: TooManyRequests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+      - api_key: []
+      - bearer: []
+      tags:
+      - Webhook
+    patch:
+      description: "Update a webhook endpoint status.\n\n**Status transitions:**\n- `active`: Re-enables the endpoint. Use this to:\n  - Unpause a paused endpoint\n  - Re-enable an endpoint that is backing-off or disabled due to delivery failures\n  - When re-enabled, any queued notifications will be sent\n- `paused`: Pauses the endpoint. While paused:\n  - New notifications are queued (not lost)\n  - No delivery attempts are made\n  - Use `active` to resume and process queued notifications\n- `archived`: Permanently archives the endpoint (soft delete)\n\n**Note:** The `backing-off` and `disabled` statuses are system-managed and cannot be set directly.\nThese occur automatically when delivery failures are detected. Use `active` to re-enable.\n"
+      parameters:
+      - name: webhookId
+        in: path
+        schema:
+          type: string
+        required: true
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: string
+                  enum:
+                  - active
+                  - paused
+                  - archived
+                  description: 'The desired status for the endpoint:
+
+                    - `active`: Enable/re-enable the endpoint
+
+                    - `paused`: Pause the endpoint (notifications are queued)
+
+                    - `archived`: Archive the endpoint (soft delete)
+
+                    '
+                reason:
+                  type: string
+                  description: Optional reason for the status change (for audit purposes)
+              required:
+              - status
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Webhook'
+                x-entrypoint:
+                  virtualPath: schemas/Webhook
+                  sourcePath: schemas/Webhook.yaml
+                  title: Webhook
+                  origin: ./src/publicApi
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '429':
+          description: TooManyRequests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+      - api_key: []
+      - bearer: []
+      tags:
+      - Webhook
+components:
+  schemas:
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+        name:
+          type: string
+        identifier:
+          type: string
+        rawStatus:
+          type: number
+        meta:
+          type: object
+          additionalProperties: true
+      required:
+      - message
+      - name
+      - identifier
+      - rawStatus
+      x-entrypoint:
+        origin: ./src/publicApi
+        sourcePath: ./src/publicApi/main.yaml
+        title: Error
+        virtualPath: components/Error
+      title: Error
+    Pagination.PaginationResponse:
+      type: object
+      description: Response sent when requesting a list of data
+      properties:
+        nextCursor:
+          type: string
+          description: The cursor to use to retrieve the next page of data. If this is not sent, there is no more data to retrieve.
+        count:
+          type: number
+          description: The number of items in the current page of data.
+      x-entrypoint:
+        virtualPath: schemas/Pagination/PaginationResponse
+        sourcePath: schemas/Pagination/PaginationResponse.yaml
+        title: PaginationResponse
+        origin: ./src/publicApi
+      title: PaginationResponse
+    Webhook:
+      type: object
+      properties:
+        id:
+          type: string
+        createdAt:
+          type: string
+        archivedAt:
+          type: string
+        url:
+          type: string
+          description: The URL that will receive the webhook payload
+        name:
+          type: string
+          description: The name of the webhook
+        status:
+          type: string
+          description: 'The current status of the webhook endpoint:
+
+            - `active`: The webhook is enabled and receiving events normally.
+
+            - `paused`: The webhook has been paused by the user. Events are queued and will be delivered when the endpoint is set back to `active`.
+
+            - `backing-off`: The system is temporarily backing off due to delivery failures. Delivery will be automatically retried at `backingOffUntil`. You can also immediately re-enable by setting status to `active` via the PATCH endpoint.
+
+            - `disabled`: The webhook has been automatically disabled due to repeated delivery failures. Re-enable by setting status to `active` via the PATCH endpoint.
+
+            '
+          enum:
+          - active
+          - paused
+          - backing-off
+          - disabled
+        pausedAt:
+          type: string
+          description: When the endpoint was paused by the user (ISO 8601 timestamp)
+        backingOffUntil:
+          type: string
+          description: When the system will automatically retry delivery (ISO 8601 timestamp). Only present when status is `backing-off`.
+        disabledAt:
+          type: string
+          description: When the endpoint was automatically disabled due to repeated failures (ISO 8601 timestamp). Only present when status is `disabled`.
+        enabledEvents:
+          type: array
+          description: Public webhook event types this endpoint receives. Omitted means all events.
+          items:
+            type: string
+      required:
+      - id
+      - createdAt
+      - url
+      - name
+      - status
+      x-entrypoint:
+        virtualPath: schemas/Webhook
+        sourcePath: schemas/Webhook.yaml
+        title: Webhook
+        origin: ./src/publicApi
+      title: Webhook
+  securitySchemes:
+    api_key:
+      type: apiKey
+      description: "API key authentication for public API requests.\n\nKeys come in two flavors:\n\n- *Legal-entity-scoped keys* are pinned to a single legal entity.\n  Minted via the dashboard under a specific entity; every request\n  acts on that entity.\n- *User-scoped keys* are pinned to a user and span every legal\n  entity that user has access to. Every request made with a\n  user-scoped key (except `GET /legal-entity`, which lists the\n  legal entities the user can access) must include an\n  `x-legal-entity` header naming the legal entity the request is\n  operating on. Requests without the header are rejected with\n  `400`. The authenticated user must have an active permission\n  role on the supplied legal entity, otherwise the request is\n  rejected with `403`.\n"
+      name: X-API-Key
+      in: header
+    partner_api_key:
+      type: apiKey
+      description: 'Partner-program API key authentication.
+
+
+        Keys are minted in the partner dashboard (Developers → API Keys),
+
+        are scoped to a single partner program, and are prefixed with
+
+        `sk_partner_`. Partner keys are only accepted by routes that
+
+        declare this scheme; they are rejected by `api_key` routes and
+
+        vice versa.
+
+        '
+      name: X-API-Key
+      in: header
+    bearer:
+      type: http
+      scheme: bearer
+    developer_application:
+      type: http
+      scheme: basic

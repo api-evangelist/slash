@@ -1,0 +1,2129 @@
+openapi: 3.1.0
+info:
+  title: Slash Public Account Expense Report API
+  description: API description
+  version: 0.0.1
+  contact: {}
+servers:
+- url: https://api.slash.com
+  description: production
+security:
+- api_key: []
+- partner_api_key: []
+- bearer: []
+- developer_application: []
+tags:
+- name: Expense Report
+paths:
+  /expense-report:
+    x-reference-path: paths/expense-report/route.yaml
+    get:
+      description: List expense reports for your legal entity. Supports pagination, filtering by status and submitter, and sorting.
+      parameters:
+      - name: cursor
+        required: false
+        in: query
+        schema:
+          type: string
+        description: A cursor string to fetch the next page of results
+        x-reference-path: schemas/Pagination/CursorParameter.yaml
+      - name: filter:legalEntityId
+        description: Filter by legal entity ID. Required if authenticating with access to multiple legal entities.
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: filter:status
+        description: Filter expense reports by status.
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - pending_review
+          - cancelled
+          - rejected
+          - payment_processing
+          - payment_completed
+          - payment_failed
+      - name: filter:submittedByUserId
+        description: Filter expense reports by the user who submitted them.
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: sort
+        description: Sort expense reports by a field. Default is by `submittedAt` descending.
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - submittedAt
+          - amountCents
+          - transactionDate
+      - name: sortDirection
+        description: The direction to sort by. Defaults to DESC.
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - ASC
+          - DESC
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/slashfi.models.entity.ExpenseReport.PublicExpenseReportWithMetadata.yaml'
+                      x-entrypoint:
+                        virtualPath: entity/ExpenseReport/PublicExpenseReportWithMetadata
+                        sourcePath: entity/ExpenseReport/PublicExpenseReportWithMetadata.yaml
+                        title: PublicExpenseReportWithMetadata
+                        origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+                        globalImport: true
+                        typescript:
+                          importPath: import  * as models from '@slashfi/models';
+                          symbolValue: models.entity.ExpenseReport.PublicExpenseReportWithMetadata
+                          typeValue: models.entity.ExpenseReport.PublicExpenseReportWithMetadata
+                  metadata:
+                    $ref: '#/components/schemas/Pagination.PaginationResponse'
+                    x-entrypoint:
+                      virtualPath: schemas/Pagination/PaginationResponse
+                      sourcePath: schemas/Pagination/PaginationResponse.yaml
+                      title: PaginationResponse
+                      origin: ./src/publicApi
+                required:
+                - items
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '429':
+          description: TooManyRequests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+      - api_key: []
+      - bearer: []
+      tags:
+      - Expense Report
+    post:
+      description: Submit a new expense report for reimbursement.
+      parameters:
+      - name: filter:legalEntityId
+        description: The legal entity ID. Required if authenticating with access to multiple legal entities.
+        in: query
+        required: false
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                submittedByUserId:
+                  type: string
+                  description: The user ID of the employee submitting the expense report.
+                amountCents:
+                  type: integer
+                  description: The expense amount in cents.
+                currency:
+                  type: string
+                  description: ISO currency code (e.g., 'USD').
+                  default: USD
+                transactionDate:
+                  type: string
+                  format: date-time
+                  description: The date of the transaction being reimbursed.
+                memo:
+                  type: string
+                  nullable: true
+                  description: Description or notes for the expense.
+                destinationId:
+                  type: string
+                  description: The user's bank account ID for payout.
+                documentIds:
+                  type: array
+                  items:
+                    type: string
+                  description: IDs of uploaded receipt documents to attach.
+                merchant:
+                  type: object
+                  description: Merchant reference for the expense.
+                  properties:
+                    type:
+                      type: string
+                      enum:
+                      - merchantV2
+                      - customMerchant
+                      description: Type of merchant reference.
+                    id:
+                      type: string
+                      description: ID of the merchant.
+                  required:
+                  - type
+                  - id
+                fxRateToUsd:
+                  type: string
+                  nullable: true
+                  description: FX rate from expense currency to USD at submission time. Required for non-USD currencies.
+                fxRateUpdatedAt:
+                  type: string
+                  format: date-time
+                  nullable: true
+                  description: When the FX rate was captured.
+                noReceiptReason:
+                  type: string
+                  nullable: true
+                  description: Reason for not having a receipt. Required when no documentIds are provided.
+              required:
+              - submittedByUserId
+              - amountCents
+              - transactionDate
+              - destinationId
+              - merchant
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  expenseReport:
+                    $ref: '#/components/schemas/slashfi.models.entity.ExpenseReport.PublicExpenseReportWithMetadata.yaml'
+                    x-entrypoint:
+                      virtualPath: entity/ExpenseReport/PublicExpenseReportWithMetadata
+                      sourcePath: entity/ExpenseReport/PublicExpenseReportWithMetadata.yaml
+                      title: PublicExpenseReportWithMetadata
+                      origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+                      globalImport: true
+                      typescript:
+                        importPath: import  * as models from '@slashfi/models';
+                        symbolValue: models.entity.ExpenseReport.PublicExpenseReportWithMetadata
+                        typeValue: models.entity.ExpenseReport.PublicExpenseReportWithMetadata
+                required:
+                - expenseReport
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '429':
+          description: TooManyRequests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+      - api_key: []
+      - bearer: []
+      tags:
+      - Expense Report
+  /expense-report/{expenseReportId}:
+    x-reference-path: paths/expense-report/{expenseReportId}/route.yaml
+    get:
+      description: Get a single expense report by ID.
+      parameters:
+      - name: expenseReportId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  expenseReport:
+                    $ref: '#/components/schemas/slashfi.models.entity.ExpenseReport.PublicExpenseReportWithMetadata.yaml'
+                    x-entrypoint:
+                      virtualPath: entity/ExpenseReport/PublicExpenseReportWithMetadata
+                      sourcePath: entity/ExpenseReport/PublicExpenseReportWithMetadata.yaml
+                      title: PublicExpenseReportWithMetadata
+                      origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+                      globalImport: true
+                      typescript:
+                        importPath: import  * as models from '@slashfi/models';
+                        symbolValue: models.entity.ExpenseReport.PublicExpenseReportWithMetadata
+                        typeValue: models.entity.ExpenseReport.PublicExpenseReportWithMetadata
+                required:
+                - expenseReport
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '429':
+          description: TooManyRequests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+      - api_key: []
+      - bearer: []
+      tags:
+      - Expense Report
+    patch:
+      description: Update an existing expense report. Can only update reports with status `pending_review`. Set `status` to `cancelled` to cancel the report.
+      parameters:
+      - name: expenseReportId
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                updatedByUserId:
+                  type: string
+                  description: The user ID of the person performing the update.
+                amountCents:
+                  type: integer
+                  description: The expense amount in cents.
+                currency:
+                  type: string
+                  description: ISO currency code (e.g., 'USD').
+                transactionDate:
+                  type: string
+                  format: date-time
+                  description: The date of the transaction being reimbursed.
+                memo:
+                  type: string
+                  nullable: true
+                  description: Description or notes for the expense.
+                destinationId:
+                  type: string
+                  description: The user's bank account ID for payout.
+                documentIds:
+                  type: array
+                  items:
+                    type: string
+                  description: IDs of uploaded receipt documents to attach.
+                merchant:
+                  type: object
+                  description: Merchant reference for the expense.
+                  properties:
+                    type:
+                      type: string
+                      enum:
+                      - merchantV2
+                      - customMerchant
+                      description: Type of merchant reference.
+                    id:
+                      type: string
+                      description: ID of the merchant.
+                  required:
+                  - type
+                  - id
+                status:
+                  type: string
+                  enum:
+                  - cancelled
+                  description: Set to `cancelled` to cancel the expense report.
+              required:
+              - updatedByUserId
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  expenseReport:
+                    $ref: '#/components/schemas/slashfi.models.entity.ExpenseReport.PublicExpenseReportWithMetadata.yaml'
+                    x-entrypoint:
+                      virtualPath: entity/ExpenseReport/PublicExpenseReportWithMetadata
+                      sourcePath: entity/ExpenseReport/PublicExpenseReportWithMetadata.yaml
+                      title: PublicExpenseReportWithMetadata
+                      origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+                      globalImport: true
+                      typescript:
+                        importPath: import  * as models from '@slashfi/models';
+                        symbolValue: models.entity.ExpenseReport.PublicExpenseReportWithMetadata
+                        typeValue: models.entity.ExpenseReport.PublicExpenseReportWithMetadata
+                required:
+                - expenseReport
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '429':
+          description: TooManyRequests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+      - api_key: []
+      - bearer: []
+      tags:
+      - Expense Report
+  /expense-report/{expenseReportId}/approve:
+    x-reference-path: paths/expense-report/{expenseReportId}/approve/route.yaml
+    post:
+      description: Approve an expense report and initiate payout.
+      parameters:
+      - name: expenseReportId
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                reviewedByUserId:
+                  type: string
+                  description: The user ID of the admin approving the expense report.
+              required:
+              - reviewedByUserId
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  expenseReport:
+                    $ref: '#/components/schemas/slashfi.models.entity.ExpenseReport.PublicExpenseReportWithMetadata.yaml'
+                    x-entrypoint:
+                      virtualPath: entity/ExpenseReport/PublicExpenseReportWithMetadata
+                      sourcePath: entity/ExpenseReport/PublicExpenseReportWithMetadata.yaml
+                      title: PublicExpenseReportWithMetadata
+                      origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+                      globalImport: true
+                      typescript:
+                        importPath: import  * as models from '@slashfi/models';
+                        symbolValue: models.entity.ExpenseReport.PublicExpenseReportWithMetadata
+                        typeValue: models.entity.ExpenseReport.PublicExpenseReportWithMetadata
+                required:
+                - expenseReport
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '429':
+          description: TooManyRequests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+      - api_key: []
+      - bearer: []
+      tags:
+      - Expense Report
+  /expense-report/{expenseReportId}/reject:
+    x-reference-path: paths/expense-report/{expenseReportId}/reject/route.yaml
+    post:
+      description: Reject an expense report.
+      parameters:
+      - name: expenseReportId
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                reviewedByUserId:
+                  type: string
+                  description: The user ID of the admin rejecting the expense report.
+                reason:
+                  type: string
+                  description: The reason for rejecting the expense report.
+              required:
+              - reviewedByUserId
+              - reason
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  expenseReport:
+                    $ref: '#/components/schemas/slashfi.models.entity.ExpenseReport.PublicExpenseReportWithMetadata.yaml'
+                    x-entrypoint:
+                      virtualPath: entity/ExpenseReport/PublicExpenseReportWithMetadata
+                      sourcePath: entity/ExpenseReport/PublicExpenseReportWithMetadata.yaml
+                      title: PublicExpenseReportWithMetadata
+                      origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+                      globalImport: true
+                      typescript:
+                        importPath: import  * as models from '@slashfi/models';
+                        symbolValue: models.entity.ExpenseReport.PublicExpenseReportWithMetadata
+                        typeValue: models.entity.ExpenseReport.PublicExpenseReportWithMetadata
+                required:
+                - expenseReport
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '429':
+          description: TooManyRequests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+      - api_key: []
+      - bearer: []
+      tags:
+      - Expense Report
+  /expense-report/receipt:
+    x-reference-path: paths/expense-report/receipt/route.yaml
+    post:
+      description: Upload a receipt image for an expense report. The receipt will be parsed using AI to extract amount, date, and merchant information. Accepts PNG, JPEG, WebP, and PDF formats.
+      parameters:
+      - name: filter:legalEntityId
+        description: The legal entity ID. Required if authenticating with access to multiple legal entities.
+        in: query
+        required: false
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+                  description: The receipt image file to upload.
+            encoding:
+              file:
+                contentType: image/png, image/jpeg, image/jpg, image/webp, application/pdf
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  documentId:
+                    type: string
+                    description: The document ID of the uploaded receipt. Use this in `POST /expense-report` to attach the receipt.
+                  url:
+                    type: string
+                    description: A presigned URL to access the uploaded receipt.
+                  expiresAt:
+                    type: string
+                    format: date-time
+                    description: When the presigned URL expires.
+                  parsedReceipt:
+                    $ref: '#/components/schemas/slashfi.models.entity.ExpenseReport.ParsedReceipt.yaml'
+                    x-entrypoint:
+                      virtualPath: entity/ExpenseReport/ParsedReceipt
+                      sourcePath: entity/ExpenseReport/ParsedReceipt.yaml
+                      title: ParsedReceipt
+                      origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+                      globalImport: true
+                      typescript:
+                        importPath: import  * as models from '@slashfi/models';
+                        symbolValue: models.entity.ExpenseReport.ParsedReceipt
+                        typeValue: models.entity.ExpenseReport.ParsedReceipt
+                required:
+                - documentId
+                - url
+                - expiresAt
+                - parsedReceipt
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '429':
+          description: TooManyRequests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+      - api_key: []
+      - bearer: []
+      tags:
+      - Expense Report
+  /expense-report/bulk-action:
+    x-reference-path: paths/expense-report/bulk-action/route.yaml
+    patch:
+      description: Perform bulk actions on expense reports.
+      parameters:
+      - name: filter:legalEntityId
+        description: The legal entity ID. Required if authenticating with access to multiple legal entities.
+        in: query
+        required: false
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                action:
+                  type: string
+                  enum:
+                  - approve
+                  - reject
+                  - cancel
+                  description: The action to perform on the expense reports.
+                expenseReportIds:
+                  type: array
+                  items:
+                    type: string
+                  description: List of expense report IDs to act on.
+                reviewedByUserId:
+                  type: string
+                  description: Required for `approve` and `reject` actions. The user ID of the admin performing the action.
+                cancelledByUserId:
+                  type: string
+                  description: Required for `cancel` action. The user ID whose reports to cancel.
+                reason:
+                  type: string
+                  description: Required for `reject` action. The reason for rejecting.
+              required:
+              - action
+              - expenseReportIds
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  successCount:
+                    type: integer
+                    description: The number of expense reports successfully acted on.
+                  failedIds:
+                    type: array
+                    items:
+                      type: string
+                    description: IDs of expense reports that failed to be acted on.
+                required:
+                - successCount
+                - failedIds
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '429':
+          description: TooManyRequests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+      - api_key: []
+      - bearer: []
+      tags:
+      - Expense Report
+  /expense-report/reimbursement-sources:
+    x-reference-path: paths/expense-report/reimbursement-sources/route.yaml
+    get:
+      description: Get connected bank accounts for a user that can be used as reimbursement payout destinations. Pass the `userId` query parameter to specify which user's bank accounts to retrieve.
+      parameters:
+      - name: filter:legalEntityId
+        description: The legal entity ID. Required if authenticating with access to multiple legal entities.
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: userId
+        description: The user ID to get reimbursement sources for. Required.
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/slashfi.models.entity.ExpenseReport.ReimbursementSource.yaml'
+                      x-entrypoint:
+                        virtualPath: entity/ExpenseReport/ReimbursementSource
+                        sourcePath: entity/ExpenseReport/ReimbursementSource.yaml
+                        title: ReimbursementSource
+                        origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+                        globalImport: true
+                        typescript:
+                          importPath: import  * as models from '@slashfi/models';
+                          symbolValue: models.entity.ExpenseReport.ReimbursementSource
+                          typeValue: models.entity.ExpenseReport.ReimbursementSource
+                required:
+                - data
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '429':
+          description: TooManyRequests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+      - api_key: []
+      - bearer: []
+      tags:
+      - Expense Report
+components:
+  schemas:
+    slashfi.models.entity.ExpenseReport.PublicReimbursementSource.yaml:
+      type: object
+      description: A minimal bank account summary for public API responses
+      properties:
+        id:
+          type: string
+        accountName:
+          type: string
+        mask:
+          type: string
+        institution:
+          type: object
+          required:
+          - id
+          - name
+          properties:
+            id:
+              type: string
+            name:
+              type: string
+        institutionLogo:
+          type: string
+          description: Base64 encoded institution logo
+      required:
+      - id
+      - accountName
+      - institution
+      x-entrypoint:
+        virtualPath: entity/ExpenseReport/PublicReimbursementSource
+        sourcePath: entity/ExpenseReport/PublicReimbursementSource.yaml
+        title: PublicReimbursementSource
+        origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+        globalImport: true
+      title: PublicReimbursementSource
+    slashfi.models.entity.Document.IDocumentModel.yaml:
+      type: object
+      properties:
+        $entity:
+          type: string
+          enum:
+          - document
+        id:
+          type: string
+        accountType:
+          type: string
+          enum:
+          - legalEntity
+          - slashAccount
+          - slashAccountGroup
+          - loan
+          - card
+          - dispute
+          - productApplication
+          - ach
+          - wire
+          - adminNote
+          - businessIdentity
+          - subaccount
+          - atomicInvestSleeve
+          - atomicInvestAccount
+          - accountingEntry
+          - slashWalletAccount
+          - slashWallet
+          - affiliatePayoutProfile
+          - user
+          - notification
+          - expenseReport
+          - globalUsdAch
+          - globalUsdWire
+          - globalUsdSwift
+          - globalUsdCrypto
+          - featureAnnouncement
+        accountId:
+          type: string
+        startDate:
+          type: string
+        endDate:
+          type: string
+        filename:
+          type: string
+        status:
+          $ref: '#/components/schemas/slashfi.models.entity.Document.DocumentStatus.yaml'
+          x-entrypoint:
+            virtualPath: entity/Document/DocumentStatus
+            sourcePath: entity/Document/DocumentStatus.yaml
+            title: DocumentStatus
+            origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+            globalImport: true
+        error:
+          type: string
+        checksum:
+          type: string
+        accessLevel:
+          type: string
+        documentType:
+          $ref: '#/components/schemas/slashfi.models.enums.Document.DocumentType.yaml'
+          x-entrypoint:
+            virtualPath: enums/Document/DocumentType
+            sourcePath: enums/Document/DocumentType.yaml
+            title: DocumentType
+            origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+            globalImport: true
+        tags:
+          type: array
+          items:
+            type: string
+        category:
+          type: string
+          enum:
+          - document
+          - statement
+        documentSource:
+          $ref: '#/components/schemas/slashfi.models.enums.Document.DocumentSource.yaml'
+          x-entrypoint:
+            virtualPath: enums/Document/DocumentSource
+            sourcePath: enums/Document/DocumentSource.yaml
+            title: DocumentSource
+            origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+            globalImport: true
+        fileMetadata:
+          type: object
+          properties:
+            size:
+              type: number
+            type:
+              type: string
+        timestamp:
+          type: string
+      required:
+      - $entity
+      - id
+      - accountType
+      - accountId
+      - startDate
+      - endDate
+      - status
+      - category
+      - documentType
+      - accessLevel
+      - timestamp
+      x-entrypoint:
+        virtualPath: entity/Document/IDocumentModel
+        sourcePath: entity/Document/IDocumentModel.yaml
+        title: IDocumentModel
+        origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+        globalImport: true
+      title: IDocumentModel
+    slashfi.models.entity.Document.DocumentStatus.yaml:
+      type: string
+      enum:
+      - uploaded
+      - uploading
+      - not_generated
+      - generating
+      - generated
+      - error
+      - deleted
+      x-entrypoint:
+        virtualPath: entity/Document/DocumentStatus
+        sourcePath: entity/Document/DocumentStatus.yaml
+        title: DocumentStatus
+        origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+        globalImport: true
+      title: DocumentStatus
+    slashfi.models.entity.ExpenseReport.PublicExpenseReportWithMetadata.yaml:
+      type: object
+      description: An expense report with enriched metadata, stripped for public API consumption
+      allOf:
+      - $ref: '#/components/schemas/slashfi.models.entity.ExpenseReport.ExpenseReport.yaml'
+        x-entrypoint:
+          virtualPath: entity/ExpenseReport/ExpenseReport
+          sourcePath: entity/ExpenseReport/ExpenseReport.yaml
+          title: ExpenseReport
+          origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+          globalImport: true
+      - type: object
+        properties:
+          merchant:
+            $ref: '#/components/schemas/slashfi.models.entity.ExpenseReport.ExpenseReportMerchant.yaml'
+            description: The merchant associated with this expense (enriched from merchantV2Id or customMerchantId)
+            x-entrypoint:
+              virtualPath: entity/ExpenseReport/ExpenseReportMerchant
+              sourcePath: entity/ExpenseReport/ExpenseReportMerchant.yaml
+              title: ExpenseReportMerchant
+              origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+              globalImport: true
+          documents:
+            type: array
+            description: Documents/receipts attached to this expense report with presigned URLs
+            items:
+              type: object
+              properties:
+                document:
+                  $ref: '#/components/schemas/slashfi.models.entity.Document.IDocumentModel.yaml'
+                  description: The document metadata
+                  x-entrypoint:
+                    virtualPath: entity/Document/IDocumentModel
+                    sourcePath: entity/Document/IDocumentModel.yaml
+                    title: IDocumentModel
+                    origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+                    globalImport: true
+                url:
+                  type: string
+                  description: Presigned S3 URL for accessing the document
+              required:
+              - document
+              - url
+          aggregatedTransaction:
+            $ref: '#/components/schemas/slashfi.models.entity.ExpenseReport.PublicTransactionSummary.yaml'
+            description: Minimal transaction summary for the payout
+            x-entrypoint:
+              virtualPath: entity/ExpenseReport/PublicTransactionSummary
+              sourcePath: entity/ExpenseReport/PublicTransactionSummary.yaml
+              title: PublicTransactionSummary
+              origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+              globalImport: true
+          destination:
+            $ref: '#/components/schemas/slashfi.models.entity.ExpenseReport.PublicReimbursementSource.yaml'
+            description: Minimal bank account info for the reimbursement destination
+            x-entrypoint:
+              virtualPath: entity/ExpenseReport/PublicReimbursementSource
+              sourcePath: entity/ExpenseReport/PublicReimbursementSource.yaml
+              title: PublicReimbursementSource
+              origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+              globalImport: true
+          submittedByUser:
+            $ref: '#/components/schemas/slashfi.models.entity.ExpenseReport.PublicUserSummary.yaml'
+            description: The user who submitted the expense report
+            x-entrypoint:
+              virtualPath: entity/ExpenseReport/PublicUserSummary
+              sourcePath: entity/ExpenseReport/PublicUserSummary.yaml
+              title: PublicUserSummary
+              origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+              globalImport: true
+          reviewedByUser:
+            $ref: '#/components/schemas/slashfi.models.entity.ExpenseReport.PublicUserSummary.yaml'
+            description: The admin who reviewed the expense report
+            x-entrypoint:
+              virtualPath: entity/ExpenseReport/PublicUserSummary
+              sourcePath: entity/ExpenseReport/PublicUserSummary.yaml
+              title: PublicUserSummary
+              origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+              globalImport: true
+          review:
+            $ref: '#/components/schemas/slashfi.models.entity.ExpenseReport.ExpenseReportReview.yaml'
+            description: The review decision for this expense report (if reviewed)
+            x-entrypoint:
+              virtualPath: entity/ExpenseReport/ExpenseReportReview
+              sourcePath: entity/ExpenseReport/ExpenseReportReview.yaml
+              title: ExpenseReportReview
+              origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+              globalImport: true
+      x-entrypoint:
+        virtualPath: entity/ExpenseReport/PublicExpenseReportWithMetadata
+        sourcePath: entity/ExpenseReport/PublicExpenseReportWithMetadata.yaml
+        title: PublicExpenseReportWithMetadata
+        origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+        globalImport: true
+      title: PublicExpenseReportWithMetadata
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+        name:
+          type: string
+        identifier:
+          type: string
+        rawStatus:
+          type: number
+        meta:
+          type: object
+          additionalProperties: true
+      required:
+      - message
+      - name
+      - identifier
+      - rawStatus
+      x-entrypoint:
+        origin: ./src/publicApi
+        sourcePath: ./src/publicApi/main.yaml
+        title: Error
+        virtualPath: components/Error
+      title: Error
+    slashfi.models.entity.ExpenseReport.ParsedReceiptDate.yaml:
+      type: object
+      description: Extracted date information from a receipt
+      properties:
+        value:
+          type: string
+          format: date
+          nullable: true
+          description: Transaction date in YYYY-MM-DD format
+        confidence:
+          $ref: '#/components/schemas/slashfi.models.entity.ExpenseReport.ParsedReceiptConfidence.yaml'
+          x-entrypoint:
+            virtualPath: entity/ExpenseReport/ParsedReceiptConfidence
+            sourcePath: entity/ExpenseReport/ParsedReceiptConfidence.yaml
+            title: ParsedReceiptConfidence
+            origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+            globalImport: true
+        rawText:
+          type: string
+          nullable: true
+          description: Raw text extracted from receipt for this field
+      required:
+      - confidence
+      x-entrypoint:
+        virtualPath: entity/ExpenseReport/ParsedReceiptDate
+        sourcePath: entity/ExpenseReport/ParsedReceiptDate.yaml
+        title: ParsedReceiptDate
+        origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+        globalImport: true
+      title: ParsedReceiptDate
+    slashfi.models.entity.ExpenseReport.ExpenseReportReview.yaml:
+      type: object
+      description: Review decision for an expense report
+      properties:
+        id:
+          $ref: '#/components/schemas/slashfi.models.id.ExpenseReport.ExpenseReportReviewId.yaml'
+          description: The unique ID of the expense report review
+          x-entrypoint:
+            virtualPath: id/ExpenseReport/ExpenseReportReviewId
+            sourcePath: id/ExpenseReport/ExpenseReportReviewId.yaml
+            title: ExpenseReportReviewId
+            origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+            globalImport: true
+        expenseReportId:
+          $ref: '#/components/schemas/slashfi.models.id.ExpenseReport.ExpenseReportId.yaml'
+          description: The ID of the expense report being reviewed
+          x-entrypoint:
+            virtualPath: id/ExpenseReport/ExpenseReportId
+            sourcePath: id/ExpenseReport/ExpenseReportId.yaml
+            title: ExpenseReportId
+            origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+            globalImport: true
+        decision:
+          type: string
+          enum:
+          - approved
+          - rejected
+          description: The admin's decision on the expense report
+        reviewedByUserId:
+          $ref: '#/components/schemas/slashfi.models.id.User.yaml'
+          description: The ID of the user who reviewed the expense report
+          x-entrypoint:
+            virtualPath: id/User
+            sourcePath: id/User.yaml
+            title: User
+            origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+            globalImport: true
+        reviewedAt:
+          type: string
+          format: date-time
+          description: When the review was made
+        rejectionReason:
+          type: string
+          nullable: true
+          description: Reason for rejection (only set when decision is 'rejected')
+        timestamp:
+          type: string
+          format: date-time
+          description: Metadata timestamp
+      required:
+      - id
+      - expenseReportId
+      - decision
+      - reviewedByUserId
+      - reviewedAt
+      - timestamp
+      x-entrypoint:
+        virtualPath: entity/ExpenseReport/ExpenseReportReview
+        sourcePath: entity/ExpenseReport/ExpenseReportReview.yaml
+        title: ExpenseReportReview
+        origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+        globalImport: true
+      title: ExpenseReportReview
+    slashfi.models.id.ExpenseReport.ExpenseReportReviewId.yaml:
+      type: string
+      pattern: ^expense_report_review_[a-z0-9]*
+      x-typescript:
+        typeLiteral: expense_report_review_${string}
+      description: Represents an ExpenseReportReview ID in the format of "expense_report_review_102jifoij01"
+      x-entrypoint:
+        virtualPath: id/ExpenseReport/ExpenseReportReviewId
+        sourcePath: id/ExpenseReport/ExpenseReportReviewId.yaml
+        title: ExpenseReportReviewId
+        origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+        globalImport: true
+      title: ExpenseReportReviewId
+    slashfi.models.id.UserBankAccount.yaml:
+      type: string
+      pattern: ^ub_[a-z0-9]*
+      x-typescript:
+        typeLiteral: ub_${string}
+      description: Represent a UserBankAccount ID in the format of "ub_102jifoij01"
+      x-entrypoint:
+        virtualPath: id/UserBankAccount
+        sourcePath: id/UserBankAccount.yaml
+        title: UserBankAccount
+        origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+        globalImport: true
+      title: UserBankAccount
+    slashfi.models.id.MerchantV2Id.yaml:
+      type: string
+      x-typescript:
+        typeLiteral: merchant_v2_${string}
+      description: Represent a Merchant V2 ID in the format of "merchant_v2_102jifoij01"
+      x-entrypoint:
+        virtualPath: id/MerchantV2Id
+        sourcePath: id/MerchantV2Id.yaml
+        title: MerchantV2Id
+        origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+        globalImport: true
+      title: MerchantV2Id
+    slashfi.models.entity.IMetadataModel.yaml:
+      type: object
+      properties:
+        timestamp:
+          format: date-time
+          type: string
+      required:
+      - timestamp
+      x-entrypoint:
+        virtualPath: entity/IMetadataModel
+        sourcePath: entity/IMetadataModel.yaml
+        title: IMetadataModel
+        origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+        globalImport: true
+      title: IMetadataModel
+    slashfi.models.entity.ExpenseReport.ParsedReceipt.yaml:
+      type: object
+      description: AI-extracted data from a receipt image or PDF
+      properties:
+        amount:
+          $ref: '#/components/schemas/slashfi.models.entity.ExpenseReport.ParsedReceiptAmount.yaml'
+          x-entrypoint:
+            virtualPath: entity/ExpenseReport/ParsedReceiptAmount
+            sourcePath: entity/ExpenseReport/ParsedReceiptAmount.yaml
+            title: ParsedReceiptAmount
+            origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+            globalImport: true
+        date:
+          $ref: '#/components/schemas/slashfi.models.entity.ExpenseReport.ParsedReceiptDate.yaml'
+          x-entrypoint:
+            virtualPath: entity/ExpenseReport/ParsedReceiptDate
+            sourcePath: entity/ExpenseReport/ParsedReceiptDate.yaml
+            title: ParsedReceiptDate
+            origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+            globalImport: true
+        merchant:
+          $ref: '#/components/schemas/slashfi.models.entity.ExpenseReport.ParsedReceiptMerchant.yaml'
+          x-entrypoint:
+            virtualPath: entity/ExpenseReport/ParsedReceiptMerchant
+            sourcePath: entity/ExpenseReport/ParsedReceiptMerchant.yaml
+            title: ParsedReceiptMerchant
+            origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+            globalImport: true
+      required:
+      - amount
+      - date
+      - merchant
+      x-entrypoint:
+        virtualPath: entity/ExpenseReport/ParsedReceipt
+        sourcePath: entity/ExpenseReport/ParsedReceipt.yaml
+        title: ParsedReceipt
+        origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+        globalImport: true
+      title: ParsedReceipt
+    slashfi.models.entity.Merchant.MerchantV2.yaml:
+      title: MerchantV2
+      type: object
+      required:
+      - $entity
+      - id
+      - name
+      - metadata
+      - isLive
+      - isInstantCashback
+      properties:
+        $entity:
+          type: string
+          enum:
+          - merchant_v2
+        id:
+          type: string
+        heronId:
+          type: string
+        name:
+          type: string
+        iconUrl:
+          type: string
+        logoUrl:
+          type: string
+        url:
+          type: string
+        isLive:
+          type: boolean
+        isInstantCashback:
+          type: boolean
+        merchantCategoryId:
+          type: string
+        metadata:
+          $ref: '#/components/schemas/slashfi.models.entity.IMetadataModel.yaml'
+          x-entrypoint:
+            virtualPath: entity/IMetadataModel
+            sourcePath: entity/IMetadataModel.yaml
+            title: IMetadataModel
+            origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+            globalImport: true
+      x-entrypoint:
+        virtualPath: entity/Merchant/MerchantV2
+        sourcePath: entity/Merchant/MerchantV2.yaml
+        title: MerchantV2
+        origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+        globalImport: true
+    slashfi.models.entity.ExpenseReport.ParsedReceiptAmount.yaml:
+      type: object
+      description: Extracted amount information from a receipt
+      properties:
+        valueCents:
+          type: integer
+          nullable: true
+          description: Total amount in cents (e.g., 1846 for $18.46)
+        currency:
+          type: string
+          nullable: true
+          description: ISO 4217 currency code (defaults to USD)
+        confidence:
+          $ref: '#/components/schemas/slashfi.models.entity.ExpenseReport.ParsedReceiptConfidence.yaml'
+          x-entrypoint:
+            virtualPath: entity/ExpenseReport/ParsedReceiptConfidence
+            sourcePath: entity/ExpenseReport/ParsedReceiptConfidence.yaml
+            title: ParsedReceiptConfidence
+            origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+            globalImport: true
+        rawText:
+          type: string
+          nullable: true
+          description: Raw text extracted from receipt for this field
+      required:
+      - confidence
+      x-entrypoint:
+        virtualPath: entity/ExpenseReport/ParsedReceiptAmount
+        sourcePath: entity/ExpenseReport/ParsedReceiptAmount.yaml
+        title: ParsedReceiptAmount
+        origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+        globalImport: true
+      title: ParsedReceiptAmount
+    slashfi.models.id.LegalEntityId.yaml:
+      type: string
+      pattern: ^le_[a-z0-9]*
+      x-typescript:
+        typeLiteral: le_${string}
+      description: Represent a Legal Entity ID in the format of "le_102jifoij01"
+      x-entrypoint:
+        virtualPath: id/LegalEntityId
+        sourcePath: id/LegalEntityId.yaml
+        title: LegalEntityId
+        origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+        globalImport: true
+      title: LegalEntityId
+    slashfi.models.enums.Document.DocumentType.yaml:
+      type: string
+      enum:
+      - business_entity
+      - user_identity
+      - admin
+      - affiliate_tax_document
+      - transaction_monitoring_incident
+      - slash_statement
+      - wire_ach
+      - wire_ach_instruction
+      - wire_ach_receipt
+      - international_wire_receipt
+      - sepa_instruction
+      - fps_instruction
+      - spei_instruction
+      - pay_by_slash_avatar
+      - transaction_receipt
+      - bank_letter
+      - transactions_export
+      - dispute_form
+      - accounting_receipt
+      - reimbursement_receipt
+      - bill_invoice
+      - legal_entity_contact_tax_document
+      - atomic_invest_document
+      - custom_question
+      - beneficial_ownership_certificate
+      - invoice
+      - invoice_logo
+      - column_customer_file
+      - feature_announcement_image
+      - proof_of_tax_residence
+      - sms_attachment
+      - venezuela_mercantile_registry
+      - venezuela_rif_certificate
+      - compliance_review
+      - rfi_response
+      - articles_of_incorporation
+      - certificate_of_incorporation
+      - bank_statement
+      - certificate_of_good_standing
+      - commercial_contract
+      - domain_ownership_proof
+      - ein_letter_proof
+      - ein_pending_proof
+      - entity_formation
+      - financial_statements
+      - invoice
+      - licensing_information
+      - operating_agreement
+      - profit_loss_statement
+      - receipt
+      - ubo_involvement_proof
+      - utility_bill
+      - check_deposit_front
+      - check_deposit_back
+      - dba_proof
+      - business_plan
+      - pitch_deck
+      - prospectus
+      - marketing_materials
+      - government_id_front
+      - government_id_back
+      - selfie
+      - address_proof
+      - admin_note
+      x-entrypoint:
+        virtualPath: enums/Document/DocumentType
+        sourcePath: enums/Document/DocumentType.yaml
+        title: DocumentType
+        origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+        globalImport: true
+      title: DocumentType
+    slashfi.models.entity.CustomMerchant.CustomMerchant.yaml:
+      type: object
+      description: Custom merchant schema
+      properties:
+        id:
+          $ref: '#/components/schemas/slashfi.models.id.CustomMerchant.CustomMerchantId.yaml'
+          description: The ID of the custom merchant
+          x-entrypoint:
+            virtualPath: id/CustomMerchant/CustomMerchantId
+            sourcePath: id/CustomMerchant/CustomMerchantId.yaml
+            title: CustomMerchantId
+            origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+            globalImport: true
+        legalEntityId:
+          $ref: '#/components/schemas/slashfi.models.id.LegalEntityId.yaml'
+          description: The ID of the legal entity this custom merchant belongs to
+          x-entrypoint:
+            virtualPath: id/LegalEntityId
+            sourcePath: id/LegalEntityId.yaml
+            title: LegalEntityId
+            origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+            globalImport: true
+        addedByUserId:
+          $ref: '#/components/schemas/slashfi.models.id.User.yaml'
+          description: The ID of the user who added this custom merchant
+          x-entrypoint:
+            virtualPath: id/User
+            sourcePath: id/User.yaml
+            title: User
+            origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+            globalImport: true
+        merchantName:
+          type: string
+          description: The name of the custom merchant
+        timestamp:
+          type: string
+          format: date-time
+          description: Metadata timestamp
+      required:
+      - id
+      - legalEntityId
+      - addedByUserId
+      - merchantName
+      - timestamp
+      x-entrypoint:
+        virtualPath: entity/CustomMerchant/CustomMerchant
+        sourcePath: entity/CustomMerchant/CustomMerchant.yaml
+        title: CustomMerchant
+        origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+        globalImport: true
+      title: CustomMerchant
+    slashfi.models.entity.IUserBankAccountModel.yaml:
+      title: IUserBankAccountModel
+      type: object
+      properties:
+        id:
+          type: string
+        userId:
+          type: string
+        latestStatus:
+          $ref: '#/components/schemas/slashfi.models.enums.UserBankAccountStatus.yaml'
+          x-entrypoint:
+            virtualPath: enums/UserBankAccountStatus
+            sourcePath: enums/UserBankAccountStatus.yaml
+            title: UserBankAccountStatus
+            origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+            globalImport: true
+        lastSyncedAt:
+          type: string
+        lastStatusChangeAt:
+          type: string
+        accountName:
+          type: string
+        officialAccountName:
+          type: string
+        accountOwnerName:
+          type: string
+        type:
+          type: string
+        subtype:
+          type: string
+        mask:
+          type: string
+        balance:
+          type: object
+          properties:
+            amount:
+              $ref: '#/components/schemas/slashfi.models.entity.IMoneyModel.yaml'
+              x-entrypoint:
+                virtualPath: entity/IMoneyModel
+                sourcePath: entity/IMoneyModel.yaml
+                title: IMoneyModel
+                origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+                globalImport: true
+            lastBalanceCheckDate:
+              type: string
+          required:
+          - amount
+          - lastBalanceCheckDate
+        latestBalanceCheck:
+          type: object
+          properties:
+            availableAmount:
+              $ref: '#/components/schemas/slashfi.models.entity.IMoneyModel.yaml'
+              x-entrypoint:
+                virtualPath: entity/IMoneyModel
+                sourcePath: entity/IMoneyModel.yaml
+                title: IMoneyModel
+                origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+                globalImport: true
+            currentAmount:
+              $ref: '#/components/schemas/slashfi.models.entity.IMoneyModel.yaml'
+              x-entrypoint:
+                virtualPath: entity/IMoneyModel
+                sourcePath: entity/IMoneyModel.yaml
+                title: IMoneyModel
+                origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+                globalImport: true
+            limitAmount:
+              $ref: '#/components/schemas/slashfi.models.entity.IMoneyModel.yaml'
+              x-entrypoint:
+                virtualPath: entity/IMoneyModel
+                sourcePath: entity/IMoneyModel.yaml
+                title: IMoneyModel
+                origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+                globalImport: true
+          required:
+          - currentAmount
+        institution:
+          type: object
+          required:
+          - id
+          - name
+          properties:
+            id:
+              type: string
+            name:
+              type: string
+        metadata:
+          $ref: '#/components/schemas/slashfi.models.entity.IMetadataModel.yaml'
+          x-entrypoint:
+            virtualPath: entity/IMetadataModel
+            sourcePath: entity/IMetadataModel.yaml
+            title: IMetadataModel
+            origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+            globalImport: true
+        error:
+          type: object
+          properties:
+            errorCode:
+              type: string
+            errorType:
+              type: string
+            actionMessage:
+              type: string
+            userActionCta:
+              type: string
+          required:
+          - errorCode
+          - errorType
+          - actionMessage
+      required:
+      - id
+      - userId
+      - latestStatus
+      - accountName
+      - type
+      - subtype
+      - institution
+      - metadata
+      x-entrypoint:
+        virtualPath: entity/IUserBankAccountModel
+        sourcePath: entity/IUserBankAccountModel.yaml
+        title: IUserBankAccountModel
+        origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+        globalImport: true
+    slashfi.models.entity.ExpenseReport.ExpenseReportMerchant.yaml:
+      description: The merchant associated with an expense report (either a merchantV2 or customMerchant)
+      oneOf:
+      - type: object
+        properties:
+          type:
+            type: string
+            enum:
+            - merchantV2
+          merchantV2:
+            $ref: '#/components/schemas/slashfi.models.entity.Merchant.MerchantV2.yaml'
+            x-entrypoint:
+              virtualPath: entity/Merchant/MerchantV2
+              sourcePath: entity/Merchant/MerchantV2.yaml
+              title: MerchantV2
+              origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+              globalImport: true
+        required:
+        - type
+        - merchantV2
+      - type: object
+        properties:
+          type:
+            type: string
+            enum:
+            - customMerchant
+          customMerchant:
+            $ref: '#/components/schemas/slashfi.models.entity.CustomMerchant.CustomMerchant.yaml'
+            x-entrypoint:
+              virtualPath: entity/CustomMerchant/CustomMerchant
+              sourcePath: entity/CustomMerchant/CustomMerchant.yaml
+              title: CustomMerchant
+              origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+              globalImport: true
+        required:
+        - type
+        - customMerchant
+      x-entrypoint:
+        virtualPath: entity/ExpenseReport/ExpenseReportMerchant
+        sourcePath: entity/ExpenseReport/ExpenseReportMerchant.yaml
+        title: ExpenseReportMerchant
+        origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+        globalImport: true
+      title: ExpenseReportMerchant
+    slashfi.models.enums.Document.DocumentSource.yaml:
+      type: string
+      enum:
+      - uploaded
+      - generated
+      x-entrypoint:
+        virtualPath: enums/Document/DocumentSource
+        sourcePath: enums/Document/DocumentSource.yaml
+        title: DocumentSource
+        origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+        globalImport: true
+      title: DocumentSource
+    Pagination.PaginationResponse:
+      type: object
+      description: Response sent when requesting a list of data
+      properties:
+        nextCursor:
+          type: string
+          description: The cursor to use to retrieve the next page of data. If this is not sent, there is no more data to retrieve.
+        count:
+          type: number
+          description: The number of items in the current page of data.
+      x-entrypoint:
+        virtualPath: schemas/Pagination/PaginationResponse
+        sourcePath: schemas/Pagination/PaginationResponse.yaml
+        title: PaginationResponse
+        origin: ./src/publicApi
+      title: PaginationResponse
+    slashfi.models.entity.ExpenseReport.ReimbursementSource.yaml:
+      title: ReimbursementSource
+      description: A user bank account enriched with institution logo for reimbursement flows
+      allOf:
+      - $ref: '#/components/schemas/slashfi.models.entity.IUserBankAccountModel.yaml'
+        x-entrypoint:
+          virtualPath: entity/IUserBankAccountModel
+          sourcePath: entity/IUserBankAccountModel.yaml
+          title: IUserBankAccountModel
+          origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+          globalImport: true
+      - type: object
+        properties:
+          institutionLogo:
+            type: string
+            description: Base64 encoded institution logo (152x152 PNG). Not all institutions have logos available.
+      x-entrypoint:
+        virtualPath: entity/ExpenseReport/ReimbursementSource
+        sourcePath: entity/ExpenseReport/ReimbursementSource.yaml
+        title: ReimbursementSource
+        origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+        globalImport: true
+    slashfi.models.enums.UserBankAccountStatus.yaml:
+      type: string
+      enum:
+      - active
+      - login_required
+      - inactive
+      - unknown_error
+      x-entrypoint:
+        virtualPath: enums/UserBankAccountStatus
+        sourcePath: enums/UserBankAccountStatus.yaml
+        title: UserBankAccountStatus
+        origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+        globalImport: true
+      title: UserBankAccountStatus
+    slashfi.models.entity.ExpenseReport.ExpenseReportStatus.yaml:
+      type: string
+      description: The status of an expense report
+      enum:
+      - pending_review
+      - cancelled
+      - rejected
+      - payment_processing
+      - payment_completed
+      - payment_failed
+      x-entrypoint:
+        virtualPath: entity/ExpenseReport/ExpenseReportStatus
+        sourcePath: entity/ExpenseReport/ExpenseReportStatus.yaml
+        title: ExpenseReportStatus
+        origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+        globalImport: true
+      title: ExpenseReportStatus
+    slashfi.models.entity.IMoneyModel.yaml:
+      title: IMoneyModel
+      type: object
+      properties:
+        amount_cents:
+          type: number
+        currency:
+          type: string
+          enum:
+          - USD
+      required:
+      - amount_cents
+      - currency
+      x-entrypoint:
+        virtualPath: entity/IMoneyModel
+        sourcePath: entity/IMoneyModel.yaml
+        title: IMoneyModel
+        origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+        globalImport: true
+    slashfi.models.id.CustomMerchant.CustomMerchantId.yaml:
+      type: string
+      pattern: ^custom_merchant_[a-z0-9]*
+      x-typescript:
+        typeLiteral: custom_merchant_${string}
+      description: Represent a Custom Merchant ID in the format of "custom_merchant_102jifoij01"
+      x-entrypoint:
+        virtualPath: id/CustomMerchant/CustomMerchantId
+        sourcePath: id/CustomMerchant/CustomMerchantId.yaml
+        title: CustomMerchantId
+        origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+        globalImport: true
+      title: CustomMerchantId
+    slashfi.models.entity.ExpenseReport.ParsedReceiptConfidence.yaml:
+      type: string
+      enum:
+      - high
+      - medium
+      - low
+      - none
+      description: 'Confidence level for an extracted field:
+
+        - high: Clearly visible and unambiguous
+
+        - medium: Readable but may have minor issues (blur, partial visibility)
+
+        - low: Partially visible, ambiguous, or assumptions were made
+
+        - none: Not found or completely unreadable
+
+        '
+      x-entrypoint:
+        virtualPath: entity/ExpenseReport/ParsedReceiptConfidence
+        sourcePath: entity/ExpenseReport/ParsedReceiptConfidence.yaml
+        title: ParsedReceiptConfidence
+        origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+        globalImport: true
+      title: ParsedReceiptConfidence
+    slashfi.models.entity.ExpenseReport.ExpenseReport.yaml:
+      type: object
+      description: An expense report submitted by an employee for reimbursement (matches database schema)
+      properties:
+        id:
+          $ref: '#/components/schemas/slashfi.models.id.ExpenseReport.ExpenseReportId.yaml'
+          description: The unique ID of the expense report
+          x-entrypoint:
+            virtualPath: id/ExpenseReport/ExpenseReportId
+            sourcePath: id/ExpenseReport/ExpenseReportId.yaml
+            title: ExpenseReportId
+            origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+            globalImport: true
+        legalEntityId:
+          $ref: '#/components/schemas/slashfi.models.id.LegalEntityId.yaml'
+          description: The ID of the legal entity this expense report belongs to
+          x-entrypoint:
+            virtualPath: id/LegalEntityId
+            sourcePath: id/LegalEntityId.yaml
+            title: LegalEntityId
+            origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+            globalImport: true
+        submittedByUserId:
+          $ref: '#/components/schemas/slashfi.models.id.User.yaml'
+          description: The ID of the user who submitted this expense report
+          x-entrypoint:
+            virtualPath: id/User
+            sourcePath: id/User.yaml
+            title: User
+            origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+            globalImport: true
+        amountCents:
+          type: integer
+          description: The expense amount in cents
+        currency:
+          type: string
+          description: ISO currency code (e.g., 'USD')
+        transactionDate:
+          type: string
+          format: date-time
+          description: The date of the transaction being reimbursed
+        merchantV2Id:
+          $ref: '#/components/schemas/slashfi.models.id.MerchantV2Id.yaml'
+          nullable: true
+          description: Reference to MerchantV2 registry (mutually exclusive with customMerchantId)
+          x-entrypoint:
+            virtualPath: id/MerchantV2Id
+            sourcePath: id/MerchantV2Id.yaml
+            title: MerchantV2Id
+            origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+            globalImport: true
+        customMerchantId:
+          $ref: '#/components/schemas/slashfi.models.id.CustomMerchant.CustomMerchantId.yaml'
+          nullable: true
+          description: Reference to custom merchant (mutually exclusive with merchantV2Id)
+          x-entrypoint:
+            virtualPath: id/CustomMerchant/CustomMerchantId
+            sourcePath: id/CustomMerchant/CustomMerchantId.yaml
+            title: CustomMerchantId
+            origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+            globalImport: true
+        memo:
+          type: string
+          nullable: true
+          description: Description or notes for the expense
+        destinationId:
+          $ref: '#/components/schemas/slashfi.models.id.UserBankAccount.yaml'
+          description: The user's bank account ID for payout
+          x-entrypoint:
+            virtualPath: id/UserBankAccount
+            sourcePath: id/UserBankAccount.yaml
+            title: UserBankAccount
+            origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+            globalImport: true
+        submittedAt:
+          type: string
+          format: date-time
+          description: When the expense report was submitted
+        status:
+          $ref: '#/components/schemas/slashfi.models.entity.ExpenseReport.ExpenseReportStatus.yaml'
+          description: Current status of the expense report
+          x-entrypoint:
+            virtualPath: entity/ExpenseReport/ExpenseReportStatus
+            sourcePath: entity/ExpenseReport/ExpenseReportStatus.yaml
+            title: ExpenseReportStatus
+            origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+            globalImport: true
+        timestamp:
+          type: string
+          format: date-time
+          description: Metadata timestamp
+        fxRateToUsd:
+          type: string
+          nullable: true
+          description: FX rate at submission time in format "1 USD = X foreign" (e.g., "7.0286" for CNY means 100 CNY / 7.0286 = $14.23 USD)
+        fxRateUpdatedAt:
+          type: string
+          format: date-time
+          nullable: true
+          description: When the FX rate was captured
+        noReceiptReason:
+          type: string
+          description: Reason for not having a receipt. Should only be set when this report has no receipt (expense report documents) associated with it.
+      required:
+      - id
+      - legalEntityId
+      - submittedByUserId
+      - amountCents
+      - currency
+      - transactionDate
+      - destinationId
+      - submittedAt
+      - status
+      - timestamp
+      x-entrypoint:
+        virtualPath: entity/ExpenseReport/ExpenseReport
+        sourcePath: entity/ExpenseReport/ExpenseReport.yaml
+        title: ExpenseReport
+        origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+        globalImport: true
+      title: ExpenseReport
+    slashfi.models.entity.ExpenseReport.PublicUserSummary.yaml:
+      type: object
+      description: A minimal user identity for public API responses (id and name only)
+      properties:
+        id:
+          type: string
+        name:
+          type: object
+          required:
+          - first
+          - last
+          - full
+          properties:
+            first:
+              type: string
+            last:
+              type: string
+            full:
+              type: string
+      required:
+      - id
+      - name
+      x-entrypoint:
+        virtualPath: entity/ExpenseReport/PublicUserSummary
+        sourcePath: entity/ExpenseReport/PublicUserSummary.yaml
+        title: PublicUserSummary
+        origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+        globalImport: true
+      title: PublicUserSummary
+    slashfi.models.entity.ExpenseReport.PublicTransactionSummary.yaml:
+      type: object
+      description: A minimal transaction summary for public API responses
+      properties:
+        id:
+          type: string
+        date:
+          type: string
+        amount:
+          $ref: '#/components/schemas/slashfi.models.entity.IMoneyModel.yaml'
+          x-entrypoint:
+            virtualPath: entity/IMoneyModel
+            sourcePath: entity/IMoneyModel.yaml
+            title: IMoneyModel
+            origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+            globalImport: true
+        status:
+          type: string
+          enum:
+          - pending
+          - pending_approval
+          - settled
+          - failed
+          - refund
+          - declined
+          - dispute
+          - canceled
+          - returned
+          - reversed
+          - scheduled
+          - in_review
+      required:
+      - id
+      - date
+      - amount
+      - status
+      x-entrypoint:
+        virtualPath: entity/ExpenseReport/PublicTransactionSummary
+        sourcePath: entity/ExpenseReport/PublicTransactionSummary.yaml
+        title: PublicTransactionSummary
+        origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+        globalImport: true
+      title: PublicTransactionSummary
+    slashfi.models.id.User.yaml:
+      type: string
+      pattern: ^u_[a-z0-9]*
+      x-typescript:
+        typeLiteral: u_${string}
+      description: Represent a User ID in the format of "u_102jifoij01"
+      x-entrypoint:
+        virtualPath: id/User
+        sourcePath: id/User.yaml
+        title: User
+        origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+        globalImport: true
+      title: User
+    slashfi.models.entity.ExpenseReport.ParsedReceiptMerchant.yaml:
+      type: object
+      description: Extracted merchant information from a receipt
+      properties:
+        name:
+          type: string
+          nullable: true
+          description: Merchant name as extracted from receipt
+        merchantV2Id:
+          $ref: '#/components/schemas/slashfi.models.id.MerchantV2Id.yaml'
+          nullable: true
+          description: ID of matched MerchantV2 entity (if found via similarity search)
+          x-entrypoint:
+            virtualPath: id/MerchantV2Id
+            sourcePath: id/MerchantV2Id.yaml
+            title: MerchantV2Id
+            origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+            globalImport: true
+        merchantV2:
+          $ref: '#/components/schemas/slashfi.models.entity.Merchant.MerchantV2.yaml'
+          nullable: true
+          description: Full MerchantV2 entity (if found via similarity search) - used for frontend cache population
+          x-entrypoint:
+            virtualPath: entity/Merchant/MerchantV2
+            sourcePath: entity/Merchant/MerchantV2.yaml
+            title: MerchantV2
+            origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+            globalImport: true
+        confidence:
+          $ref: '#/components/schemas/slashfi.models.entity.ExpenseReport.ParsedReceiptConfidence.yaml'
+          x-entrypoint:
+            virtualPath: entity/ExpenseReport/ParsedReceiptConfidence
+            sourcePath: entity/ExpenseReport/ParsedReceiptConfidence.yaml
+            title: ParsedReceiptConfidence
+            origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+            globalImport: true
+        rawText:
+          type: string
+          nullable: true
+          description: Raw text extracted from receipt for this field
+      required:
+      - confidence
+      x-entrypoint:
+        virtualPath: entity/ExpenseReport/ParsedReceiptMerchant
+        sourcePath: entity/ExpenseReport/ParsedReceiptMerchant.yaml
+        title: ParsedReceiptMerchant
+        origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+        globalImport: true
+      title: ParsedReceiptMerchant
+    slashfi.models.id.ExpenseReport.ExpenseReportId.yaml:
+      type: string
+      pattern: ^expense_report_[a-z0-9]*
+      x-typescript:
+        typeLiteral: expense_report_${string}
+      description: Represents an ExpenseReport ID in the format of "expense_report_102jifoij01"
+      x-entrypoint:
+        virtualPath: id/ExpenseReport/ExpenseReportId
+        sourcePath: id/ExpenseReport/ExpenseReportId.yaml
+        title: ExpenseReportId
+        origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+        globalImport: true
+      title: ExpenseReportId
+  securitySchemes:
+    api_key:
+      type: apiKey
+      description: "API key authentication for public API requests.\n\nKeys come in two flavors:\n\n- *Legal-entity-scoped keys* are pinned to a single legal entity.\n  Minted via the dashboard under a specific entity; every request\n  acts on that entity.\n- *User-scoped keys* are pinned to a user and span every legal\n  entity that user has access to. Every request made with a\n  user-scoped key (except `GET /legal-entity`, which lists the\n  legal entities the user can access) must include an\n  `x-legal-entity` header naming the legal entity the request is\n  operating on. Requests without the header are rejected with\n  `400`. The authenticated user must have an active permission\n  role on the supplied legal entity, otherwise the request is\n  rejected with `403`.\n"
+      name: X-API-Key
+      in: header
+    partner_api_key:
+      type: apiKey
+      description: 'Partner-program API key authentication.
+
+
+        Keys are minted in the partner dashboard (Developers → API Keys),
+
+        are scoped to a single partner program, and are prefixed with
+
+        `sk_partner_`. Partner keys are only accepted by routes that
+
+        declare this scheme; they are rejected by `api_key` routes and
+
+        vice versa.
+
+        '
+      name: X-API-Key
+      in: header
+    bearer:
+      type: http
+      scheme: bearer
+    developer_application:
+      type: http
+      scheme: basic

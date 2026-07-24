@@ -1,0 +1,555 @@
+openapi: 3.1.0
+info:
+  title: Slash Public Account Contact API
+  description: API description
+  version: 0.0.1
+  contact: {}
+servers:
+- url: https://api.slash.com
+  description: production
+security:
+- api_key: []
+- partner_api_key: []
+- bearer: []
+- developer_application: []
+tags:
+- name: Contact
+paths:
+  /contact:
+    x-reference-path: paths/contact/route.yaml
+    get:
+      description: List all contacts for your legal entity. Contacts represent counterparties (customers, vendors) that can be billed via invoices.
+      parameters:
+      - name: cursor
+        required: false
+        in: query
+        schema:
+          type: string
+        description: A cursor string to fetch the next page of results
+        x-reference-path: schemas/Pagination/CursorParameter.yaml
+      - name: filter:legalEntityId
+        description: Filter contacts by legal entity ID. Required if authenticating via bearer token with access to multiple legal entities.
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: filter:name
+        description: Filter contacts by name (partial match).
+        in: query
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Contact'
+                      x-entrypoint:
+                        virtualPath: schemas/Contact
+                        sourcePath: schemas/Contact.yaml
+                        title: Contact
+                        origin: ./src/publicApi
+                  metadata:
+                    $ref: '#/components/schemas/Pagination.PaginationResponse'
+                    x-entrypoint:
+                      virtualPath: schemas/Pagination/PaginationResponse
+                      sourcePath: schemas/Pagination/PaginationResponse.yaml
+                      title: PaginationResponse
+                      origin: ./src/publicApi
+                required:
+                - items
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '429':
+          description: TooManyRequests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+      - api_key: []
+      - bearer: []
+      tags:
+      - Contact
+    post:
+      description: Create a new contact for your legal entity. Contacts are used as invoice recipients.
+      parameters:
+      - name: filter:legalEntityId
+        description: The legal entity ID. Required if authenticating with access to multiple legal entities.
+        in: query
+        required: false
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: Display name of the contact.
+                recipientType:
+                  type: string
+                  description: The relationship type of the contact.
+                  enum:
+                  - contact
+                  - vendor
+                recipientLegalName:
+                  type: string
+                  description: Legal name of the recipient.
+                recipientEmail:
+                  type: string
+                  description: Email address of the recipient.
+                address:
+                  $ref: '#/components/schemas/slashfi.models.entity.IAddressModel.yaml'
+                  x-entrypoint:
+                    virtualPath: entity/IAddressModel
+                    sourcePath: entity/IAddressModel.yaml
+                    title: IAddressModel
+                    origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+                    globalImport: true
+                    typescript:
+                      importPath: import  * as models from '@slashfi/models';
+                      symbolValue: models.entity.IAddressModel
+                      typeValue: models.entity.IAddressModel
+              required:
+              - name
+              - recipientType
+              - recipientLegalName
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  contact:
+                    $ref: '#/components/schemas/Contact'
+                    x-entrypoint:
+                      virtualPath: schemas/Contact
+                      sourcePath: schemas/Contact.yaml
+                      title: Contact
+                      origin: ./src/publicApi
+                required:
+                - contact
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '429':
+          description: TooManyRequests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+      - api_key: []
+      - bearer: []
+      tags:
+      - Contact
+  /contact/{contactId}:
+    x-reference-path: paths/contact/{contactId}/route.yaml
+    get:
+      description: Get a single contact by ID.
+      parameters:
+      - name: contactId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: filter:legalEntityId
+        description: The legal entity ID. Required if authenticating with access to multiple legal entities.
+        in: query
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  contact:
+                    $ref: '#/components/schemas/Contact'
+                    x-entrypoint:
+                      virtualPath: schemas/Contact
+                      sourcePath: schemas/Contact.yaml
+                      title: Contact
+                      origin: ./src/publicApi
+                required:
+                - contact
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '429':
+          description: TooManyRequests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+      - api_key: []
+      - bearer: []
+      tags:
+      - Contact
+    patch:
+      description: Update a contact's information.
+      parameters:
+      - name: contactId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: filter:legalEntityId
+        description: The legal entity ID. Required if authenticating with access to multiple legal entities.
+        in: query
+        required: false
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - name
+              - recipientType
+              - recipientLegalName
+              - recipientEmail
+              - address
+              properties:
+                name:
+                  type: string
+                  description: Updated display name.
+                recipientType:
+                  type: string
+                  description: The relationship type of the contact.
+                  enum:
+                  - contact
+                  - vendor
+                recipientLegalName:
+                  type: string
+                  description: Updated legal name.
+                recipientEmail:
+                  type: string
+                  description: Updated email address.
+                address:
+                  $ref: '#/components/schemas/slashfi.models.entity.IAddressModel.yaml'
+                  x-entrypoint:
+                    virtualPath: entity/IAddressModel
+                    sourcePath: entity/IAddressModel.yaml
+                    title: IAddressModel
+                    origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+                    globalImport: true
+                    typescript:
+                      importPath: import  * as models from '@slashfi/models';
+                      symbolValue: models.entity.IAddressModel
+                      typeValue: models.entity.IAddressModel
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  contact:
+                    $ref: '#/components/schemas/Contact'
+                    x-entrypoint:
+                      virtualPath: schemas/Contact
+                      sourcePath: schemas/Contact.yaml
+                      title: Contact
+                      origin: ./src/publicApi
+                required:
+                - contact
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '429':
+          description: TooManyRequests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+      - api_key: []
+      - bearer: []
+      tags:
+      - Contact
+  /contact/{contactId}/ach-debit-recurring:
+    x-reference-path: paths/contact/{contactId}/ach-debit-recurring/route.yaml
+    get:
+      description: Check whether a contact has an active recurring ACH debit authorization. When active, the issuer can automatically debit the payer's bank account for future invoices with auto-pull enabled.
+      parameters:
+      - name: contactId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: filter:legalEntityId
+        description: The legal entity ID. Required if authenticating with access to multiple legal entities.
+        in: query
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  hasActiveRecurringAuth:
+                    type: boolean
+                    description: Whether the contact has authorized recurring ACH debits.
+                required:
+                - hasActiveRecurringAuth
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '429':
+          description: TooManyRequests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+      - api_key: []
+      - bearer: []
+      tags:
+      - Contact
+components:
+  schemas:
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+        name:
+          type: string
+        identifier:
+          type: string
+        rawStatus:
+          type: number
+        meta:
+          type: object
+          additionalProperties: true
+      required:
+      - message
+      - name
+      - identifier
+      - rawStatus
+      x-entrypoint:
+        origin: ./src/publicApi
+        sourcePath: ./src/publicApi/main.yaml
+        title: Error
+        virtualPath: components/Error
+      title: Error
+    Contact:
+      type: object
+      description: A contact represents a counterparty (customer, vendor, etc.) associated with a legal entity.
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the contact.
+        name:
+          type: string
+          description: Display name of the contact.
+        recipientType:
+          type: string
+          description: The relationship type of the contact.
+          enum:
+          - contact
+          - vendor
+        recipientLegalName:
+          type: string
+          description: Legal name of the recipient.
+        recipientEmail:
+          type: string
+          description: Email address of the recipient.
+        address:
+          type: object
+          description: Address of the contact.
+          additionalProperties: true
+        data:
+          type: object
+          description: Payment destination data (bank account, crypto address, etc.).
+          additionalProperties: true
+        archivedAt:
+          type: string
+          format: date-time
+          description: When the contact was archived. Null/absent when active.
+      required:
+      - id
+      - name
+      x-entrypoint:
+        virtualPath: schemas/Contact
+        sourcePath: schemas/Contact.yaml
+        title: Contact
+        origin: ./src/publicApi
+      title: Contact
+    Pagination.PaginationResponse:
+      type: object
+      description: Response sent when requesting a list of data
+      properties:
+        nextCursor:
+          type: string
+          description: The cursor to use to retrieve the next page of data. If this is not sent, there is no more data to retrieve.
+        count:
+          type: number
+          description: The number of items in the current page of data.
+      x-entrypoint:
+        virtualPath: schemas/Pagination/PaginationResponse
+        sourcePath: schemas/Pagination/PaginationResponse.yaml
+        title: PaginationResponse
+        origin: ./src/publicApi
+      title: PaginationResponse
+    slashfi.models.entity.IAddressModel.yaml:
+      title: IAddressModel
+      type: object
+      properties:
+        addressLine:
+          type: string
+        addressLine2:
+          type: string
+        addressCity:
+          type: string
+        addressState:
+          type: string
+        addressZip:
+          type: string
+        addressCountry:
+          type: string
+          minLength: 2
+          maxLength: 2
+          description: ISO 3166-1 Alpha-2 Country Code (e.g., US, FR, UK, DE, ...).
+      required:
+      - addressLine
+      - addressCity
+      - addressState
+      - addressZip
+      x-entrypoint:
+        virtualPath: entity/IAddressModel
+        sourcePath: entity/IAddressModel.yaml
+        title: IAddressModel
+        origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+        globalImport: true
+  securitySchemes:
+    api_key:
+      type: apiKey
+      description: "API key authentication for public API requests.\n\nKeys come in two flavors:\n\n- *Legal-entity-scoped keys* are pinned to a single legal entity.\n  Minted via the dashboard under a specific entity; every request\n  acts on that entity.\n- *User-scoped keys* are pinned to a user and span every legal\n  entity that user has access to. Every request made with a\n  user-scoped key (except `GET /legal-entity`, which lists the\n  legal entities the user can access) must include an\n  `x-legal-entity` header naming the legal entity the request is\n  operating on. Requests without the header are rejected with\n  `400`. The authenticated user must have an active permission\n  role on the supplied legal entity, otherwise the request is\n  rejected with `403`.\n"
+      name: X-API-Key
+      in: header
+    partner_api_key:
+      type: apiKey
+      description: 'Partner-program API key authentication.
+
+
+        Keys are minted in the partner dashboard (Developers → API Keys),
+
+        are scoped to a single partner program, and are prefixed with
+
+        `sk_partner_`. Partner keys are only accepted by routes that
+
+        declare this scheme; they are rejected by `api_key` routes and
+
+        vice versa.
+
+        '
+      name: X-API-Key
+      in: header
+    bearer:
+      type: http
+      scheme: bearer
+    developer_application:
+      type: http
+      scheme: basic

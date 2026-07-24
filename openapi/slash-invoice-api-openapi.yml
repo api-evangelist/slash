@@ -1,0 +1,3235 @@
+openapi: 3.1.0
+info:
+  title: Slash Public Account Invoice API
+  description: API description
+  version: 0.0.1
+  contact: {}
+servers:
+- url: https://api.slash.com
+  description: production
+security:
+- api_key: []
+- partner_api_key: []
+- bearer: []
+- developer_application: []
+tags:
+- name: Invoice
+paths:
+  /invoice:
+    x-reference-path: paths/invoice/route.yaml
+    get:
+      description: List all invoices for your legal entity. Supports pagination and filtering by status, customer, and account.
+      parameters:
+      - name: cursor
+        required: false
+        in: query
+        schema:
+          type: string
+        description: A cursor string to fetch the next page of results
+        x-reference-path: schemas/Pagination/CursorParameter.yaml
+      - name: filter:legalEntityId
+        description: Filter invoices by legal entity ID. Required if authenticating via bearer token with access to multiple legal entities.
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: filter:status
+        description: Filter invoices by status.
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - unpaid
+          - paid
+          - paid_partially
+          - overdue
+          - void
+      - name: filter:legalEntityContactId
+        description: Filter invoices by contact ID.
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: filter:legalEntityCustomerId
+        description: Filter invoices by customer ID.
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: filter:accountId
+        description: Filter invoices by receiving account ID.
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: sort
+        description: Sort invoices by a field. Default is by status then due date.
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - issuedAt
+          - dueAt
+      - name: sortDirection
+        description: The direction to sort by. Defaults to DESC when sorting by issuedAt or dueAt, ASC otherwise.
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - ASC
+          - DESC
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/slashfi.models.entity.Invoice.InvoiceAggregate.yaml'
+                      x-entrypoint:
+                        virtualPath: entity/Invoice/InvoiceAggregate
+                        sourcePath: entity/Invoice/InvoiceAggregate.yaml
+                        title: InvoiceAggregate
+                        origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+                        globalImport: true
+                        typescript:
+                          importPath: import  * as models from '@slashfi/models';
+                          symbolValue: models.entity.Invoice.InvoiceAggregate
+                          typeValue: models.entity.Invoice.InvoiceAggregate
+                  metadata:
+                    $ref: '#/components/schemas/Pagination.PaginationResponse'
+                    x-entrypoint:
+                      virtualPath: schemas/Pagination/PaginationResponse
+                      sourcePath: schemas/Pagination/PaginationResponse.yaml
+                      title: PaginationResponse
+                      origin: ./src/publicApi
+                required:
+                - items
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '429':
+          description: TooManyRequests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+      - api_key: []
+      - bearer: []
+      tags:
+      - Invoice
+    post:
+      description: Create a new invoice.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                accountId:
+                  type: string
+                  description: The ID of the account to receive payment. You can get this by calling `GET /account`.
+                legalEntityContactId:
+                  type: string
+                  deprecated: true
+                  description: DEPRECATED. No longer accepted as of the contact→customer migration. Pass `legalEntityCustomerId` instead.
+                legalEntityCustomerId:
+                  type: string
+                  description: The ID of the customer to bill. Create a customer first via `POST /customer`.
+                details:
+                  $ref: '#/components/schemas/slashfi.models.entity.Invoice.InvoiceDetailsInput.yaml'
+                  x-entrypoint:
+                    virtualPath: entity/Invoice/InvoiceDetailsInput
+                    sourcePath: entity/Invoice/InvoiceDetailsInput.yaml
+                    title: InvoiceDetailsInput
+                    origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+                    globalImport: true
+                    typescript:
+                      importPath: import  * as models from '@slashfi/models';
+                      symbolValue: models.entity.Invoice.InvoiceDetailsInput
+                      typeValue: models.entity.Invoice.InvoiceDetailsInput
+                paymentMethods:
+                  type: array
+                  description: Payment methods to enable on this invoice.
+                  items:
+                    $ref: '#/components/schemas/slashfi.models.entity.Invoice.InvoiceSlashPaymentMethodConfig.yaml'
+                    x-entrypoint:
+                      virtualPath: entity/Invoice/InvoiceSlashPaymentMethodConfig
+                      sourcePath: entity/Invoice/InvoiceSlashPaymentMethodConfig.yaml
+                      title: InvoiceSlashPaymentMethodConfig
+                      origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+                      globalImport: true
+                      typescript:
+                        importPath: import  * as models from '@slashfi/models';
+                        symbolValue: models.entity.Invoice.InvoiceSlashPaymentMethodConfig
+                        typeValue: models.entity.Invoice.InvoiceSlashPaymentMethodConfig
+              required:
+              - accountId
+              - legalEntityCustomerId
+              - details
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/slashfi.models.entity.Invoice.InvoiceAggregate.yaml'
+                x-entrypoint:
+                  virtualPath: entity/Invoice/InvoiceAggregate
+                  sourcePath: entity/Invoice/InvoiceAggregate.yaml
+                  title: InvoiceAggregate
+                  origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+                  globalImport: true
+                  typescript:
+                    importPath: import  * as models from '@slashfi/models';
+                    symbolValue: models.entity.Invoice.InvoiceAggregate
+                    typeValue: models.entity.Invoice.InvoiceAggregate
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '429':
+          description: TooManyRequests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+      - api_key: []
+      - bearer: []
+      tags:
+      - Invoice
+  /invoice/{invoiceId}:
+    x-reference-path: paths/invoice/{invoiceId}/route.yaml
+    get:
+      description: Get a single invoice by ID.
+      parameters:
+      - name: invoiceId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/slashfi.models.entity.Invoice.InvoiceAggregate.yaml'
+                x-entrypoint:
+                  virtualPath: entity/Invoice/InvoiceAggregate
+                  sourcePath: entity/Invoice/InvoiceAggregate.yaml
+                  title: InvoiceAggregate
+                  origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+                  globalImport: true
+                  typescript:
+                    importPath: import  * as models from '@slashfi/models';
+                    symbolValue: models.entity.Invoice.InvoiceAggregate
+                    typeValue: models.entity.Invoice.InvoiceAggregate
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '429':
+          description: TooManyRequests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+      - api_key: []
+      - bearer: []
+      tags:
+      - Invoice
+    patch:
+      description: Update an existing invoice. You can update the account, details, payment methods, and auto-pull settings.
+      parameters:
+      - name: invoiceId
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                accountId:
+                  type: string
+                  description: The ID of the account to receive payment.
+                details:
+                  $ref: '#/components/schemas/slashfi.models.entity.Invoice.InvoiceDetailsInput.yaml'
+                  x-entrypoint:
+                    virtualPath: entity/Invoice/InvoiceDetailsInput
+                    sourcePath: entity/Invoice/InvoiceDetailsInput.yaml
+                    title: InvoiceDetailsInput
+                    origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+                    globalImport: true
+                    typescript:
+                      importPath: import  * as models from '@slashfi/models';
+                      symbolValue: models.entity.Invoice.InvoiceDetailsInput
+                      typeValue: models.entity.Invoice.InvoiceDetailsInput
+                paymentMethods:
+                  type: array
+                  description: Payment methods to enable on this invoice.
+                  items:
+                    $ref: '#/components/schemas/slashfi.models.entity.Invoice.InvoiceSlashPaymentMethodConfig.yaml'
+                    x-entrypoint:
+                      virtualPath: entity/Invoice/InvoiceSlashPaymentMethodConfig
+                      sourcePath: entity/Invoice/InvoiceSlashPaymentMethodConfig.yaml
+                      title: InvoiceSlashPaymentMethodConfig
+                      origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+                      globalImport: true
+                      typescript:
+                        importPath: import  * as models from '@slashfi/models';
+                        symbolValue: models.entity.Invoice.InvoiceSlashPaymentMethodConfig
+                        typeValue: models.entity.Invoice.InvoiceSlashPaymentMethodConfig
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/slashfi.models.entity.Invoice.InvoiceAggregate.yaml'
+                x-entrypoint:
+                  virtualPath: entity/Invoice/InvoiceAggregate
+                  sourcePath: entity/Invoice/InvoiceAggregate.yaml
+                  title: InvoiceAggregate
+                  origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+                  globalImport: true
+                  typescript:
+                    importPath: import  * as models from '@slashfi/models';
+                    symbolValue: models.entity.Invoice.InvoiceAggregate
+                    typeValue: models.entity.Invoice.InvoiceAggregate
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '429':
+          description: TooManyRequests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+      - api_key: []
+      - bearer: []
+      tags:
+      - Invoice
+  /invoice/{invoiceId}/void:
+    x-reference-path: paths/invoice/{invoiceId}/void/route.yaml
+    post:
+      description: Void an invoice. A voided invoice can no longer be paid.
+      parameters:
+      - name: invoiceId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/slashfi.models.entity.Invoice.InvoiceAggregate.yaml'
+                x-entrypoint:
+                  virtualPath: entity/Invoice/InvoiceAggregate
+                  sourcePath: entity/Invoice/InvoiceAggregate.yaml
+                  title: InvoiceAggregate
+                  origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+                  globalImport: true
+                  typescript:
+                    importPath: import  * as models from '@slashfi/models';
+                    symbolValue: models.entity.Invoice.InvoiceAggregate
+                    typeValue: models.entity.Invoice.InvoiceAggregate
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '429':
+          description: TooManyRequests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+      - api_key: []
+      - bearer: []
+      tags:
+      - Invoice
+  /invoice/{invoiceId}/reconcile:
+    x-reference-path: paths/invoice/{invoiceId}/reconcile/route.yaml
+    post:
+      description: Manually reconcile (link) transactions to an invoice. This marks the invoice as having received payment for the linked transactions.
+      parameters:
+      - name: invoiceId
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              description: Array of transactions to link to the invoice.
+              items:
+                $ref: '#/components/schemas/slashfi.models.entity.Invoice.InvoiceTransaction.yaml'
+                x-entrypoint:
+                  virtualPath: entity/Invoice/InvoiceTransaction
+                  sourcePath: entity/Invoice/InvoiceTransaction.yaml
+                  title: InvoiceTransaction
+                  origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+                  globalImport: true
+                  typescript:
+                    importPath: import  * as models from '@slashfi/models';
+                    symbolValue: models.entity.Invoice.InvoiceTransaction
+                    typeValue: models.entity.Invoice.InvoiceTransaction
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/slashfi.models.entity.Invoice.InvoiceAggregate.yaml'
+                x-entrypoint:
+                  virtualPath: entity/Invoice/InvoiceAggregate
+                  sourcePath: entity/Invoice/InvoiceAggregate.yaml
+                  title: InvoiceAggregate
+                  origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+                  globalImport: true
+                  typescript:
+                    importPath: import  * as models from '@slashfi/models';
+                    symbolValue: models.entity.Invoice.InvoiceAggregate
+                    typeValue: models.entity.Invoice.InvoiceAggregate
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '429':
+          description: TooManyRequests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+      - api_key: []
+      - bearer: []
+      tags:
+      - Invoice
+  /invoice/{invoiceId}/unreconcile:
+    x-reference-path: paths/invoice/{invoiceId}/unreconcile/route.yaml
+    post:
+      description: Unreconcile (unlink) transactions from an invoice. This removes the payment association for the specified transactions.
+      parameters:
+      - name: invoiceId
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              description: Array of transactions to unlink from the invoice.
+              items:
+                $ref: '#/components/schemas/slashfi.models.entity.Invoice.InvoiceTransaction.yaml'
+                x-entrypoint:
+                  virtualPath: entity/Invoice/InvoiceTransaction
+                  sourcePath: entity/Invoice/InvoiceTransaction.yaml
+                  title: InvoiceTransaction
+                  origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+                  globalImport: true
+                  typescript:
+                    importPath: import  * as models from '@slashfi/models';
+                    symbolValue: models.entity.Invoice.InvoiceTransaction
+                    typeValue: models.entity.Invoice.InvoiceTransaction
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/slashfi.models.entity.Invoice.InvoiceAggregate.yaml'
+                x-entrypoint:
+                  virtualPath: entity/Invoice/InvoiceAggregate
+                  sourcePath: entity/Invoice/InvoiceAggregate.yaml
+                  title: InvoiceAggregate
+                  origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+                  globalImport: true
+                  typescript:
+                    importPath: import  * as models from '@slashfi/models';
+                    symbolValue: models.entity.Invoice.InvoiceAggregate
+                    typeValue: models.entity.Invoice.InvoiceAggregate
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '429':
+          description: TooManyRequests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+      - api_key: []
+      - bearer: []
+      tags:
+      - Invoice
+  /invoice/{invoiceId}/send-reminder:
+    x-reference-path: paths/invoice/{invoiceId}/send-reminder/route.yaml
+    get:
+      description: Get the next scheduled automatic reminder date for an invoice
+      parameters:
+      - name: invoiceId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  nextAutoReminderAt:
+                    type: string
+                    format: date-time
+                    description: The scheduled date of the next automatic reminder. Absent if no future reminders are scheduled.
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '429':
+          description: TooManyRequests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+      - api_key: []
+      - bearer: []
+      tags:
+      - Invoice
+    post:
+      description: Manually send a reminder email for an invoice. Rate limited to one reminder per invoice per 24 hours.
+      parameters:
+      - name: invoiceId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - success
+                properties:
+                  success:
+                    type: boolean
+                  reason:
+                    type: string
+                    enum:
+                    - rate_limited
+                    description: Present when success is false. Indicates why the reminder was not sent.
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '429':
+          description: TooManyRequests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+      - api_key: []
+      - bearer: []
+      tags:
+      - Invoice
+  /invoice/settings:
+    x-reference-path: paths/invoice/settings/route.yaml
+    get:
+      description: Get the current invoice display settings for your legal entity.
+      parameters:
+      - name: filter:legalEntityId
+        description: The legal entity ID. Required if authenticating with access to multiple legal entities.
+        in: query
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  invoiceSettings:
+                    $ref: '#/components/schemas/slashfi.models.entity.Invoice.InvoiceSettings.yaml'
+                    x-entrypoint:
+                      virtualPath: entity/Invoice/InvoiceSettings
+                      sourcePath: entity/Invoice/InvoiceSettings.yaml
+                      title: InvoiceSettings
+                      origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+                      globalImport: true
+                      typescript:
+                        importPath: import  * as models from '@slashfi/models';
+                        symbolValue: models.entity.Invoice.InvoiceSettings
+                        typeValue: models.entity.Invoice.InvoiceSettings
+                required:
+                - invoiceSettings
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '429':
+          description: TooManyRequests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+      - api_key: []
+      - bearer: []
+      tags:
+      - Invoice
+    put:
+      description: Update invoice display settings for your legal entity. These settings control the branding and default values used when creating invoices.
+      parameters:
+      - name: filter:legalEntityId
+        description: The legal entity ID. Required if authenticating with access to multiple legal entities.
+        in: query
+        required: false
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/slashfi.models.entity.Invoice.InvoiceSettingsData.yaml'
+              x-entrypoint:
+                virtualPath: entity/Invoice/InvoiceSettingsData
+                sourcePath: entity/Invoice/InvoiceSettingsData.yaml
+                title: InvoiceSettingsData
+                origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+                globalImport: true
+                typescript:
+                  importPath: import  * as models from '@slashfi/models';
+                  symbolValue: models.entity.Invoice.InvoiceSettingsData
+                  typeValue: models.entity.Invoice.InvoiceSettingsData
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  invoiceSettings:
+                    $ref: '#/components/schemas/slashfi.models.entity.Invoice.InvoiceSettings.yaml'
+                    x-entrypoint:
+                      virtualPath: entity/Invoice/InvoiceSettings
+                      sourcePath: entity/Invoice/InvoiceSettings.yaml
+                      title: InvoiceSettings
+                      origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+                      globalImport: true
+                      typescript:
+                        importPath: import  * as models from '@slashfi/models';
+                        symbolValue: models.entity.Invoice.InvoiceSettings
+                        typeValue: models.entity.Invoice.InvoiceSettings
+                required:
+                - invoiceSettings
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '429':
+          description: TooManyRequests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+      - api_key: []
+      - bearer: []
+      tags:
+      - Invoice
+  /invoice/settings/logo:
+    x-reference-path: paths/invoice/settings/logo/route.yaml
+    post:
+      description: Upload a logo image for invoice branding. Accepts PNG, JPEG, SVG, and WebP formats up to 2MB.
+      parameters:
+      - name: filter:legalEntityId
+        description: The legal entity ID. Required if authenticating with access to multiple legal entities.
+        in: query
+        required: false
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+                  description: The logo image file to upload.
+            encoding:
+              file:
+                contentType: image/svg+xml, image/png, image/jpeg, image/jpg, image/webp
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  documentId:
+                    type: string
+                    description: The document ID of the uploaded logo. Use this in `PUT /invoice/settings` to set the logo.
+                  url:
+                    type: string
+                    description: The URL of the uploaded logo.
+                required:
+                - documentId
+                - url
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '429':
+          description: TooManyRequests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+      - api_key: []
+      - bearer: []
+      tags:
+      - Invoice
+  /invoice/validate-number:
+    x-reference-path: paths/invoice/validate-number/route.yaml
+    get:
+      description: Check whether an invoice number is available (not already in use) for your legal entity.
+      parameters:
+      - name: filter:legalEntityId
+        description: The legal entity ID to check the invoice number against. Required if authenticating with access to multiple legal entities.
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: invoiceNumber
+        in: query
+        required: true
+        description: The invoice number to validate.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  isAvailable:
+                    type: boolean
+                    description: Whether the invoice number is available for use.
+                required:
+                - isAvailable
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '429':
+          description: TooManyRequests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+      - api_key: []
+      - bearer: []
+      tags:
+      - Invoice
+  /invoice/series:
+    x-reference-path: paths/invoice/series/route.yaml
+    get:
+      description: List all invoice series (recurring invoice configurations) for your legal entity. Supports pagination and filtering by status, customer, and account.
+      parameters:
+      - name: cursor
+        required: false
+        in: query
+        schema:
+          type: string
+        description: A cursor string to fetch the next page of results
+        x-reference-path: schemas/Pagination/CursorParameter.yaml
+      - name: filter:legalEntityId
+        description: Filter invoice series by legal entity ID. Required if authenticating via bearer token with access to multiple legal entities.
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: filter:status
+        description: Filter invoice series by status.
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - active
+          - ended
+          - cancelled
+      - name: filter:legalEntityContactId
+        description: Filter invoice series by contact ID.
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: filter:legalEntityCustomerId
+        description: Filter invoice series by customer ID.
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: filter:accountId
+        description: Filter invoice series by receiving account ID.
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: sort
+        description: Sort invoice series by a field. Default is by status then start date.
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - startDate
+          - nextScheduledDate
+      - name: sortDirection
+        description: The direction to sort by. Defaults to DESC when sorting by startDate or nextScheduledDate, ASC otherwise.
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - ASC
+          - DESC
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/slashfi.models.entity.Invoice.InvoiceSeries.yaml'
+                      x-entrypoint:
+                        virtualPath: entity/Invoice/InvoiceSeries
+                        sourcePath: entity/Invoice/InvoiceSeries.yaml
+                        title: InvoiceSeries
+                        origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+                        globalImport: true
+                        typescript:
+                          importPath: import  * as models from '@slashfi/models';
+                          symbolValue: models.entity.Invoice.InvoiceSeries
+                          typeValue: models.entity.Invoice.InvoiceSeries
+                  metadata:
+                    $ref: '#/components/schemas/Pagination.PaginationResponse'
+                    x-entrypoint:
+                      virtualPath: schemas/Pagination/PaginationResponse
+                      sourcePath: schemas/Pagination/PaginationResponse.yaml
+                      title: PaginationResponse
+                      origin: ./src/publicApi
+                required:
+                - items
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '429':
+          description: TooManyRequests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+      - api_key: []
+      - bearer: []
+      tags:
+      - Invoice
+    post:
+      description: Create a new invoice series (recurring invoice). The series will automatically generate invoices according to the specified recurrence rule.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/slashfi.models.entity.Invoice.InvoiceSeriesInput.yaml'
+              x-entrypoint:
+                virtualPath: entity/Invoice/InvoiceSeriesInput
+                sourcePath: entity/Invoice/InvoiceSeriesInput.yaml
+                title: InvoiceSeriesInput
+                origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+                globalImport: true
+                typescript:
+                  importPath: import  * as models from '@slashfi/models';
+                  symbolValue: models.entity.Invoice.InvoiceSeriesInput
+                  typeValue: models.entity.Invoice.InvoiceSeriesInput
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  invoiceSeries:
+                    $ref: '#/components/schemas/slashfi.models.entity.Invoice.InvoiceSeries.yaml'
+                    x-entrypoint:
+                      virtualPath: entity/Invoice/InvoiceSeries
+                      sourcePath: entity/Invoice/InvoiceSeries.yaml
+                      title: InvoiceSeries
+                      origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+                      globalImport: true
+                      typescript:
+                        importPath: import  * as models from '@slashfi/models';
+                        symbolValue: models.entity.Invoice.InvoiceSeries
+                        typeValue: models.entity.Invoice.InvoiceSeries
+                  invoiceAggregate:
+                    $ref: '#/components/schemas/slashfi.models.entity.Invoice.InvoiceAggregate.yaml'
+                    x-entrypoint:
+                      virtualPath: entity/Invoice/InvoiceAggregate
+                      sourcePath: entity/Invoice/InvoiceAggregate.yaml
+                      title: InvoiceAggregate
+                      origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+                      globalImport: true
+                      typescript:
+                        importPath: import  * as models from '@slashfi/models';
+                        symbolValue: models.entity.Invoice.InvoiceAggregate
+                        typeValue: models.entity.Invoice.InvoiceAggregate
+                required:
+                - invoiceSeries
+                - invoiceAggregate
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '429':
+          description: TooManyRequests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+      - api_key: []
+      - bearer: []
+      tags:
+      - Invoice
+  /invoice/series/{invoiceSeriesId}:
+    x-reference-path: paths/invoice/series/{invoiceSeriesId}/route.yaml
+    get:
+      description: Get a single invoice series by ID.
+      parameters:
+      - name: invoiceSeriesId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/slashfi.models.entity.Invoice.InvoiceSeries.yaml'
+                x-entrypoint:
+                  virtualPath: entity/Invoice/InvoiceSeries
+                  sourcePath: entity/Invoice/InvoiceSeries.yaml
+                  title: InvoiceSeries
+                  origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+                  globalImport: true
+                  typescript:
+                    importPath: import  * as models from '@slashfi/models';
+                    symbolValue: models.entity.Invoice.InvoiceSeries
+                    typeValue: models.entity.Invoice.InvoiceSeries
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '429':
+          description: TooManyRequests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+      - api_key: []
+      - bearer: []
+      tags:
+      - Invoice
+    patch:
+      description: Update an existing invoice series. You can update the recurrence rule, payment terms, template, payment methods, and end condition. The contact cannot be changed after creation.
+      parameters:
+      - name: invoiceSeriesId
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/slashfi.models.entity.Invoice.InvoiceSeriesInput.yaml'
+              x-entrypoint:
+                virtualPath: entity/Invoice/InvoiceSeriesInput
+                sourcePath: entity/Invoice/InvoiceSeriesInput.yaml
+                title: InvoiceSeriesInput
+                origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+                globalImport: true
+                typescript:
+                  importPath: import  * as models from '@slashfi/models';
+                  symbolValue: models.entity.Invoice.InvoiceSeriesInput
+                  typeValue: models.entity.Invoice.InvoiceSeriesInput
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  invoiceSeries:
+                    $ref: '#/components/schemas/slashfi.models.entity.Invoice.InvoiceSeries.yaml'
+                    x-entrypoint:
+                      virtualPath: entity/Invoice/InvoiceSeries
+                      sourcePath: entity/Invoice/InvoiceSeries.yaml
+                      title: InvoiceSeries
+                      origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+                      globalImport: true
+                      typescript:
+                        importPath: import  * as models from '@slashfi/models';
+                        symbolValue: models.entity.Invoice.InvoiceSeries
+                        typeValue: models.entity.Invoice.InvoiceSeries
+                  invoiceAggregate:
+                    $ref: '#/components/schemas/slashfi.models.entity.Invoice.InvoiceAggregate.yaml'
+                    x-entrypoint:
+                      virtualPath: entity/Invoice/InvoiceAggregate
+                      sourcePath: entity/Invoice/InvoiceAggregate.yaml
+                      title: InvoiceAggregate
+                      origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+                      globalImport: true
+                      typescript:
+                        importPath: import  * as models from '@slashfi/models';
+                        symbolValue: models.entity.Invoice.InvoiceAggregate
+                        typeValue: models.entity.Invoice.InvoiceAggregate
+                required:
+                - invoiceSeries
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '429':
+          description: TooManyRequests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+      - api_key: []
+      - bearer: []
+      tags:
+      - Invoice
+  /invoice/series/{invoiceSeriesId}/cancel:
+    x-reference-path: paths/invoice/series/{invoiceSeriesId}/cancel/route.yaml
+    post:
+      description: Cancel an invoice series. Already-generated invoices are not affected. The next scheduled (unpaid) invoice will be voided.
+      parameters:
+      - name: invoiceSeriesId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  invoiceSeries:
+                    $ref: '#/components/schemas/slashfi.models.entity.Invoice.InvoiceSeries.yaml'
+                    x-entrypoint:
+                      virtualPath: entity/Invoice/InvoiceSeries
+                      sourcePath: entity/Invoice/InvoiceSeries.yaml
+                      title: InvoiceSeries
+                      origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+                      globalImport: true
+                      typescript:
+                        importPath: import  * as models from '@slashfi/models';
+                        symbolValue: models.entity.Invoice.InvoiceSeries
+                        typeValue: models.entity.Invoice.InvoiceSeries
+                  voidedInvoice:
+                    $ref: '#/components/schemas/slashfi.models.entity.Invoice.InvoiceAggregate.yaml'
+                    x-entrypoint:
+                      virtualPath: entity/Invoice/InvoiceAggregate
+                      sourcePath: entity/Invoice/InvoiceAggregate.yaml
+                      title: InvoiceAggregate
+                      origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+                      globalImport: true
+                      typescript:
+                        importPath: import  * as models from '@slashfi/models';
+                        symbolValue: models.entity.Invoice.InvoiceAggregate
+                        typeValue: models.entity.Invoice.InvoiceAggregate
+                required:
+                - invoiceSeries
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '429':
+          description: TooManyRequests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+      - api_key: []
+      - bearer: []
+      tags:
+      - Invoice
+  /invoice/series/{invoiceSeriesId}/skip-next:
+    x-reference-path: paths/invoice/series/{invoiceSeriesId}/skip-next/route.yaml
+    post:
+      description: Skip the next scheduled occurrence in a series. The scheduled invoice is voided and the series advances to the following occurrence.
+      parameters:
+      - name: invoiceSeriesId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  invoiceSeries:
+                    $ref: '#/components/schemas/slashfi.models.entity.Invoice.InvoiceSeries.yaml'
+                    x-entrypoint:
+                      virtualPath: entity/Invoice/InvoiceSeries
+                      sourcePath: entity/Invoice/InvoiceSeries.yaml
+                      title: InvoiceSeries
+                      origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+                      globalImport: true
+                      typescript:
+                        importPath: import  * as models from '@slashfi/models';
+                        symbolValue: models.entity.Invoice.InvoiceSeries
+                        typeValue: models.entity.Invoice.InvoiceSeries
+                  voidedInvoice:
+                    $ref: '#/components/schemas/slashfi.models.entity.Invoice.InvoiceAggregate.yaml'
+                    x-entrypoint:
+                      virtualPath: entity/Invoice/InvoiceAggregate
+                      sourcePath: entity/Invoice/InvoiceAggregate.yaml
+                      title: InvoiceAggregate
+                      origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+                      globalImport: true
+                      typescript:
+                        importPath: import  * as models from '@slashfi/models';
+                        symbolValue: models.entity.Invoice.InvoiceAggregate
+                        typeValue: models.entity.Invoice.InvoiceAggregate
+                required:
+                - invoiceSeries
+                - voidedInvoice
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '429':
+          description: TooManyRequests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+      - api_key: []
+      - bearer: []
+      tags:
+      - Invoice
+components:
+  schemas:
+    slashfi.models.enums.SlashAccountGroupType.yaml:
+      type: string
+      enum:
+      - checking
+      - charge_card
+      - unsecured_charge_card
+      - business_debit_card_account
+      - savings
+      - global_usd
+      - acquiring
+      x-entrypoint:
+        virtualPath: enums/SlashAccountGroupType
+        sourcePath: enums/SlashAccountGroupType.yaml
+        title: SlashAccountGroupType
+        origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+        globalImport: true
+      title: SlashAccountGroupType
+    slashfi.models.entity.Invoice.InvoiceSeries.yaml:
+      description: Invoice series model for API responses
+      type: object
+      properties:
+        $entity:
+          type: string
+          enum:
+          - invoice_series
+        id:
+          type: string
+        status:
+          $ref: '#/components/schemas/slashfi.models.entity.Invoice.InvoiceSeriesStatus.yaml'
+          x-entrypoint:
+            virtualPath: entity/Invoice/InvoiceSeriesStatus
+            sourcePath: entity/Invoice/InvoiceSeriesStatus.yaml
+            title: InvoiceSeriesStatus
+            origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+            globalImport: true
+        recurrenceRule:
+          $ref: '#/components/schemas/slashfi.models.entity.Invoice.InvoiceSeriesRecurrenceRule.yaml'
+          x-entrypoint:
+            virtualPath: entity/Invoice/InvoiceSeriesRecurrenceRule
+            sourcePath: entity/Invoice/InvoiceSeriesRecurrenceRule.yaml
+            title: InvoiceSeriesRecurrenceRule
+            origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+            globalImport: true
+        paymentTermsDays:
+          type: integer
+        invoiceTz:
+          type: string
+        startDate:
+          type: string
+          format: date-time
+        endCondition:
+          $ref: '#/components/schemas/slashfi.models.entity.Invoice.InvoiceSeriesEndCondition.yaml'
+          x-entrypoint:
+            virtualPath: entity/Invoice/InvoiceSeriesEndCondition
+            sourcePath: entity/Invoice/InvoiceSeriesEndCondition.yaml
+            title: InvoiceSeriesEndCondition
+            origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+            globalImport: true
+        nextScheduledDate:
+          type: string
+          format: date-time
+          nullable: true
+        template:
+          $ref: '#/components/schemas/slashfi.models.entity.Invoice.InvoiceSeriesTemplate.yaml'
+          x-entrypoint:
+            virtualPath: entity/Invoice/InvoiceSeriesTemplate
+            sourcePath: entity/Invoice/InvoiceSeriesTemplate.yaml
+            title: InvoiceSeriesTemplate
+            origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+            globalImport: true
+        paymentMethods:
+          type: array
+          items:
+            $ref: '#/components/schemas/slashfi.models.entity.Invoice.InvoiceSlashPaymentMethodConfig.yaml'
+            x-entrypoint:
+              virtualPath: entity/Invoice/InvoiceSlashPaymentMethodConfig
+              sourcePath: entity/Invoice/InvoiceSlashPaymentMethodConfig.yaml
+              title: InvoiceSlashPaymentMethodConfig
+              origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+              globalImport: true
+        accountId:
+          type: string
+        legalEntityContactId:
+          type: string
+        legalEntityCustomerId:
+          type: string
+      required:
+      - $entity
+      - id
+      - status
+      - recurrenceRule
+      - paymentTermsDays
+      - invoiceTz
+      - startDate
+      - endCondition
+      - template
+      - paymentMethods
+      - accountId
+      x-entrypoint:
+        virtualPath: entity/Invoice/InvoiceSeries
+        sourcePath: entity/Invoice/InvoiceSeries.yaml
+        title: InvoiceSeries
+        origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+        globalImport: true
+      title: InvoiceSeries
+    slashfi.models.entity.SlashAccount.Group.Avs.AvsConstraint.yaml:
+      type: object
+      properties:
+        merchantCategoryRule:
+          type: object
+          properties:
+            merchantCategories:
+              type: array
+              items:
+                type: string
+            restriction:
+              $ref: '#/components/schemas/slashfi.models.entity.CardGroup.Restriction.yaml'
+              x-entrypoint:
+                virtualPath: entity/CardGroup/Restriction
+                sourcePath: entity/CardGroup/Restriction.yaml
+                title: Restriction
+                origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+                globalImport: true
+          required:
+          - merchantCategories
+          - restriction
+        merchantRule:
+          type: object
+          properties:
+            merchants:
+              type: array
+              items:
+                type: string
+            restriction:
+              $ref: '#/components/schemas/slashfi.models.entity.CardGroup.Restriction.yaml'
+              x-entrypoint:
+                virtualPath: entity/CardGroup/Restriction
+                sourcePath: entity/CardGroup/Restriction.yaml
+                title: Restriction
+                origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+                globalImport: true
+          required:
+          - merchants
+          - restriction
+        countryRestriction:
+          type: object
+          properties:
+            countries:
+              type: array
+              items:
+                type: string
+            restriction:
+              $ref: '#/components/schemas/slashfi.models.entity.CardGroup.Restriction.yaml'
+              x-entrypoint:
+                virtualPath: entity/CardGroup/Restriction
+                sourcePath: entity/CardGroup/Restriction.yaml
+                title: Restriction
+                origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+                globalImport: true
+          required:
+          - restriction
+          - countries
+        merchantCategoryCodeRule:
+          type: object
+          properties:
+            restriction:
+              $ref: '#/components/schemas/slashfi.models.entity.CardGroup.Restriction.yaml'
+              x-entrypoint:
+                virtualPath: entity/CardGroup/Restriction
+                sourcePath: entity/CardGroup/Restriction.yaml
+                title: Restriction
+                origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+                globalImport: true
+            merchantCategoryCodes:
+              type: array
+              items:
+                type: string
+          required:
+          - restriction
+          - merchantCategoryCodes
+      x-entrypoint:
+        virtualPath: entity/SlashAccount/Group/Avs/AvsConstraint
+        sourcePath: entity/SlashAccount/Group/Avs/AvsConstraint.yaml
+        title: AvsConstraint
+        origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+        globalImport: true
+      title: AvsConstraint
+    slashfi.models.enums.Crypto.Chain.yaml:
+      type: string
+      enum:
+      - aptos
+      - arbitrum
+      - avalanche
+      - base
+      - celo
+      - ethereum
+      - hyperevm
+      - optimism
+      - plasma
+      - polygon
+      - solana
+      - stellar
+      - sui
+      - tempo
+      - tron
+      x-entrypoint:
+        virtualPath: enums/Crypto/Chain
+        sourcePath: enums/Crypto/Chain.yaml
+        title: Chain
+        origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+        globalImport: true
+      title: Chain
+    slashfi.models.entity.Invoice.InvoiceNumber.yaml:
+      type: string
+      pattern: ^[A-Z0-9-_]+$
+      minLength: 1
+      maxLength: 50
+      description: 'A user-defined invoice identifier. Allows uppercase letters (A-Z), numbers (0-9), dashes (-), and underscores (_).
+
+        '
+      x-entrypoint:
+        virtualPath: entity/Invoice/InvoiceNumber
+        sourcePath: entity/Invoice/InvoiceNumber.yaml
+        title: InvoiceNumber
+        origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+        globalImport: true
+      title: InvoiceNumber
+    slashfi.models.entity.Invoice.InvoiceTax.yaml:
+      type: object
+      additionalProperties: false
+      properties:
+        type:
+          type: string
+          enum:
+          - percentage
+        percent:
+          type: number
+      required:
+      - type
+      - percent
+      x-entrypoint:
+        virtualPath: entity/Invoice/InvoiceTax
+        sourcePath: entity/Invoice/InvoiceTax.yaml
+        title: InvoiceTax
+        origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+        globalImport: true
+      title: InvoiceTax
+    slashfi.models.entity.Invoice.LineItemsAndTotals.yaml:
+      type: object
+      properties:
+        lineItems:
+          type: array
+          items:
+            $ref: '#/components/schemas/slashfi.models.entity.Invoice.InvoiceLineItem.yaml'
+            x-entrypoint:
+              virtualPath: entity/Invoice/InvoiceLineItem
+              sourcePath: entity/Invoice/InvoiceLineItem.yaml
+              title: InvoiceLineItem
+              origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+              globalImport: true
+          minItems: 1
+        discount:
+          $ref: '#/components/schemas/slashfi.models.entity.Invoice.InvoiceDiscount.yaml'
+          nullable: true
+          x-entrypoint:
+            virtualPath: entity/Invoice/InvoiceDiscount
+            sourcePath: entity/Invoice/InvoiceDiscount.yaml
+            title: InvoiceDiscount
+            origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+            globalImport: true
+        tax:
+          $ref: '#/components/schemas/slashfi.models.entity.Invoice.InvoiceTax.yaml'
+          nullable: true
+          x-entrypoint:
+            virtualPath: entity/Invoice/InvoiceTax
+            sourcePath: entity/Invoice/InvoiceTax.yaml
+            title: InvoiceTax
+            origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+            globalImport: true
+        subtotalCents:
+          type: number
+        totalAmountCents:
+          type: number
+      required:
+      - lineItems
+      - subtotalCents
+      - totalAmountCents
+      x-entrypoint:
+        virtualPath: entity/Invoice/LineItemsAndTotals
+        sourcePath: entity/Invoice/LineItemsAndTotals.yaml
+        title: LineItemsAndTotals
+        origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+        globalImport: true
+      title: LineItemsAndTotals
+    slashfi.models.entity.Invoice.InvoiceTransaction.yaml:
+      oneOf:
+      - type: object
+        properties:
+          transactionType:
+            type: string
+            enum:
+            - external
+          transaction:
+            type: object
+            properties:
+              paymentMethod:
+                $ref: '#/components/schemas/slashfi.models.entity.Invoice.InvoiceReconciliationPaymentMethod.yaml'
+                x-entrypoint:
+                  virtualPath: entity/Invoice/InvoiceReconciliationPaymentMethod
+                  sourcePath: entity/Invoice/InvoiceReconciliationPaymentMethod.yaml
+                  title: InvoiceReconciliationPaymentMethod
+                  origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+                  globalImport: true
+              paidAt:
+                type: string
+            required:
+            - paymentMethod
+            - paidAt
+        required:
+        - transactionType
+        - transaction
+      - type: object
+        properties:
+          transactionType:
+            type: string
+            enum:
+            - internal
+          transaction:
+            type: object
+            properties:
+              aggregatedTransactionId:
+                type: string
+            required:
+            - aggregatedTransactionId
+        required:
+        - transactionType
+        - transaction
+      x-entrypoint:
+        virtualPath: entity/Invoice/InvoiceTransaction
+        sourcePath: entity/Invoice/InvoiceTransaction.yaml
+        title: InvoiceTransaction
+        origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+        globalImport: true
+      title: InvoiceTransaction
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+        name:
+          type: string
+        identifier:
+          type: string
+        rawStatus:
+          type: number
+        meta:
+          type: object
+          additionalProperties: true
+      required:
+      - message
+      - name
+      - identifier
+      - rawStatus
+      x-entrypoint:
+        origin: ./src/publicApi
+        sourcePath: ./src/publicApi/main.yaml
+        title: Error
+        virtualPath: components/Error
+      title: Error
+    slashfi.models.entity.Invoice.PaymentMethod.PaymentMethodInboundWireTransfer.yaml:
+      type: object
+      properties:
+        method:
+          type: string
+          enum:
+          - inbound_wire_transfer
+        config:
+          type: object
+          additionalProperties: false
+      required:
+      - method
+      - config
+      x-entrypoint:
+        virtualPath: entity/Invoice/PaymentMethod/PaymentMethodInboundWireTransfer
+        sourcePath: entity/Invoice/PaymentMethod/PaymentMethodInboundWireTransfer.yaml
+        title: PaymentMethodInboundWireTransfer
+        origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+        globalImport: true
+      title: PaymentMethodInboundWireTransfer
+    slashfi.models.entity.Invoice.InvoiceSeriesEndCondition.yaml:
+      description: Discriminated union defining when a recurring invoice series stops generating invoices
+      oneOf:
+      - type: object
+        additionalProperties: false
+        properties:
+          type:
+            type: string
+            enum:
+            - never
+        required:
+        - type
+      - type: object
+        additionalProperties: false
+        properties:
+          type:
+            type: string
+            enum:
+            - after_count
+          count:
+            type: integer
+            minimum: 1
+            description: Number of invoices to generate before ending the series
+        required:
+        - type
+        - count
+      - type: object
+        additionalProperties: false
+        properties:
+          type:
+            type: string
+            enum:
+            - on_date
+          date:
+            type: string
+            format: date
+            description: ISO date string in the series timezone after which no more invoices are generated
+        required:
+        - type
+        - date
+      x-entrypoint:
+        virtualPath: entity/Invoice/InvoiceSeriesEndCondition
+        sourcePath: entity/Invoice/InvoiceSeriesEndCondition.yaml
+        title: InvoiceSeriesEndCondition
+        origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+        globalImport: true
+      title: InvoiceSeriesEndCondition
+    slashfi.models.enums.OffRamp.Method.yaml:
+      type: string
+      enum:
+      - wire
+      - ach
+      - instant
+      x-entrypoint:
+        virtualPath: enums/OffRamp/Method
+        sourcePath: enums/OffRamp/Method.yaml
+        title: Method
+        origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+        globalImport: true
+      title: Method
+    slashfi.models.entity.Invoice.InvoiceDiscount.yaml:
+      discriminator:
+        propertyName: type
+      oneOf:
+      - type: object
+        additionalProperties: false
+        properties:
+          type:
+            type: string
+            enum:
+            - percentage
+          percent:
+            type: number
+        required:
+        - type
+        - percent
+      - type: object
+        additionalProperties: false
+        properties:
+          type:
+            type: string
+            enum:
+            - fixed
+          amountCents:
+            type: number
+        required:
+        - type
+        - amountCents
+      x-entrypoint:
+        virtualPath: entity/Invoice/InvoiceDiscount
+        sourcePath: entity/Invoice/InvoiceDiscount.yaml
+        title: InvoiceDiscount
+        origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+        globalImport: true
+      title: InvoiceDiscount
+    slashfi.models.enums.SlashAccountType.yaml:
+      type: string
+      enum:
+      - consumer
+      - commercial
+      x-entrypoint:
+        virtualPath: enums/SlashAccountType
+        sourcePath: enums/SlashAccountType.yaml
+        title: SlashAccountType
+        origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+        globalImport: true
+      title: SlashAccountType
+    slashfi.models.entity.Invoice.PaymentMethod.PaymentMethodInboundInternationalWire.yaml:
+      type: object
+      properties:
+        method:
+          type: string
+          enum:
+          - inbound_international_wire
+        config:
+          type: object
+          additionalProperties: false
+      required:
+      - method
+      - config
+      x-entrypoint:
+        virtualPath: entity/Invoice/PaymentMethod/PaymentMethodInboundInternationalWire
+        sourcePath: entity/Invoice/PaymentMethod/PaymentMethodInboundInternationalWire.yaml
+        title: PaymentMethodInboundInternationalWire
+        origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+        globalImport: true
+      title: PaymentMethodInboundInternationalWire
+    Pagination.PaginationResponse:
+      type: object
+      description: Response sent when requesting a list of data
+      properties:
+        nextCursor:
+          type: string
+          description: The cursor to use to retrieve the next page of data. If this is not sent, there is no more data to retrieve.
+        count:
+          type: number
+          description: The number of items in the current page of data.
+      x-entrypoint:
+        virtualPath: schemas/Pagination/PaginationResponse
+        sourcePath: schemas/Pagination/PaginationResponse.yaml
+        title: PaginationResponse
+        origin: ./src/publicApi
+      title: PaginationResponse
+    slashfi.models.entity.Subaccount.Model.yaml:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/slashfi.models.entity.Subaccount.Id.yaml'
+          x-entrypoint:
+            virtualPath: entity/Subaccount/Id
+            sourcePath: entity/Subaccount/Id.yaml
+            title: Id
+            origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+            globalImport: true
+        name:
+          type: string
+        accountNumber:
+          type: string
+        routingNumber:
+          type: string
+        slashAccountGroupId:
+          type: string
+        closedAt:
+          type: string
+        accountType:
+          type: string
+          enum:
+          - default
+          - primary
+      required:
+      - id
+      - name
+      - slashAccountGroupId
+      - accountType
+      x-entrypoint:
+        virtualPath: entity/Subaccount/Model
+        sourcePath: entity/Subaccount/Model.yaml
+        title: Model
+        origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+        globalImport: true
+      title: Model
+    slashfi.models.entity.Invoice.Status.yaml:
+      type: string
+      enum:
+      - void
+      - unpaid
+      - overdue
+      - paid_partially
+      - paid
+      - scheduled
+      x-entrypoint:
+        virtualPath: entity/Invoice/Status
+        sourcePath: entity/Invoice/Status.yaml
+        title: Status
+        origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+        globalImport: true
+      title: Status
+    slashfi.models.entity.Invoice.LineItemsAndTotalsInput.yaml:
+      type: object
+      additionalProperties: false
+      properties:
+        lineItems:
+          type: array
+          items:
+            $ref: '#/components/schemas/slashfi.models.entity.Invoice.InvoiceLineItem.yaml'
+            x-entrypoint:
+              virtualPath: entity/Invoice/InvoiceLineItem
+              sourcePath: entity/Invoice/InvoiceLineItem.yaml
+              title: InvoiceLineItem
+              origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+              globalImport: true
+          minItems: 1
+        discount:
+          $ref: '#/components/schemas/slashfi.models.entity.Invoice.InvoiceDiscount.yaml'
+          nullable: true
+          x-entrypoint:
+            virtualPath: entity/Invoice/InvoiceDiscount
+            sourcePath: entity/Invoice/InvoiceDiscount.yaml
+            title: InvoiceDiscount
+            origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+            globalImport: true
+        tax:
+          $ref: '#/components/schemas/slashfi.models.entity.Invoice.InvoiceTax.yaml'
+          nullable: true
+          x-entrypoint:
+            virtualPath: entity/Invoice/InvoiceTax
+            sourcePath: entity/Invoice/InvoiceTax.yaml
+            title: InvoiceTax
+            origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+            globalImport: true
+      required:
+      - lineItems
+      x-entrypoint:
+        virtualPath: entity/Invoice/LineItemsAndTotalsInput
+        sourcePath: entity/Invoice/LineItemsAndTotalsInput.yaml
+        title: LineItemsAndTotalsInput
+        origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+        globalImport: true
+      title: LineItemsAndTotalsInput
+    slashfi.models.enums.SlashAccountProvider.yaml:
+      type: string
+      enum:
+      - bnk.dev
+      - stripe
+      - slash_stripe
+      - treasury_prime
+      - orum
+      - column
+      - slash
+      - privy
+      - alchemy
+      - bridge
+      - rain
+      x-entrypoint:
+        virtualPath: enums/SlashAccountProvider
+        sourcePath: enums/SlashAccountProvider.yaml
+        title: SlashAccountProvider
+        origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+        globalImport: true
+      title: SlashAccountProvider
+    slashfi.models.entity.Invoice.InvoiceSeriesTemplate.yaml:
+      description: Template data used to generate each invoice in a recurring series
+      type: object
+      additionalProperties: false
+      properties:
+        lineItemsAndTotals:
+          $ref: '#/components/schemas/slashfi.models.entity.Invoice.LineItemsAndTotalsInput.yaml'
+          x-entrypoint:
+            virtualPath: entity/Invoice/LineItemsAndTotalsInput
+            sourcePath: entity/Invoice/LineItemsAndTotalsInput.yaml
+            title: LineItemsAndTotalsInput
+            origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+            globalImport: true
+        memo:
+          type: string
+          maxLength: 500
+        ccEmails:
+          type: array
+          items:
+            type: string
+          maxItems: 10
+      required:
+      - lineItemsAndTotals
+      x-entrypoint:
+        virtualPath: entity/Invoice/InvoiceSeriesTemplate
+        sourcePath: entity/Invoice/InvoiceSeriesTemplate.yaml
+        title: InvoiceSeriesTemplate
+        origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+        globalImport: true
+      title: InvoiceSeriesTemplate
+    slashfi.models.entity.Subaccount.Id.yaml:
+      type: string
+      pattern: ^subaccount_[a-z0-9]*
+      x-typescript:
+        typeLiteral: subaccount_${string}
+      description: Represent a Subaccount ID in the format of "subaccount_102jifoij01"
+      x-entrypoint:
+        virtualPath: entity/Subaccount/Id
+        sourcePath: entity/Subaccount/Id.yaml
+        title: Id
+        origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+        globalImport: true
+      title: Id
+    slashfi.models.entity.SlashAccount.Group.Avs.AvsSettings.yaml:
+      type: object
+      properties:
+        avsMode:
+          type: string
+          enum:
+          - alwaysApprove
+          - proper
+          - custom
+        constraints:
+          deprecated: true
+          $ref: '#/components/schemas/slashfi.models.entity.SlashAccount.Group.Avs.AvsConstraint.yaml'
+          x-entrypoint:
+            virtualPath: entity/SlashAccount/Group/Avs/AvsConstraint
+            sourcePath: entity/SlashAccount/Group/Avs/AvsConstraint.yaml
+            title: AvsConstraint
+            origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+            globalImport: true
+        avsAddress:
+          type: object
+          properties:
+            addressLine1:
+              type: string
+            addressLine2:
+              type: string
+            city:
+              type: string
+            state:
+              type: string
+            zip:
+              type: string
+            country:
+              type: string
+          required:
+          - addressLine1
+          - city
+          - state
+          - zip
+          - country
+      required:
+      - avsMode
+      x-entrypoint:
+        virtualPath: entity/SlashAccount/Group/Avs/AvsSettings
+        sourcePath: entity/SlashAccount/Group/Avs/AvsSettings.yaml
+        title: AvsSettings
+        origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+        globalImport: true
+      title: AvsSettings
+    slashfi.models.entity.Invoice.InvoiceSettings.yaml:
+      type: object
+      description: Full invoice settings entity for a legal entity, including metadata.
+      properties:
+        $entity:
+          type: string
+          enum:
+          - invoice_settings
+        id:
+          type: string
+        legalEntityId:
+          type: string
+        settings:
+          $ref: '#/components/schemas/slashfi.models.entity.Invoice.InvoiceSettingsData.yaml'
+          x-entrypoint:
+            virtualPath: entity/Invoice/InvoiceSettingsData
+            sourcePath: entity/Invoice/InvoiceSettingsData.yaml
+            title: InvoiceSettingsData
+            origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+            globalImport: true
+        timestamp:
+          type: string
+          format: date-time
+      required:
+      - $entity
+      - id
+      - legalEntityId
+      - settings
+      - timestamp
+      x-entrypoint:
+        virtualPath: entity/Invoice/InvoiceSettings
+        sourcePath: entity/Invoice/InvoiceSettings.yaml
+        title: InvoiceSettings
+        origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+        globalImport: true
+      title: InvoiceSettings
+    slashfi.models.entity.Invoice.InvoiceSettingsData.yaml:
+      type: object
+      description: Invoice display settings for a legal entity.
+      properties:
+        companyName:
+          type: string
+          description: The company name to display on invoices.
+          minLength: 1
+        email:
+          type: string
+          format: email
+          description: The email address to display on invoices.
+          minLength: 1
+        address:
+          $ref: '#/components/schemas/slashfi.models.entity.IAddressModel.yaml'
+          description: The company address to display on invoices.
+          x-entrypoint:
+            virtualPath: entity/IAddressModel
+            sourcePath: entity/IAddressModel.yaml
+            title: IAddressModel
+            origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+            globalImport: true
+        defaultMemo:
+          type: string
+          description: Default memo text to pre-fill when creating new invoices.
+          maxLength: 500
+        invoiceTerms:
+          type: string
+          description: Terms text to display on invoices. Only shown when INVOICE_TERMS_MAR_2026 feature flag is enabled.
+          maxLength: 2000
+        defaultPaymentTermsDays:
+          type: integer
+          description: Default payment terms in days (Net N). Used to auto-calculate due date from issue date when creating invoices.
+          minimum: 0
+        logoDocumentId:
+          type: string
+          description: Document ID of the company logo to display on invoices.
+        unitPriceDecimalPlaces:
+          type: integer
+          description: Number of decimal places allowed for unit prices (in dollars). Defaults to 2 if not set.
+          minimum: 2
+          maximum: 6
+        branding:
+          type: object
+          description: Custom branding settings for invoice styling. Extensible for future branding options.
+          properties:
+            backgroundColor:
+              type: string
+              description: Hex color code for header background and accent elements (e.g., pay button).
+              pattern: ^#[0-9A-Fa-f]{6}$
+            titleColor:
+              type: string
+              description: Hex color code for title text, amounts, and section headings.
+              pattern: ^#[0-9A-Fa-f]{6}$
+      required:
+      - companyName
+      - email
+      - address
+      x-entrypoint:
+        virtualPath: entity/Invoice/InvoiceSettingsData
+        sourcePath: entity/Invoice/InvoiceSettingsData.yaml
+        title: InvoiceSettingsData
+        origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+        globalImport: true
+      title: InvoiceSettingsData
+    slashfi.models.entity.Invoice.InvoiceAggregate.yaml:
+      type: object
+      description: Aggregate model for an invoice
+      properties:
+        invoice:
+          $ref: '#/components/schemas/slashfi.models.entity.Invoice.Invoice.yaml'
+          x-entrypoint:
+            virtualPath: entity/Invoice/Invoice
+            sourcePath: entity/Invoice/Invoice.yaml
+            title: Invoice
+            origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+            globalImport: true
+        invoiceDetails:
+          $ref: '#/components/schemas/slashfi.models.entity.Invoice.InvoiceDetails.yaml'
+          x-entrypoint:
+            virtualPath: entity/Invoice/InvoiceDetails
+            sourcePath: entity/Invoice/InvoiceDetails.yaml
+            title: InvoiceDetails
+            origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+            globalImport: true
+        invoiceAccount:
+          $ref: '#/components/schemas/slashfi.models.entity.Invoice.InvoiceAccount.yaml'
+          x-entrypoint:
+            virtualPath: entity/Invoice/InvoiceAccount
+            sourcePath: entity/Invoice/InvoiceAccount.yaml
+            title: InvoiceAccount
+            origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+            globalImport: true
+      required:
+      - invoice
+      - invoiceDetails
+      - invoiceAccount
+      x-entrypoint:
+        virtualPath: entity/Invoice/InvoiceAggregate
+        sourcePath: entity/Invoice/InvoiceAggregate.yaml
+        title: InvoiceAggregate
+        origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+        globalImport: true
+      title: InvoiceAggregate
+    slashfi.models.entity.Invoice.InvoiceLineItem.yaml:
+      type: object
+      additionalProperties: false
+      properties:
+        name:
+          type: string
+        quantity:
+          type: number
+        priceCents:
+          type: number
+        catalogItemId:
+          type: string
+          description: Optional provenance stamp indicating this line item was populated from a catalog item. Cleared if the user manually edits the name or price after selection.
+      required:
+      - name
+      - quantity
+      - priceCents
+      x-entrypoint:
+        virtualPath: entity/Invoice/InvoiceLineItem
+        sourcePath: entity/Invoice/InvoiceLineItem.yaml
+        title: InvoiceLineItem
+        origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+        globalImport: true
+      title: InvoiceLineItem
+    slashfi.models.entity.Invoice.InvoiceSeriesInput.yaml:
+      description: Input for creating or editing a recurring invoice series
+      type: object
+      additionalProperties: false
+      properties:
+        accountId:
+          type: string
+        legalEntityContactId:
+          type: string
+          description: Immutable after creation. Ignored on edit.
+        legalEntityCustomerId:
+          type: string
+          description: The legal entity customer this series is for. Optional during transition.
+        recurrenceRule:
+          $ref: '#/components/schemas/slashfi.models.entity.Invoice.InvoiceSeriesRecurrenceRule.yaml'
+          x-entrypoint:
+            virtualPath: entity/Invoice/InvoiceSeriesRecurrenceRule
+            sourcePath: entity/Invoice/InvoiceSeriesRecurrenceRule.yaml
+            title: InvoiceSeriesRecurrenceRule
+            origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+            globalImport: true
+        paymentTermsDays:
+          type: integer
+          minimum: 0
+          description: Number of days after issuance that the invoice is due. 0 = Due on Receipt.
+        invoiceTz:
+          type: string
+          description: IANA timezone identifier used for date calculations
+          example: America/New_York
+        startDate:
+          type: string
+          format: date
+          description: Date (in invoiceTz) from which to begin generating invoices
+        endCondition:
+          $ref: '#/components/schemas/slashfi.models.entity.Invoice.InvoiceSeriesEndCondition.yaml'
+          x-entrypoint:
+            virtualPath: entity/Invoice/InvoiceSeriesEndCondition
+            sourcePath: entity/Invoice/InvoiceSeriesEndCondition.yaml
+            title: InvoiceSeriesEndCondition
+            origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+            globalImport: true
+        template:
+          $ref: '#/components/schemas/slashfi.models.entity.Invoice.InvoiceSeriesTemplate.yaml'
+          x-entrypoint:
+            virtualPath: entity/Invoice/InvoiceSeriesTemplate
+            sourcePath: entity/Invoice/InvoiceSeriesTemplate.yaml
+            title: InvoiceSeriesTemplate
+            origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+            globalImport: true
+        paymentMethods:
+          type: array
+          items:
+            $ref: '#/components/schemas/slashfi.models.entity.Invoice.InvoiceSlashPaymentMethodConfig.yaml'
+            x-entrypoint:
+              virtualPath: entity/Invoice/InvoiceSlashPaymentMethodConfig
+              sourcePath: entity/Invoice/InvoiceSlashPaymentMethodConfig.yaml
+              title: InvoiceSlashPaymentMethodConfig
+              origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+              globalImport: true
+      required:
+      - accountId
+      - recurrenceRule
+      - paymentTermsDays
+      - invoiceTz
+      - startDate
+      - endCondition
+      - template
+      x-entrypoint:
+        virtualPath: entity/Invoice/InvoiceSeriesInput
+        sourcePath: entity/Invoice/InvoiceSeriesInput.yaml
+        title: InvoiceSeriesInput
+        origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+        globalImport: true
+      title: InvoiceSeriesInput
+    slashfi.models.entity.Invoice.PaymentMethod.PaymentMethodAchDebit.yaml:
+      type: object
+      properties:
+        method:
+          type: string
+          enum:
+          - ach_debit
+        config:
+          type: object
+          properties:
+            passFeeToPayer:
+              type: boolean
+          required:
+          - passFeeToPayer
+          additionalProperties: false
+      required:
+      - method
+      - config
+      x-entrypoint:
+        virtualPath: entity/Invoice/PaymentMethod/PaymentMethodAchDebit
+        sourcePath: entity/Invoice/PaymentMethod/PaymentMethodAchDebit.yaml
+        title: PaymentMethodAchDebit
+        origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+        globalImport: true
+      title: PaymentMethodAchDebit
+    slashfi.models.entity.Invoice.PaymentMethod.PaymentMethodCryptoDeposit.yaml:
+      type: object
+      properties:
+        method:
+          type: string
+          enum:
+          - crypto_deposit
+        config:
+          type: object
+          properties:
+            passFeeToPayer:
+              type: boolean
+            fiatRail:
+              $ref: '#/components/schemas/slashfi.models.enums.OffRamp.Method.yaml'
+              x-entrypoint:
+                virtualPath: enums/OffRamp/Method
+                sourcePath: enums/OffRamp/Method.yaml
+                title: Method
+                origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+                globalImport: true
+          required:
+          - passFeeToPayer
+          additionalProperties: false
+      required:
+      - method
+      - config
+      x-entrypoint:
+        virtualPath: entity/Invoice/PaymentMethod/PaymentMethodCryptoDeposit
+        sourcePath: entity/Invoice/PaymentMethod/PaymentMethodCryptoDeposit.yaml
+        title: PaymentMethodCryptoDeposit
+        origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+        globalImport: true
+      title: PaymentMethodCryptoDeposit
+    slashfi.models.entity.Invoice.PaymentMethod.PaymentMethodInboundAchTransfer.yaml:
+      type: object
+      properties:
+        method:
+          type: string
+          enum:
+          - inbound_ach_transfer
+        config:
+          type: object
+          additionalProperties: false
+      required:
+      - method
+      - config
+      x-entrypoint:
+        virtualPath: entity/Invoice/PaymentMethod/PaymentMethodInboundAchTransfer
+        sourcePath: entity/Invoice/PaymentMethod/PaymentMethodInboundAchTransfer.yaml
+        title: PaymentMethodInboundAchTransfer
+        origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+        globalImport: true
+      title: PaymentMethodInboundAchTransfer
+    slashfi.models.entity.SlashWalletAccount.yaml:
+      type: object
+      properties:
+        $entity:
+          type: string
+          enum:
+          - slash_wallet_account
+        id:
+          type: string
+          description: The ID of the slash wallet account
+        slashWalletId:
+          type: string
+          description: The ID of the slash wallet associated with this account
+        chains:
+          type: array
+          items:
+            $ref: '#/components/schemas/slashfi.models.enums.Crypto.Chain.yaml'
+            x-entrypoint:
+              virtualPath: enums/Crypto/Chain
+              sourcePath: enums/Crypto/Chain.yaml
+              title: Chain
+              origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+              globalImport: true
+        protocol:
+          type: string
+          enum:
+          - evm
+          - solana
+          description: The protocol that this wallet account supports
+        address:
+          type: string
+          description: The blockchain address of the wallet account
+        provider:
+          type: string
+          enum:
+          - privy
+          - alchemy
+          - bridge
+          - rain
+          description: The provider of the wallet account
+        providerId:
+          type: string
+          description: The ID of the entity on the provider's end
+        createdAt:
+          type: string
+          format: date-time
+          description: The timestamp when this wallet account was created
+        timestamp:
+          type: string
+          format: date-time
+          description: The timestamp when this record was last modified
+      required:
+      - $entity
+      - id
+      - slashWalletId
+      - chains
+      - address
+      - provider
+      - providerId
+      - timestamp
+      x-entrypoint:
+        virtualPath: entity/SlashWalletAccount
+        sourcePath: entity/SlashWalletAccount.yaml
+        title: SlashWalletAccount
+        origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+        globalImport: true
+      title: SlashWalletAccount
+    slashfi.models.entity.Invoice.InvoiceSlashPaymentMethodConfig.yaml.properties.method:
+      oneOf:
+      - $ref: '#/components/schemas/slashfi.models.entity.Invoice.PaymentMethod.PaymentMethodAchDebit.yaml'
+        x-entrypoint:
+          virtualPath: entity/Invoice/PaymentMethod/PaymentMethodAchDebit
+          sourcePath: entity/Invoice/PaymentMethod/PaymentMethodAchDebit.yaml
+          title: PaymentMethodAchDebit
+          origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+          globalImport: true
+      - $ref: '#/components/schemas/slashfi.models.entity.Invoice.PaymentMethod.PaymentMethodCardPayment.yaml'
+        x-entrypoint:
+          virtualPath: entity/Invoice/PaymentMethod/PaymentMethodCardPayment
+          sourcePath: entity/Invoice/PaymentMethod/PaymentMethodCardPayment.yaml
+          title: PaymentMethodCardPayment
+          origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+          globalImport: true
+      - $ref: '#/components/schemas/slashfi.models.entity.Invoice.PaymentMethod.PaymentMethodCryptoDeposit.yaml'
+        x-entrypoint:
+          virtualPath: entity/Invoice/PaymentMethod/PaymentMethodCryptoDeposit
+          sourcePath: entity/Invoice/PaymentMethod/PaymentMethodCryptoDeposit.yaml
+          title: PaymentMethodCryptoDeposit
+          origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+          globalImport: true
+      - $ref: '#/components/schemas/slashfi.models.entity.Invoice.PaymentMethod.PaymentMethodInboundAchTransfer.yaml'
+        x-entrypoint:
+          virtualPath: entity/Invoice/PaymentMethod/PaymentMethodInboundAchTransfer
+          sourcePath: entity/Invoice/PaymentMethod/PaymentMethodInboundAchTransfer.yaml
+          title: PaymentMethodInboundAchTransfer
+          origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+          globalImport: true
+      - $ref: '#/components/schemas/slashfi.models.entity.Invoice.PaymentMethod.PaymentMethodInboundInternationalWire.yaml'
+        x-entrypoint:
+          virtualPath: entity/Invoice/PaymentMethod/PaymentMethodInboundInternationalWire
+          sourcePath: entity/Invoice/PaymentMethod/PaymentMethodInboundInternationalWire.yaml
+          title: PaymentMethodInboundInternationalWire
+          origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+          globalImport: true
+      - $ref: '#/components/schemas/slashfi.models.entity.Invoice.PaymentMethod.PaymentMethodInboundRtp.yaml'
+        x-entrypoint:
+          virtualPath: entity/Invoice/PaymentMethod/PaymentMethodInboundRtp
+          sourcePath: entity/Invoice/PaymentMethod/PaymentMethodInboundRtp.yaml
+          title: PaymentMethodInboundRtp
+          origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+          globalImport: true
+      - $ref: '#/components/schemas/slashfi.models.entity.Invoice.PaymentMethod.PaymentMethodInboundWireTransfer.yaml'
+        x-entrypoint:
+          virtualPath: entity/Invoice/PaymentMethod/PaymentMethodInboundWireTransfer
+          sourcePath: entity/Invoice/PaymentMethod/PaymentMethodInboundWireTransfer.yaml
+          title: PaymentMethodInboundWireTransfer
+          origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+          globalImport: true
+      x-entrypoint:
+        virtualPath: entity/Invoice/InvoiceSlashPaymentMethodConfig
+        sourcePath: entity/Invoice/InvoiceSlashPaymentMethodConfig.yaml
+        title: InvoiceSlashPaymentMethodConfig
+        origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+        globalImport: true
+      title: InvoiceSlashPaymentMethodConfig
+    slashfi.models.entity.SlashAccount.Group.Model.yaml:
+      type: object
+      properties:
+        $entity:
+          type: string
+          enum:
+          - slash_account_group
+        id:
+          type: string
+        legalEntityId:
+          type: string
+        groupType:
+          $ref: '#/components/schemas/slashfi.models.enums.SlashAccountGroupType.yaml'
+          x-entrypoint:
+            virtualPath: enums/SlashAccountGroupType
+            sourcePath: enums/SlashAccountGroupType.yaml
+            title: SlashAccountGroupType
+            origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+            globalImport: true
+        accountType:
+          $ref: '#/components/schemas/slashfi.models.enums.SlashAccountType.yaml'
+          x-entrypoint:
+            virtualPath: enums/SlashAccountType
+            sourcePath: enums/SlashAccountType.yaml
+            title: SlashAccountType
+            origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+            globalImport: true
+        groupName:
+          type: string
+        provider:
+          $ref: '#/components/schemas/slashfi.models.enums.SlashAccountProvider.yaml'
+          x-entrypoint:
+            virtualPath: enums/SlashAccountProvider
+            sourcePath: enums/SlashAccountProvider.yaml
+            title: SlashAccountProvider
+            origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+            globalImport: true
+        currency:
+          type: string
+        accountNumber:
+          type: string
+        routingNumber:
+          type: string
+        lockedAt:
+          type: string
+        closedAt:
+          type: string
+        pendingClosedAt:
+          type: string
+        timestamp:
+          type: string
+        additionalData:
+          type: object
+          properties:
+            avsSettings:
+              $ref: '#/components/schemas/slashfi.models.entity.SlashAccount.Group.Avs.AvsSettings.yaml'
+              x-entrypoint:
+                virtualPath: entity/SlashAccount/Group/Avs/AvsSettings
+                sourcePath: entity/SlashAccount/Group/Avs/AvsSettings.yaml
+                title: AvsSettings
+                origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+                globalImport: true
+      required:
+      - $entity
+      - id
+      - legalEntityId
+      - groupType
+      - accountType
+      - groupName
+      - currency
+      - timestamp
+      x-entrypoint:
+        virtualPath: entity/SlashAccount/Group/Model
+        sourcePath: entity/SlashAccount/Group/Model.yaml
+        title: Model
+        origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+        globalImport: true
+      title: Model
+    slashfi.models.entity.Invoice.InvoiceDetails.yaml:
+      type: object
+      properties:
+        id:
+          type: string
+        issuedAt:
+          type: string
+          format: date-time
+        dueAt:
+          type: string
+          format: date-time
+        invoiceTz:
+          type: string
+          description: IANA timezone identifier used for interpreting invoice dates
+          example: America/New_York
+        currency:
+          type: string
+        lineItemsAndTotals:
+          $ref: '#/components/schemas/slashfi.models.entity.Invoice.LineItemsAndTotals.yaml'
+          x-entrypoint:
+            virtualPath: entity/Invoice/LineItemsAndTotals
+            sourcePath: entity/Invoice/LineItemsAndTotals.yaml
+            title: LineItemsAndTotals
+            origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+            globalImport: true
+        invoiceNumber:
+          $ref: '#/components/schemas/slashfi.models.entity.Invoice.InvoiceNumber.yaml'
+          x-entrypoint:
+            virtualPath: entity/Invoice/InvoiceNumber
+            sourcePath: entity/Invoice/InvoiceNumber.yaml
+            title: InvoiceNumber
+            origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+            globalImport: true
+        memo:
+          type: string
+          minLength: 1
+          maxLength: 500
+        documentId:
+          type: string
+        billedTo:
+          type: object
+          properties:
+            name:
+              type: string
+            email:
+              type: string
+            address:
+              $ref: '#/components/schemas/slashfi.models.entity.IAddressModel.yaml'
+              x-entrypoint:
+                virtualPath: entity/IAddressModel
+                sourcePath: entity/IAddressModel.yaml
+                title: IAddressModel
+                origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+                globalImport: true
+            ccEmails:
+              type: array
+              items:
+                type: string
+              maxItems: 10
+          required:
+          - name
+          - email
+        version:
+          type: integer
+          minimum: 1
+      required:
+      - id
+      - issuedAt
+      - dueAt
+      - invoiceTz
+      - currency
+      - lineItemsAndTotals
+      - invoiceNumber
+      - documentId
+      - billedTo
+      - version
+      x-entrypoint:
+        virtualPath: entity/Invoice/InvoiceDetails
+        sourcePath: entity/Invoice/InvoiceDetails.yaml
+        title: InvoiceDetails
+        origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+        globalImport: true
+      title: InvoiceDetails
+    slashfi.models.entity.Invoice.PaymentMethod.PaymentMethodCardPayment.yaml:
+      type: object
+      properties:
+        method:
+          type: string
+          enum:
+          - acquiring_payment
+        config:
+          type: object
+          properties:
+            passFeeToPayer:
+              type: boolean
+              enum:
+              - false
+          required:
+          - passFeeToPayer
+          additionalProperties: false
+      required:
+      - method
+      - config
+      x-entrypoint:
+        virtualPath: entity/Invoice/PaymentMethod/PaymentMethodCardPayment
+        sourcePath: entity/Invoice/PaymentMethod/PaymentMethodCardPayment.yaml
+        title: PaymentMethodCardPayment
+        origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+        globalImport: true
+      title: PaymentMethodCardPayment
+    slashfi.models.entity.Invoice.InvoiceSlashPaymentMethodConfig.yaml:
+      oneOf:
+      - $ref: '#/components/schemas/slashfi.models.entity.Invoice.PaymentMethod.PaymentMethodAchDebit.yaml'
+        x-entrypoint:
+          virtualPath: entity/Invoice/PaymentMethod/PaymentMethodAchDebit
+          sourcePath: entity/Invoice/PaymentMethod/PaymentMethodAchDebit.yaml
+          title: PaymentMethodAchDebit
+          origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+          globalImport: true
+      - $ref: '#/components/schemas/slashfi.models.entity.Invoice.PaymentMethod.PaymentMethodCardPayment.yaml'
+        x-entrypoint:
+          virtualPath: entity/Invoice/PaymentMethod/PaymentMethodCardPayment
+          sourcePath: entity/Invoice/PaymentMethod/PaymentMethodCardPayment.yaml
+          title: PaymentMethodCardPayment
+          origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+          globalImport: true
+      - $ref: '#/components/schemas/slashfi.models.entity.Invoice.PaymentMethod.PaymentMethodCryptoDeposit.yaml'
+        x-entrypoint:
+          virtualPath: entity/Invoice/PaymentMethod/PaymentMethodCryptoDeposit
+          sourcePath: entity/Invoice/PaymentMethod/PaymentMethodCryptoDeposit.yaml
+          title: PaymentMethodCryptoDeposit
+          origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+          globalImport: true
+      - $ref: '#/components/schemas/slashfi.models.entity.Invoice.PaymentMethod.PaymentMethodInboundAchTransfer.yaml'
+        x-entrypoint:
+          virtualPath: entity/Invoice/PaymentMethod/PaymentMethodInboundAchTransfer
+          sourcePath: entity/Invoice/PaymentMethod/PaymentMethodInboundAchTransfer.yaml
+          title: PaymentMethodInboundAchTransfer
+          origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+          globalImport: true
+      - $ref: '#/components/schemas/slashfi.models.entity.Invoice.PaymentMethod.PaymentMethodInboundInternationalWire.yaml'
+        x-entrypoint:
+          virtualPath: entity/Invoice/PaymentMethod/PaymentMethodInboundInternationalWire
+          sourcePath: entity/Invoice/PaymentMethod/PaymentMethodInboundInternationalWire.yaml
+          title: PaymentMethodInboundInternationalWire
+          origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+          globalImport: true
+      - $ref: '#/components/schemas/slashfi.models.entity.Invoice.PaymentMethod.PaymentMethodInboundRtp.yaml'
+        x-entrypoint:
+          virtualPath: entity/Invoice/PaymentMethod/PaymentMethodInboundRtp
+          sourcePath: entity/Invoice/PaymentMethod/PaymentMethodInboundRtp.yaml
+          title: PaymentMethodInboundRtp
+          origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+          globalImport: true
+      - $ref: '#/components/schemas/slashfi.models.entity.Invoice.PaymentMethod.PaymentMethodInboundWireTransfer.yaml'
+        x-entrypoint:
+          virtualPath: entity/Invoice/PaymentMethod/PaymentMethodInboundWireTransfer
+          sourcePath: entity/Invoice/PaymentMethod/PaymentMethodInboundWireTransfer.yaml
+          title: PaymentMethodInboundWireTransfer
+          origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+          globalImport: true
+      x-entrypoint:
+        virtualPath: entity/Invoice/InvoiceSlashPaymentMethodConfig
+        sourcePath: entity/Invoice/InvoiceSlashPaymentMethodConfig.yaml
+        title: InvoiceSlashPaymentMethodConfig
+        origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+        globalImport: true
+      title: InvoiceSlashPaymentMethodConfig
+    slashfi.models.entity.IAddressModel.yaml:
+      title: IAddressModel
+      type: object
+      properties:
+        addressLine:
+          type: string
+        addressLine2:
+          type: string
+        addressCity:
+          type: string
+        addressState:
+          type: string
+        addressZip:
+          type: string
+        addressCountry:
+          type: string
+          minLength: 2
+          maxLength: 2
+          description: ISO 3166-1 Alpha-2 Country Code (e.g., US, FR, UK, DE, ...).
+      required:
+      - addressLine
+      - addressCity
+      - addressState
+      - addressZip
+      x-entrypoint:
+        virtualPath: entity/IAddressModel
+        sourcePath: entity/IAddressModel.yaml
+        title: IAddressModel
+        origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+        globalImport: true
+    slashfi.models.entity.Invoice.InvoiceAccount.yaml:
+      oneOf:
+      - $ref: '#/components/schemas/slashfi.models.entity.Subaccount.Model.yaml'
+        x-entrypoint:
+          virtualPath: entity/Subaccount/Model
+          sourcePath: entity/Subaccount/Model.yaml
+          title: Model
+          origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+          globalImport: true
+      - $ref: '#/components/schemas/slashfi.models.entity.SlashAccount.Group.Model.yaml'
+        x-entrypoint:
+          virtualPath: entity/SlashAccount/Group/Model
+          sourcePath: entity/SlashAccount/Group/Model.yaml
+          title: Model
+          origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+          globalImport: true
+      - $ref: '#/components/schemas/slashfi.models.entity.SlashWalletAccount.yaml'
+        x-entrypoint:
+          virtualPath: entity/SlashWalletAccount
+          sourcePath: entity/SlashWalletAccount.yaml
+          title: SlashWalletAccount
+          origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+          globalImport: true
+      x-entrypoint:
+        virtualPath: entity/Invoice/InvoiceAccount
+        sourcePath: entity/Invoice/InvoiceAccount.yaml
+        title: InvoiceAccount
+        origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+        globalImport: true
+      title: InvoiceAccount
+    slashfi.models.entity.Invoice.InvoiceSeriesStatus.yaml:
+      type: string
+      enum:
+      - active
+      - ended
+      - cancelled
+      x-entrypoint:
+        virtualPath: entity/Invoice/InvoiceSeriesStatus
+        sourcePath: entity/Invoice/InvoiceSeriesStatus.yaml
+        title: InvoiceSeriesStatus
+        origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+        globalImport: true
+      title: InvoiceSeriesStatus
+    slashfi.models.entity.Invoice.InvoiceReconciliationPaymentMethod.yaml:
+      description: Payment methods for invoice reconciliation (includes Slash-trackable methods plus external-only options like 'other')
+      oneOf:
+      - $ref: '#/components/schemas/slashfi.models.entity.Invoice.InvoiceSlashPaymentMethodConfig.yaml.properties.method'
+        x-entrypoint:
+          virtualPath: entity/Invoice/InvoiceSlashPaymentMethodConfig
+          sourcePath: entity/Invoice/InvoiceSlashPaymentMethodConfig.yaml
+          title: InvoiceSlashPaymentMethodConfig
+          origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+          globalImport: true
+      - type: string
+        enum:
+        - other
+      x-entrypoint:
+        virtualPath: entity/Invoice/InvoiceReconciliationPaymentMethod
+        sourcePath: entity/Invoice/InvoiceReconciliationPaymentMethod.yaml
+        title: InvoiceReconciliationPaymentMethod
+        origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+        globalImport: true
+      title: InvoiceReconciliationPaymentMethod
+    slashfi.models.entity.CardGroup.Restriction.yaml:
+      type: string
+      enum:
+      - allowlist
+      - blacklist
+      x-entrypoint:
+        virtualPath: entity/CardGroup/Restriction
+        sourcePath: entity/CardGroup/Restriction.yaml
+        title: Restriction
+        origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+        globalImport: true
+      title: Restriction
+    slashfi.models.entity.Invoice.Invoice.yaml:
+      type: object
+      description: Top-level invoice model
+      properties:
+        id:
+          type: string
+        status:
+          $ref: '#/components/schemas/slashfi.models.entity.Invoice.Status.yaml'
+          x-entrypoint:
+            virtualPath: entity/Invoice/Status
+            sourcePath: entity/Invoice/Status.yaml
+            title: Status
+            origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+            globalImport: true
+        collectedAmountCents:
+          type: number
+        invoiceDetailsId:
+          type: string
+        accountId:
+          type: string
+        legalEntityContactId:
+          type: string
+        legalEntityCustomerId:
+          type: string
+        invoicePaymentMethods:
+          type: array
+          items:
+            $ref: '#/components/schemas/slashfi.models.entity.Invoice.InvoiceSlashPaymentMethodConfig.yaml'
+            x-entrypoint:
+              virtualPath: entity/Invoice/InvoiceSlashPaymentMethodConfig
+              sourcePath: entity/Invoice/InvoiceSlashPaymentMethodConfig.yaml
+              title: InvoiceSlashPaymentMethodConfig
+              origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+              globalImport: true
+        invoiceTransactions:
+          type: array
+          items:
+            $ref: '#/components/schemas/slashfi.models.entity.Invoice.InvoiceTransaction.yaml'
+            x-entrypoint:
+              virtualPath: entity/Invoice/InvoiceTransaction
+              sourcePath: entity/Invoice/InvoiceTransaction.yaml
+              title: InvoiceTransaction
+              origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+              globalImport: true
+        closedAt:
+          type: string
+          format: date-time
+          nullable: true
+        invoiceSeriesId:
+          type: string
+          nullable: true
+        scheduledSendDate:
+          type: string
+          format: date-time
+          nullable: true
+      required:
+      - id
+      - status
+      - collectedAmountCents
+      - invoiceDetailsId
+      - accountId
+      - invoiceTransactions
+      x-entrypoint:
+        virtualPath: entity/Invoice/Invoice
+        sourcePath: entity/Invoice/Invoice.yaml
+        title: Invoice
+        origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+        globalImport: true
+      title: Invoice
+    slashfi.models.entity.Invoice.InvoiceDetailsInput.yaml:
+      type: object
+      additionalProperties: false
+      properties:
+        issuedAt:
+          type: string
+          format: date
+        dueAt:
+          type: string
+          format: date
+        invoiceTz:
+          type: string
+          description: IANA timezone identifier used for interpreting invoice dates
+          example: America/New_York
+        lineItemsAndTotals:
+          $ref: '#/components/schemas/slashfi.models.entity.Invoice.LineItemsAndTotalsInput.yaml'
+          x-entrypoint:
+            virtualPath: entity/Invoice/LineItemsAndTotalsInput
+            sourcePath: entity/Invoice/LineItemsAndTotalsInput.yaml
+            title: LineItemsAndTotalsInput
+            origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+            globalImport: true
+        invoiceNumber:
+          $ref: '#/components/schemas/slashfi.models.entity.Invoice.InvoiceNumber.yaml'
+          x-entrypoint:
+            virtualPath: entity/Invoice/InvoiceNumber
+            sourcePath: entity/Invoice/InvoiceNumber.yaml
+            title: InvoiceNumber
+            origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+            globalImport: true
+        memo:
+          type: string
+          minLength: 1
+          maxLength: 500
+        version:
+          type: integer
+          minimum: 1
+          description: Current version of the invoice details for optimistic locking. Required on updates, ignored on create.
+        ccEmails:
+          type: array
+          items:
+            type: string
+          maxItems: 10
+      required:
+      - issuedAt
+      - dueAt
+      - invoiceTz
+      - lineItemsAndTotals
+      - invoiceNumber
+      x-entrypoint:
+        virtualPath: entity/Invoice/InvoiceDetailsInput
+        sourcePath: entity/Invoice/InvoiceDetailsInput.yaml
+        title: InvoiceDetailsInput
+        origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+        globalImport: true
+      title: InvoiceDetailsInput
+    slashfi.models.entity.Invoice.PaymentMethod.PaymentMethodInboundRtp.yaml:
+      type: object
+      properties:
+        method:
+          type: string
+          enum:
+          - inbound_rtp
+        config:
+          type: object
+          additionalProperties: false
+      required:
+      - method
+      - config
+      x-entrypoint:
+        virtualPath: entity/Invoice/PaymentMethod/PaymentMethodInboundRtp
+        sourcePath: entity/Invoice/PaymentMethod/PaymentMethodInboundRtp.yaml
+        title: PaymentMethodInboundRtp
+        origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+        globalImport: true
+      title: PaymentMethodInboundRtp
+    slashfi.models.entity.Invoice.InvoiceSeriesRecurrenceRule.yaml:
+      description: Discriminated union defining when a recurring invoice series issues invoices
+      oneOf:
+      - type: object
+        additionalProperties: false
+        properties:
+          type:
+            type: string
+            enum:
+            - weekly
+          dayOfWeek:
+            type: integer
+            minimum: 0
+            maximum: 6
+            description: Day of week (0 = Sunday, 6 = Saturday)
+        required:
+        - type
+        - dayOfWeek
+      - type: object
+        additionalProperties: false
+        properties:
+          type:
+            type: string
+            enum:
+            - monthly_day_of_month
+          dayOfMonth:
+            type: integer
+            minimum: 1
+            maximum: 31
+            description: Day of month. Clamped to last day of month at generation time (e.g. 31 becomes 28 in February).
+        required:
+        - type
+        - dayOfMonth
+      - type: object
+        additionalProperties: false
+        properties:
+          type:
+            type: string
+            enum:
+            - monthly_nth_weekday
+          nth:
+            oneOf:
+            - type: integer
+              minimum: 1
+              maximum: 4
+            - type: string
+              enum:
+              - last
+            description: Which occurrence of the weekday in the month (1-4, or "last")
+          dayOfWeek:
+            type: integer
+            minimum: 0
+            maximum: 6
+            description: Day of week (0 = Sunday, 6 = Saturday)
+        required:
+        - type
+        - nth
+        - dayOfWeek
+      x-entrypoint:
+        virtualPath: entity/Invoice/InvoiceSeriesRecurrenceRule
+        sourcePath: entity/Invoice/InvoiceSeriesRecurrenceRule.yaml
+        title: InvoiceSeriesRecurrenceRule
+        origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+        globalImport: true
+      title: InvoiceSeriesRecurrenceRule
+  securitySchemes:
+    api_key:
+      type: apiKey
+      description: "API key authentication for public API requests.\n\nKeys come in two flavors:\n\n- *Legal-entity-scoped keys* are pinned to a single legal entity.\n  Minted via the dashboard under a specific entity; every request\n  acts on that entity.\n- *User-scoped keys* are pinned to a user and span every legal\n  entity that user has access to. Every request made with a\n  user-scoped key (except `GET /legal-entity`, which lists the\n  legal entities the user can access) must include an\n  `x-legal-entity` header naming the legal entity the request is\n  operating on. Requests without the header are rejected with\n  `400`. The authenticated user must have an active permission\n  role on the supplied legal entity, otherwise the request is\n  rejected with `403`.\n"
+      name: X-API-Key
+      in: header
+    partner_api_key:
+      type: apiKey
+      description: 'Partner-program API key authentication.
+
+
+        Keys are minted in the partner dashboard (Developers → API Keys),
+
+        are scoped to a single partner program, and are prefixed with
+
+        `sk_partner_`. Partner keys are only accepted by routes that
+
+        declare this scheme; they are rejected by `api_key` routes and
+
+        vice versa.
+
+        '
+      name: X-API-Key
+      in: header
+    bearer:
+      type: http
+      scheme: bearer
+    developer_application:
+      type: http
+      scheme: basic
