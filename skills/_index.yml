@@ -1,0 +1,28 @@
+generated: '2026-07-21'
+method: generated
+source: openapi/slash-openapi-original.json
+note: >-
+  Steps are grounded in real METHOD + path tokens from the Slash Public API. The
+  upstream OpenAPI declares no operationIds, so operations[] use method+path
+  (each verified present in the spec) rather than invented ids.
+skills:
+  - file: slash-move-money.md
+    name: Move money between Slash accounts
+    api: openapi/slash-openapi-original.json
+    operations:
+      - POST /transfers/book-transfer
+      - POST /transfer/virtual-account
+  - file: slash-issue-and-control-card.md
+    name: Issue and control a corporate card
+    api: openapi/slash-openapi-original.json
+    operations:
+      - POST /card
+      - PUT /card/{cardId}/spending-constraint
+      - GET /card/{cardId}/utilization
+  - file: slash-invoice-and-reconcile.md
+    name: Invoice a customer and reconcile payment
+    api: openapi/slash-openapi-original.json
+    operations:
+      - POST /customer
+      - POST /invoice
+      - POST /invoice/{invoiceId}/reconcile

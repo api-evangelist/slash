@@ -1,0 +1,21 @@
+generated: '2026-07-21'
+method: searched
+source: https://docs.slash.com/docs/sdks
+packages:
+  - language: python
+    registry: pypi
+    name: slash-sdk
+    url: https://pypi.org/project/slash-sdk/
+    install: pip install slash-sdk
+    version: 0.1.0a3
+    official: true
+    summary: The official Python library for the Slash API
+  - language: typescript
+    registry: npm
+    name: slash-sdk
+    url: https://www.npmjs.com/package/slash-sdk
+    install: npm install slash-sdk
+    version: 0.1.1
+    official: true
+    source_code: https://github.com/slashfi/slash-sdk-typescript
+    summary: The official TypeScript/Node.js library for the Slash API

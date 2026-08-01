@@ -1,0 +1,1 @@
+{"authorization_endpoint":"https://app.slash.com/oauth2/authorize","token_endpoint":"https://api.joinslash.com/oauth2/token","userinfo_endpoint":"https://api.joinslash.com/oauth2/userinfo","response_types_supported":["code"],"scopes_supported":["openid","offline_access","profile","email","phone","address"],"token_endpoint_auth_methods_supported":["client_secret_basic"]}

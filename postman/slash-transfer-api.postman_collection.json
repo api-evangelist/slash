@@ -1,0 +1,439 @@
+{
+  "info": {
+    "_postman_id": "e4a1f293-1ca9-40f9-85de-f598a09e7216",
+    "name": "Slash Public Account Transfer API",
+    "description": "API description",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:57:05.000Z",
+    "updatedAt": "2026-07-28T02:57:06.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-e4a1f293-1ca9-40f9-85de-f598a09e7216"
+  },
+  "item": [
+    {
+      "name": "transfer",
+      "item": [
+        {
+          "name": "virtual-account",
+          "item": [
+            {
+              "name": "Transfer money between Virtual Accounts or fund a Virtual Account from a Primary Account",
+              "id": "f07b378a-cdd4-496a-b507-fd2ec1cc6ce8",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "apikey",
+                  "apikey": [
+                    {
+                      "key": "key",
+                      "value": "X-API-Key",
+                      "type": "string"
+                    },
+                    {
+                      "key": "value",
+                      "value": "{{apiKey}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "in",
+                      "value": "header",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "(Required) Unique key to ensure idempotency of the transfer.",
+                    "key": "X-Idempotency-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"source\": \"<string>\",\n  \"destination\": \"<string>\",\n  \"amountCents\": \"<number>\",\n  \"memo\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/transfer/virtual-account",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "transfer",
+                    "virtual-account"
+                  ]
+                },
+                "description": "Transfer money between Virtual Accounts or fund a Virtual Account from a Primary Account"
+              },
+              "response": [
+                {
+                  "id": "c89cf4ca-2ae6-4fdc-8e20-365106512afc",
+                  "name": "OK",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "(Required) Unique key to ensure idempotency of the transfer.",
+                        "key": "X-Idempotency-Key",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-API-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"source\": \"<string>\",\n  \"destination\": \"<string>\",\n  \"amountCents\": \"<number>\",\n  \"memo\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/transfer/virtual-account",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "transfer",
+                        "virtual-account"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"transferId\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:57:06.000Z",
+                  "updatedAt": "2026-07-28T02:57:06.000Z",
+                  "uid": "35240-c89cf4ca-2ae6-4fdc-8e20-365106512afc"
+                },
+                {
+                  "id": "e1b60da7-7dba-42ca-bd92-3771e4f5cbbf",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "(Required) Unique key to ensure idempotency of the transfer.",
+                        "key": "X-Idempotency-Key",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-API-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"source\": \"<string>\",\n  \"destination\": \"<string>\",\n  \"amountCents\": \"<number>\",\n  \"memo\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/transfer/virtual-account",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "transfer",
+                        "virtual-account"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"eu_3\": false,\n    \"sit2ae\": true,\n    \"cillum_e5\": -43769542\n  }\n}",
+                  "createdAt": "2026-07-28T02:57:06.000Z",
+                  "updatedAt": "2026-07-28T02:57:06.000Z",
+                  "uid": "35240-e1b60da7-7dba-42ca-bd92-3771e4f5cbbf"
+                },
+                {
+                  "id": "f91b7408-9ec0-4b18-8b15-a5e90372280c",
+                  "name": "Forbidden",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "(Required) Unique key to ensure idempotency of the transfer.",
+                        "key": "X-Idempotency-Key",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-API-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"source\": \"<string>\",\n  \"destination\": \"<string>\",\n  \"amountCents\": \"<number>\",\n  \"memo\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/transfer/virtual-account",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "transfer",
+                        "virtual-account"
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"eu_3\": false,\n    \"sit2ae\": true,\n    \"cillum_e5\": -43769542\n  }\n}",
+                  "createdAt": "2026-07-28T02:57:06.000Z",
+                  "updatedAt": "2026-07-28T02:57:06.000Z",
+                  "uid": "35240-f91b7408-9ec0-4b18-8b15-a5e90372280c"
+                },
+                {
+                  "id": "a544cfd9-b283-4feb-88a1-1838ac4301df",
+                  "name": "TooManyRequests",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "(Required) Unique key to ensure idempotency of the transfer.",
+                        "key": "X-Idempotency-Key",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-API-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"source\": \"<string>\",\n  \"destination\": \"<string>\",\n  \"amountCents\": \"<number>\",\n  \"memo\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/transfer/virtual-account",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "transfer",
+                        "virtual-account"
+                      ]
+                    }
+                  },
+                  "status": "Too Many Requests",
+                  "code": 429,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"eu_3\": false,\n    \"sit2ae\": true,\n    \"cillum_e5\": -43769542\n  }\n}",
+                  "createdAt": "2026-07-28T02:57:06.000Z",
+                  "updatedAt": "2026-07-28T02:57:06.000Z",
+                  "uid": "35240-a544cfd9-b283-4feb-88a1-1838ac4301df"
+                },
+                {
+                  "id": "db1a7c7c-180e-42d6-9341-d7466f901941",
+                  "name": "Internal Error",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "(Required) Unique key to ensure idempotency of the transfer.",
+                        "key": "X-Idempotency-Key",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-API-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"source\": \"<string>\",\n  \"destination\": \"<string>\",\n  \"amountCents\": \"<number>\",\n  \"memo\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/transfer/virtual-account",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "transfer",
+                        "virtual-account"
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"eu_3\": false,\n    \"sit2ae\": true,\n    \"cillum_e5\": -43769542\n  }\n}",
+                  "createdAt": "2026-07-28T02:57:06.000Z",
+                  "updatedAt": "2026-07-28T02:57:06.000Z",
+                  "uid": "35240-db1a7c7c-180e-42d6-9341-d7466f901941"
+                }
+              ],
+              "createdAt": "2026-07-28T02:57:06.000Z",
+              "updatedAt": "2026-07-28T02:57:06.000Z",
+              "uid": "35240-f07b378a-cdd4-496a-b507-fd2ec1cc6ce8"
+            }
+          ],
+          "id": "73c27590-cb74-4e1d-85d1-907602c1420e",
+          "createdAt": "2026-07-28T02:57:06.000Z",
+          "updatedAt": "2026-07-28T02:57:06.000Z",
+          "uid": "35240-73c27590-cb74-4e1d-85d1-907602c1420e"
+        }
+      ],
+      "id": "c1367849-ee9f-4638-8342-b9e28886ee98",
+      "createdAt": "2026-07-28T02:57:06.000Z",
+      "updatedAt": "2026-07-28T02:57:06.000Z",
+      "uid": "35240-c1367849-ee9f-4638-8342-b9e28886ee98"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-API-Key",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.slash.com"
+    }
+  ]
+}

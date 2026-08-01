@@ -1,0 +1,29 @@
+generated: '2026-07-21'
+method: searched
+source: live probes of /.well-known/ on Slash hosts
+hosts:
+  - host: https://api.slash.com
+    documents:
+      - path: /.well-known/openid-configuration
+        status: 200
+        file: slash-openid-configuration.json
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /.well-known/oauth-authorization-server
+        status: 404
+      - path: /.well-known/api-catalog
+        status: 404
+      - path: /.well-known/ai-plugin.json
+        status: 404
+  - host: https://www.slash.com
+    documents:
+      - path: /.well-known/security.txt
+        status: 200
+        file: slash-security.txt
+      - path: /.well-known/openid-configuration
+        status: 404
+notes: >-
+  The OIDC discovery document is served from the API host (api.slash.com) and
+  advertises the third-party OAuth surface (authorization at app.slash.com,
+  token/userinfo at api.joinslash.com). The RFC 9116 security.txt lives on the
+  marketing host (www.slash.com).

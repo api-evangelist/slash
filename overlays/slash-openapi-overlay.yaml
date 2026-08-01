@@ -1,0 +1,38 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Slash Public API
+  version: 1.0.0
+extends: openapi/slash-openapi-original.json
+actions:
+  - target: $.info
+    update:
+      x-apievangelist-enrichment:
+        generated: '2026-07-21'
+        method: generated
+        notes: >-
+          Overlay of API Evangelist enrichment findings. The upstream spec (78
+          paths, 152 schemas, OpenAPI 3.1.0) declares no operationIds and no tags;
+          the observations below are captured here without mutating the original.
+  - target: $.info
+    update:
+      x-slash-conventions:
+        authentication: X-API-Key (legal-entity-scoped or user-scoped + x-legal-entity header)
+        idempotency_header: X-Idempotency-Key
+        error_envelope: custom-json (success/message/identifier/rawStatus/displayType)
+        rate_limit_status: 429
+        base_url: https://api.slash.com
+        status: Beta
+  - target: $.info
+    update:
+      x-slash-agent-surface:
+        mcp_server: https://mcp.slash.com/mcp
+        agent_requests: read-only keys can defer writes for human-in-the-loop approval
+        sdks: [pypi:slash-sdk, npm:slash-sdk]
+  - target: $
+    update:
+      x-apievangelist-spec-gaps:
+        missing_operation_ids: true
+        missing_tags: true
+        remediation: >-
+          Adding operationIds and tags would materially improve contract-quality
+          scoring and make the spec directly usable for Arazzo/skill grounding.

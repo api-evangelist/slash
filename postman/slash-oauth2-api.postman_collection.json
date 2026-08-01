@@ -1,0 +1,1041 @@
+{
+  "info": {
+    "_postman_id": "18607e09-75a7-4d15-b404-711aa122fe63",
+    "name": "Slash Public Account Oauth2 API",
+    "description": "API description",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:57:00.000Z",
+    "updatedAt": "2026-07-28T02:57:00.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-18607e09-75a7-4d15-b404-711aa122fe63"
+  },
+  "item": [
+    {
+      "name": "oauth2",
+      "item": [
+        {
+          "name": "token",
+          "item": [
+            {
+              "name": "Get or refresh an access token",
+              "id": "5c4dc200-97f5-43bf-a33b-8b39ec73a037",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "basic",
+                  "basic": [
+                    {
+                      "key": "username",
+                      "value": "{{basicAuthUsername}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "password",
+                      "value": "{{basicAuthPassword}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "key": "grant_type",
+                      "value": "authorization_code"
+                    },
+                    {
+                      "key": "code",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "redirect_uri",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "code_verifier",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "prompt",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "scope",
+                      "value": "<string>"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/oauth2/token",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "oauth2",
+                    "token"
+                  ]
+                },
+                "description": "Get or refresh an access token"
+              },
+              "response": [
+                {
+                  "id": "fe3ce8eb-c38b-41f8-a357-37d8125b8405",
+                  "name": "OK",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/x-www-form-urlencoded"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "urlencoded",
+                      "urlencoded": [
+                        {
+                          "key": "grant_type",
+                          "value": "authorization_code"
+                        },
+                        {
+                          "key": "code",
+                          "value": "<string>"
+                        },
+                        {
+                          "key": "redirect_uri",
+                          "value": "<string>"
+                        },
+                        {
+                          "key": "code_verifier",
+                          "value": "<string>"
+                        },
+                        {
+                          "key": "prompt",
+                          "value": "<string>"
+                        },
+                        {
+                          "key": "scope",
+                          "value": "<string>"
+                        }
+                      ]
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/oauth2/token",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "oauth2",
+                        "token"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"access_token\": \"<string>\",\n  \"expires_in\": \"<integer>\",\n  \"id_token\": \"<string>\",\n  \"refresh_token\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:57:00.000Z",
+                  "updatedAt": "2026-07-28T02:57:00.000Z",
+                  "uid": "35240-fe3ce8eb-c38b-41f8-a357-37d8125b8405"
+                },
+                {
+                  "id": "27240b48-c8d8-4fe4-bd5f-bc7eda8b55fc",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/x-www-form-urlencoded"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "urlencoded",
+                      "urlencoded": [
+                        {
+                          "key": "grant_type",
+                          "value": "authorization_code"
+                        },
+                        {
+                          "key": "code",
+                          "value": "<string>"
+                        },
+                        {
+                          "key": "redirect_uri",
+                          "value": "<string>"
+                        },
+                        {
+                          "key": "code_verifier",
+                          "value": "<string>"
+                        },
+                        {
+                          "key": "prompt",
+                          "value": "<string>"
+                        },
+                        {
+                          "key": "scope",
+                          "value": "<string>"
+                        }
+                      ]
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/oauth2/token",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "oauth2",
+                        "token"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"dolore_2e2\": 85653006,\n    \"magna_2\": -95069617,\n    \"elit_34\": -47410886\n  }\n}",
+                  "createdAt": "2026-07-28T02:57:00.000Z",
+                  "updatedAt": "2026-07-28T02:57:00.000Z",
+                  "uid": "35240-27240b48-c8d8-4fe4-bd5f-bc7eda8b55fc"
+                },
+                {
+                  "id": "53f0f0fa-08e9-4af3-8694-d1e628ca722b",
+                  "name": "Forbidden",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/x-www-form-urlencoded"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "urlencoded",
+                      "urlencoded": [
+                        {
+                          "key": "grant_type",
+                          "value": "authorization_code"
+                        },
+                        {
+                          "key": "code",
+                          "value": "<string>"
+                        },
+                        {
+                          "key": "redirect_uri",
+                          "value": "<string>"
+                        },
+                        {
+                          "key": "code_verifier",
+                          "value": "<string>"
+                        },
+                        {
+                          "key": "prompt",
+                          "value": "<string>"
+                        },
+                        {
+                          "key": "scope",
+                          "value": "<string>"
+                        }
+                      ]
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/oauth2/token",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "oauth2",
+                        "token"
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"dolore_2e2\": 85653006,\n    \"magna_2\": -95069617,\n    \"elit_34\": -47410886\n  }\n}",
+                  "createdAt": "2026-07-28T02:57:00.000Z",
+                  "updatedAt": "2026-07-28T02:57:00.000Z",
+                  "uid": "35240-53f0f0fa-08e9-4af3-8694-d1e628ca722b"
+                },
+                {
+                  "id": "06e3b950-9cfb-4d4e-83dd-7e1a34b3df8d",
+                  "name": "TooManyRequests",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/x-www-form-urlencoded"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "urlencoded",
+                      "urlencoded": [
+                        {
+                          "key": "grant_type",
+                          "value": "authorization_code"
+                        },
+                        {
+                          "key": "code",
+                          "value": "<string>"
+                        },
+                        {
+                          "key": "redirect_uri",
+                          "value": "<string>"
+                        },
+                        {
+                          "key": "code_verifier",
+                          "value": "<string>"
+                        },
+                        {
+                          "key": "prompt",
+                          "value": "<string>"
+                        },
+                        {
+                          "key": "scope",
+                          "value": "<string>"
+                        }
+                      ]
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/oauth2/token",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "oauth2",
+                        "token"
+                      ]
+                    }
+                  },
+                  "status": "Too Many Requests",
+                  "code": 429,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"dolore_2e2\": 85653006,\n    \"magna_2\": -95069617,\n    \"elit_34\": -47410886\n  }\n}",
+                  "createdAt": "2026-07-28T02:57:00.000Z",
+                  "updatedAt": "2026-07-28T02:57:00.000Z",
+                  "uid": "35240-06e3b950-9cfb-4d4e-83dd-7e1a34b3df8d"
+                },
+                {
+                  "id": "ce13b01b-99b7-43bf-b604-88bce871b507",
+                  "name": "Internal Error",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/x-www-form-urlencoded"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "urlencoded",
+                      "urlencoded": [
+                        {
+                          "key": "grant_type",
+                          "value": "authorization_code"
+                        },
+                        {
+                          "key": "code",
+                          "value": "<string>"
+                        },
+                        {
+                          "key": "redirect_uri",
+                          "value": "<string>"
+                        },
+                        {
+                          "key": "code_verifier",
+                          "value": "<string>"
+                        },
+                        {
+                          "key": "prompt",
+                          "value": "<string>"
+                        },
+                        {
+                          "key": "scope",
+                          "value": "<string>"
+                        }
+                      ]
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/oauth2/token",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "oauth2",
+                        "token"
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"dolore_2e2\": 85653006,\n    \"magna_2\": -95069617,\n    \"elit_34\": -47410886\n  }\n}",
+                  "createdAt": "2026-07-28T02:57:00.000Z",
+                  "updatedAt": "2026-07-28T02:57:00.000Z",
+                  "uid": "35240-ce13b01b-99b7-43bf-b604-88bce871b507"
+                }
+              ],
+              "createdAt": "2026-07-28T02:57:00.000Z",
+              "updatedAt": "2026-07-28T02:57:00.000Z",
+              "uid": "35240-5c4dc200-97f5-43bf-a33b-8b39ec73a037"
+            }
+          ],
+          "id": "f0d0c4d9-ec46-4ae8-86c9-cea991d23f70",
+          "createdAt": "2026-07-28T02:57:00.000Z",
+          "updatedAt": "2026-07-28T02:57:00.000Z",
+          "uid": "35240-f0d0c4d9-ec46-4ae8-86c9-cea991d23f70"
+        },
+        {
+          "name": "userinfo",
+          "item": [
+            {
+              "name": "Get userinfo",
+              "id": "d5f7c7bf-6471-46e0-b37c-8a04c6884e32",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{bearerToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/oauth2/userinfo",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "oauth2",
+                    "userinfo"
+                  ]
+                },
+                "description": "Get userinfo"
+              },
+              "response": [
+                {
+                  "id": "ec5777e0-09c8-48d6-97b2-ffde5056cd9c",
+                  "name": "OK",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/oauth2/userinfo",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "oauth2",
+                        "userinfo"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"sub\": \"<string>\",\n  \"name\": \"<string>\",\n  \"email\": \"<string>\",\n  \"phone_number\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:57:00.000Z",
+                  "updatedAt": "2026-07-28T02:57:00.000Z",
+                  "uid": "35240-ec5777e0-09c8-48d6-97b2-ffde5056cd9c"
+                },
+                {
+                  "id": "83b214a0-2707-49ed-93e8-691acd5765d7",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/oauth2/userinfo",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "oauth2",
+                        "userinfo"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"dolore_2e2\": 85653006,\n    \"magna_2\": -95069617,\n    \"elit_34\": -47410886\n  }\n}",
+                  "createdAt": "2026-07-28T02:57:00.000Z",
+                  "updatedAt": "2026-07-28T02:57:00.000Z",
+                  "uid": "35240-83b214a0-2707-49ed-93e8-691acd5765d7"
+                },
+                {
+                  "id": "7bbd8201-dc1b-463a-9e03-c9eacfa636ca",
+                  "name": "Forbidden",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/oauth2/userinfo",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "oauth2",
+                        "userinfo"
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"dolore_2e2\": 85653006,\n    \"magna_2\": -95069617,\n    \"elit_34\": -47410886\n  }\n}",
+                  "createdAt": "2026-07-28T02:57:00.000Z",
+                  "updatedAt": "2026-07-28T02:57:00.000Z",
+                  "uid": "35240-7bbd8201-dc1b-463a-9e03-c9eacfa636ca"
+                },
+                {
+                  "id": "394f46c2-4a40-41fd-a7b5-9f80b4532c87",
+                  "name": "TooManyRequests",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/oauth2/userinfo",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "oauth2",
+                        "userinfo"
+                      ]
+                    }
+                  },
+                  "status": "Too Many Requests",
+                  "code": 429,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"dolore_2e2\": 85653006,\n    \"magna_2\": -95069617,\n    \"elit_34\": -47410886\n  }\n}",
+                  "createdAt": "2026-07-28T02:57:00.000Z",
+                  "updatedAt": "2026-07-28T02:57:00.000Z",
+                  "uid": "35240-394f46c2-4a40-41fd-a7b5-9f80b4532c87"
+                },
+                {
+                  "id": "0c66534d-9cc0-4f8a-abe6-57e890ea8a50",
+                  "name": "Internal Error",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/oauth2/userinfo",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "oauth2",
+                        "userinfo"
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"dolore_2e2\": 85653006,\n    \"magna_2\": -95069617,\n    \"elit_34\": -47410886\n  }\n}",
+                  "createdAt": "2026-07-28T02:57:00.000Z",
+                  "updatedAt": "2026-07-28T02:57:00.000Z",
+                  "uid": "35240-0c66534d-9cc0-4f8a-abe6-57e890ea8a50"
+                }
+              ],
+              "createdAt": "2026-07-28T02:57:00.000Z",
+              "updatedAt": "2026-07-28T02:57:00.000Z",
+              "uid": "35240-d5f7c7bf-6471-46e0-b37c-8a04c6884e32"
+            },
+            {
+              "name": "Get userinfo",
+              "id": "a2d161df-420b-42bd-896e-2db4e6d8e4e0",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{bearerToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/oauth2/userinfo",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "oauth2",
+                    "userinfo"
+                  ]
+                },
+                "description": "Get userinfo"
+              },
+              "response": [
+                {
+                  "id": "c94f9cef-27b5-4c32-b650-5ebd8811fb05",
+                  "name": "OK",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/oauth2/userinfo",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "oauth2",
+                        "userinfo"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"sub\": \"<string>\",\n  \"name\": \"<string>\",\n  \"email\": \"<string>\",\n  \"phone_number\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:57:00.000Z",
+                  "updatedAt": "2026-07-28T02:57:00.000Z",
+                  "uid": "35240-c94f9cef-27b5-4c32-b650-5ebd8811fb05"
+                },
+                {
+                  "id": "c1237c1d-f473-45f0-b65c-2cdc492aca4a",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/oauth2/userinfo",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "oauth2",
+                        "userinfo"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"dolore_2e2\": 85653006,\n    \"magna_2\": -95069617,\n    \"elit_34\": -47410886\n  }\n}",
+                  "createdAt": "2026-07-28T02:57:00.000Z",
+                  "updatedAt": "2026-07-28T02:57:00.000Z",
+                  "uid": "35240-c1237c1d-f473-45f0-b65c-2cdc492aca4a"
+                },
+                {
+                  "id": "1811c979-6f8c-450c-9ba2-777808f8670c",
+                  "name": "Forbidden",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/oauth2/userinfo",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "oauth2",
+                        "userinfo"
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"dolore_2e2\": 85653006,\n    \"magna_2\": -95069617,\n    \"elit_34\": -47410886\n  }\n}",
+                  "createdAt": "2026-07-28T02:57:00.000Z",
+                  "updatedAt": "2026-07-28T02:57:00.000Z",
+                  "uid": "35240-1811c979-6f8c-450c-9ba2-777808f8670c"
+                },
+                {
+                  "id": "e9a7916d-6592-48d2-978a-1312c35d7dbe",
+                  "name": "TooManyRequests",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/oauth2/userinfo",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "oauth2",
+                        "userinfo"
+                      ]
+                    }
+                  },
+                  "status": "Too Many Requests",
+                  "code": 429,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"dolore_2e2\": 85653006,\n    \"magna_2\": -95069617,\n    \"elit_34\": -47410886\n  }\n}",
+                  "createdAt": "2026-07-28T02:57:00.000Z",
+                  "updatedAt": "2026-07-28T02:57:00.000Z",
+                  "uid": "35240-e9a7916d-6592-48d2-978a-1312c35d7dbe"
+                },
+                {
+                  "id": "63e4f2ab-8d99-4cdf-a974-03adb74106d8",
+                  "name": "Internal Error",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/oauth2/userinfo",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "oauth2",
+                        "userinfo"
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"dolore_2e2\": 85653006,\n    \"magna_2\": -95069617,\n    \"elit_34\": -47410886\n  }\n}",
+                  "createdAt": "2026-07-28T02:57:00.000Z",
+                  "updatedAt": "2026-07-28T02:57:00.000Z",
+                  "uid": "35240-63e4f2ab-8d99-4cdf-a974-03adb74106d8"
+                }
+              ],
+              "createdAt": "2026-07-28T02:57:00.000Z",
+              "updatedAt": "2026-07-28T02:57:00.000Z",
+              "uid": "35240-a2d161df-420b-42bd-896e-2db4e6d8e4e0"
+            }
+          ],
+          "id": "601aa193-d907-4a16-bb11-5533d017e1ab",
+          "createdAt": "2026-07-28T02:57:00.000Z",
+          "updatedAt": "2026-07-28T02:57:00.000Z",
+          "uid": "35240-601aa193-d907-4a16-bb11-5533d017e1ab"
+        }
+      ],
+      "id": "3bad38bf-cd62-4e13-b35e-523813d226a4",
+      "createdAt": "2026-07-28T02:57:00.000Z",
+      "updatedAt": "2026-07-28T02:57:00.000Z",
+      "uid": "35240-3bad38bf-cd62-4e13-b35e-523813d226a4"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-API-Key",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.slash.com"
+    }
+  ]
+}

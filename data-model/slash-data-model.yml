@@ -1,0 +1,97 @@
+generated: '2026-07-21'
+method: derived
+source: openapi/slash-openapi-original.json
+note: >-
+  Entity graph derived from OpenAPI schema id-reference fields and the API path
+  hierarchy. Slash object ids use snake-ish prefixes (e.g. sa_group_..., sub_...
+  seen in the book-transfer example); a full id-prefix registry is not published.
+entities:
+  - name: LegalEntity
+    description: Top-level tenant; API keys and permissions are scoped to a legal entity.
+  - name: Account
+    description: A commercial/bank account under a legal entity.
+  - name: VirtualAccount
+    description: A sub-account under an Account for segregating funds.
+  - name: Balance
+    description: A balance snapshot for an Account.
+  - name: Card
+    description: Virtual or physical corporate card.
+  - name: CardGroup
+    description: A group of cards sharing spending constraints.
+  - name: Transaction
+    description: A card or bank transaction.
+  - name: Invoice
+    description: A billable invoice issued to a customer/contact.
+  - name: InvoiceSeries
+    description: A recurring-invoice configuration.
+  - name: ExpenseReport
+    description: A submitted expense report for reimbursement.
+  - name: Contact
+    description: A counterparty (vendor/customer) that can be billed.
+  - name: Customer
+    description: A billing recipient for invoices.
+  - name: Webhook
+    description: A registered delivery webhook endpoint.
+  - name: Merchant
+    description: A merchant reference for card transactions.
+relationships:
+  - from: Account
+    to: LegalEntity
+    type: belongs_to
+    via: legalEntityId
+  - from: VirtualAccount
+    to: Account
+    type: belongs_to
+    via: path (/account/{accountId})
+  - from: Balance
+    to: Account
+    type: belongs_to
+    via: accountId
+  - from: Card
+    to: Account
+    type: belongs_to
+    via: accountId
+  - from: Card
+    to: VirtualAccount
+    type: belongs_to
+    via: virtualAccountId
+  - from: Card
+    to: CardGroup
+    type: belongs_to
+    via: cardGroupId
+  - from: Card
+    to: CardProduct
+    type: belongs_to
+    via: cardProductId
+  - from: CardGroup
+    to: VirtualAccount
+    type: belongs_to
+    via: virtualAccountId
+  - from: Transaction
+    to: Account
+    type: belongs_to
+    via: accountId
+  - from: Transaction
+    to: VirtualAccount
+    type: belongs_to
+    via: virtualAccountId
+  - from: Transaction
+    to: Card
+    type: belongs_to
+    via: cardId
+  - from: Invoice
+    to: Customer
+    type: belongs_to
+    via: customer
+  - from: Invoice
+    to: Account
+    type: belongs_to
+    via: account
+  - from: InvoiceSeries
+    to: Contact
+    type: belongs_to
+    via: contact
+  - from: ExpenseReport
+    to: LegalEntity
+    type: belongs_to
+    via: legal entity scope

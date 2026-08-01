@@ -1,0 +1,352 @@
+{
+  "info": {
+    "_postman_id": "72667fcf-3325-4821-9a22-ae85c66d76b3",
+    "name": "Slash Public Account Merchant Category API",
+    "description": "API description",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:56:59.000Z",
+    "updatedAt": "2026-07-28T02:56:59.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-72667fcf-3325-4821-9a22-ae85c66d76b3"
+  },
+  "item": [
+    {
+      "name": "merchant-category",
+      "item": [
+        {
+          "name": "Retrieve the list of available merchant category ids",
+          "id": "0e6a91e4-28ec-4ba8-8d1e-53accbe83206",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-API-Key",
+                  "type": "string"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}",
+                  "type": "string"
+                },
+                {
+                  "key": "in",
+                  "value": "header",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/merchant-category?cursor=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "merchant-category"
+              ],
+              "query": [
+                {
+                  "description": "A cursor string to fetch the next page of results",
+                  "key": "cursor",
+                  "value": "<string>"
+                }
+              ]
+            },
+            "description": "Retrieve the list of available merchant category ids"
+          },
+          "response": [
+            {
+              "id": "99ba31ac-993d-4c8f-84d3-6413201bf515",
+              "name": "OK",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/merchant-category?cursor=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "merchant-category"
+                  ],
+                  "query": [
+                    {
+                      "description": "A cursor string to fetch the next page of results",
+                      "key": "cursor",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"items\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\"\n    }\n  ],\n  \"metadata\": {\n    \"nextCursor\": \"<string>\",\n    \"count\": \"<number>\"\n  }\n}",
+              "createdAt": "2026-07-28T02:57:00.000Z",
+              "updatedAt": "2026-07-28T02:57:00.000Z",
+              "uid": "35240-99ba31ac-993d-4c8f-84d3-6413201bf515"
+            },
+            {
+              "id": "38f8f07b-af15-45b6-819f-135ba7f0e0d1",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/merchant-category?cursor=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "merchant-category"
+                  ],
+                  "query": [
+                    {
+                      "description": "A cursor string to fetch the next page of results",
+                      "key": "cursor",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"fugiat63\": -18490486.21575035\n  }\n}",
+              "createdAt": "2026-07-28T02:57:00.000Z",
+              "updatedAt": "2026-07-28T02:57:00.000Z",
+              "uid": "35240-38f8f07b-af15-45b6-819f-135ba7f0e0d1"
+            },
+            {
+              "id": "b7ed9839-feb8-4123-95b8-8f7c1212e00d",
+              "name": "Forbidden",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/merchant-category?cursor=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "merchant-category"
+                  ],
+                  "query": [
+                    {
+                      "description": "A cursor string to fetch the next page of results",
+                      "key": "cursor",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"fugiat63\": -18490486.21575035\n  }\n}",
+              "createdAt": "2026-07-28T02:57:00.000Z",
+              "updatedAt": "2026-07-28T02:57:00.000Z",
+              "uid": "35240-b7ed9839-feb8-4123-95b8-8f7c1212e00d"
+            },
+            {
+              "id": "f0130d82-3729-41ce-a74a-fcc1c68da9d3",
+              "name": "TooManyRequests",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/merchant-category?cursor=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "merchant-category"
+                  ],
+                  "query": [
+                    {
+                      "description": "A cursor string to fetch the next page of results",
+                      "key": "cursor",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"fugiat63\": -18490486.21575035\n  }\n}",
+              "createdAt": "2026-07-28T02:57:00.000Z",
+              "updatedAt": "2026-07-28T02:57:00.000Z",
+              "uid": "35240-f0130d82-3729-41ce-a74a-fcc1c68da9d3"
+            },
+            {
+              "id": "4e0ee016-fd43-4a9e-ae64-c1f9acc4803f",
+              "name": "Internal Error",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/merchant-category?cursor=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "merchant-category"
+                  ],
+                  "query": [
+                    {
+                      "description": "A cursor string to fetch the next page of results",
+                      "key": "cursor",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"fugiat63\": -18490486.21575035\n  }\n}",
+              "createdAt": "2026-07-28T02:57:00.000Z",
+              "updatedAt": "2026-07-28T02:57:00.000Z",
+              "uid": "35240-4e0ee016-fd43-4a9e-ae64-c1f9acc4803f"
+            }
+          ],
+          "createdAt": "2026-07-28T02:57:00.000Z",
+          "updatedAt": "2026-07-28T02:57:00.000Z",
+          "uid": "35240-0e6a91e4-28ec-4ba8-8d1e-53accbe83206"
+        }
+      ],
+      "id": "fde40da8-e67a-4745-bd68-e1d70d205503",
+      "createdAt": "2026-07-28T02:57:00.000Z",
+      "updatedAt": "2026-07-28T02:57:00.000Z",
+      "uid": "35240-fde40da8-e67a-4745-bd68-e1d70d205503"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-API-Key",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.slash.com"
+    }
+  ]
+}

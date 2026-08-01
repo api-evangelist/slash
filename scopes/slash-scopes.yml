@@ -1,0 +1,91 @@
+generated: '2026-07-21'
+method: searched
+source: https://api.slash.com/.well-known/openid-configuration
+docs: https://docs.slash.com/introduction
+note: >-
+  Slash's public API authenticates primarily with API keys (X-API-Key), so the
+  OpenAPI declares no oauth2 securityScheme and the derive-oauth-scopes pass
+  found no flows. Slash DOES run a third-party OAuth/OIDC surface for developer
+  applications: an OIDC discovery document plus a fine-grained permission-key
+  model attached to developer applications. Both are captured below.
+oidc:
+  issuer_host: https://api.slash.com
+  authorization_endpoint: https://app.slash.com/oauth2/authorize
+  token_endpoint: https://api.joinslash.com/oauth2/token
+  userinfo_endpoint: https://api.joinslash.com/oauth2/userinfo
+  response_types_supported: [code]
+  token_endpoint_auth_methods_supported: [client_secret_basic]
+  scopes_supported:
+    - scope: openid
+      description: OpenID Connect authentication; returns the subject identifier.
+    - scope: offline_access
+      description: Issues a refresh token for long-lived access.
+    - scope: profile
+      description: Access to the user's basic profile claims.
+    - scope: email
+      description: Access to the user's email address.
+    - scope: phone
+      description: Access to the user's phone number.
+    - scope: address
+      description: Access to the user's address.
+developer_application_permissions:
+  source: openapi/slash-openapi-original.json#/components/schemas
+  description: >-
+    Fine-grained permission keys a developer application requests over a legal
+    entity and its Slash accounts. Modeled as `.view` / `.modify` /
+    `.initiate` grants (the closest thing Slash has to OAuth scopes for
+    partner/third-party apps).
+  legal_entity_scopes:
+    - legal_entity.home.view
+    - legal_entity.view
+    - legal_entity.users.view
+    - legal_entity.users.modify
+    - legal_entity.users.card_groups.view
+    - legal_entity.users.card_groups.modify
+    - legal_entity.subscriptions.view
+    - legal_entity.subscriptions.modify
+    - legal_entity.accounting.view
+    - legal_entity.accounting.modify
+    - legal_entity.contacts.view
+    - legal_entity.contacts.modify
+    - legal_entity.third_party_credentials.view
+    - legal_entity.third_party_credentials.modify
+    - legal_entity.authorized_third_parties.view
+    - legal_entity.authorized_third_parties.modify
+    - legal_entity.api_key.view
+    - legal_entity.api_key.modify
+    - legal_entity.applications.view
+    - legal_entity.applications.modify
+    - legal_entity.permission_roles.view
+    - legal_entity.automation_rules.view
+    - legal_entity.automation_rules.modify
+    - legal_entity.developer_account.view
+    - legal_entity.developer_account.modify
+    - legal_entity.cashback.view
+    - legal_entity.cashback.modify
+    - legal_entity.webhooks.view
+    - legal_entity.webhooks.modify
+    - legal_entity.ticket_reconciliation.view
+    - legal_entity.analytics.view
+    - legal_entity.transactions.crypto_deposit.accelerate
+  slash_account_scopes:
+    - slash_accounts.view
+    - slash_accounts.home.view
+    - slash_accounts.cards.physical.view
+    - slash_accounts.cards.physical.modify
+    - slash_accounts.cards.virtual.view
+    - slash_accounts.cards.virtual.modify
+    - slash_accounts.incoming_transactions.view
+    - slash_accounts.transactions.view
+    - slash_accounts.transactions.ach_pull.initiate
+    - slash_accounts.transactions.ach_push.initiate
+    - slash_accounts.transactions.wire.initiate
+    - slash_accounts.transactions.between_accounts.initiate
+    - slash_accounts.transactions.rtp.initiate
+    - slash_accounts.balance.view
+    - slash_accounts.subaccounts.view
+    - slash_accounts.subaccounts.modify
+    - slash_accounts.merchant_allowlist.view
+    - slash_accounts.merchant_allowlist.modify
+    - slash_accounts.integrations.view
+    - slash_accounts.integrations.modify

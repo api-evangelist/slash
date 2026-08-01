@@ -1,0 +1,2971 @@
+{
+  "info": {
+    "_postman_id": "3de0ca56-87a0-43a8-8a1d-5afdeaee30f3",
+    "name": "Slash Public Account Fdx API",
+    "description": "API description",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:56:51.000Z",
+    "updatedAt": "2026-07-28T02:56:51.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-3de0ca56-87a0-43a8-8a1d-5afdeaee30f3"
+  },
+  "item": [
+    {
+      "name": "fdx",
+      "item": [
+        {
+          "name": "customers",
+          "item": [
+            {
+              "name": "current",
+              "item": [
+                {
+                  "name": "Get current authenticated customer ID",
+                  "id": "bc10ba3a-10fc-4044-8748-5f1fc111890b",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "apikey",
+                      "apikey": [
+                        {
+                          "key": "key",
+                          "value": "X-API-Key",
+                          "type": "string"
+                        },
+                        {
+                          "key": "value",
+                          "value": "{{apiKey}}",
+                          "type": "string"
+                        },
+                        {
+                          "key": "in",
+                          "value": "header",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/fdx/customers/current",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "fdx",
+                        "customers",
+                        "current"
+                      ]
+                    },
+                    "description": "Get current authenticated customer ID"
+                  },
+                  "response": [
+                    {
+                      "id": "1b92d5f6-c6dc-4432-8f07-3db646080149",
+                      "name": "OK",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-API-Key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/fdx/customers/current",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "fdx",
+                            "customers",
+                            "current"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"customerId\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:56:51.000Z",
+                      "updatedAt": "2026-07-28T02:56:51.000Z",
+                      "uid": "35240-1b92d5f6-c6dc-4432-8f07-3db646080149"
+                    },
+                    {
+                      "id": "8d58797d-1af5-4e75-8bc0-cbaf981ddbe6",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-API-Key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/fdx/customers/current",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "fdx",
+                            "customers",
+                            "current"
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"esse_8a7\": false\n  }\n}",
+                      "createdAt": "2026-07-28T02:56:51.000Z",
+                      "updatedAt": "2026-07-28T02:56:51.000Z",
+                      "uid": "35240-8d58797d-1af5-4e75-8bc0-cbaf981ddbe6"
+                    },
+                    {
+                      "id": "a19aaaac-6986-46c3-b3d0-e6b1c69353d3",
+                      "name": "Forbidden",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-API-Key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/fdx/customers/current",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "fdx",
+                            "customers",
+                            "current"
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"esse_8a7\": false\n  }\n}",
+                      "createdAt": "2026-07-28T02:56:51.000Z",
+                      "updatedAt": "2026-07-28T02:56:51.000Z",
+                      "uid": "35240-a19aaaac-6986-46c3-b3d0-e6b1c69353d3"
+                    },
+                    {
+                      "id": "cafdb196-c154-4526-95df-463bfbdb312c",
+                      "name": "TooManyRequests",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-API-Key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/fdx/customers/current",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "fdx",
+                            "customers",
+                            "current"
+                          ]
+                        }
+                      },
+                      "status": "Too Many Requests",
+                      "code": 429,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"esse_8a7\": false\n  }\n}",
+                      "createdAt": "2026-07-28T02:56:51.000Z",
+                      "updatedAt": "2026-07-28T02:56:51.000Z",
+                      "uid": "35240-cafdb196-c154-4526-95df-463bfbdb312c"
+                    },
+                    {
+                      "id": "6751bd99-2af9-4a22-85f2-869aa4baf5d2",
+                      "name": "Internal Error",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-API-Key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/fdx/customers/current",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "fdx",
+                            "customers",
+                            "current"
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"esse_8a7\": false\n  }\n}",
+                      "createdAt": "2026-07-28T02:56:51.000Z",
+                      "updatedAt": "2026-07-28T02:56:51.000Z",
+                      "uid": "35240-6751bd99-2af9-4a22-85f2-869aa4baf5d2"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:56:51.000Z",
+                  "updatedAt": "2026-07-28T02:56:51.000Z",
+                  "uid": "35240-bc10ba3a-10fc-4044-8748-5f1fc111890b"
+                }
+              ],
+              "id": "3df27e45-e28b-46fd-a688-b3b7559bd905",
+              "createdAt": "2026-07-28T02:56:51.000Z",
+              "updatedAt": "2026-07-28T02:56:51.000Z",
+              "uid": "35240-3df27e45-e28b-46fd-a688-b3b7559bd905"
+            }
+          ],
+          "id": "e5258a30-527f-454c-8934-0a4cc94b252d",
+          "createdAt": "2026-07-28T02:56:51.000Z",
+          "updatedAt": "2026-07-28T02:56:51.000Z",
+          "uid": "35240-e5258a30-527f-454c-8934-0a4cc94b252d"
+        },
+        {
+          "name": "accounts",
+          "item": [
+            {
+              "name": "{accountId}",
+              "item": [
+                {
+                  "name": "contact",
+                  "item": [
+                    {
+                      "name": "Get an account's contact information",
+                      "id": "8c7aabe6-5d8b-4efa-8dff-d6006f181ac6",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "apikey",
+                          "apikey": [
+                            {
+                              "key": "key",
+                              "value": "X-API-Key",
+                              "type": "string"
+                            },
+                            {
+                              "key": "value",
+                              "value": "{{apiKey}}",
+                              "type": "string"
+                            },
+                            {
+                              "key": "in",
+                              "value": "header",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/fdx/accounts/:accountId/contact",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "fdx",
+                            "accounts",
+                            ":accountId",
+                            "contact"
+                          ],
+                          "variable": [
+                            {
+                              "id": "9331f038-bca0-4049-88c7-050e55c07d27",
+                              "key": "accountId",
+                              "value": "<string>",
+                              "description": "(Required) Account ID"
+                            }
+                          ]
+                        },
+                        "description": "Get an account's contact information"
+                      },
+                      "response": [
+                        {
+                          "id": "32b5b03e-f7e2-4605-861c-e0a910655782",
+                          "name": "OK",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-API-Key",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/fdx/accounts/:accountId/contact",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "fdx",
+                                "accounts",
+                                ":accountId",
+                                "contact"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "accountId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"holders\": [\n    {\n      \"name\": {\n        \"first\": \"<string>\",\n        \"middle\": \"<string>\",\n        \"last\": \"<string>\",\n        \"suffix\": \"<string>\",\n        \"prefix\": \"<string>\"\n      },\n      \"relationship\": 95460948\n    },\n    {\n      \"name\": {\n        \"first\": \"<string>\",\n        \"middle\": \"<string>\",\n        \"last\": \"<string>\",\n        \"suffix\": \"<string>\",\n        \"prefix\": \"<string>\"\n      },\n      \"relationship\": \"in est adipisicing anim sunt\"\n    }\n  ],\n  \"emails\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"addresses\": [\n    {\n      \"line1\": \"<string>\",\n      \"line2\": \"<string>\",\n      \"city\": \"<string>\",\n      \"country\": \"<string>\",\n      \"line3\": \"<string>\",\n      \"region\": \"<string>\",\n      \"postalCode\": \"<string>\"\n    },\n    {\n      \"line1\": \"<string>\",\n      \"line2\": \"<string>\",\n      \"city\": \"<string>\",\n      \"country\": \"<string>\",\n      \"line3\": \"<string>\",\n      \"region\": \"<string>\",\n      \"postalCode\": \"<string>\"\n    }\n  ],\n  \"telephones\": [\n    {\n      \"type\": \"CELL\",\n      \"number\": \"<string>\",\n      \"country\": \"<string>\"\n    },\n    {\n      \"type\": \"HOME\",\n      \"number\": \"<string>\",\n      \"country\": \"<string>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T02:56:51.000Z",
+                          "updatedAt": "2026-07-28T02:56:51.000Z",
+                          "uid": "35240-32b5b03e-f7e2-4605-861c-e0a910655782"
+                        },
+                        {
+                          "id": "0d8e4d67-be1e-485b-8390-0b7bbf286f67",
+                          "name": "Unauthorized",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-API-Key",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/fdx/accounts/:accountId/contact",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "fdx",
+                                "accounts",
+                                ":accountId",
+                                "contact"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "accountId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"esse_8a7\": false\n  }\n}",
+                          "createdAt": "2026-07-28T02:56:51.000Z",
+                          "updatedAt": "2026-07-28T02:56:51.000Z",
+                          "uid": "35240-0d8e4d67-be1e-485b-8390-0b7bbf286f67"
+                        },
+                        {
+                          "id": "fa3aa0c4-fcb7-444c-bf65-62ce7239d6ec",
+                          "name": "Forbidden",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-API-Key",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/fdx/accounts/:accountId/contact",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "fdx",
+                                "accounts",
+                                ":accountId",
+                                "contact"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "accountId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"esse_8a7\": false\n  }\n}",
+                          "createdAt": "2026-07-28T02:56:51.000Z",
+                          "updatedAt": "2026-07-28T02:56:51.000Z",
+                          "uid": "35240-fa3aa0c4-fcb7-444c-bf65-62ce7239d6ec"
+                        },
+                        {
+                          "id": "20d8f724-b2de-4095-a46f-bc8a73f0c7f0",
+                          "name": "TooManyRequests",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-API-Key",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/fdx/accounts/:accountId/contact",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "fdx",
+                                "accounts",
+                                ":accountId",
+                                "contact"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "accountId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Too Many Requests",
+                          "code": 429,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"esse_8a7\": false\n  }\n}",
+                          "createdAt": "2026-07-28T02:56:51.000Z",
+                          "updatedAt": "2026-07-28T02:56:51.000Z",
+                          "uid": "35240-20d8f724-b2de-4095-a46f-bc8a73f0c7f0"
+                        },
+                        {
+                          "id": "1ff4e66e-365c-48df-a337-000cae65f2fb",
+                          "name": "Internal Error",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-API-Key",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/fdx/accounts/:accountId/contact",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "fdx",
+                                "accounts",
+                                ":accountId",
+                                "contact"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "accountId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"esse_8a7\": false\n  }\n}",
+                          "createdAt": "2026-07-28T02:56:51.000Z",
+                          "updatedAt": "2026-07-28T02:56:51.000Z",
+                          "uid": "35240-1ff4e66e-365c-48df-a337-000cae65f2fb"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:56:51.000Z",
+                      "updatedAt": "2026-07-28T02:56:51.000Z",
+                      "uid": "35240-8c7aabe6-5d8b-4efa-8dff-d6006f181ac6"
+                    }
+                  ],
+                  "id": "ae6ff04f-ddf3-4ec2-974d-071b6ba360b6",
+                  "createdAt": "2026-07-28T02:56:51.000Z",
+                  "updatedAt": "2026-07-28T02:56:51.000Z",
+                  "uid": "35240-ae6ff04f-ddf3-4ec2-974d-071b6ba360b6"
+                },
+                {
+                  "name": "statements",
+                  "item": [
+                    {
+                      "name": "{statementId}",
+                      "item": [
+                        {
+                          "name": "Get account statement PDF.",
+                          "id": "504d019d-73f6-4f7c-a35f-71b72747171a",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "auth": {
+                              "type": "apikey",
+                              "apikey": [
+                                {
+                                  "key": "key",
+                                  "value": "X-API-Key",
+                                  "type": "string"
+                                },
+                                {
+                                  "key": "value",
+                                  "value": "{{apiKey}}",
+                                  "type": "string"
+                                },
+                                {
+                                  "key": "in",
+                                  "value": "header",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/pdf"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/fdx/accounts/:accountId/statements/:statementId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "fdx",
+                                "accounts",
+                                ":accountId",
+                                "statements",
+                                ":statementId"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "58956e1c-59bb-432b-9e11-0cf00d6ea9ab",
+                                  "key": "accountId",
+                                  "value": "<string>",
+                                  "description": "(Required) Account ID"
+                                },
+                                {
+                                  "id": "09241dbe-f6fd-406c-add2-093adac5f396",
+                                  "key": "statementId",
+                                  "value": "<string>",
+                                  "description": "(Required) Statement ID returned by /accounts/{accountId}/statements"
+                                }
+                              ]
+                            },
+                            "description": "Get account statement PDF."
+                          },
+                          "response": [
+                            {
+                              "id": "da31ef0b-ad10-4818-8e3f-f3f2229640a6",
+                              "name": "OK",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/pdf"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "X-API-Key",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/fdx/accounts/:accountId/statements/:statementId",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "fdx",
+                                    "accounts",
+                                    ":accountId",
+                                    "statements",
+                                    ":statementId"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "accountId"
+                                    },
+                                    {
+                                      "key": "statementId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "text",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/pdf"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "<binary>",
+                              "createdAt": "2026-07-28T02:56:51.000Z",
+                              "updatedAt": "2026-07-28T02:56:51.000Z",
+                              "uid": "35240-da31ef0b-ad10-4818-8e3f-f3f2229640a6"
+                            },
+                            {
+                              "id": "3bfc4b16-793f-429a-888a-f96eb43bc727",
+                              "name": "Unauthorized",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/pdf"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "X-API-Key",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/fdx/accounts/:accountId/statements/:statementId",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "fdx",
+                                    "accounts",
+                                    ":accountId",
+                                    "statements",
+                                    ":statementId"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "accountId"
+                                    },
+                                    {
+                                      "key": "statementId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "text",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/pdf"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"esse_8a7\": false\n  }\n}",
+                              "createdAt": "2026-07-28T02:56:51.000Z",
+                              "updatedAt": "2026-07-28T02:56:51.000Z",
+                              "uid": "35240-3bfc4b16-793f-429a-888a-f96eb43bc727"
+                            },
+                            {
+                              "id": "d233bfb6-9a32-467a-8edd-15d25640c583",
+                              "name": "Forbidden",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/pdf"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "X-API-Key",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/fdx/accounts/:accountId/statements/:statementId",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "fdx",
+                                    "accounts",
+                                    ":accountId",
+                                    "statements",
+                                    ":statementId"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "accountId"
+                                    },
+                                    {
+                                      "key": "statementId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Forbidden",
+                              "code": 403,
+                              "_postman_previewlanguage": "text",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/pdf"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"esse_8a7\": false\n  }\n}",
+                              "createdAt": "2026-07-28T02:56:51.000Z",
+                              "updatedAt": "2026-07-28T02:56:51.000Z",
+                              "uid": "35240-d233bfb6-9a32-467a-8edd-15d25640c583"
+                            },
+                            {
+                              "id": "de5645b3-8f9c-42c7-bb14-f0e4c0076fd2",
+                              "name": "TooManyRequests",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/pdf"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "X-API-Key",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/fdx/accounts/:accountId/statements/:statementId",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "fdx",
+                                    "accounts",
+                                    ":accountId",
+                                    "statements",
+                                    ":statementId"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "accountId"
+                                    },
+                                    {
+                                      "key": "statementId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Too Many Requests",
+                              "code": 429,
+                              "_postman_previewlanguage": "text",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/pdf"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"esse_8a7\": false\n  }\n}",
+                              "createdAt": "2026-07-28T02:56:51.000Z",
+                              "updatedAt": "2026-07-28T02:56:51.000Z",
+                              "uid": "35240-de5645b3-8f9c-42c7-bb14-f0e4c0076fd2"
+                            },
+                            {
+                              "id": "738c5a43-aae1-43be-a5e1-01164834e625",
+                              "name": "Internal Error",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/pdf"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "X-API-Key",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/fdx/accounts/:accountId/statements/:statementId",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "fdx",
+                                    "accounts",
+                                    ":accountId",
+                                    "statements",
+                                    ":statementId"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "accountId"
+                                    },
+                                    {
+                                      "key": "statementId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Internal Server Error",
+                              "code": 500,
+                              "_postman_previewlanguage": "text",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/pdf"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"esse_8a7\": false\n  }\n}",
+                              "createdAt": "2026-07-28T02:56:51.000Z",
+                              "updatedAt": "2026-07-28T02:56:51.000Z",
+                              "uid": "35240-738c5a43-aae1-43be-a5e1-01164834e625"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:56:51.000Z",
+                          "updatedAt": "2026-07-28T02:56:51.000Z",
+                          "uid": "35240-504d019d-73f6-4f7c-a35f-71b72747171a"
+                        }
+                      ],
+                      "id": "fae0cf45-9f45-47f2-a868-eed85a2a7e4c",
+                      "createdAt": "2026-07-28T02:56:51.000Z",
+                      "updatedAt": "2026-07-28T02:56:51.000Z",
+                      "uid": "35240-fae0cf45-9f45-47f2-a868-eed85a2a7e4c"
+                    },
+                    {
+                      "name": "Search for statements",
+                      "id": "fd624ad4-4c92-44b5-834b-0e0ffc55325a",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "apikey",
+                          "apikey": [
+                            {
+                              "key": "key",
+                              "value": "X-API-Key",
+                              "type": "string"
+                            },
+                            {
+                              "key": "value",
+                              "value": "{{apiKey}}",
+                              "type": "string"
+                            },
+                            {
+                              "key": "in",
+                              "value": "header",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/fdx/accounts/:accountId/statements?startTime=<string>&endTime=<string>&offset=<string>&limit=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "fdx",
+                            "accounts",
+                            ":accountId",
+                            "statements"
+                          ],
+                          "query": [
+                            {
+                              "description": "Start time for use in retrieval of statements (ISO 8601).",
+                              "key": "startTime",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "End time for use in retrieval of statements (ISO 8601).",
+                              "key": "endTime",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "The ID of the last item in the previous page of results",
+                              "key": "offset",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "The number of items to return (default 100, max 1000)",
+                              "key": "limit",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "id": "f7d2ffad-b0f6-4c6e-9c7c-e832c30a5b5b",
+                              "key": "accountId",
+                              "value": "<string>",
+                              "description": "(Required) Account ID"
+                            }
+                          ]
+                        },
+                        "description": "Search for statements"
+                      },
+                      "response": [
+                        {
+                          "id": "52585e86-4cbf-4ba0-b252-3d96a229a08a",
+                          "name": "OK",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-API-Key",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/fdx/accounts/:accountId/statements?startTime=<string>&endTime=<string>&offset=<string>&limit=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "fdx",
+                                "accounts",
+                                ":accountId",
+                                "statements"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Start time for use in retrieval of statements (ISO 8601).",
+                                  "key": "startTime",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "End time for use in retrieval of statements (ISO 8601).",
+                                  "key": "endTime",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "The ID of the last item in the previous page of results",
+                                  "key": "offset",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "The number of items to return (default 100, max 1000)",
+                                  "key": "limit",
+                                  "value": "<string>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "accountId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"statements\": [\n    {\n      \"accountId\": \"<string>\",\n      \"statementId\": \"<string>\",\n      \"statementDate\": \"<string>\",\n      \"description\": \"<string>\",\n      \"links\": [\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"action\": \"GET\",\n          \"types\": [\n            \"application/pdf\",\n            \"application/pdf\"\n          ]\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"action\": \"GET\",\n          \"types\": [\n            \"application/pdf\",\n            \"application/pdf\"\n          ]\n        }\n      ],\n      \"status\": \"AVAILABLE\"\n    },\n    {\n      \"accountId\": \"<string>\",\n      \"statementId\": \"<string>\",\n      \"statementDate\": \"<string>\",\n      \"description\": \"<string>\",\n      \"links\": [\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"action\": \"GET\",\n          \"types\": [\n            \"application/pdf\",\n            \"application/pdf\"\n          ]\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"action\": \"GET\",\n          \"types\": [\n            \"application/pdf\",\n            \"application/pdf\"\n          ]\n        }\n      ],\n      \"status\": \"AVAILABLE\"\n    }\n  ],\n  \"page\": {\n    \"nextOffset\": \"<string>\"\n  }\n}",
+                          "createdAt": "2026-07-28T02:56:51.000Z",
+                          "updatedAt": "2026-07-28T02:56:51.000Z",
+                          "uid": "35240-52585e86-4cbf-4ba0-b252-3d96a229a08a"
+                        },
+                        {
+                          "id": "c9198107-ef88-41d0-a39d-547cbe2354fd",
+                          "name": "Unauthorized",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-API-Key",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/fdx/accounts/:accountId/statements?startTime=<string>&endTime=<string>&offset=<string>&limit=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "fdx",
+                                "accounts",
+                                ":accountId",
+                                "statements"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Start time for use in retrieval of statements (ISO 8601).",
+                                  "key": "startTime",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "End time for use in retrieval of statements (ISO 8601).",
+                                  "key": "endTime",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "The ID of the last item in the previous page of results",
+                                  "key": "offset",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "The number of items to return (default 100, max 1000)",
+                                  "key": "limit",
+                                  "value": "<string>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "accountId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"esse_8a7\": false\n  }\n}",
+                          "createdAt": "2026-07-28T02:56:51.000Z",
+                          "updatedAt": "2026-07-28T02:56:51.000Z",
+                          "uid": "35240-c9198107-ef88-41d0-a39d-547cbe2354fd"
+                        },
+                        {
+                          "id": "ad70aa59-ced7-4911-9672-ab5ab7562da8",
+                          "name": "Forbidden",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-API-Key",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/fdx/accounts/:accountId/statements?startTime=<string>&endTime=<string>&offset=<string>&limit=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "fdx",
+                                "accounts",
+                                ":accountId",
+                                "statements"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Start time for use in retrieval of statements (ISO 8601).",
+                                  "key": "startTime",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "End time for use in retrieval of statements (ISO 8601).",
+                                  "key": "endTime",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "The ID of the last item in the previous page of results",
+                                  "key": "offset",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "The number of items to return (default 100, max 1000)",
+                                  "key": "limit",
+                                  "value": "<string>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "accountId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"esse_8a7\": false\n  }\n}",
+                          "createdAt": "2026-07-28T02:56:51.000Z",
+                          "updatedAt": "2026-07-28T02:56:51.000Z",
+                          "uid": "35240-ad70aa59-ced7-4911-9672-ab5ab7562da8"
+                        },
+                        {
+                          "id": "cae16b5e-279e-4846-a0b4-2b9c5cde9bbf",
+                          "name": "TooManyRequests",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-API-Key",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/fdx/accounts/:accountId/statements?startTime=<string>&endTime=<string>&offset=<string>&limit=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "fdx",
+                                "accounts",
+                                ":accountId",
+                                "statements"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Start time for use in retrieval of statements (ISO 8601).",
+                                  "key": "startTime",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "End time for use in retrieval of statements (ISO 8601).",
+                                  "key": "endTime",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "The ID of the last item in the previous page of results",
+                                  "key": "offset",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "The number of items to return (default 100, max 1000)",
+                                  "key": "limit",
+                                  "value": "<string>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "accountId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Too Many Requests",
+                          "code": 429,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"esse_8a7\": false\n  }\n}",
+                          "createdAt": "2026-07-28T02:56:51.000Z",
+                          "updatedAt": "2026-07-28T02:56:51.000Z",
+                          "uid": "35240-cae16b5e-279e-4846-a0b4-2b9c5cde9bbf"
+                        },
+                        {
+                          "id": "1c222eec-fc56-48a0-b577-0b08d54e2ef1",
+                          "name": "Internal Error",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-API-Key",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/fdx/accounts/:accountId/statements?startTime=<string>&endTime=<string>&offset=<string>&limit=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "fdx",
+                                "accounts",
+                                ":accountId",
+                                "statements"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Start time for use in retrieval of statements (ISO 8601).",
+                                  "key": "startTime",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "End time for use in retrieval of statements (ISO 8601).",
+                                  "key": "endTime",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "The ID of the last item in the previous page of results",
+                                  "key": "offset",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "The number of items to return (default 100, max 1000)",
+                                  "key": "limit",
+                                  "value": "<string>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "accountId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"esse_8a7\": false\n  }\n}",
+                          "createdAt": "2026-07-28T02:56:51.000Z",
+                          "updatedAt": "2026-07-28T02:56:51.000Z",
+                          "uid": "35240-1c222eec-fc56-48a0-b577-0b08d54e2ef1"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:56:51.000Z",
+                      "updatedAt": "2026-07-28T02:56:51.000Z",
+                      "uid": "35240-fd624ad4-4c92-44b5-834b-0e0ffc55325a"
+                    }
+                  ],
+                  "id": "eb257534-2656-4587-9597-cc65f2025929",
+                  "createdAt": "2026-07-28T02:56:51.000Z",
+                  "updatedAt": "2026-07-28T02:56:51.000Z",
+                  "uid": "35240-eb257534-2656-4587-9597-cc65f2025929"
+                },
+                {
+                  "name": "transactions",
+                  "item": [
+                    {
+                      "name": "Search for transactions",
+                      "id": "72743db3-f4b1-4ba2-82b7-9dcf32075c68",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "apikey",
+                          "apikey": [
+                            {
+                              "key": "key",
+                              "value": "X-API-Key",
+                              "type": "string"
+                            },
+                            {
+                              "key": "value",
+                              "value": "{{apiKey}}",
+                              "type": "string"
+                            },
+                            {
+                              "key": "in",
+                              "value": "header",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/fdx/accounts/:accountId/transactions?startTime=<string>&endTime=<string>&offset=<string>&limit=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "fdx",
+                            "accounts",
+                            ":accountId",
+                            "transactions"
+                          ],
+                          "query": [
+                            {
+                              "description": "Start time for use in retrieval of transactions (ISO 8601).",
+                              "key": "startTime",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "End time for use in retrieval of transactions (ISO 8601).",
+                              "key": "endTime",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "The ID of the last item in the previous page of results",
+                              "key": "offset",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "The number of items to return (default 100, max 1000)",
+                              "key": "limit",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "id": "98737d14-275d-4159-befb-8f2908b58d57",
+                              "key": "accountId",
+                              "value": "<string>",
+                              "description": "(Required) Account ID"
+                            }
+                          ]
+                        },
+                        "description": "Search for transactions"
+                      },
+                      "response": [
+                        {
+                          "id": "31c7ae56-80b6-44bf-af8c-dc5578f19974",
+                          "name": "OK",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-API-Key",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/fdx/accounts/:accountId/transactions?startTime=<string>&endTime=<string>&offset=<string>&limit=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "fdx",
+                                "accounts",
+                                ":accountId",
+                                "transactions"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Start time for use in retrieval of transactions (ISO 8601).",
+                                  "key": "startTime",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "End time for use in retrieval of transactions (ISO 8601).",
+                                  "key": "endTime",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "The ID of the last item in the previous page of results",
+                                  "key": "offset",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "The number of items to return (default 100, max 1000)",
+                                  "key": "limit",
+                                  "value": "<string>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "accountId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"transactions\": [\n    {\n      \"depositTransaction\": {\n        \"transactionId\": \"<string>\",\n        \"transactionTimestamp\": \"<string>\",\n        \"description\": \"<string>\",\n        \"debitCreditMemo\": \"CREDIT\",\n        \"status\": \"AUTHORIZATION\",\n        \"amount\": \"<number>\",\n        \"referenceTransactionId\": \"<string>\",\n        \"postedTimestamp\": \"<string>\",\n        \"category\": \"<string>\",\n        \"subCategory\": \"<string>\",\n        \"foreignAmount\": \"<number>\",\n        \"foreignCurrency\": \"CZK\",\n        \"payee\": \"<string>\",\n        \"checkNumber\": \"<string>\"\n      }\n    },\n    {\n      \"depositTransaction\": {\n        \"transactionId\": \"<string>\",\n        \"transactionTimestamp\": \"<string>\",\n        \"description\": \"<string>\",\n        \"debitCreditMemo\": \"DEBIT\",\n        \"status\": \"MEMO\",\n        \"amount\": \"<number>\",\n        \"referenceTransactionId\": \"<string>\",\n        \"postedTimestamp\": \"<string>\",\n        \"category\": \"<string>\",\n        \"subCategory\": \"<string>\",\n        \"foreignAmount\": \"<number>\",\n        \"foreignCurrency\": \"CHE\",\n        \"payee\": \"<string>\",\n        \"checkNumber\": \"<string>\"\n      }\n    }\n  ],\n  \"page\": {\n    \"nextOffset\": \"<string>\"\n  }\n}",
+                          "createdAt": "2026-07-28T02:56:51.000Z",
+                          "updatedAt": "2026-07-28T02:56:51.000Z",
+                          "uid": "35240-31c7ae56-80b6-44bf-af8c-dc5578f19974"
+                        },
+                        {
+                          "id": "4cefb909-ae2c-4ce6-8487-368734b8153f",
+                          "name": "Unauthorized",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-API-Key",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/fdx/accounts/:accountId/transactions?startTime=<string>&endTime=<string>&offset=<string>&limit=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "fdx",
+                                "accounts",
+                                ":accountId",
+                                "transactions"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Start time for use in retrieval of transactions (ISO 8601).",
+                                  "key": "startTime",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "End time for use in retrieval of transactions (ISO 8601).",
+                                  "key": "endTime",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "The ID of the last item in the previous page of results",
+                                  "key": "offset",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "The number of items to return (default 100, max 1000)",
+                                  "key": "limit",
+                                  "value": "<string>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "accountId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"esse_8a7\": false\n  }\n}",
+                          "createdAt": "2026-07-28T02:56:51.000Z",
+                          "updatedAt": "2026-07-28T02:56:51.000Z",
+                          "uid": "35240-4cefb909-ae2c-4ce6-8487-368734b8153f"
+                        },
+                        {
+                          "id": "2407cc56-c259-402d-b8e0-6daa8c1415eb",
+                          "name": "Forbidden",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-API-Key",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/fdx/accounts/:accountId/transactions?startTime=<string>&endTime=<string>&offset=<string>&limit=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "fdx",
+                                "accounts",
+                                ":accountId",
+                                "transactions"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Start time for use in retrieval of transactions (ISO 8601).",
+                                  "key": "startTime",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "End time for use in retrieval of transactions (ISO 8601).",
+                                  "key": "endTime",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "The ID of the last item in the previous page of results",
+                                  "key": "offset",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "The number of items to return (default 100, max 1000)",
+                                  "key": "limit",
+                                  "value": "<string>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "accountId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"esse_8a7\": false\n  }\n}",
+                          "createdAt": "2026-07-28T02:56:51.000Z",
+                          "updatedAt": "2026-07-28T02:56:51.000Z",
+                          "uid": "35240-2407cc56-c259-402d-b8e0-6daa8c1415eb"
+                        },
+                        {
+                          "id": "92906464-5d79-40e0-81ea-5d28b1f2f8d8",
+                          "name": "TooManyRequests",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-API-Key",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/fdx/accounts/:accountId/transactions?startTime=<string>&endTime=<string>&offset=<string>&limit=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "fdx",
+                                "accounts",
+                                ":accountId",
+                                "transactions"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Start time for use in retrieval of transactions (ISO 8601).",
+                                  "key": "startTime",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "End time for use in retrieval of transactions (ISO 8601).",
+                                  "key": "endTime",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "The ID of the last item in the previous page of results",
+                                  "key": "offset",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "The number of items to return (default 100, max 1000)",
+                                  "key": "limit",
+                                  "value": "<string>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "accountId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Too Many Requests",
+                          "code": 429,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"esse_8a7\": false\n  }\n}",
+                          "createdAt": "2026-07-28T02:56:51.000Z",
+                          "updatedAt": "2026-07-28T02:56:51.000Z",
+                          "uid": "35240-92906464-5d79-40e0-81ea-5d28b1f2f8d8"
+                        },
+                        {
+                          "id": "33d88ad0-7496-44de-93a8-d78fdeb196e1",
+                          "name": "Internal Error",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-API-Key",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/fdx/accounts/:accountId/transactions?startTime=<string>&endTime=<string>&offset=<string>&limit=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "fdx",
+                                "accounts",
+                                ":accountId",
+                                "transactions"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Start time for use in retrieval of transactions (ISO 8601).",
+                                  "key": "startTime",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "End time for use in retrieval of transactions (ISO 8601).",
+                                  "key": "endTime",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "The ID of the last item in the previous page of results",
+                                  "key": "offset",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "The number of items to return (default 100, max 1000)",
+                                  "key": "limit",
+                                  "value": "<string>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "accountId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"esse_8a7\": false\n  }\n}",
+                          "createdAt": "2026-07-28T02:56:51.000Z",
+                          "updatedAt": "2026-07-28T02:56:51.000Z",
+                          "uid": "35240-33d88ad0-7496-44de-93a8-d78fdeb196e1"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:56:51.000Z",
+                      "updatedAt": "2026-07-28T02:56:51.000Z",
+                      "uid": "35240-72743db3-f4b1-4ba2-82b7-9dcf32075c68"
+                    }
+                  ],
+                  "id": "c8bf8609-c8ca-482c-8ccc-f9a7953f83c2",
+                  "createdAt": "2026-07-28T02:56:51.000Z",
+                  "updatedAt": "2026-07-28T02:56:51.000Z",
+                  "uid": "35240-c8bf8609-c8ca-482c-8ccc-f9a7953f83c2"
+                },
+                {
+                  "name": "payment-networks",
+                  "item": [
+                    {
+                      "name": "Get payment networks supported by the account",
+                      "id": "b83a1ab4-ae5d-413c-9bf4-c69956781b26",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "apikey",
+                          "apikey": [
+                            {
+                              "key": "key",
+                              "value": "X-API-Key",
+                              "type": "string"
+                            },
+                            {
+                              "key": "value",
+                              "value": "{{apiKey}}",
+                              "type": "string"
+                            },
+                            {
+                              "key": "in",
+                              "value": "header",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/fdx/accounts/:accountId/payment-networks?offset=<string>&limit=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "fdx",
+                            "accounts",
+                            ":accountId",
+                            "payment-networks"
+                          ],
+                          "query": [
+                            {
+                              "description": "The ID of the last item in the previous page of results",
+                              "key": "offset",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "The number of items to return (default 100, max 1000)",
+                              "key": "limit",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "id": "2743a6a2-ffc0-40be-a6e3-42b599fb6aed",
+                              "key": "accountId",
+                              "value": "<string>",
+                              "description": "(Required) Account ID"
+                            }
+                          ]
+                        },
+                        "description": "Get payment networks supported by the account"
+                      },
+                      "response": [
+                        {
+                          "id": "7c539a3d-5af0-4140-a505-9f1214636753",
+                          "name": "OK",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-API-Key",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/fdx/accounts/:accountId/payment-networks?offset=<string>&limit=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "fdx",
+                                "accounts",
+                                ":accountId",
+                                "payment-networks"
+                              ],
+                              "query": [
+                                {
+                                  "description": "The ID of the last item in the previous page of results",
+                                  "key": "offset",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "The number of items to return (default 100, max 1000)",
+                                  "key": "limit",
+                                  "value": "<string>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "accountId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"paymentNetworks\": [\n    {\n      \"bankId\": \"<string>\",\n      \"identifier\": \"<string>\",\n      \"type\": \"CA_LVTS\",\n      \"transferIn\": \"<boolean>\",\n      \"transferOut\": \"<boolean>\"\n    },\n    {\n      \"bankId\": \"<string>\",\n      \"identifier\": \"<string>\",\n      \"type\": \"US_CHIPS\",\n      \"transferIn\": \"<boolean>\",\n      \"transferOut\": \"<boolean>\"\n    }\n  ],\n  \"page\": {\n    \"nextOffset\": \"<string>\"\n  }\n}",
+                          "createdAt": "2026-07-28T02:56:51.000Z",
+                          "updatedAt": "2026-07-28T02:56:51.000Z",
+                          "uid": "35240-7c539a3d-5af0-4140-a505-9f1214636753"
+                        },
+                        {
+                          "id": "bc77310b-47e0-419c-89ed-c3f71a2816e4",
+                          "name": "Unauthorized",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-API-Key",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/fdx/accounts/:accountId/payment-networks?offset=<string>&limit=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "fdx",
+                                "accounts",
+                                ":accountId",
+                                "payment-networks"
+                              ],
+                              "query": [
+                                {
+                                  "description": "The ID of the last item in the previous page of results",
+                                  "key": "offset",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "The number of items to return (default 100, max 1000)",
+                                  "key": "limit",
+                                  "value": "<string>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "accountId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"esse_8a7\": false\n  }\n}",
+                          "createdAt": "2026-07-28T02:56:51.000Z",
+                          "updatedAt": "2026-07-28T02:56:51.000Z",
+                          "uid": "35240-bc77310b-47e0-419c-89ed-c3f71a2816e4"
+                        },
+                        {
+                          "id": "35bee39f-91a3-4a76-9fde-c805b7233b93",
+                          "name": "Forbidden",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-API-Key",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/fdx/accounts/:accountId/payment-networks?offset=<string>&limit=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "fdx",
+                                "accounts",
+                                ":accountId",
+                                "payment-networks"
+                              ],
+                              "query": [
+                                {
+                                  "description": "The ID of the last item in the previous page of results",
+                                  "key": "offset",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "The number of items to return (default 100, max 1000)",
+                                  "key": "limit",
+                                  "value": "<string>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "accountId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"esse_8a7\": false\n  }\n}",
+                          "createdAt": "2026-07-28T02:56:51.000Z",
+                          "updatedAt": "2026-07-28T02:56:51.000Z",
+                          "uid": "35240-35bee39f-91a3-4a76-9fde-c805b7233b93"
+                        },
+                        {
+                          "id": "8c39f660-f3c7-44a0-bdd1-02e02f309125",
+                          "name": "TooManyRequests",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-API-Key",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/fdx/accounts/:accountId/payment-networks?offset=<string>&limit=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "fdx",
+                                "accounts",
+                                ":accountId",
+                                "payment-networks"
+                              ],
+                              "query": [
+                                {
+                                  "description": "The ID of the last item in the previous page of results",
+                                  "key": "offset",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "The number of items to return (default 100, max 1000)",
+                                  "key": "limit",
+                                  "value": "<string>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "accountId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Too Many Requests",
+                          "code": 429,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"esse_8a7\": false\n  }\n}",
+                          "createdAt": "2026-07-28T02:56:51.000Z",
+                          "updatedAt": "2026-07-28T02:56:51.000Z",
+                          "uid": "35240-8c39f660-f3c7-44a0-bdd1-02e02f309125"
+                        },
+                        {
+                          "id": "c2f49362-ca3b-44c1-b437-e6889c752abc",
+                          "name": "Internal Error",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "X-API-Key",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/fdx/accounts/:accountId/payment-networks?offset=<string>&limit=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "fdx",
+                                "accounts",
+                                ":accountId",
+                                "payment-networks"
+                              ],
+                              "query": [
+                                {
+                                  "description": "The ID of the last item in the previous page of results",
+                                  "key": "offset",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "The number of items to return (default 100, max 1000)",
+                                  "key": "limit",
+                                  "value": "<string>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "accountId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"esse_8a7\": false\n  }\n}",
+                          "createdAt": "2026-07-28T02:56:51.000Z",
+                          "updatedAt": "2026-07-28T02:56:51.000Z",
+                          "uid": "35240-c2f49362-ca3b-44c1-b437-e6889c752abc"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:56:51.000Z",
+                      "updatedAt": "2026-07-28T02:56:51.000Z",
+                      "uid": "35240-b83a1ab4-ae5d-413c-9bf4-c69956781b26"
+                    }
+                  ],
+                  "id": "c067654c-e1ed-4a63-a40b-606fdbe40edb",
+                  "createdAt": "2026-07-28T02:56:51.000Z",
+                  "updatedAt": "2026-07-28T02:56:51.000Z",
+                  "uid": "35240-c067654c-e1ed-4a63-a40b-606fdbe40edb"
+                },
+                {
+                  "name": "Get account balances and liabilities",
+                  "id": "080ea40e-3034-476d-87fa-75c5fc6358ea",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "apikey",
+                      "apikey": [
+                        {
+                          "key": "key",
+                          "value": "X-API-Key",
+                          "type": "string"
+                        },
+                        {
+                          "key": "value",
+                          "value": "{{apiKey}}",
+                          "type": "string"
+                        },
+                        {
+                          "key": "in",
+                          "value": "header",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/fdx/accounts/:accountId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "fdx",
+                        "accounts",
+                        ":accountId"
+                      ],
+                      "variable": [
+                        {
+                          "id": "e0ff326b-48e6-4a4a-85bd-eab899534675",
+                          "key": "accountId",
+                          "value": "<string>",
+                          "description": "(Required) Account ID"
+                        }
+                      ]
+                    },
+                    "description": "Get account balances and liabilities"
+                  },
+                  "response": [
+                    {
+                      "id": "b8c07ed7-0fac-4721-a64f-c9b7cb13e12a",
+                      "name": "OK",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-API-Key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/fdx/accounts/:accountId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "fdx",
+                            "accounts",
+                            ":accountId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "accountId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"depositAccount\": {\n    \"accountId\": \"<string>\",\n    \"accountType\": \"CD\",\n    \"availableBalance\": \"<number>\",\n    \"currency\": {\n      \"currencyCode\": \"<string>\"\n    },\n    \"currentBalance\": \"<number>\",\n    \"productName\": \"<string>\",\n    \"status\": \"RESTRICTED\",\n    \"accountNumberDisplay\": \"<string>\",\n    \"nickname\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-07-28T02:56:51.000Z",
+                      "updatedAt": "2026-07-28T02:56:51.000Z",
+                      "uid": "35240-b8c07ed7-0fac-4721-a64f-c9b7cb13e12a"
+                    },
+                    {
+                      "id": "a19beea2-1946-4665-b600-e01f09e0ab8c",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-API-Key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/fdx/accounts/:accountId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "fdx",
+                            "accounts",
+                            ":accountId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "accountId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"esse_8a7\": false\n  }\n}",
+                      "createdAt": "2026-07-28T02:56:51.000Z",
+                      "updatedAt": "2026-07-28T02:56:51.000Z",
+                      "uid": "35240-a19beea2-1946-4665-b600-e01f09e0ab8c"
+                    },
+                    {
+                      "id": "3bd403a9-a5d0-43f0-922a-00c64918cb85",
+                      "name": "Forbidden",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-API-Key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/fdx/accounts/:accountId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "fdx",
+                            "accounts",
+                            ":accountId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "accountId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"esse_8a7\": false\n  }\n}",
+                      "createdAt": "2026-07-28T02:56:51.000Z",
+                      "updatedAt": "2026-07-28T02:56:51.000Z",
+                      "uid": "35240-3bd403a9-a5d0-43f0-922a-00c64918cb85"
+                    },
+                    {
+                      "id": "dc401fb2-ac64-4d66-beac-3659ba5f2535",
+                      "name": "TooManyRequests",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-API-Key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/fdx/accounts/:accountId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "fdx",
+                            "accounts",
+                            ":accountId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "accountId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Too Many Requests",
+                      "code": 429,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"esse_8a7\": false\n  }\n}",
+                      "createdAt": "2026-07-28T02:56:51.000Z",
+                      "updatedAt": "2026-07-28T02:56:51.000Z",
+                      "uid": "35240-dc401fb2-ac64-4d66-beac-3659ba5f2535"
+                    },
+                    {
+                      "id": "e5500d9a-491d-4968-a002-8770acb70241",
+                      "name": "Internal Error",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-API-Key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/fdx/accounts/:accountId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "fdx",
+                            "accounts",
+                            ":accountId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "accountId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"esse_8a7\": false\n  }\n}",
+                      "createdAt": "2026-07-28T02:56:51.000Z",
+                      "updatedAt": "2026-07-28T02:56:51.000Z",
+                      "uid": "35240-e5500d9a-491d-4968-a002-8770acb70241"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:56:51.000Z",
+                  "updatedAt": "2026-07-28T02:56:51.000Z",
+                  "uid": "35240-080ea40e-3034-476d-87fa-75c5fc6358ea"
+                }
+              ],
+              "id": "34ddb787-ad80-4e55-9605-d136ff54e22d",
+              "createdAt": "2026-07-28T02:56:51.000Z",
+              "updatedAt": "2026-07-28T02:56:51.000Z",
+              "uid": "35240-34ddb787-ad80-4e55-9605-d136ff54e22d"
+            },
+            {
+              "name": "List all accounts",
+              "id": "0d9e0b84-0698-479f-869b-796e22f72607",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "apikey",
+                  "apikey": [
+                    {
+                      "key": "key",
+                      "value": "X-API-Key",
+                      "type": "string"
+                    },
+                    {
+                      "key": "value",
+                      "value": "{{apiKey}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "in",
+                      "value": "header",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/fdx/accounts?offset=<string>&limit=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "fdx",
+                    "accounts"
+                  ],
+                  "query": [
+                    {
+                      "description": "The number of items to skip before starting to collect the result set",
+                      "key": "offset",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "The number of items to return (default 100, max 1000)",
+                      "key": "limit",
+                      "value": "<string>"
+                    }
+                  ]
+                },
+                "description": "List all accounts"
+              },
+              "response": [
+                {
+                  "id": "30e104a7-1265-418f-8e03-5364a10c768f",
+                  "name": "OK",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-API-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/fdx/accounts?offset=<string>&limit=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "fdx",
+                        "accounts"
+                      ],
+                      "query": [
+                        {
+                          "description": "The number of items to skip before starting to collect the result set",
+                          "key": "offset",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "The number of items to return (default 100, max 1000)",
+                          "key": "limit",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"accounts\": [\n    {\n      \"depositAccount\": {\n        \"accountId\": \"<string>\",\n        \"productName\": \"<string>\",\n        \"status\": \"DELINQUENT\",\n        \"currency\": {\n          \"currencyCode\": \"<string>\"\n        },\n        \"accountType\": \"MONEYMARKET\",\n        \"accountNumberDisplay\": \"<string>\",\n        \"nickname\": \"<string>\"\n      }\n    },\n    {\n      \"depositAccount\": {\n        \"accountId\": \"<string>\",\n        \"productName\": \"<string>\",\n        \"status\": \"CLOSED\",\n        \"currency\": {\n          \"currencyCode\": \"<string>\"\n        },\n        \"accountType\": \"OTHERDEPOSIT\",\n        \"accountNumberDisplay\": \"<string>\",\n        \"nickname\": \"<string>\"\n      }\n    }\n  ],\n  \"page\": {\n    \"nextOffset\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-07-28T02:56:51.000Z",
+                  "updatedAt": "2026-07-28T02:56:51.000Z",
+                  "uid": "35240-30e104a7-1265-418f-8e03-5364a10c768f"
+                },
+                {
+                  "id": "3346525e-a879-46c4-b197-7bc5f03e7fe6",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-API-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/fdx/accounts?offset=<string>&limit=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "fdx",
+                        "accounts"
+                      ],
+                      "query": [
+                        {
+                          "description": "The number of items to skip before starting to collect the result set",
+                          "key": "offset",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "The number of items to return (default 100, max 1000)",
+                          "key": "limit",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"esse_8a7\": false\n  }\n}",
+                  "createdAt": "2026-07-28T02:56:51.000Z",
+                  "updatedAt": "2026-07-28T02:56:51.000Z",
+                  "uid": "35240-3346525e-a879-46c4-b197-7bc5f03e7fe6"
+                },
+                {
+                  "id": "a9834e95-91b1-49d6-a27a-cf920fe405d4",
+                  "name": "Forbidden",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-API-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/fdx/accounts?offset=<string>&limit=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "fdx",
+                        "accounts"
+                      ],
+                      "query": [
+                        {
+                          "description": "The number of items to skip before starting to collect the result set",
+                          "key": "offset",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "The number of items to return (default 100, max 1000)",
+                          "key": "limit",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"esse_8a7\": false\n  }\n}",
+                  "createdAt": "2026-07-28T02:56:51.000Z",
+                  "updatedAt": "2026-07-28T02:56:51.000Z",
+                  "uid": "35240-a9834e95-91b1-49d6-a27a-cf920fe405d4"
+                },
+                {
+                  "id": "5226931e-210b-4b63-a3ee-524f6e223e42",
+                  "name": "TooManyRequests",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-API-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/fdx/accounts?offset=<string>&limit=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "fdx",
+                        "accounts"
+                      ],
+                      "query": [
+                        {
+                          "description": "The number of items to skip before starting to collect the result set",
+                          "key": "offset",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "The number of items to return (default 100, max 1000)",
+                          "key": "limit",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Too Many Requests",
+                  "code": 429,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"esse_8a7\": false\n  }\n}",
+                  "createdAt": "2026-07-28T02:56:51.000Z",
+                  "updatedAt": "2026-07-28T02:56:51.000Z",
+                  "uid": "35240-5226931e-210b-4b63-a3ee-524f6e223e42"
+                },
+                {
+                  "id": "9fdbf326-dfb7-400f-9dce-fbf0f34866ec",
+                  "name": "Internal Error",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-API-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/fdx/accounts?offset=<string>&limit=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "fdx",
+                        "accounts"
+                      ],
+                      "query": [
+                        {
+                          "description": "The number of items to skip before starting to collect the result set",
+                          "key": "offset",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "The number of items to return (default 100, max 1000)",
+                          "key": "limit",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"esse_8a7\": false\n  }\n}",
+                  "createdAt": "2026-07-28T02:56:51.000Z",
+                  "updatedAt": "2026-07-28T02:56:51.000Z",
+                  "uid": "35240-9fdbf326-dfb7-400f-9dce-fbf0f34866ec"
+                }
+              ],
+              "createdAt": "2026-07-28T02:56:51.000Z",
+              "updatedAt": "2026-07-28T02:56:51.000Z",
+              "uid": "35240-0d9e0b84-0698-479f-869b-796e22f72607"
+            }
+          ],
+          "id": "65b5aab1-f821-4c7b-8ffa-c579855cd6cb",
+          "createdAt": "2026-07-28T02:56:51.000Z",
+          "updatedAt": "2026-07-28T02:56:51.000Z",
+          "uid": "35240-65b5aab1-f821-4c7b-8ffa-c579855cd6cb"
+        }
+      ],
+      "id": "8c1fff8f-ae41-4678-b0e2-b57a257cf229",
+      "createdAt": "2026-07-28T02:56:51.000Z",
+      "updatedAt": "2026-07-28T02:56:51.000Z",
+      "uid": "35240-8c1fff8f-ae41-4678-b0e2-b57a257cf229"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-API-Key",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.slash.com"
+    }
+  ]
+}

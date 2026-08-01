@@ -1,0 +1,39 @@
+generated: '2026-07-21'
+method: searched
+source:
+  - openapi/slash-openapi-original.json
+  - https://api.slash.com/.well-known/openid-configuration
+  - https://www.slash.com/company/security
+standards:
+  - id: openid-connect
+    conforms: true
+    evidence: OIDC discovery document at /.well-known/openid-configuration (authorization_code flow, standard scopes).
+  - id: oauth2
+    conforms: true
+    evidence: OAuth2 authorization_code + token/userinfo endpoints for developer applications (client_secret_basic).
+  - id: fdx
+    conforms: true
+    evidence: Financial Data Exchange (FDX) API surface under /fdx/* (customers, accounts, statements, transactions, payment-networks).
+  - id: rfc9116-security-txt
+    conforms: true
+    evidence: RFC 9116 security.txt at https://www.slash.com/.well-known/security.txt.
+  - id: rfc9457-problem-details
+    conforms: false
+    evidence: Errors use a custom JSON envelope (success/message/identifier/rawStatus/displayType), not application/problem+json.
+  - id: idempotency-keys
+    conforms: true
+    evidence: X-Idempotency-Key header on money-movement/create endpoints (409 on key reuse with a different body).
+  - id: webhook-signing
+    conforms: true
+    evidence: RSA-signed delivery webhooks (slash-webhook-signature) and HMAC-SHA256 authorization webhooks.
+  - id: soc2-type-ii
+    conforms: true
+    evidence: "SOC 2 Type II certification stated on https://www.slash.com/company/security"
+  - id: pci-dss
+    conforms: true
+    evidence: "PCI compliance stated on https://www.slash.com/company/security"
+compliance_programs:
+  - SOC 2 Type II
+  - PCI DSS
+  - FDIC insurance (via partner banks / sweep networks)
+compliance_url: https://www.slash.com/company/security

@@ -1,0 +1,3539 @@
+{
+  "info": {
+    "_postman_id": "09ced23e-fdf8-4a63-ade4-bb71947dab0e",
+    "name": "Slash Public Account Expense Report API",
+    "description": "API description",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:56:49.000Z",
+    "updatedAt": "2026-07-28T02:56:50.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-09ced23e-fdf8-4a63-ade4-bb71947dab0e"
+  },
+  "item": [
+    {
+      "name": "expense-report",
+      "item": [
+        {
+          "name": "{expenseReportId}",
+          "item": [
+            {
+              "name": "approve",
+              "item": [
+                {
+                  "name": "Approve an expense report and initiate payout.",
+                  "id": "0f9a624a-0650-45a3-9c99-694aa210e5ee",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "apikey",
+                      "apikey": [
+                        {
+                          "key": "key",
+                          "value": "X-API-Key",
+                          "type": "string"
+                        },
+                        {
+                          "key": "value",
+                          "value": "{{apiKey}}",
+                          "type": "string"
+                        },
+                        {
+                          "key": "in",
+                          "value": "header",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"reviewedByUserId\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/expense-report/:expenseReportId/approve",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "expense-report",
+                        ":expenseReportId",
+                        "approve"
+                      ],
+                      "variable": [
+                        {
+                          "id": "a67cb19b-596c-4172-9be4-7a7a2dd4e9c1",
+                          "key": "expenseReportId",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Approve an expense report and initiate payout."
+                  },
+                  "response": [
+                    {
+                      "id": "03c9d968-32bf-40c8-95de-0129a5afe27a",
+                      "name": "OK",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-API-Key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"reviewedByUserId\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/expense-report/:expenseReportId/approve",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "expense-report",
+                            ":expenseReportId",
+                            "approve"
+                          ],
+                          "variable": [
+                            {
+                              "key": "expenseReportId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"expenseReport\": {\n    \"id\": \"expense_report_92jpdt\",\n    \"legalEntityId\": \"le_ye\",\n    \"submittedByUserId\": \"u_p6\",\n    \"amountCents\": \"<integer>\",\n    \"currency\": \"<string>\",\n    \"transactionDate\": \"<dateTime>\",\n    \"destinationId\": \"ub_zqrxdanng6\",\n    \"submittedAt\": \"<dateTime>\",\n    \"status\": \"payment_failed\",\n    \"timestamp\": \"<dateTime>\",\n    \"merchantV2Id\": \"<string>\",\n    \"customMerchantId\": \"custom_merchant_rhfskqx0\",\n    \"memo\": \"<string>\",\n    \"fxRateToUsd\": \"<string>\",\n    \"fxRateUpdatedAt\": \"<dateTime>\",\n    \"noReceiptReason\": \"<string>\",\n    \"merchant\": {\n      \"type\": \"merchantV2\",\n      \"merchantV2\": {\n        \"$entity\": \"merchant_v2\",\n        \"id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"metadata\": {\n          \"timestamp\": \"<dateTime>\"\n        },\n        \"isLive\": \"<boolean>\",\n        \"isInstantCashback\": \"<boolean>\",\n        \"heronId\": \"<string>\",\n        \"iconUrl\": \"<string>\",\n        \"logoUrl\": \"<string>\",\n        \"url\": \"<string>\",\n        \"merchantCategoryId\": \"<string>\"\n      }\n    },\n    \"documents\": [\n      {\n        \"document\": {\n          \"$entity\": \"document\",\n          \"id\": \"<string>\",\n          \"accountType\": \"productApplication\",\n          \"accountId\": \"<string>\",\n          \"startDate\": \"<string>\",\n          \"endDate\": \"<string>\",\n          \"status\": \"uploading\",\n          \"category\": \"document\",\n          \"documentType\": \"utility_bill\",\n          \"accessLevel\": \"<string>\",\n          \"timestamp\": \"<string>\",\n          \"filename\": \"<string>\",\n          \"error\": \"<string>\",\n          \"checksum\": \"<string>\",\n          \"tags\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"documentSource\": \"uploaded\",\n          \"fileMetadata\": {\n            \"size\": \"<number>\",\n            \"type\": \"<string>\"\n          }\n        },\n        \"url\": \"<string>\"\n      },\n      {\n        \"document\": {\n          \"$entity\": \"document\",\n          \"id\": \"<string>\",\n          \"accountType\": \"globalUsdAch\",\n          \"accountId\": \"<string>\",\n          \"startDate\": \"<string>\",\n          \"endDate\": \"<string>\",\n          \"status\": \"uploading\",\n          \"category\": \"document\",\n          \"documentType\": \"pay_by_slash_avatar\",\n          \"accessLevel\": \"<string>\",\n          \"timestamp\": \"<string>\",\n          \"filename\": \"<string>\",\n          \"error\": \"<string>\",\n          \"checksum\": \"<string>\",\n          \"tags\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"documentSource\": \"uploaded\",\n          \"fileMetadata\": {\n            \"size\": \"<number>\",\n            \"type\": \"<string>\"\n          }\n        },\n        \"url\": \"<string>\"\n      }\n    ],\n    \"aggregatedTransaction\": {\n      \"id\": \"<string>\",\n      \"date\": \"<string>\",\n      \"amount\": {\n        \"amount_cents\": \"<number>\",\n        \"currency\": \"USD\"\n      },\n      \"status\": \"returned\"\n    },\n    \"destination\": {\n      \"id\": \"<string>\",\n      \"accountName\": \"<string>\",\n      \"institution\": {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\"\n      },\n      \"mask\": \"<string>\",\n      \"institutionLogo\": \"<string>\"\n    },\n    \"submittedByUser\": {\n      \"id\": \"<string>\",\n      \"name\": {\n        \"first\": \"<string>\",\n        \"last\": \"<string>\",\n        \"full\": \"<string>\"\n      }\n    },\n    \"reviewedByUser\": {\n      \"id\": \"<string>\",\n      \"name\": {\n        \"first\": \"<string>\",\n        \"last\": \"<string>\",\n        \"full\": \"<string>\"\n      }\n    },\n    \"review\": {\n      \"id\": \"expense_report_review_acwaz5\",\n      \"expenseReportId\": \"expense_report_bm5ex2k\",\n      \"decision\": \"rejected\",\n      \"reviewedByUserId\": \"u_\",\n      \"reviewedAt\": \"<dateTime>\",\n      \"timestamp\": \"<dateTime>\",\n      \"rejectionReason\": \"<string>\"\n    }\n  }\n}",
+                      "createdAt": "2026-07-28T02:56:50.000Z",
+                      "updatedAt": "2026-07-28T02:56:50.000Z",
+                      "uid": "35240-03c9d968-32bf-40c8-95de-0129a5afe27a"
+                    },
+                    {
+                      "id": "d62ec69c-af0d-42b8-9bc1-4a40ba2c4f12",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-API-Key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"reviewedByUserId\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/expense-report/:expenseReportId/approve",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "expense-report",
+                            ":expenseReportId",
+                            "approve"
+                          ],
+                          "variable": [
+                            {
+                              "key": "expenseReportId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"eu_4\": -1894756\n  }\n}",
+                      "createdAt": "2026-07-28T02:56:50.000Z",
+                      "updatedAt": "2026-07-28T02:56:50.000Z",
+                      "uid": "35240-d62ec69c-af0d-42b8-9bc1-4a40ba2c4f12"
+                    },
+                    {
+                      "id": "e85a4fee-b222-4bd8-9733-a0665e988fe1",
+                      "name": "Forbidden",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-API-Key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"reviewedByUserId\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/expense-report/:expenseReportId/approve",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "expense-report",
+                            ":expenseReportId",
+                            "approve"
+                          ],
+                          "variable": [
+                            {
+                              "key": "expenseReportId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"eu_4\": -1894756\n  }\n}",
+                      "createdAt": "2026-07-28T02:56:50.000Z",
+                      "updatedAt": "2026-07-28T02:56:50.000Z",
+                      "uid": "35240-e85a4fee-b222-4bd8-9733-a0665e988fe1"
+                    },
+                    {
+                      "id": "9f883f86-81e1-4d2d-9668-be2c850b9a8b",
+                      "name": "TooManyRequests",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-API-Key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"reviewedByUserId\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/expense-report/:expenseReportId/approve",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "expense-report",
+                            ":expenseReportId",
+                            "approve"
+                          ],
+                          "variable": [
+                            {
+                              "key": "expenseReportId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Too Many Requests",
+                      "code": 429,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"eu_4\": -1894756\n  }\n}",
+                      "createdAt": "2026-07-28T02:56:50.000Z",
+                      "updatedAt": "2026-07-28T02:56:50.000Z",
+                      "uid": "35240-9f883f86-81e1-4d2d-9668-be2c850b9a8b"
+                    },
+                    {
+                      "id": "cf7901de-d1f2-4879-8303-92fd881a4248",
+                      "name": "Internal Error",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-API-Key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"reviewedByUserId\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/expense-report/:expenseReportId/approve",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "expense-report",
+                            ":expenseReportId",
+                            "approve"
+                          ],
+                          "variable": [
+                            {
+                              "key": "expenseReportId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"eu_4\": -1894756\n  }\n}",
+                      "createdAt": "2026-07-28T02:56:50.000Z",
+                      "updatedAt": "2026-07-28T02:56:50.000Z",
+                      "uid": "35240-cf7901de-d1f2-4879-8303-92fd881a4248"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:56:50.000Z",
+                  "updatedAt": "2026-07-28T02:56:50.000Z",
+                  "uid": "35240-0f9a624a-0650-45a3-9c99-694aa210e5ee"
+                }
+              ],
+              "id": "fb8b5e15-8994-49c1-bf86-78e2cf6d65ed",
+              "createdAt": "2026-07-28T02:56:50.000Z",
+              "updatedAt": "2026-07-28T02:56:50.000Z",
+              "uid": "35240-fb8b5e15-8994-49c1-bf86-78e2cf6d65ed"
+            },
+            {
+              "name": "reject",
+              "item": [
+                {
+                  "name": "Reject an expense report.",
+                  "id": "52b52a97-9314-4a94-be0c-96aa12479d61",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "apikey",
+                      "apikey": [
+                        {
+                          "key": "key",
+                          "value": "X-API-Key",
+                          "type": "string"
+                        },
+                        {
+                          "key": "value",
+                          "value": "{{apiKey}}",
+                          "type": "string"
+                        },
+                        {
+                          "key": "in",
+                          "value": "header",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"reviewedByUserId\": \"<string>\",\n  \"reason\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/expense-report/:expenseReportId/reject",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "expense-report",
+                        ":expenseReportId",
+                        "reject"
+                      ],
+                      "variable": [
+                        {
+                          "id": "c762b2e4-3b33-4bb2-ac16-a92e4aaef919",
+                          "key": "expenseReportId",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Reject an expense report."
+                  },
+                  "response": [
+                    {
+                      "id": "44818b4f-a4ea-4538-a245-fe401bdf6c0b",
+                      "name": "OK",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-API-Key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"reviewedByUserId\": \"<string>\",\n  \"reason\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/expense-report/:expenseReportId/reject",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "expense-report",
+                            ":expenseReportId",
+                            "reject"
+                          ],
+                          "variable": [
+                            {
+                              "key": "expenseReportId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"expenseReport\": {\n    \"id\": \"expense_report_92jpdt\",\n    \"legalEntityId\": \"le_ye\",\n    \"submittedByUserId\": \"u_p6\",\n    \"amountCents\": \"<integer>\",\n    \"currency\": \"<string>\",\n    \"transactionDate\": \"<dateTime>\",\n    \"destinationId\": \"ub_zqrxdanng6\",\n    \"submittedAt\": \"<dateTime>\",\n    \"status\": \"payment_failed\",\n    \"timestamp\": \"<dateTime>\",\n    \"merchantV2Id\": \"<string>\",\n    \"customMerchantId\": \"custom_merchant_rhfskqx0\",\n    \"memo\": \"<string>\",\n    \"fxRateToUsd\": \"<string>\",\n    \"fxRateUpdatedAt\": \"<dateTime>\",\n    \"noReceiptReason\": \"<string>\",\n    \"merchant\": {\n      \"type\": \"merchantV2\",\n      \"merchantV2\": {\n        \"$entity\": \"merchant_v2\",\n        \"id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"metadata\": {\n          \"timestamp\": \"<dateTime>\"\n        },\n        \"isLive\": \"<boolean>\",\n        \"isInstantCashback\": \"<boolean>\",\n        \"heronId\": \"<string>\",\n        \"iconUrl\": \"<string>\",\n        \"logoUrl\": \"<string>\",\n        \"url\": \"<string>\",\n        \"merchantCategoryId\": \"<string>\"\n      }\n    },\n    \"documents\": [\n      {\n        \"document\": {\n          \"$entity\": \"document\",\n          \"id\": \"<string>\",\n          \"accountType\": \"productApplication\",\n          \"accountId\": \"<string>\",\n          \"startDate\": \"<string>\",\n          \"endDate\": \"<string>\",\n          \"status\": \"uploading\",\n          \"category\": \"document\",\n          \"documentType\": \"utility_bill\",\n          \"accessLevel\": \"<string>\",\n          \"timestamp\": \"<string>\",\n          \"filename\": \"<string>\",\n          \"error\": \"<string>\",\n          \"checksum\": \"<string>\",\n          \"tags\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"documentSource\": \"uploaded\",\n          \"fileMetadata\": {\n            \"size\": \"<number>\",\n            \"type\": \"<string>\"\n          }\n        },\n        \"url\": \"<string>\"\n      },\n      {\n        \"document\": {\n          \"$entity\": \"document\",\n          \"id\": \"<string>\",\n          \"accountType\": \"globalUsdAch\",\n          \"accountId\": \"<string>\",\n          \"startDate\": \"<string>\",\n          \"endDate\": \"<string>\",\n          \"status\": \"uploading\",\n          \"category\": \"document\",\n          \"documentType\": \"pay_by_slash_avatar\",\n          \"accessLevel\": \"<string>\",\n          \"timestamp\": \"<string>\",\n          \"filename\": \"<string>\",\n          \"error\": \"<string>\",\n          \"checksum\": \"<string>\",\n          \"tags\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"documentSource\": \"uploaded\",\n          \"fileMetadata\": {\n            \"size\": \"<number>\",\n            \"type\": \"<string>\"\n          }\n        },\n        \"url\": \"<string>\"\n      }\n    ],\n    \"aggregatedTransaction\": {\n      \"id\": \"<string>\",\n      \"date\": \"<string>\",\n      \"amount\": {\n        \"amount_cents\": \"<number>\",\n        \"currency\": \"USD\"\n      },\n      \"status\": \"returned\"\n    },\n    \"destination\": {\n      \"id\": \"<string>\",\n      \"accountName\": \"<string>\",\n      \"institution\": {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\"\n      },\n      \"mask\": \"<string>\",\n      \"institutionLogo\": \"<string>\"\n    },\n    \"submittedByUser\": {\n      \"id\": \"<string>\",\n      \"name\": {\n        \"first\": \"<string>\",\n        \"last\": \"<string>\",\n        \"full\": \"<string>\"\n      }\n    },\n    \"reviewedByUser\": {\n      \"id\": \"<string>\",\n      \"name\": {\n        \"first\": \"<string>\",\n        \"last\": \"<string>\",\n        \"full\": \"<string>\"\n      }\n    },\n    \"review\": {\n      \"id\": \"expense_report_review_acwaz5\",\n      \"expenseReportId\": \"expense_report_bm5ex2k\",\n      \"decision\": \"rejected\",\n      \"reviewedByUserId\": \"u_\",\n      \"reviewedAt\": \"<dateTime>\",\n      \"timestamp\": \"<dateTime>\",\n      \"rejectionReason\": \"<string>\"\n    }\n  }\n}",
+                      "createdAt": "2026-07-28T02:56:50.000Z",
+                      "updatedAt": "2026-07-28T02:56:50.000Z",
+                      "uid": "35240-44818b4f-a4ea-4538-a245-fe401bdf6c0b"
+                    },
+                    {
+                      "id": "c7c62776-a956-4628-9426-414d14e6d20a",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-API-Key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"reviewedByUserId\": \"<string>\",\n  \"reason\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/expense-report/:expenseReportId/reject",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "expense-report",
+                            ":expenseReportId",
+                            "reject"
+                          ],
+                          "variable": [
+                            {
+                              "key": "expenseReportId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"eu_4\": -1894756\n  }\n}",
+                      "createdAt": "2026-07-28T02:56:50.000Z",
+                      "updatedAt": "2026-07-28T02:56:50.000Z",
+                      "uid": "35240-c7c62776-a956-4628-9426-414d14e6d20a"
+                    },
+                    {
+                      "id": "2f75de8d-8bb3-4df9-ae56-45b7fd57e2ba",
+                      "name": "Forbidden",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-API-Key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"reviewedByUserId\": \"<string>\",\n  \"reason\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/expense-report/:expenseReportId/reject",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "expense-report",
+                            ":expenseReportId",
+                            "reject"
+                          ],
+                          "variable": [
+                            {
+                              "key": "expenseReportId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"eu_4\": -1894756\n  }\n}",
+                      "createdAt": "2026-07-28T02:56:50.000Z",
+                      "updatedAt": "2026-07-28T02:56:50.000Z",
+                      "uid": "35240-2f75de8d-8bb3-4df9-ae56-45b7fd57e2ba"
+                    },
+                    {
+                      "id": "a585d4b6-401e-4772-8e38-7b5f5a3f196a",
+                      "name": "TooManyRequests",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-API-Key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"reviewedByUserId\": \"<string>\",\n  \"reason\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/expense-report/:expenseReportId/reject",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "expense-report",
+                            ":expenseReportId",
+                            "reject"
+                          ],
+                          "variable": [
+                            {
+                              "key": "expenseReportId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Too Many Requests",
+                      "code": 429,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"eu_4\": -1894756\n  }\n}",
+                      "createdAt": "2026-07-28T02:56:50.000Z",
+                      "updatedAt": "2026-07-28T02:56:50.000Z",
+                      "uid": "35240-a585d4b6-401e-4772-8e38-7b5f5a3f196a"
+                    },
+                    {
+                      "id": "01005e7c-d8da-4143-a5f7-b86acdb5bc10",
+                      "name": "Internal Error",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-API-Key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"reviewedByUserId\": \"<string>\",\n  \"reason\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/expense-report/:expenseReportId/reject",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "expense-report",
+                            ":expenseReportId",
+                            "reject"
+                          ],
+                          "variable": [
+                            {
+                              "key": "expenseReportId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"eu_4\": -1894756\n  }\n}",
+                      "createdAt": "2026-07-28T02:56:50.000Z",
+                      "updatedAt": "2026-07-28T02:56:50.000Z",
+                      "uid": "35240-01005e7c-d8da-4143-a5f7-b86acdb5bc10"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:56:50.000Z",
+                  "updatedAt": "2026-07-28T02:56:50.000Z",
+                  "uid": "35240-52b52a97-9314-4a94-be0c-96aa12479d61"
+                }
+              ],
+              "id": "264c3752-9ae4-4ca7-a24d-f2863fe2c34f",
+              "createdAt": "2026-07-28T02:56:50.000Z",
+              "updatedAt": "2026-07-28T02:56:50.000Z",
+              "uid": "35240-264c3752-9ae4-4ca7-a24d-f2863fe2c34f"
+            },
+            {
+              "name": "Get a single expense report by ID.",
+              "id": "43150336-5eb8-4b21-96d5-1f0b6770bacf",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "apikey",
+                  "apikey": [
+                    {
+                      "key": "key",
+                      "value": "X-API-Key",
+                      "type": "string"
+                    },
+                    {
+                      "key": "value",
+                      "value": "{{apiKey}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "in",
+                      "value": "header",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/expense-report/:expenseReportId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "expense-report",
+                    ":expenseReportId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "30f243aa-7651-40a1-923d-5f0f3f93b302",
+                      "key": "expenseReportId",
+                      "value": "<string>",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "description": "Get a single expense report by ID."
+              },
+              "response": [
+                {
+                  "id": "9598d1f2-c8f4-4a92-98a6-711dff178bfc",
+                  "name": "OK",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-API-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/expense-report/:expenseReportId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "expense-report",
+                        ":expenseReportId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "expenseReportId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"expenseReport\": {\n    \"id\": \"expense_report_92jpdt\",\n    \"legalEntityId\": \"le_ye\",\n    \"submittedByUserId\": \"u_p6\",\n    \"amountCents\": \"<integer>\",\n    \"currency\": \"<string>\",\n    \"transactionDate\": \"<dateTime>\",\n    \"destinationId\": \"ub_zqrxdanng6\",\n    \"submittedAt\": \"<dateTime>\",\n    \"status\": \"payment_failed\",\n    \"timestamp\": \"<dateTime>\",\n    \"merchantV2Id\": \"<string>\",\n    \"customMerchantId\": \"custom_merchant_rhfskqx0\",\n    \"memo\": \"<string>\",\n    \"fxRateToUsd\": \"<string>\",\n    \"fxRateUpdatedAt\": \"<dateTime>\",\n    \"noReceiptReason\": \"<string>\",\n    \"merchant\": {\n      \"type\": \"merchantV2\",\n      \"merchantV2\": {\n        \"$entity\": \"merchant_v2\",\n        \"id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"metadata\": {\n          \"timestamp\": \"<dateTime>\"\n        },\n        \"isLive\": \"<boolean>\",\n        \"isInstantCashback\": \"<boolean>\",\n        \"heronId\": \"<string>\",\n        \"iconUrl\": \"<string>\",\n        \"logoUrl\": \"<string>\",\n        \"url\": \"<string>\",\n        \"merchantCategoryId\": \"<string>\"\n      }\n    },\n    \"documents\": [\n      {\n        \"document\": {\n          \"$entity\": \"document\",\n          \"id\": \"<string>\",\n          \"accountType\": \"productApplication\",\n          \"accountId\": \"<string>\",\n          \"startDate\": \"<string>\",\n          \"endDate\": \"<string>\",\n          \"status\": \"uploading\",\n          \"category\": \"document\",\n          \"documentType\": \"utility_bill\",\n          \"accessLevel\": \"<string>\",\n          \"timestamp\": \"<string>\",\n          \"filename\": \"<string>\",\n          \"error\": \"<string>\",\n          \"checksum\": \"<string>\",\n          \"tags\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"documentSource\": \"uploaded\",\n          \"fileMetadata\": {\n            \"size\": \"<number>\",\n            \"type\": \"<string>\"\n          }\n        },\n        \"url\": \"<string>\"\n      },\n      {\n        \"document\": {\n          \"$entity\": \"document\",\n          \"id\": \"<string>\",\n          \"accountType\": \"globalUsdAch\",\n          \"accountId\": \"<string>\",\n          \"startDate\": \"<string>\",\n          \"endDate\": \"<string>\",\n          \"status\": \"uploading\",\n          \"category\": \"document\",\n          \"documentType\": \"pay_by_slash_avatar\",\n          \"accessLevel\": \"<string>\",\n          \"timestamp\": \"<string>\",\n          \"filename\": \"<string>\",\n          \"error\": \"<string>\",\n          \"checksum\": \"<string>\",\n          \"tags\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"documentSource\": \"uploaded\",\n          \"fileMetadata\": {\n            \"size\": \"<number>\",\n            \"type\": \"<string>\"\n          }\n        },\n        \"url\": \"<string>\"\n      }\n    ],\n    \"aggregatedTransaction\": {\n      \"id\": \"<string>\",\n      \"date\": \"<string>\",\n      \"amount\": {\n        \"amount_cents\": \"<number>\",\n        \"currency\": \"USD\"\n      },\n      \"status\": \"returned\"\n    },\n    \"destination\": {\n      \"id\": \"<string>\",\n      \"accountName\": \"<string>\",\n      \"institution\": {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\"\n      },\n      \"mask\": \"<string>\",\n      \"institutionLogo\": \"<string>\"\n    },\n    \"submittedByUser\": {\n      \"id\": \"<string>\",\n      \"name\": {\n        \"first\": \"<string>\",\n        \"last\": \"<string>\",\n        \"full\": \"<string>\"\n      }\n    },\n    \"reviewedByUser\": {\n      \"id\": \"<string>\",\n      \"name\": {\n        \"first\": \"<string>\",\n        \"last\": \"<string>\",\n        \"full\": \"<string>\"\n      }\n    },\n    \"review\": {\n      \"id\": \"expense_report_review_acwaz5\",\n      \"expenseReportId\": \"expense_report_bm5ex2k\",\n      \"decision\": \"rejected\",\n      \"reviewedByUserId\": \"u_\",\n      \"reviewedAt\": \"<dateTime>\",\n      \"timestamp\": \"<dateTime>\",\n      \"rejectionReason\": \"<string>\"\n    }\n  }\n}",
+                  "createdAt": "2026-07-28T02:56:50.000Z",
+                  "updatedAt": "2026-07-28T02:56:50.000Z",
+                  "uid": "35240-9598d1f2-c8f4-4a92-98a6-711dff178bfc"
+                },
+                {
+                  "id": "0ea84c73-b3a3-4430-bae3-11e437011e07",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-API-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/expense-report/:expenseReportId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "expense-report",
+                        ":expenseReportId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "expenseReportId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"eu_4\": -1894756\n  }\n}",
+                  "createdAt": "2026-07-28T02:56:50.000Z",
+                  "updatedAt": "2026-07-28T02:56:50.000Z",
+                  "uid": "35240-0ea84c73-b3a3-4430-bae3-11e437011e07"
+                },
+                {
+                  "id": "2ad4ed15-7df6-47b3-ab25-ce4dc04e23f9",
+                  "name": "Forbidden",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-API-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/expense-report/:expenseReportId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "expense-report",
+                        ":expenseReportId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "expenseReportId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"eu_4\": -1894756\n  }\n}",
+                  "createdAt": "2026-07-28T02:56:50.000Z",
+                  "updatedAt": "2026-07-28T02:56:50.000Z",
+                  "uid": "35240-2ad4ed15-7df6-47b3-ab25-ce4dc04e23f9"
+                },
+                {
+                  "id": "7757598f-1c0c-4b85-894a-2753e96d8697",
+                  "name": "TooManyRequests",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-API-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/expense-report/:expenseReportId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "expense-report",
+                        ":expenseReportId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "expenseReportId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Too Many Requests",
+                  "code": 429,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"eu_4\": -1894756\n  }\n}",
+                  "createdAt": "2026-07-28T02:56:50.000Z",
+                  "updatedAt": "2026-07-28T02:56:50.000Z",
+                  "uid": "35240-7757598f-1c0c-4b85-894a-2753e96d8697"
+                },
+                {
+                  "id": "9c31b703-aba7-4009-9242-8586e77cea73",
+                  "name": "Internal Error",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-API-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/expense-report/:expenseReportId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "expense-report",
+                        ":expenseReportId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "expenseReportId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"eu_4\": -1894756\n  }\n}",
+                  "createdAt": "2026-07-28T02:56:50.000Z",
+                  "updatedAt": "2026-07-28T02:56:50.000Z",
+                  "uid": "35240-9c31b703-aba7-4009-9242-8586e77cea73"
+                }
+              ],
+              "createdAt": "2026-07-28T02:56:50.000Z",
+              "updatedAt": "2026-07-28T02:56:50.000Z",
+              "uid": "35240-43150336-5eb8-4b21-96d5-1f0b6770bacf"
+            },
+            {
+              "name": "Update an existing expense report. Can only update reports with status `pending_review`. Set `status` to `cancelled` to cancel the report.",
+              "id": "14404b78-69dd-400b-bd37-88cc9ccf34d4",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "apikey",
+                  "apikey": [
+                    {
+                      "key": "key",
+                      "value": "X-API-Key",
+                      "type": "string"
+                    },
+                    {
+                      "key": "value",
+                      "value": "{{apiKey}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "in",
+                      "value": "header",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "PATCH",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"updatedByUserId\": \"<string>\",\n  \"amountCents\": \"<integer>\",\n  \"currency\": \"<string>\",\n  \"transactionDate\": \"<dateTime>\",\n  \"memo\": \"<string>\",\n  \"destinationId\": \"<string>\",\n  \"documentIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"merchant\": {\n    \"type\": \"merchantV2\",\n    \"id\": \"<string>\"\n  },\n  \"status\": \"cancelled\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/expense-report/:expenseReportId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "expense-report",
+                    ":expenseReportId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "b2f1e755-2c66-4f2d-81c8-30fc8f1349fc",
+                      "key": "expenseReportId",
+                      "value": "<string>",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "description": "Update an existing expense report. Can only update reports with status `pending_review`. Set `status` to `cancelled` to cancel the report."
+              },
+              "response": [
+                {
+                  "id": "041d8962-7af2-4044-930c-bebf9ad25587",
+                  "name": "OK",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-API-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"updatedByUserId\": \"<string>\",\n  \"amountCents\": \"<integer>\",\n  \"currency\": \"<string>\",\n  \"transactionDate\": \"<dateTime>\",\n  \"memo\": \"<string>\",\n  \"destinationId\": \"<string>\",\n  \"documentIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"merchant\": {\n    \"type\": \"merchantV2\",\n    \"id\": \"<string>\"\n  },\n  \"status\": \"cancelled\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/expense-report/:expenseReportId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "expense-report",
+                        ":expenseReportId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "expenseReportId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"expenseReport\": {\n    \"id\": \"expense_report_92jpdt\",\n    \"legalEntityId\": \"le_ye\",\n    \"submittedByUserId\": \"u_p6\",\n    \"amountCents\": \"<integer>\",\n    \"currency\": \"<string>\",\n    \"transactionDate\": \"<dateTime>\",\n    \"destinationId\": \"ub_zqrxdanng6\",\n    \"submittedAt\": \"<dateTime>\",\n    \"status\": \"payment_failed\",\n    \"timestamp\": \"<dateTime>\",\n    \"merchantV2Id\": \"<string>\",\n    \"customMerchantId\": \"custom_merchant_rhfskqx0\",\n    \"memo\": \"<string>\",\n    \"fxRateToUsd\": \"<string>\",\n    \"fxRateUpdatedAt\": \"<dateTime>\",\n    \"noReceiptReason\": \"<string>\",\n    \"merchant\": {\n      \"type\": \"merchantV2\",\n      \"merchantV2\": {\n        \"$entity\": \"merchant_v2\",\n        \"id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"metadata\": {\n          \"timestamp\": \"<dateTime>\"\n        },\n        \"isLive\": \"<boolean>\",\n        \"isInstantCashback\": \"<boolean>\",\n        \"heronId\": \"<string>\",\n        \"iconUrl\": \"<string>\",\n        \"logoUrl\": \"<string>\",\n        \"url\": \"<string>\",\n        \"merchantCategoryId\": \"<string>\"\n      }\n    },\n    \"documents\": [\n      {\n        \"document\": {\n          \"$entity\": \"document\",\n          \"id\": \"<string>\",\n          \"accountType\": \"productApplication\",\n          \"accountId\": \"<string>\",\n          \"startDate\": \"<string>\",\n          \"endDate\": \"<string>\",\n          \"status\": \"uploading\",\n          \"category\": \"document\",\n          \"documentType\": \"utility_bill\",\n          \"accessLevel\": \"<string>\",\n          \"timestamp\": \"<string>\",\n          \"filename\": \"<string>\",\n          \"error\": \"<string>\",\n          \"checksum\": \"<string>\",\n          \"tags\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"documentSource\": \"uploaded\",\n          \"fileMetadata\": {\n            \"size\": \"<number>\",\n            \"type\": \"<string>\"\n          }\n        },\n        \"url\": \"<string>\"\n      },\n      {\n        \"document\": {\n          \"$entity\": \"document\",\n          \"id\": \"<string>\",\n          \"accountType\": \"globalUsdAch\",\n          \"accountId\": \"<string>\",\n          \"startDate\": \"<string>\",\n          \"endDate\": \"<string>\",\n          \"status\": \"uploading\",\n          \"category\": \"document\",\n          \"documentType\": \"pay_by_slash_avatar\",\n          \"accessLevel\": \"<string>\",\n          \"timestamp\": \"<string>\",\n          \"filename\": \"<string>\",\n          \"error\": \"<string>\",\n          \"checksum\": \"<string>\",\n          \"tags\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"documentSource\": \"uploaded\",\n          \"fileMetadata\": {\n            \"size\": \"<number>\",\n            \"type\": \"<string>\"\n          }\n        },\n        \"url\": \"<string>\"\n      }\n    ],\n    \"aggregatedTransaction\": {\n      \"id\": \"<string>\",\n      \"date\": \"<string>\",\n      \"amount\": {\n        \"amount_cents\": \"<number>\",\n        \"currency\": \"USD\"\n      },\n      \"status\": \"returned\"\n    },\n    \"destination\": {\n      \"id\": \"<string>\",\n      \"accountName\": \"<string>\",\n      \"institution\": {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\"\n      },\n      \"mask\": \"<string>\",\n      \"institutionLogo\": \"<string>\"\n    },\n    \"submittedByUser\": {\n      \"id\": \"<string>\",\n      \"name\": {\n        \"first\": \"<string>\",\n        \"last\": \"<string>\",\n        \"full\": \"<string>\"\n      }\n    },\n    \"reviewedByUser\": {\n      \"id\": \"<string>\",\n      \"name\": {\n        \"first\": \"<string>\",\n        \"last\": \"<string>\",\n        \"full\": \"<string>\"\n      }\n    },\n    \"review\": {\n      \"id\": \"expense_report_review_acwaz5\",\n      \"expenseReportId\": \"expense_report_bm5ex2k\",\n      \"decision\": \"rejected\",\n      \"reviewedByUserId\": \"u_\",\n      \"reviewedAt\": \"<dateTime>\",\n      \"timestamp\": \"<dateTime>\",\n      \"rejectionReason\": \"<string>\"\n    }\n  }\n}",
+                  "createdAt": "2026-07-28T02:56:50.000Z",
+                  "updatedAt": "2026-07-28T02:56:50.000Z",
+                  "uid": "35240-041d8962-7af2-4044-930c-bebf9ad25587"
+                },
+                {
+                  "id": "5c17d6a5-7152-48ea-b560-33493f33f849",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-API-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"updatedByUserId\": \"<string>\",\n  \"amountCents\": \"<integer>\",\n  \"currency\": \"<string>\",\n  \"transactionDate\": \"<dateTime>\",\n  \"memo\": \"<string>\",\n  \"destinationId\": \"<string>\",\n  \"documentIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"merchant\": {\n    \"type\": \"merchantV2\",\n    \"id\": \"<string>\"\n  },\n  \"status\": \"cancelled\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/expense-report/:expenseReportId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "expense-report",
+                        ":expenseReportId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "expenseReportId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"eu_4\": -1894756\n  }\n}",
+                  "createdAt": "2026-07-28T02:56:50.000Z",
+                  "updatedAt": "2026-07-28T02:56:50.000Z",
+                  "uid": "35240-5c17d6a5-7152-48ea-b560-33493f33f849"
+                },
+                {
+                  "id": "4365a027-d858-42b4-80b4-73380de41a33",
+                  "name": "Forbidden",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-API-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"updatedByUserId\": \"<string>\",\n  \"amountCents\": \"<integer>\",\n  \"currency\": \"<string>\",\n  \"transactionDate\": \"<dateTime>\",\n  \"memo\": \"<string>\",\n  \"destinationId\": \"<string>\",\n  \"documentIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"merchant\": {\n    \"type\": \"merchantV2\",\n    \"id\": \"<string>\"\n  },\n  \"status\": \"cancelled\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/expense-report/:expenseReportId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "expense-report",
+                        ":expenseReportId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "expenseReportId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"eu_4\": -1894756\n  }\n}",
+                  "createdAt": "2026-07-28T02:56:50.000Z",
+                  "updatedAt": "2026-07-28T02:56:50.000Z",
+                  "uid": "35240-4365a027-d858-42b4-80b4-73380de41a33"
+                },
+                {
+                  "id": "16574236-a9e5-4496-96ba-9e641b5fd26e",
+                  "name": "TooManyRequests",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-API-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"updatedByUserId\": \"<string>\",\n  \"amountCents\": \"<integer>\",\n  \"currency\": \"<string>\",\n  \"transactionDate\": \"<dateTime>\",\n  \"memo\": \"<string>\",\n  \"destinationId\": \"<string>\",\n  \"documentIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"merchant\": {\n    \"type\": \"merchantV2\",\n    \"id\": \"<string>\"\n  },\n  \"status\": \"cancelled\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/expense-report/:expenseReportId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "expense-report",
+                        ":expenseReportId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "expenseReportId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Too Many Requests",
+                  "code": 429,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"eu_4\": -1894756\n  }\n}",
+                  "createdAt": "2026-07-28T02:56:50.000Z",
+                  "updatedAt": "2026-07-28T02:56:50.000Z",
+                  "uid": "35240-16574236-a9e5-4496-96ba-9e641b5fd26e"
+                },
+                {
+                  "id": "1fdcb3d3-2ccb-499e-8c6e-e9b05456d863",
+                  "name": "Internal Error",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-API-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"updatedByUserId\": \"<string>\",\n  \"amountCents\": \"<integer>\",\n  \"currency\": \"<string>\",\n  \"transactionDate\": \"<dateTime>\",\n  \"memo\": \"<string>\",\n  \"destinationId\": \"<string>\",\n  \"documentIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"merchant\": {\n    \"type\": \"merchantV2\",\n    \"id\": \"<string>\"\n  },\n  \"status\": \"cancelled\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/expense-report/:expenseReportId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "expense-report",
+                        ":expenseReportId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "expenseReportId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"eu_4\": -1894756\n  }\n}",
+                  "createdAt": "2026-07-28T02:56:50.000Z",
+                  "updatedAt": "2026-07-28T02:56:50.000Z",
+                  "uid": "35240-1fdcb3d3-2ccb-499e-8c6e-e9b05456d863"
+                }
+              ],
+              "createdAt": "2026-07-28T02:56:50.000Z",
+              "updatedAt": "2026-07-28T02:56:50.000Z",
+              "uid": "35240-14404b78-69dd-400b-bd37-88cc9ccf34d4"
+            }
+          ],
+          "id": "14202b68-84db-4f4e-9c79-6a88142027c6",
+          "createdAt": "2026-07-28T02:56:50.000Z",
+          "updatedAt": "2026-07-28T02:56:50.000Z",
+          "uid": "35240-14202b68-84db-4f4e-9c79-6a88142027c6"
+        },
+        {
+          "name": "receipt",
+          "item": [
+            {
+              "name": "Upload a receipt image for an expense report. The receipt will be parsed using AI to extract amount, date, and merchant information. Accepts PNG, JPEG, WebP, and PDF formats.",
+              "id": "d5548338-c928-4efb-acac-8e5dd9141df7",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "apikey",
+                  "apikey": [
+                    {
+                      "key": "key",
+                      "value": "X-API-Key",
+                      "type": "string"
+                    },
+                    {
+                      "key": "value",
+                      "value": "{{apiKey}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "in",
+                      "value": "header",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "multipart/form-data"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": "The receipt image file to upload.",
+                      "key": "file",
+                      "type": "file",
+                      "contentType": "image/png, image/jpeg, image/jpg, image/webp, application/pdf",
+                      "value": null
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/expense-report/receipt?filter:legalEntityId=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "expense-report",
+                    "receipt"
+                  ],
+                  "query": [
+                    {
+                      "description": "The legal entity ID. Required if authenticating with access to multiple legal entities.",
+                      "key": "filter:legalEntityId",
+                      "value": "<string>"
+                    }
+                  ]
+                },
+                "description": "Upload a receipt image for an expense report. The receipt will be parsed using AI to extract amount, date, and merchant information. Accepts PNG, JPEG, WebP, and PDF formats."
+              },
+              "response": [
+                {
+                  "id": "e37eab8d-393b-44f9-9be4-9ce65df65bf0",
+                  "name": "OK",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "multipart/form-data"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-API-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "formdata",
+                      "formdata": [
+                        {
+                          "description": "The receipt image file to upload.",
+                          "key": "file",
+                          "type": "file",
+                          "contentType": "image/png, image/jpeg, image/jpg, image/webp, application/pdf"
+                        }
+                      ]
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/expense-report/receipt?filter:legalEntityId=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "expense-report",
+                        "receipt"
+                      ],
+                      "query": [
+                        {
+                          "description": "The legal entity ID. Required if authenticating with access to multiple legal entities.",
+                          "key": "filter:legalEntityId",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"documentId\": \"<string>\",\n  \"url\": \"<string>\",\n  \"expiresAt\": \"<dateTime>\",\n  \"parsedReceipt\": {\n    \"amount\": {\n      \"confidence\": \"high\",\n      \"valueCents\": \"<integer>\",\n      \"currency\": \"<string>\",\n      \"rawText\": \"<string>\"\n    },\n    \"date\": {\n      \"confidence\": \"medium\",\n      \"value\": \"<date>\",\n      \"rawText\": \"<string>\"\n    },\n    \"merchant\": {\n      \"confidence\": \"medium\",\n      \"name\": \"<string>\",\n      \"merchantV2Id\": \"<string>\",\n      \"merchantV2\": {\n        \"$entity\": \"merchant_v2\",\n        \"id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"metadata\": {\n          \"timestamp\": \"<dateTime>\"\n        },\n        \"isLive\": \"<boolean>\",\n        \"isInstantCashback\": \"<boolean>\",\n        \"heronId\": \"<string>\",\n        \"iconUrl\": \"<string>\",\n        \"logoUrl\": \"<string>\",\n        \"url\": \"<string>\",\n        \"merchantCategoryId\": \"<string>\"\n      },\n      \"rawText\": \"<string>\"\n    }\n  }\n}",
+                  "createdAt": "2026-07-28T02:56:50.000Z",
+                  "updatedAt": "2026-07-28T02:56:50.000Z",
+                  "uid": "35240-e37eab8d-393b-44f9-9be4-9ce65df65bf0"
+                },
+                {
+                  "id": "22cb0b98-0d3f-4cd7-9019-e083f5dc3b78",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "multipart/form-data"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-API-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "formdata",
+                      "formdata": [
+                        {
+                          "description": "The receipt image file to upload.",
+                          "key": "file",
+                          "type": "file",
+                          "contentType": "image/png, image/jpeg, image/jpg, image/webp, application/pdf"
+                        }
+                      ]
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/expense-report/receipt?filter:legalEntityId=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "expense-report",
+                        "receipt"
+                      ],
+                      "query": [
+                        {
+                          "description": "The legal entity ID. Required if authenticating with access to multiple legal entities.",
+                          "key": "filter:legalEntityId",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"eu_4\": -1894756\n  }\n}",
+                  "createdAt": "2026-07-28T02:56:50.000Z",
+                  "updatedAt": "2026-07-28T02:56:50.000Z",
+                  "uid": "35240-22cb0b98-0d3f-4cd7-9019-e083f5dc3b78"
+                },
+                {
+                  "id": "27e16937-75ed-4a2e-83df-91b40058e161",
+                  "name": "Forbidden",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "multipart/form-data"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-API-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "formdata",
+                      "formdata": [
+                        {
+                          "description": "The receipt image file to upload.",
+                          "key": "file",
+                          "type": "file",
+                          "contentType": "image/png, image/jpeg, image/jpg, image/webp, application/pdf"
+                        }
+                      ]
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/expense-report/receipt?filter:legalEntityId=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "expense-report",
+                        "receipt"
+                      ],
+                      "query": [
+                        {
+                          "description": "The legal entity ID. Required if authenticating with access to multiple legal entities.",
+                          "key": "filter:legalEntityId",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"eu_4\": -1894756\n  }\n}",
+                  "createdAt": "2026-07-28T02:56:50.000Z",
+                  "updatedAt": "2026-07-28T02:56:50.000Z",
+                  "uid": "35240-27e16937-75ed-4a2e-83df-91b40058e161"
+                },
+                {
+                  "id": "8f0352a0-455e-45b9-8028-0b4a038073c7",
+                  "name": "TooManyRequests",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "multipart/form-data"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-API-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "formdata",
+                      "formdata": [
+                        {
+                          "description": "The receipt image file to upload.",
+                          "key": "file",
+                          "type": "file",
+                          "contentType": "image/png, image/jpeg, image/jpg, image/webp, application/pdf"
+                        }
+                      ]
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/expense-report/receipt?filter:legalEntityId=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "expense-report",
+                        "receipt"
+                      ],
+                      "query": [
+                        {
+                          "description": "The legal entity ID. Required if authenticating with access to multiple legal entities.",
+                          "key": "filter:legalEntityId",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Too Many Requests",
+                  "code": 429,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"eu_4\": -1894756\n  }\n}",
+                  "createdAt": "2026-07-28T02:56:50.000Z",
+                  "updatedAt": "2026-07-28T02:56:50.000Z",
+                  "uid": "35240-8f0352a0-455e-45b9-8028-0b4a038073c7"
+                },
+                {
+                  "id": "43795280-ce5b-4cd2-88f2-b5ca68e4d05b",
+                  "name": "Internal Error",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "multipart/form-data"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-API-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "formdata",
+                      "formdata": [
+                        {
+                          "description": "The receipt image file to upload.",
+                          "key": "file",
+                          "type": "file",
+                          "contentType": "image/png, image/jpeg, image/jpg, image/webp, application/pdf"
+                        }
+                      ]
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/expense-report/receipt?filter:legalEntityId=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "expense-report",
+                        "receipt"
+                      ],
+                      "query": [
+                        {
+                          "description": "The legal entity ID. Required if authenticating with access to multiple legal entities.",
+                          "key": "filter:legalEntityId",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"eu_4\": -1894756\n  }\n}",
+                  "createdAt": "2026-07-28T02:56:50.000Z",
+                  "updatedAt": "2026-07-28T02:56:50.000Z",
+                  "uid": "35240-43795280-ce5b-4cd2-88f2-b5ca68e4d05b"
+                }
+              ],
+              "createdAt": "2026-07-28T02:56:50.000Z",
+              "updatedAt": "2026-07-28T02:56:50.000Z",
+              "uid": "35240-d5548338-c928-4efb-acac-8e5dd9141df7"
+            }
+          ],
+          "id": "cc9b11b6-af31-4c99-b29f-cdac9779641c",
+          "createdAt": "2026-07-28T02:56:50.000Z",
+          "updatedAt": "2026-07-28T02:56:50.000Z",
+          "uid": "35240-cc9b11b6-af31-4c99-b29f-cdac9779641c"
+        },
+        {
+          "name": "bulk-action",
+          "item": [
+            {
+              "name": "Perform bulk actions on expense reports.",
+              "id": "a364d951-06e2-4216-b072-edce3908dd88",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "apikey",
+                  "apikey": [
+                    {
+                      "key": "key",
+                      "value": "X-API-Key",
+                      "type": "string"
+                    },
+                    {
+                      "key": "value",
+                      "value": "{{apiKey}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "in",
+                      "value": "header",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "PATCH",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"action\": \"cancel\",\n  \"expenseReportIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"reviewedByUserId\": \"<string>\",\n  \"cancelledByUserId\": \"<string>\",\n  \"reason\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/expense-report/bulk-action?filter:legalEntityId=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "expense-report",
+                    "bulk-action"
+                  ],
+                  "query": [
+                    {
+                      "description": "The legal entity ID. Required if authenticating with access to multiple legal entities.",
+                      "key": "filter:legalEntityId",
+                      "value": "<string>"
+                    }
+                  ]
+                },
+                "description": "Perform bulk actions on expense reports."
+              },
+              "response": [
+                {
+                  "id": "7cf47300-be71-4487-a3b9-39ffdaa24607",
+                  "name": "OK",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-API-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"action\": \"cancel\",\n  \"expenseReportIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"reviewedByUserId\": \"<string>\",\n  \"cancelledByUserId\": \"<string>\",\n  \"reason\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/expense-report/bulk-action?filter:legalEntityId=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "expense-report",
+                        "bulk-action"
+                      ],
+                      "query": [
+                        {
+                          "description": "The legal entity ID. Required if authenticating with access to multiple legal entities.",
+                          "key": "filter:legalEntityId",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"successCount\": \"<integer>\",\n  \"failedIds\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "createdAt": "2026-07-28T02:56:50.000Z",
+                  "updatedAt": "2026-07-28T02:56:50.000Z",
+                  "uid": "35240-7cf47300-be71-4487-a3b9-39ffdaa24607"
+                },
+                {
+                  "id": "3d95ba8f-d920-48cd-acf9-710496c12d4d",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-API-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"action\": \"cancel\",\n  \"expenseReportIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"reviewedByUserId\": \"<string>\",\n  \"cancelledByUserId\": \"<string>\",\n  \"reason\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/expense-report/bulk-action?filter:legalEntityId=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "expense-report",
+                        "bulk-action"
+                      ],
+                      "query": [
+                        {
+                          "description": "The legal entity ID. Required if authenticating with access to multiple legal entities.",
+                          "key": "filter:legalEntityId",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"eu_4\": -1894756\n  }\n}",
+                  "createdAt": "2026-07-28T02:56:50.000Z",
+                  "updatedAt": "2026-07-28T02:56:50.000Z",
+                  "uid": "35240-3d95ba8f-d920-48cd-acf9-710496c12d4d"
+                },
+                {
+                  "id": "3c8631ba-c377-49cb-9fb3-e791be051e9b",
+                  "name": "Forbidden",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-API-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"action\": \"cancel\",\n  \"expenseReportIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"reviewedByUserId\": \"<string>\",\n  \"cancelledByUserId\": \"<string>\",\n  \"reason\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/expense-report/bulk-action?filter:legalEntityId=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "expense-report",
+                        "bulk-action"
+                      ],
+                      "query": [
+                        {
+                          "description": "The legal entity ID. Required if authenticating with access to multiple legal entities.",
+                          "key": "filter:legalEntityId",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"eu_4\": -1894756\n  }\n}",
+                  "createdAt": "2026-07-28T02:56:50.000Z",
+                  "updatedAt": "2026-07-28T02:56:50.000Z",
+                  "uid": "35240-3c8631ba-c377-49cb-9fb3-e791be051e9b"
+                },
+                {
+                  "id": "2bd0987d-ee90-4a2b-bf8c-78091b394db7",
+                  "name": "TooManyRequests",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-API-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"action\": \"cancel\",\n  \"expenseReportIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"reviewedByUserId\": \"<string>\",\n  \"cancelledByUserId\": \"<string>\",\n  \"reason\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/expense-report/bulk-action?filter:legalEntityId=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "expense-report",
+                        "bulk-action"
+                      ],
+                      "query": [
+                        {
+                          "description": "The legal entity ID. Required if authenticating with access to multiple legal entities.",
+                          "key": "filter:legalEntityId",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Too Many Requests",
+                  "code": 429,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"eu_4\": -1894756\n  }\n}",
+                  "createdAt": "2026-07-28T02:56:50.000Z",
+                  "updatedAt": "2026-07-28T02:56:50.000Z",
+                  "uid": "35240-2bd0987d-ee90-4a2b-bf8c-78091b394db7"
+                },
+                {
+                  "id": "63c37b8f-9e5e-4c75-8e43-4114fb5b5441",
+                  "name": "Internal Error",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-API-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"action\": \"cancel\",\n  \"expenseReportIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"reviewedByUserId\": \"<string>\",\n  \"cancelledByUserId\": \"<string>\",\n  \"reason\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/expense-report/bulk-action?filter:legalEntityId=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "expense-report",
+                        "bulk-action"
+                      ],
+                      "query": [
+                        {
+                          "description": "The legal entity ID. Required if authenticating with access to multiple legal entities.",
+                          "key": "filter:legalEntityId",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"eu_4\": -1894756\n  }\n}",
+                  "createdAt": "2026-07-28T02:56:50.000Z",
+                  "updatedAt": "2026-07-28T02:56:50.000Z",
+                  "uid": "35240-63c37b8f-9e5e-4c75-8e43-4114fb5b5441"
+                }
+              ],
+              "createdAt": "2026-07-28T02:56:50.000Z",
+              "updatedAt": "2026-07-28T02:56:50.000Z",
+              "uid": "35240-a364d951-06e2-4216-b072-edce3908dd88"
+            }
+          ],
+          "id": "10d091a2-8d02-490c-9226-92b070536616",
+          "createdAt": "2026-07-28T02:56:50.000Z",
+          "updatedAt": "2026-07-28T02:56:50.000Z",
+          "uid": "35240-10d091a2-8d02-490c-9226-92b070536616"
+        },
+        {
+          "name": "reimbursement-sources",
+          "item": [
+            {
+              "name": "Get connected bank accounts for a user that can be used as reimbursement payout destinations. Pass the `userId` query parameter to specify which user's bank accounts to retrieve.",
+              "id": "8dc6d04d-d83c-4cd4-b2f2-020e89f730ed",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "apikey",
+                  "apikey": [
+                    {
+                      "key": "key",
+                      "value": "X-API-Key",
+                      "type": "string"
+                    },
+                    {
+                      "key": "value",
+                      "value": "{{apiKey}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "in",
+                      "value": "header",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/expense-report/reimbursement-sources?filter:legalEntityId=<string>&userId=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "expense-report",
+                    "reimbursement-sources"
+                  ],
+                  "query": [
+                    {
+                      "description": "The legal entity ID. Required if authenticating with access to multiple legal entities.",
+                      "key": "filter:legalEntityId",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "(Required) The user ID to get reimbursement sources for. Required.",
+                      "key": "userId",
+                      "value": "<string>"
+                    }
+                  ]
+                },
+                "description": "Get connected bank accounts for a user that can be used as reimbursement payout destinations. Pass the `userId` query parameter to specify which user's bank accounts to retrieve."
+              },
+              "response": [
+                {
+                  "id": "e017020a-e274-4d4d-b9d7-df9064ee9485",
+                  "name": "OK",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-API-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/expense-report/reimbursement-sources?filter:legalEntityId=<string>&userId=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "expense-report",
+                        "reimbursement-sources"
+                      ],
+                      "query": [
+                        {
+                          "description": "The legal entity ID. Required if authenticating with access to multiple legal entities.",
+                          "key": "filter:legalEntityId",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "(Required) The user ID to get reimbursement sources for. Required.",
+                          "key": "userId",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"data\": [\n    {\n      \"id\": \"<string>\",\n      \"userId\": \"<string>\",\n      \"latestStatus\": \"inactive\",\n      \"accountName\": \"<string>\",\n      \"type\": \"<string>\",\n      \"subtype\": \"<string>\",\n      \"institution\": {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\"\n      },\n      \"metadata\": {\n        \"timestamp\": \"<dateTime>\"\n      },\n      \"lastSyncedAt\": \"<string>\",\n      \"lastStatusChangeAt\": \"<string>\",\n      \"officialAccountName\": \"<string>\",\n      \"accountOwnerName\": \"<string>\",\n      \"mask\": \"<string>\",\n      \"balance\": {\n        \"amount\": {\n          \"amount_cents\": \"<number>\",\n          \"currency\": \"USD\"\n        },\n        \"lastBalanceCheckDate\": \"<string>\"\n      },\n      \"latestBalanceCheck\": {\n        \"currentAmount\": {\n          \"amount_cents\": \"<number>\",\n          \"currency\": \"USD\"\n        },\n        \"availableAmount\": {\n          \"amount_cents\": \"<number>\",\n          \"currency\": \"USD\"\n        },\n        \"limitAmount\": {\n          \"amount_cents\": \"<number>\",\n          \"currency\": \"USD\"\n        }\n      },\n      \"error\": {\n        \"errorCode\": \"<string>\",\n        \"errorType\": \"<string>\",\n        \"actionMessage\": \"<string>\",\n        \"userActionCta\": \"<string>\"\n      },\n      \"institutionLogo\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"userId\": \"<string>\",\n      \"latestStatus\": \"login_required\",\n      \"accountName\": \"<string>\",\n      \"type\": \"<string>\",\n      \"subtype\": \"<string>\",\n      \"institution\": {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\"\n      },\n      \"metadata\": {\n        \"timestamp\": \"<dateTime>\"\n      },\n      \"lastSyncedAt\": \"<string>\",\n      \"lastStatusChangeAt\": \"<string>\",\n      \"officialAccountName\": \"<string>\",\n      \"accountOwnerName\": \"<string>\",\n      \"mask\": \"<string>\",\n      \"balance\": {\n        \"amount\": {\n          \"amount_cents\": \"<number>\",\n          \"currency\": \"USD\"\n        },\n        \"lastBalanceCheckDate\": \"<string>\"\n      },\n      \"latestBalanceCheck\": {\n        \"currentAmount\": {\n          \"amount_cents\": \"<number>\",\n          \"currency\": \"USD\"\n        },\n        \"availableAmount\": {\n          \"amount_cents\": \"<number>\",\n          \"currency\": \"USD\"\n        },\n        \"limitAmount\": {\n          \"amount_cents\": \"<number>\",\n          \"currency\": \"USD\"\n        }\n      },\n      \"error\": {\n        \"errorCode\": \"<string>\",\n        \"errorType\": \"<string>\",\n        \"actionMessage\": \"<string>\",\n        \"userActionCta\": \"<string>\"\n      },\n      \"institutionLogo\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T02:56:50.000Z",
+                  "updatedAt": "2026-07-28T02:56:50.000Z",
+                  "uid": "35240-e017020a-e274-4d4d-b9d7-df9064ee9485"
+                },
+                {
+                  "id": "06e9f5e0-ccbe-40b8-9a77-72dc51588ec3",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-API-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/expense-report/reimbursement-sources?filter:legalEntityId=<string>&userId=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "expense-report",
+                        "reimbursement-sources"
+                      ],
+                      "query": [
+                        {
+                          "description": "The legal entity ID. Required if authenticating with access to multiple legal entities.",
+                          "key": "filter:legalEntityId",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "(Required) The user ID to get reimbursement sources for. Required.",
+                          "key": "userId",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"eu_4\": -1894756\n  }\n}",
+                  "createdAt": "2026-07-28T02:56:50.000Z",
+                  "updatedAt": "2026-07-28T02:56:50.000Z",
+                  "uid": "35240-06e9f5e0-ccbe-40b8-9a77-72dc51588ec3"
+                },
+                {
+                  "id": "b5ede928-b96f-49ae-9074-d74e277bbbc9",
+                  "name": "Forbidden",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-API-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/expense-report/reimbursement-sources?filter:legalEntityId=<string>&userId=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "expense-report",
+                        "reimbursement-sources"
+                      ],
+                      "query": [
+                        {
+                          "description": "The legal entity ID. Required if authenticating with access to multiple legal entities.",
+                          "key": "filter:legalEntityId",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "(Required) The user ID to get reimbursement sources for. Required.",
+                          "key": "userId",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"eu_4\": -1894756\n  }\n}",
+                  "createdAt": "2026-07-28T02:56:50.000Z",
+                  "updatedAt": "2026-07-28T02:56:50.000Z",
+                  "uid": "35240-b5ede928-b96f-49ae-9074-d74e277bbbc9"
+                },
+                {
+                  "id": "b5db89b7-b17e-4523-bf99-6c833d11afd0",
+                  "name": "TooManyRequests",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-API-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/expense-report/reimbursement-sources?filter:legalEntityId=<string>&userId=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "expense-report",
+                        "reimbursement-sources"
+                      ],
+                      "query": [
+                        {
+                          "description": "The legal entity ID. Required if authenticating with access to multiple legal entities.",
+                          "key": "filter:legalEntityId",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "(Required) The user ID to get reimbursement sources for. Required.",
+                          "key": "userId",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Too Many Requests",
+                  "code": 429,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"eu_4\": -1894756\n  }\n}",
+                  "createdAt": "2026-07-28T02:56:50.000Z",
+                  "updatedAt": "2026-07-28T02:56:50.000Z",
+                  "uid": "35240-b5db89b7-b17e-4523-bf99-6c833d11afd0"
+                },
+                {
+                  "id": "6b2e3b6d-50b9-420a-9d62-70d47e5a0d53",
+                  "name": "Internal Error",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-API-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/expense-report/reimbursement-sources?filter:legalEntityId=<string>&userId=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "expense-report",
+                        "reimbursement-sources"
+                      ],
+                      "query": [
+                        {
+                          "description": "The legal entity ID. Required if authenticating with access to multiple legal entities.",
+                          "key": "filter:legalEntityId",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "(Required) The user ID to get reimbursement sources for. Required.",
+                          "key": "userId",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"eu_4\": -1894756\n  }\n}",
+                  "createdAt": "2026-07-28T02:56:50.000Z",
+                  "updatedAt": "2026-07-28T02:56:50.000Z",
+                  "uid": "35240-6b2e3b6d-50b9-420a-9d62-70d47e5a0d53"
+                }
+              ],
+              "createdAt": "2026-07-28T02:56:50.000Z",
+              "updatedAt": "2026-07-28T02:56:50.000Z",
+              "uid": "35240-8dc6d04d-d83c-4cd4-b2f2-020e89f730ed"
+            }
+          ],
+          "id": "dbbc2e0a-37cf-4c4f-89bc-f6328c9b1836",
+          "createdAt": "2026-07-28T02:56:50.000Z",
+          "updatedAt": "2026-07-28T02:56:50.000Z",
+          "uid": "35240-dbbc2e0a-37cf-4c4f-89bc-f6328c9b1836"
+        },
+        {
+          "name": "List expense reports for your legal entity. Supports pagination, filtering by status and submitter, and sorting.",
+          "id": "174fce1a-d17f-431d-8965-e491cccd4f6c",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-API-Key",
+                  "type": "string"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}",
+                  "type": "string"
+                },
+                {
+                  "key": "in",
+                  "value": "header",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/expense-report?cursor=<string>&filter:legalEntityId=<string>&filter:status=payment_completed&filter:submittedByUserId=<string>&sort=amountCents&sortDirection=ASC",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "expense-report"
+              ],
+              "query": [
+                {
+                  "description": "A cursor string to fetch the next page of results",
+                  "key": "cursor",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Filter by legal entity ID. Required if authenticating with access to multiple legal entities.",
+                  "key": "filter:legalEntityId",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Filter expense reports by status.",
+                  "key": "filter:status",
+                  "value": "payment_completed"
+                },
+                {
+                  "description": "Filter expense reports by the user who submitted them.",
+                  "key": "filter:submittedByUserId",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Sort expense reports by a field. Default is by `submittedAt` descending.",
+                  "key": "sort",
+                  "value": "amountCents"
+                },
+                {
+                  "description": "The direction to sort by. Defaults to DESC.",
+                  "key": "sortDirection",
+                  "value": "ASC"
+                }
+              ]
+            },
+            "description": "List expense reports for your legal entity. Supports pagination, filtering by status and submitter, and sorting."
+          },
+          "response": [
+            {
+              "id": "ea4ca041-ed49-4f8b-b49b-be90f13b257c",
+              "name": "OK",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/expense-report?cursor=<string>&filter:legalEntityId=<string>&filter:status=payment_completed&filter:submittedByUserId=<string>&sort=amountCents&sortDirection=ASC",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "expense-report"
+                  ],
+                  "query": [
+                    {
+                      "description": "A cursor string to fetch the next page of results",
+                      "key": "cursor",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by legal entity ID. Required if authenticating with access to multiple legal entities.",
+                      "key": "filter:legalEntityId",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter expense reports by status.",
+                      "key": "filter:status",
+                      "value": "payment_completed"
+                    },
+                    {
+                      "description": "Filter expense reports by the user who submitted them.",
+                      "key": "filter:submittedByUserId",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Sort expense reports by a field. Default is by `submittedAt` descending.",
+                      "key": "sort",
+                      "value": "amountCents"
+                    },
+                    {
+                      "description": "The direction to sort by. Defaults to DESC.",
+                      "key": "sortDirection",
+                      "value": "ASC"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"items\": [\n    {\n      \"id\": \"expense_report_ydtoz6oh0x\",\n      \"legalEntityId\": \"le_j3a2k\",\n      \"submittedByUserId\": \"u_xmb\",\n      \"amountCents\": \"<integer>\",\n      \"currency\": \"<string>\",\n      \"transactionDate\": \"<dateTime>\",\n      \"destinationId\": \"ub_8fk1n6gu\",\n      \"submittedAt\": \"<dateTime>\",\n      \"status\": \"cancelled\",\n      \"timestamp\": \"<dateTime>\",\n      \"merchantV2Id\": \"<string>\",\n      \"customMerchantId\": \"custom_merchant_\",\n      \"memo\": \"<string>\",\n      \"fxRateToUsd\": \"<string>\",\n      \"fxRateUpdatedAt\": \"<dateTime>\",\n      \"noReceiptReason\": \"<string>\",\n      \"merchant\": {\n        \"type\": \"merchantV2\",\n        \"merchantV2\": {\n          \"$entity\": \"merchant_v2\",\n          \"id\": \"<string>\",\n          \"name\": \"<string>\",\n          \"metadata\": {\n            \"timestamp\": \"<dateTime>\"\n          },\n          \"isLive\": \"<boolean>\",\n          \"isInstantCashback\": \"<boolean>\",\n          \"heronId\": \"<string>\",\n          \"iconUrl\": \"<string>\",\n          \"logoUrl\": \"<string>\",\n          \"url\": \"<string>\",\n          \"merchantCategoryId\": \"<string>\"\n        }\n      },\n      \"documents\": [\n        {\n          \"document\": {\n            \"$entity\": \"document\",\n            \"id\": \"<string>\",\n            \"accountType\": \"globalUsdSwift\",\n            \"accountId\": \"<string>\",\n            \"startDate\": \"<string>\",\n            \"endDate\": \"<string>\",\n            \"status\": \"uploaded\",\n            \"category\": \"statement\",\n            \"documentType\": \"check_deposit_front\",\n            \"accessLevel\": \"<string>\",\n            \"timestamp\": \"<string>\",\n            \"filename\": \"<string>\",\n            \"error\": \"<string>\",\n            \"checksum\": \"<string>\",\n            \"tags\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"documentSource\": \"generated\",\n            \"fileMetadata\": {\n              \"size\": \"<number>\",\n              \"type\": \"<string>\"\n            }\n          },\n          \"url\": \"<string>\"\n        },\n        {\n          \"document\": {\n            \"$entity\": \"document\",\n            \"id\": \"<string>\",\n            \"accountType\": \"globalUsdAch\",\n            \"accountId\": \"<string>\",\n            \"startDate\": \"<string>\",\n            \"endDate\": \"<string>\",\n            \"status\": \"error\",\n            \"category\": \"statement\",\n            \"documentType\": \"transactions_export\",\n            \"accessLevel\": \"<string>\",\n            \"timestamp\": \"<string>\",\n            \"filename\": \"<string>\",\n            \"error\": \"<string>\",\n            \"checksum\": \"<string>\",\n            \"tags\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"documentSource\": \"uploaded\",\n            \"fileMetadata\": {\n              \"size\": \"<number>\",\n              \"type\": \"<string>\"\n            }\n          },\n          \"url\": \"<string>\"\n        }\n      ],\n      \"aggregatedTransaction\": {\n        \"id\": \"<string>\",\n        \"date\": \"<string>\",\n        \"amount\": {\n          \"amount_cents\": \"<number>\",\n          \"currency\": \"USD\"\n        },\n        \"status\": \"settled\"\n      },\n      \"destination\": {\n        \"id\": \"<string>\",\n        \"accountName\": \"<string>\",\n        \"institution\": {\n          \"id\": \"<string>\",\n          \"name\": \"<string>\"\n        },\n        \"mask\": \"<string>\",\n        \"institutionLogo\": \"<string>\"\n      },\n      \"submittedByUser\": {\n        \"id\": \"<string>\",\n        \"name\": {\n          \"first\": \"<string>\",\n          \"last\": \"<string>\",\n          \"full\": \"<string>\"\n        }\n      },\n      \"reviewedByUser\": {\n        \"id\": \"<string>\",\n        \"name\": {\n          \"first\": \"<string>\",\n          \"last\": \"<string>\",\n          \"full\": \"<string>\"\n        }\n      },\n      \"review\": {\n        \"id\": \"expense_report_review_ft2hio\",\n        \"expenseReportId\": \"expense_report_ftyw28vffe\",\n        \"decision\": \"rejected\",\n        \"reviewedByUserId\": \"u_mf\",\n        \"reviewedAt\": \"<dateTime>\",\n        \"timestamp\": \"<dateTime>\",\n        \"rejectionReason\": \"<string>\"\n      }\n    },\n    {\n      \"id\": \"expense_report_4\",\n      \"legalEntityId\": \"le_\",\n      \"submittedByUserId\": \"u_3go\",\n      \"amountCents\": \"<integer>\",\n      \"currency\": \"<string>\",\n      \"transactionDate\": \"<dateTime>\",\n      \"destinationId\": \"ub_49focg\",\n      \"submittedAt\": \"<dateTime>\",\n      \"status\": \"cancelled\",\n      \"timestamp\": \"<dateTime>\",\n      \"merchantV2Id\": \"<string>\",\n      \"customMerchantId\": \"custom_merchant_9x1fgjqz7\",\n      \"memo\": \"<string>\",\n      \"fxRateToUsd\": \"<string>\",\n      \"fxRateUpdatedAt\": \"<dateTime>\",\n      \"noReceiptReason\": \"<string>\",\n      \"merchant\": {\n        \"type\": \"merchantV2\",\n        \"merchantV2\": {\n          \"$entity\": \"merchant_v2\",\n          \"id\": \"<string>\",\n          \"name\": \"<string>\",\n          \"metadata\": {\n            \"timestamp\": \"<dateTime>\"\n          },\n          \"isLive\": \"<boolean>\",\n          \"isInstantCashback\": \"<boolean>\",\n          \"heronId\": \"<string>\",\n          \"iconUrl\": \"<string>\",\n          \"logoUrl\": \"<string>\",\n          \"url\": \"<string>\",\n          \"merchantCategoryId\": \"<string>\"\n        }\n      },\n      \"documents\": [\n        {\n          \"document\": {\n            \"$entity\": \"document\",\n            \"id\": \"<string>\",\n            \"accountType\": \"globalUsdCrypto\",\n            \"accountId\": \"<string>\",\n            \"startDate\": \"<string>\",\n            \"endDate\": \"<string>\",\n            \"status\": \"uploaded\",\n            \"category\": \"document\",\n            \"documentType\": \"operating_agreement\",\n            \"accessLevel\": \"<string>\",\n            \"timestamp\": \"<string>\",\n            \"filename\": \"<string>\",\n            \"error\": \"<string>\",\n            \"checksum\": \"<string>\",\n            \"tags\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"documentSource\": \"uploaded\",\n            \"fileMetadata\": {\n              \"size\": \"<number>\",\n              \"type\": \"<string>\"\n            }\n          },\n          \"url\": \"<string>\"\n        },\n        {\n          \"document\": {\n            \"$entity\": \"document\",\n            \"id\": \"<string>\",\n            \"accountType\": \"globalUsdAch\",\n            \"accountId\": \"<string>\",\n            \"startDate\": \"<string>\",\n            \"endDate\": \"<string>\",\n            \"status\": \"generating\",\n            \"category\": \"document\",\n            \"documentType\": \"prospectus\",\n            \"accessLevel\": \"<string>\",\n            \"timestamp\": \"<string>\",\n            \"filename\": \"<string>\",\n            \"error\": \"<string>\",\n            \"checksum\": \"<string>\",\n            \"tags\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"documentSource\": \"uploaded\",\n            \"fileMetadata\": {\n              \"size\": \"<number>\",\n              \"type\": \"<string>\"\n            }\n          },\n          \"url\": \"<string>\"\n        }\n      ],\n      \"aggregatedTransaction\": {\n        \"id\": \"<string>\",\n        \"date\": \"<string>\",\n        \"amount\": {\n          \"amount_cents\": \"<number>\",\n          \"currency\": \"USD\"\n        },\n        \"status\": \"settled\"\n      },\n      \"destination\": {\n        \"id\": \"<string>\",\n        \"accountName\": \"<string>\",\n        \"institution\": {\n          \"id\": \"<string>\",\n          \"name\": \"<string>\"\n        },\n        \"mask\": \"<string>\",\n        \"institutionLogo\": \"<string>\"\n      },\n      \"submittedByUser\": {\n        \"id\": \"<string>\",\n        \"name\": {\n          \"first\": \"<string>\",\n          \"last\": \"<string>\",\n          \"full\": \"<string>\"\n        }\n      },\n      \"reviewedByUser\": {\n        \"id\": \"<string>\",\n        \"name\": {\n          \"first\": \"<string>\",\n          \"last\": \"<string>\",\n          \"full\": \"<string>\"\n        }\n      },\n      \"review\": {\n        \"id\": \"expense_report_review_5gooip\",\n        \"expenseReportId\": \"expense_report_93jqk\",\n        \"decision\": \"approved\",\n        \"reviewedByUserId\": \"u_h4wsv1\",\n        \"reviewedAt\": \"<dateTime>\",\n        \"timestamp\": \"<dateTime>\",\n        \"rejectionReason\": \"<string>\"\n      }\n    }\n  ],\n  \"metadata\": {\n    \"nextCursor\": \"<string>\",\n    \"count\": \"<number>\"\n  }\n}",
+              "createdAt": "2026-07-28T02:56:50.000Z",
+              "updatedAt": "2026-07-28T02:56:50.000Z",
+              "uid": "35240-ea4ca041-ed49-4f8b-b49b-be90f13b257c"
+            },
+            {
+              "id": "3d3ac432-eb35-4ffb-903d-02ad38462f58",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/expense-report?cursor=<string>&filter:legalEntityId=<string>&filter:status=payment_completed&filter:submittedByUserId=<string>&sort=amountCents&sortDirection=ASC",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "expense-report"
+                  ],
+                  "query": [
+                    {
+                      "description": "A cursor string to fetch the next page of results",
+                      "key": "cursor",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by legal entity ID. Required if authenticating with access to multiple legal entities.",
+                      "key": "filter:legalEntityId",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter expense reports by status.",
+                      "key": "filter:status",
+                      "value": "payment_completed"
+                    },
+                    {
+                      "description": "Filter expense reports by the user who submitted them.",
+                      "key": "filter:submittedByUserId",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Sort expense reports by a field. Default is by `submittedAt` descending.",
+                      "key": "sort",
+                      "value": "amountCents"
+                    },
+                    {
+                      "description": "The direction to sort by. Defaults to DESC.",
+                      "key": "sortDirection",
+                      "value": "ASC"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"eu_4\": -1894756\n  }\n}",
+              "createdAt": "2026-07-28T02:56:50.000Z",
+              "updatedAt": "2026-07-28T02:56:50.000Z",
+              "uid": "35240-3d3ac432-eb35-4ffb-903d-02ad38462f58"
+            },
+            {
+              "id": "fd2bd49f-8a59-4e13-a9c8-d6368c75b791",
+              "name": "Forbidden",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/expense-report?cursor=<string>&filter:legalEntityId=<string>&filter:status=payment_completed&filter:submittedByUserId=<string>&sort=amountCents&sortDirection=ASC",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "expense-report"
+                  ],
+                  "query": [
+                    {
+                      "description": "A cursor string to fetch the next page of results",
+                      "key": "cursor",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by legal entity ID. Required if authenticating with access to multiple legal entities.",
+                      "key": "filter:legalEntityId",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter expense reports by status.",
+                      "key": "filter:status",
+                      "value": "payment_completed"
+                    },
+                    {
+                      "description": "Filter expense reports by the user who submitted them.",
+                      "key": "filter:submittedByUserId",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Sort expense reports by a field. Default is by `submittedAt` descending.",
+                      "key": "sort",
+                      "value": "amountCents"
+                    },
+                    {
+                      "description": "The direction to sort by. Defaults to DESC.",
+                      "key": "sortDirection",
+                      "value": "ASC"
+                    }
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"eu_4\": -1894756\n  }\n}",
+              "createdAt": "2026-07-28T02:56:50.000Z",
+              "updatedAt": "2026-07-28T02:56:50.000Z",
+              "uid": "35240-fd2bd49f-8a59-4e13-a9c8-d6368c75b791"
+            },
+            {
+              "id": "7041dec3-c2d4-4fac-9f00-cf4cf70cd517",
+              "name": "TooManyRequests",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/expense-report?cursor=<string>&filter:legalEntityId=<string>&filter:status=payment_completed&filter:submittedByUserId=<string>&sort=amountCents&sortDirection=ASC",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "expense-report"
+                  ],
+                  "query": [
+                    {
+                      "description": "A cursor string to fetch the next page of results",
+                      "key": "cursor",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by legal entity ID. Required if authenticating with access to multiple legal entities.",
+                      "key": "filter:legalEntityId",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter expense reports by status.",
+                      "key": "filter:status",
+                      "value": "payment_completed"
+                    },
+                    {
+                      "description": "Filter expense reports by the user who submitted them.",
+                      "key": "filter:submittedByUserId",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Sort expense reports by a field. Default is by `submittedAt` descending.",
+                      "key": "sort",
+                      "value": "amountCents"
+                    },
+                    {
+                      "description": "The direction to sort by. Defaults to DESC.",
+                      "key": "sortDirection",
+                      "value": "ASC"
+                    }
+                  ]
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"eu_4\": -1894756\n  }\n}",
+              "createdAt": "2026-07-28T02:56:50.000Z",
+              "updatedAt": "2026-07-28T02:56:50.000Z",
+              "uid": "35240-7041dec3-c2d4-4fac-9f00-cf4cf70cd517"
+            },
+            {
+              "id": "aff12be5-5d05-4271-b971-95dc432e44dc",
+              "name": "Internal Error",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/expense-report?cursor=<string>&filter:legalEntityId=<string>&filter:status=payment_completed&filter:submittedByUserId=<string>&sort=amountCents&sortDirection=ASC",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "expense-report"
+                  ],
+                  "query": [
+                    {
+                      "description": "A cursor string to fetch the next page of results",
+                      "key": "cursor",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by legal entity ID. Required if authenticating with access to multiple legal entities.",
+                      "key": "filter:legalEntityId",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter expense reports by status.",
+                      "key": "filter:status",
+                      "value": "payment_completed"
+                    },
+                    {
+                      "description": "Filter expense reports by the user who submitted them.",
+                      "key": "filter:submittedByUserId",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Sort expense reports by a field. Default is by `submittedAt` descending.",
+                      "key": "sort",
+                      "value": "amountCents"
+                    },
+                    {
+                      "description": "The direction to sort by. Defaults to DESC.",
+                      "key": "sortDirection",
+                      "value": "ASC"
+                    }
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"eu_4\": -1894756\n  }\n}",
+              "createdAt": "2026-07-28T02:56:50.000Z",
+              "updatedAt": "2026-07-28T02:56:50.000Z",
+              "uid": "35240-aff12be5-5d05-4271-b971-95dc432e44dc"
+            }
+          ],
+          "createdAt": "2026-07-28T02:56:50.000Z",
+          "updatedAt": "2026-07-28T02:56:50.000Z",
+          "uid": "35240-174fce1a-d17f-431d-8965-e491cccd4f6c"
+        },
+        {
+          "name": "Submit a new expense report for reimbursement.",
+          "id": "5b1c43be-0725-40d9-ac42-35f4a5010fad",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-API-Key",
+                  "type": "string"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}",
+                  "type": "string"
+                },
+                {
+                  "key": "in",
+                  "value": "header",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"submittedByUserId\": \"<string>\",\n  \"amountCents\": \"<integer>\",\n  \"transactionDate\": \"<dateTime>\",\n  \"destinationId\": \"<string>\",\n  \"merchant\": {\n    \"type\": \"customMerchant\",\n    \"id\": \"<string>\"\n  },\n  \"currency\": \"USD\",\n  \"memo\": \"<string>\",\n  \"documentIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"fxRateToUsd\": \"<string>\",\n  \"fxRateUpdatedAt\": \"<dateTime>\",\n  \"noReceiptReason\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/expense-report?filter:legalEntityId=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "expense-report"
+              ],
+              "query": [
+                {
+                  "description": "The legal entity ID. Required if authenticating with access to multiple legal entities.",
+                  "key": "filter:legalEntityId",
+                  "value": "<string>"
+                }
+              ]
+            },
+            "description": "Submit a new expense report for reimbursement."
+          },
+          "response": [
+            {
+              "id": "805a043d-d2ca-4e32-b0f5-42dff0eccd22",
+              "name": "OK",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"submittedByUserId\": \"<string>\",\n  \"amountCents\": \"<integer>\",\n  \"transactionDate\": \"<dateTime>\",\n  \"destinationId\": \"<string>\",\n  \"merchant\": {\n    \"type\": \"customMerchant\",\n    \"id\": \"<string>\"\n  },\n  \"currency\": \"USD\",\n  \"memo\": \"<string>\",\n  \"documentIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"fxRateToUsd\": \"<string>\",\n  \"fxRateUpdatedAt\": \"<dateTime>\",\n  \"noReceiptReason\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/expense-report?filter:legalEntityId=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "expense-report"
+                  ],
+                  "query": [
+                    {
+                      "description": "The legal entity ID. Required if authenticating with access to multiple legal entities.",
+                      "key": "filter:legalEntityId",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"expenseReport\": {\n    \"id\": \"expense_report_92jpdt\",\n    \"legalEntityId\": \"le_ye\",\n    \"submittedByUserId\": \"u_p6\",\n    \"amountCents\": \"<integer>\",\n    \"currency\": \"<string>\",\n    \"transactionDate\": \"<dateTime>\",\n    \"destinationId\": \"ub_zqrxdanng6\",\n    \"submittedAt\": \"<dateTime>\",\n    \"status\": \"payment_failed\",\n    \"timestamp\": \"<dateTime>\",\n    \"merchantV2Id\": \"<string>\",\n    \"customMerchantId\": \"custom_merchant_rhfskqx0\",\n    \"memo\": \"<string>\",\n    \"fxRateToUsd\": \"<string>\",\n    \"fxRateUpdatedAt\": \"<dateTime>\",\n    \"noReceiptReason\": \"<string>\",\n    \"merchant\": {\n      \"type\": \"merchantV2\",\n      \"merchantV2\": {\n        \"$entity\": \"merchant_v2\",\n        \"id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"metadata\": {\n          \"timestamp\": \"<dateTime>\"\n        },\n        \"isLive\": \"<boolean>\",\n        \"isInstantCashback\": \"<boolean>\",\n        \"heronId\": \"<string>\",\n        \"iconUrl\": \"<string>\",\n        \"logoUrl\": \"<string>\",\n        \"url\": \"<string>\",\n        \"merchantCategoryId\": \"<string>\"\n      }\n    },\n    \"documents\": [\n      {\n        \"document\": {\n          \"$entity\": \"document\",\n          \"id\": \"<string>\",\n          \"accountType\": \"productApplication\",\n          \"accountId\": \"<string>\",\n          \"startDate\": \"<string>\",\n          \"endDate\": \"<string>\",\n          \"status\": \"uploading\",\n          \"category\": \"document\",\n          \"documentType\": \"utility_bill\",\n          \"accessLevel\": \"<string>\",\n          \"timestamp\": \"<string>\",\n          \"filename\": \"<string>\",\n          \"error\": \"<string>\",\n          \"checksum\": \"<string>\",\n          \"tags\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"documentSource\": \"uploaded\",\n          \"fileMetadata\": {\n            \"size\": \"<number>\",\n            \"type\": \"<string>\"\n          }\n        },\n        \"url\": \"<string>\"\n      },\n      {\n        \"document\": {\n          \"$entity\": \"document\",\n          \"id\": \"<string>\",\n          \"accountType\": \"globalUsdAch\",\n          \"accountId\": \"<string>\",\n          \"startDate\": \"<string>\",\n          \"endDate\": \"<string>\",\n          \"status\": \"uploading\",\n          \"category\": \"document\",\n          \"documentType\": \"pay_by_slash_avatar\",\n          \"accessLevel\": \"<string>\",\n          \"timestamp\": \"<string>\",\n          \"filename\": \"<string>\",\n          \"error\": \"<string>\",\n          \"checksum\": \"<string>\",\n          \"tags\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"documentSource\": \"uploaded\",\n          \"fileMetadata\": {\n            \"size\": \"<number>\",\n            \"type\": \"<string>\"\n          }\n        },\n        \"url\": \"<string>\"\n      }\n    ],\n    \"aggregatedTransaction\": {\n      \"id\": \"<string>\",\n      \"date\": \"<string>\",\n      \"amount\": {\n        \"amount_cents\": \"<number>\",\n        \"currency\": \"USD\"\n      },\n      \"status\": \"returned\"\n    },\n    \"destination\": {\n      \"id\": \"<string>\",\n      \"accountName\": \"<string>\",\n      \"institution\": {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\"\n      },\n      \"mask\": \"<string>\",\n      \"institutionLogo\": \"<string>\"\n    },\n    \"submittedByUser\": {\n      \"id\": \"<string>\",\n      \"name\": {\n        \"first\": \"<string>\",\n        \"last\": \"<string>\",\n        \"full\": \"<string>\"\n      }\n    },\n    \"reviewedByUser\": {\n      \"id\": \"<string>\",\n      \"name\": {\n        \"first\": \"<string>\",\n        \"last\": \"<string>\",\n        \"full\": \"<string>\"\n      }\n    },\n    \"review\": {\n      \"id\": \"expense_report_review_acwaz5\",\n      \"expenseReportId\": \"expense_report_bm5ex2k\",\n      \"decision\": \"rejected\",\n      \"reviewedByUserId\": \"u_\",\n      \"reviewedAt\": \"<dateTime>\",\n      \"timestamp\": \"<dateTime>\",\n      \"rejectionReason\": \"<string>\"\n    }\n  }\n}",
+              "createdAt": "2026-07-28T02:56:50.000Z",
+              "updatedAt": "2026-07-28T02:56:50.000Z",
+              "uid": "35240-805a043d-d2ca-4e32-b0f5-42dff0eccd22"
+            },
+            {
+              "id": "068b4eac-fced-4e15-b0bc-896d14e36e94",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"submittedByUserId\": \"<string>\",\n  \"amountCents\": \"<integer>\",\n  \"transactionDate\": \"<dateTime>\",\n  \"destinationId\": \"<string>\",\n  \"merchant\": {\n    \"type\": \"customMerchant\",\n    \"id\": \"<string>\"\n  },\n  \"currency\": \"USD\",\n  \"memo\": \"<string>\",\n  \"documentIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"fxRateToUsd\": \"<string>\",\n  \"fxRateUpdatedAt\": \"<dateTime>\",\n  \"noReceiptReason\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/expense-report?filter:legalEntityId=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "expense-report"
+                  ],
+                  "query": [
+                    {
+                      "description": "The legal entity ID. Required if authenticating with access to multiple legal entities.",
+                      "key": "filter:legalEntityId",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"eu_4\": -1894756\n  }\n}",
+              "createdAt": "2026-07-28T02:56:50.000Z",
+              "updatedAt": "2026-07-28T02:56:50.000Z",
+              "uid": "35240-068b4eac-fced-4e15-b0bc-896d14e36e94"
+            },
+            {
+              "id": "0814baa1-a6c0-44af-8d34-3d325fc5e8ce",
+              "name": "Forbidden",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"submittedByUserId\": \"<string>\",\n  \"amountCents\": \"<integer>\",\n  \"transactionDate\": \"<dateTime>\",\n  \"destinationId\": \"<string>\",\n  \"merchant\": {\n    \"type\": \"customMerchant\",\n    \"id\": \"<string>\"\n  },\n  \"currency\": \"USD\",\n  \"memo\": \"<string>\",\n  \"documentIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"fxRateToUsd\": \"<string>\",\n  \"fxRateUpdatedAt\": \"<dateTime>\",\n  \"noReceiptReason\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/expense-report?filter:legalEntityId=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "expense-report"
+                  ],
+                  "query": [
+                    {
+                      "description": "The legal entity ID. Required if authenticating with access to multiple legal entities.",
+                      "key": "filter:legalEntityId",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"eu_4\": -1894756\n  }\n}",
+              "createdAt": "2026-07-28T02:56:50.000Z",
+              "updatedAt": "2026-07-28T02:56:50.000Z",
+              "uid": "35240-0814baa1-a6c0-44af-8d34-3d325fc5e8ce"
+            },
+            {
+              "id": "3cfc33b8-a6d6-44da-b83b-6753fa208357",
+              "name": "TooManyRequests",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"submittedByUserId\": \"<string>\",\n  \"amountCents\": \"<integer>\",\n  \"transactionDate\": \"<dateTime>\",\n  \"destinationId\": \"<string>\",\n  \"merchant\": {\n    \"type\": \"customMerchant\",\n    \"id\": \"<string>\"\n  },\n  \"currency\": \"USD\",\n  \"memo\": \"<string>\",\n  \"documentIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"fxRateToUsd\": \"<string>\",\n  \"fxRateUpdatedAt\": \"<dateTime>\",\n  \"noReceiptReason\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/expense-report?filter:legalEntityId=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "expense-report"
+                  ],
+                  "query": [
+                    {
+                      "description": "The legal entity ID. Required if authenticating with access to multiple legal entities.",
+                      "key": "filter:legalEntityId",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"eu_4\": -1894756\n  }\n}",
+              "createdAt": "2026-07-28T02:56:50.000Z",
+              "updatedAt": "2026-07-28T02:56:50.000Z",
+              "uid": "35240-3cfc33b8-a6d6-44da-b83b-6753fa208357"
+            },
+            {
+              "id": "1c43cc54-3ab0-41db-9eab-0a3901d601dc",
+              "name": "Internal Error",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"submittedByUserId\": \"<string>\",\n  \"amountCents\": \"<integer>\",\n  \"transactionDate\": \"<dateTime>\",\n  \"destinationId\": \"<string>\",\n  \"merchant\": {\n    \"type\": \"customMerchant\",\n    \"id\": \"<string>\"\n  },\n  \"currency\": \"USD\",\n  \"memo\": \"<string>\",\n  \"documentIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"fxRateToUsd\": \"<string>\",\n  \"fxRateUpdatedAt\": \"<dateTime>\",\n  \"noReceiptReason\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/expense-report?filter:legalEntityId=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "expense-report"
+                  ],
+                  "query": [
+                    {
+                      "description": "The legal entity ID. Required if authenticating with access to multiple legal entities.",
+                      "key": "filter:legalEntityId",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"eu_4\": -1894756\n  }\n}",
+              "createdAt": "2026-07-28T02:56:50.000Z",
+              "updatedAt": "2026-07-28T02:56:50.000Z",
+              "uid": "35240-1c43cc54-3ab0-41db-9eab-0a3901d601dc"
+            }
+          ],
+          "createdAt": "2026-07-28T02:56:50.000Z",
+          "updatedAt": "2026-07-28T02:56:50.000Z",
+          "uid": "35240-5b1c43be-0725-40d9-ac42-35f4a5010fad"
+        }
+      ],
+      "id": "0a7b9b42-4816-4637-9da9-dea889d947d8",
+      "createdAt": "2026-07-28T02:56:50.000Z",
+      "updatedAt": "2026-07-28T02:56:50.000Z",
+      "uid": "35240-0a7b9b42-4816-4637-9da9-dea889d947d8"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-API-Key",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.slash.com"
+    }
+  ]
+}

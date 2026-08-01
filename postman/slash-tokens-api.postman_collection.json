@@ -1,0 +1,305 @@
+{
+  "info": {
+    "_postman_id": "659d0d1d-8451-43b8-9083-0ae1b4879cdc",
+    "name": "Slash Public Account Tokens API",
+    "description": "API description",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:57:03.000Z",
+    "updatedAt": "2026-07-28T02:57:03.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-659d0d1d-8451-43b8-9083-0ae1b4879cdc"
+  },
+  "item": [
+    {
+      "name": "tokens",
+      "item": [
+        {
+          "name": "prices",
+          "item": [
+            {
+              "name": "Get Token Prices",
+              "id": "ba56ad64-6d0e-4d69-bbe5-276f96b7d01e",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/tokens/prices",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "tokens",
+                    "prices"
+                  ]
+                },
+                "description": "Returns real-time prices for major crypto tokens. This endpoint is publicly accessible without authentication."
+              },
+              "response": [
+                {
+                  "id": "39a7a46a-eda8-4dbe-96f6-445a82fd1591",
+                  "name": "OK",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-API-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/tokens/prices",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "tokens",
+                        "prices"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"items\": [\n    {\n      \"symbol\": \"<string>\",\n      \"price\": {\n        \"currency\": \"usd\",\n        \"value\": \"<string>\",\n        \"lastUpdatedAt\": \"<dateTime>\"\n      }\n    },\n    {\n      \"symbol\": \"<string>\",\n      \"price\": {\n        \"currency\": \"usd\",\n        \"value\": \"<string>\",\n        \"lastUpdatedAt\": \"<dateTime>\"\n      }\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T02:57:03.000Z",
+                  "updatedAt": "2026-07-28T02:57:03.000Z",
+                  "uid": "35240-39a7a46a-eda8-4dbe-96f6-445a82fd1591"
+                },
+                {
+                  "id": "ae7d9f4c-69a8-4fd6-973c-e47493a00658",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-API-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/tokens/prices",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "tokens",
+                        "prices"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"sit72f\": false,\n    \"ullamco__8f\": 62897695.76034239,\n    \"minim7ad\": true,\n    \"deserunt666\": false,\n    \"proidentccc\": -57334869\n  }\n}",
+                  "createdAt": "2026-07-28T02:57:03.000Z",
+                  "updatedAt": "2026-07-28T02:57:03.000Z",
+                  "uid": "35240-ae7d9f4c-69a8-4fd6-973c-e47493a00658"
+                },
+                {
+                  "id": "ad29ab54-400b-47f3-b990-50dbf71195ed",
+                  "name": "Forbidden",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-API-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/tokens/prices",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "tokens",
+                        "prices"
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"sit72f\": false,\n    \"ullamco__8f\": 62897695.76034239,\n    \"minim7ad\": true,\n    \"deserunt666\": false,\n    \"proidentccc\": -57334869\n  }\n}",
+                  "createdAt": "2026-07-28T02:57:03.000Z",
+                  "updatedAt": "2026-07-28T02:57:03.000Z",
+                  "uid": "35240-ad29ab54-400b-47f3-b990-50dbf71195ed"
+                },
+                {
+                  "id": "083e106a-7638-40fc-94fe-7c842c4da344",
+                  "name": "TooManyRequests",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-API-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/tokens/prices",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "tokens",
+                        "prices"
+                      ]
+                    }
+                  },
+                  "status": "Too Many Requests",
+                  "code": 429,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"sit72f\": false,\n    \"ullamco__8f\": 62897695.76034239,\n    \"minim7ad\": true,\n    \"deserunt666\": false,\n    \"proidentccc\": -57334869\n  }\n}",
+                  "createdAt": "2026-07-28T02:57:03.000Z",
+                  "updatedAt": "2026-07-28T02:57:03.000Z",
+                  "uid": "35240-083e106a-7638-40fc-94fe-7c842c4da344"
+                },
+                {
+                  "id": "ee0283b3-705c-4a29-907e-ece8bb3b2a0c",
+                  "name": "Internal Error",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-API-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/tokens/prices",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "tokens",
+                        "prices"
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"sit72f\": false,\n    \"ullamco__8f\": 62897695.76034239,\n    \"minim7ad\": true,\n    \"deserunt666\": false,\n    \"proidentccc\": -57334869\n  }\n}",
+                  "createdAt": "2026-07-28T02:57:03.000Z",
+                  "updatedAt": "2026-07-28T02:57:03.000Z",
+                  "uid": "35240-ee0283b3-705c-4a29-907e-ece8bb3b2a0c"
+                }
+              ],
+              "createdAt": "2026-07-28T02:57:03.000Z",
+              "updatedAt": "2026-07-28T02:57:03.000Z",
+              "uid": "35240-ba56ad64-6d0e-4d69-bbe5-276f96b7d01e"
+            }
+          ],
+          "id": "6efdaf34-632b-4d06-a0ab-c8f05633b7c8",
+          "createdAt": "2026-07-28T02:57:03.000Z",
+          "updatedAt": "2026-07-28T02:57:03.000Z",
+          "uid": "35240-6efdaf34-632b-4d06-a0ab-c8f05633b7c8"
+        }
+      ],
+      "id": "dd9c4809-6637-48bb-807c-489fc7bc815d",
+      "createdAt": "2026-07-28T02:57:03.000Z",
+      "updatedAt": "2026-07-28T02:57:03.000Z",
+      "uid": "35240-dd9c4809-6637-48bb-807c-489fc7bc815d"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-API-Key",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.slash.com"
+    }
+  ]
+}

@@ -1,8 +1,30 @@
 aid: slash
 name: Slash
-description: Slash is a company surfaced as a portfolio company of menlo-ventures, nea, ribbit-capital
-  and added to the API Evangelist network as a stub for enrichment. This profile is a lead awaiting the
-  enrichment pipeline.
+description: >-
+  Slash is a business banking and finance platform for modern companies —
+  startups, agencies, e-commerce sellers, and enterprises — combining business
+  checking, unlimited virtual and physical corporate cards, ACH/wire and
+  real-time payments, global USD accounts, stablecoin on/off ramps, treasury,
+  invoicing, expense management, and reporting on one platform. Founded in 2021
+  and valued at $1.4B after a 2026 Series C led by Ribbit Capital, Slash exposes
+  a REST API (currently in Beta) covering accounts, virtual accounts, cards and
+  card groups, transactions, transfers, invoices, contacts and customers,
+  expense reports, webhooks, and FDX-compliant financial data access — plus an
+  official hosted MCP server, Agent Requests with human-in-the-loop approval,
+  and Python and Node.js SDKs for AI-agent and programmatic integration.
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://www.slash.com/images/social-previews/index.jpg
 url: https://raw.githubusercontent.com/api-evangelist/slash/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
@@ -10,19 +32,938 @@ x-backed-by:
 - menlo-ventures
 - nea
 - ribbit-capital
-x-tier: stub
-x-tier-reason: portfolio-lead
+x-tier: enriched
+x-tier-reason: portfolio-lead-enriched
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-21'
+x-enrichment:
+  date: '2026-07-21'
+  status: enriched
+  artifacts_added: 24
+  pass: local-v1
 tags:
 - Company
-apis: []
+- Banking
+- Payments
+- Financial Services
+- Fintech
+- Corporate Cards
+- Business Banking
+- Invoicing
+- Expense Management
+- Treasury
+- FDX
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
+apis:
+- aid: slash:slash-account-api
+  name: Slash Account API
+  description: The Account API from Slash — 4 operation(s) for account.
+  humanURL: https://docs.slash.com
+  baseURL: https://api.slash.com
+  tags:
+  - Account
+  properties:
+  - type: OpenAPI
+    url: openapi/slash-account-api-openapi.yml
+  - type: Documentation
+    url: https://docs.slash.com
+  - type: APIReference
+    url: https://docs.slash.com/api-reference
+  - type: GettingStarted
+    url: https://docs.slash.com/introduction
+  - type: Authentication
+    url: authentication/slash-authentication.yml
+  - type: OAuthScopes
+    url: scopes/slash-scopes.yml
+  - type: Conventions
+    url: conventions/slash-conventions.yml
+  - type: Idempotency
+    url: conventions/slash-conventions.yml
+  - type: ErrorCatalog
+    url: errors/slash-problem-types.yml
+  - type: DataModel
+    url: data-model/slash-data-model.yml
+  - type: Webhooks
+    url: asyncapi/slash-webhooks.yml
+  - type: AgenticAccess
+    url: agentic-access/slash-agentic-access.yml
+- aid: slash:slash-agent-requests-api
+  name: Slash Agent Requests API
+  description: The Agent Requests API from Slash — 2 operation(s) for agent requests.
+  humanURL: https://docs.slash.com
+  baseURL: https://api.slash.com
+  tags:
+  - Agent Requests
+  properties:
+  - type: OpenAPI
+    url: openapi/slash-agent-requests-api-openapi.yml
+  - type: Documentation
+    url: https://docs.slash.com
+  - type: APIReference
+    url: https://docs.slash.com/api-reference
+  - type: GettingStarted
+    url: https://docs.slash.com/introduction
+  - type: Authentication
+    url: authentication/slash-authentication.yml
+  - type: OAuthScopes
+    url: scopes/slash-scopes.yml
+  - type: Conventions
+    url: conventions/slash-conventions.yml
+  - type: Idempotency
+    url: conventions/slash-conventions.yml
+  - type: ErrorCatalog
+    url: errors/slash-problem-types.yml
+  - type: DataModel
+    url: data-model/slash-data-model.yml
+  - type: Webhooks
+    url: asyncapi/slash-webhooks.yml
+  - type: AgenticAccess
+    url: agentic-access/slash-agentic-access.yml
+- aid: slash:slash-analytics-api
+  name: Slash Analytics API
+  description: The Analytics API from Slash — 1 operation(s) for analytics.
+  humanURL: https://docs.slash.com
+  baseURL: https://api.slash.com
+  tags:
+  - Analytics
+  properties:
+  - type: OpenAPI
+    url: openapi/slash-analytics-api-openapi.yml
+  - type: Documentation
+    url: https://docs.slash.com
+  - type: APIReference
+    url: https://docs.slash.com/api-reference
+  - type: GettingStarted
+    url: https://docs.slash.com/introduction
+  - type: Authentication
+    url: authentication/slash-authentication.yml
+  - type: OAuthScopes
+    url: scopes/slash-scopes.yml
+  - type: Conventions
+    url: conventions/slash-conventions.yml
+  - type: Idempotency
+    url: conventions/slash-conventions.yml
+  - type: ErrorCatalog
+    url: errors/slash-problem-types.yml
+  - type: DataModel
+    url: data-model/slash-data-model.yml
+  - type: Webhooks
+    url: asyncapi/slash-webhooks.yml
+  - type: AgenticAccess
+    url: agentic-access/slash-agentic-access.yml
+- aid: slash:slash-card-api
+  name: Slash Card API
+  description: The Card API from Slash — 5 operation(s) for card.
+  humanURL: https://docs.slash.com
+  baseURL: https://api.slash.com
+  tags:
+  - Card
+  properties:
+  - type: OpenAPI
+    url: openapi/slash-card-api-openapi.yml
+  - type: Documentation
+    url: https://docs.slash.com
+  - type: APIReference
+    url: https://docs.slash.com/api-reference
+  - type: GettingStarted
+    url: https://docs.slash.com/introduction
+  - type: Authentication
+    url: authentication/slash-authentication.yml
+  - type: OAuthScopes
+    url: scopes/slash-scopes.yml
+  - type: Conventions
+    url: conventions/slash-conventions.yml
+  - type: Idempotency
+    url: conventions/slash-conventions.yml
+  - type: ErrorCatalog
+    url: errors/slash-problem-types.yml
+  - type: DataModel
+    url: data-model/slash-data-model.yml
+  - type: Webhooks
+    url: asyncapi/slash-webhooks.yml
+  - type: AgenticAccess
+    url: agentic-access/slash-agentic-access.yml
+- aid: slash:slash-card-group-api
+  name: Slash Card Group API
+  description: The Card Group API from Slash — 4 operation(s) for card group.
+  humanURL: https://docs.slash.com
+  baseURL: https://api.slash.com
+  tags:
+  - Card Group
+  properties:
+  - type: OpenAPI
+    url: openapi/slash-card-group-api-openapi.yml
+  - type: Documentation
+    url: https://docs.slash.com
+  - type: APIReference
+    url: https://docs.slash.com/api-reference
+  - type: GettingStarted
+    url: https://docs.slash.com/introduction
+  - type: Authentication
+    url: authentication/slash-authentication.yml
+  - type: OAuthScopes
+    url: scopes/slash-scopes.yml
+  - type: Conventions
+    url: conventions/slash-conventions.yml
+  - type: Idempotency
+    url: conventions/slash-conventions.yml
+  - type: ErrorCatalog
+    url: errors/slash-problem-types.yml
+  - type: DataModel
+    url: data-model/slash-data-model.yml
+  - type: Webhooks
+    url: asyncapi/slash-webhooks.yml
+  - type: AgenticAccess
+    url: agentic-access/slash-agentic-access.yml
+- aid: slash:slash-card-product-api
+  name: Slash Card Product API
+  description: The Card Product API from Slash — 1 operation(s) for card product.
+  humanURL: https://docs.slash.com
+  baseURL: https://api.slash.com
+  tags:
+  - Card Product
+  properties:
+  - type: OpenAPI
+    url: openapi/slash-card-product-api-openapi.yml
+  - type: Documentation
+    url: https://docs.slash.com
+  - type: APIReference
+    url: https://docs.slash.com/api-reference
+  - type: GettingStarted
+    url: https://docs.slash.com/introduction
+  - type: Authentication
+    url: authentication/slash-authentication.yml
+  - type: OAuthScopes
+    url: scopes/slash-scopes.yml
+  - type: Conventions
+    url: conventions/slash-conventions.yml
+  - type: Idempotency
+    url: conventions/slash-conventions.yml
+  - type: ErrorCatalog
+    url: errors/slash-problem-types.yml
+  - type: DataModel
+    url: data-model/slash-data-model.yml
+  - type: Webhooks
+    url: asyncapi/slash-webhooks.yml
+  - type: AgenticAccess
+    url: agentic-access/slash-agentic-access.yml
+- aid: slash:slash-contact-api
+  name: Slash Contact API
+  description: The Contact API from Slash — 3 operation(s) for contact.
+  humanURL: https://docs.slash.com
+  baseURL: https://api.slash.com
+  tags:
+  - Contact
+  properties:
+  - type: OpenAPI
+    url: openapi/slash-contact-api-openapi.yml
+  - type: Documentation
+    url: https://docs.slash.com
+  - type: APIReference
+    url: https://docs.slash.com/api-reference
+  - type: GettingStarted
+    url: https://docs.slash.com/introduction
+  - type: Authentication
+    url: authentication/slash-authentication.yml
+  - type: OAuthScopes
+    url: scopes/slash-scopes.yml
+  - type: Conventions
+    url: conventions/slash-conventions.yml
+  - type: Idempotency
+    url: conventions/slash-conventions.yml
+  - type: ErrorCatalog
+    url: errors/slash-problem-types.yml
+  - type: DataModel
+    url: data-model/slash-data-model.yml
+  - type: Webhooks
+    url: asyncapi/slash-webhooks.yml
+  - type: AgenticAccess
+    url: agentic-access/slash-agentic-access.yml
+- aid: slash:slash-crypto-api
+  name: Slash Crypto API
+  description: The Crypto API from Slash — 1 operation(s) for crypto.
+  humanURL: https://docs.slash.com
+  baseURL: https://api.slash.com
+  tags:
+  - Crypto
+  properties:
+  - type: OpenAPI
+    url: openapi/slash-crypto-api-openapi.yml
+  - type: Documentation
+    url: https://docs.slash.com
+  - type: APIReference
+    url: https://docs.slash.com/api-reference
+  - type: GettingStarted
+    url: https://docs.slash.com/introduction
+  - type: Authentication
+    url: authentication/slash-authentication.yml
+  - type: OAuthScopes
+    url: scopes/slash-scopes.yml
+  - type: Conventions
+    url: conventions/slash-conventions.yml
+  - type: Idempotency
+    url: conventions/slash-conventions.yml
+  - type: ErrorCatalog
+    url: errors/slash-problem-types.yml
+  - type: DataModel
+    url: data-model/slash-data-model.yml
+  - type: Webhooks
+    url: asyncapi/slash-webhooks.yml
+  - type: AgenticAccess
+    url: agentic-access/slash-agentic-access.yml
+- aid: slash:slash-customer-api
+  name: Slash Customer API
+  description: The Customer API from Slash — 3 operation(s) for customer.
+  humanURL: https://docs.slash.com
+  baseURL: https://api.slash.com
+  tags:
+  - Customer
+  properties:
+  - type: OpenAPI
+    url: openapi/slash-customer-api-openapi.yml
+  - type: Documentation
+    url: https://docs.slash.com
+  - type: APIReference
+    url: https://docs.slash.com/api-reference
+  - type: GettingStarted
+    url: https://docs.slash.com/introduction
+  - type: Authentication
+    url: authentication/slash-authentication.yml
+  - type: OAuthScopes
+    url: scopes/slash-scopes.yml
+  - type: Conventions
+    url: conventions/slash-conventions.yml
+  - type: Idempotency
+    url: conventions/slash-conventions.yml
+  - type: ErrorCatalog
+    url: errors/slash-problem-types.yml
+  - type: DataModel
+    url: data-model/slash-data-model.yml
+  - type: Webhooks
+    url: asyncapi/slash-webhooks.yml
+  - type: AgenticAccess
+    url: agentic-access/slash-agentic-access.yml
+- aid: slash:slash-developer-account-api
+  name: Slash Developer Account API
+  description: The Developer Account API from Slash — 1 operation(s) for developer account.
+  humanURL: https://docs.slash.com
+  baseURL: https://api.slash.com
+  tags:
+  - Developer Account
+  properties:
+  - type: OpenAPI
+    url: openapi/slash-developer-account-api-openapi.yml
+  - type: Documentation
+    url: https://docs.slash.com
+  - type: APIReference
+    url: https://docs.slash.com/api-reference
+  - type: GettingStarted
+    url: https://docs.slash.com/introduction
+  - type: Authentication
+    url: authentication/slash-authentication.yml
+  - type: OAuthScopes
+    url: scopes/slash-scopes.yml
+  - type: Conventions
+    url: conventions/slash-conventions.yml
+  - type: Idempotency
+    url: conventions/slash-conventions.yml
+  - type: ErrorCatalog
+    url: errors/slash-problem-types.yml
+  - type: DataModel
+    url: data-model/slash-data-model.yml
+  - type: Webhooks
+    url: asyncapi/slash-webhooks.yml
+  - type: AgenticAccess
+    url: agentic-access/slash-agentic-access.yml
+- aid: slash:slash-developer-application-api
+  name: Slash Developer Application API
+  description: The Developer Application API from Slash — 2 operation(s) for developer application.
+  humanURL: https://docs.slash.com
+  baseURL: https://api.slash.com
+  tags:
+  - Developer Application
+  properties:
+  - type: OpenAPI
+    url: openapi/slash-developer-application-api-openapi.yml
+  - type: Documentation
+    url: https://docs.slash.com
+  - type: APIReference
+    url: https://docs.slash.com/api-reference
+  - type: GettingStarted
+    url: https://docs.slash.com/introduction
+  - type: Authentication
+    url: authentication/slash-authentication.yml
+  - type: OAuthScopes
+    url: scopes/slash-scopes.yml
+  - type: Conventions
+    url: conventions/slash-conventions.yml
+  - type: Idempotency
+    url: conventions/slash-conventions.yml
+  - type: ErrorCatalog
+    url: errors/slash-problem-types.yml
+  - type: DataModel
+    url: data-model/slash-data-model.yml
+  - type: Webhooks
+    url: asyncapi/slash-webhooks.yml
+  - type: AgenticAccess
+    url: agentic-access/slash-agentic-access.yml
+- aid: slash:slash-expense-report-api
+  name: Slash Expense Report API
+  description: The Expense Report API from Slash — 7 operation(s) for expense report.
+  humanURL: https://docs.slash.com
+  baseURL: https://api.slash.com
+  tags:
+  - Expense Report
+  properties:
+  - type: OpenAPI
+    url: openapi/slash-expense-report-api-openapi.yml
+  - type: Documentation
+    url: https://docs.slash.com
+  - type: APIReference
+    url: https://docs.slash.com/api-reference
+  - type: GettingStarted
+    url: https://docs.slash.com/introduction
+  - type: Authentication
+    url: authentication/slash-authentication.yml
+  - type: OAuthScopes
+    url: scopes/slash-scopes.yml
+  - type: Conventions
+    url: conventions/slash-conventions.yml
+  - type: Idempotency
+    url: conventions/slash-conventions.yml
+  - type: ErrorCatalog
+    url: errors/slash-problem-types.yml
+  - type: DataModel
+    url: data-model/slash-data-model.yml
+  - type: Webhooks
+    url: asyncapi/slash-webhooks.yml
+  - type: AgenticAccess
+    url: agentic-access/slash-agentic-access.yml
+- aid: slash:slash-fdx-api
+  name: Slash Fdx API
+  description: The Fdx API from Slash — 8 operation(s) for fdx.
+  humanURL: https://docs.slash.com
+  baseURL: https://api.slash.com
+  tags:
+  - Fdx
+  properties:
+  - type: OpenAPI
+    url: openapi/slash-fdx-api-openapi.yml
+  - type: Documentation
+    url: https://docs.slash.com
+  - type: APIReference
+    url: https://docs.slash.com/api-reference
+  - type: GettingStarted
+    url: https://docs.slash.com/introduction
+  - type: Authentication
+    url: authentication/slash-authentication.yml
+  - type: OAuthScopes
+    url: scopes/slash-scopes.yml
+  - type: Conventions
+    url: conventions/slash-conventions.yml
+  - type: Idempotency
+    url: conventions/slash-conventions.yml
+  - type: ErrorCatalog
+    url: errors/slash-problem-types.yml
+  - type: DataModel
+    url: data-model/slash-data-model.yml
+  - type: Webhooks
+    url: asyncapi/slash-webhooks.yml
+  - type: AgenticAccess
+    url: agentic-access/slash-agentic-access.yml
+- aid: slash:slash-invoice-api
+  name: Slash Invoice API
+  description: The Invoice API from Slash — 13 operation(s) for invoice.
+  humanURL: https://docs.slash.com
+  baseURL: https://api.slash.com
+  tags:
+  - Invoice
+  properties:
+  - type: OpenAPI
+    url: openapi/slash-invoice-api-openapi.yml
+  - type: Documentation
+    url: https://docs.slash.com
+  - type: APIReference
+    url: https://docs.slash.com/api-reference
+  - type: GettingStarted
+    url: https://docs.slash.com/introduction
+  - type: Authentication
+    url: authentication/slash-authentication.yml
+  - type: OAuthScopes
+    url: scopes/slash-scopes.yml
+  - type: Conventions
+    url: conventions/slash-conventions.yml
+  - type: Idempotency
+    url: conventions/slash-conventions.yml
+  - type: ErrorCatalog
+    url: errors/slash-problem-types.yml
+  - type: DataModel
+    url: data-model/slash-data-model.yml
+  - type: Webhooks
+    url: asyncapi/slash-webhooks.yml
+  - type: AgenticAccess
+    url: agentic-access/slash-agentic-access.yml
+- aid: slash:slash-legal-entity-api
+  name: Slash Legal Entity API
+  description: The Legal Entity API from Slash — 1 operation(s) for legal entity.
+  humanURL: https://docs.slash.com
+  baseURL: https://api.slash.com
+  tags:
+  - Legal Entity
+  properties:
+  - type: OpenAPI
+    url: openapi/slash-legal-entity-api-openapi.yml
+  - type: Documentation
+    url: https://docs.slash.com
+  - type: APIReference
+    url: https://docs.slash.com/api-reference
+  - type: GettingStarted
+    url: https://docs.slash.com/introduction
+  - type: Authentication
+    url: authentication/slash-authentication.yml
+  - type: OAuthScopes
+    url: scopes/slash-scopes.yml
+  - type: Conventions
+    url: conventions/slash-conventions.yml
+  - type: Idempotency
+    url: conventions/slash-conventions.yml
+  - type: ErrorCatalog
+    url: errors/slash-problem-types.yml
+  - type: DataModel
+    url: data-model/slash-data-model.yml
+  - type: Webhooks
+    url: asyncapi/slash-webhooks.yml
+  - type: AgenticAccess
+    url: agentic-access/slash-agentic-access.yml
+- aid: slash:slash-merchant-api
+  name: Slash Merchant API
+  description: The Merchant API from Slash — 2 operation(s) for merchant.
+  humanURL: https://docs.slash.com
+  baseURL: https://api.slash.com
+  tags:
+  - Merchant
+  properties:
+  - type: OpenAPI
+    url: openapi/slash-merchant-api-openapi.yml
+  - type: Documentation
+    url: https://docs.slash.com
+  - type: APIReference
+    url: https://docs.slash.com/api-reference
+  - type: GettingStarted
+    url: https://docs.slash.com/introduction
+  - type: Authentication
+    url: authentication/slash-authentication.yml
+  - type: OAuthScopes
+    url: scopes/slash-scopes.yml
+  - type: Conventions
+    url: conventions/slash-conventions.yml
+  - type: Idempotency
+    url: conventions/slash-conventions.yml
+  - type: ErrorCatalog
+    url: errors/slash-problem-types.yml
+  - type: DataModel
+    url: data-model/slash-data-model.yml
+  - type: Webhooks
+    url: asyncapi/slash-webhooks.yml
+  - type: AgenticAccess
+    url: agentic-access/slash-agentic-access.yml
+- aid: slash:slash-merchant-category-api
+  name: Slash Merchant Category API
+  description: The Merchant Category API from Slash — 1 operation(s) for merchant category.
+  humanURL: https://docs.slash.com
+  baseURL: https://api.slash.com
+  tags:
+  - Merchant Category
+  properties:
+  - type: OpenAPI
+    url: openapi/slash-merchant-category-api-openapi.yml
+  - type: Documentation
+    url: https://docs.slash.com
+  - type: APIReference
+    url: https://docs.slash.com/api-reference
+  - type: GettingStarted
+    url: https://docs.slash.com/introduction
+  - type: Authentication
+    url: authentication/slash-authentication.yml
+  - type: OAuthScopes
+    url: scopes/slash-scopes.yml
+  - type: Conventions
+    url: conventions/slash-conventions.yml
+  - type: Idempotency
+    url: conventions/slash-conventions.yml
+  - type: ErrorCatalog
+    url: errors/slash-problem-types.yml
+  - type: DataModel
+    url: data-model/slash-data-model.yml
+  - type: Webhooks
+    url: asyncapi/slash-webhooks.yml
+  - type: AgenticAccess
+    url: agentic-access/slash-agentic-access.yml
+- aid: slash:slash-oauth2-api
+  name: Slash Oauth2 API
+  description: The Oauth2 API from Slash — 2 operation(s) for oauth2.
+  humanURL: https://docs.slash.com
+  baseURL: https://api.slash.com
+  tags:
+  - Oauth2
+  properties:
+  - type: OpenAPI
+    url: openapi/slash-oauth2-api-openapi.yml
+  - type: Documentation
+    url: https://docs.slash.com
+  - type: APIReference
+    url: https://docs.slash.com/api-reference
+  - type: GettingStarted
+    url: https://docs.slash.com/introduction
+  - type: Authentication
+    url: authentication/slash-authentication.yml
+  - type: OAuthScopes
+    url: scopes/slash-scopes.yml
+  - type: Conventions
+    url: conventions/slash-conventions.yml
+  - type: Idempotency
+    url: conventions/slash-conventions.yml
+  - type: ErrorCatalog
+    url: errors/slash-problem-types.yml
+  - type: DataModel
+    url: data-model/slash-data-model.yml
+  - type: Webhooks
+    url: asyncapi/slash-webhooks.yml
+  - type: AgenticAccess
+    url: agentic-access/slash-agentic-access.yml
+- aid: slash:slash-task-api
+  name: Slash Task API
+  description: The Task API from Slash — 4 operation(s) for task.
+  humanURL: https://docs.slash.com
+  baseURL: https://api.slash.com
+  tags:
+  - Task
+  properties:
+  - type: OpenAPI
+    url: openapi/slash-task-api-openapi.yml
+  - type: Documentation
+    url: https://docs.slash.com
+  - type: APIReference
+    url: https://docs.slash.com/api-reference
+  - type: GettingStarted
+    url: https://docs.slash.com/introduction
+  - type: Authentication
+    url: authentication/slash-authentication.yml
+  - type: OAuthScopes
+    url: scopes/slash-scopes.yml
+  - type: Conventions
+    url: conventions/slash-conventions.yml
+  - type: Idempotency
+    url: conventions/slash-conventions.yml
+  - type: ErrorCatalog
+    url: errors/slash-problem-types.yml
+  - type: DataModel
+    url: data-model/slash-data-model.yml
+  - type: Webhooks
+    url: asyncapi/slash-webhooks.yml
+  - type: AgenticAccess
+    url: agentic-access/slash-agentic-access.yml
+- aid: slash:slash-tokens-api
+  name: Slash Tokens API
+  description: The Tokens API from Slash — 1 operation(s) for tokens.
+  humanURL: https://docs.slash.com
+  baseURL: https://api.slash.com
+  tags:
+  - Tokens
+  properties:
+  - type: OpenAPI
+    url: openapi/slash-tokens-api-openapi.yml
+  - type: Documentation
+    url: https://docs.slash.com
+  - type: APIReference
+    url: https://docs.slash.com/api-reference
+  - type: GettingStarted
+    url: https://docs.slash.com/introduction
+  - type: Authentication
+    url: authentication/slash-authentication.yml
+  - type: OAuthScopes
+    url: scopes/slash-scopes.yml
+  - type: Conventions
+    url: conventions/slash-conventions.yml
+  - type: Idempotency
+    url: conventions/slash-conventions.yml
+  - type: ErrorCatalog
+    url: errors/slash-problem-types.yml
+  - type: DataModel
+    url: data-model/slash-data-model.yml
+  - type: Webhooks
+    url: asyncapi/slash-webhooks.yml
+  - type: AgenticAccess
+    url: agentic-access/slash-agentic-access.yml
+- aid: slash:slash-transaction-api
+  name: Slash Transaction API
+  description: The Transaction API from Slash — 5 operation(s) for transaction.
+  humanURL: https://docs.slash.com
+  baseURL: https://api.slash.com
+  tags:
+  - Transaction
+  properties:
+  - type: OpenAPI
+    url: openapi/slash-transaction-api-openapi.yml
+  - type: Documentation
+    url: https://docs.slash.com
+  - type: APIReference
+    url: https://docs.slash.com/api-reference
+  - type: GettingStarted
+    url: https://docs.slash.com/introduction
+  - type: Authentication
+    url: authentication/slash-authentication.yml
+  - type: OAuthScopes
+    url: scopes/slash-scopes.yml
+  - type: Conventions
+    url: conventions/slash-conventions.yml
+  - type: Idempotency
+    url: conventions/slash-conventions.yml
+  - type: ErrorCatalog
+    url: errors/slash-problem-types.yml
+  - type: DataModel
+    url: data-model/slash-data-model.yml
+  - type: Webhooks
+    url: asyncapi/slash-webhooks.yml
+  - type: AgenticAccess
+    url: agentic-access/slash-agentic-access.yml
+- aid: slash:slash-transfer-api
+  name: Slash Transfer API
+  description: The Transfer API from Slash — 1 operation(s) for transfer.
+  humanURL: https://docs.slash.com
+  baseURL: https://api.slash.com
+  tags:
+  - Transfer
+  properties:
+  - type: OpenAPI
+    url: openapi/slash-transfer-api-openapi.yml
+  - type: Documentation
+    url: https://docs.slash.com
+  - type: APIReference
+    url: https://docs.slash.com/api-reference
+  - type: GettingStarted
+    url: https://docs.slash.com/introduction
+  - type: Authentication
+    url: authentication/slash-authentication.yml
+  - type: OAuthScopes
+    url: scopes/slash-scopes.yml
+  - type: Conventions
+    url: conventions/slash-conventions.yml
+  - type: Idempotency
+    url: conventions/slash-conventions.yml
+  - type: ErrorCatalog
+    url: errors/slash-problem-types.yml
+  - type: DataModel
+    url: data-model/slash-data-model.yml
+  - type: Webhooks
+    url: asyncapi/slash-webhooks.yml
+  - type: AgenticAccess
+    url: agentic-access/slash-agentic-access.yml
+- aid: slash:slash-transfers-api
+  name: Slash Transfers API
+  description: The Transfers API from Slash — 1 operation(s) for transfers.
+  humanURL: https://docs.slash.com
+  baseURL: https://api.slash.com
+  tags:
+  - Transfers
+  properties:
+  - type: OpenAPI
+    url: openapi/slash-transfers-api-openapi.yml
+  - type: Documentation
+    url: https://docs.slash.com
+  - type: APIReference
+    url: https://docs.slash.com/api-reference
+  - type: GettingStarted
+    url: https://docs.slash.com/introduction
+  - type: Authentication
+    url: authentication/slash-authentication.yml
+  - type: OAuthScopes
+    url: scopes/slash-scopes.yml
+  - type: Conventions
+    url: conventions/slash-conventions.yml
+  - type: Idempotency
+    url: conventions/slash-conventions.yml
+  - type: ErrorCatalog
+    url: errors/slash-problem-types.yml
+  - type: DataModel
+    url: data-model/slash-data-model.yml
+  - type: Webhooks
+    url: asyncapi/slash-webhooks.yml
+  - type: AgenticAccess
+    url: agentic-access/slash-agentic-access.yml
+- aid: slash:slash-virtual-account-api
+  name: Slash Virtual Account API
+  description: The Virtual Account API from Slash — 2 operation(s) for virtual account.
+  humanURL: https://docs.slash.com
+  baseURL: https://api.slash.com
+  tags:
+  - Virtual Account
+  properties:
+  - type: OpenAPI
+    url: openapi/slash-virtual-account-api-openapi.yml
+  - type: Documentation
+    url: https://docs.slash.com
+  - type: APIReference
+    url: https://docs.slash.com/api-reference
+  - type: GettingStarted
+    url: https://docs.slash.com/introduction
+  - type: Authentication
+    url: authentication/slash-authentication.yml
+  - type: OAuthScopes
+    url: scopes/slash-scopes.yml
+  - type: Conventions
+    url: conventions/slash-conventions.yml
+  - type: Idempotency
+    url: conventions/slash-conventions.yml
+  - type: ErrorCatalog
+    url: errors/slash-problem-types.yml
+  - type: DataModel
+    url: data-model/slash-data-model.yml
+  - type: Webhooks
+    url: asyncapi/slash-webhooks.yml
+  - type: AgenticAccess
+    url: agentic-access/slash-agentic-access.yml
+- aid: slash:slash-webhook-api
+  name: Slash Webhook API
+  description: The Webhook API from Slash — 2 operation(s) for webhook.
+  humanURL: https://docs.slash.com
+  baseURL: https://api.slash.com
+  tags:
+  - Webhook
+  properties:
+  - type: OpenAPI
+    url: openapi/slash-webhook-api-openapi.yml
+  - type: Documentation
+    url: https://docs.slash.com
+  - type: APIReference
+    url: https://docs.slash.com/api-reference
+  - type: GettingStarted
+    url: https://docs.slash.com/introduction
+  - type: Authentication
+    url: authentication/slash-authentication.yml
+  - type: OAuthScopes
+    url: scopes/slash-scopes.yml
+  - type: Conventions
+    url: conventions/slash-conventions.yml
+  - type: Idempotency
+    url: conventions/slash-conventions.yml
+  - type: ErrorCatalog
+    url: errors/slash-problem-types.yml
+  - type: DataModel
+    url: data-model/slash-data-model.yml
+  - type: Webhooks
+    url: asyncapi/slash-webhooks.yml
+  - type: AgenticAccess
+    url: agentic-access/slash-agentic-access.yml
+- aid: slash:slash-well-known-api
+  name: Slash .well Known API
+  description: The .well Known API from Slash — 1 operation(s) for .well known.
+  humanURL: https://docs.slash.com
+  baseURL: https://api.slash.com
+  tags:
+  - .well Known
+  properties:
+  - type: OpenAPI
+    url: openapi/slash-well-known-api-openapi.yml
+  - type: Documentation
+    url: https://docs.slash.com
+  - type: APIReference
+    url: https://docs.slash.com/api-reference
+  - type: GettingStarted
+    url: https://docs.slash.com/introduction
+  - type: Authentication
+    url: authentication/slash-authentication.yml
+  - type: OAuthScopes
+    url: scopes/slash-scopes.yml
+  - type: Conventions
+    url: conventions/slash-conventions.yml
+  - type: Idempotency
+    url: conventions/slash-conventions.yml
+  - type: ErrorCatalog
+    url: errors/slash-problem-types.yml
+  - type: DataModel
+    url: data-model/slash-data-model.yml
+  - type: Webhooks
+    url: asyncapi/slash-webhooks.yml
+  - type: AgenticAccess
+    url: agentic-access/slash-agentic-access.yml
 common:
+- type: PostmanWorkspace
+  url: https://www.postman.com/kinlaneapi/slash/overview
 - type: Website
   url: https://slash.com
+- type: DeveloperPortal
+  url: https://docs.slash.com
+- type: Documentation
+  url: https://docs.slash.com
+- type: APIReference
+  url: https://docs.slash.com/api-reference
+- type: GettingStarted
+  url: https://docs.slash.com/introduction
+- type: ChangeLog
+  url: changelog/slash-changelog.yml
+- type: Changelog
+  url: https://docs.slash.com/changelog
+- type: Blog
+  url: https://www.slash.com/blog
+- type: Support
+  url: https://www.slash.com/help-center
+- type: GitHubOrganization
+  url: https://github.com/slashfi
+- type: Pricing
+  url: https://www.slash.com/pricing
+- type: SignUp
+  url: https://app.slash.com/register
+- type: Login
+  url: https://app.slash.com/login
+- type: TermsOfService
+  url: https://www.slash.com/legal/terms-of-service
+- type: PrivacyPolicy
+  url: https://www.slash.com/legal/privacy-policy
+- type: Packages
+  url: packages/slash-packages.yml
+- type: SDKs
+  url: packages/slash-packages.yml
+- type: MCPServer
+  url: mcp/slash-mcp.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: LLMsTxt
+  url: llms/slash-llms.txt
+- type: WellKnown
+  url: well-known/slash-well-known.yml
+- type: SecurityTxt
+  url: well-known/slash-security.txt
+- type: Conformance
+  url: conformance/slash-conformance.yml
+- type: Compliance
+  url: https://www.slash.com/company/security
+- type: Lifecycle
+  url: lifecycle/slash-lifecycle.yml
+- type: Authentication
+  url: authentication/slash-authentication.yml
+- type: OAuthScopes
+  url: scopes/slash-scopes.yml
+- type: Conventions
+  url: conventions/slash-conventions.yml
+- type: Idempotency
+  url: conventions/slash-conventions.yml
+- type: ErrorCatalog
+  url: errors/slash-problem-types.yml
+- type: DataModel
+  url: data-model/slash-data-model.yml
+- type: Webhooks
+  url: asyncapi/slash-webhooks.yml
+- type: AgenticAccess
+  url: agentic-access/slash-agentic-access.yml
+- type: VulnerabilityDisclosure
+  url: security/slash-vulnerability-disclosure.yml
+- type: Security
+  url: https://www.slash.com/company/security
+- type: DomainSecurity
+  url: security/slash-domain-security.yml

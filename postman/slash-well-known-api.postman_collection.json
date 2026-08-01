@@ -1,0 +1,283 @@
+{
+  "info": {
+    "_postman_id": "fe1f8dc9-ac8f-473a-b04a-be2b18e84865",
+    "name": "Slash Public Account .well Known API",
+    "description": "API description",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:57:10.000Z",
+    "updatedAt": "2026-07-28T02:57:11.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-fe1f8dc9-ac8f-473a-b04a-be2b18e84865"
+  },
+  "item": [
+    {
+      "name": ".well-known",
+      "item": [
+        {
+          "name": "openid-configuration",
+          "item": [
+            {
+              "name": "Get OpenID Configuration",
+              "id": "38adcebf-08c3-4bc3-9ff7-0406f220edae",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "noauth"
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/.well-known/openid-configuration",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ".well-known",
+                    "openid-configuration"
+                  ]
+                },
+                "description": "Get OpenID Configuration"
+              },
+              "response": [
+                {
+                  "id": "f795712e-4d3d-442e-b842-568f741b0533",
+                  "name": "OK",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/.well-known/openid-configuration",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        ".well-known",
+                        "openid-configuration"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"authorization_endpoint\": \"<string>\",\n  \"token_endpoint\": \"<string>\",\n  \"userinfo_endpoint\": \"<string>\",\n  \"response_types_supported\": [\n    \"id_token token\",\n    \"id_token token\"\n  ],\n  \"scopes_supported\": [\n    \"email\",\n    \"user.identity.view\"\n  ],\n  \"token_endpoint_auth_methods_supported\": [\n    \"client_secret_basic\",\n    \"client_secret_post\"\n  ]\n}",
+                  "createdAt": "2026-07-28T02:57:11.000Z",
+                  "updatedAt": "2026-07-28T02:57:11.000Z",
+                  "uid": "35240-f795712e-4d3d-442e-b842-568f741b0533"
+                },
+                {
+                  "id": "ff3cfeab-c7d8-46c8-973a-5cd7659e2827",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/.well-known/openid-configuration",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        ".well-known",
+                        "openid-configuration"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"Excepteur_f\": true,\n    \"adf3\": true\n  }\n}",
+                  "createdAt": "2026-07-28T02:57:11.000Z",
+                  "updatedAt": "2026-07-28T02:57:11.000Z",
+                  "uid": "35240-ff3cfeab-c7d8-46c8-973a-5cd7659e2827"
+                },
+                {
+                  "id": "4d9b8ffb-66f5-432f-8be8-b494b653e351",
+                  "name": "Forbidden",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/.well-known/openid-configuration",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        ".well-known",
+                        "openid-configuration"
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"Excepteur_f\": true,\n    \"adf3\": true\n  }\n}",
+                  "createdAt": "2026-07-28T02:57:11.000Z",
+                  "updatedAt": "2026-07-28T02:57:11.000Z",
+                  "uid": "35240-4d9b8ffb-66f5-432f-8be8-b494b653e351"
+                },
+                {
+                  "id": "6b76b89c-3e1f-46a2-86bd-af3988d43e04",
+                  "name": "TooManyRequests",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/.well-known/openid-configuration",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        ".well-known",
+                        "openid-configuration"
+                      ]
+                    }
+                  },
+                  "status": "Too Many Requests",
+                  "code": 429,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"Excepteur_f\": true,\n    \"adf3\": true\n  }\n}",
+                  "createdAt": "2026-07-28T02:57:11.000Z",
+                  "updatedAt": "2026-07-28T02:57:11.000Z",
+                  "uid": "35240-6b76b89c-3e1f-46a2-86bd-af3988d43e04"
+                },
+                {
+                  "id": "a54e1f2b-936e-4a9a-826b-357c89f964f3",
+                  "name": "Internal Error",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/.well-known/openid-configuration",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        ".well-known",
+                        "openid-configuration"
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"Excepteur_f\": true,\n    \"adf3\": true\n  }\n}",
+                  "createdAt": "2026-07-28T02:57:11.000Z",
+                  "updatedAt": "2026-07-28T02:57:11.000Z",
+                  "uid": "35240-a54e1f2b-936e-4a9a-826b-357c89f964f3"
+                }
+              ],
+              "createdAt": "2026-07-28T02:57:11.000Z",
+              "updatedAt": "2026-07-28T02:57:11.000Z",
+              "uid": "35240-38adcebf-08c3-4bc3-9ff7-0406f220edae"
+            }
+          ],
+          "id": "96fffe68-cc39-492f-9c97-2081fd5debda",
+          "createdAt": "2026-07-28T02:57:11.000Z",
+          "updatedAt": "2026-07-28T02:57:11.000Z",
+          "uid": "35240-96fffe68-cc39-492f-9c97-2081fd5debda"
+        }
+      ],
+      "id": "0e495703-9460-4aaf-8c0c-934dadb32746",
+      "createdAt": "2026-07-28T02:57:11.000Z",
+      "updatedAt": "2026-07-28T02:57:11.000Z",
+      "uid": "35240-0e495703-9460-4aaf-8c0c-934dadb32746"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-API-Key",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.slash.com"
+    }
+  ]
+}

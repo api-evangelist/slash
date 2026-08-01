@@ -1,0 +1,51 @@
+generated: '2026-07-21'
+method: searched
+source:
+  - https://docs.slash.com/api-reference/webhook-overview
+  - https://docs.slash.com/api-reference/authorization-webhook-overview
+  - openapi/slash-openapi-original.json
+spec_type: Webhooks
+note: >-
+  Slash documents webhooks but publishes no AsyncAPI document, so this captures
+  the webhook catalog (type: Webhooks). Two distinct webhook families exist.
+delivery_webhooks:
+  purpose: Real-time card and transaction event notifications.
+  management_endpoints:
+    - GET /webhook
+    - POST /webhook
+    - GET /webhook/{webhookId}
+    - PATCH /webhook/{webhookId}
+  payload: >-
+    WebhookEvent carries entityId + event + eventId only (metadata, not entity
+    data); fetch the entity from its GET endpoint using entityId.
+  signature:
+    header: slash-webhook-signature
+    method: RSA public-key signature verification (public key at /api-reference/public-rsa-key)
+  ordering: not guaranteed; may be out of order or delivered more than once
+  idempotency_field: eventId
+  retries: up to 12 with exponential backoff if no 2xx within 10s
+  endpoint_states: [active, paused, backing-off, disabled]
+  auto_disable: after 6 consecutive permanent failures; queued events replay on re-enable
+  event_types:
+    - card.update
+    - card.delete
+    - card_creation.event
+    - aggregated_transaction.create
+    - aggregated_transaction.update
+    - expense_report.create
+    - expense_report.update
+authorization_webhooks:
+  purpose: Real-time approve/decline decisioning of card transactions before they process.
+  availability: enterprise-only
+  management_endpoints:
+    - GET /account/{accountId}/authorization-webhook
+    - PUT /account/{accountId}/authorization-webhook
+    - PATCH /account/{accountId}/authorization-webhook
+  headers: [x-webhook-id, x-webhook-timestamp, x-webhook-signature]
+  signature: HMAC-SHA256 over "{webhookId}.{webhookTimestamp}.{requestBody}" with a whsec_ signing secret, prefixed v1=
+  timestamp_tolerance: 2 minutes (replay protection)
+  request_timeout: 1.5 seconds
+  response: '{ "approved": boolean, "reason": string }'
+  fallback_behavior:
+    default: transaction continues through normal authorization (treated as approved)
+    reject: transaction is declined

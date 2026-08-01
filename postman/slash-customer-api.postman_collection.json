@@ -1,0 +1,1963 @@
+{
+  "info": {
+    "_postman_id": "539ffe07-3cf4-4627-815a-561889243671",
+    "name": "Slash Public Account Customer API",
+    "description": "API description",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:56:42.000Z",
+    "updatedAt": "2026-07-28T02:56:42.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-539ffe07-3cf4-4627-815a-561889243671"
+  },
+  "item": [
+    {
+      "name": "customer",
+      "item": [
+        {
+          "name": "{customerId}",
+          "item": [
+            {
+              "name": "ach-debit-recurring",
+              "item": [
+                {
+                  "name": "Check whether a customer has an active recurring ACH debit authorization. When active, the issuer can automatically debit the payer's bank account for future invoices with auto-pull enabled.",
+                  "id": "5acb58da-e7dd-4e34-be69-036273e1e058",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "apikey",
+                      "apikey": [
+                        {
+                          "key": "key",
+                          "value": "X-API-Key",
+                          "type": "string"
+                        },
+                        {
+                          "key": "value",
+                          "value": "{{apiKey}}",
+                          "type": "string"
+                        },
+                        {
+                          "key": "in",
+                          "value": "header",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/customer/:customerId/ach-debit-recurring?filter:legalEntityId=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "customer",
+                        ":customerId",
+                        "ach-debit-recurring"
+                      ],
+                      "query": [
+                        {
+                          "description": "The legal entity ID. Required if authenticating with access to multiple legal entities.",
+                          "key": "filter:legalEntityId",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "a985eaba-7b80-4944-b7c0-3e55505e7f10",
+                          "key": "customerId",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Check whether a customer has an active recurring ACH debit authorization. When active, the issuer can automatically debit the payer's bank account for future invoices with auto-pull enabled."
+                  },
+                  "response": [
+                    {
+                      "id": "39781a34-a040-42d7-851d-7e2a4b6a22c8",
+                      "name": "OK",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-API-Key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/customer/:customerId/ach-debit-recurring?filter:legalEntityId=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "customer",
+                            ":customerId",
+                            "ach-debit-recurring"
+                          ],
+                          "query": [
+                            {
+                              "description": "The legal entity ID. Required if authenticating with access to multiple legal entities.",
+                              "key": "filter:legalEntityId",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "customerId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"hasActiveRecurringAuth\": \"<boolean>\"\n}",
+                      "createdAt": "2026-07-28T02:56:42.000Z",
+                      "updatedAt": "2026-07-28T02:56:42.000Z",
+                      "uid": "35240-39781a34-a040-42d7-851d-7e2a4b6a22c8"
+                    },
+                    {
+                      "id": "5c01890e-a40c-477d-b105-081a76a3d71a",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-API-Key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/customer/:customerId/ach-debit-recurring?filter:legalEntityId=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "customer",
+                            ":customerId",
+                            "ach-debit-recurring"
+                          ],
+                          "query": [
+                            {
+                              "description": "The legal entity ID. Required if authenticating with access to multiple legal entities.",
+                              "key": "filter:legalEntityId",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "customerId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"commodo__9\": -53031723.52910228\n  }\n}",
+                      "createdAt": "2026-07-28T02:56:42.000Z",
+                      "updatedAt": "2026-07-28T02:56:42.000Z",
+                      "uid": "35240-5c01890e-a40c-477d-b105-081a76a3d71a"
+                    },
+                    {
+                      "id": "fb6ef007-1ef8-49e9-8aec-e9fd13a19234",
+                      "name": "Forbidden",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-API-Key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/customer/:customerId/ach-debit-recurring?filter:legalEntityId=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "customer",
+                            ":customerId",
+                            "ach-debit-recurring"
+                          ],
+                          "query": [
+                            {
+                              "description": "The legal entity ID. Required if authenticating with access to multiple legal entities.",
+                              "key": "filter:legalEntityId",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "customerId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"commodo__9\": -53031723.52910228\n  }\n}",
+                      "createdAt": "2026-07-28T02:56:42.000Z",
+                      "updatedAt": "2026-07-28T02:56:42.000Z",
+                      "uid": "35240-fb6ef007-1ef8-49e9-8aec-e9fd13a19234"
+                    },
+                    {
+                      "id": "4b5743dc-c53e-4613-bfa2-c30dac9c3e0d",
+                      "name": "TooManyRequests",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-API-Key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/customer/:customerId/ach-debit-recurring?filter:legalEntityId=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "customer",
+                            ":customerId",
+                            "ach-debit-recurring"
+                          ],
+                          "query": [
+                            {
+                              "description": "The legal entity ID. Required if authenticating with access to multiple legal entities.",
+                              "key": "filter:legalEntityId",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "customerId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Too Many Requests",
+                      "code": 429,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"commodo__9\": -53031723.52910228\n  }\n}",
+                      "createdAt": "2026-07-28T02:56:42.000Z",
+                      "updatedAt": "2026-07-28T02:56:42.000Z",
+                      "uid": "35240-4b5743dc-c53e-4613-bfa2-c30dac9c3e0d"
+                    },
+                    {
+                      "id": "d5544a4e-a469-43dc-8adf-06388fee21a0",
+                      "name": "Internal Error",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-API-Key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/customer/:customerId/ach-debit-recurring?filter:legalEntityId=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "customer",
+                            ":customerId",
+                            "ach-debit-recurring"
+                          ],
+                          "query": [
+                            {
+                              "description": "The legal entity ID. Required if authenticating with access to multiple legal entities.",
+                              "key": "filter:legalEntityId",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "customerId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"commodo__9\": -53031723.52910228\n  }\n}",
+                      "createdAt": "2026-07-28T02:56:42.000Z",
+                      "updatedAt": "2026-07-28T02:56:42.000Z",
+                      "uid": "35240-d5544a4e-a469-43dc-8adf-06388fee21a0"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:56:42.000Z",
+                  "updatedAt": "2026-07-28T02:56:42.000Z",
+                  "uid": "35240-5acb58da-e7dd-4e34-be69-036273e1e058"
+                }
+              ],
+              "id": "c049acf0-852b-4a4d-91fb-65c0307a4c5a",
+              "createdAt": "2026-07-28T02:56:42.000Z",
+              "updatedAt": "2026-07-28T02:56:42.000Z",
+              "uid": "35240-c049acf0-852b-4a4d-91fb-65c0307a4c5a"
+            },
+            {
+              "name": "Get a single customer by ID.",
+              "id": "10fd234a-a8cc-4146-a646-8f0d59d629dc",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "apikey",
+                  "apikey": [
+                    {
+                      "key": "key",
+                      "value": "X-API-Key",
+                      "type": "string"
+                    },
+                    {
+                      "key": "value",
+                      "value": "{{apiKey}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "in",
+                      "value": "header",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/customer/:customerId?filter:legalEntityId=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "customer",
+                    ":customerId"
+                  ],
+                  "query": [
+                    {
+                      "description": "The legal entity ID. Required if authenticating with access to multiple legal entities.",
+                      "key": "filter:legalEntityId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "id": "8948552a-a47f-4265-ad68-f9197ffa32ad",
+                      "key": "customerId",
+                      "value": "<string>",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "description": "Get a single customer by ID."
+              },
+              "response": [
+                {
+                  "id": "c26badd3-07b3-4dd0-90dd-32842ace211f",
+                  "name": "OK",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-API-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/customer/:customerId?filter:legalEntityId=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "customer",
+                        ":customerId"
+                      ],
+                      "query": [
+                        {
+                          "description": "The legal entity ID. Required if authenticating with access to multiple legal entities.",
+                          "key": "filter:legalEntityId",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "customerId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"customer\": {\n    \"id\": \"<string>\",\n    \"name\": \"<string>\",\n    \"email\": \"<string>\",\n    \"status\": \"archived\",\n    \"phone\": \"<string>\",\n    \"address\": {\n      \"nona\": -11492983.546982095,\n      \"proident_6c\": -54544978.03278278,\n      \"anim0\": false,\n      \"incididunt_a86\": -14529026.699615732\n    },\n    \"customMetadata\": {\n      \"deserunt_8\": -67444304.26127082,\n      \"id_1c\": \"aliquip Duis ad\"\n    }\n  }\n}",
+                  "createdAt": "2026-07-28T02:56:42.000Z",
+                  "updatedAt": "2026-07-28T02:56:42.000Z",
+                  "uid": "35240-c26badd3-07b3-4dd0-90dd-32842ace211f"
+                },
+                {
+                  "id": "32ced6ab-8545-4f7c-9a20-8d5a624e68dc",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-API-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/customer/:customerId?filter:legalEntityId=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "customer",
+                        ":customerId"
+                      ],
+                      "query": [
+                        {
+                          "description": "The legal entity ID. Required if authenticating with access to multiple legal entities.",
+                          "key": "filter:legalEntityId",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "customerId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"commodo__9\": -53031723.52910228\n  }\n}",
+                  "createdAt": "2026-07-28T02:56:42.000Z",
+                  "updatedAt": "2026-07-28T02:56:42.000Z",
+                  "uid": "35240-32ced6ab-8545-4f7c-9a20-8d5a624e68dc"
+                },
+                {
+                  "id": "1d5a56e4-1da2-4c8c-a7b5-db6788bdbfa1",
+                  "name": "Forbidden",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-API-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/customer/:customerId?filter:legalEntityId=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "customer",
+                        ":customerId"
+                      ],
+                      "query": [
+                        {
+                          "description": "The legal entity ID. Required if authenticating with access to multiple legal entities.",
+                          "key": "filter:legalEntityId",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "customerId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"commodo__9\": -53031723.52910228\n  }\n}",
+                  "createdAt": "2026-07-28T02:56:42.000Z",
+                  "updatedAt": "2026-07-28T02:56:42.000Z",
+                  "uid": "35240-1d5a56e4-1da2-4c8c-a7b5-db6788bdbfa1"
+                },
+                {
+                  "id": "47e679f2-cdbd-4a05-9d26-b2f31ae24f21",
+                  "name": "TooManyRequests",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-API-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/customer/:customerId?filter:legalEntityId=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "customer",
+                        ":customerId"
+                      ],
+                      "query": [
+                        {
+                          "description": "The legal entity ID. Required if authenticating with access to multiple legal entities.",
+                          "key": "filter:legalEntityId",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "customerId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Too Many Requests",
+                  "code": 429,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"commodo__9\": -53031723.52910228\n  }\n}",
+                  "createdAt": "2026-07-28T02:56:42.000Z",
+                  "updatedAt": "2026-07-28T02:56:42.000Z",
+                  "uid": "35240-47e679f2-cdbd-4a05-9d26-b2f31ae24f21"
+                },
+                {
+                  "id": "5b64d00c-e972-4567-b0eb-8590aff38e6d",
+                  "name": "Internal Error",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-API-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/customer/:customerId?filter:legalEntityId=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "customer",
+                        ":customerId"
+                      ],
+                      "query": [
+                        {
+                          "description": "The legal entity ID. Required if authenticating with access to multiple legal entities.",
+                          "key": "filter:legalEntityId",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "customerId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"commodo__9\": -53031723.52910228\n  }\n}",
+                  "createdAt": "2026-07-28T02:56:42.000Z",
+                  "updatedAt": "2026-07-28T02:56:42.000Z",
+                  "uid": "35240-5b64d00c-e972-4567-b0eb-8590aff38e6d"
+                }
+              ],
+              "createdAt": "2026-07-28T02:56:42.000Z",
+              "updatedAt": "2026-07-28T02:56:42.000Z",
+              "uid": "35240-10fd234a-a8cc-4146-a646-8f0d59d629dc"
+            },
+            {
+              "name": "Update a customer's information.",
+              "id": "f3252162-e56d-47cd-8328-7044a50767bb",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "apikey",
+                  "apikey": [
+                    {
+                      "key": "key",
+                      "value": "X-API-Key",
+                      "type": "string"
+                    },
+                    {
+                      "key": "value",
+                      "value": "{{apiKey}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "in",
+                      "value": "header",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "PATCH",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"email\": \"<string>\",\n  \"phone\": \"<string>\",\n  \"address\": {\n    \"addressLine\": \"<string>\",\n    \"addressCity\": \"<string>\",\n    \"addressState\": \"<string>\",\n    \"addressZip\": \"<string>\",\n    \"addressLine2\": \"<string>\",\n    \"addressCountry\": \"<string>\"\n  },\n  \"customMetadata\": {\n    \"minim_6\": -67475866.50230865,\n    \"irure_6b\": false\n  },\n  \"status\": \"active\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/customer/:customerId?filter:legalEntityId=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "customer",
+                    ":customerId"
+                  ],
+                  "query": [
+                    {
+                      "description": "The legal entity ID. Required if authenticating with access to multiple legal entities.",
+                      "key": "filter:legalEntityId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "id": "cfee6fe1-64b0-4c5a-ab8c-0103fb2c2f67",
+                      "key": "customerId",
+                      "value": "<string>",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "description": "Update a customer's information."
+              },
+              "response": [
+                {
+                  "id": "45e5c707-6121-4958-b48e-e211a7bac912",
+                  "name": "OK",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-API-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"email\": \"<string>\",\n  \"phone\": \"<string>\",\n  \"address\": {\n    \"addressLine\": \"<string>\",\n    \"addressCity\": \"<string>\",\n    \"addressState\": \"<string>\",\n    \"addressZip\": \"<string>\",\n    \"addressLine2\": \"<string>\",\n    \"addressCountry\": \"<string>\"\n  },\n  \"customMetadata\": {\n    \"minim_6\": -67475866.50230865,\n    \"irure_6b\": false\n  },\n  \"status\": \"active\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/customer/:customerId?filter:legalEntityId=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "customer",
+                        ":customerId"
+                      ],
+                      "query": [
+                        {
+                          "description": "The legal entity ID. Required if authenticating with access to multiple legal entities.",
+                          "key": "filter:legalEntityId",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "customerId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"customer\": {\n    \"id\": \"<string>\",\n    \"name\": \"<string>\",\n    \"email\": \"<string>\",\n    \"status\": \"archived\",\n    \"phone\": \"<string>\",\n    \"address\": {\n      \"nona\": -11492983.546982095,\n      \"proident_6c\": -54544978.03278278,\n      \"anim0\": false,\n      \"incididunt_a86\": -14529026.699615732\n    },\n    \"customMetadata\": {\n      \"deserunt_8\": -67444304.26127082,\n      \"id_1c\": \"aliquip Duis ad\"\n    }\n  }\n}",
+                  "createdAt": "2026-07-28T02:56:42.000Z",
+                  "updatedAt": "2026-07-28T02:56:42.000Z",
+                  "uid": "35240-45e5c707-6121-4958-b48e-e211a7bac912"
+                },
+                {
+                  "id": "4262115e-0c71-425f-b692-5d83096a8ba4",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-API-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"email\": \"<string>\",\n  \"phone\": \"<string>\",\n  \"address\": {\n    \"addressLine\": \"<string>\",\n    \"addressCity\": \"<string>\",\n    \"addressState\": \"<string>\",\n    \"addressZip\": \"<string>\",\n    \"addressLine2\": \"<string>\",\n    \"addressCountry\": \"<string>\"\n  },\n  \"customMetadata\": {\n    \"minim_6\": -67475866.50230865,\n    \"irure_6b\": false\n  },\n  \"status\": \"active\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/customer/:customerId?filter:legalEntityId=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "customer",
+                        ":customerId"
+                      ],
+                      "query": [
+                        {
+                          "description": "The legal entity ID. Required if authenticating with access to multiple legal entities.",
+                          "key": "filter:legalEntityId",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "customerId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"commodo__9\": -53031723.52910228\n  }\n}",
+                  "createdAt": "2026-07-28T02:56:42.000Z",
+                  "updatedAt": "2026-07-28T02:56:42.000Z",
+                  "uid": "35240-4262115e-0c71-425f-b692-5d83096a8ba4"
+                },
+                {
+                  "id": "ee03a0d6-513f-47c4-8612-19a3afdb65a5",
+                  "name": "Forbidden",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-API-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"email\": \"<string>\",\n  \"phone\": \"<string>\",\n  \"address\": {\n    \"addressLine\": \"<string>\",\n    \"addressCity\": \"<string>\",\n    \"addressState\": \"<string>\",\n    \"addressZip\": \"<string>\",\n    \"addressLine2\": \"<string>\",\n    \"addressCountry\": \"<string>\"\n  },\n  \"customMetadata\": {\n    \"minim_6\": -67475866.50230865,\n    \"irure_6b\": false\n  },\n  \"status\": \"active\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/customer/:customerId?filter:legalEntityId=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "customer",
+                        ":customerId"
+                      ],
+                      "query": [
+                        {
+                          "description": "The legal entity ID. Required if authenticating with access to multiple legal entities.",
+                          "key": "filter:legalEntityId",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "customerId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"commodo__9\": -53031723.52910228\n  }\n}",
+                  "createdAt": "2026-07-28T02:56:42.000Z",
+                  "updatedAt": "2026-07-28T02:56:42.000Z",
+                  "uid": "35240-ee03a0d6-513f-47c4-8612-19a3afdb65a5"
+                },
+                {
+                  "id": "c3ba2a34-321a-45fe-8b1a-365478d34908",
+                  "name": "TooManyRequests",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-API-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"email\": \"<string>\",\n  \"phone\": \"<string>\",\n  \"address\": {\n    \"addressLine\": \"<string>\",\n    \"addressCity\": \"<string>\",\n    \"addressState\": \"<string>\",\n    \"addressZip\": \"<string>\",\n    \"addressLine2\": \"<string>\",\n    \"addressCountry\": \"<string>\"\n  },\n  \"customMetadata\": {\n    \"minim_6\": -67475866.50230865,\n    \"irure_6b\": false\n  },\n  \"status\": \"active\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/customer/:customerId?filter:legalEntityId=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "customer",
+                        ":customerId"
+                      ],
+                      "query": [
+                        {
+                          "description": "The legal entity ID. Required if authenticating with access to multiple legal entities.",
+                          "key": "filter:legalEntityId",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "customerId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Too Many Requests",
+                  "code": 429,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"commodo__9\": -53031723.52910228\n  }\n}",
+                  "createdAt": "2026-07-28T02:56:42.000Z",
+                  "updatedAt": "2026-07-28T02:56:42.000Z",
+                  "uid": "35240-c3ba2a34-321a-45fe-8b1a-365478d34908"
+                },
+                {
+                  "id": "c1906e8f-55a2-4d03-83bb-3a3fd20d76d3",
+                  "name": "Internal Error",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-API-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"email\": \"<string>\",\n  \"phone\": \"<string>\",\n  \"address\": {\n    \"addressLine\": \"<string>\",\n    \"addressCity\": \"<string>\",\n    \"addressState\": \"<string>\",\n    \"addressZip\": \"<string>\",\n    \"addressLine2\": \"<string>\",\n    \"addressCountry\": \"<string>\"\n  },\n  \"customMetadata\": {\n    \"minim_6\": -67475866.50230865,\n    \"irure_6b\": false\n  },\n  \"status\": \"active\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/customer/:customerId?filter:legalEntityId=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "customer",
+                        ":customerId"
+                      ],
+                      "query": [
+                        {
+                          "description": "The legal entity ID. Required if authenticating with access to multiple legal entities.",
+                          "key": "filter:legalEntityId",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "customerId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"commodo__9\": -53031723.52910228\n  }\n}",
+                  "createdAt": "2026-07-28T02:56:42.000Z",
+                  "updatedAt": "2026-07-28T02:56:42.000Z",
+                  "uid": "35240-c1906e8f-55a2-4d03-83bb-3a3fd20d76d3"
+                }
+              ],
+              "createdAt": "2026-07-28T02:56:42.000Z",
+              "updatedAt": "2026-07-28T02:56:42.000Z",
+              "uid": "35240-f3252162-e56d-47cd-8328-7044a50767bb"
+            }
+          ],
+          "id": "8b695cad-0e1e-40dc-adb0-c1af2a63bb35",
+          "createdAt": "2026-07-28T02:56:42.000Z",
+          "updatedAt": "2026-07-28T02:56:42.000Z",
+          "uid": "35240-8b695cad-0e1e-40dc-adb0-c1af2a63bb35"
+        },
+        {
+          "name": "List all customers for your legal entity. Customers represent billing recipients for invoices.",
+          "id": "fd8882e3-5887-4e74-b7b3-da8402eb1d7d",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-API-Key",
+                  "type": "string"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}",
+                  "type": "string"
+                },
+                {
+                  "key": "in",
+                  "value": "header",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/customer?cursor=<string>&filter:legalEntityId=<string>&filter:name=<string>&filter:status=active",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "customer"
+              ],
+              "query": [
+                {
+                  "description": "A cursor string to fetch the next page of results",
+                  "key": "cursor",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Filter customers by legal entity ID. Required if authenticating via bearer token with access to multiple legal entities.",
+                  "key": "filter:legalEntityId",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Filter customers by name (partial match).",
+                  "key": "filter:name",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Filter customers by status.",
+                  "key": "filter:status",
+                  "value": "active"
+                }
+              ]
+            },
+            "description": "List all customers for your legal entity. Customers represent billing recipients for invoices."
+          },
+          "response": [
+            {
+              "id": "8360ace7-9640-4801-9f66-3d81f57e04e5",
+              "name": "OK",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/customer?cursor=<string>&filter:legalEntityId=<string>&filter:name=<string>&filter:status=active",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "customer"
+                  ],
+                  "query": [
+                    {
+                      "description": "A cursor string to fetch the next page of results",
+                      "key": "cursor",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter customers by legal entity ID. Required if authenticating via bearer token with access to multiple legal entities.",
+                      "key": "filter:legalEntityId",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter customers by name (partial match).",
+                      "key": "filter:name",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter customers by status.",
+                      "key": "filter:status",
+                      "value": "active"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"items\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"email\": \"<string>\",\n      \"status\": \"active\",\n      \"phone\": \"<string>\",\n      \"address\": {\n        \"in2\": false\n      },\n      \"customMetadata\": {\n        \"laborum9\": \"laboris Duis\",\n        \"voluptate_7\": \"Duis magna sit exercitation\",\n        \"adipisicing_5e\": 60213190.29023418,\n        \"enim_35\": \"dolore laborum quis in\"\n      }\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"email\": \"<string>\",\n      \"status\": \"archived\",\n      \"phone\": \"<string>\",\n      \"address\": {\n        \"enim_6eb\": true,\n        \"sintae6\": 4115938.759380281\n      },\n      \"customMetadata\": {\n        \"quis_58b\": -19794191.405971736,\n        \"fugiat7\": -57841215\n      }\n    }\n  ],\n  \"metadata\": {\n    \"nextCursor\": \"<string>\",\n    \"count\": \"<number>\"\n  }\n}",
+              "createdAt": "2026-07-28T02:56:42.000Z",
+              "updatedAt": "2026-07-28T02:56:42.000Z",
+              "uid": "35240-8360ace7-9640-4801-9f66-3d81f57e04e5"
+            },
+            {
+              "id": "8c9a35d3-b29e-4c86-9b3e-335558972921",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/customer?cursor=<string>&filter:legalEntityId=<string>&filter:name=<string>&filter:status=active",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "customer"
+                  ],
+                  "query": [
+                    {
+                      "description": "A cursor string to fetch the next page of results",
+                      "key": "cursor",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter customers by legal entity ID. Required if authenticating via bearer token with access to multiple legal entities.",
+                      "key": "filter:legalEntityId",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter customers by name (partial match).",
+                      "key": "filter:name",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter customers by status.",
+                      "key": "filter:status",
+                      "value": "active"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"commodo__9\": -53031723.52910228\n  }\n}",
+              "createdAt": "2026-07-28T02:56:42.000Z",
+              "updatedAt": "2026-07-28T02:56:42.000Z",
+              "uid": "35240-8c9a35d3-b29e-4c86-9b3e-335558972921"
+            },
+            {
+              "id": "3f49dc55-ce56-4355-b4c7-7c86f6e347d5",
+              "name": "Forbidden",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/customer?cursor=<string>&filter:legalEntityId=<string>&filter:name=<string>&filter:status=active",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "customer"
+                  ],
+                  "query": [
+                    {
+                      "description": "A cursor string to fetch the next page of results",
+                      "key": "cursor",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter customers by legal entity ID. Required if authenticating via bearer token with access to multiple legal entities.",
+                      "key": "filter:legalEntityId",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter customers by name (partial match).",
+                      "key": "filter:name",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter customers by status.",
+                      "key": "filter:status",
+                      "value": "active"
+                    }
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"commodo__9\": -53031723.52910228\n  }\n}",
+              "createdAt": "2026-07-28T02:56:42.000Z",
+              "updatedAt": "2026-07-28T02:56:42.000Z",
+              "uid": "35240-3f49dc55-ce56-4355-b4c7-7c86f6e347d5"
+            },
+            {
+              "id": "fd466183-6100-4608-95ac-23dc98d89f23",
+              "name": "TooManyRequests",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/customer?cursor=<string>&filter:legalEntityId=<string>&filter:name=<string>&filter:status=active",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "customer"
+                  ],
+                  "query": [
+                    {
+                      "description": "A cursor string to fetch the next page of results",
+                      "key": "cursor",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter customers by legal entity ID. Required if authenticating via bearer token with access to multiple legal entities.",
+                      "key": "filter:legalEntityId",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter customers by name (partial match).",
+                      "key": "filter:name",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter customers by status.",
+                      "key": "filter:status",
+                      "value": "active"
+                    }
+                  ]
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"commodo__9\": -53031723.52910228\n  }\n}",
+              "createdAt": "2026-07-28T02:56:42.000Z",
+              "updatedAt": "2026-07-28T02:56:42.000Z",
+              "uid": "35240-fd466183-6100-4608-95ac-23dc98d89f23"
+            },
+            {
+              "id": "4e347809-2c67-463b-bb2c-d98f2446c7db",
+              "name": "Internal Error",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/customer?cursor=<string>&filter:legalEntityId=<string>&filter:name=<string>&filter:status=active",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "customer"
+                  ],
+                  "query": [
+                    {
+                      "description": "A cursor string to fetch the next page of results",
+                      "key": "cursor",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter customers by legal entity ID. Required if authenticating via bearer token with access to multiple legal entities.",
+                      "key": "filter:legalEntityId",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter customers by name (partial match).",
+                      "key": "filter:name",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter customers by status.",
+                      "key": "filter:status",
+                      "value": "active"
+                    }
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"commodo__9\": -53031723.52910228\n  }\n}",
+              "createdAt": "2026-07-28T02:56:42.000Z",
+              "updatedAt": "2026-07-28T02:56:42.000Z",
+              "uid": "35240-4e347809-2c67-463b-bb2c-d98f2446c7db"
+            }
+          ],
+          "createdAt": "2026-07-28T02:56:42.000Z",
+          "updatedAt": "2026-07-28T02:56:42.000Z",
+          "uid": "35240-fd8882e3-5887-4e74-b7b3-da8402eb1d7d"
+        },
+        {
+          "name": "Create a new customer for your legal entity. Customers are used as invoice recipients.",
+          "id": "f9bfb8b5-580f-465d-9d6e-ff6bb0007ab2",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-API-Key",
+                  "type": "string"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}",
+                  "type": "string"
+                },
+                {
+                  "key": "in",
+                  "value": "header",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"email\": \"<string>\",\n  \"phone\": \"<string>\",\n  \"address\": {\n    \"addressLine\": \"<string>\",\n    \"addressCity\": \"<string>\",\n    \"addressState\": \"<string>\",\n    \"addressZip\": \"<string>\",\n    \"addressLine2\": \"<string>\",\n    \"addressCountry\": \"<string>\"\n  },\n  \"customMetadata\": {\n    \"adipisicing_b25\": false,\n    \"incididuntee\": \"in cillum\",\n    \"id_e\": -30945753.33654186\n  }\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/customer?filter:legalEntityId=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "customer"
+              ],
+              "query": [
+                {
+                  "description": "The legal entity ID. Required if authenticating with access to multiple legal entities.",
+                  "key": "filter:legalEntityId",
+                  "value": "<string>"
+                }
+              ]
+            },
+            "description": "Create a new customer for your legal entity. Customers are used as invoice recipients."
+          },
+          "response": [
+            {
+              "id": "d2e230cb-7178-49f6-8c64-beb7499170da",
+              "name": "OK",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"email\": \"<string>\",\n  \"phone\": \"<string>\",\n  \"address\": {\n    \"addressLine\": \"<string>\",\n    \"addressCity\": \"<string>\",\n    \"addressState\": \"<string>\",\n    \"addressZip\": \"<string>\",\n    \"addressLine2\": \"<string>\",\n    \"addressCountry\": \"<string>\"\n  },\n  \"customMetadata\": {\n    \"adipisicing_b25\": false,\n    \"incididuntee\": \"in cillum\",\n    \"id_e\": -30945753.33654186\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/customer?filter:legalEntityId=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "customer"
+                  ],
+                  "query": [
+                    {
+                      "description": "The legal entity ID. Required if authenticating with access to multiple legal entities.",
+                      "key": "filter:legalEntityId",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"customer\": {\n    \"id\": \"<string>\",\n    \"name\": \"<string>\",\n    \"email\": \"<string>\",\n    \"status\": \"archived\",\n    \"phone\": \"<string>\",\n    \"address\": {\n      \"nona\": -11492983.546982095,\n      \"proident_6c\": -54544978.03278278,\n      \"anim0\": false,\n      \"incididunt_a86\": -14529026.699615732\n    },\n    \"customMetadata\": {\n      \"deserunt_8\": -67444304.26127082,\n      \"id_1c\": \"aliquip Duis ad\"\n    }\n  }\n}",
+              "createdAt": "2026-07-28T02:56:42.000Z",
+              "updatedAt": "2026-07-28T02:56:42.000Z",
+              "uid": "35240-d2e230cb-7178-49f6-8c64-beb7499170da"
+            },
+            {
+              "id": "2cdf2ce3-21c8-44fc-932e-312730d0b10f",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"email\": \"<string>\",\n  \"phone\": \"<string>\",\n  \"address\": {\n    \"addressLine\": \"<string>\",\n    \"addressCity\": \"<string>\",\n    \"addressState\": \"<string>\",\n    \"addressZip\": \"<string>\",\n    \"addressLine2\": \"<string>\",\n    \"addressCountry\": \"<string>\"\n  },\n  \"customMetadata\": {\n    \"adipisicing_b25\": false,\n    \"incididuntee\": \"in cillum\",\n    \"id_e\": -30945753.33654186\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/customer?filter:legalEntityId=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "customer"
+                  ],
+                  "query": [
+                    {
+                      "description": "The legal entity ID. Required if authenticating with access to multiple legal entities.",
+                      "key": "filter:legalEntityId",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"commodo__9\": -53031723.52910228\n  }\n}",
+              "createdAt": "2026-07-28T02:56:42.000Z",
+              "updatedAt": "2026-07-28T02:56:42.000Z",
+              "uid": "35240-2cdf2ce3-21c8-44fc-932e-312730d0b10f"
+            },
+            {
+              "id": "4e3dd3ab-3e83-46a1-b8fa-cc9bde554334",
+              "name": "Forbidden",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"email\": \"<string>\",\n  \"phone\": \"<string>\",\n  \"address\": {\n    \"addressLine\": \"<string>\",\n    \"addressCity\": \"<string>\",\n    \"addressState\": \"<string>\",\n    \"addressZip\": \"<string>\",\n    \"addressLine2\": \"<string>\",\n    \"addressCountry\": \"<string>\"\n  },\n  \"customMetadata\": {\n    \"adipisicing_b25\": false,\n    \"incididuntee\": \"in cillum\",\n    \"id_e\": -30945753.33654186\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/customer?filter:legalEntityId=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "customer"
+                  ],
+                  "query": [
+                    {
+                      "description": "The legal entity ID. Required if authenticating with access to multiple legal entities.",
+                      "key": "filter:legalEntityId",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"commodo__9\": -53031723.52910228\n  }\n}",
+              "createdAt": "2026-07-28T02:56:42.000Z",
+              "updatedAt": "2026-07-28T02:56:42.000Z",
+              "uid": "35240-4e3dd3ab-3e83-46a1-b8fa-cc9bde554334"
+            },
+            {
+              "id": "bfd48ec1-63a7-44b3-9423-1f02b9b6aebe",
+              "name": "TooManyRequests",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"email\": \"<string>\",\n  \"phone\": \"<string>\",\n  \"address\": {\n    \"addressLine\": \"<string>\",\n    \"addressCity\": \"<string>\",\n    \"addressState\": \"<string>\",\n    \"addressZip\": \"<string>\",\n    \"addressLine2\": \"<string>\",\n    \"addressCountry\": \"<string>\"\n  },\n  \"customMetadata\": {\n    \"adipisicing_b25\": false,\n    \"incididuntee\": \"in cillum\",\n    \"id_e\": -30945753.33654186\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/customer?filter:legalEntityId=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "customer"
+                  ],
+                  "query": [
+                    {
+                      "description": "The legal entity ID. Required if authenticating with access to multiple legal entities.",
+                      "key": "filter:legalEntityId",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"commodo__9\": -53031723.52910228\n  }\n}",
+              "createdAt": "2026-07-28T02:56:42.000Z",
+              "updatedAt": "2026-07-28T02:56:42.000Z",
+              "uid": "35240-bfd48ec1-63a7-44b3-9423-1f02b9b6aebe"
+            },
+            {
+              "id": "349e66c5-aac0-40f3-8461-68ee52ff6eec",
+              "name": "Internal Error",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"email\": \"<string>\",\n  \"phone\": \"<string>\",\n  \"address\": {\n    \"addressLine\": \"<string>\",\n    \"addressCity\": \"<string>\",\n    \"addressState\": \"<string>\",\n    \"addressZip\": \"<string>\",\n    \"addressLine2\": \"<string>\",\n    \"addressCountry\": \"<string>\"\n  },\n  \"customMetadata\": {\n    \"adipisicing_b25\": false,\n    \"incididuntee\": \"in cillum\",\n    \"id_e\": -30945753.33654186\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/customer?filter:legalEntityId=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "customer"
+                  ],
+                  "query": [
+                    {
+                      "description": "The legal entity ID. Required if authenticating with access to multiple legal entities.",
+                      "key": "filter:legalEntityId",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"commodo__9\": -53031723.52910228\n  }\n}",
+              "createdAt": "2026-07-28T02:56:42.000Z",
+              "updatedAt": "2026-07-28T02:56:42.000Z",
+              "uid": "35240-349e66c5-aac0-40f3-8461-68ee52ff6eec"
+            }
+          ],
+          "createdAt": "2026-07-28T02:56:42.000Z",
+          "updatedAt": "2026-07-28T02:56:42.000Z",
+          "uid": "35240-f9bfb8b5-580f-465d-9d6e-ff6bb0007ab2"
+        }
+      ],
+      "id": "de8970c5-7746-458f-b715-e820108b85a4",
+      "createdAt": "2026-07-28T02:56:42.000Z",
+      "updatedAt": "2026-07-28T02:56:42.000Z",
+      "uid": "35240-de8970c5-7746-458f-b715-e820108b85a4"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-API-Key",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.slash.com"
+    }
+  ]
+}

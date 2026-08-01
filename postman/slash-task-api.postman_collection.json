@@ -1,0 +1,1558 @@
+{
+  "info": {
+    "_postman_id": "b8de94eb-3880-469e-98b0-c305c36cb646",
+    "name": "Slash Public Account Task API",
+    "description": "API description",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:57:01.000Z",
+    "updatedAt": "2026-07-28T02:57:01.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-b8de94eb-3880-469e-98b0-c305c36cb646"
+  },
+  "item": [
+    {
+      "name": "task",
+      "item": [
+        {
+          "name": "schema",
+          "item": [
+            {
+              "name": "List registered task types with their attribute schemas, filterable fields, supported operators, and available actions. Use this to discover what can be filtered on via filter:attr.",
+              "id": "f4da81ba-3e02-4cbe-88f3-e068bef198b6",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "apikey",
+                  "apikey": [
+                    {
+                      "key": "key",
+                      "value": "X-API-Key",
+                      "type": "string"
+                    },
+                    {
+                      "key": "value",
+                      "value": "{{apiKey}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "in",
+                      "value": "header",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/task/schema?filter:type=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "task",
+                    "schema"
+                  ],
+                  "query": [
+                    {
+                      "description": "Filter to a specific task type.",
+                      "key": "filter:type",
+                      "value": "<string>"
+                    }
+                  ]
+                },
+                "description": "List registered task types with their attribute schemas, filterable fields, supported operators, and available actions. Use this to discover what can be filtered on via filter:attr."
+              },
+              "response": [
+                {
+                  "id": "2123b51f-d01e-4635-98d7-25ef74eb0936",
+                  "name": "OK",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-API-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/task/schema?filter:type=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "task",
+                        "schema"
+                      ],
+                      "query": [
+                        {
+                          "description": "Filter to a specific task type.",
+                          "key": "filter:type",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"schemas\": [\n    {\n      \"type\": \"<string>\",\n      \"attributes\": {\n        \"occaecatb94\": {\n          \"type\": \"date\",\n          \"operators\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"options\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        }\n      },\n      \"actions\": [\n        {\n          \"key\": \"<string>\",\n          \"label\": \"<string>\"\n        },\n        {\n          \"key\": \"<string>\",\n          \"label\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"type\": \"<string>\",\n      \"attributes\": {\n        \"laboris_859\": {\n          \"type\": \"date\",\n          \"operators\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"options\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        },\n        \"aliquipd1\": {\n          \"type\": \"string\",\n          \"operators\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"options\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        }\n      },\n      \"actions\": [\n        {\n          \"key\": \"<string>\",\n          \"label\": \"<string>\"\n        },\n        {\n          \"key\": \"<string>\",\n          \"label\": \"<string>\"\n        }\n      ]\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T02:57:02.000Z",
+                  "updatedAt": "2026-07-28T02:57:02.000Z",
+                  "uid": "35240-2123b51f-d01e-4635-98d7-25ef74eb0936"
+                },
+                {
+                  "id": "c905147e-3b1c-45e5-929e-4d838ffa67ec",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-API-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/task/schema?filter:type=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "task",
+                        "schema"
+                      ],
+                      "query": [
+                        {
+                          "description": "Filter to a specific task type.",
+                          "key": "filter:type",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"esse3\": 96668381,\n    \"velitd\": -70953556\n  }\n}",
+                  "createdAt": "2026-07-28T02:57:02.000Z",
+                  "updatedAt": "2026-07-28T02:57:02.000Z",
+                  "uid": "35240-c905147e-3b1c-45e5-929e-4d838ffa67ec"
+                },
+                {
+                  "id": "8eadd0ea-a06a-4ea5-9f9b-fee96c9353a5",
+                  "name": "Forbidden",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-API-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/task/schema?filter:type=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "task",
+                        "schema"
+                      ],
+                      "query": [
+                        {
+                          "description": "Filter to a specific task type.",
+                          "key": "filter:type",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"esse3\": 96668381,\n    \"velitd\": -70953556\n  }\n}",
+                  "createdAt": "2026-07-28T02:57:02.000Z",
+                  "updatedAt": "2026-07-28T02:57:02.000Z",
+                  "uid": "35240-8eadd0ea-a06a-4ea5-9f9b-fee96c9353a5"
+                },
+                {
+                  "id": "bb164eca-a3b3-4104-b4a4-baf7b9123f2e",
+                  "name": "TooManyRequests",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-API-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/task/schema?filter:type=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "task",
+                        "schema"
+                      ],
+                      "query": [
+                        {
+                          "description": "Filter to a specific task type.",
+                          "key": "filter:type",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Too Many Requests",
+                  "code": 429,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"esse3\": 96668381,\n    \"velitd\": -70953556\n  }\n}",
+                  "createdAt": "2026-07-28T02:57:02.000Z",
+                  "updatedAt": "2026-07-28T02:57:02.000Z",
+                  "uid": "35240-bb164eca-a3b3-4104-b4a4-baf7b9123f2e"
+                },
+                {
+                  "id": "972449c2-c4eb-4719-8782-1f3c18206a6e",
+                  "name": "Internal Error",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-API-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/task/schema?filter:type=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "task",
+                        "schema"
+                      ],
+                      "query": [
+                        {
+                          "description": "Filter to a specific task type.",
+                          "key": "filter:type",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"esse3\": 96668381,\n    \"velitd\": -70953556\n  }\n}",
+                  "createdAt": "2026-07-28T02:57:02.000Z",
+                  "updatedAt": "2026-07-28T02:57:02.000Z",
+                  "uid": "35240-972449c2-c4eb-4719-8782-1f3c18206a6e"
+                }
+              ],
+              "createdAt": "2026-07-28T02:57:02.000Z",
+              "updatedAt": "2026-07-28T02:57:02.000Z",
+              "uid": "35240-f4da81ba-3e02-4cbe-88f3-e068bef198b6"
+            }
+          ],
+          "id": "2bb57614-1cf2-4f77-8dc9-d438038fc260",
+          "createdAt": "2026-07-28T02:57:02.000Z",
+          "updatedAt": "2026-07-28T02:57:02.000Z",
+          "uid": "35240-2bb57614-1cf2-4f77-8dc9-d438038fc260"
+        },
+        {
+          "name": "{taskId}",
+          "item": [
+            {
+              "name": "act",
+              "item": [
+                {
+                  "name": "Execute an action on a task (e.g., approve, reject). Available actions depend on the task type \u2014 use GET /task/schema to discover them.",
+                  "id": "edab369d-6273-4610-bc2c-4232d17e242d",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "apikey",
+                      "apikey": [
+                        {
+                          "key": "key",
+                          "value": "X-API-Key",
+                          "type": "string"
+                        },
+                        {
+                          "key": "value",
+                          "value": "{{apiKey}}",
+                          "type": "string"
+                        },
+                        {
+                          "key": "in",
+                          "value": "header",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"action\": \"<string>\",\n  \"payload\": {\n    \"aliqua_17\": \"occaecat est ea esse\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/task/:taskId/act",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "task",
+                        ":taskId",
+                        "act"
+                      ],
+                      "variable": [
+                        {
+                          "id": "01965314-12e1-42c3-a9d8-2ada1d9c8f8c",
+                          "key": "taskId",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Execute an action on a task (e.g., approve, reject). Available actions depend on the task type \u2014 use GET /task/schema to discover them."
+                  },
+                  "response": [
+                    {
+                      "id": "173c9092-771c-4894-b63b-40ef36d1446d",
+                      "name": "OK",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-API-Key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"action\": \"<string>\",\n  \"payload\": {\n    \"aliqua_17\": \"occaecat est ea esse\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/task/:taskId/act",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "task",
+                            ":taskId",
+                            "act"
+                          ],
+                          "variable": [
+                            {
+                              "key": "taskId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"success\": \"<boolean>\"\n}",
+                      "createdAt": "2026-07-28T02:57:02.000Z",
+                      "updatedAt": "2026-07-28T02:57:02.000Z",
+                      "uid": "35240-173c9092-771c-4894-b63b-40ef36d1446d"
+                    },
+                    {
+                      "id": "817efd60-d424-4ea5-87a6-33d4ba029577",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-API-Key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"action\": \"<string>\",\n  \"payload\": {\n    \"aliqua_17\": \"occaecat est ea esse\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/task/:taskId/act",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "task",
+                            ":taskId",
+                            "act"
+                          ],
+                          "variable": [
+                            {
+                              "key": "taskId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"esse3\": 96668381,\n    \"velitd\": -70953556\n  }\n}",
+                      "createdAt": "2026-07-28T02:57:02.000Z",
+                      "updatedAt": "2026-07-28T02:57:02.000Z",
+                      "uid": "35240-817efd60-d424-4ea5-87a6-33d4ba029577"
+                    },
+                    {
+                      "id": "de227d9c-0b0d-45cc-9bfb-10ab57fd09c1",
+                      "name": "Forbidden",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-API-Key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"action\": \"<string>\",\n  \"payload\": {\n    \"aliqua_17\": \"occaecat est ea esse\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/task/:taskId/act",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "task",
+                            ":taskId",
+                            "act"
+                          ],
+                          "variable": [
+                            {
+                              "key": "taskId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"esse3\": 96668381,\n    \"velitd\": -70953556\n  }\n}",
+                      "createdAt": "2026-07-28T02:57:02.000Z",
+                      "updatedAt": "2026-07-28T02:57:02.000Z",
+                      "uid": "35240-de227d9c-0b0d-45cc-9bfb-10ab57fd09c1"
+                    },
+                    {
+                      "id": "f62e8d2a-9550-45c8-843d-9bac62c4f181",
+                      "name": "TooManyRequests",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-API-Key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"action\": \"<string>\",\n  \"payload\": {\n    \"aliqua_17\": \"occaecat est ea esse\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/task/:taskId/act",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "task",
+                            ":taskId",
+                            "act"
+                          ],
+                          "variable": [
+                            {
+                              "key": "taskId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Too Many Requests",
+                      "code": 429,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"esse3\": 96668381,\n    \"velitd\": -70953556\n  }\n}",
+                      "createdAt": "2026-07-28T02:57:02.000Z",
+                      "updatedAt": "2026-07-28T02:57:02.000Z",
+                      "uid": "35240-f62e8d2a-9550-45c8-843d-9bac62c4f181"
+                    },
+                    {
+                      "id": "120cf114-56ae-4e8d-b1ec-f4fff1abb75b",
+                      "name": "Internal Error",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-API-Key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"action\": \"<string>\",\n  \"payload\": {\n    \"aliqua_17\": \"occaecat est ea esse\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/task/:taskId/act",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "task",
+                            ":taskId",
+                            "act"
+                          ],
+                          "variable": [
+                            {
+                              "key": "taskId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"esse3\": 96668381,\n    \"velitd\": -70953556\n  }\n}",
+                      "createdAt": "2026-07-28T02:57:02.000Z",
+                      "updatedAt": "2026-07-28T02:57:02.000Z",
+                      "uid": "35240-120cf114-56ae-4e8d-b1ec-f4fff1abb75b"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:57:02.000Z",
+                  "updatedAt": "2026-07-28T02:57:02.000Z",
+                  "uid": "35240-edab369d-6273-4610-bc2c-4232d17e242d"
+                }
+              ],
+              "id": "c679291e-a7e7-4fdd-8fac-ba780b4d0c84",
+              "createdAt": "2026-07-28T02:57:02.000Z",
+              "updatedAt": "2026-07-28T02:57:02.000Z",
+              "uid": "35240-c679291e-a7e7-4fdd-8fac-ba780b4d0c84"
+            },
+            {
+              "name": "Get a single task by ID.",
+              "id": "145384c2-2495-4181-a85d-7576b8d026a6",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "apikey",
+                  "apikey": [
+                    {
+                      "key": "key",
+                      "value": "X-API-Key",
+                      "type": "string"
+                    },
+                    {
+                      "key": "value",
+                      "value": "{{apiKey}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "in",
+                      "value": "header",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/task/:taskId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "task",
+                    ":taskId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "2e5e4997-d12d-4954-990e-406dbfd1cf48",
+                      "key": "taskId",
+                      "value": "<string>",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "description": "Get a single task by ID."
+              },
+              "response": [
+                {
+                  "id": "d5de7dd1-9370-4152-bef9-85344ede0acb",
+                  "name": "OK",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-API-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/task/:taskId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "task",
+                        ":taskId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "taskId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"task\": {\n    \"actions\": [\n      {\n        \"key\": \"<string>\",\n        \"label\": \"<string>\",\n        \"isDisabled\": \"<boolean>\",\n        \"missingAttributes\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"style\": \"danger\",\n        \"role\": \"actor\"\n      },\n      {\n        \"key\": \"<string>\",\n        \"label\": \"<string>\",\n        \"isDisabled\": \"<boolean>\",\n        \"missingAttributes\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"style\": \"danger\",\n        \"role\": \"actor\"\n      }\n    ],\n    \"data\": {\n      \"enim_934\": \"proident\",\n      \"culpa05\": 41511402.21388304\n    },\n    \"id\": \"<string>\",\n    \"meta\": {\n      \"non_f\": {\n        \"isRequired\": \"<boolean>\"\n      },\n      \"ut_5d9\": {\n        \"isRequired\": \"<boolean>\"\n      },\n      \"in028\": {\n        \"isRequired\": \"<boolean>\"\n      }\n    },\n    \"status\": \"expired\",\n    \"timestamp\": \"<dateTime>\",\n    \"type\": \"<string>\",\n    \"updatedAt\": \"<dateTime>\"\n  }\n}",
+                  "createdAt": "2026-07-28T02:57:02.000Z",
+                  "updatedAt": "2026-07-28T02:57:02.000Z",
+                  "uid": "35240-d5de7dd1-9370-4152-bef9-85344ede0acb"
+                },
+                {
+                  "id": "b423a8c6-700c-40d0-8608-599e8f26e0aa",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-API-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/task/:taskId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "task",
+                        ":taskId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "taskId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"esse3\": 96668381,\n    \"velitd\": -70953556\n  }\n}",
+                  "createdAt": "2026-07-28T02:57:02.000Z",
+                  "updatedAt": "2026-07-28T02:57:02.000Z",
+                  "uid": "35240-b423a8c6-700c-40d0-8608-599e8f26e0aa"
+                },
+                {
+                  "id": "d402b9dc-8306-4d52-803c-ed6e8ffbcbe8",
+                  "name": "Forbidden",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-API-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/task/:taskId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "task",
+                        ":taskId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "taskId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"esse3\": 96668381,\n    \"velitd\": -70953556\n  }\n}",
+                  "createdAt": "2026-07-28T02:57:02.000Z",
+                  "updatedAt": "2026-07-28T02:57:02.000Z",
+                  "uid": "35240-d402b9dc-8306-4d52-803c-ed6e8ffbcbe8"
+                },
+                {
+                  "id": "d9ddbdde-1e41-4e45-a1b3-146c9b59e74a",
+                  "name": "TooManyRequests",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-API-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/task/:taskId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "task",
+                        ":taskId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "taskId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Too Many Requests",
+                  "code": 429,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"esse3\": 96668381,\n    \"velitd\": -70953556\n  }\n}",
+                  "createdAt": "2026-07-28T02:57:02.000Z",
+                  "updatedAt": "2026-07-28T02:57:02.000Z",
+                  "uid": "35240-d9ddbdde-1e41-4e45-a1b3-146c9b59e74a"
+                },
+                {
+                  "id": "537c0cdd-9b76-4073-a321-d8dfd005f81d",
+                  "name": "Internal Error",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-API-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/task/:taskId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "task",
+                        ":taskId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "taskId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"esse3\": 96668381,\n    \"velitd\": -70953556\n  }\n}",
+                  "createdAt": "2026-07-28T02:57:02.000Z",
+                  "updatedAt": "2026-07-28T02:57:02.000Z",
+                  "uid": "35240-537c0cdd-9b76-4073-a321-d8dfd005f81d"
+                }
+              ],
+              "createdAt": "2026-07-28T02:57:02.000Z",
+              "updatedAt": "2026-07-28T02:57:02.000Z",
+              "uid": "35240-145384c2-2495-4181-a85d-7576b8d026a6"
+            }
+          ],
+          "id": "0b602a07-38e4-4e42-9acc-39c1c4e512de",
+          "createdAt": "2026-07-28T02:57:02.000Z",
+          "updatedAt": "2026-07-28T02:57:02.000Z",
+          "uid": "35240-0b602a07-38e4-4e42-9acc-39c1c4e512de"
+        },
+        {
+          "name": "List tasks visible to the calling principal. User-scoped callers (OAuth bearer, user-scoped api keys) see tasks they're assigned to; entity-scoped api keys see all tasks in the legal entity the key is bound to. Each row carries an `actions` list describin",
+          "id": "2a9ae5ab-5fbd-4be5-bb74-e0a4f70b8096",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-API-Key",
+                  "type": "string"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}",
+                  "type": "string"
+                },
+                {
+                  "key": "in",
+                  "value": "header",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/task?cursor=<string>&filter:type=<string>&filter:status=action_required&filter:attr[magnace]=15726083&filter:attr[nostruda81]=-42157089.28057675&sort=status&sortDirection=DESC",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "task"
+              ],
+              "query": [
+                {
+                  "description": "A cursor string to fetch the next page of results",
+                  "key": "cursor",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Filter by task type (e.g., payment_approval).",
+                  "key": "filter:type",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Filter by task status.",
+                  "key": "filter:status",
+                  "value": "action_required"
+                },
+                {
+                  "description": "Type-specific attribute filters. Format: filter:attr[field]=value for equality, or filter:attr[field][op]=value for other operators (gte, lte, gt, lt, in, contains). Use GET /task/schema to discover available fields and operators per type.\n",
+                  "key": "filter:attr[magnace]",
+                  "value": "15726083"
+                },
+                {
+                  "description": "Type-specific attribute filters. Format: filter:attr[field]=value for equality, or filter:attr[field][op]=value for other operators (gte, lte, gt, lt, in, contains). Use GET /task/schema to discover available fields and operators per type.\n",
+                  "key": "filter:attr[nostruda81]",
+                  "value": "-42157089.28057675"
+                },
+                {
+                  "description": "Sort field. Default is by timestamp descending.",
+                  "key": "sort",
+                  "value": "status"
+                },
+                {
+                  "description": "Sort direction. Defaults to DESC.",
+                  "key": "sortDirection",
+                  "value": "DESC"
+                }
+              ]
+            },
+            "description": "List tasks visible to the calling principal. User-scoped callers (OAuth bearer, user-scoped api keys) see tasks they're assigned to; entity-scoped api keys see all tasks in the legal entity the key is bound to. Each row carries an `actions` list describing what the caller can do on the task right now \u2014 an empty list means read-only. Supports filtering by type, status, and type-specific attributes via filter:attr.\n"
+          },
+          "response": [
+            {
+              "id": "7f7f2647-ae99-4677-a74b-100c8cae6e76",
+              "name": "OK",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/task?cursor=<string>&filter:type=<string>&filter:status=action_required&filter:attr[magnace]=15726083&filter:attr[nostruda81]=-42157089.28057675&sort=status&sortDirection=DESC",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "task"
+                  ],
+                  "query": [
+                    {
+                      "description": "A cursor string to fetch the next page of results",
+                      "key": "cursor",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by task type (e.g., payment_approval).",
+                      "key": "filter:type",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by task status.",
+                      "key": "filter:status",
+                      "value": "action_required"
+                    },
+                    {
+                      "description": "Type-specific attribute filters. Format: filter:attr[field]=value for equality, or filter:attr[field][op]=value for other operators (gte, lte, gt, lt, in, contains). Use GET /task/schema to discover available fields and operators per type.\n",
+                      "key": "filter:attr[magnace]",
+                      "value": "15726083"
+                    },
+                    {
+                      "description": "Type-specific attribute filters. Format: filter:attr[field]=value for equality, or filter:attr[field][op]=value for other operators (gte, lte, gt, lt, in, contains). Use GET /task/schema to discover available fields and operators per type.\n",
+                      "key": "filter:attr[nostruda81]",
+                      "value": "-42157089.28057675"
+                    },
+                    {
+                      "description": "Sort field. Default is by timestamp descending.",
+                      "key": "sort",
+                      "value": "status"
+                    },
+                    {
+                      "description": "Sort direction. Defaults to DESC.",
+                      "key": "sortDirection",
+                      "value": "DESC"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"items\": [\n    {\n      \"actions\": [\n        {\n          \"key\": \"<string>\",\n          \"label\": \"<string>\",\n          \"isDisabled\": \"<boolean>\",\n          \"missingAttributes\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"style\": \"danger\",\n          \"role\": \"actor\"\n        },\n        {\n          \"key\": \"<string>\",\n          \"label\": \"<string>\",\n          \"isDisabled\": \"<boolean>\",\n          \"missingAttributes\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"style\": \"primary\",\n          \"role\": \"actor\"\n        }\n      ],\n      \"data\": {\n        \"magna709\": -40952700.46822792,\n        \"qui_7c\": \"in cupidatat proident\",\n        \"esse_84\": 1076339.3781993985\n      },\n      \"id\": \"<string>\",\n      \"meta\": {\n        \"dolore5e4\": {\n          \"isRequired\": \"<boolean>\"\n        },\n        \"suntb\": {\n          \"isRequired\": \"<boolean>\"\n        }\n      },\n      \"status\": \"action_required\",\n      \"timestamp\": \"<dateTime>\",\n      \"type\": \"<string>\",\n      \"updatedAt\": \"<dateTime>\"\n    },\n    {\n      \"actions\": [\n        {\n          \"key\": \"<string>\",\n          \"label\": \"<string>\",\n          \"isDisabled\": \"<boolean>\",\n          \"missingAttributes\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"style\": \"primary\",\n          \"role\": \"observer\"\n        },\n        {\n          \"key\": \"<string>\",\n          \"label\": \"<string>\",\n          \"isDisabled\": \"<boolean>\",\n          \"missingAttributes\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"style\": \"danger\",\n          \"role\": \"observer\"\n        }\n      ],\n      \"data\": {\n        \"tempor0\": -1250699,\n        \"dolore5\": \"ut magna\"\n      },\n      \"id\": \"<string>\",\n      \"meta\": {\n        \"cupidatat_18\": {\n          \"isRequired\": \"<boolean>\"\n        },\n        \"pariatura\": {\n          \"isRequired\": \"<boolean>\"\n        },\n        \"occaecat_5\": {\n          \"isRequired\": \"<boolean>\"\n        },\n        \"commodo1\": {\n          \"isRequired\": \"<boolean>\"\n        }\n      },\n      \"status\": \"expired\",\n      \"timestamp\": \"<dateTime>\",\n      \"type\": \"<string>\",\n      \"updatedAt\": \"<dateTime>\"\n    }\n  ],\n  \"metadata\": {\n    \"nextCursor\": \"<string>\",\n    \"count\": \"<number>\"\n  }\n}",
+              "createdAt": "2026-07-28T02:57:02.000Z",
+              "updatedAt": "2026-07-28T02:57:02.000Z",
+              "uid": "35240-7f7f2647-ae99-4677-a74b-100c8cae6e76"
+            },
+            {
+              "id": "e8120e10-3e9f-4fbb-9049-206dba3c6a41",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/task?cursor=<string>&filter:type=<string>&filter:status=action_required&filter:attr[magnace]=15726083&filter:attr[nostruda81]=-42157089.28057675&sort=status&sortDirection=DESC",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "task"
+                  ],
+                  "query": [
+                    {
+                      "description": "A cursor string to fetch the next page of results",
+                      "key": "cursor",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by task type (e.g., payment_approval).",
+                      "key": "filter:type",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by task status.",
+                      "key": "filter:status",
+                      "value": "action_required"
+                    },
+                    {
+                      "description": "Type-specific attribute filters. Format: filter:attr[field]=value for equality, or filter:attr[field][op]=value for other operators (gte, lte, gt, lt, in, contains). Use GET /task/schema to discover available fields and operators per type.\n",
+                      "key": "filter:attr[magnace]",
+                      "value": "15726083"
+                    },
+                    {
+                      "description": "Type-specific attribute filters. Format: filter:attr[field]=value for equality, or filter:attr[field][op]=value for other operators (gte, lte, gt, lt, in, contains). Use GET /task/schema to discover available fields and operators per type.\n",
+                      "key": "filter:attr[nostruda81]",
+                      "value": "-42157089.28057675"
+                    },
+                    {
+                      "description": "Sort field. Default is by timestamp descending.",
+                      "key": "sort",
+                      "value": "status"
+                    },
+                    {
+                      "description": "Sort direction. Defaults to DESC.",
+                      "key": "sortDirection",
+                      "value": "DESC"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"esse3\": 96668381,\n    \"velitd\": -70953556\n  }\n}",
+              "createdAt": "2026-07-28T02:57:02.000Z",
+              "updatedAt": "2026-07-28T02:57:02.000Z",
+              "uid": "35240-e8120e10-3e9f-4fbb-9049-206dba3c6a41"
+            },
+            {
+              "id": "94fc89fd-47ed-4de2-a229-a5cf7db7888e",
+              "name": "Forbidden",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/task?cursor=<string>&filter:type=<string>&filter:status=action_required&filter:attr[magnace]=15726083&filter:attr[nostruda81]=-42157089.28057675&sort=status&sortDirection=DESC",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "task"
+                  ],
+                  "query": [
+                    {
+                      "description": "A cursor string to fetch the next page of results",
+                      "key": "cursor",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by task type (e.g., payment_approval).",
+                      "key": "filter:type",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by task status.",
+                      "key": "filter:status",
+                      "value": "action_required"
+                    },
+                    {
+                      "description": "Type-specific attribute filters. Format: filter:attr[field]=value for equality, or filter:attr[field][op]=value for other operators (gte, lte, gt, lt, in, contains). Use GET /task/schema to discover available fields and operators per type.\n",
+                      "key": "filter:attr[magnace]",
+                      "value": "15726083"
+                    },
+                    {
+                      "description": "Type-specific attribute filters. Format: filter:attr[field]=value for equality, or filter:attr[field][op]=value for other operators (gte, lte, gt, lt, in, contains). Use GET /task/schema to discover available fields and operators per type.\n",
+                      "key": "filter:attr[nostruda81]",
+                      "value": "-42157089.28057675"
+                    },
+                    {
+                      "description": "Sort field. Default is by timestamp descending.",
+                      "key": "sort",
+                      "value": "status"
+                    },
+                    {
+                      "description": "Sort direction. Defaults to DESC.",
+                      "key": "sortDirection",
+                      "value": "DESC"
+                    }
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"esse3\": 96668381,\n    \"velitd\": -70953556\n  }\n}",
+              "createdAt": "2026-07-28T02:57:02.000Z",
+              "updatedAt": "2026-07-28T02:57:02.000Z",
+              "uid": "35240-94fc89fd-47ed-4de2-a229-a5cf7db7888e"
+            },
+            {
+              "id": "528eb648-345d-411c-ae7a-0302a6942776",
+              "name": "TooManyRequests",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/task?cursor=<string>&filter:type=<string>&filter:status=action_required&filter:attr[magnace]=15726083&filter:attr[nostruda81]=-42157089.28057675&sort=status&sortDirection=DESC",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "task"
+                  ],
+                  "query": [
+                    {
+                      "description": "A cursor string to fetch the next page of results",
+                      "key": "cursor",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by task type (e.g., payment_approval).",
+                      "key": "filter:type",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by task status.",
+                      "key": "filter:status",
+                      "value": "action_required"
+                    },
+                    {
+                      "description": "Type-specific attribute filters. Format: filter:attr[field]=value for equality, or filter:attr[field][op]=value for other operators (gte, lte, gt, lt, in, contains). Use GET /task/schema to discover available fields and operators per type.\n",
+                      "key": "filter:attr[magnace]",
+                      "value": "15726083"
+                    },
+                    {
+                      "description": "Type-specific attribute filters. Format: filter:attr[field]=value for equality, or filter:attr[field][op]=value for other operators (gte, lte, gt, lt, in, contains). Use GET /task/schema to discover available fields and operators per type.\n",
+                      "key": "filter:attr[nostruda81]",
+                      "value": "-42157089.28057675"
+                    },
+                    {
+                      "description": "Sort field. Default is by timestamp descending.",
+                      "key": "sort",
+                      "value": "status"
+                    },
+                    {
+                      "description": "Sort direction. Defaults to DESC.",
+                      "key": "sortDirection",
+                      "value": "DESC"
+                    }
+                  ]
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"esse3\": 96668381,\n    \"velitd\": -70953556\n  }\n}",
+              "createdAt": "2026-07-28T02:57:02.000Z",
+              "updatedAt": "2026-07-28T02:57:02.000Z",
+              "uid": "35240-528eb648-345d-411c-ae7a-0302a6942776"
+            },
+            {
+              "id": "b14a1ec3-a770-4083-bb24-9dc30012ca8a",
+              "name": "Internal Error",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/task?cursor=<string>&filter:type=<string>&filter:status=action_required&filter:attr[magnace]=15726083&filter:attr[nostruda81]=-42157089.28057675&sort=status&sortDirection=DESC",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "task"
+                  ],
+                  "query": [
+                    {
+                      "description": "A cursor string to fetch the next page of results",
+                      "key": "cursor",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by task type (e.g., payment_approval).",
+                      "key": "filter:type",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by task status.",
+                      "key": "filter:status",
+                      "value": "action_required"
+                    },
+                    {
+                      "description": "Type-specific attribute filters. Format: filter:attr[field]=value for equality, or filter:attr[field][op]=value for other operators (gte, lte, gt, lt, in, contains). Use GET /task/schema to discover available fields and operators per type.\n",
+                      "key": "filter:attr[magnace]",
+                      "value": "15726083"
+                    },
+                    {
+                      "description": "Type-specific attribute filters. Format: filter:attr[field]=value for equality, or filter:attr[field][op]=value for other operators (gte, lte, gt, lt, in, contains). Use GET /task/schema to discover available fields and operators per type.\n",
+                      "key": "filter:attr[nostruda81]",
+                      "value": "-42157089.28057675"
+                    },
+                    {
+                      "description": "Sort field. Default is by timestamp descending.",
+                      "key": "sort",
+                      "value": "status"
+                    },
+                    {
+                      "description": "Sort direction. Defaults to DESC.",
+                      "key": "sortDirection",
+                      "value": "DESC"
+                    }
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"esse3\": 96668381,\n    \"velitd\": -70953556\n  }\n}",
+              "createdAt": "2026-07-28T02:57:02.000Z",
+              "updatedAt": "2026-07-28T02:57:02.000Z",
+              "uid": "35240-b14a1ec3-a770-4083-bb24-9dc30012ca8a"
+            }
+          ],
+          "createdAt": "2026-07-28T02:57:02.000Z",
+          "updatedAt": "2026-07-28T02:57:02.000Z",
+          "uid": "35240-2a9ae5ab-5fbd-4be5-bb74-e0a4f70b8096"
+        }
+      ],
+      "id": "1815e548-6b0d-4d4e-8e78-12fb0e4824dd",
+      "createdAt": "2026-07-28T02:57:02.000Z",
+      "updatedAt": "2026-07-28T02:57:02.000Z",
+      "uid": "35240-1815e548-6b0d-4d4e-8e78-12fb0e4824dd"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-API-Key",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.slash.com"
+    }
+  ]
+}

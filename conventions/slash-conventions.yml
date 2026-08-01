@@ -1,0 +1,54 @@
+generated: '2026-07-21'
+method: searched
+source: https://docs.slash.com/introduction
+api: openapi/slash-openapi-original.json
+authentication:
+  style: api-key
+  header: X-API-Key
+  docs: https://docs.slash.com/introduction
+  key_types:
+    - legal-entity-scoped   # pinned to one legal entity
+    - user-scoped           # spans every entity the user can access; requires x-legal-entity header
+  tenancy_header:
+    name: x-legal-entity
+    required_for: user-scoped keys (except GET /legal-entity)
+    missing_behavior: 400 Bad Request
+    unauthorized_behavior: 403 Forbidden
+  cross_ref: authentication/slash-authentication.yml
+idempotency:
+  supported: true
+  header: X-Idempotency-Key
+  scope: >-
+    Write endpoints that move money or create resources. Replaying with the same
+    key returns the original result; same key + different body returns 409 Conflict.
+  key_format: fresh UUID per logical operation
+  required_on:
+    - POST /transfers/book-transfer
+    - POST /transfer/virtual-account
+  docs: https://docs.slash.com/introduction
+error_envelope:
+  format: custom-json
+  not_rfc9457: true
+  shape:
+    success: boolean
+    message: human-readable message with a bracketed trace id, e.g. "[4041-2121cyx]"
+    identifier: numeric internal error identifier
+    rawStatus: HTTP status code echoed in the body
+    displayType: UI hint (e.g. "toast")
+  cross_ref: errors/slash-problem-types.yml
+webhooks:
+  event_ordering: not guaranteed; may arrive out of order or more than once
+  idempotency_field: eventId
+  retries: up to 12 with exponential backoff on non-2xx within 10s
+  signature_header: slash-webhook-signature (RSA public-key verification)
+  cross_ref: asyncapi/slash-webhooks.yml
+versioning:
+  scheme: unversioned-beta
+  base_url: https://api.slash.com
+  status: Beta (not yet generally available; access on request)
+  cross_ref: lifecycle/slash-lifecycle.yml
+rate_limiting:
+  signal: HTTP 429 returned by the API (present in OpenAPI responses); no documented limit values
+tokens_public_endpoint:
+  path: GET /tokens/prices
+  note: Publicly accessible without authentication (real-time crypto token prices).

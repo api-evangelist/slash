@@ -1,0 +1,691 @@
+{
+  "info": {
+    "_postman_id": "54da5bc0-729c-4a39-9647-ee3cd362acfe",
+    "name": "Slash Public Account Agent Requests API",
+    "description": "API description",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:56:32.000Z",
+    "updatedAt": "2026-07-28T02:56:33.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-54da5bc0-729c-4a39-9647-ee3cd362acfe"
+  },
+  "item": [
+    {
+      "name": "agent-request",
+      "item": [
+        {
+          "name": "{agentRequestId}",
+          "item": [
+            {
+              "name": "Get agent request",
+              "id": "3f82fd26-9eb1-4cc0-8bfe-c02de7c7963c",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "apikey",
+                  "apikey": [
+                    {
+                      "key": "key",
+                      "value": "X-API-Key",
+                      "type": "string"
+                    },
+                    {
+                      "key": "value",
+                      "value": "{{apiKey}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "in",
+                      "value": "header",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/agent-request/:agentRequestId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "agent-request",
+                    ":agentRequestId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "11cd987b-f1d0-40ec-8fbe-aab55ff35ab2",
+                      "key": "agentRequestId",
+                      "value": "<string>",
+                      "description": "(Required) The unique identifier of the agent request (returned in x-deferred-action-id header)"
+                    }
+                  ]
+                },
+                "description": "Get the status and details of an agent request by ID.\n\nAgent requests are created when a read-only API key makes a write request (POST, PUT, PATCH, DELETE) to the Public API. Instead of executing immediately, these requests are deferred and require approval from an authorized user.\n\nUse this endpoint to check the status of a pending request or retrieve the result after execution.\n"
+              },
+              "response": [
+                {
+                  "id": "c05b421b-ed68-47a8-9bab-993c6f56d57e",
+                  "name": "OK",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-API-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/agent-request/:agentRequestId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "agent-request",
+                        ":agentRequestId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "agentRequestId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"status\": \"rejected\",\n  \"display\": {\n    \"title\": \"<string>\",\n    \"sections\": [\n      {\n        \"label\": \"<string>\",\n        \"value\": \"<string>\"\n      },\n      {\n        \"label\": \"<string>\",\n        \"value\": \"<string>\"\n      }\n    ],\n    \"description\": \"<string>\"\n  },\n  \"createdAt\": \"<dateTime>\",\n  \"result\": {\n    \"Excepteura1_\": 25471929.800266847,\n    \"consectetur3\": \"mollit ut eu Duis Ut\",\n    \"enim74a\": -67022373,\n    \"magna0f\": \"ex dolore Lorem in dolor\"\n  }\n}",
+                  "createdAt": "2026-07-28T02:56:33.000Z",
+                  "updatedAt": "2026-07-28T02:56:33.000Z",
+                  "uid": "35240-c05b421b-ed68-47a8-9bab-993c6f56d57e"
+                },
+                {
+                  "id": "1a68421c-5bd9-4e04-a941-6a8bfa78b8df",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-API-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/agent-request/:agentRequestId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "agent-request",
+                        ":agentRequestId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "agentRequestId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"occaecat5a\": 84543510,\n    \"veniam_4a\": false,\n    \"do_cd4\": -17049729,\n    \"fugiat_719\": \"Duis consectet\"\n  }\n}",
+                  "createdAt": "2026-07-28T02:56:33.000Z",
+                  "updatedAt": "2026-07-28T02:56:33.000Z",
+                  "uid": "35240-1a68421c-5bd9-4e04-a941-6a8bfa78b8df"
+                },
+                {
+                  "id": "2ee80b1e-59fe-4bbc-819c-a67bb179ac11",
+                  "name": "Forbidden",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-API-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/agent-request/:agentRequestId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "agent-request",
+                        ":agentRequestId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "agentRequestId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"occaecat5a\": 84543510,\n    \"veniam_4a\": false,\n    \"do_cd4\": -17049729,\n    \"fugiat_719\": \"Duis consectet\"\n  }\n}",
+                  "createdAt": "2026-07-28T02:56:33.000Z",
+                  "updatedAt": "2026-07-28T02:56:33.000Z",
+                  "uid": "35240-2ee80b1e-59fe-4bbc-819c-a67bb179ac11"
+                },
+                {
+                  "id": "9634524e-8f4d-403e-a034-924486d9b46a",
+                  "name": "TooManyRequests",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-API-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/agent-request/:agentRequestId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "agent-request",
+                        ":agentRequestId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "agentRequestId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Too Many Requests",
+                  "code": 429,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"occaecat5a\": 84543510,\n    \"veniam_4a\": false,\n    \"do_cd4\": -17049729,\n    \"fugiat_719\": \"Duis consectet\"\n  }\n}",
+                  "createdAt": "2026-07-28T02:56:33.000Z",
+                  "updatedAt": "2026-07-28T02:56:33.000Z",
+                  "uid": "35240-9634524e-8f4d-403e-a034-924486d9b46a"
+                },
+                {
+                  "id": "b9584cde-b419-4068-b184-73eab59d03e7",
+                  "name": "Internal Error",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-API-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/agent-request/:agentRequestId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "agent-request",
+                        ":agentRequestId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "agentRequestId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"occaecat5a\": 84543510,\n    \"veniam_4a\": false,\n    \"do_cd4\": -17049729,\n    \"fugiat_719\": \"Duis consectet\"\n  }\n}",
+                  "createdAt": "2026-07-28T02:56:33.000Z",
+                  "updatedAt": "2026-07-28T02:56:33.000Z",
+                  "uid": "35240-b9584cde-b419-4068-b184-73eab59d03e7"
+                }
+              ],
+              "createdAt": "2026-07-28T02:56:33.000Z",
+              "updatedAt": "2026-07-28T02:56:33.000Z",
+              "uid": "35240-3f82fd26-9eb1-4cc0-8bfe-c02de7c7963c"
+            }
+          ],
+          "id": "0fa87d7e-248e-48ed-8a46-fa831d707123",
+          "createdAt": "2026-07-28T02:56:33.000Z",
+          "updatedAt": "2026-07-28T02:56:33.000Z",
+          "uid": "35240-0fa87d7e-248e-48ed-8a46-fa831d707123"
+        },
+        {
+          "name": "List agent requests",
+          "id": "4416784c-9686-4926-b110-d44f25b6fb41",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-API-Key",
+                  "type": "string"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}",
+                  "type": "string"
+                },
+                {
+                  "key": "in",
+                  "value": "header",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/agent-request?cursor=<string>&filter:status=rejected",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "agent-request"
+              ],
+              "query": [
+                {
+                  "description": "A cursor string to fetch the next page of results",
+                  "key": "cursor",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Filter by request status",
+                  "key": "filter:status",
+                  "value": "rejected"
+                }
+              ]
+            },
+            "description": "List all agent requests created by this API key.\n\nAgent requests are created when a read-only API key makes a write request (POST, PUT, PATCH, DELETE) to the Public API. This endpoint returns all such requests, paginated.\n"
+          },
+          "response": [
+            {
+              "id": "e1b8de38-fe49-4ba2-bbfd-2e3306341836",
+              "name": "OK",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/agent-request?cursor=<string>&filter:status=rejected",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "agent-request"
+                  ],
+                  "query": [
+                    {
+                      "description": "A cursor string to fetch the next page of results",
+                      "key": "cursor",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by request status",
+                      "key": "filter:status",
+                      "value": "rejected"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"items\": [\n    {\n      \"id\": \"<string>\",\n      \"status\": \"running\",\n      \"display\": {\n        \"title\": \"<string>\",\n        \"sections\": [\n          {\n            \"label\": \"<string>\",\n            \"value\": \"<string>\"\n          },\n          {\n            \"label\": \"<string>\",\n            \"value\": \"<string>\"\n          }\n        ],\n        \"description\": \"<string>\"\n      },\n      \"createdAt\": \"<dateTime>\",\n      \"result\": {\n        \"ute\": false\n      }\n    },\n    {\n      \"id\": \"<string>\",\n      \"status\": \"rejected\",\n      \"display\": {\n        \"title\": \"<string>\",\n        \"sections\": [\n          {\n            \"label\": \"<string>\",\n            \"value\": \"<string>\"\n          },\n          {\n            \"label\": \"<string>\",\n            \"value\": \"<string>\"\n          }\n        ],\n        \"description\": \"<string>\"\n      },\n      \"createdAt\": \"<dateTime>\",\n      \"result\": {\n        \"quis_406\": -93827431,\n        \"proidenta7\": 7456773.605481446\n      }\n    }\n  ],\n  \"metadata\": {\n    \"nextCursor\": \"<string>\",\n    \"count\": \"<number>\"\n  }\n}",
+              "createdAt": "2026-07-28T02:56:33.000Z",
+              "updatedAt": "2026-07-28T02:56:33.000Z",
+              "uid": "35240-e1b8de38-fe49-4ba2-bbfd-2e3306341836"
+            },
+            {
+              "id": "af463bee-62a6-4363-a88e-64ff31893c3b",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/agent-request?cursor=<string>&filter:status=rejected",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "agent-request"
+                  ],
+                  "query": [
+                    {
+                      "description": "A cursor string to fetch the next page of results",
+                      "key": "cursor",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by request status",
+                      "key": "filter:status",
+                      "value": "rejected"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"occaecat5a\": 84543510,\n    \"veniam_4a\": false,\n    \"do_cd4\": -17049729,\n    \"fugiat_719\": \"Duis consectet\"\n  }\n}",
+              "createdAt": "2026-07-28T02:56:33.000Z",
+              "updatedAt": "2026-07-28T02:56:33.000Z",
+              "uid": "35240-af463bee-62a6-4363-a88e-64ff31893c3b"
+            },
+            {
+              "id": "70dca352-7d9c-4df7-bfb1-5ac44a6b87e2",
+              "name": "Forbidden",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/agent-request?cursor=<string>&filter:status=rejected",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "agent-request"
+                  ],
+                  "query": [
+                    {
+                      "description": "A cursor string to fetch the next page of results",
+                      "key": "cursor",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by request status",
+                      "key": "filter:status",
+                      "value": "rejected"
+                    }
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"occaecat5a\": 84543510,\n    \"veniam_4a\": false,\n    \"do_cd4\": -17049729,\n    \"fugiat_719\": \"Duis consectet\"\n  }\n}",
+              "createdAt": "2026-07-28T02:56:33.000Z",
+              "updatedAt": "2026-07-28T02:56:33.000Z",
+              "uid": "35240-70dca352-7d9c-4df7-bfb1-5ac44a6b87e2"
+            },
+            {
+              "id": "31a20f16-a515-497f-ac7a-4571aaa54f27",
+              "name": "TooManyRequests",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/agent-request?cursor=<string>&filter:status=rejected",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "agent-request"
+                  ],
+                  "query": [
+                    {
+                      "description": "A cursor string to fetch the next page of results",
+                      "key": "cursor",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by request status",
+                      "key": "filter:status",
+                      "value": "rejected"
+                    }
+                  ]
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"occaecat5a\": 84543510,\n    \"veniam_4a\": false,\n    \"do_cd4\": -17049729,\n    \"fugiat_719\": \"Duis consectet\"\n  }\n}",
+              "createdAt": "2026-07-28T02:56:33.000Z",
+              "updatedAt": "2026-07-28T02:56:33.000Z",
+              "uid": "35240-31a20f16-a515-497f-ac7a-4571aaa54f27"
+            },
+            {
+              "id": "b239c690-873a-477d-9dfc-7f2f97a68172",
+              "name": "Internal Error",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/agent-request?cursor=<string>&filter:status=rejected",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "agent-request"
+                  ],
+                  "query": [
+                    {
+                      "description": "A cursor string to fetch the next page of results",
+                      "key": "cursor",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by request status",
+                      "key": "filter:status",
+                      "value": "rejected"
+                    }
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"occaecat5a\": 84543510,\n    \"veniam_4a\": false,\n    \"do_cd4\": -17049729,\n    \"fugiat_719\": \"Duis consectet\"\n  }\n}",
+              "createdAt": "2026-07-28T02:56:33.000Z",
+              "updatedAt": "2026-07-28T02:56:33.000Z",
+              "uid": "35240-b239c690-873a-477d-9dfc-7f2f97a68172"
+            }
+          ],
+          "createdAt": "2026-07-28T02:56:33.000Z",
+          "updatedAt": "2026-07-28T02:56:33.000Z",
+          "uid": "35240-4416784c-9686-4926-b110-d44f25b6fb41"
+        }
+      ],
+      "id": "9d94bf9b-c8db-4e29-814e-99b6ab0a3111",
+      "createdAt": "2026-07-28T02:56:33.000Z",
+      "updatedAt": "2026-07-28T02:56:33.000Z",
+      "uid": "35240-9d94bf9b-c8db-4e29-814e-99b6ab0a3111"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-API-Key",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.slash.com"
+    }
+  ]
+}

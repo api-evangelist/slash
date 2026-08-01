@@ -1,0 +1,501 @@
+{
+  "info": {
+    "_postman_id": "c052fc7e-a23a-496f-9b25-b59edea4650b",
+    "name": "Slash Public Account Transfers API",
+    "description": "API description",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:57:07.000Z",
+    "updatedAt": "2026-07-28T02:57:07.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-c052fc7e-a23a-496f-9b25-b59edea4650b"
+  },
+  "item": [
+    {
+      "name": "transfers",
+      "item": [
+        {
+          "name": "book-transfer",
+          "item": [
+            {
+              "name": "Initiate a *book transfer* \u2014 an instant, intra\u2010Slash money movement\nbetween two accounts the caller has access to.\n\n`from` and `to` accept any Slash account id the caller can address:\n  - `sa_group_*` \u2014 a Slash account group's primary cash account\n  - `su",
+              "id": "c48bde68-b8ed-4446-8cdb-2191baa0b393",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "apikey",
+                  "apikey": [
+                    {
+                      "key": "key",
+                      "value": "X-API-Key",
+                      "type": "string"
+                    },
+                    {
+                      "key": "value",
+                      "value": "{{apiKey}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "in",
+                      "value": "header",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "(Required) Unique key to ensure idempotency of the transfer.",
+                    "key": "X-Idempotency-Key",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"from\": \"<string>\",\n  \"to\": \"<string>\",\n  \"amountCents\": \"<number>\",\n  \"memo\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/transfers/book-transfer",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "transfers",
+                    "book-transfer"
+                  ]
+                },
+                "description": "Initiate a *book transfer* \u2014 an instant, intra\u2010Slash money movement\nbetween two accounts the caller has access to.\n\n`from` and `to` accept any Slash account id the caller can address:\n  - `sa_group_*` \u2014 a Slash account group's primary cash account\n  - `sub_*`      \u2014 a virtual account inside a Slash account group\n\nThe legal entity owning `from` must equal the request's `x-legal-entity`\nheader (the source-scope guard for user-scoped API keys), and the caller\nmust be a member of both `from` and `to`'s legal entities. Cross-legal-\nentity transfers between entities you own are supported; sending to a\nthird party is not (see closed-loop-payment, coming soon).\n\nPayment is settled instantly on Slash's ledger \u2014 no banking-network rail\nis touched. For ACH/wire/RTP, use the rail-specific endpoint.\n"
+              },
+              "response": [
+                {
+                  "id": "d83555bc-9300-4ea1-aa1c-39fdf1518bcb",
+                  "name": "OK",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "(Required) Unique key to ensure idempotency of the transfer.",
+                        "key": "X-Idempotency-Key",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-API-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"from\": \"<string>\",\n  \"to\": \"<string>\",\n  \"amountCents\": \"<number>\",\n  \"memo\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/transfers/book-transfer",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "transfers",
+                        "book-transfer"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"transferId\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:57:07.000Z",
+                  "updatedAt": "2026-07-28T02:57:07.000Z",
+                  "uid": "35240-d83555bc-9300-4ea1-aa1c-39fdf1518bcb"
+                },
+                {
+                  "id": "d1565cba-d365-4323-adcc-cc89fe0faa0c",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "(Required) Unique key to ensure idempotency of the transfer.",
+                        "key": "X-Idempotency-Key",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-API-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"from\": \"<string>\",\n  \"to\": \"<string>\",\n  \"amountCents\": \"<number>\",\n  \"memo\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/transfers/book-transfer",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "transfers",
+                        "book-transfer"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"eiusmod1b5\": true,\n    \"amet_63d\": -10658517,\n    \"temporc0d\": \"sed nulla veniam\",\n    \"velit_e5\": 60544068.62398651\n  }\n}",
+                  "createdAt": "2026-07-28T02:57:07.000Z",
+                  "updatedAt": "2026-07-28T02:57:07.000Z",
+                  "uid": "35240-d1565cba-d365-4323-adcc-cc89fe0faa0c"
+                },
+                {
+                  "id": "5ede8c63-8472-4036-a7b6-0d0a50794f04",
+                  "name": "Forbidden",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "(Required) Unique key to ensure idempotency of the transfer.",
+                        "key": "X-Idempotency-Key",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-API-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"from\": \"<string>\",\n  \"to\": \"<string>\",\n  \"amountCents\": \"<number>\",\n  \"memo\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/transfers/book-transfer",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "transfers",
+                        "book-transfer"
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"eiusmod1b5\": true,\n    \"amet_63d\": -10658517,\n    \"temporc0d\": \"sed nulla veniam\",\n    \"velit_e5\": 60544068.62398651\n  }\n}",
+                  "createdAt": "2026-07-28T02:57:07.000Z",
+                  "updatedAt": "2026-07-28T02:57:07.000Z",
+                  "uid": "35240-5ede8c63-8472-4036-a7b6-0d0a50794f04"
+                },
+                {
+                  "id": "dca1c214-7255-4dcf-b6aa-8d72398a1ef3",
+                  "name": "The provided `X-Idempotency-Key` was already used for a different\nrequest body. Idempotency keys must be unique per request body \u2014\nreplaying a previous key with mismatched parameters is rejected.\n",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "(Required) Unique key to ensure idempotency of the transfer.",
+                        "key": "X-Idempotency-Key",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-API-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"from\": \"<string>\",\n  \"to\": \"<string>\",\n  \"amountCents\": \"<number>\",\n  \"memo\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/transfers/book-transfer",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "transfers",
+                        "book-transfer"
+                      ]
+                    }
+                  },
+                  "status": "Conflict",
+                  "code": 409,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"eiusmod1b5\": true,\n    \"amet_63d\": -10658517,\n    \"temporc0d\": \"sed nulla veniam\",\n    \"velit_e5\": 60544068.62398651\n  }\n}",
+                  "createdAt": "2026-07-28T02:57:07.000Z",
+                  "updatedAt": "2026-07-28T02:57:07.000Z",
+                  "uid": "35240-dca1c214-7255-4dcf-b6aa-8d72398a1ef3"
+                },
+                {
+                  "id": "33d5541a-7e94-4261-b3ba-6a90ad1695f4",
+                  "name": "TooManyRequests",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "(Required) Unique key to ensure idempotency of the transfer.",
+                        "key": "X-Idempotency-Key",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-API-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"from\": \"<string>\",\n  \"to\": \"<string>\",\n  \"amountCents\": \"<number>\",\n  \"memo\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/transfers/book-transfer",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "transfers",
+                        "book-transfer"
+                      ]
+                    }
+                  },
+                  "status": "Too Many Requests",
+                  "code": 429,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"eiusmod1b5\": true,\n    \"amet_63d\": -10658517,\n    \"temporc0d\": \"sed nulla veniam\",\n    \"velit_e5\": 60544068.62398651\n  }\n}",
+                  "createdAt": "2026-07-28T02:57:07.000Z",
+                  "updatedAt": "2026-07-28T02:57:07.000Z",
+                  "uid": "35240-33d5541a-7e94-4261-b3ba-6a90ad1695f4"
+                },
+                {
+                  "id": "a415ec6e-593f-4610-aeb2-1f23ab0777dd",
+                  "name": "Internal Error",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "(Required) Unique key to ensure idempotency of the transfer.",
+                        "key": "X-Idempotency-Key",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-API-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"from\": \"<string>\",\n  \"to\": \"<string>\",\n  \"amountCents\": \"<number>\",\n  \"memo\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/transfers/book-transfer",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "transfers",
+                        "book-transfer"
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"eiusmod1b5\": true,\n    \"amet_63d\": -10658517,\n    \"temporc0d\": \"sed nulla veniam\",\n    \"velit_e5\": 60544068.62398651\n  }\n}",
+                  "createdAt": "2026-07-28T02:57:07.000Z",
+                  "updatedAt": "2026-07-28T02:57:07.000Z",
+                  "uid": "35240-a415ec6e-593f-4610-aeb2-1f23ab0777dd"
+                }
+              ],
+              "createdAt": "2026-07-28T02:57:07.000Z",
+              "updatedAt": "2026-07-28T02:57:07.000Z",
+              "uid": "35240-c48bde68-b8ed-4446-8cdb-2191baa0b393"
+            }
+          ],
+          "id": "20d87a7d-76f4-4e89-8153-b4548109d961",
+          "createdAt": "2026-07-28T02:57:07.000Z",
+          "updatedAt": "2026-07-28T02:57:07.000Z",
+          "uid": "35240-20d87a7d-76f4-4e89-8153-b4548109d961"
+        }
+      ],
+      "id": "4f80d0a9-5dd6-4eed-8d6b-4340a4e5afba",
+      "createdAt": "2026-07-28T02:57:07.000Z",
+      "updatedAt": "2026-07-28T02:57:07.000Z",
+      "uid": "35240-4f80d0a9-5dd6-4eed-8d6b-4340a4e5afba"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-API-Key",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.slash.com"
+    }
+  ]
+}

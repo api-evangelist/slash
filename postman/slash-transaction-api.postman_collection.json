@@ -1,0 +1,2443 @@
+{
+  "info": {
+    "_postman_id": "07fa09f6-eb57-404e-b55a-88963dbffe7d",
+    "name": "Slash Public Account Transaction API",
+    "description": "API description",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:57:04.000Z",
+    "updatedAt": "2026-07-28T02:57:05.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-07fa09f6-eb57-404e-b55a-88963dbffe7d"
+  },
+  "item": [
+    {
+      "name": "transaction",
+      "item": [
+        {
+          "name": "aggregation",
+          "item": [
+            {
+              "name": "Get transaction aggregations",
+              "id": "9983248e-1a07-4756-be86-c166f00e5421",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "apikey",
+                  "apikey": [
+                    {
+                      "key": "key",
+                      "value": "X-API-Key",
+                      "type": "string"
+                    },
+                    {
+                      "key": "value",
+                      "value": "{{apiKey}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "in",
+                      "value": "header",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/transaction/aggregation?accountId=<string>&filter:legalEntityId=<string>&filter:accountId=<string>&filter:virtualAccountId=<string>&filter:from_date=<string>&filter:to_date=<string>&filter:from_authorized_at=<string>&filter:to_authorized_at=<string>&filter:status=pending&filter:detailed_status=settled&filter:cardId=<string>&filter:category=internal",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "transaction",
+                    "aggregation"
+                  ],
+                  "query": [
+                    {
+                      "description": "Use filter:accountId to filter by account ID",
+                      "key": "accountId",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Pass in a legal entity ID to filter transactions by accounts under a specific legal entity.",
+                      "key": "filter:legalEntityId",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Pass in an account ID to filter transactions by account ID. This will return all transactions that match the account ID passed in.",
+                      "key": "filter:accountId",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Pass in a virtual account ID to filter transactions by virtual account ID. This will return all transactions that match the virtual account ID passed in.",
+                      "key": "filter:virtualAccountId",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Pass in a unix timestamp in milliseconds to filter transactions by date. This will return all transactions that occurred on or after the date passed in.",
+                      "key": "filter:from_date",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Pass in a unix timestamp in milliseconds to filter transactions by date. This will return all transactions that occurred on or before the date passed in.",
+                      "key": "filter:to_date",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Pass in a unix timestamp in milliseconds to filter transactions by authorization time. This will return all transactions that are authorized on or after the date passed in.",
+                      "key": "filter:from_authorized_at",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Pass in a unix timestamp in milliseconds to filter transactions by authorization time. This will return all transactions that are authorized on or before the date passed in.",
+                      "key": "filter:to_authorized_at",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter transactions by status",
+                      "key": "filter:status",
+                      "value": "pending"
+                    },
+                    {
+                      "description": "Filter transactions by detailed status",
+                      "key": "filter:detailed_status",
+                      "value": "settled"
+                    },
+                    {
+                      "description": "Filter transactions by cardId",
+                      "key": "filter:cardId",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter transactions by category type",
+                      "key": "filter:category",
+                      "value": "internal"
+                    }
+                  ]
+                },
+                "description": "Get transaction aggregations"
+              },
+              "response": [
+                {
+                  "id": "d32ab7d1-5cac-4334-a5af-7236bfd45105",
+                  "name": "OK",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-API-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/transaction/aggregation?accountId=<string>&filter:legalEntityId=<string>&filter:accountId=<string>&filter:virtualAccountId=<string>&filter:from_date=<string>&filter:to_date=<string>&filter:from_authorized_at=<string>&filter:to_authorized_at=<string>&filter:status=pending&filter:detailed_status=settled&filter:cardId=<string>&filter:category=internal",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "transaction",
+                        "aggregation"
+                      ],
+                      "query": [
+                        {
+                          "description": "Use filter:accountId to filter by account ID",
+                          "key": "accountId",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Pass in a legal entity ID to filter transactions by accounts under a specific legal entity.",
+                          "key": "filter:legalEntityId",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Pass in an account ID to filter transactions by account ID. This will return all transactions that match the account ID passed in.",
+                          "key": "filter:accountId",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Pass in a virtual account ID to filter transactions by virtual account ID. This will return all transactions that match the virtual account ID passed in.",
+                          "key": "filter:virtualAccountId",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Pass in a unix timestamp in milliseconds to filter transactions by date. This will return all transactions that occurred on or after the date passed in.",
+                          "key": "filter:from_date",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Pass in a unix timestamp in milliseconds to filter transactions by date. This will return all transactions that occurred on or before the date passed in.",
+                          "key": "filter:to_date",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Pass in a unix timestamp in milliseconds to filter transactions by authorization time. This will return all transactions that are authorized on or after the date passed in.",
+                          "key": "filter:from_authorized_at",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Pass in a unix timestamp in milliseconds to filter transactions by authorization time. This will return all transactions that are authorized on or before the date passed in.",
+                          "key": "filter:to_authorized_at",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Filter transactions by status",
+                          "key": "filter:status",
+                          "value": "pending"
+                        },
+                        {
+                          "description": "Filter transactions by detailed status",
+                          "key": "filter:detailed_status",
+                          "value": "settled"
+                        },
+                        {
+                          "description": "Filter transactions by cardId",
+                          "key": "filter:cardId",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Filter transactions by category type",
+                          "key": "filter:category",
+                          "value": "internal"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"count\": \"<number>\",\n  \"totalIn\": \"<number>\",\n  \"totalOut\": \"<number>\",\n  \"netChange\": \"<number>\"\n}",
+                  "createdAt": "2026-07-28T02:57:05.000Z",
+                  "updatedAt": "2026-07-28T02:57:05.000Z",
+                  "uid": "35240-d32ab7d1-5cac-4334-a5af-7236bfd45105"
+                },
+                {
+                  "id": "b4e00fa1-d93a-4a39-8e27-241a7eac665a",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-API-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/transaction/aggregation?accountId=<string>&filter:legalEntityId=<string>&filter:accountId=<string>&filter:virtualAccountId=<string>&filter:from_date=<string>&filter:to_date=<string>&filter:from_authorized_at=<string>&filter:to_authorized_at=<string>&filter:status=pending&filter:detailed_status=settled&filter:cardId=<string>&filter:category=internal",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "transaction",
+                        "aggregation"
+                      ],
+                      "query": [
+                        {
+                          "description": "Use filter:accountId to filter by account ID",
+                          "key": "accountId",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Pass in a legal entity ID to filter transactions by accounts under a specific legal entity.",
+                          "key": "filter:legalEntityId",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Pass in an account ID to filter transactions by account ID. This will return all transactions that match the account ID passed in.",
+                          "key": "filter:accountId",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Pass in a virtual account ID to filter transactions by virtual account ID. This will return all transactions that match the virtual account ID passed in.",
+                          "key": "filter:virtualAccountId",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Pass in a unix timestamp in milliseconds to filter transactions by date. This will return all transactions that occurred on or after the date passed in.",
+                          "key": "filter:from_date",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Pass in a unix timestamp in milliseconds to filter transactions by date. This will return all transactions that occurred on or before the date passed in.",
+                          "key": "filter:to_date",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Pass in a unix timestamp in milliseconds to filter transactions by authorization time. This will return all transactions that are authorized on or after the date passed in.",
+                          "key": "filter:from_authorized_at",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Pass in a unix timestamp in milliseconds to filter transactions by authorization time. This will return all transactions that are authorized on or before the date passed in.",
+                          "key": "filter:to_authorized_at",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Filter transactions by status",
+                          "key": "filter:status",
+                          "value": "pending"
+                        },
+                        {
+                          "description": "Filter transactions by detailed status",
+                          "key": "filter:detailed_status",
+                          "value": "settled"
+                        },
+                        {
+                          "description": "Filter transactions by cardId",
+                          "key": "filter:cardId",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Filter transactions by category type",
+                          "key": "filter:category",
+                          "value": "internal"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"esse_b\": -22599339.33844103,\n    \"sunt_c_0\": \"in\",\n    \"Excepteur5b2\": 85214376,\n    \"ad_3\": -73306619,\n    \"mollit_405\": false\n  }\n}",
+                  "createdAt": "2026-07-28T02:57:05.000Z",
+                  "updatedAt": "2026-07-28T02:57:05.000Z",
+                  "uid": "35240-b4e00fa1-d93a-4a39-8e27-241a7eac665a"
+                },
+                {
+                  "id": "948af4db-ae6c-49a1-a04c-ff7dfcaa4203",
+                  "name": "Forbidden",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-API-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/transaction/aggregation?accountId=<string>&filter:legalEntityId=<string>&filter:accountId=<string>&filter:virtualAccountId=<string>&filter:from_date=<string>&filter:to_date=<string>&filter:from_authorized_at=<string>&filter:to_authorized_at=<string>&filter:status=pending&filter:detailed_status=settled&filter:cardId=<string>&filter:category=internal",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "transaction",
+                        "aggregation"
+                      ],
+                      "query": [
+                        {
+                          "description": "Use filter:accountId to filter by account ID",
+                          "key": "accountId",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Pass in a legal entity ID to filter transactions by accounts under a specific legal entity.",
+                          "key": "filter:legalEntityId",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Pass in an account ID to filter transactions by account ID. This will return all transactions that match the account ID passed in.",
+                          "key": "filter:accountId",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Pass in a virtual account ID to filter transactions by virtual account ID. This will return all transactions that match the virtual account ID passed in.",
+                          "key": "filter:virtualAccountId",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Pass in a unix timestamp in milliseconds to filter transactions by date. This will return all transactions that occurred on or after the date passed in.",
+                          "key": "filter:from_date",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Pass in a unix timestamp in milliseconds to filter transactions by date. This will return all transactions that occurred on or before the date passed in.",
+                          "key": "filter:to_date",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Pass in a unix timestamp in milliseconds to filter transactions by authorization time. This will return all transactions that are authorized on or after the date passed in.",
+                          "key": "filter:from_authorized_at",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Pass in a unix timestamp in milliseconds to filter transactions by authorization time. This will return all transactions that are authorized on or before the date passed in.",
+                          "key": "filter:to_authorized_at",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Filter transactions by status",
+                          "key": "filter:status",
+                          "value": "pending"
+                        },
+                        {
+                          "description": "Filter transactions by detailed status",
+                          "key": "filter:detailed_status",
+                          "value": "settled"
+                        },
+                        {
+                          "description": "Filter transactions by cardId",
+                          "key": "filter:cardId",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Filter transactions by category type",
+                          "key": "filter:category",
+                          "value": "internal"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"esse_b\": -22599339.33844103,\n    \"sunt_c_0\": \"in\",\n    \"Excepteur5b2\": 85214376,\n    \"ad_3\": -73306619,\n    \"mollit_405\": false\n  }\n}",
+                  "createdAt": "2026-07-28T02:57:05.000Z",
+                  "updatedAt": "2026-07-28T02:57:05.000Z",
+                  "uid": "35240-948af4db-ae6c-49a1-a04c-ff7dfcaa4203"
+                },
+                {
+                  "id": "692f84c3-ff9c-47f9-8e4d-7448052227f4",
+                  "name": "TooManyRequests",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-API-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/transaction/aggregation?accountId=<string>&filter:legalEntityId=<string>&filter:accountId=<string>&filter:virtualAccountId=<string>&filter:from_date=<string>&filter:to_date=<string>&filter:from_authorized_at=<string>&filter:to_authorized_at=<string>&filter:status=pending&filter:detailed_status=settled&filter:cardId=<string>&filter:category=internal",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "transaction",
+                        "aggregation"
+                      ],
+                      "query": [
+                        {
+                          "description": "Use filter:accountId to filter by account ID",
+                          "key": "accountId",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Pass in a legal entity ID to filter transactions by accounts under a specific legal entity.",
+                          "key": "filter:legalEntityId",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Pass in an account ID to filter transactions by account ID. This will return all transactions that match the account ID passed in.",
+                          "key": "filter:accountId",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Pass in a virtual account ID to filter transactions by virtual account ID. This will return all transactions that match the virtual account ID passed in.",
+                          "key": "filter:virtualAccountId",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Pass in a unix timestamp in milliseconds to filter transactions by date. This will return all transactions that occurred on or after the date passed in.",
+                          "key": "filter:from_date",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Pass in a unix timestamp in milliseconds to filter transactions by date. This will return all transactions that occurred on or before the date passed in.",
+                          "key": "filter:to_date",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Pass in a unix timestamp in milliseconds to filter transactions by authorization time. This will return all transactions that are authorized on or after the date passed in.",
+                          "key": "filter:from_authorized_at",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Pass in a unix timestamp in milliseconds to filter transactions by authorization time. This will return all transactions that are authorized on or before the date passed in.",
+                          "key": "filter:to_authorized_at",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Filter transactions by status",
+                          "key": "filter:status",
+                          "value": "pending"
+                        },
+                        {
+                          "description": "Filter transactions by detailed status",
+                          "key": "filter:detailed_status",
+                          "value": "settled"
+                        },
+                        {
+                          "description": "Filter transactions by cardId",
+                          "key": "filter:cardId",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Filter transactions by category type",
+                          "key": "filter:category",
+                          "value": "internal"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Too Many Requests",
+                  "code": 429,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"esse_b\": -22599339.33844103,\n    \"sunt_c_0\": \"in\",\n    \"Excepteur5b2\": 85214376,\n    \"ad_3\": -73306619,\n    \"mollit_405\": false\n  }\n}",
+                  "createdAt": "2026-07-28T02:57:05.000Z",
+                  "updatedAt": "2026-07-28T02:57:05.000Z",
+                  "uid": "35240-692f84c3-ff9c-47f9-8e4d-7448052227f4"
+                },
+                {
+                  "id": "eaea1534-5f6c-4422-9320-4f80f81ceb90",
+                  "name": "Internal Error",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-API-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/transaction/aggregation?accountId=<string>&filter:legalEntityId=<string>&filter:accountId=<string>&filter:virtualAccountId=<string>&filter:from_date=<string>&filter:to_date=<string>&filter:from_authorized_at=<string>&filter:to_authorized_at=<string>&filter:status=pending&filter:detailed_status=settled&filter:cardId=<string>&filter:category=internal",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "transaction",
+                        "aggregation"
+                      ],
+                      "query": [
+                        {
+                          "description": "Use filter:accountId to filter by account ID",
+                          "key": "accountId",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Pass in a legal entity ID to filter transactions by accounts under a specific legal entity.",
+                          "key": "filter:legalEntityId",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Pass in an account ID to filter transactions by account ID. This will return all transactions that match the account ID passed in.",
+                          "key": "filter:accountId",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Pass in a virtual account ID to filter transactions by virtual account ID. This will return all transactions that match the virtual account ID passed in.",
+                          "key": "filter:virtualAccountId",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Pass in a unix timestamp in milliseconds to filter transactions by date. This will return all transactions that occurred on or after the date passed in.",
+                          "key": "filter:from_date",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Pass in a unix timestamp in milliseconds to filter transactions by date. This will return all transactions that occurred on or before the date passed in.",
+                          "key": "filter:to_date",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Pass in a unix timestamp in milliseconds to filter transactions by authorization time. This will return all transactions that are authorized on or after the date passed in.",
+                          "key": "filter:from_authorized_at",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Pass in a unix timestamp in milliseconds to filter transactions by authorization time. This will return all transactions that are authorized on or before the date passed in.",
+                          "key": "filter:to_authorized_at",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Filter transactions by status",
+                          "key": "filter:status",
+                          "value": "pending"
+                        },
+                        {
+                          "description": "Filter transactions by detailed status",
+                          "key": "filter:detailed_status",
+                          "value": "settled"
+                        },
+                        {
+                          "description": "Filter transactions by cardId",
+                          "key": "filter:cardId",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Filter transactions by category type",
+                          "key": "filter:category",
+                          "value": "internal"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"esse_b\": -22599339.33844103,\n    \"sunt_c_0\": \"in\",\n    \"Excepteur5b2\": 85214376,\n    \"ad_3\": -73306619,\n    \"mollit_405\": false\n  }\n}",
+                  "createdAt": "2026-07-28T02:57:05.000Z",
+                  "updatedAt": "2026-07-28T02:57:05.000Z",
+                  "uid": "35240-eaea1534-5f6c-4422-9320-4f80f81ceb90"
+                }
+              ],
+              "createdAt": "2026-07-28T02:57:05.000Z",
+              "updatedAt": "2026-07-28T02:57:05.000Z",
+              "uid": "35240-9983248e-1a07-4756-be86-c166f00e5421"
+            }
+          ],
+          "id": "dd4e55e1-f916-4c22-868f-1a10c7f0ad97",
+          "createdAt": "2026-07-28T02:57:05.000Z",
+          "updatedAt": "2026-07-28T02:57:05.000Z",
+          "uid": "35240-dd4e55e1-f916-4c22-868f-1a10c7f0ad97"
+        },
+        {
+          "name": "{transactionId}",
+          "item": [
+            {
+              "name": "note",
+              "item": [
+                {
+                  "name": "Update note for a transaction",
+                  "id": "cd20f6e2-1b51-4c57-8b70-e70e88f66bc5",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "apikey",
+                      "apikey": [
+                        {
+                          "key": "key",
+                          "value": "X-API-Key",
+                          "type": "string"
+                        },
+                        {
+                          "key": "value",
+                          "value": "{{apiKey}}",
+                          "type": "string"
+                        },
+                        {
+                          "key": "in",
+                          "value": "header",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"note\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/transaction/:transactionId/note",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "transaction",
+                        ":transactionId",
+                        "note"
+                      ],
+                      "variable": [
+                        {
+                          "id": "0dd0f3ed-3aed-4690-9245-4189f0fc09f6",
+                          "key": "transactionId",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Update note for a transaction"
+                  },
+                  "response": [
+                    {
+                      "id": "49c51d72-38df-4038-b641-ba0306cab762",
+                      "name": "OK",
+                      "originalRequest": {
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-API-Key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"note\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/transaction/:transactionId/note",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "transaction",
+                            ":transactionId",
+                            "note"
+                          ],
+                          "variable": [
+                            {
+                              "key": "transactionId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"success\": \"<boolean>\"\n}",
+                      "createdAt": "2026-07-28T02:57:05.000Z",
+                      "updatedAt": "2026-07-28T02:57:05.000Z",
+                      "uid": "35240-49c51d72-38df-4038-b641-ba0306cab762"
+                    },
+                    {
+                      "id": "da561b0c-46a7-4c70-bb9a-80e3d7efd6c2",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-API-Key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"note\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/transaction/:transactionId/note",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "transaction",
+                            ":transactionId",
+                            "note"
+                          ],
+                          "variable": [
+                            {
+                              "key": "transactionId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"esse_b\": -22599339.33844103,\n    \"sunt_c_0\": \"in\",\n    \"Excepteur5b2\": 85214376,\n    \"ad_3\": -73306619,\n    \"mollit_405\": false\n  }\n}",
+                      "createdAt": "2026-07-28T02:57:05.000Z",
+                      "updatedAt": "2026-07-28T02:57:05.000Z",
+                      "uid": "35240-da561b0c-46a7-4c70-bb9a-80e3d7efd6c2"
+                    },
+                    {
+                      "id": "fba92942-d381-4f07-8233-d50d37a09d9c",
+                      "name": "Forbidden",
+                      "originalRequest": {
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-API-Key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"note\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/transaction/:transactionId/note",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "transaction",
+                            ":transactionId",
+                            "note"
+                          ],
+                          "variable": [
+                            {
+                              "key": "transactionId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"esse_b\": -22599339.33844103,\n    \"sunt_c_0\": \"in\",\n    \"Excepteur5b2\": 85214376,\n    \"ad_3\": -73306619,\n    \"mollit_405\": false\n  }\n}",
+                      "createdAt": "2026-07-28T02:57:05.000Z",
+                      "updatedAt": "2026-07-28T02:57:05.000Z",
+                      "uid": "35240-fba92942-d381-4f07-8233-d50d37a09d9c"
+                    },
+                    {
+                      "id": "45c6e9f8-9f86-41f1-ac2d-cb3f2d496b09",
+                      "name": "TooManyRequests",
+                      "originalRequest": {
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-API-Key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"note\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/transaction/:transactionId/note",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "transaction",
+                            ":transactionId",
+                            "note"
+                          ],
+                          "variable": [
+                            {
+                              "key": "transactionId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Too Many Requests",
+                      "code": 429,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"esse_b\": -22599339.33844103,\n    \"sunt_c_0\": \"in\",\n    \"Excepteur5b2\": 85214376,\n    \"ad_3\": -73306619,\n    \"mollit_405\": false\n  }\n}",
+                      "createdAt": "2026-07-28T02:57:05.000Z",
+                      "updatedAt": "2026-07-28T02:57:05.000Z",
+                      "uid": "35240-45c6e9f8-9f86-41f1-ac2d-cb3f2d496b09"
+                    },
+                    {
+                      "id": "deac277b-9f4e-4dae-b621-4b240bb11ee0",
+                      "name": "Internal Error",
+                      "originalRequest": {
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-API-Key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"note\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/transaction/:transactionId/note",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "transaction",
+                            ":transactionId",
+                            "note"
+                          ],
+                          "variable": [
+                            {
+                              "key": "transactionId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"esse_b\": -22599339.33844103,\n    \"sunt_c_0\": \"in\",\n    \"Excepteur5b2\": 85214376,\n    \"ad_3\": -73306619,\n    \"mollit_405\": false\n  }\n}",
+                      "createdAt": "2026-07-28T02:57:05.000Z",
+                      "updatedAt": "2026-07-28T02:57:05.000Z",
+                      "uid": "35240-deac277b-9f4e-4dae-b621-4b240bb11ee0"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:57:05.000Z",
+                  "updatedAt": "2026-07-28T02:57:05.000Z",
+                  "uid": "35240-cd20f6e2-1b51-4c57-8b70-e70e88f66bc5"
+                }
+              ],
+              "id": "6b87de38-940c-40d8-946e-f9cda28b426c",
+              "createdAt": "2026-07-28T02:57:05.000Z",
+              "updatedAt": "2026-07-28T02:57:05.000Z",
+              "uid": "35240-6b87de38-940c-40d8-946e-f9cda28b426c"
+            },
+            {
+              "name": "fee-details",
+              "item": [
+                {
+                  "name": "Fetch breakdown of a fee transaction",
+                  "id": "6a773c17-f6ad-4dad-b20e-ff16fbba8d1e",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "apikey",
+                      "apikey": [
+                        {
+                          "key": "key",
+                          "value": "X-API-Key",
+                          "type": "string"
+                        },
+                        {
+                          "key": "value",
+                          "value": "{{apiKey}}",
+                          "type": "string"
+                        },
+                        {
+                          "key": "in",
+                          "value": "header",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/transaction/:transactionId/fee-details",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "transaction",
+                        ":transactionId",
+                        "fee-details"
+                      ],
+                      "variable": [
+                        {
+                          "id": "2a596f1c-9ca8-4a8e-928e-4234e0402a53",
+                          "key": "transactionId",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Fetch breakdown of a fee transaction"
+                  },
+                  "response": [
+                    {
+                      "id": "30857ffb-dfef-4092-9afb-e0146a650140",
+                      "name": "OK",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-API-Key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/transaction/:transactionId/fee-details",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "transaction",
+                            ":transactionId",
+                            "fee-details"
+                          ],
+                          "variable": [
+                            {
+                              "key": "transactionId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"items\": [\n    {\n      \"id\": \"<string>\",\n      \"dateCharged\": \"<string>\",\n      \"feeAmountCents\": \"<number>\",\n      \"feeType\": \"<string>\",\n      \"accountId\": \"<string>\",\n      \"originalTransaction\": {\n        \"id\": \"<string>\",\n        \"date\": \"<string>\",\n        \"description\": \"<string>\",\n        \"amountCents\": \"<number>\",\n        \"status\": \"failed\",\n        \"detailedStatus\": \"pending_approval\",\n        \"accountId\": {\n          \"description\": \"The account ID associated with the transaction\"\n        },\n        \"accountSubtype\": \"credit\",\n        \"memo\": \"<string>\",\n        \"merchantDescription\": \"<string>\",\n        \"merchantData\": {\n          \"description\": \"<string>\",\n          \"categoryCode\": \"<string>\",\n          \"location\": {\n            \"city\": \"<string>\",\n            \"state\": \"<string>\",\n            \"country\": \"<string>\",\n            \"zip\": \"<string>\"\n          }\n        },\n        \"virtualAccountId\": \"<string>\",\n        \"cardId\": \"<string>\",\n        \"cashbackInfo\": {\n          \"amountCents\": \"<number>\",\n          \"rate\": \"<number>\"\n        },\n        \"fxFeeInfo\": {\n          \"amountCents\": \"<number>\"\n        },\n        \"originalCurrency\": {\n          \"code\": \"<string>\",\n          \"amountCents\": \"<number>\",\n          \"conversionRate\": \"<number>\"\n        },\n        \"orderId\": \"<string>\",\n        \"referenceNumber\": \"<string>\",\n        \"authorizedAt\": \"<string>\",\n        \"declineReason\": \"<string>\",\n        \"approvalReason\": \"<string>\",\n        \"providerAuthorizationId\": \"<string>\",\n        \"wireInfo\": {\n          \"subtypeCode\": \"<string>\",\n          \"omad\": \"<string>\",\n          \"imad\": \"<string>\",\n          \"senderReference\": \"<string>\",\n          \"businessFunctionCode\": \"<string>\",\n          \"typeCode\": \"<string>\",\n          \"counterpartyBank\": \"<string>\"\n        },\n        \"achInfo\": {\n          \"receiverId\": \"<string>\",\n          \"companyId\": \"<string>\",\n          \"companyDiscretionaryData\": \"<string>\",\n          \"traceNumber\": \"<string>\",\n          \"entryClassCode\": \"<string>\",\n          \"paymentRelatedInfo\": \"<string>\",\n          \"counterpartyBank\": \"<string>\",\n          \"companyEntryDescription\": \"<string>\"\n        },\n        \"rtpInfo\": {\n          \"counterpartyBank\": \"<string>\",\n          \"endToEndId\": \"<string>\",\n          \"routingNumber\": \"<string>\",\n          \"originatorName\": \"<string>\",\n          \"description\": \"<string>\"\n        },\n        \"sepaInfo\": {\n          \"senderName\": \"<string>\",\n          \"recipientName\": \"<string>\",\n          \"reference\": \"<string>\",\n          \"iban\": \"<string>\",\n          \"ibanLast4\": \"<string>\",\n          \"bic\": \"<string>\",\n          \"uetr\": \"<string>\",\n          \"paymentScheme\": \"<string>\"\n        },\n        \"pixInfo\": {\n          \"senderName\": \"<string>\",\n          \"description\": \"<string>\",\n          \"reference\": \"<string>\",\n          \"trackingNumber\": \"<string>\"\n        },\n        \"speiInfo\": {\n          \"senderName\": \"<string>\",\n          \"description\": \"<string>\",\n          \"reference\": \"<string>\",\n          \"clabe\": \"<string>\",\n          \"trackingNumber\": \"<string>\"\n        },\n        \"fpsInfo\": {\n          \"senderName\": \"<string>\",\n          \"recipientName\": \"<string>\",\n          \"reference\": \"<string>\",\n          \"accountNumber\": \"<string>\",\n          \"last4\": \"<string>\",\n          \"sortCode\": \"<string>\",\n          \"uetr\": \"<string>\"\n        },\n        \"feeInfo\": {\n          \"relatedTransaction\": {\n            \"id\": \"<string>\",\n            \"amount\": \"<number>\"\n          }\n        },\n        \"cryptoInfo\": {\n          \"txHash\": \"<string>\",\n          \"senderAddress\": \"<string>\"\n        }\n      },\n      \"card\": {\n        \"id\": \"<string>\",\n        \"accountId\": \"<string>\",\n        \"last4\": \"<string>\",\n        \"name\": \"<string>\",\n        \"expiryMonth\": \"<string>\",\n        \"expiryYear\": \"<string>\",\n        \"status\": \"active\",\n        \"isPhysical\": \"<boolean>\",\n        \"virtualAccountId\": \"<string>\",\n        \"isSingleUse\": \"<boolean>\",\n        \"pan\": \"<string>\",\n        \"cvv\": \"<string>\",\n        \"cardGroupId\": \"<string>\",\n        \"cardGroupName\": \"<string>\",\n        \"createdAt\": \"<dateTime>\",\n        \"spendingConstraint\": {\n          \"merchantCategoryRule\": {\n            \"merchantCategories\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"restriction\": \"allowlist\"\n          },\n          \"merchantRule\": {\n            \"merchants\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"restriction\": \"allowlist\"\n          },\n          \"spendingRule\": {\n            \"utilizationLimit\": {\n              \"limitAmount\": {\n                \"amountCents\": \"<integer>\"\n              },\n              \"preset\": \"weekly\",\n              \"timezone\": \"<string>\",\n              \"startDate\": \"<string>\"\n            },\n            \"utilizationLimitV2\": [\n              {\n                \"limitAmount\": {\n                  \"amountCents\": \"<integer>\"\n                },\n                \"preset\": \"monthly\",\n                \"timezone\": \"<string>\",\n                \"startDate\": \"<string>\"\n              },\n              {\n                \"limitAmount\": {\n                  \"amountCents\": \"<integer>\"\n                },\n                \"preset\": \"monthly\",\n                \"timezone\": \"<string>\",\n                \"startDate\": \"<string>\"\n              }\n            ],\n            \"transactionSizeLimit\": {\n              \"minimum\": {\n                \"amountCents\": \"<integer>\"\n              },\n              \"maximum\": {\n                \"amountCents\": \"<integer>\"\n              }\n            }\n          },\n          \"countryRule\": {\n            \"countries\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"restriction\": \"blacklist\"\n          },\n          \"merchantCategoryCodeRule\": {\n            \"merchantCategoryCodes\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"restriction\": \"allowlist\"\n          }\n        },\n        \"userData\": {},\n        \"cardProductId\": \"<string>\",\n        \"modifiers\": [\n          {\n            \"name\": \"only_allow_recurring_payments\",\n            \"value\": \"<boolean>\"\n          },\n          {\n            \"name\": \"only_allow_recurring_payments\",\n            \"value\": \"<boolean>\"\n          }\n        ]\n      }\n    },\n    {\n      \"id\": \"<string>\",\n      \"dateCharged\": \"<string>\",\n      \"feeAmountCents\": \"<number>\",\n      \"feeType\": \"<string>\",\n      \"accountId\": \"<string>\",\n      \"originalTransaction\": {\n        \"id\": \"<string>\",\n        \"date\": \"<string>\",\n        \"description\": \"<string>\",\n        \"amountCents\": \"<number>\",\n        \"status\": \"failed\",\n        \"detailedStatus\": \"returned\",\n        \"accountId\": {\n          \"description\": \"The account ID associated with the transaction\"\n        },\n        \"accountSubtype\": \"cash\",\n        \"memo\": \"<string>\",\n        \"merchantDescription\": \"<string>\",\n        \"merchantData\": {\n          \"description\": \"<string>\",\n          \"categoryCode\": \"<string>\",\n          \"location\": {\n            \"city\": \"<string>\",\n            \"state\": \"<string>\",\n            \"country\": \"<string>\",\n            \"zip\": \"<string>\"\n          }\n        },\n        \"virtualAccountId\": \"<string>\",\n        \"cardId\": \"<string>\",\n        \"cashbackInfo\": {\n          \"amountCents\": \"<number>\",\n          \"rate\": \"<number>\"\n        },\n        \"fxFeeInfo\": {\n          \"amountCents\": \"<number>\"\n        },\n        \"originalCurrency\": {\n          \"code\": \"<string>\",\n          \"amountCents\": \"<number>\",\n          \"conversionRate\": \"<number>\"\n        },\n        \"orderId\": \"<string>\",\n        \"referenceNumber\": \"<string>\",\n        \"authorizedAt\": \"<string>\",\n        \"declineReason\": \"<string>\",\n        \"approvalReason\": \"<string>\",\n        \"providerAuthorizationId\": \"<string>\",\n        \"wireInfo\": {\n          \"subtypeCode\": \"<string>\",\n          \"omad\": \"<string>\",\n          \"imad\": \"<string>\",\n          \"senderReference\": \"<string>\",\n          \"businessFunctionCode\": \"<string>\",\n          \"typeCode\": \"<string>\",\n          \"counterpartyBank\": \"<string>\"\n        },\n        \"achInfo\": {\n          \"receiverId\": \"<string>\",\n          \"companyId\": \"<string>\",\n          \"companyDiscretionaryData\": \"<string>\",\n          \"traceNumber\": \"<string>\",\n          \"entryClassCode\": \"<string>\",\n          \"paymentRelatedInfo\": \"<string>\",\n          \"counterpartyBank\": \"<string>\",\n          \"companyEntryDescription\": \"<string>\"\n        },\n        \"rtpInfo\": {\n          \"counterpartyBank\": \"<string>\",\n          \"endToEndId\": \"<string>\",\n          \"routingNumber\": \"<string>\",\n          \"originatorName\": \"<string>\",\n          \"description\": \"<string>\"\n        },\n        \"sepaInfo\": {\n          \"senderName\": \"<string>\",\n          \"recipientName\": \"<string>\",\n          \"reference\": \"<string>\",\n          \"iban\": \"<string>\",\n          \"ibanLast4\": \"<string>\",\n          \"bic\": \"<string>\",\n          \"uetr\": \"<string>\",\n          \"paymentScheme\": \"<string>\"\n        },\n        \"pixInfo\": {\n          \"senderName\": \"<string>\",\n          \"description\": \"<string>\",\n          \"reference\": \"<string>\",\n          \"trackingNumber\": \"<string>\"\n        },\n        \"speiInfo\": {\n          \"senderName\": \"<string>\",\n          \"description\": \"<string>\",\n          \"reference\": \"<string>\",\n          \"clabe\": \"<string>\",\n          \"trackingNumber\": \"<string>\"\n        },\n        \"fpsInfo\": {\n          \"senderName\": \"<string>\",\n          \"recipientName\": \"<string>\",\n          \"reference\": \"<string>\",\n          \"accountNumber\": \"<string>\",\n          \"last4\": \"<string>\",\n          \"sortCode\": \"<string>\",\n          \"uetr\": \"<string>\"\n        },\n        \"feeInfo\": {\n          \"relatedTransaction\": {\n            \"id\": \"<string>\",\n            \"amount\": \"<number>\"\n          }\n        },\n        \"cryptoInfo\": {\n          \"txHash\": \"<string>\",\n          \"senderAddress\": \"<string>\"\n        }\n      },\n      \"card\": {\n        \"id\": \"<string>\",\n        \"accountId\": \"<string>\",\n        \"last4\": \"<string>\",\n        \"name\": \"<string>\",\n        \"expiryMonth\": \"<string>\",\n        \"expiryYear\": \"<string>\",\n        \"status\": \"paused\",\n        \"isPhysical\": \"<boolean>\",\n        \"virtualAccountId\": \"<string>\",\n        \"isSingleUse\": \"<boolean>\",\n        \"pan\": \"<string>\",\n        \"cvv\": \"<string>\",\n        \"cardGroupId\": \"<string>\",\n        \"cardGroupName\": \"<string>\",\n        \"createdAt\": \"<dateTime>\",\n        \"spendingConstraint\": {\n          \"merchantCategoryRule\": {\n            \"merchantCategories\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"restriction\": \"blacklist\"\n          },\n          \"merchantRule\": {\n            \"merchants\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"restriction\": \"allowlist\"\n          },\n          \"spendingRule\": {\n            \"utilizationLimit\": {\n              \"limitAmount\": {\n                \"amountCents\": \"<integer>\"\n              },\n              \"preset\": \"collective\",\n              \"timezone\": \"<string>\",\n              \"startDate\": \"<string>\"\n            },\n            \"utilizationLimitV2\": [\n              {\n                \"limitAmount\": {\n                  \"amountCents\": \"<integer>\"\n                },\n                \"preset\": \"daily\",\n                \"timezone\": \"<string>\",\n                \"startDate\": \"<string>\"\n              },\n              {\n                \"limitAmount\": {\n                  \"amountCents\": \"<integer>\"\n                },\n                \"preset\": \"weekly\",\n                \"timezone\": \"<string>\",\n                \"startDate\": \"<string>\"\n              }\n            ],\n            \"transactionSizeLimit\": {\n              \"minimum\": {\n                \"amountCents\": \"<integer>\"\n              },\n              \"maximum\": {\n                \"amountCents\": \"<integer>\"\n              }\n            }\n          },\n          \"countryRule\": {\n            \"countries\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"restriction\": \"blacklist\"\n          },\n          \"merchantCategoryCodeRule\": {\n            \"merchantCategoryCodes\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"restriction\": \"allowlist\"\n          }\n        },\n        \"userData\": {},\n        \"cardProductId\": \"<string>\",\n        \"modifiers\": [\n          {\n            \"name\": \"only_allow_recurring_payments\",\n            \"value\": \"<boolean>\"\n          },\n          {\n            \"name\": \"only_allow_recurring_payments\",\n            \"value\": \"<boolean>\"\n          }\n        ]\n      }\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:57:05.000Z",
+                      "updatedAt": "2026-07-28T02:57:05.000Z",
+                      "uid": "35240-30857ffb-dfef-4092-9afb-e0146a650140"
+                    },
+                    {
+                      "id": "0b3ec4fa-53fc-4935-bf7a-36ef36c70f16",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-API-Key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/transaction/:transactionId/fee-details",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "transaction",
+                            ":transactionId",
+                            "fee-details"
+                          ],
+                          "variable": [
+                            {
+                              "key": "transactionId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"esse_b\": -22599339.33844103,\n    \"sunt_c_0\": \"in\",\n    \"Excepteur5b2\": 85214376,\n    \"ad_3\": -73306619,\n    \"mollit_405\": false\n  }\n}",
+                      "createdAt": "2026-07-28T02:57:05.000Z",
+                      "updatedAt": "2026-07-28T02:57:05.000Z",
+                      "uid": "35240-0b3ec4fa-53fc-4935-bf7a-36ef36c70f16"
+                    },
+                    {
+                      "id": "7e646cb9-eb79-43d7-9224-7f6cec7cc5c3",
+                      "name": "Forbidden",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-API-Key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/transaction/:transactionId/fee-details",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "transaction",
+                            ":transactionId",
+                            "fee-details"
+                          ],
+                          "variable": [
+                            {
+                              "key": "transactionId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"esse_b\": -22599339.33844103,\n    \"sunt_c_0\": \"in\",\n    \"Excepteur5b2\": 85214376,\n    \"ad_3\": -73306619,\n    \"mollit_405\": false\n  }\n}",
+                      "createdAt": "2026-07-28T02:57:05.000Z",
+                      "updatedAt": "2026-07-28T02:57:05.000Z",
+                      "uid": "35240-7e646cb9-eb79-43d7-9224-7f6cec7cc5c3"
+                    },
+                    {
+                      "id": "453189df-25f6-4819-8ade-bb04b9ebba77",
+                      "name": "TooManyRequests",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-API-Key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/transaction/:transactionId/fee-details",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "transaction",
+                            ":transactionId",
+                            "fee-details"
+                          ],
+                          "variable": [
+                            {
+                              "key": "transactionId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Too Many Requests",
+                      "code": 429,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"esse_b\": -22599339.33844103,\n    \"sunt_c_0\": \"in\",\n    \"Excepteur5b2\": 85214376,\n    \"ad_3\": -73306619,\n    \"mollit_405\": false\n  }\n}",
+                      "createdAt": "2026-07-28T02:57:05.000Z",
+                      "updatedAt": "2026-07-28T02:57:05.000Z",
+                      "uid": "35240-453189df-25f6-4819-8ade-bb04b9ebba77"
+                    },
+                    {
+                      "id": "742064b6-e520-48ec-b2aa-aa637b4b231b",
+                      "name": "Internal Error",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-API-Key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/transaction/:transactionId/fee-details",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "transaction",
+                            ":transactionId",
+                            "fee-details"
+                          ],
+                          "variable": [
+                            {
+                              "key": "transactionId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"esse_b\": -22599339.33844103,\n    \"sunt_c_0\": \"in\",\n    \"Excepteur5b2\": 85214376,\n    \"ad_3\": -73306619,\n    \"mollit_405\": false\n  }\n}",
+                      "createdAt": "2026-07-28T02:57:05.000Z",
+                      "updatedAt": "2026-07-28T02:57:05.000Z",
+                      "uid": "35240-742064b6-e520-48ec-b2aa-aa637b4b231b"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:57:05.000Z",
+                  "updatedAt": "2026-07-28T02:57:05.000Z",
+                  "uid": "35240-6a773c17-f6ad-4dad-b20e-ff16fbba8d1e"
+                }
+              ],
+              "id": "d56b0d81-e7c4-461c-b5c3-dc7ebc4641ca",
+              "createdAt": "2026-07-28T02:57:05.000Z",
+              "updatedAt": "2026-07-28T02:57:05.000Z",
+              "uid": "35240-d56b0d81-e7c4-461c-b5c3-dc7ebc4641ca"
+            },
+            {
+              "name": "Fetch details for a single transaction by ID",
+              "id": "3e55dac4-3e7c-4ebe-872c-cbf7ef1e7ca9",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "apikey",
+                  "apikey": [
+                    {
+                      "key": "key",
+                      "value": "X-API-Key",
+                      "type": "string"
+                    },
+                    {
+                      "key": "value",
+                      "value": "{{apiKey}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "in",
+                      "value": "header",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/transaction/:transactionId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "transaction",
+                    ":transactionId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "42b05b9a-aacb-422a-891c-f77b97323d97",
+                      "key": "transactionId",
+                      "value": "<string>",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "description": "Fetch details for a single transaction by ID"
+              },
+              "response": [
+                {
+                  "id": "2f0448dd-f664-4e6e-bd4f-4e12fa48691a",
+                  "name": "OK",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-API-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/transaction/:transactionId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "transaction",
+                        ":transactionId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "transactionId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"date\": \"<string>\",\n  \"description\": \"<string>\",\n  \"amountCents\": \"<number>\",\n  \"status\": \"posted\",\n  \"detailedStatus\": \"failed\",\n  \"accountId\": {\n    \"description\": \"The account ID associated with the transaction\"\n  },\n  \"accountSubtype\": \"credit\",\n  \"memo\": \"<string>\",\n  \"merchantDescription\": \"<string>\",\n  \"merchantData\": {\n    \"description\": \"<string>\",\n    \"categoryCode\": \"<string>\",\n    \"location\": {\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"country\": \"<string>\",\n      \"zip\": \"<string>\"\n    }\n  },\n  \"virtualAccountId\": \"<string>\",\n  \"cardId\": \"<string>\",\n  \"cashbackInfo\": {\n    \"amountCents\": \"<number>\",\n    \"rate\": \"<number>\"\n  },\n  \"fxFeeInfo\": {\n    \"amountCents\": \"<number>\"\n  },\n  \"originalCurrency\": {\n    \"code\": \"<string>\",\n    \"amountCents\": \"<number>\",\n    \"conversionRate\": \"<number>\"\n  },\n  \"orderId\": \"<string>\",\n  \"referenceNumber\": \"<string>\",\n  \"authorizedAt\": \"<string>\",\n  \"declineReason\": \"<string>\",\n  \"approvalReason\": \"<string>\",\n  \"providerAuthorizationId\": \"<string>\",\n  \"wireInfo\": {\n    \"subtypeCode\": \"<string>\",\n    \"omad\": \"<string>\",\n    \"imad\": \"<string>\",\n    \"senderReference\": \"<string>\",\n    \"businessFunctionCode\": \"<string>\",\n    \"typeCode\": \"<string>\",\n    \"counterpartyBank\": \"<string>\"\n  },\n  \"achInfo\": {\n    \"receiverId\": \"<string>\",\n    \"companyId\": \"<string>\",\n    \"companyDiscretionaryData\": \"<string>\",\n    \"traceNumber\": \"<string>\",\n    \"entryClassCode\": \"<string>\",\n    \"paymentRelatedInfo\": \"<string>\",\n    \"counterpartyBank\": \"<string>\",\n    \"companyEntryDescription\": \"<string>\"\n  },\n  \"rtpInfo\": {\n    \"counterpartyBank\": \"<string>\",\n    \"endToEndId\": \"<string>\",\n    \"routingNumber\": \"<string>\",\n    \"originatorName\": \"<string>\",\n    \"description\": \"<string>\"\n  },\n  \"sepaInfo\": {\n    \"senderName\": \"<string>\",\n    \"recipientName\": \"<string>\",\n    \"reference\": \"<string>\",\n    \"iban\": \"<string>\",\n    \"ibanLast4\": \"<string>\",\n    \"bic\": \"<string>\",\n    \"uetr\": \"<string>\",\n    \"paymentScheme\": \"<string>\"\n  },\n  \"pixInfo\": {\n    \"senderName\": \"<string>\",\n    \"description\": \"<string>\",\n    \"reference\": \"<string>\",\n    \"trackingNumber\": \"<string>\"\n  },\n  \"speiInfo\": {\n    \"senderName\": \"<string>\",\n    \"description\": \"<string>\",\n    \"reference\": \"<string>\",\n    \"clabe\": \"<string>\",\n    \"trackingNumber\": \"<string>\"\n  },\n  \"fpsInfo\": {\n    \"senderName\": \"<string>\",\n    \"recipientName\": \"<string>\",\n    \"reference\": \"<string>\",\n    \"accountNumber\": \"<string>\",\n    \"last4\": \"<string>\",\n    \"sortCode\": \"<string>\",\n    \"uetr\": \"<string>\"\n  },\n  \"feeInfo\": {\n    \"relatedTransaction\": {\n      \"id\": \"<string>\",\n      \"amount\": \"<number>\"\n    }\n  },\n  \"cryptoInfo\": {\n    \"txHash\": \"<string>\",\n    \"senderAddress\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-07-28T02:57:05.000Z",
+                  "updatedAt": "2026-07-28T02:57:05.000Z",
+                  "uid": "35240-2f0448dd-f664-4e6e-bd4f-4e12fa48691a"
+                },
+                {
+                  "id": "4da9647b-d36f-4773-a550-5edeb032d603",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-API-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/transaction/:transactionId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "transaction",
+                        ":transactionId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "transactionId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"esse_b\": -22599339.33844103,\n    \"sunt_c_0\": \"in\",\n    \"Excepteur5b2\": 85214376,\n    \"ad_3\": -73306619,\n    \"mollit_405\": false\n  }\n}",
+                  "createdAt": "2026-07-28T02:57:05.000Z",
+                  "updatedAt": "2026-07-28T02:57:05.000Z",
+                  "uid": "35240-4da9647b-d36f-4773-a550-5edeb032d603"
+                },
+                {
+                  "id": "4d427cbf-b1ab-443f-9367-3153a7ab7604",
+                  "name": "Forbidden",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-API-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/transaction/:transactionId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "transaction",
+                        ":transactionId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "transactionId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"esse_b\": -22599339.33844103,\n    \"sunt_c_0\": \"in\",\n    \"Excepteur5b2\": 85214376,\n    \"ad_3\": -73306619,\n    \"mollit_405\": false\n  }\n}",
+                  "createdAt": "2026-07-28T02:57:05.000Z",
+                  "updatedAt": "2026-07-28T02:57:05.000Z",
+                  "uid": "35240-4d427cbf-b1ab-443f-9367-3153a7ab7604"
+                },
+                {
+                  "id": "8c61dfeb-58db-4efa-be1f-3d2192915d89",
+                  "name": "TooManyRequests",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-API-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/transaction/:transactionId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "transaction",
+                        ":transactionId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "transactionId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Too Many Requests",
+                  "code": 429,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"esse_b\": -22599339.33844103,\n    \"sunt_c_0\": \"in\",\n    \"Excepteur5b2\": 85214376,\n    \"ad_3\": -73306619,\n    \"mollit_405\": false\n  }\n}",
+                  "createdAt": "2026-07-28T02:57:05.000Z",
+                  "updatedAt": "2026-07-28T02:57:05.000Z",
+                  "uid": "35240-8c61dfeb-58db-4efa-be1f-3d2192915d89"
+                },
+                {
+                  "id": "efa84cdb-b779-43a6-90b2-8d17e50d0eba",
+                  "name": "Internal Error",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-API-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/transaction/:transactionId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "transaction",
+                        ":transactionId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "transactionId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"esse_b\": -22599339.33844103,\n    \"sunt_c_0\": \"in\",\n    \"Excepteur5b2\": 85214376,\n    \"ad_3\": -73306619,\n    \"mollit_405\": false\n  }\n}",
+                  "createdAt": "2026-07-28T02:57:05.000Z",
+                  "updatedAt": "2026-07-28T02:57:05.000Z",
+                  "uid": "35240-efa84cdb-b779-43a6-90b2-8d17e50d0eba"
+                }
+              ],
+              "createdAt": "2026-07-28T02:57:05.000Z",
+              "updatedAt": "2026-07-28T02:57:05.000Z",
+              "uid": "35240-3e55dac4-3e7c-4ebe-872c-cbf7ef1e7ca9"
+            }
+          ],
+          "id": "d9758cc4-e561-4793-b2da-e9bf6d5439e0",
+          "createdAt": "2026-07-28T02:57:05.000Z",
+          "updatedAt": "2026-07-28T02:57:05.000Z",
+          "uid": "35240-d9758cc4-e561-4793-b2da-e9bf6d5439e0"
+        },
+        {
+          "name": "Get all transactions",
+          "id": "a8f7c957-ce01-47ed-996e-4c4e88280467",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-API-Key",
+                  "type": "string"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}",
+                  "type": "string"
+                },
+                {
+                  "key": "in",
+                  "value": "header",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/transaction?cursor=<string>&accountId=<string>&filter:legalEntityId=<string>&filter:accountId=<string>&filter:virtualAccountId=<string>&filter:from_date=<string>&filter:to_date=<string>&filter:from_authorized_at=<string>&filter:to_authorized_at=<string>&filter:status=pending&filter:detailed_status=settled&filter:cardId=<string>&filter:category=internal&filter:cardGroupId=<string>&filter:providerAuthorizationId=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "transaction"
+              ],
+              "query": [
+                {
+                  "description": "A cursor string to fetch the next page of results",
+                  "key": "cursor",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Use filter:accountId to filter by account ID",
+                  "key": "accountId",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Pass in a legal entity ID to filter transactions by accounts under a specific legal entity.",
+                  "key": "filter:legalEntityId",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Pass in an account ID to filter transactions by account ID. This will return all transactions that match the account ID passed in.",
+                  "key": "filter:accountId",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Pass in a virtual account ID to filter transactions by virtual account ID. This will return all transactions that match the virtual account ID passed in.",
+                  "key": "filter:virtualAccountId",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Pass in a unix timestamp in milliseconds to filter transactions by date. This will return all transactions that occurred on or after the date passed in.",
+                  "key": "filter:from_date",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Pass in a unix timestamp in milliseconds to filter transactions by date. This will return all transactions that occurred on or before the date passed in.",
+                  "key": "filter:to_date",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Pass in a unix timestamp in milliseconds to filter transactions by authorization time. This will return all transactions that are authorized on or after the date passed in.",
+                  "key": "filter:from_authorized_at",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Pass in a unix timestamp in milliseconds to filter transactions by authorization time. This will return all transactions that are authorized on or before the date passed in.",
+                  "key": "filter:to_authorized_at",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Filter transactions by status",
+                  "key": "filter:status",
+                  "value": "pending"
+                },
+                {
+                  "description": "Filter transactions by detailed status",
+                  "key": "filter:detailed_status",
+                  "value": "settled"
+                },
+                {
+                  "description": "Filter transactions by cardId",
+                  "key": "filter:cardId",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Filter transactions by category type",
+                  "key": "filter:category",
+                  "value": "internal"
+                },
+                {
+                  "description": "Filter transactions by card group ID. This will return all card transactions that belong to cards in the specified card group.",
+                  "key": "filter:cardGroupId",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Filter transactions by provider authorization ID",
+                  "key": "filter:providerAuthorizationId",
+                  "value": "<string>"
+                }
+              ]
+            },
+            "description": "Get all transactions"
+          },
+          "response": [
+            {
+              "id": "d551d49f-f556-49a4-964f-828c646c4b82",
+              "name": "OK",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/transaction?cursor=<string>&accountId=<string>&filter:legalEntityId=<string>&filter:accountId=<string>&filter:virtualAccountId=<string>&filter:from_date=<string>&filter:to_date=<string>&filter:from_authorized_at=<string>&filter:to_authorized_at=<string>&filter:status=pending&filter:detailed_status=settled&filter:cardId=<string>&filter:category=internal&filter:cardGroupId=<string>&filter:providerAuthorizationId=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "transaction"
+                  ],
+                  "query": [
+                    {
+                      "description": "A cursor string to fetch the next page of results",
+                      "key": "cursor",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Use filter:accountId to filter by account ID",
+                      "key": "accountId",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Pass in a legal entity ID to filter transactions by accounts under a specific legal entity.",
+                      "key": "filter:legalEntityId",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Pass in an account ID to filter transactions by account ID. This will return all transactions that match the account ID passed in.",
+                      "key": "filter:accountId",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Pass in a virtual account ID to filter transactions by virtual account ID. This will return all transactions that match the virtual account ID passed in.",
+                      "key": "filter:virtualAccountId",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Pass in a unix timestamp in milliseconds to filter transactions by date. This will return all transactions that occurred on or after the date passed in.",
+                      "key": "filter:from_date",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Pass in a unix timestamp in milliseconds to filter transactions by date. This will return all transactions that occurred on or before the date passed in.",
+                      "key": "filter:to_date",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Pass in a unix timestamp in milliseconds to filter transactions by authorization time. This will return all transactions that are authorized on or after the date passed in.",
+                      "key": "filter:from_authorized_at",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Pass in a unix timestamp in milliseconds to filter transactions by authorization time. This will return all transactions that are authorized on or before the date passed in.",
+                      "key": "filter:to_authorized_at",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter transactions by status",
+                      "key": "filter:status",
+                      "value": "pending"
+                    },
+                    {
+                      "description": "Filter transactions by detailed status",
+                      "key": "filter:detailed_status",
+                      "value": "settled"
+                    },
+                    {
+                      "description": "Filter transactions by cardId",
+                      "key": "filter:cardId",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter transactions by category type",
+                      "key": "filter:category",
+                      "value": "internal"
+                    },
+                    {
+                      "description": "Filter transactions by card group ID. This will return all card transactions that belong to cards in the specified card group.",
+                      "key": "filter:cardGroupId",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter transactions by provider authorization ID",
+                      "key": "filter:providerAuthorizationId",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"items\": [\n    {\n      \"id\": \"<string>\",\n      \"date\": \"<string>\",\n      \"description\": \"<string>\",\n      \"amountCents\": \"<number>\",\n      \"status\": \"failed\",\n      \"detailedStatus\": \"failed\",\n      \"accountId\": {\n        \"description\": \"The account ID associated with the transaction\"\n      },\n      \"accountSubtype\": \"credit\",\n      \"memo\": \"<string>\",\n      \"merchantDescription\": \"<string>\",\n      \"merchantData\": {\n        \"description\": \"<string>\",\n        \"categoryCode\": \"<string>\",\n        \"location\": {\n          \"city\": \"<string>\",\n          \"state\": \"<string>\",\n          \"country\": \"<string>\",\n          \"zip\": \"<string>\"\n        }\n      },\n      \"virtualAccountId\": \"<string>\",\n      \"cardId\": \"<string>\",\n      \"cashbackInfo\": {\n        \"amountCents\": \"<number>\",\n        \"rate\": \"<number>\"\n      },\n      \"fxFeeInfo\": {\n        \"amountCents\": \"<number>\"\n      },\n      \"originalCurrency\": {\n        \"code\": \"<string>\",\n        \"amountCents\": \"<number>\",\n        \"conversionRate\": \"<number>\"\n      },\n      \"orderId\": \"<string>\",\n      \"referenceNumber\": \"<string>\",\n      \"authorizedAt\": \"<string>\",\n      \"declineReason\": \"<string>\",\n      \"approvalReason\": \"<string>\",\n      \"providerAuthorizationId\": \"<string>\",\n      \"wireInfo\": {\n        \"subtypeCode\": \"<string>\",\n        \"omad\": \"<string>\",\n        \"imad\": \"<string>\",\n        \"senderReference\": \"<string>\",\n        \"businessFunctionCode\": \"<string>\",\n        \"typeCode\": \"<string>\",\n        \"counterpartyBank\": \"<string>\"\n      },\n      \"achInfo\": {\n        \"receiverId\": \"<string>\",\n        \"companyId\": \"<string>\",\n        \"companyDiscretionaryData\": \"<string>\",\n        \"traceNumber\": \"<string>\",\n        \"entryClassCode\": \"<string>\",\n        \"paymentRelatedInfo\": \"<string>\",\n        \"counterpartyBank\": \"<string>\",\n        \"companyEntryDescription\": \"<string>\"\n      },\n      \"rtpInfo\": {\n        \"counterpartyBank\": \"<string>\",\n        \"endToEndId\": \"<string>\",\n        \"routingNumber\": \"<string>\",\n        \"originatorName\": \"<string>\",\n        \"description\": \"<string>\"\n      },\n      \"sepaInfo\": {\n        \"senderName\": \"<string>\",\n        \"recipientName\": \"<string>\",\n        \"reference\": \"<string>\",\n        \"iban\": \"<string>\",\n        \"ibanLast4\": \"<string>\",\n        \"bic\": \"<string>\",\n        \"uetr\": \"<string>\",\n        \"paymentScheme\": \"<string>\"\n      },\n      \"pixInfo\": {\n        \"senderName\": \"<string>\",\n        \"description\": \"<string>\",\n        \"reference\": \"<string>\",\n        \"trackingNumber\": \"<string>\"\n      },\n      \"speiInfo\": {\n        \"senderName\": \"<string>\",\n        \"description\": \"<string>\",\n        \"reference\": \"<string>\",\n        \"clabe\": \"<string>\",\n        \"trackingNumber\": \"<string>\"\n      },\n      \"fpsInfo\": {\n        \"senderName\": \"<string>\",\n        \"recipientName\": \"<string>\",\n        \"reference\": \"<string>\",\n        \"accountNumber\": \"<string>\",\n        \"last4\": \"<string>\",\n        \"sortCode\": \"<string>\",\n        \"uetr\": \"<string>\"\n      },\n      \"feeInfo\": {\n        \"relatedTransaction\": {\n          \"id\": \"<string>\",\n          \"amount\": \"<number>\"\n        }\n      },\n      \"cryptoInfo\": {\n        \"txHash\": \"<string>\",\n        \"senderAddress\": \"<string>\"\n      }\n    },\n    {\n      \"id\": \"<string>\",\n      \"date\": \"<string>\",\n      \"description\": \"<string>\",\n      \"amountCents\": \"<number>\",\n      \"status\": \"failed\",\n      \"detailedStatus\": \"in_review\",\n      \"accountId\": {\n        \"description\": \"The account ID associated with the transaction\"\n      },\n      \"accountSubtype\": \"cash\",\n      \"memo\": \"<string>\",\n      \"merchantDescription\": \"<string>\",\n      \"merchantData\": {\n        \"description\": \"<string>\",\n        \"categoryCode\": \"<string>\",\n        \"location\": {\n          \"city\": \"<string>\",\n          \"state\": \"<string>\",\n          \"country\": \"<string>\",\n          \"zip\": \"<string>\"\n        }\n      },\n      \"virtualAccountId\": \"<string>\",\n      \"cardId\": \"<string>\",\n      \"cashbackInfo\": {\n        \"amountCents\": \"<number>\",\n        \"rate\": \"<number>\"\n      },\n      \"fxFeeInfo\": {\n        \"amountCents\": \"<number>\"\n      },\n      \"originalCurrency\": {\n        \"code\": \"<string>\",\n        \"amountCents\": \"<number>\",\n        \"conversionRate\": \"<number>\"\n      },\n      \"orderId\": \"<string>\",\n      \"referenceNumber\": \"<string>\",\n      \"authorizedAt\": \"<string>\",\n      \"declineReason\": \"<string>\",\n      \"approvalReason\": \"<string>\",\n      \"providerAuthorizationId\": \"<string>\",\n      \"wireInfo\": {\n        \"subtypeCode\": \"<string>\",\n        \"omad\": \"<string>\",\n        \"imad\": \"<string>\",\n        \"senderReference\": \"<string>\",\n        \"businessFunctionCode\": \"<string>\",\n        \"typeCode\": \"<string>\",\n        \"counterpartyBank\": \"<string>\"\n      },\n      \"achInfo\": {\n        \"receiverId\": \"<string>\",\n        \"companyId\": \"<string>\",\n        \"companyDiscretionaryData\": \"<string>\",\n        \"traceNumber\": \"<string>\",\n        \"entryClassCode\": \"<string>\",\n        \"paymentRelatedInfo\": \"<string>\",\n        \"counterpartyBank\": \"<string>\",\n        \"companyEntryDescription\": \"<string>\"\n      },\n      \"rtpInfo\": {\n        \"counterpartyBank\": \"<string>\",\n        \"endToEndId\": \"<string>\",\n        \"routingNumber\": \"<string>\",\n        \"originatorName\": \"<string>\",\n        \"description\": \"<string>\"\n      },\n      \"sepaInfo\": {\n        \"senderName\": \"<string>\",\n        \"recipientName\": \"<string>\",\n        \"reference\": \"<string>\",\n        \"iban\": \"<string>\",\n        \"ibanLast4\": \"<string>\",\n        \"bic\": \"<string>\",\n        \"uetr\": \"<string>\",\n        \"paymentScheme\": \"<string>\"\n      },\n      \"pixInfo\": {\n        \"senderName\": \"<string>\",\n        \"description\": \"<string>\",\n        \"reference\": \"<string>\",\n        \"trackingNumber\": \"<string>\"\n      },\n      \"speiInfo\": {\n        \"senderName\": \"<string>\",\n        \"description\": \"<string>\",\n        \"reference\": \"<string>\",\n        \"clabe\": \"<string>\",\n        \"trackingNumber\": \"<string>\"\n      },\n      \"fpsInfo\": {\n        \"senderName\": \"<string>\",\n        \"recipientName\": \"<string>\",\n        \"reference\": \"<string>\",\n        \"accountNumber\": \"<string>\",\n        \"last4\": \"<string>\",\n        \"sortCode\": \"<string>\",\n        \"uetr\": \"<string>\"\n      },\n      \"feeInfo\": {\n        \"relatedTransaction\": {\n          \"id\": \"<string>\",\n          \"amount\": \"<number>\"\n        }\n      },\n      \"cryptoInfo\": {\n        \"txHash\": \"<string>\",\n        \"senderAddress\": \"<string>\"\n      }\n    }\n  ],\n  \"metadata\": {\n    \"nextCursor\": \"<string>\",\n    \"count\": \"<number>\"\n  }\n}",
+              "createdAt": "2026-07-28T02:57:05.000Z",
+              "updatedAt": "2026-07-28T02:57:05.000Z",
+              "uid": "35240-d551d49f-f556-49a4-964f-828c646c4b82"
+            },
+            {
+              "id": "199f458c-e12f-4c7a-a0d3-ac006f9c79b6",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/transaction?cursor=<string>&accountId=<string>&filter:legalEntityId=<string>&filter:accountId=<string>&filter:virtualAccountId=<string>&filter:from_date=<string>&filter:to_date=<string>&filter:from_authorized_at=<string>&filter:to_authorized_at=<string>&filter:status=pending&filter:detailed_status=settled&filter:cardId=<string>&filter:category=internal&filter:cardGroupId=<string>&filter:providerAuthorizationId=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "transaction"
+                  ],
+                  "query": [
+                    {
+                      "description": "A cursor string to fetch the next page of results",
+                      "key": "cursor",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Use filter:accountId to filter by account ID",
+                      "key": "accountId",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Pass in a legal entity ID to filter transactions by accounts under a specific legal entity.",
+                      "key": "filter:legalEntityId",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Pass in an account ID to filter transactions by account ID. This will return all transactions that match the account ID passed in.",
+                      "key": "filter:accountId",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Pass in a virtual account ID to filter transactions by virtual account ID. This will return all transactions that match the virtual account ID passed in.",
+                      "key": "filter:virtualAccountId",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Pass in a unix timestamp in milliseconds to filter transactions by date. This will return all transactions that occurred on or after the date passed in.",
+                      "key": "filter:from_date",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Pass in a unix timestamp in milliseconds to filter transactions by date. This will return all transactions that occurred on or before the date passed in.",
+                      "key": "filter:to_date",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Pass in a unix timestamp in milliseconds to filter transactions by authorization time. This will return all transactions that are authorized on or after the date passed in.",
+                      "key": "filter:from_authorized_at",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Pass in a unix timestamp in milliseconds to filter transactions by authorization time. This will return all transactions that are authorized on or before the date passed in.",
+                      "key": "filter:to_authorized_at",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter transactions by status",
+                      "key": "filter:status",
+                      "value": "pending"
+                    },
+                    {
+                      "description": "Filter transactions by detailed status",
+                      "key": "filter:detailed_status",
+                      "value": "settled"
+                    },
+                    {
+                      "description": "Filter transactions by cardId",
+                      "key": "filter:cardId",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter transactions by category type",
+                      "key": "filter:category",
+                      "value": "internal"
+                    },
+                    {
+                      "description": "Filter transactions by card group ID. This will return all card transactions that belong to cards in the specified card group.",
+                      "key": "filter:cardGroupId",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter transactions by provider authorization ID",
+                      "key": "filter:providerAuthorizationId",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"esse_b\": -22599339.33844103,\n    \"sunt_c_0\": \"in\",\n    \"Excepteur5b2\": 85214376,\n    \"ad_3\": -73306619,\n    \"mollit_405\": false\n  }\n}",
+              "createdAt": "2026-07-28T02:57:05.000Z",
+              "updatedAt": "2026-07-28T02:57:05.000Z",
+              "uid": "35240-199f458c-e12f-4c7a-a0d3-ac006f9c79b6"
+            },
+            {
+              "id": "a621d714-dce4-4b00-b16c-885efb41d0e4",
+              "name": "Forbidden",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/transaction?cursor=<string>&accountId=<string>&filter:legalEntityId=<string>&filter:accountId=<string>&filter:virtualAccountId=<string>&filter:from_date=<string>&filter:to_date=<string>&filter:from_authorized_at=<string>&filter:to_authorized_at=<string>&filter:status=pending&filter:detailed_status=settled&filter:cardId=<string>&filter:category=internal&filter:cardGroupId=<string>&filter:providerAuthorizationId=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "transaction"
+                  ],
+                  "query": [
+                    {
+                      "description": "A cursor string to fetch the next page of results",
+                      "key": "cursor",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Use filter:accountId to filter by account ID",
+                      "key": "accountId",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Pass in a legal entity ID to filter transactions by accounts under a specific legal entity.",
+                      "key": "filter:legalEntityId",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Pass in an account ID to filter transactions by account ID. This will return all transactions that match the account ID passed in.",
+                      "key": "filter:accountId",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Pass in a virtual account ID to filter transactions by virtual account ID. This will return all transactions that match the virtual account ID passed in.",
+                      "key": "filter:virtualAccountId",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Pass in a unix timestamp in milliseconds to filter transactions by date. This will return all transactions that occurred on or after the date passed in.",
+                      "key": "filter:from_date",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Pass in a unix timestamp in milliseconds to filter transactions by date. This will return all transactions that occurred on or before the date passed in.",
+                      "key": "filter:to_date",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Pass in a unix timestamp in milliseconds to filter transactions by authorization time. This will return all transactions that are authorized on or after the date passed in.",
+                      "key": "filter:from_authorized_at",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Pass in a unix timestamp in milliseconds to filter transactions by authorization time. This will return all transactions that are authorized on or before the date passed in.",
+                      "key": "filter:to_authorized_at",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter transactions by status",
+                      "key": "filter:status",
+                      "value": "pending"
+                    },
+                    {
+                      "description": "Filter transactions by detailed status",
+                      "key": "filter:detailed_status",
+                      "value": "settled"
+                    },
+                    {
+                      "description": "Filter transactions by cardId",
+                      "key": "filter:cardId",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter transactions by category type",
+                      "key": "filter:category",
+                      "value": "internal"
+                    },
+                    {
+                      "description": "Filter transactions by card group ID. This will return all card transactions that belong to cards in the specified card group.",
+                      "key": "filter:cardGroupId",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter transactions by provider authorization ID",
+                      "key": "filter:providerAuthorizationId",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"esse_b\": -22599339.33844103,\n    \"sunt_c_0\": \"in\",\n    \"Excepteur5b2\": 85214376,\n    \"ad_3\": -73306619,\n    \"mollit_405\": false\n  }\n}",
+              "createdAt": "2026-07-28T02:57:05.000Z",
+              "updatedAt": "2026-07-28T02:57:05.000Z",
+              "uid": "35240-a621d714-dce4-4b00-b16c-885efb41d0e4"
+            },
+            {
+              "id": "b57c6d1c-feb7-4c52-8cb2-16d77f54b62f",
+              "name": "TooManyRequests",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/transaction?cursor=<string>&accountId=<string>&filter:legalEntityId=<string>&filter:accountId=<string>&filter:virtualAccountId=<string>&filter:from_date=<string>&filter:to_date=<string>&filter:from_authorized_at=<string>&filter:to_authorized_at=<string>&filter:status=pending&filter:detailed_status=settled&filter:cardId=<string>&filter:category=internal&filter:cardGroupId=<string>&filter:providerAuthorizationId=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "transaction"
+                  ],
+                  "query": [
+                    {
+                      "description": "A cursor string to fetch the next page of results",
+                      "key": "cursor",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Use filter:accountId to filter by account ID",
+                      "key": "accountId",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Pass in a legal entity ID to filter transactions by accounts under a specific legal entity.",
+                      "key": "filter:legalEntityId",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Pass in an account ID to filter transactions by account ID. This will return all transactions that match the account ID passed in.",
+                      "key": "filter:accountId",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Pass in a virtual account ID to filter transactions by virtual account ID. This will return all transactions that match the virtual account ID passed in.",
+                      "key": "filter:virtualAccountId",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Pass in a unix timestamp in milliseconds to filter transactions by date. This will return all transactions that occurred on or after the date passed in.",
+                      "key": "filter:from_date",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Pass in a unix timestamp in milliseconds to filter transactions by date. This will return all transactions that occurred on or before the date passed in.",
+                      "key": "filter:to_date",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Pass in a unix timestamp in milliseconds to filter transactions by authorization time. This will return all transactions that are authorized on or after the date passed in.",
+                      "key": "filter:from_authorized_at",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Pass in a unix timestamp in milliseconds to filter transactions by authorization time. This will return all transactions that are authorized on or before the date passed in.",
+                      "key": "filter:to_authorized_at",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter transactions by status",
+                      "key": "filter:status",
+                      "value": "pending"
+                    },
+                    {
+                      "description": "Filter transactions by detailed status",
+                      "key": "filter:detailed_status",
+                      "value": "settled"
+                    },
+                    {
+                      "description": "Filter transactions by cardId",
+                      "key": "filter:cardId",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter transactions by category type",
+                      "key": "filter:category",
+                      "value": "internal"
+                    },
+                    {
+                      "description": "Filter transactions by card group ID. This will return all card transactions that belong to cards in the specified card group.",
+                      "key": "filter:cardGroupId",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter transactions by provider authorization ID",
+                      "key": "filter:providerAuthorizationId",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"esse_b\": -22599339.33844103,\n    \"sunt_c_0\": \"in\",\n    \"Excepteur5b2\": 85214376,\n    \"ad_3\": -73306619,\n    \"mollit_405\": false\n  }\n}",
+              "createdAt": "2026-07-28T02:57:05.000Z",
+              "updatedAt": "2026-07-28T02:57:05.000Z",
+              "uid": "35240-b57c6d1c-feb7-4c52-8cb2-16d77f54b62f"
+            },
+            {
+              "id": "59285480-b56e-4e61-b694-5e2f051ccd1e",
+              "name": "Internal Error",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/transaction?cursor=<string>&accountId=<string>&filter:legalEntityId=<string>&filter:accountId=<string>&filter:virtualAccountId=<string>&filter:from_date=<string>&filter:to_date=<string>&filter:from_authorized_at=<string>&filter:to_authorized_at=<string>&filter:status=pending&filter:detailed_status=settled&filter:cardId=<string>&filter:category=internal&filter:cardGroupId=<string>&filter:providerAuthorizationId=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "transaction"
+                  ],
+                  "query": [
+                    {
+                      "description": "A cursor string to fetch the next page of results",
+                      "key": "cursor",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Use filter:accountId to filter by account ID",
+                      "key": "accountId",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Pass in a legal entity ID to filter transactions by accounts under a specific legal entity.",
+                      "key": "filter:legalEntityId",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Pass in an account ID to filter transactions by account ID. This will return all transactions that match the account ID passed in.",
+                      "key": "filter:accountId",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Pass in a virtual account ID to filter transactions by virtual account ID. This will return all transactions that match the virtual account ID passed in.",
+                      "key": "filter:virtualAccountId",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Pass in a unix timestamp in milliseconds to filter transactions by date. This will return all transactions that occurred on or after the date passed in.",
+                      "key": "filter:from_date",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Pass in a unix timestamp in milliseconds to filter transactions by date. This will return all transactions that occurred on or before the date passed in.",
+                      "key": "filter:to_date",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Pass in a unix timestamp in milliseconds to filter transactions by authorization time. This will return all transactions that are authorized on or after the date passed in.",
+                      "key": "filter:from_authorized_at",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Pass in a unix timestamp in milliseconds to filter transactions by authorization time. This will return all transactions that are authorized on or before the date passed in.",
+                      "key": "filter:to_authorized_at",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter transactions by status",
+                      "key": "filter:status",
+                      "value": "pending"
+                    },
+                    {
+                      "description": "Filter transactions by detailed status",
+                      "key": "filter:detailed_status",
+                      "value": "settled"
+                    },
+                    {
+                      "description": "Filter transactions by cardId",
+                      "key": "filter:cardId",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter transactions by category type",
+                      "key": "filter:category",
+                      "value": "internal"
+                    },
+                    {
+                      "description": "Filter transactions by card group ID. This will return all card transactions that belong to cards in the specified card group.",
+                      "key": "filter:cardGroupId",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter transactions by provider authorization ID",
+                      "key": "filter:providerAuthorizationId",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"esse_b\": -22599339.33844103,\n    \"sunt_c_0\": \"in\",\n    \"Excepteur5b2\": 85214376,\n    \"ad_3\": -73306619,\n    \"mollit_405\": false\n  }\n}",
+              "createdAt": "2026-07-28T02:57:05.000Z",
+              "updatedAt": "2026-07-28T02:57:05.000Z",
+              "uid": "35240-59285480-b56e-4e61-b694-5e2f051ccd1e"
+            }
+          ],
+          "createdAt": "2026-07-28T02:57:05.000Z",
+          "updatedAt": "2026-07-28T02:57:05.000Z",
+          "uid": "35240-a8f7c957-ce01-47ed-996e-4c4e88280467"
+        }
+      ],
+      "id": "3c4f9191-5be3-4303-8594-82af1f17e32b",
+      "createdAt": "2026-07-28T02:57:05.000Z",
+      "updatedAt": "2026-07-28T02:57:05.000Z",
+      "uid": "35240-3c4f9191-5be3-4303-8594-82af1f17e32b"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-API-Key",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.slash.com"
+    }
+  ]
+}

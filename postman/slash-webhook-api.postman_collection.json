@@ -1,0 +1,1476 @@
+{
+  "info": {
+    "_postman_id": "d2459229-4c2e-41fb-a561-b4da2d2fcb87",
+    "name": "Slash Public Account Webhook API",
+    "description": "API description",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:57:09.000Z",
+    "updatedAt": "2026-07-28T02:57:10.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-d2459229-4c2e-41fb-a561-b4da2d2fcb87"
+  },
+  "item": [
+    {
+      "name": "webhook",
+      "item": [
+        {
+          "name": "{webhookId}",
+          "item": [
+            {
+              "name": "Get a webhook endpoint by ID",
+              "id": "bffb01a1-a92d-49e6-ab9a-80d875517be1",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "apikey",
+                  "apikey": [
+                    {
+                      "key": "key",
+                      "value": "X-API-Key",
+                      "type": "string"
+                    },
+                    {
+                      "key": "value",
+                      "value": "{{apiKey}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "in",
+                      "value": "header",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/webhook/:webhookId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "webhook",
+                    ":webhookId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "69303884-98e3-46c3-a7ef-d788d00cf937",
+                      "key": "webhookId",
+                      "value": "<string>",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "description": "Get a webhook endpoint by ID"
+              },
+              "response": [
+                {
+                  "id": "fe8bc2ba-bcf8-4e98-9367-a02929f0ba57",
+                  "name": "OK",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-API-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/webhook/:webhookId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "webhook",
+                        ":webhookId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "webhookId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"createdAt\": \"<string>\",\n  \"url\": \"<string>\",\n  \"name\": \"<string>\",\n  \"status\": \"paused\",\n  \"archivedAt\": \"<string>\",\n  \"pausedAt\": \"<string>\",\n  \"backingOffUntil\": \"<string>\",\n  \"disabledAt\": \"<string>\",\n  \"enabledEvents\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "createdAt": "2026-07-28T02:57:10.000Z",
+                  "updatedAt": "2026-07-28T02:57:10.000Z",
+                  "uid": "35240-fe8bc2ba-bcf8-4e98-9367-a02929f0ba57"
+                },
+                {
+                  "id": "3254ea93-ce84-44d2-9bc1-89aa6b2230a2",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-API-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/webhook/:webhookId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "webhook",
+                        ":webhookId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "webhookId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"magna_5f\": -12048639.799839437,\n    \"dolore_4\": 47870649.111800045\n  }\n}",
+                  "createdAt": "2026-07-28T02:57:10.000Z",
+                  "updatedAt": "2026-07-28T02:57:10.000Z",
+                  "uid": "35240-3254ea93-ce84-44d2-9bc1-89aa6b2230a2"
+                },
+                {
+                  "id": "d91b1885-fe67-4fef-abce-fa63c41cd7e2",
+                  "name": "Forbidden",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-API-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/webhook/:webhookId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "webhook",
+                        ":webhookId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "webhookId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"magna_5f\": -12048639.799839437,\n    \"dolore_4\": 47870649.111800045\n  }\n}",
+                  "createdAt": "2026-07-28T02:57:10.000Z",
+                  "updatedAt": "2026-07-28T02:57:10.000Z",
+                  "uid": "35240-d91b1885-fe67-4fef-abce-fa63c41cd7e2"
+                },
+                {
+                  "id": "b73808d0-fece-42eb-851a-eafcab61e5e1",
+                  "name": "TooManyRequests",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-API-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/webhook/:webhookId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "webhook",
+                        ":webhookId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "webhookId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Too Many Requests",
+                  "code": 429,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"magna_5f\": -12048639.799839437,\n    \"dolore_4\": 47870649.111800045\n  }\n}",
+                  "createdAt": "2026-07-28T02:57:10.000Z",
+                  "updatedAt": "2026-07-28T02:57:10.000Z",
+                  "uid": "35240-b73808d0-fece-42eb-851a-eafcab61e5e1"
+                },
+                {
+                  "id": "04d874f3-26be-42df-8e6f-494194c66dd6",
+                  "name": "Internal Error",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-API-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/webhook/:webhookId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "webhook",
+                        ":webhookId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "webhookId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"magna_5f\": -12048639.799839437,\n    \"dolore_4\": 47870649.111800045\n  }\n}",
+                  "createdAt": "2026-07-28T02:57:10.000Z",
+                  "updatedAt": "2026-07-28T02:57:10.000Z",
+                  "uid": "35240-04d874f3-26be-42df-8e6f-494194c66dd6"
+                }
+              ],
+              "createdAt": "2026-07-28T02:57:10.000Z",
+              "updatedAt": "2026-07-28T02:57:10.000Z",
+              "uid": "35240-bffb01a1-a92d-49e6-ab9a-80d875517be1"
+            },
+            {
+              "name": "Update a webhook endpoint status.\n\n**Status transitions:**\n- `active`: Re-enables the endpoint. Use this to:\n  - Unpause a paused endpoint\n  - Re-enable an endpoint that is backing-off or disabled due to delivery failures\n  - When re-enabled, any queued n",
+              "id": "dea8c8b7-cabf-45bd-89cb-c9fa2255cc07",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "apikey",
+                  "apikey": [
+                    {
+                      "key": "key",
+                      "value": "X-API-Key",
+                      "type": "string"
+                    },
+                    {
+                      "key": "value",
+                      "value": "{{apiKey}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "in",
+                      "value": "header",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "PATCH",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"status\": \"active\",\n  \"reason\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/webhook/:webhookId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "webhook",
+                    ":webhookId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "f84d70ff-8f79-45a7-80be-d4ee76243a6f",
+                      "key": "webhookId",
+                      "value": "<string>",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "description": "Update a webhook endpoint status.\n\n**Status transitions:**\n- `active`: Re-enables the endpoint. Use this to:\n  - Unpause a paused endpoint\n  - Re-enable an endpoint that is backing-off or disabled due to delivery failures\n  - When re-enabled, any queued notifications will be sent\n- `paused`: Pauses the endpoint. While paused:\n  - New notifications are queued (not lost)\n  - No delivery attempts are made\n  - Use `active` to resume and process queued notifications\n- `archived`: Permanently archives the endpoint (soft delete)\n\n**Note:** The `backing-off` and `disabled` statuses are system-managed and cannot be set directly.\nThese occur automatically when delivery failures are detected. Use `active` to re-enable.\n"
+              },
+              "response": [
+                {
+                  "id": "e2d37f20-132f-4625-aa92-21e7e0b72792",
+                  "name": "OK",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-API-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"status\": \"active\",\n  \"reason\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/webhook/:webhookId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "webhook",
+                        ":webhookId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "webhookId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"createdAt\": \"<string>\",\n  \"url\": \"<string>\",\n  \"name\": \"<string>\",\n  \"status\": \"paused\",\n  \"archivedAt\": \"<string>\",\n  \"pausedAt\": \"<string>\",\n  \"backingOffUntil\": \"<string>\",\n  \"disabledAt\": \"<string>\",\n  \"enabledEvents\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "createdAt": "2026-07-28T02:57:10.000Z",
+                  "updatedAt": "2026-07-28T02:57:10.000Z",
+                  "uid": "35240-e2d37f20-132f-4625-aa92-21e7e0b72792"
+                },
+                {
+                  "id": "b3f57c00-caac-49cf-97c5-1e83046bbf76",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-API-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"status\": \"active\",\n  \"reason\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/webhook/:webhookId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "webhook",
+                        ":webhookId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "webhookId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"magna_5f\": -12048639.799839437,\n    \"dolore_4\": 47870649.111800045\n  }\n}",
+                  "createdAt": "2026-07-28T02:57:10.000Z",
+                  "updatedAt": "2026-07-28T02:57:10.000Z",
+                  "uid": "35240-b3f57c00-caac-49cf-97c5-1e83046bbf76"
+                },
+                {
+                  "id": "0e3acfe0-48f4-45e7-98e8-cabc51f630eb",
+                  "name": "Forbidden",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-API-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"status\": \"active\",\n  \"reason\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/webhook/:webhookId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "webhook",
+                        ":webhookId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "webhookId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"magna_5f\": -12048639.799839437,\n    \"dolore_4\": 47870649.111800045\n  }\n}",
+                  "createdAt": "2026-07-28T02:57:10.000Z",
+                  "updatedAt": "2026-07-28T02:57:10.000Z",
+                  "uid": "35240-0e3acfe0-48f4-45e7-98e8-cabc51f630eb"
+                },
+                {
+                  "id": "06ae89a2-a1e7-4426-ba55-dd8ef0d64347",
+                  "name": "TooManyRequests",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-API-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"status\": \"active\",\n  \"reason\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/webhook/:webhookId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "webhook",
+                        ":webhookId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "webhookId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Too Many Requests",
+                  "code": 429,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"magna_5f\": -12048639.799839437,\n    \"dolore_4\": 47870649.111800045\n  }\n}",
+                  "createdAt": "2026-07-28T02:57:10.000Z",
+                  "updatedAt": "2026-07-28T02:57:10.000Z",
+                  "uid": "35240-06ae89a2-a1e7-4426-ba55-dd8ef0d64347"
+                },
+                {
+                  "id": "8f778938-c003-4fe1-9bd6-c974796e211c",
+                  "name": "Internal Error",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-API-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"status\": \"active\",\n  \"reason\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/webhook/:webhookId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "webhook",
+                        ":webhookId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "webhookId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"magna_5f\": -12048639.799839437,\n    \"dolore_4\": 47870649.111800045\n  }\n}",
+                  "createdAt": "2026-07-28T02:57:10.000Z",
+                  "updatedAt": "2026-07-28T02:57:10.000Z",
+                  "uid": "35240-8f778938-c003-4fe1-9bd6-c974796e211c"
+                }
+              ],
+              "createdAt": "2026-07-28T02:57:10.000Z",
+              "updatedAt": "2026-07-28T02:57:10.000Z",
+              "uid": "35240-dea8c8b7-cabf-45bd-89cb-c9fa2255cc07"
+            }
+          ],
+          "id": "31a92ec8-5df0-42db-a981-fedb7b5efc15",
+          "createdAt": "2026-07-28T02:57:10.000Z",
+          "updatedAt": "2026-07-28T02:57:10.000Z",
+          "uid": "35240-31a92ec8-5df0-42db-a981-fedb7b5efc15"
+        },
+        {
+          "name": "Get all webhooks",
+          "id": "4f7eb116-1127-482a-a3e4-b9b1713c04bf",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-API-Key",
+                  "type": "string"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}",
+                  "type": "string"
+                },
+                {
+                  "key": "in",
+                  "value": "header",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/webhook?filter:legalEntityId=<string>&cursor=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "webhook"
+              ],
+              "query": [
+                {
+                  "description": "Pass in a legal entity ID to filter for webhooks under a specific legal entity.",
+                  "key": "filter:legalEntityId",
+                  "value": "<string>"
+                },
+                {
+                  "description": "A cursor string to fetch the next page of results",
+                  "key": "cursor",
+                  "value": "<string>"
+                }
+              ]
+            },
+            "description": "Get all webhooks"
+          },
+          "response": [
+            {
+              "id": "05f6c866-d062-4578-a955-ac5c943a0eb2",
+              "name": "OK",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/webhook?filter:legalEntityId=<string>&cursor=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "webhook"
+                  ],
+                  "query": [
+                    {
+                      "description": "Pass in a legal entity ID to filter for webhooks under a specific legal entity.",
+                      "key": "filter:legalEntityId",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "A cursor string to fetch the next page of results",
+                      "key": "cursor",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"items\": [\n    {\n      \"id\": \"<string>\",\n      \"createdAt\": \"<string>\",\n      \"url\": \"<string>\",\n      \"name\": \"<string>\",\n      \"status\": \"backing-off\",\n      \"archivedAt\": \"<string>\",\n      \"pausedAt\": \"<string>\",\n      \"backingOffUntil\": \"<string>\",\n      \"disabledAt\": \"<string>\",\n      \"enabledEvents\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"id\": \"<string>\",\n      \"createdAt\": \"<string>\",\n      \"url\": \"<string>\",\n      \"name\": \"<string>\",\n      \"status\": \"backing-off\",\n      \"archivedAt\": \"<string>\",\n      \"pausedAt\": \"<string>\",\n      \"backingOffUntil\": \"<string>\",\n      \"disabledAt\": \"<string>\",\n      \"enabledEvents\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"metadata\": {\n    \"nextCursor\": \"<string>\",\n    \"count\": \"<number>\"\n  }\n}",
+              "createdAt": "2026-07-28T02:57:10.000Z",
+              "updatedAt": "2026-07-28T02:57:10.000Z",
+              "uid": "35240-05f6c866-d062-4578-a955-ac5c943a0eb2"
+            },
+            {
+              "id": "cdeb091c-ecac-420d-8b9e-146bf9949f64",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/webhook?filter:legalEntityId=<string>&cursor=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "webhook"
+                  ],
+                  "query": [
+                    {
+                      "description": "Pass in a legal entity ID to filter for webhooks under a specific legal entity.",
+                      "key": "filter:legalEntityId",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "A cursor string to fetch the next page of results",
+                      "key": "cursor",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"magna_5f\": -12048639.799839437,\n    \"dolore_4\": 47870649.111800045\n  }\n}",
+              "createdAt": "2026-07-28T02:57:10.000Z",
+              "updatedAt": "2026-07-28T02:57:10.000Z",
+              "uid": "35240-cdeb091c-ecac-420d-8b9e-146bf9949f64"
+            },
+            {
+              "id": "f1fa5648-a413-4848-86e0-e11b6737502c",
+              "name": "Forbidden",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/webhook?filter:legalEntityId=<string>&cursor=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "webhook"
+                  ],
+                  "query": [
+                    {
+                      "description": "Pass in a legal entity ID to filter for webhooks under a specific legal entity.",
+                      "key": "filter:legalEntityId",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "A cursor string to fetch the next page of results",
+                      "key": "cursor",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"magna_5f\": -12048639.799839437,\n    \"dolore_4\": 47870649.111800045\n  }\n}",
+              "createdAt": "2026-07-28T02:57:10.000Z",
+              "updatedAt": "2026-07-28T02:57:10.000Z",
+              "uid": "35240-f1fa5648-a413-4848-86e0-e11b6737502c"
+            },
+            {
+              "id": "665a7f93-46ac-42fb-a42d-be3b21a911ac",
+              "name": "TooManyRequests",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/webhook?filter:legalEntityId=<string>&cursor=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "webhook"
+                  ],
+                  "query": [
+                    {
+                      "description": "Pass in a legal entity ID to filter for webhooks under a specific legal entity.",
+                      "key": "filter:legalEntityId",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "A cursor string to fetch the next page of results",
+                      "key": "cursor",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"magna_5f\": -12048639.799839437,\n    \"dolore_4\": 47870649.111800045\n  }\n}",
+              "createdAt": "2026-07-28T02:57:10.000Z",
+              "updatedAt": "2026-07-28T02:57:10.000Z",
+              "uid": "35240-665a7f93-46ac-42fb-a42d-be3b21a911ac"
+            },
+            {
+              "id": "7a35ecee-c0b8-4dcd-b3f6-85c88fa3ba7d",
+              "name": "Internal Error",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/webhook?filter:legalEntityId=<string>&cursor=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "webhook"
+                  ],
+                  "query": [
+                    {
+                      "description": "Pass in a legal entity ID to filter for webhooks under a specific legal entity.",
+                      "key": "filter:legalEntityId",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "A cursor string to fetch the next page of results",
+                      "key": "cursor",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"magna_5f\": -12048639.799839437,\n    \"dolore_4\": 47870649.111800045\n  }\n}",
+              "createdAt": "2026-07-28T02:57:10.000Z",
+              "updatedAt": "2026-07-28T02:57:10.000Z",
+              "uid": "35240-7a35ecee-c0b8-4dcd-b3f6-85c88fa3ba7d"
+            }
+          ],
+          "createdAt": "2026-07-28T02:57:10.000Z",
+          "updatedAt": "2026-07-28T02:57:10.000Z",
+          "uid": "35240-4f7eb116-1127-482a-a3e4-b9b1713c04bf"
+        },
+        {
+          "name": "Create a new webhook endpoint",
+          "id": "2a0e2723-d13e-425d-a36e-97e67023f188",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-API-Key",
+                  "type": "string"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}",
+                  "type": "string"
+                },
+                {
+                  "key": "in",
+                  "value": "header",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"url\": \"<string>\",\n  \"name\": \"<string>\",\n  \"legalEntityId\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/webhook",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "webhook"
+              ]
+            },
+            "description": "Create a new webhook endpoint"
+          },
+          "response": [
+            {
+              "id": "743ea47c-3337-4a1d-88b4-1c8ac64f5307",
+              "name": "OK",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"url\": \"<string>\",\n  \"name\": \"<string>\",\n  \"legalEntityId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/webhook",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "webhook"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"id\": \"<string>\",\n  \"createdAt\": \"<string>\",\n  \"url\": \"<string>\",\n  \"name\": \"<string>\",\n  \"status\": \"paused\",\n  \"archivedAt\": \"<string>\",\n  \"pausedAt\": \"<string>\",\n  \"backingOffUntil\": \"<string>\",\n  \"disabledAt\": \"<string>\",\n  \"enabledEvents\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "createdAt": "2026-07-28T02:57:10.000Z",
+              "updatedAt": "2026-07-28T02:57:10.000Z",
+              "uid": "35240-743ea47c-3337-4a1d-88b4-1c8ac64f5307"
+            },
+            {
+              "id": "2a80e322-ab3e-40cd-8956-581a75d3e81d",
+              "name": "Created",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"url\": \"<string>\",\n  \"name\": \"<string>\",\n  \"legalEntityId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/webhook",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "webhook"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"id\": \"<string>\",\n  \"createdAt\": \"<string>\",\n  \"url\": \"<string>\",\n  \"name\": \"<string>\",\n  \"status\": \"paused\",\n  \"archivedAt\": \"<string>\",\n  \"pausedAt\": \"<string>\",\n  \"backingOffUntil\": \"<string>\",\n  \"disabledAt\": \"<string>\",\n  \"enabledEvents\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "createdAt": "2026-07-28T02:57:10.000Z",
+              "updatedAt": "2026-07-28T02:57:10.000Z",
+              "uid": "35240-2a80e322-ab3e-40cd-8956-581a75d3e81d"
+            },
+            {
+              "id": "768c4637-55fe-4803-9537-8f87dc33a280",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"url\": \"<string>\",\n  \"name\": \"<string>\",\n  \"legalEntityId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/webhook",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "webhook"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"magna_5f\": -12048639.799839437,\n    \"dolore_4\": 47870649.111800045\n  }\n}",
+              "createdAt": "2026-07-28T02:57:10.000Z",
+              "updatedAt": "2026-07-28T02:57:10.000Z",
+              "uid": "35240-768c4637-55fe-4803-9537-8f87dc33a280"
+            },
+            {
+              "id": "fd881732-18c2-4656-8401-ca2055909777",
+              "name": "Forbidden",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"url\": \"<string>\",\n  \"name\": \"<string>\",\n  \"legalEntityId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/webhook",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "webhook"
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"magna_5f\": -12048639.799839437,\n    \"dolore_4\": 47870649.111800045\n  }\n}",
+              "createdAt": "2026-07-28T02:57:10.000Z",
+              "updatedAt": "2026-07-28T02:57:10.000Z",
+              "uid": "35240-fd881732-18c2-4656-8401-ca2055909777"
+            },
+            {
+              "id": "1c41b590-ae5b-44ad-a32a-da3df9f39e64",
+              "name": "TooManyRequests",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"url\": \"<string>\",\n  \"name\": \"<string>\",\n  \"legalEntityId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/webhook",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "webhook"
+                  ]
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"magna_5f\": -12048639.799839437,\n    \"dolore_4\": 47870649.111800045\n  }\n}",
+              "createdAt": "2026-07-28T02:57:10.000Z",
+              "updatedAt": "2026-07-28T02:57:10.000Z",
+              "uid": "35240-1c41b590-ae5b-44ad-a32a-da3df9f39e64"
+            },
+            {
+              "id": "a5f27ec0-2774-4caa-b33c-d768aecbddd2",
+              "name": "Internal Error",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"url\": \"<string>\",\n  \"name\": \"<string>\",\n  \"legalEntityId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/webhook",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "webhook"
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"magna_5f\": -12048639.799839437,\n    \"dolore_4\": 47870649.111800045\n  }\n}",
+              "createdAt": "2026-07-28T02:57:10.000Z",
+              "updatedAt": "2026-07-28T02:57:10.000Z",
+              "uid": "35240-a5f27ec0-2774-4caa-b33c-d768aecbddd2"
+            }
+          ],
+          "createdAt": "2026-07-28T02:57:10.000Z",
+          "updatedAt": "2026-07-28T02:57:10.000Z",
+          "uid": "35240-2a0e2723-d13e-425d-a36e-97e67023f188"
+        }
+      ],
+      "id": "95fac62b-bcb1-40b6-a3fb-6d88cd4dd8fb",
+      "createdAt": "2026-07-28T02:57:10.000Z",
+      "updatedAt": "2026-07-28T02:57:10.000Z",
+      "uid": "35240-95fac62b-bcb1-40b6-a3fb-6d88cd4dd8fb"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-API-Key",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.slash.com"
+    }
+  ]
+}

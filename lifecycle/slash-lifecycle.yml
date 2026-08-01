@@ -1,0 +1,30 @@
+generated: '2026-07-21'
+method: searched
+source:
+  - https://docs.slash.com/introduction
+  - https://docs.slash.com/changelog
+versioning:
+  scheme: unversioned-beta
+  current: beta
+  base_url: https://api.slash.com
+  status: >-
+    The Slash Public API is in Beta and not yet generally available. Access is
+    granted on request (support@joinslash.com); functionality is added
+    continuously and announced via the dated changelog.
+  docs: https://docs.slash.com/introduction
+deprecation:
+  policy_url: null
+  sunset_header: false
+  practice: >-
+    Deprecations are announced inline in the changelog (e.g. merchantDescription
+    superseded by merchantData.description; PayBySlashUser renamed to SlashHandle).
+    No formal deprecation policy or RFC 8594 Sunset/Deprecation header support is
+    documented.
+changelog: https://docs.slash.com/changelog
+status_page:
+  url: https://slash.statuspage.io
+  public: false
+  note: An Atlassian Statuspage exists but is currently inactive/private (team-only); no public status page is available, so no StatusPage pointer is wired.
+sla:
+  url: null
+  note: No public SLA / uptime target published (Beta API).

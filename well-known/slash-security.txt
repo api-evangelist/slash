@@ -1,0 +1,7 @@
+# Slash Financial Security Contact
+# https://securitytxt.org/
+
+Contact: mailto:support@slash.com
+Expires: 2027-01-09T00:00:00.000Z
+Preferred-Languages: en
+Canonical: https://www.slash.com/.well-known/security.txt

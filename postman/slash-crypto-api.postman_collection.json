@@ -1,0 +1,465 @@
+{
+  "info": {
+    "_postman_id": "510b098c-1a13-4706-a3dc-e02538fc3f8e",
+    "name": "Slash Public Account Crypto API",
+    "description": "API description",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:56:40.000Z",
+    "updatedAt": "2026-07-28T02:56:41.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-510b098c-1a13-4706-a3dc-e02538fc3f8e"
+  },
+  "item": [
+    {
+      "name": "crypto",
+      "item": [
+        {
+          "name": "offramp",
+          "item": [
+            {
+              "name": "Retrieve a list of crypto offramp options",
+              "id": "aa668b99-7e25-483b-82e7-8c7b9daa8ee9",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "apikey",
+                  "apikey": [
+                    {
+                      "key": "key",
+                      "value": "X-API-Key",
+                      "type": "string"
+                    },
+                    {
+                      "key": "value",
+                      "value": "{{apiKey}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "in",
+                      "value": "header",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"virtualAccountId\": \"<string>\",\n  \"paymentRail\": \"ach\",\n  \"currency\": \"usdc\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/crypto/offramp",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "crypto",
+                    "offramp"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "ed403db2-e56d-4517-afcb-122d7756423a",
+                  "name": "OK",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-API-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"virtualAccountId\": \"<string>\",\n  \"paymentRail\": \"ach\",\n  \"currency\": \"usdc\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/crypto/offramp",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "crypto",
+                        "offramp"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"wallet\": {\n    \"id\": \"<string>\",\n    \"type\": \"off_ramp\",\n    \"status\": \"pending_active\",\n    \"subaccountId\": \"<string>\",\n    \"slashAccountGroupId\": \"<string>\",\n    \"timestamp\": \"<dateTime>\"\n  },\n  \"addresses\": [\n    {\n      \"id\": \"<string>\",\n      \"walletId\": \"<string>\",\n      \"currency\": \"usdt\",\n      \"chain\": \"ethereum\",\n      \"address\": \"<string>\",\n      \"timestamp\": \"<dateTime>\",\n      \"status\": \"pending_active\",\n      \"method\": \"ach\",\n      \"blockchainMemo\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"walletId\": \"<string>\",\n      \"currency\": \"usdt\",\n      \"chain\": \"arbitrum\",\n      \"address\": \"<string>\",\n      \"timestamp\": \"<dateTime>\",\n      \"status\": \"active\",\n      \"method\": \"wire\",\n      \"blockchainMemo\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T02:56:41.000Z",
+                  "updatedAt": "2026-07-28T02:56:41.000Z",
+                  "uid": "35240-ed403db2-e56d-4517-afcb-122d7756423a"
+                },
+                {
+                  "id": "7478b0b9-9ecd-4fa8-a1be-c359f35fa7c8",
+                  "name": "NOT ENROLLED",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-API-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"virtualAccountId\": \"<string>\",\n  \"paymentRail\": \"ach\",\n  \"currency\": \"usdc\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/crypto/offramp",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "crypto",
+                        "offramp"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"NOT_ENROLLED\",\n  \"message\": \"You are not enrolled in crypto offramping. You can enroll by logging into your account, clicking \u201cMove Money\u201d, \u201cAdd Funds\u201d, and selecting \u201cUSDC / USDT\u201d.\"\n}",
+                  "createdAt": "2026-07-28T02:56:41.000Z",
+                  "updatedAt": "2026-07-28T02:56:41.000Z",
+                  "uid": "35240-7478b0b9-9ecd-4fa8-a1be-c359f35fa7c8"
+                },
+                {
+                  "id": "05a39579-fba0-4533-9e59-7be78f0386fb",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-API-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"virtualAccountId\": \"<string>\",\n  \"paymentRail\": \"ach\",\n  \"currency\": \"usdc\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/crypto/offramp",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "crypto",
+                        "offramp"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"minim_5\": false,\n    \"pariatur_9b\": -53208081.11494282,\n    \"laboris_b4\": \"ad\",\n    \"ut_2\": -29601533\n  }\n}",
+                  "createdAt": "2026-07-28T02:56:41.000Z",
+                  "updatedAt": "2026-07-28T02:56:41.000Z",
+                  "uid": "35240-05a39579-fba0-4533-9e59-7be78f0386fb"
+                },
+                {
+                  "id": "56be87ac-8cf5-415e-b5d1-5ff1b8fdf259",
+                  "name": "Forbidden",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-API-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"virtualAccountId\": \"<string>\",\n  \"paymentRail\": \"ach\",\n  \"currency\": \"usdc\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/crypto/offramp",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "crypto",
+                        "offramp"
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"minim_5\": false,\n    \"pariatur_9b\": -53208081.11494282,\n    \"laboris_b4\": \"ad\",\n    \"ut_2\": -29601533\n  }\n}",
+                  "createdAt": "2026-07-28T02:56:41.000Z",
+                  "updatedAt": "2026-07-28T02:56:41.000Z",
+                  "uid": "35240-56be87ac-8cf5-415e-b5d1-5ff1b8fdf259"
+                },
+                {
+                  "id": "2941d3c9-11e6-4a7a-a190-b3d84f606bd0",
+                  "name": "TooManyRequests",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-API-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"virtualAccountId\": \"<string>\",\n  \"paymentRail\": \"ach\",\n  \"currency\": \"usdc\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/crypto/offramp",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "crypto",
+                        "offramp"
+                      ]
+                    }
+                  },
+                  "status": "Too Many Requests",
+                  "code": 429,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"minim_5\": false,\n    \"pariatur_9b\": -53208081.11494282,\n    \"laboris_b4\": \"ad\",\n    \"ut_2\": -29601533\n  }\n}",
+                  "createdAt": "2026-07-28T02:56:41.000Z",
+                  "updatedAt": "2026-07-28T02:56:41.000Z",
+                  "uid": "35240-2941d3c9-11e6-4a7a-a190-b3d84f606bd0"
+                },
+                {
+                  "id": "a39a3769-20c4-4474-bb92-c1437e387a4a",
+                  "name": "Internal Error",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-API-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"virtualAccountId\": \"<string>\",\n  \"paymentRail\": \"ach\",\n  \"currency\": \"usdc\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/crypto/offramp",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "crypto",
+                        "offramp"
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"minim_5\": false,\n    \"pariatur_9b\": -53208081.11494282,\n    \"laboris_b4\": \"ad\",\n    \"ut_2\": -29601533\n  }\n}",
+                  "createdAt": "2026-07-28T02:56:41.000Z",
+                  "updatedAt": "2026-07-28T02:56:41.000Z",
+                  "uid": "35240-a39a3769-20c4-4474-bb92-c1437e387a4a"
+                }
+              ],
+              "createdAt": "2026-07-28T02:56:41.000Z",
+              "updatedAt": "2026-07-28T02:56:41.000Z",
+              "uid": "35240-aa668b99-7e25-483b-82e7-8c7b9daa8ee9"
+            }
+          ],
+          "id": "fd9f6a04-aadf-4ed5-8b81-4977dc2c94e0",
+          "createdAt": "2026-07-28T02:56:41.000Z",
+          "updatedAt": "2026-07-28T02:56:41.000Z",
+          "uid": "35240-fd9f6a04-aadf-4ed5-8b81-4977dc2c94e0"
+        }
+      ],
+      "id": "6c3e12b2-71bb-4184-90e7-be9f207f5e58",
+      "createdAt": "2026-07-28T02:56:41.000Z",
+      "updatedAt": "2026-07-28T02:56:41.000Z",
+      "uid": "35240-6c3e12b2-71bb-4184-90e7-be9f207f5e58"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-API-Key",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.slash.com"
+    }
+  ]
+}

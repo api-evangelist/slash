@@ -1,0 +1,43 @@
+generated: '2026-07-21'
+method: derived
+source: openapi/slash-openapi-original.json
+docs: https://docs.slash.com/introduction
+format: custom-json
+envelope:
+  fields:
+    success: boolean (always false on error)
+    message: human-readable message with a bracketed trace id, e.g. "[4041-2121cyx]"
+    identifier: numeric internal error identifier
+    rawStatus: HTTP status echoed in the body
+    displayType: UI presentation hint (e.g. "toast")
+  example: |-
+    {
+      "success": false,
+      "message": "You must be logged in to do that. [4041-2121cyx]",
+      "identifier": 4041,
+      "rawStatus": 401,
+      "displayType": "toast"
+    }
+note: >-
+  Slash does not use RFC 9457 problem+json. The statuses below are the HTTP
+  error responses declared across the OpenAPI operations; each is returned in
+  the custom envelope above.
+problems:
+  - status: 400
+    title: Bad Request
+    meaning: Malformed request, missing required field, or missing x-legal-entity header on a user-scoped key.
+  - status: 401
+    title: Unauthorized
+    meaning: Missing or invalid API key.
+  - status: 403
+    title: Forbidden
+    meaning: Authenticated user has no active permission role on the supplied legal entity.
+  - status: 409
+    title: Conflict
+    meaning: Idempotency-key replay with the same key but a different request body.
+  - status: 429
+    title: Too Many Requests
+    meaning: Rate limit exceeded.
+  - status: 500
+    title: Internal Server Error
+    meaning: Unexpected server-side error.

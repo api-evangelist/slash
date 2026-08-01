@@ -1,0 +1,1449 @@
+{
+  "info": {
+    "_postman_id": "5f0c0f2a-17a1-49eb-ae70-6c8ddf973a96",
+    "name": "Slash Public Account Virtual Account API",
+    "description": "API description",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:57:08.000Z",
+    "updatedAt": "2026-07-28T02:57:08.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-5f0c0f2a-17a1-49eb-ae70-6c8ddf973a96"
+  },
+  "item": [
+    {
+      "name": "virtual-account",
+      "item": [
+        {
+          "name": "{virtualAccountId}",
+          "item": [
+            {
+              "name": "Retrieve a single virtual account by its ID.\n",
+              "id": "130ab9e2-6d21-4bc1-ae63-1a96b5ae4906",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "apikey",
+                  "apikey": [
+                    {
+                      "key": "key",
+                      "value": "X-API-Key",
+                      "type": "string"
+                    },
+                    {
+                      "key": "value",
+                      "value": "{{apiKey}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "in",
+                      "value": "header",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/virtual-account/:virtualAccountId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "virtual-account",
+                    ":virtualAccountId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "0a51f742-329a-40e9-9217-5ae42bb9233d",
+                      "key": "virtualAccountId",
+                      "value": "<string>",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "description": "Retrieve a single virtual account by its ID.\n"
+              },
+              "response": [
+                {
+                  "id": "b34df3d3-52a0-4cdb-95e4-7541a4d59afc",
+                  "name": "OK",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-API-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/virtual-account/:virtualAccountId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "virtual-account",
+                        ":virtualAccountId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "virtualAccountId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"virtualAccount\": {\n    \"id\": \"<string>\",\n    \"name\": \"<string>\",\n    \"accountId\": \"<string>\",\n    \"accountType\": \"primary\",\n    \"accountNumber\": \"<string>\",\n    \"routingNumber\": \"<string>\",\n    \"closedAt\": \"<string>\"\n  },\n  \"balance\": {\n    \"amountCents\": \"<integer>\"\n  },\n  \"spend\": {\n    \"amountCents\": \"<integer>\"\n  },\n  \"commissionRule\": {\n    \"id\": \"<string>\",\n    \"virtualAccountId\": \"<string>\",\n    \"commissionDetails\": {\n      \"type\": \"flatFee\",\n      \"frequency\": \"yearly\",\n      \"amount\": {\n        \"amountCents\": \"<integer>\"\n      },\n      \"startDate\": \"<dateTime>\"\n    }\n  }\n}",
+                  "createdAt": "2026-07-28T02:57:09.000Z",
+                  "updatedAt": "2026-07-28T02:57:09.000Z",
+                  "uid": "35240-b34df3d3-52a0-4cdb-95e4-7541a4d59afc"
+                },
+                {
+                  "id": "ac1bfad9-1d62-4f04-b112-11d605293f03",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-API-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/virtual-account/:virtualAccountId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "virtual-account",
+                        ":virtualAccountId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "virtualAccountId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"eu5\": false,\n    \"ipsum1c7\": false\n  }\n}",
+                  "createdAt": "2026-07-28T02:57:09.000Z",
+                  "updatedAt": "2026-07-28T02:57:09.000Z",
+                  "uid": "35240-ac1bfad9-1d62-4f04-b112-11d605293f03"
+                },
+                {
+                  "id": "db70a4d8-2b69-4fbb-bb6c-4df73111e151",
+                  "name": "Forbidden",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-API-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/virtual-account/:virtualAccountId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "virtual-account",
+                        ":virtualAccountId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "virtualAccountId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"eu5\": false,\n    \"ipsum1c7\": false\n  }\n}",
+                  "createdAt": "2026-07-28T02:57:09.000Z",
+                  "updatedAt": "2026-07-28T02:57:09.000Z",
+                  "uid": "35240-db70a4d8-2b69-4fbb-bb6c-4df73111e151"
+                },
+                {
+                  "id": "0c15fdd1-f8b7-4cce-982f-4ec49e228a72",
+                  "name": "TooManyRequests",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-API-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/virtual-account/:virtualAccountId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "virtual-account",
+                        ":virtualAccountId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "virtualAccountId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Too Many Requests",
+                  "code": 429,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"eu5\": false,\n    \"ipsum1c7\": false\n  }\n}",
+                  "createdAt": "2026-07-28T02:57:09.000Z",
+                  "updatedAt": "2026-07-28T02:57:09.000Z",
+                  "uid": "35240-0c15fdd1-f8b7-4cce-982f-4ec49e228a72"
+                },
+                {
+                  "id": "8bc79dd5-9d9c-49ea-b5f5-af7f442986e0",
+                  "name": "Internal Error",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-API-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/virtual-account/:virtualAccountId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "virtual-account",
+                        ":virtualAccountId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "virtualAccountId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"eu5\": false,\n    \"ipsum1c7\": false\n  }\n}",
+                  "createdAt": "2026-07-28T02:57:09.000Z",
+                  "updatedAt": "2026-07-28T02:57:09.000Z",
+                  "uid": "35240-8bc79dd5-9d9c-49ea-b5f5-af7f442986e0"
+                }
+              ],
+              "createdAt": "2026-07-28T02:57:09.000Z",
+              "updatedAt": "2026-07-28T02:57:09.000Z",
+              "uid": "35240-130ab9e2-6d21-4bc1-ae63-1a96b5ae4906"
+            },
+            {
+              "name": "Update an existing virtual account",
+              "id": "059149c9-9afe-4810-ad66-bff450656c82",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "apikey",
+                  "apikey": [
+                    {
+                      "key": "key",
+                      "value": "X-API-Key",
+                      "type": "string"
+                    },
+                    {
+                      "key": "value",
+                      "value": "{{apiKey}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "in",
+                      "value": "header",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "PATCH",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"action\": \"update\",\n  \"name\": \"<string>\",\n  \"commissionDetails\": {\n    \"type\": \"flatFee\",\n    \"frequency\": \"yearly\",\n    \"amount\": {\n      \"amountCents\": \"<integer>\"\n    },\n    \"startDate\": \"<dateTime>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/virtual-account/:virtualAccountId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "virtual-account",
+                    ":virtualAccountId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "cda7b482-b26f-4eed-8ad5-32aeeb0b7573",
+                      "key": "virtualAccountId",
+                      "value": "<string>",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "description": "Update an existing virtual account"
+              },
+              "response": [
+                {
+                  "id": "8b92b1d5-23df-49bc-9adb-efbd21bd493a",
+                  "name": "OK",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-API-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"action\": \"update\",\n  \"name\": \"<string>\",\n  \"commissionDetails\": {\n    \"type\": \"flatFee\",\n    \"frequency\": \"yearly\",\n    \"amount\": {\n      \"amountCents\": \"<integer>\"\n    },\n    \"startDate\": \"<dateTime>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/virtual-account/:virtualAccountId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "virtual-account",
+                        ":virtualAccountId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "virtualAccountId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"virtualAccount\": {\n    \"id\": \"<string>\",\n    \"name\": \"<string>\",\n    \"accountId\": \"<string>\",\n    \"accountType\": \"default\",\n    \"accountNumber\": \"<string>\",\n    \"routingNumber\": \"<string>\",\n    \"closedAt\": \"<string>\"\n  },\n  \"commissionRule\": {\n    \"id\": \"<string>\",\n    \"virtualAccountId\": \"<string>\",\n    \"commissionDetails\": {\n      \"type\": \"flatFee\",\n      \"frequency\": \"yearly\",\n      \"amount\": {\n        \"amountCents\": \"<integer>\"\n      },\n      \"startDate\": \"<dateTime>\"\n    }\n  }\n}",
+                  "createdAt": "2026-07-28T02:57:09.000Z",
+                  "updatedAt": "2026-07-28T02:57:09.000Z",
+                  "uid": "35240-8b92b1d5-23df-49bc-9adb-efbd21bd493a"
+                },
+                {
+                  "id": "0cfa0505-9ad9-4a37-acd6-72cef840ab13",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-API-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"action\": \"update\",\n  \"name\": \"<string>\",\n  \"commissionDetails\": {\n    \"type\": \"flatFee\",\n    \"frequency\": \"yearly\",\n    \"amount\": {\n      \"amountCents\": \"<integer>\"\n    },\n    \"startDate\": \"<dateTime>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/virtual-account/:virtualAccountId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "virtual-account",
+                        ":virtualAccountId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "virtualAccountId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"eu5\": false,\n    \"ipsum1c7\": false\n  }\n}",
+                  "createdAt": "2026-07-28T02:57:09.000Z",
+                  "updatedAt": "2026-07-28T02:57:09.000Z",
+                  "uid": "35240-0cfa0505-9ad9-4a37-acd6-72cef840ab13"
+                },
+                {
+                  "id": "60192d96-9675-46a9-8f7c-a18f48b1a5f9",
+                  "name": "Forbidden",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-API-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"action\": \"update\",\n  \"name\": \"<string>\",\n  \"commissionDetails\": {\n    \"type\": \"flatFee\",\n    \"frequency\": \"yearly\",\n    \"amount\": {\n      \"amountCents\": \"<integer>\"\n    },\n    \"startDate\": \"<dateTime>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/virtual-account/:virtualAccountId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "virtual-account",
+                        ":virtualAccountId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "virtualAccountId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"eu5\": false,\n    \"ipsum1c7\": false\n  }\n}",
+                  "createdAt": "2026-07-28T02:57:09.000Z",
+                  "updatedAt": "2026-07-28T02:57:09.000Z",
+                  "uid": "35240-60192d96-9675-46a9-8f7c-a18f48b1a5f9"
+                },
+                {
+                  "id": "9d697690-b2b7-4501-91ba-9fef0d475308",
+                  "name": "TooManyRequests",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-API-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"action\": \"update\",\n  \"name\": \"<string>\",\n  \"commissionDetails\": {\n    \"type\": \"flatFee\",\n    \"frequency\": \"yearly\",\n    \"amount\": {\n      \"amountCents\": \"<integer>\"\n    },\n    \"startDate\": \"<dateTime>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/virtual-account/:virtualAccountId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "virtual-account",
+                        ":virtualAccountId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "virtualAccountId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Too Many Requests",
+                  "code": 429,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"eu5\": false,\n    \"ipsum1c7\": false\n  }\n}",
+                  "createdAt": "2026-07-28T02:57:09.000Z",
+                  "updatedAt": "2026-07-28T02:57:09.000Z",
+                  "uid": "35240-9d697690-b2b7-4501-91ba-9fef0d475308"
+                },
+                {
+                  "id": "b927113c-951d-4202-a176-e98a33ca08e7",
+                  "name": "Internal Error",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "X-API-Key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"action\": \"update\",\n  \"name\": \"<string>\",\n  \"commissionDetails\": {\n    \"type\": \"flatFee\",\n    \"frequency\": \"yearly\",\n    \"amount\": {\n      \"amountCents\": \"<integer>\"\n    },\n    \"startDate\": \"<dateTime>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/virtual-account/:virtualAccountId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "virtual-account",
+                        ":virtualAccountId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "virtualAccountId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"eu5\": false,\n    \"ipsum1c7\": false\n  }\n}",
+                  "createdAt": "2026-07-28T02:57:09.000Z",
+                  "updatedAt": "2026-07-28T02:57:09.000Z",
+                  "uid": "35240-b927113c-951d-4202-a176-e98a33ca08e7"
+                }
+              ],
+              "createdAt": "2026-07-28T02:57:09.000Z",
+              "updatedAt": "2026-07-28T02:57:09.000Z",
+              "uid": "35240-059149c9-9afe-4810-ad66-bff450656c82"
+            }
+          ],
+          "id": "99cda064-ca42-4ef7-917a-c50904156244",
+          "createdAt": "2026-07-28T02:57:09.000Z",
+          "updatedAt": "2026-07-28T02:57:09.000Z",
+          "uid": "35240-99cda064-ca42-4ef7-917a-c50904156244"
+        },
+        {
+          "name": "Retrieve a list of virtual accounts under an account.\nThe virtual accounts are returned in an array, with each item representing a virtual account under that account.\n\nThe primary account will also be returned as a virtual account, with an account type of",
+          "id": "6f89ca15-545e-4064-89b8-ce06c928c372",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-API-Key",
+                  "type": "string"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}",
+                  "type": "string"
+                },
+                {
+                  "key": "in",
+                  "value": "header",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/virtual-account?cursor=<string>&filter:accountId=<string>&filter:includeClosedAccounts=true",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "virtual-account"
+              ],
+              "query": [
+                {
+                  "description": "A cursor string to fetch the next page of results",
+                  "key": "cursor",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Pass in an account ID to filter virtual accounts by account ID. This will return all virtual accounts that match the account ID passed in.",
+                  "key": "filter:accountId",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Include virtual accounts that have been closed in the query results. By default, they will not be returned.",
+                  "key": "filter:includeClosedAccounts",
+                  "value": "true"
+                }
+              ]
+            },
+            "description": "Retrieve a list of virtual accounts under an account.\nThe virtual accounts are returned in an array, with each item representing a virtual account under that account.\n\nThe primary account will also be returned as a virtual account, with an account type of 'primary' while actual subaccounts\nunder the primary account will have an account type of 'default'.\n"
+          },
+          "response": [
+            {
+              "id": "27cc271b-6149-4698-9ef9-6a1e2ceb518b",
+              "name": "OK",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/virtual-account?cursor=<string>&filter:accountId=<string>&filter:includeClosedAccounts=true",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "virtual-account"
+                  ],
+                  "query": [
+                    {
+                      "description": "A cursor string to fetch the next page of results",
+                      "key": "cursor",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Pass in an account ID to filter virtual accounts by account ID. This will return all virtual accounts that match the account ID passed in.",
+                      "key": "filter:accountId",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Include virtual accounts that have been closed in the query results. By default, they will not be returned.",
+                      "key": "filter:includeClosedAccounts",
+                      "value": "true"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"items\": [\n    {\n      \"virtualAccount\": {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"accountId\": \"<string>\",\n        \"accountType\": \"default\",\n        \"accountNumber\": \"<string>\",\n        \"routingNumber\": \"<string>\",\n        \"closedAt\": \"<string>\"\n      },\n      \"balance\": {\n        \"amountCents\": \"<integer>\"\n      },\n      \"spend\": {\n        \"amountCents\": \"<integer>\"\n      },\n      \"commissionRule\": {\n        \"id\": \"<string>\",\n        \"virtualAccountId\": \"<string>\",\n        \"commissionDetails\": {\n          \"type\": \"flatFee\",\n          \"frequency\": \"yearly\",\n          \"amount\": {\n            \"amountCents\": \"<integer>\"\n          },\n          \"startDate\": \"<dateTime>\"\n        }\n      }\n    },\n    {\n      \"virtualAccount\": {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"accountId\": \"<string>\",\n        \"accountType\": \"default\",\n        \"accountNumber\": \"<string>\",\n        \"routingNumber\": \"<string>\",\n        \"closedAt\": \"<string>\"\n      },\n      \"balance\": {\n        \"amountCents\": \"<integer>\"\n      },\n      \"spend\": {\n        \"amountCents\": \"<integer>\"\n      },\n      \"commissionRule\": {\n        \"id\": \"<string>\",\n        \"virtualAccountId\": \"<string>\",\n        \"commissionDetails\": {\n          \"type\": \"flatFee\",\n          \"frequency\": \"yearly\",\n          \"amount\": {\n            \"amountCents\": \"<integer>\"\n          },\n          \"startDate\": \"<dateTime>\"\n        }\n      }\n    }\n  ],\n  \"metadata\": {\n    \"nextCursor\": \"<string>\",\n    \"count\": \"<number>\"\n  }\n}",
+              "createdAt": "2026-07-28T02:57:09.000Z",
+              "updatedAt": "2026-07-28T02:57:09.000Z",
+              "uid": "35240-27cc271b-6149-4698-9ef9-6a1e2ceb518b"
+            },
+            {
+              "id": "662eeb25-8b1f-467c-85ee-4c75f3bae25f",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/virtual-account?cursor=<string>&filter:accountId=<string>&filter:includeClosedAccounts=true",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "virtual-account"
+                  ],
+                  "query": [
+                    {
+                      "description": "A cursor string to fetch the next page of results",
+                      "key": "cursor",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Pass in an account ID to filter virtual accounts by account ID. This will return all virtual accounts that match the account ID passed in.",
+                      "key": "filter:accountId",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Include virtual accounts that have been closed in the query results. By default, they will not be returned.",
+                      "key": "filter:includeClosedAccounts",
+                      "value": "true"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"eu5\": false,\n    \"ipsum1c7\": false\n  }\n}",
+              "createdAt": "2026-07-28T02:57:09.000Z",
+              "updatedAt": "2026-07-28T02:57:09.000Z",
+              "uid": "35240-662eeb25-8b1f-467c-85ee-4c75f3bae25f"
+            },
+            {
+              "id": "b4da7e64-8f6c-4062-869d-8a466245bf83",
+              "name": "Forbidden",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/virtual-account?cursor=<string>&filter:accountId=<string>&filter:includeClosedAccounts=true",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "virtual-account"
+                  ],
+                  "query": [
+                    {
+                      "description": "A cursor string to fetch the next page of results",
+                      "key": "cursor",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Pass in an account ID to filter virtual accounts by account ID. This will return all virtual accounts that match the account ID passed in.",
+                      "key": "filter:accountId",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Include virtual accounts that have been closed in the query results. By default, they will not be returned.",
+                      "key": "filter:includeClosedAccounts",
+                      "value": "true"
+                    }
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"eu5\": false,\n    \"ipsum1c7\": false\n  }\n}",
+              "createdAt": "2026-07-28T02:57:09.000Z",
+              "updatedAt": "2026-07-28T02:57:09.000Z",
+              "uid": "35240-b4da7e64-8f6c-4062-869d-8a466245bf83"
+            },
+            {
+              "id": "32317543-c663-494a-8418-22a8aa06499f",
+              "name": "TooManyRequests",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/virtual-account?cursor=<string>&filter:accountId=<string>&filter:includeClosedAccounts=true",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "virtual-account"
+                  ],
+                  "query": [
+                    {
+                      "description": "A cursor string to fetch the next page of results",
+                      "key": "cursor",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Pass in an account ID to filter virtual accounts by account ID. This will return all virtual accounts that match the account ID passed in.",
+                      "key": "filter:accountId",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Include virtual accounts that have been closed in the query results. By default, they will not be returned.",
+                      "key": "filter:includeClosedAccounts",
+                      "value": "true"
+                    }
+                  ]
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"eu5\": false,\n    \"ipsum1c7\": false\n  }\n}",
+              "createdAt": "2026-07-28T02:57:09.000Z",
+              "updatedAt": "2026-07-28T02:57:09.000Z",
+              "uid": "35240-32317543-c663-494a-8418-22a8aa06499f"
+            },
+            {
+              "id": "f45aa9c2-36f1-455d-b6df-2715bd00b68c",
+              "name": "Internal Error",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/virtual-account?cursor=<string>&filter:accountId=<string>&filter:includeClosedAccounts=true",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "virtual-account"
+                  ],
+                  "query": [
+                    {
+                      "description": "A cursor string to fetch the next page of results",
+                      "key": "cursor",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Pass in an account ID to filter virtual accounts by account ID. This will return all virtual accounts that match the account ID passed in.",
+                      "key": "filter:accountId",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Include virtual accounts that have been closed in the query results. By default, they will not be returned.",
+                      "key": "filter:includeClosedAccounts",
+                      "value": "true"
+                    }
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"eu5\": false,\n    \"ipsum1c7\": false\n  }\n}",
+              "createdAt": "2026-07-28T02:57:09.000Z",
+              "updatedAt": "2026-07-28T02:57:09.000Z",
+              "uid": "35240-f45aa9c2-36f1-455d-b6df-2715bd00b68c"
+            }
+          ],
+          "createdAt": "2026-07-28T02:57:09.000Z",
+          "updatedAt": "2026-07-28T02:57:09.000Z",
+          "uid": "35240-6f89ca15-545e-4064-89b8-ce06c928c372"
+        },
+        {
+          "name": "Create a virtual account",
+          "id": "7243a774-7903-499f-8c98-0d1de293f295",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-API-Key",
+                  "type": "string"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}",
+                  "type": "string"
+                },
+                {
+                  "key": "in",
+                  "value": "header",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"accountId\": \"<string>\",\n  \"commissionDetails\": {\n    \"type\": \"flatFee\",\n    \"frequency\": \"monthly\",\n    \"amount\": {\n      \"amountCents\": \"<integer>\"\n    },\n    \"startDate\": \"<dateTime>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/virtual-account",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "virtual-account"
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "3d361c33-6b77-402c-a432-ef22439fcc13",
+              "name": "OK",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"accountId\": \"<string>\",\n  \"commissionDetails\": {\n    \"type\": \"flatFee\",\n    \"frequency\": \"monthly\",\n    \"amount\": {\n      \"amountCents\": \"<integer>\"\n    },\n    \"startDate\": \"<dateTime>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/virtual-account",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "virtual-account"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"virtualAccount\": {\n    \"id\": \"<string>\",\n    \"name\": \"<string>\",\n    \"accountId\": \"<string>\",\n    \"accountType\": \"default\",\n    \"accountNumber\": \"<string>\",\n    \"routingNumber\": \"<string>\",\n    \"closedAt\": \"<string>\"\n  },\n  \"commissionRule\": {\n    \"id\": \"<string>\",\n    \"virtualAccountId\": \"<string>\",\n    \"commissionDetails\": {\n      \"type\": \"flatFee\",\n      \"frequency\": \"yearly\",\n      \"amount\": {\n        \"amountCents\": \"<integer>\"\n      },\n      \"startDate\": \"<dateTime>\"\n    }\n  }\n}",
+              "createdAt": "2026-07-28T02:57:09.000Z",
+              "updatedAt": "2026-07-28T02:57:09.000Z",
+              "uid": "35240-3d361c33-6b77-402c-a432-ef22439fcc13"
+            },
+            {
+              "id": "270ee5a4-dfe2-45bd-85cf-1638555ce45b",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"accountId\": \"<string>\",\n  \"commissionDetails\": {\n    \"type\": \"flatFee\",\n    \"frequency\": \"monthly\",\n    \"amount\": {\n      \"amountCents\": \"<integer>\"\n    },\n    \"startDate\": \"<dateTime>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/virtual-account",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "virtual-account"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"eu5\": false,\n    \"ipsum1c7\": false\n  }\n}",
+              "createdAt": "2026-07-28T02:57:09.000Z",
+              "updatedAt": "2026-07-28T02:57:09.000Z",
+              "uid": "35240-270ee5a4-dfe2-45bd-85cf-1638555ce45b"
+            },
+            {
+              "id": "9f9b7cc2-e933-481b-a290-45ef4b83de76",
+              "name": "Forbidden",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"accountId\": \"<string>\",\n  \"commissionDetails\": {\n    \"type\": \"flatFee\",\n    \"frequency\": \"monthly\",\n    \"amount\": {\n      \"amountCents\": \"<integer>\"\n    },\n    \"startDate\": \"<dateTime>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/virtual-account",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "virtual-account"
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"eu5\": false,\n    \"ipsum1c7\": false\n  }\n}",
+              "createdAt": "2026-07-28T02:57:09.000Z",
+              "updatedAt": "2026-07-28T02:57:09.000Z",
+              "uid": "35240-9f9b7cc2-e933-481b-a290-45ef4b83de76"
+            },
+            {
+              "id": "32a57be4-ee9f-44de-bf5b-a98963bd19f7",
+              "name": "TooManyRequests",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"accountId\": \"<string>\",\n  \"commissionDetails\": {\n    \"type\": \"flatFee\",\n    \"frequency\": \"monthly\",\n    \"amount\": {\n      \"amountCents\": \"<integer>\"\n    },\n    \"startDate\": \"<dateTime>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/virtual-account",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "virtual-account"
+                  ]
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"eu5\": false,\n    \"ipsum1c7\": false\n  }\n}",
+              "createdAt": "2026-07-28T02:57:09.000Z",
+              "updatedAt": "2026-07-28T02:57:09.000Z",
+              "uid": "35240-32a57be4-ee9f-44de-bf5b-a98963bd19f7"
+            },
+            {
+              "id": "ff42e191-57fb-42d0-95f9-d6600f2a5885",
+              "name": "Internal Error",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"accountId\": \"<string>\",\n  \"commissionDetails\": {\n    \"type\": \"flatFee\",\n    \"frequency\": \"monthly\",\n    \"amount\": {\n      \"amountCents\": \"<integer>\"\n    },\n    \"startDate\": \"<dateTime>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/virtual-account",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "virtual-account"
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"message\": \"<string>\",\n  \"name\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"rawStatus\": \"<number>\",\n  \"meta\": {\n    \"eu5\": false,\n    \"ipsum1c7\": false\n  }\n}",
+              "createdAt": "2026-07-28T02:57:09.000Z",
+              "updatedAt": "2026-07-28T02:57:09.000Z",
+              "uid": "35240-ff42e191-57fb-42d0-95f9-d6600f2a5885"
+            }
+          ],
+          "createdAt": "2026-07-28T02:57:09.000Z",
+          "updatedAt": "2026-07-28T02:57:09.000Z",
+          "uid": "35240-7243a774-7903-499f-8c98-0d1de293f295"
+        }
+      ],
+      "id": "bd6d5929-4187-4c70-a1cf-59985fbb08a9",
+      "createdAt": "2026-07-28T02:57:09.000Z",
+      "updatedAt": "2026-07-28T02:57:09.000Z",
+      "uid": "35240-bd6d5929-4187-4c70-a1cf-59985fbb08a9"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-API-Key",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.slash.com"
+    }
+  ]
+}

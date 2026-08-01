@@ -1,0 +1,46 @@
+generated: '2026-07-21'
+method: searched
+source: openapi/slash-openapi-original.json
+docs: https://docs.slash.com/introduction
+tenancy_header:
+  name: x-legal-entity
+  required_for: user-scoped keys (except GET /legal-entity)
+oauth_oidc:
+  note: >-
+    Third-party developer applications additionally use OAuth2/OIDC
+    (authorization_code, client_secret_basic) with the permission-key model in
+    scopes/slash-scopes.yml. Discovery at api.slash.com/.well-known/openid-configuration.
+summary:
+  types:
+  - apiKey
+  - http
+  api_key_in:
+  - header
+schemes:
+- name: api_key
+  type: apiKey
+  in: header
+  parameter: X-API-Key
+  description: |-
+    API key authentication for public API requests.
+
+    Keys come in two flavors:
+
+    - *Legal-entity-scoped keys* are pinned to a single legal entity.
+      Minted via the dashboard under a specific entity; every request
+      acts on that entity.
+    - *User-scoped keys* are pinned to a user and span every legal
+      entity that user has access to. Every request made with a
+      user-scoped key (except `GET /legal-entity`,
+  sources:
+  - openapi/slash-openapi-original.json
+- name: bearer
+  type: http
+  scheme: bearer
+  sources:
+  - openapi/slash-openapi-original.json
+- name: developer_application
+  type: http
+  scheme: basic
+  sources:
+  - openapi/slash-openapi-original.json

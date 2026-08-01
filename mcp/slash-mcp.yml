@@ -1,0 +1,38 @@
+generated: '2026-07-21'
+method: searched
+status: published
+source: https://docs.slash.com/docs/mcp
+server:
+  name: slash
+  transport: http
+  url: https://mcp.slash.com/mcp
+  auth:
+    type: apiKey
+    param: apiKey            # ?apiKey= query param OR X-API-Key header
+    header: X-API-Key
+  options:
+    - name: rsaPublicKey     # ?rsaPublicKey= or X-RSA-Public-Key header
+      required: false
+      description: >-
+        Base64-encoded RSA public key (no PEM markers). When supplied, card PAN
+        and CVV are RSA-OAEP encrypted before being returned so the agent never
+        sees raw card numbers. When omitted, card data is returned as plaintext.
+tools:
+  - name: list_endpoints
+    description: Lists all Slash API endpoints with method, path, and description.
+  - name: get_endpoint_schema
+    description: Returns the full schema for a specific endpoint, with all $ref references resolved.
+  - name: call_api_endpoint
+    description: Calls a Slash API endpoint with the given method, path, query parameters, and body.
+platforms:
+  - Claude Desktop
+  - Claude Code
+  - ChatGPT
+  - Cursor
+  - Codex
+  - OpenClaw
+notes: >-
+  Official hosted remote MCP server. It is a meta/gateway server (discover +
+  schema + call) over the full Slash Public API rather than one MCP tool per
+  operation. Complements the Agent Requests flow (read-only keys can issue
+  writes that defer to human-in-the-loop approval).

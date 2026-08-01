@@ -1,0 +1,48 @@
+generated: '2026-07-21'
+method: searched
+source: https://docs.slash.com/changelog
+scheme: dated            # date-stamped changelog, no semantic version tags on the API (Beta)
+current_version: beta
+entries:
+  - date: '2026-06-16'
+    breaking: false
+    highlights:
+      - Added sepaInfo, pixInfo, speiInfo, fpsInfo to the Transaction object (payment metadata for inbound Global USD deposits over SEPA, PIX, SPEI, Faster Payments).
+  - date: '2026-03-05'
+    breaking: false
+    highlights:
+      - Added Agent Requests (GET /agent-request, GET /agent-request/{agentRequestId}) for AI-agent integration with human-in-the-loop approval; read-only keys can defer write requests for approval.
+      - Added POST /analytics endpoint for querying transaction analytics.
+  - date: '2026-03-02'
+    breaking: false
+    highlights:
+      - Added Invoice endpoints (list/create/get/update/void/reconcile/unreconcile, settings, logo, validate-number).
+      - Added Contact endpoints for managing invoice recipients.
+  - date: '2025-09-01'
+    breaking: false
+    highlights:
+      - Added /card/{cardId}/modifier endpoints (enterprise-only).
+  - date: '2025-06-10'
+    breaking: false
+    highlights:
+      - Added /account/{accountId}/authorization-webhook endpoint for real-time card authorization (enterprise-only).
+  - date: '2025-06-05'
+    breaking: false
+    highlights:
+      - Added wireInfo and achInfo to the Transaction object.
+  - date: '2025-05-17'
+    breaking: true
+    highlights:
+      - Added required `name` field to the Account schema.
+  - date: '2024-11-30'
+    breaking: false
+    highlights:
+      - Added merchantData to Transaction; deprecated merchantDescription in favor of merchantData.description.
+  - date: '2024-05-01'
+    breaking: true
+    highlights:
+      - Renamed PayBySlashUser schema to SlashHandle and its sourceSlashAccountGroup field to accountId (breaking); added /legal-entity and legalEntityId filters across list endpoints.
+notes: >-
+  Recent window captured from the live dated changelog; the changelog page is the
+  source of truth. Deprecations appear inline (e.g. merchantDescription) rather
+  than via a formal deprecation policy or Sunset headers.
