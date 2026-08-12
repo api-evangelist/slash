@@ -893,6 +893,8 @@ apis:
   - type: AgenticAccess
     url: agentic-access/slash-agentic-access.yml
 common:
+- type: Overlay
+  url: overlays/slash-openapi-overlay.yaml
 - type: PostmanWorkspace
   url: https://www.postman.com/kinlaneapi/slash/overview
 - type: Website
