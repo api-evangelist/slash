@@ -1,0 +1,222 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Slash Public Account Card Group API",
+    "version": "0.0.1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-API-Key",
+      "value": "{{X-API-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Card Group",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "GET /card-group",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.slash.com/card-group",
+            "params": [
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "A cursor string to fetch the next page of results"
+              },
+              {
+                "name": "filter:name",
+                "value": "",
+                "type": "query",
+                "description": "Pass in a name to filter for card groups with a matching name."
+              },
+              {
+                "name": "filter:virtualAccountId",
+                "value": "",
+                "type": "query",
+                "description": "Pass in a virtual account ID to filter for card groups under a specific virtual account."
+              },
+              {
+                "name": "filter:status",
+                "value": "",
+                "type": "query",
+                "description": "Filter card groups by status. Defaults to 'active' if not provided."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieve the list of card groups that the user owns."
+        },
+        {
+          "info": {
+            "name": "POST /card-group",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.slash.com/card-group",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Create a card group."
+        },
+        {
+          "info": {
+            "name": "GET /card-group/{cardGroupId}",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.slash.com/card-group/:cardGroupId",
+            "params": [
+              {
+                "name": "cardGroupId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Fetch details for a single card group by card group ID"
+        },
+        {
+          "info": {
+            "name": "PATCH /card-group/{cardGroupId}",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.slash.com/card-group/:cardGroupId",
+            "params": [
+              {
+                "name": "cardGroupId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Update a card group"
+        },
+        {
+          "info": {
+            "name": "GET /card-group/{cardGroupId}/utilization",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.slash.com/card-group/:cardGroupId/utilization",
+            "params": [
+              {
+                "name": "cardGroupId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get a card group's current utilization"
+        },
+        {
+          "info": {
+            "name": "PUT /card-group/{cardGroupId}/spending-constraint",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.slash.com/card-group/:cardGroupId/spending-constraint",
+            "params": [
+              {
+                "name": "cardGroupId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Fully replace a card group's spending constraint."
+        },
+        {
+          "info": {
+            "name": "PATCH /card-group/{cardGroupId}/spending-constraint",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.slash.com/card-group/:cardGroupId/spending-constraint",
+            "params": [
+              {
+                "name": "cardGroupId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Apply a partial update to a card group's spending constraint while preserving current properties applied. Properties set to \"null\" will be removed from the spending constraint."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,290 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Slash Public Account Fdx API",
+    "version": "0.0.1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-API-Key",
+      "value": "{{X-API-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Fdx",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "GET /fdx/customers/current",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.slash.com/fdx/customers/current",
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get current authenticated customer ID"
+        },
+        {
+          "info": {
+            "name": "GET /fdx/accounts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.slash.com/fdx/accounts",
+            "params": [
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "The number of items to skip before starting to collect the result set"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The number of items to return (default 100, max 1000)"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "List all accounts"
+        },
+        {
+          "info": {
+            "name": "GET /fdx/accounts/{accountId}",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.slash.com/fdx/accounts/:accountId",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "Account ID"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get account balances and liabilities"
+        },
+        {
+          "info": {
+            "name": "GET /fdx/accounts/{accountId}/contact",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.slash.com/fdx/accounts/:accountId/contact",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "Account ID"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get an account's contact information"
+        },
+        {
+          "info": {
+            "name": "GET /fdx/accounts/{accountId}/statements",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.slash.com/fdx/accounts/:accountId/statements",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "Account ID"
+              },
+              {
+                "name": "startTime",
+                "value": "",
+                "type": "query",
+                "description": "Start time for use in retrieval of statements (ISO 8601)."
+              },
+              {
+                "name": "endTime",
+                "value": "",
+                "type": "query",
+                "description": "End time for use in retrieval of statements (ISO 8601)."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "The ID of the last item in the previous page of results"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The number of items to return (default 100, max 1000)"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Search for statements"
+        },
+        {
+          "info": {
+            "name": "GET /fdx/accounts/{accountId}/statements/{statementId}",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.slash.com/fdx/accounts/:accountId/statements/:statementId",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "Account ID"
+              },
+              {
+                "name": "statementId",
+                "value": "",
+                "type": "path",
+                "description": "Statement ID returned by /accounts/{accountId}/statements"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get account statement PDF."
+        },
+        {
+          "info": {
+            "name": "GET /fdx/accounts/{accountId}/transactions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.slash.com/fdx/accounts/:accountId/transactions",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "Account ID"
+              },
+              {
+                "name": "startTime",
+                "value": "",
+                "type": "query",
+                "description": "Start time for use in retrieval of transactions (ISO 8601)."
+              },
+              {
+                "name": "endTime",
+                "value": "",
+                "type": "query",
+                "description": "End time for use in retrieval of transactions (ISO 8601)."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "The ID of the last item in the previous page of results"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The number of items to return (default 100, max 1000)"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Search for transactions"
+        },
+        {
+          "info": {
+            "name": "GET /fdx/accounts/{accountId}/payment-networks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.slash.com/fdx/accounts/:accountId/payment-networks",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "Account ID"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "The ID of the last item in the previous page of results"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The number of items to return (default 100, max 1000)"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get payment networks supported by the account"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,53 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Slash Public Account Transfers API",
+    "version": "0.0.1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-API-Key",
+      "value": "{{X-API-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Transfers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "POST /transfers/book-transfer",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.slash.com/transfers/book-transfer",
+            "headers": [
+              {
+                "name": "X-Idempotency-Key",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Initiate a *book transfer* — an instant, intra‐Slash money movement\nbetween two accounts the caller has access to.\n\n`from` and `to` accept any Slash account id the caller can address:\n  - `sa_group_*` — a Slash account group's primary cash account\n  - `sub_*`      — a virtual account inside a Slash account group\n\nThe legal entity owning `from` must equal the request's `x-legal-entity`\nheader (the source-scope guard for user-scoped API keys), and the caller\nmust be a member of both `from` and `to"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

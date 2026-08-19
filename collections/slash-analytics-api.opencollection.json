@@ -1,0 +1,47 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Slash Public Account Analytics API",
+    "version": "0.0.1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-API-Key",
+      "value": "{{X-API-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Analytics",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "POST /analytics",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.slash.com/analytics",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Execute a SQL query against the user's data.\n\nThe endpoint provides read-only access to secure views (transactions, cards, accounts, etc.) scoped to the authenticated user's entities.\n\n**SQL Dialect**: Uses Snowflake SQL syntax.\n\n**Data Freshness**: Data may be up to 1 hour behind real-time.\n\nUse `SHOW TABLES` to list available tables and `DESCRIBE <table>` to see columns.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

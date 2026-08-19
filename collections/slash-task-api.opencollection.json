@@ -1,0 +1,158 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Slash Public Account Task API",
+    "version": "0.0.1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-API-Key",
+      "value": "{{X-API-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Task",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "GET /task",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.slash.com/task",
+            "params": [
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "A cursor string to fetch the next page of results"
+              },
+              {
+                "name": "filter:type",
+                "value": "",
+                "type": "query",
+                "description": "Filter by task type (e.g., payment_approval)."
+              },
+              {
+                "name": "filter:status",
+                "value": "",
+                "type": "query",
+                "description": "Filter by task status."
+              },
+              {
+                "name": "filter:attr",
+                "value": "",
+                "type": "query",
+                "description": "Type-specific attribute filters. Format: filter:attr[field]=value for equality, or filter:attr[field][op]=value for other operators (gte, lte, gt, lt, in, contains). Use GET /task/schema to discover available fields and operators per type.\n"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Sort field. Default is by timestamp descending."
+              },
+              {
+                "name": "sortDirection",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction. Defaults to DESC."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "List tasks visible to the calling principal. User-scoped callers (OAuth bearer, user-scoped api keys) see tasks they're assigned to; entity-scoped api keys see all tasks in the legal entity the key is bound to. Each row carries an `actions` list describing what the caller can do on the task right now — an empty list means read-only. Supports filtering by type, status, and type-specific attributes via filter:attr.\n"
+        },
+        {
+          "info": {
+            "name": "GET /task/schema",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.slash.com/task/schema",
+            "params": [
+              {
+                "name": "filter:type",
+                "value": "",
+                "type": "query",
+                "description": "Filter to a specific task type."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "List registered task types with their attribute schemas, filterable fields, supported operators, and available actions. Use this to discover what can be filtered on via filter:attr."
+        },
+        {
+          "info": {
+            "name": "GET /task/{taskId}",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.slash.com/task/:taskId",
+            "params": [
+              {
+                "name": "taskId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get a single task by ID."
+        },
+        {
+          "info": {
+            "name": "POST /task/{taskId}/act",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.slash.com/task/:taskId/act",
+            "params": [
+              {
+                "name": "taskId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Execute an action on a task (e.g., approve, reject). Available actions depend on the task type — use GET /task/schema to discover them."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

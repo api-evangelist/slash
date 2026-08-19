@@ -1,0 +1,76 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Slash Public Account Oauth2 API",
+    "version": "0.0.1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-API-Key",
+      "value": "{{X-API-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Oauth2",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "POST /oauth2/token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.slash.com/oauth2/token",
+            "body": {
+              "type": "form-urlencoded",
+              "data": []
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Get or refresh an access token"
+        },
+        {
+          "info": {
+            "name": "GET /oauth2/userinfo",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.slash.com/oauth2/userinfo",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get userinfo"
+        },
+        {
+          "info": {
+            "name": "POST /oauth2/userinfo",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.slash.com/oauth2/userinfo",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get userinfo"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

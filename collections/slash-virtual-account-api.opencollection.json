@@ -1,0 +1,136 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Slash Public Account Virtual Account API",
+    "version": "0.0.1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-API-Key",
+      "value": "{{X-API-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Virtual Account",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "GET /virtual-account",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.slash.com/virtual-account",
+            "params": [
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "A cursor string to fetch the next page of results"
+              },
+              {
+                "name": "filter:accountId",
+                "value": "",
+                "type": "query",
+                "description": "Pass in an account ID to filter virtual accounts by account ID. This will return all virtual accounts that match the account ID passed in."
+              },
+              {
+                "name": "filter:includeClosedAccounts",
+                "value": "",
+                "type": "query",
+                "description": "Include virtual accounts that have been closed in the query results. By default, they will not be returned."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieve a list of virtual accounts under an account.\nThe virtual accounts are returned in an array, with each item representing a virtual account under that account.\n\nThe primary account will also be returned as a virtual account, with an account type of 'primary' while actual subaccounts\nunder the primary account will have an account type of 'default'.\n"
+        },
+        {
+          "info": {
+            "name": "Create a virtual account",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.slash.com/virtual-account",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Create a virtual account"
+        },
+        {
+          "info": {
+            "name": "GET /virtual-account/{virtualAccountId}",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.slash.com/virtual-account/:virtualAccountId",
+            "params": [
+              {
+                "name": "virtualAccountId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieve a single virtual account by its ID.\n"
+        },
+        {
+          "info": {
+            "name": "PATCH /virtual-account/{virtualAccountId}",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.slash.com/virtual-account/:virtualAccountId",
+            "params": [
+              {
+                "name": "virtualAccountId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Update an existing virtual account"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

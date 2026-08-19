@@ -1,0 +1,320 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Slash Public Account Card API",
+    "version": "0.0.1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-API-Key",
+      "value": "{{X-API-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Card",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "GET /card",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.slash.com/card",
+            "params": [
+              {
+                "name": "filter:legalEntityId",
+                "value": "",
+                "type": "query",
+                "description": "Pass in a legal entity ID to filter for cards in accounts under a specific legal entity."
+              },
+              {
+                "name": "filter:accountId",
+                "value": "",
+                "type": "query",
+                "description": "Pass in an account ID to filter for cards under a specific account."
+              },
+              {
+                "name": "filter:virtualAccountId",
+                "value": "",
+                "type": "query",
+                "description": "Pass in a virtual account ID to filter for cards under a specific virtual account."
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "A cursor string to fetch the next page of results"
+              },
+              {
+                "name": "filter:status",
+                "value": "",
+                "type": "query",
+                "description": "Returns all cards matching the status passed in."
+              },
+              {
+                "name": "filter:cardGroupId",
+                "value": "",
+                "type": "query",
+                "description": "Pass in a card group ID, This will return all cards that belong to the card group ID passed in. Cannot be combined with filter:cardGroupName."
+              },
+              {
+                "name": "filter:cardGroupName",
+                "value": "",
+                "type": "query",
+                "description": "Pass in a card group name, This will return all cards that belong to the card group name passed in. Cannot be combined with filter:cardGroupId."
+              },
+              {
+                "name": "filter:modifier",
+                "value": "",
+                "type": "query",
+                "description": "Filter cards by modifier. Format is \"modifier_name:value\" (e.g., \"only_allow_recurring_payments:true\"). Returns cards where the specified modifier has the given value."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Sorts card by creation date or name."
+              },
+              {
+                "name": "sortDirection",
+                "value": "",
+                "type": "query",
+                "description": "The direction to apply the sort filter by. Default ASC."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "List all cards you have access to."
+        },
+        {
+          "info": {
+            "name": "POST /card",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.slash.com/card",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Create a card"
+        },
+        {
+          "info": {
+            "name": "GET /card/{cardId}",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.slash.com/card/:cardId",
+            "params": [
+              {
+                "name": "cardId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "include_pan",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "include_cvv",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Fetch details for a single card by card ID"
+        },
+        {
+          "info": {
+            "name": "PATCH /card/{cardId}",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.slash.com/card/:cardId",
+            "params": [
+              {
+                "name": "cardId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Update a card"
+        },
+        {
+          "info": {
+            "name": "GET /card/{cardId}/utilization",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.slash.com/card/:cardId/utilization",
+            "params": [
+              {
+                "name": "cardId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get a card's current utilization"
+        },
+        {
+          "info": {
+            "name": "GET /card/{cardId}/modifier",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.slash.com/card/:cardId/modifier",
+            "params": [
+              {
+                "name": "cardId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get all modifiers for a card."
+        },
+        {
+          "info": {
+            "name": "PUT /card/{cardId}/modifier",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.slash.com/card/:cardId/modifier",
+            "params": [
+              {
+                "name": "cardId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Set a modifier for a card."
+        },
+        {
+          "info": {
+            "name": "PUT /card/{cardId}/spending-constraint",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.slash.com/card/:cardId/spending-constraint",
+            "params": [
+              {
+                "name": "cardId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Fully replace a card's spending constraint."
+        },
+        {
+          "info": {
+            "name": "PATCH /card/{cardId}/spending-constraint",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.slash.com/card/:cardId/spending-constraint",
+            "params": [
+              {
+                "name": "cardId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Apply a partial update to a card's spending constraint while preserving current properties applied. Properties set to \"null\" will be removed from the spending constraint."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

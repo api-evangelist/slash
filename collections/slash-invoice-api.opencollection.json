@@ -1,0 +1,602 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Slash Public Account Invoice API",
+    "version": "0.0.1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-API-Key",
+      "value": "{{X-API-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Invoice",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "GET /invoice",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.slash.com/invoice",
+            "params": [
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "A cursor string to fetch the next page of results"
+              },
+              {
+                "name": "filter:legalEntityId",
+                "value": "",
+                "type": "query",
+                "description": "Filter invoices by legal entity ID. Required if authenticating via bearer token with access to multiple legal entities."
+              },
+              {
+                "name": "filter:status",
+                "value": "",
+                "type": "query",
+                "description": "Filter invoices by status."
+              },
+              {
+                "name": "filter:legalEntityContactId",
+                "value": "",
+                "type": "query",
+                "description": "Filter invoices by contact ID."
+              },
+              {
+                "name": "filter:legalEntityCustomerId",
+                "value": "",
+                "type": "query",
+                "description": "Filter invoices by customer ID."
+              },
+              {
+                "name": "filter:accountId",
+                "value": "",
+                "type": "query",
+                "description": "Filter invoices by receiving account ID."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Sort invoices by a field. Default is by status then due date."
+              },
+              {
+                "name": "sortDirection",
+                "value": "",
+                "type": "query",
+                "description": "The direction to sort by. Defaults to DESC when sorting by issuedAt or dueAt, ASC otherwise."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "List all invoices for your legal entity. Supports pagination and filtering by status, customer, and account."
+        },
+        {
+          "info": {
+            "name": "POST /invoice",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.slash.com/invoice",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Create a new invoice."
+        },
+        {
+          "info": {
+            "name": "GET /invoice/{invoiceId}",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.slash.com/invoice/:invoiceId",
+            "params": [
+              {
+                "name": "invoiceId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get a single invoice by ID."
+        },
+        {
+          "info": {
+            "name": "PATCH /invoice/{invoiceId}",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.slash.com/invoice/:invoiceId",
+            "params": [
+              {
+                "name": "invoiceId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Update an existing invoice. You can update the account, details, payment methods, and auto-pull settings."
+        },
+        {
+          "info": {
+            "name": "POST /invoice/{invoiceId}/void",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.slash.com/invoice/:invoiceId/void",
+            "params": [
+              {
+                "name": "invoiceId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Void an invoice. A voided invoice can no longer be paid."
+        },
+        {
+          "info": {
+            "name": "POST /invoice/{invoiceId}/reconcile",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.slash.com/invoice/:invoiceId/reconcile",
+            "params": [
+              {
+                "name": "invoiceId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Manually reconcile (link) transactions to an invoice. This marks the invoice as having received payment for the linked transactions."
+        },
+        {
+          "info": {
+            "name": "POST /invoice/{invoiceId}/unreconcile",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.slash.com/invoice/:invoiceId/unreconcile",
+            "params": [
+              {
+                "name": "invoiceId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Unreconcile (unlink) transactions from an invoice. This removes the payment association for the specified transactions."
+        },
+        {
+          "info": {
+            "name": "GET /invoice/{invoiceId}/send-reminder",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.slash.com/invoice/:invoiceId/send-reminder",
+            "params": [
+              {
+                "name": "invoiceId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get the next scheduled automatic reminder date for an invoice"
+        },
+        {
+          "info": {
+            "name": "POST /invoice/{invoiceId}/send-reminder",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.slash.com/invoice/:invoiceId/send-reminder",
+            "params": [
+              {
+                "name": "invoiceId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Manually send a reminder email for an invoice. Rate limited to one reminder per invoice per 24 hours."
+        },
+        {
+          "info": {
+            "name": "GET /invoice/settings",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.slash.com/invoice/settings",
+            "params": [
+              {
+                "name": "filter:legalEntityId",
+                "value": "",
+                "type": "query",
+                "description": "The legal entity ID. Required if authenticating with access to multiple legal entities."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get the current invoice display settings for your legal entity."
+        },
+        {
+          "info": {
+            "name": "PUT /invoice/settings",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.slash.com/invoice/settings",
+            "params": [
+              {
+                "name": "filter:legalEntityId",
+                "value": "",
+                "type": "query",
+                "description": "The legal entity ID. Required if authenticating with access to multiple legal entities."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Update invoice display settings for your legal entity. These settings control the branding and default values used when creating invoices."
+        },
+        {
+          "info": {
+            "name": "POST /invoice/settings/logo",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.slash.com/invoice/settings/logo",
+            "params": [
+              {
+                "name": "filter:legalEntityId",
+                "value": "",
+                "type": "query",
+                "description": "The legal entity ID. Required if authenticating with access to multiple legal entities."
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "file",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Upload a logo image for invoice branding. Accepts PNG, JPEG, SVG, and WebP formats up to 2MB."
+        },
+        {
+          "info": {
+            "name": "GET /invoice/validate-number",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.slash.com/invoice/validate-number",
+            "params": [
+              {
+                "name": "filter:legalEntityId",
+                "value": "",
+                "type": "query",
+                "description": "The legal entity ID to check the invoice number against. Required if authenticating with access to multiple legal entities."
+              },
+              {
+                "name": "invoiceNumber",
+                "value": "",
+                "type": "query",
+                "description": "The invoice number to validate."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Check whether an invoice number is available (not already in use) for your legal entity."
+        },
+        {
+          "info": {
+            "name": "GET /invoice/series",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.slash.com/invoice/series",
+            "params": [
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "A cursor string to fetch the next page of results"
+              },
+              {
+                "name": "filter:legalEntityId",
+                "value": "",
+                "type": "query",
+                "description": "Filter invoice series by legal entity ID. Required if authenticating via bearer token with access to multiple legal entities."
+              },
+              {
+                "name": "filter:status",
+                "value": "",
+                "type": "query",
+                "description": "Filter invoice series by status."
+              },
+              {
+                "name": "filter:legalEntityContactId",
+                "value": "",
+                "type": "query",
+                "description": "Filter invoice series by contact ID."
+              },
+              {
+                "name": "filter:legalEntityCustomerId",
+                "value": "",
+                "type": "query",
+                "description": "Filter invoice series by customer ID."
+              },
+              {
+                "name": "filter:accountId",
+                "value": "",
+                "type": "query",
+                "description": "Filter invoice series by receiving account ID."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Sort invoice series by a field. Default is by status then start date."
+              },
+              {
+                "name": "sortDirection",
+                "value": "",
+                "type": "query",
+                "description": "The direction to sort by. Defaults to DESC when sorting by startDate or nextScheduledDate, ASC otherwise."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "List all invoice series (recurring invoice configurations) for your legal entity. Supports pagination and filtering by status, customer, and account."
+        },
+        {
+          "info": {
+            "name": "POST /invoice/series",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.slash.com/invoice/series",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Create a new invoice series (recurring invoice). The series will automatically generate invoices according to the specified recurrence rule."
+        },
+        {
+          "info": {
+            "name": "GET /invoice/series/{invoiceSeriesId}",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.slash.com/invoice/series/:invoiceSeriesId",
+            "params": [
+              {
+                "name": "invoiceSeriesId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get a single invoice series by ID."
+        },
+        {
+          "info": {
+            "name": "PATCH /invoice/series/{invoiceSeriesId}",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.slash.com/invoice/series/:invoiceSeriesId",
+            "params": [
+              {
+                "name": "invoiceSeriesId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Update an existing invoice series. You can update the recurrence rule, payment terms, template, payment methods, and end condition. The contact cannot be changed after creation."
+        },
+        {
+          "info": {
+            "name": "POST /invoice/series/{invoiceSeriesId}/cancel",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.slash.com/invoice/series/:invoiceSeriesId/cancel",
+            "params": [
+              {
+                "name": "invoiceSeriesId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Cancel an invoice series. Already-generated invoices are not affected. The next scheduled (unpaid) invoice will be voided."
+        },
+        {
+          "info": {
+            "name": "POST /invoice/series/{invoiceSeriesId}/skip-next",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.slash.com/invoice/series/:invoiceSeriesId/skip-next",
+            "params": [
+              {
+                "name": "invoiceSeriesId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Skip the next scheduled occurrence in a series. The scheduled invoice is voided and the series advances to the following occurrence."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

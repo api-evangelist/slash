@@ -1,0 +1,313 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Slash Public Account Expense Report API",
+    "version": "0.0.1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-API-Key",
+      "value": "{{X-API-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Expense Report",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "GET /expense-report",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.slash.com/expense-report",
+            "params": [
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "A cursor string to fetch the next page of results"
+              },
+              {
+                "name": "filter:legalEntityId",
+                "value": "",
+                "type": "query",
+                "description": "Filter by legal entity ID. Required if authenticating with access to multiple legal entities."
+              },
+              {
+                "name": "filter:status",
+                "value": "",
+                "type": "query",
+                "description": "Filter expense reports by status."
+              },
+              {
+                "name": "filter:submittedByUserId",
+                "value": "",
+                "type": "query",
+                "description": "Filter expense reports by the user who submitted them."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Sort expense reports by a field. Default is by `submittedAt` descending."
+              },
+              {
+                "name": "sortDirection",
+                "value": "",
+                "type": "query",
+                "description": "The direction to sort by. Defaults to DESC."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "List expense reports for your legal entity. Supports pagination, filtering by status and submitter, and sorting."
+        },
+        {
+          "info": {
+            "name": "POST /expense-report",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.slash.com/expense-report",
+            "params": [
+              {
+                "name": "filter:legalEntityId",
+                "value": "",
+                "type": "query",
+                "description": "The legal entity ID. Required if authenticating with access to multiple legal entities."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Submit a new expense report for reimbursement."
+        },
+        {
+          "info": {
+            "name": "GET /expense-report/{expenseReportId}",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.slash.com/expense-report/:expenseReportId",
+            "params": [
+              {
+                "name": "expenseReportId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get a single expense report by ID."
+        },
+        {
+          "info": {
+            "name": "PATCH /expense-report/{expenseReportId}",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.slash.com/expense-report/:expenseReportId",
+            "params": [
+              {
+                "name": "expenseReportId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Update an existing expense report. Can only update reports with status `pending_review`. Set `status` to `cancelled` to cancel the report."
+        },
+        {
+          "info": {
+            "name": "POST /expense-report/{expenseReportId}/approve",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.slash.com/expense-report/:expenseReportId/approve",
+            "params": [
+              {
+                "name": "expenseReportId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Approve an expense report and initiate payout."
+        },
+        {
+          "info": {
+            "name": "POST /expense-report/{expenseReportId}/reject",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.slash.com/expense-report/:expenseReportId/reject",
+            "params": [
+              {
+                "name": "expenseReportId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Reject an expense report."
+        },
+        {
+          "info": {
+            "name": "POST /expense-report/receipt",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.slash.com/expense-report/receipt",
+            "params": [
+              {
+                "name": "filter:legalEntityId",
+                "value": "",
+                "type": "query",
+                "description": "The legal entity ID. Required if authenticating with access to multiple legal entities."
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "file",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Upload a receipt image for an expense report. The receipt will be parsed using AI to extract amount, date, and merchant information. Accepts PNG, JPEG, WebP, and PDF formats."
+        },
+        {
+          "info": {
+            "name": "PATCH /expense-report/bulk-action",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.slash.com/expense-report/bulk-action",
+            "params": [
+              {
+                "name": "filter:legalEntityId",
+                "value": "",
+                "type": "query",
+                "description": "The legal entity ID. Required if authenticating with access to multiple legal entities."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Perform bulk actions on expense reports."
+        },
+        {
+          "info": {
+            "name": "GET /expense-report/reimbursement-sources",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.slash.com/expense-report/reimbursement-sources",
+            "params": [
+              {
+                "name": "filter:legalEntityId",
+                "value": "",
+                "type": "query",
+                "description": "The legal entity ID. Required if authenticating with access to multiple legal entities."
+              },
+              {
+                "name": "userId",
+                "value": "",
+                "type": "query",
+                "description": "The user ID to get reimbursement sources for. Required."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get connected bank accounts for a user that can be used as reimbursement payout destinations. Pass the `userId` query parameter to specify which user's bank accounts to retrieve."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,130 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Slash Public Account Webhook API",
+    "version": "0.0.1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-API-Key",
+      "value": "{{X-API-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Webhook",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "GET /webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.slash.com/webhook",
+            "params": [
+              {
+                "name": "filter:legalEntityId",
+                "value": "",
+                "type": "query",
+                "description": "Pass in a legal entity ID to filter for webhooks under a specific legal entity."
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "A cursor string to fetch the next page of results"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get all webhooks"
+        },
+        {
+          "info": {
+            "name": "POST /webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.slash.com/webhook",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Create a new webhook endpoint"
+        },
+        {
+          "info": {
+            "name": "GET /webhook/{webhookId}",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.slash.com/webhook/:webhookId",
+            "params": [
+              {
+                "name": "webhookId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get a webhook endpoint by ID"
+        },
+        {
+          "info": {
+            "name": "PATCH /webhook/{webhookId}",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.slash.com/webhook/:webhookId",
+            "params": [
+              {
+                "name": "webhookId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Update a webhook endpoint status.\n\n**Status transitions:**\n- `active`: Re-enables the endpoint. Use this to:\n  - Unpause a paused endpoint\n  - Re-enable an endpoint that is backing-off or disabled due to delivery failures\n  - When re-enabled, any queued notifications will be sent\n- `paused`: Pauses the endpoint. While paused:\n  - New notifications are queued (not lost)\n  - No delivery attempts are made\n  - Use `active` to resume and process queued notifications\n- `archived`: Permanently archives"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

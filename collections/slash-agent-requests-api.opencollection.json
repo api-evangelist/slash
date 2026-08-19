@@ -1,0 +1,82 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Slash Public Account Agent Requests API",
+    "version": "0.0.1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-API-Key",
+      "value": "{{X-API-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Agent Requests",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List agent requests",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.slash.com/agent-request",
+            "params": [
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "A cursor string to fetch the next page of results"
+              },
+              {
+                "name": "filter:status",
+                "value": "",
+                "type": "query",
+                "description": "Filter by request status"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "List all agent requests created by this API key.\n\nAgent requests are created when a read-only API key makes a write request (POST, PUT, PATCH, DELETE) to the Public API. This endpoint returns all such requests, paginated.\n"
+        },
+        {
+          "info": {
+            "name": "Get agent request",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.slash.com/agent-request/:agentRequestId",
+            "params": [
+              {
+                "name": "agentRequestId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the agent request (returned in x-deferred-action-id header)"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get the status and details of an agent request by ID.\n\nAgent requests are created when a read-only API key makes a write request (POST, PUT, PATCH, DELETE) to the Public API. Instead of executing immediately, these requests are deferred and require approval from an authorized user.\n\nUse this endpoint to check the status of a pending request or retrieve the result after execution.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

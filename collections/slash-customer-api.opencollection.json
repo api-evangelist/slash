@@ -1,0 +1,192 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Slash Public Account Customer API",
+    "version": "0.0.1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-API-Key",
+      "value": "{{X-API-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Customer",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "GET /customer",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.slash.com/customer",
+            "params": [
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "A cursor string to fetch the next page of results"
+              },
+              {
+                "name": "filter:legalEntityId",
+                "value": "",
+                "type": "query",
+                "description": "Filter customers by legal entity ID. Required if authenticating via bearer token with access to multiple legal entities."
+              },
+              {
+                "name": "filter:name",
+                "value": "",
+                "type": "query",
+                "description": "Filter customers by name (partial match)."
+              },
+              {
+                "name": "filter:status",
+                "value": "",
+                "type": "query",
+                "description": "Filter customers by status."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "List all customers for your legal entity. Customers represent billing recipients for invoices."
+        },
+        {
+          "info": {
+            "name": "POST /customer",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.slash.com/customer",
+            "params": [
+              {
+                "name": "filter:legalEntityId",
+                "value": "",
+                "type": "query",
+                "description": "The legal entity ID. Required if authenticating with access to multiple legal entities."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Create a new customer for your legal entity. Customers are used as invoice recipients."
+        },
+        {
+          "info": {
+            "name": "GET /customer/{customerId}",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.slash.com/customer/:customerId",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "filter:legalEntityId",
+                "value": "",
+                "type": "query",
+                "description": "The legal entity ID. Required if authenticating with access to multiple legal entities."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get a single customer by ID."
+        },
+        {
+          "info": {
+            "name": "PATCH /customer/{customerId}",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.slash.com/customer/:customerId",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "filter:legalEntityId",
+                "value": "",
+                "type": "query",
+                "description": "The legal entity ID. Required if authenticating with access to multiple legal entities."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Update a customer's information."
+        },
+        {
+          "info": {
+            "name": "GET /customer/{customerId}/ach-debit-recurring",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.slash.com/customer/:customerId/ach-debit-recurring",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "filter:legalEntityId",
+                "value": "",
+                "type": "query",
+                "description": "The legal entity ID. Required if authenticating with access to multiple legal entities."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Check whether a customer has an active recurring ACH debit authorization. When active, the issuer can automatically debit the payer's bank account for future invoices with auto-pull enabled."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

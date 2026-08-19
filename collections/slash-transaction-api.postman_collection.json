@@ -1,0 +1,2326 @@
+{
+  "item": [
+    {
+      "id": "c3cd8e28-af18-4f4c-a162-812e8b11374d",
+      "name": "Transaction",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ac4f38bf-8306-4c4a-9557-14d99eaf7729",
+          "name": "Get all transactions",
+          "request": {
+            "name": "Get all transactions",
+            "description": {
+              "content": "Get all transactions",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "transaction"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "cursor",
+                  "value": "<string>",
+                  "description": "A cursor string to fetch the next page of results"
+                },
+                {
+                  "disabled": false,
+                  "key": "accountId",
+                  "value": "<string>",
+                  "description": "Use filter:accountId to filter by account ID"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter:legalEntityId",
+                  "value": "<string>",
+                  "description": "Pass in a legal entity ID to filter transactions by accounts under a specific legal entity."
+                },
+                {
+                  "disabled": false,
+                  "key": "filter:accountId",
+                  "value": "<string>",
+                  "description": "Pass in an account ID to filter transactions by account ID. This will return all transactions that match the account ID passed in."
+                },
+                {
+                  "disabled": false,
+                  "key": "filter:virtualAccountId",
+                  "value": "<string>",
+                  "description": "Pass in a virtual account ID to filter transactions by virtual account ID. This will return all transactions that match the virtual account ID passed in."
+                },
+                {
+                  "disabled": false,
+                  "key": "filter:from_date",
+                  "value": "<string>",
+                  "description": "Pass in a unix timestamp in milliseconds to filter transactions by date. This will return all transactions that occurred on or after the date passed in."
+                },
+                {
+                  "disabled": false,
+                  "key": "filter:to_date",
+                  "value": "<string>",
+                  "description": "Pass in a unix timestamp in milliseconds to filter transactions by date. This will return all transactions that occurred on or before the date passed in."
+                },
+                {
+                  "disabled": false,
+                  "key": "filter:from_authorized_at",
+                  "value": "<string>",
+                  "description": "Pass in a unix timestamp in milliseconds to filter transactions by authorization time. This will return all transactions that are authorized on or after the date passed in."
+                },
+                {
+                  "disabled": false,
+                  "key": "filter:to_authorized_at",
+                  "value": "<string>",
+                  "description": "Pass in a unix timestamp in milliseconds to filter transactions by authorization time. This will return all transactions that are authorized on or before the date passed in."
+                },
+                {
+                  "disabled": false,
+                  "key": "filter:status",
+                  "value": "<string>",
+                  "description": "Filter transactions by status"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter:detailed_status",
+                  "value": "<string>",
+                  "description": "Filter transactions by detailed status"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter:cardId",
+                  "value": "<string>",
+                  "description": "Filter transactions by cardId"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter:category",
+                  "value": "<string>",
+                  "description": "Filter transactions by category type"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter:cardGroupId",
+                  "value": "<string>",
+                  "description": "Filter transactions by card group ID. This will return all card transactions that belong to cards in the specified card group."
+                },
+                {
+                  "disabled": false,
+                  "key": "filter:providerAuthorizationId",
+                  "value": "<string>",
+                  "description": "Filter transactions by provider authorization ID"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-API-Key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "e840ce63-47b5-441c-bfc3-8961ea4fee8f",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transaction"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "accountId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter:legalEntityId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter:accountId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter:virtualAccountId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter:from_date",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter:to_date",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter:from_authorized_at",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter:to_authorized_at",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter:status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter:detailed_status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter:cardId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter:category",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter:cardGroupId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter:providerAuthorizationId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"id\": \"string\",\n      \"date\": \"string\",\n      \"description\": \"string\",\n      \"amountCents\": 3066.2506326432626,\n      \"status\": \"pending\",\n      \"detailedStatus\": \"pending\",\n      \"accountId\": {},\n      \"accountSubtype\": \"credit\",\n      \"memo\": \"string\",\n      \"merchantDescription\": \"string\",\n      \"merchantData\": {\n        \"description\": \"string\",\n        \"categoryCode\": \"string\",\n        \"location\": {\n          \"city\": \"string\",\n          \"state\": \"string\",\n          \"country\": \"string\",\n          \"zip\": \"string\"\n        }\n      },\n      \"virtualAccountId\": \"string\",\n      \"cardId\": \"string\",\n      \"cashbackInfo\": {\n        \"amountCents\": 3566.795915743686,\n        \"rate\": 2303.5951265912304\n      },\n      \"fxFeeInfo\": {\n        \"amountCents\": 557.160166082712\n      },\n      \"originalCurrency\": {\n        \"code\": \"string\",\n        \"amountCents\": 4709.879665914957,\n        \"conversionRate\": 3277.1846592015795\n      },\n      \"orderId\": \"string\",\n      \"referenceNumber\": \"string\",\n      \"authorizedAt\": \"string\",\n      \"declineReason\": \"string\",\n      \"approvalReason\": \"string\",\n      \"providerAuthorizationId\": \"string\",\n      \"wireInfo\": {\n        \"subtypeCode\": \"string\",\n        \"omad\": \"string\",\n        \"imad\": \"string\",\n        \"senderReference\": \"string\",\n        \"businessFunctionCode\": \"string\",\n        \"typeCode\": \"string\",\n        \"counterpartyBank\": \"string\"\n      },\n      \"achInfo\": {\n        \"receiverId\": \"string\",\n        \"companyId\": \"string\",\n        \"companyDiscretionaryData\": \"string\",\n        \"traceNumber\": \"string\",\n        \"entryClassCode\": \"string\",\n        \"paymentRelatedInfo\": \"string\",\n        \"counterpartyBank\": \"string\",\n        \"companyEntryDescription\": \"string\"\n      },\n      \"rtpInfo\": {\n        \"counterpartyBank\": \"string\",\n        \"endToEndId\": \"string\",\n        \"routingNumber\": \"string\",\n        \"originatorName\": \"string\",\n        \"description\": \"string\"\n      },\n      \"sepaInfo\": {\n        \"senderName\": \"string\",\n        \"recipientName\": \"string\",\n        \"reference\": \"string\",\n        \"iban\": \"string\",\n        \"ibanLast4\": \"string\",\n        \"bic\": \"string\",\n        \"uetr\": \"string\",\n        \"paymentScheme\": \"string\"\n      },\n      \"pixInfo\": {\n        \"senderName\": \"string\",\n        \"description\": \"string\",\n        \"reference\": \"string\",\n        \"trackingNumber\": \"string\"\n      },\n      \"speiInfo\": {\n        \"senderName\": \"string\",\n        \"description\": \"string\",\n        \"reference\": \"string\",\n        \"clabe\": \"string\",\n        \"trackingNumber\": \"string\"\n      },\n      \"fpsInfo\": {\n        \"senderName\": \"string\",\n        \"recipientName\": \"string\",\n        \"reference\": \"string\",\n        \"accountNumber\": \"string\",\n        \"last4\": \"string\",\n        \"sortCode\": \"string\",\n        \"uetr\": \"string\"\n      },\n      \"feeInfo\": {\n        \"relatedTransaction\": {\n          \"id\": \"string\",\n          \"amount\": 6378.73177488659\n        }\n      },\n      \"cryptoInfo\": {\n        \"txHash\": \"string\",\n        \"senderAddress\": \"string\"\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"date\": \"string\",\n      \"description\": \"string\",\n      \"amountCents\": 5164.812941702143,\n      \"status\": \"posted\",\n      \"detailedStatus\": \"dispute\",\n      \"accountId\": {},\n      \"accountSubtype\": \"credit\",\n      \"memo\": \"string\",\n      \"merchantDescription\": \"string\",\n      \"merchantData\": {\n        \"description\": \"string\",\n        \"categoryCode\": \"string\",\n        \"location\": {\n          \"city\": \"string\",\n          \"state\": \"string\",\n          \"country\": \"string\",\n          \"zip\": \"string\"\n        }\n      },\n      \"virtualAccountId\": \"string\",\n      \"cardId\": \"string\",\n      \"cashbackInfo\": {\n        \"amountCents\": 5145.147532205024,\n        \"rate\": 7862.7187586657\n      },\n      \"fxFeeInfo\": {\n        \"amountCents\": 8516.652353786483\n      },\n      \"originalCurrency\": {\n        \"code\": \"string\",\n        \"amountCents\": 4185.308215312529,\n        \"conversionRate\": 243.1028286964265\n      },\n      \"orderId\": \"string\",\n      \"referenceNumber\": \"string\",\n      \"authorizedAt\": \"string\",\n      \"declineReason\": \"string\",\n      \"approvalReason\": \"string\",\n      \"providerAuthorizationId\": \"string\",\n      \"wireInfo\": {\n        \"subtypeCode\": \"string\",\n        \"omad\": \"string\",\n        \"imad\": \"string\",\n        \"senderReference\": \"string\",\n        \"businessFunctionCode\": \"string\",\n        \"typeCode\": \"string\",\n        \"counterpartyBank\": \"string\"\n      },\n      \"achInfo\": {\n        \"receiverId\": \"string\",\n        \"companyId\": \"string\",\n        \"companyDiscretionaryData\": \"string\",\n        \"traceNumber\": \"string\",\n        \"entryClassCode\": \"string\",\n        \"paymentRelatedInfo\": \"string\",\n        \"counterpartyBank\": \"string\",\n        \"companyEntryDescription\": \"string\"\n      },\n      \"rtpInfo\": {\n        \"counterpartyBank\": \"string\",\n        \"endToEndId\": \"string\",\n        \"routingNumber\": \"string\",\n        \"originatorName\": \"string\",\n        \"description\": \"string\"\n      },\n      \"sepaInfo\": {\n        \"senderName\": \"string\",\n        \"recipientName\": \"string\",\n        \"reference\": \"string\",\n        \"iban\": \"string\",\n        \"ibanLast4\": \"string\",\n        \"bic\": \"string\",\n        \"uetr\": \"string\",\n        \"paymentScheme\": \"string\"\n      },\n      \"pixInfo\": {\n        \"senderName\": \"string\",\n        \"description\": \"string\",\n        \"reference\": \"string\",\n        \"trackingNumber\": \"string\"\n      },\n      \"speiInfo\": {\n        \"senderName\": \"string\",\n        \"description\": \"string\",\n        \"reference\": \"string\",\n        \"clabe\": \"string\",\n        \"trackingNumber\": \"string\"\n      },\n      \"fpsInfo\": {\n        \"senderName\": \"string\",\n        \"recipientName\": \"string\",\n        \"reference\": \"string\",\n        \"accountNumber\": \"string\",\n        \"last4\": \"string\",\n        \"sortCode\": \"string\",\n        \"uetr\": \"string\"\n      },\n      \"feeInfo\": {\n        \"relatedTransaction\": {\n          \"id\": \"string\",\n          \"amount\": 2686.7959199929005\n        }\n      },\n      \"cryptoInfo\": {\n        \"txHash\": \"string\",\n        \"senderAddress\": \"string\"\n      }\n    }\n  ],\n  \"metadata\": {\n    \"nextCursor\": \"string\",\n    \"count\": 2339.2086172258673\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "97098b03-d4c7-4dfe-8759-42d0bbc29fb0",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transaction"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "accountId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter:legalEntityId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter:accountId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter:virtualAccountId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter:from_date",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter:to_date",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter:from_authorized_at",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter:to_authorized_at",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter:status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter:detailed_status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter:cardId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter:category",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter:cardGroupId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter:providerAuthorizationId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"name\": \"string\",\n  \"identifier\": \"string\",\n  \"rawStatus\": 533.9330571156308,\n  \"meta\": {\n    \"key_0\": \"string\",\n    \"key_1\": 7752,\n    \"key_2\": 6728,\n    \"key_3\": false,\n    \"key_4\": false\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a9de9c99-4375-4265-bddb-c5166496fc35",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transaction"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "accountId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter:legalEntityId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter:accountId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter:virtualAccountId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter:from_date",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter:to_date",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter:from_authorized_at",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter:to_authorized_at",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter:status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter:detailed_status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter:cardId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter:category",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter:cardGroupId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter:providerAuthorizationId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"name\": \"string\",\n  \"identifier\": \"string\",\n  \"rawStatus\": 533.9330571156308,\n  \"meta\": {\n    \"key_0\": \"string\",\n    \"key_1\": 7752,\n    \"key_2\": 6728,\n    \"key_3\": false,\n    \"key_4\": false\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2aaa3c5d-90e8-4a20-93c2-25d2c936a472",
+              "name": "TooManyRequests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transaction"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "accountId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter:legalEntityId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter:accountId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter:virtualAccountId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter:from_date",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter:to_date",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter:from_authorized_at",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter:to_authorized_at",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter:status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter:detailed_status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter:cardId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter:category",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter:cardGroupId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter:providerAuthorizationId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"name\": \"string\",\n  \"identifier\": \"string\",\n  \"rawStatus\": 533.9330571156308,\n  \"meta\": {\n    \"key_0\": \"string\",\n    \"key_1\": 7752,\n    \"key_2\": 6728,\n    \"key_3\": false,\n    \"key_4\": false\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "11a92ab8-89b8-4cf7-a8b6-f9067f888642",
+              "name": "Internal Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transaction"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "accountId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter:legalEntityId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter:accountId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter:virtualAccountId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter:from_date",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter:to_date",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter:from_authorized_at",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter:to_authorized_at",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter:status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter:detailed_status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter:cardId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter:category",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter:cardGroupId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter:providerAuthorizationId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"name\": \"string\",\n  \"identifier\": \"string\",\n  \"rawStatus\": 533.9330571156308,\n  \"meta\": {\n    \"key_0\": \"string\",\n    \"key_1\": 7752,\n    \"key_2\": 6728,\n    \"key_3\": false,\n    \"key_4\": false\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "153bbe70-27eb-40f9-b3c9-133d320f7e1f",
+          "name": "Get transaction aggregations",
+          "request": {
+            "name": "Get transaction aggregations",
+            "description": {
+              "content": "Get transaction aggregations",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "transaction",
+                "aggregation"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "accountId",
+                  "value": "<string>",
+                  "description": "Use filter:accountId to filter by account ID"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter:legalEntityId",
+                  "value": "<string>",
+                  "description": "Pass in a legal entity ID to filter transactions by accounts under a specific legal entity."
+                },
+                {
+                  "disabled": false,
+                  "key": "filter:accountId",
+                  "value": "<string>",
+                  "description": "Pass in an account ID to filter transactions by account ID. This will return all transactions that match the account ID passed in."
+                },
+                {
+                  "disabled": false,
+                  "key": "filter:virtualAccountId",
+                  "value": "<string>",
+                  "description": "Pass in a virtual account ID to filter transactions by virtual account ID. This will return all transactions that match the virtual account ID passed in."
+                },
+                {
+                  "disabled": false,
+                  "key": "filter:from_date",
+                  "value": "<string>",
+                  "description": "Pass in a unix timestamp in milliseconds to filter transactions by date. This will return all transactions that occurred on or after the date passed in."
+                },
+                {
+                  "disabled": false,
+                  "key": "filter:to_date",
+                  "value": "<string>",
+                  "description": "Pass in a unix timestamp in milliseconds to filter transactions by date. This will return all transactions that occurred on or before the date passed in."
+                },
+                {
+                  "disabled": false,
+                  "key": "filter:from_authorized_at",
+                  "value": "<string>",
+                  "description": "Pass in a unix timestamp in milliseconds to filter transactions by authorization time. This will return all transactions that are authorized on or after the date passed in."
+                },
+                {
+                  "disabled": false,
+                  "key": "filter:to_authorized_at",
+                  "value": "<string>",
+                  "description": "Pass in a unix timestamp in milliseconds to filter transactions by authorization time. This will return all transactions that are authorized on or before the date passed in."
+                },
+                {
+                  "disabled": false,
+                  "key": "filter:status",
+                  "value": "<string>",
+                  "description": "Filter transactions by status"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter:detailed_status",
+                  "value": "<string>",
+                  "description": "Filter transactions by detailed status"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter:cardId",
+                  "value": "<string>",
+                  "description": "Filter transactions by cardId"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter:category",
+                  "value": "<string>",
+                  "description": "Filter transactions by category type"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-API-Key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "3439eb5d-e9ab-47e6-afa9-d297e8555bef",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transaction",
+                    "aggregation"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "accountId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter:legalEntityId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter:accountId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter:virtualAccountId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter:from_date",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter:to_date",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter:from_authorized_at",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter:to_authorized_at",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter:status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter:detailed_status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter:cardId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter:category",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"count\": 2879.121507187833,\n  \"totalIn\": 8905.111400927897,\n  \"totalOut\": 5789.750524015218,\n  \"netChange\": 6968.49088931794\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a613abd4-5ea6-4641-8b81-02260a96b729",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transaction",
+                    "aggregation"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "accountId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter:legalEntityId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter:accountId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter:virtualAccountId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter:from_date",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter:to_date",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter:from_authorized_at",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter:to_authorized_at",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter:status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter:detailed_status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter:cardId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter:category",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"name\": \"string\",\n  \"identifier\": \"string\",\n  \"rawStatus\": 533.9330571156308,\n  \"meta\": {\n    \"key_0\": \"string\",\n    \"key_1\": 7752,\n    \"key_2\": 6728,\n    \"key_3\": false,\n    \"key_4\": false\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "01fb3726-5a47-468e-b71a-1b0cf7b21c4b",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transaction",
+                    "aggregation"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "accountId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter:legalEntityId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter:accountId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter:virtualAccountId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter:from_date",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter:to_date",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter:from_authorized_at",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter:to_authorized_at",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter:status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter:detailed_status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter:cardId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter:category",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"name\": \"string\",\n  \"identifier\": \"string\",\n  \"rawStatus\": 533.9330571156308,\n  \"meta\": {\n    \"key_0\": \"string\",\n    \"key_1\": 7752,\n    \"key_2\": 6728,\n    \"key_3\": false,\n    \"key_4\": false\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c5bd00d6-b39f-47a2-95eb-6af67d796f19",
+              "name": "TooManyRequests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transaction",
+                    "aggregation"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "accountId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter:legalEntityId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter:accountId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter:virtualAccountId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter:from_date",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter:to_date",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter:from_authorized_at",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter:to_authorized_at",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter:status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter:detailed_status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter:cardId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter:category",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"name\": \"string\",\n  \"identifier\": \"string\",\n  \"rawStatus\": 533.9330571156308,\n  \"meta\": {\n    \"key_0\": \"string\",\n    \"key_1\": 7752,\n    \"key_2\": 6728,\n    \"key_3\": false,\n    \"key_4\": false\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "03e47252-1214-4450-b844-c888a5f63caa",
+              "name": "Internal Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transaction",
+                    "aggregation"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "accountId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter:legalEntityId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter:accountId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter:virtualAccountId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter:from_date",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter:to_date",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter:from_authorized_at",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter:to_authorized_at",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter:status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter:detailed_status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter:cardId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter:category",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"name\": \"string\",\n  \"identifier\": \"string\",\n  \"rawStatus\": 533.9330571156308,\n  \"meta\": {\n    \"key_0\": \"string\",\n    \"key_1\": 7752,\n    \"key_2\": 6728,\n    \"key_3\": false,\n    \"key_4\": false\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d9bf0c12-4af8-4fc0-86af-68b08c2798b1",
+          "name": "Fetch details for a single transaction by ID",
+          "request": {
+            "name": "Fetch details for a single transaction by ID",
+            "description": {
+              "content": "Fetch details for a single transaction by ID",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "transaction",
+                ":transactionId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "transactionId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-API-Key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "f4f9c3f3-b5c7-4797-a96f-e668c05ab22f",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transaction",
+                    ":transactionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "transactionId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"date\": \"string\",\n  \"description\": \"string\",\n  \"amountCents\": 6296.216212506834,\n  \"status\": \"failed\",\n  \"detailedStatus\": \"dispute\",\n  \"accountId\": {},\n  \"accountSubtype\": \"credit\",\n  \"memo\": \"string\",\n  \"merchantDescription\": \"string\",\n  \"merchantData\": {\n    \"description\": \"string\",\n    \"categoryCode\": \"string\",\n    \"location\": {\n      \"city\": \"string\",\n      \"state\": \"string\",\n      \"country\": \"string\",\n      \"zip\": \"string\"\n    }\n  },\n  \"virtualAccountId\": \"string\",\n  \"cardId\": \"string\",\n  \"cashbackInfo\": {\n    \"amountCents\": 6643.401741831203,\n    \"rate\": 4553.8226943715335\n  },\n  \"fxFeeInfo\": {\n    \"amountCents\": 7740.770826769838\n  },\n  \"originalCurrency\": {\n    \"code\": \"string\",\n    \"amountCents\": 1422.8130807546158,\n    \"conversionRate\": 2125.4545461023354\n  },\n  \"orderId\": \"string\",\n  \"referenceNumber\": \"string\",\n  \"authorizedAt\": \"string\",\n  \"declineReason\": \"string\",\n  \"approvalReason\": \"string\",\n  \"providerAuthorizationId\": \"string\",\n  \"wireInfo\": {\n    \"subtypeCode\": \"string\",\n    \"omad\": \"string\",\n    \"imad\": \"string\",\n    \"senderReference\": \"string\",\n    \"businessFunctionCode\": \"string\",\n    \"typeCode\": \"string\",\n    \"counterpartyBank\": \"string\"\n  },\n  \"achInfo\": {\n    \"receiverId\": \"string\",\n    \"companyId\": \"string\",\n    \"companyDiscretionaryData\": \"string\",\n    \"traceNumber\": \"string\",\n    \"entryClassCode\": \"string\",\n    \"paymentRelatedInfo\": \"string\",\n    \"counterpartyBank\": \"string\",\n    \"companyEntryDescription\": \"string\"\n  },\n  \"rtpInfo\": {\n    \"counterpartyBank\": \"string\",\n    \"endToEndId\": \"string\",\n    \"routingNumber\": \"string\",\n    \"originatorName\": \"string\",\n    \"description\": \"string\"\n  },\n  \"sepaInfo\": {\n    \"senderName\": \"string\",\n    \"recipientName\": \"string\",\n    \"reference\": \"string\",\n    \"iban\": \"string\",\n    \"ibanLast4\": \"string\",\n    \"bic\": \"string\",\n    \"uetr\": \"string\",\n    \"paymentScheme\": \"string\"\n  },\n  \"pixInfo\": {\n    \"senderName\": \"string\",\n    \"description\": \"string\",\n    \"reference\": \"string\",\n    \"trackingNumber\": \"string\"\n  },\n  \"speiInfo\": {\n    \"senderName\": \"string\",\n    \"description\": \"string\",\n    \"reference\": \"string\",\n    \"clabe\": \"string\",\n    \"trackingNumber\": \"string\"\n  },\n  \"fpsInfo\": {\n    \"senderName\": \"string\",\n    \"recipientName\": \"string\",\n    \"reference\": \"string\",\n    \"accountNumber\": \"string\",\n    \"last4\": \"string\",\n    \"sortCode\": \"string\",\n    \"uetr\": \"string\"\n  },\n  \"feeInfo\": {\n    \"relatedTransaction\": {\n      \"id\": \"string\",\n      \"amount\": 7991.604047545279\n    }\n  },\n  \"cryptoInfo\": {\n    \"txHash\": \"string\",\n    \"senderAddress\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "438e958b-188e-420e-970f-549eb75884a3",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transaction",
+                    ":transactionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "transactionId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"name\": \"string\",\n  \"identifier\": \"string\",\n  \"rawStatus\": 533.9330571156308,\n  \"meta\": {\n    \"key_0\": \"string\",\n    \"key_1\": 7752,\n    \"key_2\": 6728,\n    \"key_3\": false,\n    \"key_4\": false\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5357dacb-5ec6-4e96-83de-da9d639a7aaf",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transaction",
+                    ":transactionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "transactionId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"name\": \"string\",\n  \"identifier\": \"string\",\n  \"rawStatus\": 533.9330571156308,\n  \"meta\": {\n    \"key_0\": \"string\",\n    \"key_1\": 7752,\n    \"key_2\": 6728,\n    \"key_3\": false,\n    \"key_4\": false\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5a6bbc8a-a9f8-4e45-8095-2587ab82106a",
+              "name": "TooManyRequests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transaction",
+                    ":transactionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "transactionId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"name\": \"string\",\n  \"identifier\": \"string\",\n  \"rawStatus\": 533.9330571156308,\n  \"meta\": {\n    \"key_0\": \"string\",\n    \"key_1\": 7752,\n    \"key_2\": 6728,\n    \"key_3\": false,\n    \"key_4\": false\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7f1138aa-bb68-4402-8f59-35eb7ab912f4",
+              "name": "Internal Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transaction",
+                    ":transactionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "transactionId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"name\": \"string\",\n  \"identifier\": \"string\",\n  \"rawStatus\": 533.9330571156308,\n  \"meta\": {\n    \"key_0\": \"string\",\n    \"key_1\": 7752,\n    \"key_2\": 6728,\n    \"key_3\": false,\n    \"key_4\": false\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2aa980e8-b825-491f-8c14-b3b879e9848d",
+          "name": "Update note for a transaction",
+          "request": {
+            "name": "Update note for a transaction",
+            "description": {
+              "content": "Update note for a transaction",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "transaction",
+                ":transactionId",
+                "note"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "transactionId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-API-Key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"note\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "dd8f3e12-84e6-4778-a640-ffff9bc01519",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transaction",
+                    ":transactionId",
+                    "note"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "transactionId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"note\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8f34c364-86ff-4630-9631-0d0ccffafae8",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transaction",
+                    ":transactionId",
+                    "note"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "transactionId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"note\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"name\": \"string\",\n  \"identifier\": \"string\",\n  \"rawStatus\": 533.9330571156308,\n  \"meta\": {\n    \"key_0\": \"string\",\n    \"key_1\": 7752,\n    \"key_2\": 6728,\n    \"key_3\": false,\n    \"key_4\": false\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9fabe948-204c-4a67-b1d5-9d1b518ca612",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transaction",
+                    ":transactionId",
+                    "note"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "transactionId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"note\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"name\": \"string\",\n  \"identifier\": \"string\",\n  \"rawStatus\": 533.9330571156308,\n  \"meta\": {\n    \"key_0\": \"string\",\n    \"key_1\": 7752,\n    \"key_2\": 6728,\n    \"key_3\": false,\n    \"key_4\": false\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7b37d2bc-04a7-4640-8c6b-becd2a458ec8",
+              "name": "TooManyRequests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transaction",
+                    ":transactionId",
+                    "note"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "transactionId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"note\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"name\": \"string\",\n  \"identifier\": \"string\",\n  \"rawStatus\": 533.9330571156308,\n  \"meta\": {\n    \"key_0\": \"string\",\n    \"key_1\": 7752,\n    \"key_2\": 6728,\n    \"key_3\": false,\n    \"key_4\": false\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "969ce8c2-7594-46cf-829a-8cae6ea32378",
+              "name": "Internal Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transaction",
+                    ":transactionId",
+                    "note"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "transactionId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"note\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"name\": \"string\",\n  \"identifier\": \"string\",\n  \"rawStatus\": 533.9330571156308,\n  \"meta\": {\n    \"key_0\": \"string\",\n    \"key_1\": 7752,\n    \"key_2\": 6728,\n    \"key_3\": false,\n    \"key_4\": false\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c70610a1-de52-4d12-88c7-b9c477e26f81",
+          "name": "Fetch breakdown of a fee transaction",
+          "request": {
+            "name": "Fetch breakdown of a fee transaction",
+            "description": {
+              "content": "Fetch breakdown of a fee transaction",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "transaction",
+                ":transactionId",
+                "fee-details"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "transactionId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-API-Key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "42c353b6-07b0-4ab5-adde-b78be880d56f",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transaction",
+                    ":transactionId",
+                    "fee-details"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "transactionId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"id\": \"string\",\n      \"dateCharged\": \"string\",\n      \"feeAmountCents\": 7833.998017925705,\n      \"feeType\": \"string\",\n      \"accountId\": \"string\",\n      \"originalTransaction\": {\n        \"id\": \"string\",\n        \"date\": \"string\",\n        \"description\": \"string\",\n        \"amountCents\": 2424.77706853364,\n        \"status\": \"failed\",\n        \"detailedStatus\": \"dispute\",\n        \"accountId\": {},\n        \"accountSubtype\": \"cash\",\n        \"memo\": \"string\",\n        \"merchantDescription\": \"string\",\n        \"merchantData\": {\n          \"description\": \"string\",\n          \"categoryCode\": \"string\",\n          \"location\": {\n            \"city\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"state\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"country\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"zip\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        \"virtualAccountId\": \"string\",\n        \"cardId\": \"string\",\n        \"cashbackInfo\": {\n          \"amountCents\": 1747.7335128507987,\n          \"rate\": 5443.705761558421\n        },\n        \"fxFeeInfo\": {\n          \"amountCents\": 8692.31305609281\n        },\n        \"originalCurrency\": {\n          \"code\": \"string\",\n          \"amountCents\": 6836.307090000383,\n          \"conversionRate\": 641.5673378405473\n        },\n        \"orderId\": \"string\",\n        \"referenceNumber\": \"string\",\n        \"authorizedAt\": \"string\",\n        \"declineReason\": \"string\",\n        \"approvalReason\": \"string\",\n        \"providerAuthorizationId\": \"string\",\n        \"wireInfo\": {\n          \"subtypeCode\": \"string\",\n          \"omad\": \"string\",\n          \"imad\": \"string\",\n          \"senderReference\": \"string\",\n          \"businessFunctionCode\": \"string\",\n          \"typeCode\": \"string\",\n          \"counterpartyBank\": \"string\"\n        },\n        \"achInfo\": {\n          \"receiverId\": \"string\",\n          \"companyId\": \"string\",\n          \"companyDiscretionaryData\": \"string\",\n          \"traceNumber\": \"string\",\n          \"entryClassCode\": \"string\",\n          \"paymentRelatedInfo\": \"string\",\n          \"counterpartyBank\": \"string\",\n          \"companyEntryDescription\": \"string\"\n        },\n        \"rtpInfo\": {\n          \"counterpartyBank\": \"string\",\n          \"endToEndId\": \"string\",\n          \"routingNumber\": \"string\",\n          \"originatorName\": \"string\",\n          \"description\": \"string\"\n        },\n        \"sepaInfo\": {\n          \"senderName\": \"string\",\n          \"recipientName\": \"string\",\n          \"reference\": \"string\",\n          \"iban\": \"string\",\n          \"ibanLast4\": \"string\",\n          \"bic\": \"string\",\n          \"uetr\": \"string\",\n          \"paymentScheme\": \"string\"\n        },\n        \"pixInfo\": {\n          \"senderName\": \"string\",\n          \"description\": \"string\",\n          \"reference\": \"string\",\n          \"trackingNumber\": \"string\"\n        },\n        \"speiInfo\": {\n          \"senderName\": \"string\",\n          \"description\": \"string\",\n          \"reference\": \"string\",\n          \"clabe\": \"string\",\n          \"trackingNumber\": \"string\"\n        },\n        \"fpsInfo\": {\n          \"senderName\": \"string\",\n          \"recipientName\": \"string\",\n          \"reference\": \"string\",\n          \"accountNumber\": \"string\",\n          \"last4\": \"string\",\n          \"sortCode\": \"string\",\n          \"uetr\": \"string\"\n        },\n        \"feeInfo\": {\n          \"relatedTransaction\": {\n            \"id\": \"string\",\n            \"amount\": 9317.044249304794\n          }\n        },\n        \"cryptoInfo\": {\n          \"txHash\": \"string\",\n          \"senderAddress\": \"string\"\n        }\n      },\n      \"card\": {\n        \"id\": \"string\",\n        \"accountId\": \"string\",\n        \"last4\": \"string\",\n        \"name\": \"string\",\n        \"expiryMonth\": \"string\",\n        \"expiryYear\": \"string\",\n        \"status\": \"closed\",\n        \"isPhysical\": true,\n        \"virtualAccountId\": \"string\",\n        \"isSingleUse\": true,\n        \"pan\": \"string\",\n        \"cvv\": \"string\",\n        \"cardGroupId\": \"string\",\n        \"cardGroupName\": \"string\",\n        \"createdAt\": \"2022-10-24T11:12:59.946Z\",\n        \"spendingConstraint\": {\n          \"merchantCategoryRule\": {\n            \"merchantCategories\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"restriction\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"merchantRule\": {\n            \"merchants\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"restriction\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"spendingRule\": {\n            \"utilizationLimit\": {\n              \"limitAmount\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"preset\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"timezone\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"startDate\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"utilizationLimitV2\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"transactionSizeLimit\": {\n              \"minimum\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"maximum\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          },\n          \"countryRule\": {\n            \"countries\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"restriction\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"merchantCategoryCodeRule\": {\n            \"merchantCategoryCodes\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"restriction\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        \"userData\": {},\n        \"cardProductId\": \"string\",\n        \"modifiers\": [\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"dateCharged\": \"string\",\n      \"feeAmountCents\": 7453.910947881676,\n      \"feeType\": \"string\",\n      \"accountId\": \"string\",\n      \"originalTransaction\": {\n        \"id\": \"string\",\n        \"date\": \"string\",\n        \"description\": \"string\",\n        \"amountCents\": 4715.345761782074,\n        \"status\": \"failed\",\n        \"detailedStatus\": \"pending\",\n        \"accountId\": {},\n        \"accountSubtype\": \"cash\",\n        \"memo\": \"string\",\n        \"merchantDescription\": \"string\",\n        \"merchantData\": {\n          \"description\": \"string\",\n          \"categoryCode\": \"string\",\n          \"location\": {\n            \"city\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"state\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"country\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"zip\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        \"virtualAccountId\": \"string\",\n        \"cardId\": \"string\",\n        \"cashbackInfo\": {\n          \"amountCents\": 1562.6388337624476,\n          \"rate\": 7255.497409586187\n        },\n        \"fxFeeInfo\": {\n          \"amountCents\": 1327.8573527234594\n        },\n        \"originalCurrency\": {\n          \"code\": \"string\",\n          \"amountCents\": 4836.551883851972,\n          \"conversionRate\": 6254.398502990184\n        },\n        \"orderId\": \"string\",\n        \"referenceNumber\": \"string\",\n        \"authorizedAt\": \"string\",\n        \"declineReason\": \"string\",\n        \"approvalReason\": \"string\",\n        \"providerAuthorizationId\": \"string\",\n        \"wireInfo\": {\n          \"subtypeCode\": \"string\",\n          \"omad\": \"string\",\n          \"imad\": \"string\",\n          \"senderReference\": \"string\",\n          \"businessFunctionCode\": \"string\",\n          \"typeCode\": \"string\",\n          \"counterpartyBank\": \"string\"\n        },\n        \"achInfo\": {\n          \"receiverId\": \"string\",\n          \"companyId\": \"string\",\n          \"companyDiscretionaryData\": \"string\",\n          \"traceNumber\": \"string\",\n          \"entryClassCode\": \"string\",\n          \"paymentRelatedInfo\": \"string\",\n          \"counterpartyBank\": \"string\",\n          \"companyEntryDescription\": \"string\"\n        },\n        \"rtpInfo\": {\n          \"counterpartyBank\": \"string\",\n          \"endToEndId\": \"string\",\n          \"routingNumber\": \"string\",\n          \"originatorName\": \"string\",\n          \"description\": \"string\"\n        },\n        \"sepaInfo\": {\n          \"senderName\": \"string\",\n          \"recipientName\": \"string\",\n          \"reference\": \"string\",\n          \"iban\": \"string\",\n          \"ibanLast4\": \"string\",\n          \"bic\": \"string\",\n          \"uetr\": \"string\",\n          \"paymentScheme\": \"string\"\n        },\n        \"pixInfo\": {\n          \"senderName\": \"string\",\n          \"description\": \"string\",\n          \"reference\": \"string\",\n          \"trackingNumber\": \"string\"\n        },\n        \"speiInfo\": {\n          \"senderName\": \"string\",\n          \"description\": \"string\",\n          \"reference\": \"string\",\n          \"clabe\": \"string\",\n          \"trackingNumber\": \"string\"\n        },\n        \"fpsInfo\": {\n          \"senderName\": \"string\",\n          \"recipientName\": \"string\",\n          \"reference\": \"string\",\n          \"accountNumber\": \"string\",\n          \"last4\": \"string\",\n          \"sortCode\": \"string\",\n          \"uetr\": \"string\"\n        },\n        \"feeInfo\": {\n          \"relatedTransaction\": {\n            \"id\": \"string\",\n            \"amount\": 5084.315673928185\n          }\n        },\n        \"cryptoInfo\": {\n          \"txHash\": \"string\",\n          \"senderAddress\": \"string\"\n        }\n      },\n      \"card\": {\n        \"id\": \"string\",\n        \"accountId\": \"string\",\n        \"last4\": \"string\",\n        \"name\": \"string\",\n        \"expiryMonth\": \"string\",\n        \"expiryYear\": \"string\",\n        \"status\": \"paused\",\n        \"isPhysical\": false,\n        \"virtualAccountId\": \"string\",\n        \"isSingleUse\": false,\n        \"pan\": \"string\",\n        \"cvv\": \"string\",\n        \"cardGroupId\": \"string\",\n        \"cardGroupName\": \"string\",\n        \"createdAt\": \"1962-02-08T22:15:03.993Z\",\n        \"spendingConstraint\": {\n          \"merchantCategoryRule\": {\n            \"merchantCategories\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"restriction\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"merchantRule\": {\n            \"merchants\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"restriction\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"spendingRule\": {\n            \"utilizationLimit\": {\n              \"limitAmount\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"preset\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"timezone\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"startDate\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"utilizationLimitV2\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"transactionSizeLimit\": {\n              \"minimum\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"maximum\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          },\n          \"countryRule\": {\n            \"countries\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"restriction\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"merchantCategoryCodeRule\": {\n            \"merchantCategoryCodes\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"restriction\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        \"userData\": {},\n        \"cardProductId\": \"string\",\n        \"modifiers\": [\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fba90d28-9fdd-4f31-84e5-c5743e864a11",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transaction",
+                    ":transactionId",
+                    "fee-details"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "transactionId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"name\": \"string\",\n  \"identifier\": \"string\",\n  \"rawStatus\": 533.9330571156308,\n  \"meta\": {\n    \"key_0\": \"string\",\n    \"key_1\": 7752,\n    \"key_2\": 6728,\n    \"key_3\": false,\n    \"key_4\": false\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "83ac57fc-f768-49e6-8b35-6f850bf45799",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transaction",
+                    ":transactionId",
+                    "fee-details"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "transactionId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"name\": \"string\",\n  \"identifier\": \"string\",\n  \"rawStatus\": 533.9330571156308,\n  \"meta\": {\n    \"key_0\": \"string\",\n    \"key_1\": 7752,\n    \"key_2\": 6728,\n    \"key_3\": false,\n    \"key_4\": false\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "857a3f0d-713d-4523-ad8b-30fe4a6aa654",
+              "name": "TooManyRequests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transaction",
+                    ":transactionId",
+                    "fee-details"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "transactionId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"name\": \"string\",\n  \"identifier\": \"string\",\n  \"rawStatus\": 533.9330571156308,\n  \"meta\": {\n    \"key_0\": \"string\",\n    \"key_1\": 7752,\n    \"key_2\": 6728,\n    \"key_3\": false,\n    \"key_4\": false\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a868c88e-a569-4727-bc57-30c2bf1c6088",
+              "name": "Internal Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transaction",
+                    ":transactionId",
+                    "fee-details"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "transactionId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"name\": \"string\",\n  \"identifier\": \"string\",\n  \"rawStatus\": 533.9330571156308,\n  \"meta\": {\n    \"key_0\": \"string\",\n    \"key_1\": 7752,\n    \"key_2\": 6728,\n    \"key_3\": false,\n    \"key_4\": false\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.slash.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-API-Key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "7cbf8bfa-9384-4c27-a3b7-c90b209cfb00",
+    "name": "Slash Public Account Transaction API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API description",
+      "type": "text/plain"
+    }
+  }
+}

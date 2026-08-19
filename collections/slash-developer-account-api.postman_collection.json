@@ -1,0 +1,425 @@
+{
+  "item": [
+    {
+      "id": "8196cb53-9ca7-4fdb-909a-ccf72e9ad80b",
+      "name": "Developer Account",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a9ab3db0-ac3c-4531-a4a1-f82812a124cc",
+          "name": "Create a DeveloperApplication",
+          "request": {
+            "name": "Create a DeveloperApplication",
+            "description": {},
+            "url": {
+              "path": [
+                "developer-account",
+                ":developerAccountId",
+                "application"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "developerAccountId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-API-Key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"type\": \"<string>\",\n  \"data\": {\n    \"description\": \"<string>\",\n    \"type\": \"<string>\",\n    \"scopes\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"allowedOrigins\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"logoUrl\": \"<string>\",\n    \"termsOfServiceUrl\": \"<string>\",\n    \"privacyPolicyUrl\": \"<string>\",\n    \"redirectUris\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"testUserEmails\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "32ccc1c2-473f-4081-b628-05cdd7341cbc",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "developer-account",
+                    ":developerAccountId",
+                    "application"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "developerAccountId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"type\": \"service\",\n  \"data\": {\n    \"description\": \"string\",\n    \"type\": \"service\",\n    \"scopes\": [\n      \"legal_entity.home.view\",\n      \"legal_entity.developer_account.view\"\n    ],\n    \"allowedOrigins\": [\n      \"string\",\n      \"string\"\n    ],\n    \"logoUrl\": \"string\",\n    \"termsOfServiceUrl\": \"string\",\n    \"privacyPolicyUrl\": \"string\",\n    \"redirectUris\": [\n      \"string\",\n      \"string\"\n    ],\n    \"testUserEmails\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"developerAccountId\": \"string\",\n  \"name\": \"string\",\n  \"status\": \"under_review\",\n  \"type\": \"service\",\n  \"data\": {\n    \"description\": \"string\",\n    \"type\": \"service\",\n    \"scopes\": [\n      \"legal_entity.api_key.modify\",\n      \"legal_entity.third_party_credentials.modify\"\n    ],\n    \"allowedOrigins\": [\n      \"string\",\n      \"string\"\n    ],\n    \"logoUrl\": \"string\",\n    \"termsOfServiceUrl\": \"string\",\n    \"privacyPolicyUrl\": \"string\",\n    \"redirectUris\": [\n      \"string\",\n      \"string\"\n    ],\n    \"testUserEmails\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  \"timestamp\": \"string\",\n  \"oauthClientId\": \"string\",\n  \"oauthClientSecret\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d1b4c73f-d53c-442b-a3a8-1637120cedc3",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "developer-account",
+                    ":developerAccountId",
+                    "application"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "developerAccountId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"type\": \"service\",\n  \"data\": {\n    \"description\": \"string\",\n    \"type\": \"service\",\n    \"scopes\": [\n      \"legal_entity.home.view\",\n      \"legal_entity.developer_account.view\"\n    ],\n    \"allowedOrigins\": [\n      \"string\",\n      \"string\"\n    ],\n    \"logoUrl\": \"string\",\n    \"termsOfServiceUrl\": \"string\",\n    \"privacyPolicyUrl\": \"string\",\n    \"redirectUris\": [\n      \"string\",\n      \"string\"\n    ],\n    \"testUserEmails\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"name\": \"string\",\n  \"identifier\": \"string\",\n  \"rawStatus\": 1430.956844909007,\n  \"meta\": {\n    \"key_0\": false,\n    \"key_1\": 7208.060053687144\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5e6e4f43-841b-4712-b328-bb39be7ceb8c",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "developer-account",
+                    ":developerAccountId",
+                    "application"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "developerAccountId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"type\": \"service\",\n  \"data\": {\n    \"description\": \"string\",\n    \"type\": \"service\",\n    \"scopes\": [\n      \"legal_entity.home.view\",\n      \"legal_entity.developer_account.view\"\n    ],\n    \"allowedOrigins\": [\n      \"string\",\n      \"string\"\n    ],\n    \"logoUrl\": \"string\",\n    \"termsOfServiceUrl\": \"string\",\n    \"privacyPolicyUrl\": \"string\",\n    \"redirectUris\": [\n      \"string\",\n      \"string\"\n    ],\n    \"testUserEmails\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"name\": \"string\",\n  \"identifier\": \"string\",\n  \"rawStatus\": 1430.956844909007,\n  \"meta\": {\n    \"key_0\": false,\n    \"key_1\": 7208.060053687144\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b41017ea-7025-4361-958e-043b0a69d844",
+              "name": "TooManyRequests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "developer-account",
+                    ":developerAccountId",
+                    "application"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "developerAccountId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"type\": \"service\",\n  \"data\": {\n    \"description\": \"string\",\n    \"type\": \"service\",\n    \"scopes\": [\n      \"legal_entity.home.view\",\n      \"legal_entity.developer_account.view\"\n    ],\n    \"allowedOrigins\": [\n      \"string\",\n      \"string\"\n    ],\n    \"logoUrl\": \"string\",\n    \"termsOfServiceUrl\": \"string\",\n    \"privacyPolicyUrl\": \"string\",\n    \"redirectUris\": [\n      \"string\",\n      \"string\"\n    ],\n    \"testUserEmails\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"name\": \"string\",\n  \"identifier\": \"string\",\n  \"rawStatus\": 1430.956844909007,\n  \"meta\": {\n    \"key_0\": false,\n    \"key_1\": 7208.060053687144\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "971a7e50-502c-45cd-99a7-099bb3fb8454",
+              "name": "Internal Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "developer-account",
+                    ":developerAccountId",
+                    "application"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "developerAccountId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"type\": \"service\",\n  \"data\": {\n    \"description\": \"string\",\n    \"type\": \"service\",\n    \"scopes\": [\n      \"legal_entity.home.view\",\n      \"legal_entity.developer_account.view\"\n    ],\n    \"allowedOrigins\": [\n      \"string\",\n      \"string\"\n    ],\n    \"logoUrl\": \"string\",\n    \"termsOfServiceUrl\": \"string\",\n    \"privacyPolicyUrl\": \"string\",\n    \"redirectUris\": [\n      \"string\",\n      \"string\"\n    ],\n    \"testUserEmails\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"name\": \"string\",\n  \"identifier\": \"string\",\n  \"rawStatus\": 1430.956844909007,\n  \"meta\": {\n    \"key_0\": false,\n    \"key_1\": 7208.060053687144\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.slash.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-API-Key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "bed5bc01-9480-45bf-b6f3-14437d5b8bbd",
+    "name": "Slash Public Account Developer Account API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API description",
+      "type": "text/plain"
+    }
+  }
+}

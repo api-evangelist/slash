@@ -1,0 +1,302 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Slash Public Account Transaction API",
+    "version": "0.0.1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-API-Key",
+      "value": "{{X-API-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Transaction",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "GET /transaction",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.slash.com/transaction",
+            "params": [
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "A cursor string to fetch the next page of results"
+              },
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "query",
+                "description": "Use filter:accountId to filter by account ID"
+              },
+              {
+                "name": "filter:legalEntityId",
+                "value": "",
+                "type": "query",
+                "description": "Pass in a legal entity ID to filter transactions by accounts under a specific legal entity."
+              },
+              {
+                "name": "filter:accountId",
+                "value": "",
+                "type": "query",
+                "description": "Pass in an account ID to filter transactions by account ID. This will return all transactions that match the account ID passed in."
+              },
+              {
+                "name": "filter:virtualAccountId",
+                "value": "",
+                "type": "query",
+                "description": "Pass in a virtual account ID to filter transactions by virtual account ID. This will return all transactions that match the virtual account ID passed in."
+              },
+              {
+                "name": "filter:from_date",
+                "value": "",
+                "type": "query",
+                "description": "Pass in a unix timestamp in milliseconds to filter transactions by date. This will return all transactions that occurred on or after the date passed in."
+              },
+              {
+                "name": "filter:to_date",
+                "value": "",
+                "type": "query",
+                "description": "Pass in a unix timestamp in milliseconds to filter transactions by date. This will return all transactions that occurred on or before the date passed in."
+              },
+              {
+                "name": "filter:from_authorized_at",
+                "value": "",
+                "type": "query",
+                "description": "Pass in a unix timestamp in milliseconds to filter transactions by authorization time. This will return all transactions that are authorized on or after the date passed in."
+              },
+              {
+                "name": "filter:to_authorized_at",
+                "value": "",
+                "type": "query",
+                "description": "Pass in a unix timestamp in milliseconds to filter transactions by authorization time. This will return all transactions that are authorized on or before the date passed in."
+              },
+              {
+                "name": "filter:status",
+                "value": "",
+                "type": "query",
+                "description": "Filter transactions by status"
+              },
+              {
+                "name": "filter:detailed_status",
+                "value": "",
+                "type": "query",
+                "description": "Filter transactions by detailed status"
+              },
+              {
+                "name": "filter:cardId",
+                "value": "",
+                "type": "query",
+                "description": "Filter transactions by cardId"
+              },
+              {
+                "name": "filter:category",
+                "value": "",
+                "type": "query",
+                "description": "Filter transactions by category type"
+              },
+              {
+                "name": "filter:cardGroupId",
+                "value": "",
+                "type": "query",
+                "description": "Filter transactions by card group ID. This will return all card transactions that belong to cards in the specified card group."
+              },
+              {
+                "name": "filter:providerAuthorizationId",
+                "value": "",
+                "type": "query",
+                "description": "Filter transactions by provider authorization ID"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get all transactions"
+        },
+        {
+          "info": {
+            "name": "GET /transaction/aggregation",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.slash.com/transaction/aggregation",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "query",
+                "description": "Use filter:accountId to filter by account ID"
+              },
+              {
+                "name": "filter:legalEntityId",
+                "value": "",
+                "type": "query",
+                "description": "Pass in a legal entity ID to filter transactions by accounts under a specific legal entity."
+              },
+              {
+                "name": "filter:accountId",
+                "value": "",
+                "type": "query",
+                "description": "Pass in an account ID to filter transactions by account ID. This will return all transactions that match the account ID passed in."
+              },
+              {
+                "name": "filter:virtualAccountId",
+                "value": "",
+                "type": "query",
+                "description": "Pass in a virtual account ID to filter transactions by virtual account ID. This will return all transactions that match the virtual account ID passed in."
+              },
+              {
+                "name": "filter:from_date",
+                "value": "",
+                "type": "query",
+                "description": "Pass in a unix timestamp in milliseconds to filter transactions by date. This will return all transactions that occurred on or after the date passed in."
+              },
+              {
+                "name": "filter:to_date",
+                "value": "",
+                "type": "query",
+                "description": "Pass in a unix timestamp in milliseconds to filter transactions by date. This will return all transactions that occurred on or before the date passed in."
+              },
+              {
+                "name": "filter:from_authorized_at",
+                "value": "",
+                "type": "query",
+                "description": "Pass in a unix timestamp in milliseconds to filter transactions by authorization time. This will return all transactions that are authorized on or after the date passed in."
+              },
+              {
+                "name": "filter:to_authorized_at",
+                "value": "",
+                "type": "query",
+                "description": "Pass in a unix timestamp in milliseconds to filter transactions by authorization time. This will return all transactions that are authorized on or before the date passed in."
+              },
+              {
+                "name": "filter:status",
+                "value": "",
+                "type": "query",
+                "description": "Filter transactions by status"
+              },
+              {
+                "name": "filter:detailed_status",
+                "value": "",
+                "type": "query",
+                "description": "Filter transactions by detailed status"
+              },
+              {
+                "name": "filter:cardId",
+                "value": "",
+                "type": "query",
+                "description": "Filter transactions by cardId"
+              },
+              {
+                "name": "filter:category",
+                "value": "",
+                "type": "query",
+                "description": "Filter transactions by category type"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get transaction aggregations"
+        },
+        {
+          "info": {
+            "name": "GET /transaction/{transactionId}",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.slash.com/transaction/:transactionId",
+            "params": [
+              {
+                "name": "transactionId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Fetch details for a single transaction by ID"
+        },
+        {
+          "info": {
+            "name": "PATCH /transaction/{transactionId}/note",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.slash.com/transaction/:transactionId/note",
+            "params": [
+              {
+                "name": "transactionId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Update note for a transaction"
+        },
+        {
+          "info": {
+            "name": "GET /transaction/{transactionId}/fee-details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.slash.com/transaction/:transactionId/fee-details",
+            "params": [
+              {
+                "name": "transactionId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "X-API-Key",
+              "value": "{{X-API-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Fetch breakdown of a fee transaction"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,3438 @@
+{
+  "item": [
+    {
+      "id": "cbc23035-d360-4407-be63-dca10c8c39d2",
+      "name": "Card",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "01cc2926-d0de-4597-af73-70a97daafa76",
+          "name": "List all cards you have access to.",
+          "request": {
+            "name": "List all cards you have access to.",
+            "description": {
+              "content": "List all cards you have access to.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "card"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "filter:legalEntityId",
+                  "value": "<string>",
+                  "description": "Pass in a legal entity ID to filter for cards in accounts under a specific legal entity."
+                },
+                {
+                  "disabled": false,
+                  "key": "filter:accountId",
+                  "value": "<string>",
+                  "description": "Pass in an account ID to filter for cards under a specific account."
+                },
+                {
+                  "disabled": false,
+                  "key": "filter:virtualAccountId",
+                  "value": "<string>",
+                  "description": "Pass in a virtual account ID to filter for cards under a specific virtual account."
+                },
+                {
+                  "disabled": false,
+                  "key": "cursor",
+                  "value": "<string>",
+                  "description": "A cursor string to fetch the next page of results"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter:status",
+                  "value": "<string>",
+                  "description": "Returns all cards matching the status passed in."
+                },
+                {
+                  "disabled": false,
+                  "key": "filter:cardGroupId",
+                  "value": "<string>",
+                  "description": "Pass in a card group ID, This will return all cards that belong to the card group ID passed in. Cannot be combined with filter:cardGroupName."
+                },
+                {
+                  "disabled": false,
+                  "key": "filter:cardGroupName",
+                  "value": "<string>",
+                  "description": "Pass in a card group name, This will return all cards that belong to the card group name passed in. Cannot be combined with filter:cardGroupId."
+                },
+                {
+                  "disabled": false,
+                  "key": "filter:modifier",
+                  "value": "<string>",
+                  "description": "Filter cards by modifier. Format is \"modifier_name:value\" (e.g., \"only_allow_recurring_payments:true\"). Returns cards where the specified modifier has the given value."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>",
+                  "description": "Sorts card by creation date or name."
+                },
+                {
+                  "disabled": false,
+                  "key": "sortDirection",
+                  "value": "<string>",
+                  "description": "The direction to apply the sort filter by. Default ASC."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-API-Key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "bed93aab-dfa2-4408-81c1-6ad1760fb4d3",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "card"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filter:legalEntityId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter:accountId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter:virtualAccountId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter:status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter:cardGroupId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter:cardGroupName",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter:modifier",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortDirection",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"id\": \"string\",\n      \"accountId\": \"string\",\n      \"last4\": \"string\",\n      \"name\": \"string\",\n      \"expiryMonth\": \"string\",\n      \"expiryYear\": \"string\",\n      \"status\": \"closed\",\n      \"isPhysical\": true,\n      \"virtualAccountId\": \"string\",\n      \"isSingleUse\": true,\n      \"pan\": \"string\",\n      \"cvv\": \"string\",\n      \"cardGroupId\": \"string\",\n      \"cardGroupName\": \"string\",\n      \"createdAt\": \"1979-04-21T02:34:33.791Z\",\n      \"spendingConstraint\": {\n        \"merchantCategoryRule\": {\n          \"merchantCategories\": [\n            \"string\",\n            \"string\"\n          ],\n          \"restriction\": \"blacklist\"\n        },\n        \"merchantRule\": {\n          \"merchants\": [\n            \"string\",\n            \"string\"\n          ],\n          \"restriction\": \"blacklist\"\n        },\n        \"spendingRule\": {\n          \"utilizationLimit\": {\n            \"limitAmount\": {\n              \"amountCents\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"preset\": \"collective\",\n            \"timezone\": \"string\",\n            \"startDate\": \"string\"\n          },\n          \"utilizationLimitV2\": [\n            {\n              \"limitAmount\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"preset\": \"weekly\",\n              \"timezone\": \"string\",\n              \"startDate\": \"string\"\n            },\n            {\n              \"limitAmount\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"preset\": \"yearly\",\n              \"timezone\": \"string\",\n              \"startDate\": \"string\"\n            }\n          ],\n          \"transactionSizeLimit\": {\n            \"minimum\": {\n              \"amountCents\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"maximum\": {\n              \"amountCents\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          }\n        },\n        \"countryRule\": {\n          \"countries\": [\n            \"string\",\n            \"string\"\n          ],\n          \"restriction\": \"blacklist\"\n        },\n        \"merchantCategoryCodeRule\": {\n          \"merchantCategoryCodes\": [\n            \"string\",\n            \"string\"\n          ],\n          \"restriction\": \"allowlist\"\n        }\n      },\n      \"userData\": {},\n      \"cardProductId\": \"string\",\n      \"modifiers\": [\n        {\n          \"name\": \"only_allow_recurring_payments\",\n          \"value\": false\n        },\n        {\n          \"name\": \"only_allow_recurring_payments\",\n          \"value\": false\n        }\n      ]\n    },\n    {\n      \"id\": \"string\",\n      \"accountId\": \"string\",\n      \"last4\": \"string\",\n      \"name\": \"string\",\n      \"expiryMonth\": \"string\",\n      \"expiryYear\": \"string\",\n      \"status\": \"inactive\",\n      \"isPhysical\": false,\n      \"virtualAccountId\": \"string\",\n      \"isSingleUse\": false,\n      \"pan\": \"string\",\n      \"cvv\": \"string\",\n      \"cardGroupId\": \"string\",\n      \"cardGroupName\": \"string\",\n      \"createdAt\": \"2015-03-25T18:33:37.298Z\",\n      \"spendingConstraint\": {\n        \"merchantCategoryRule\": {\n          \"merchantCategories\": [\n            \"string\",\n            \"string\"\n          ],\n          \"restriction\": \"allowlist\"\n        },\n        \"merchantRule\": {\n          \"merchants\": [\n            \"string\",\n            \"string\"\n          ],\n          \"restriction\": \"blacklist\"\n        },\n        \"spendingRule\": {\n          \"utilizationLimit\": {\n            \"limitAmount\": {\n              \"amountCents\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"preset\": \"daily\",\n            \"timezone\": \"string\",\n            \"startDate\": \"string\"\n          },\n          \"utilizationLimitV2\": [\n            {\n              \"limitAmount\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"preset\": \"yearly\",\n              \"timezone\": \"string\",\n              \"startDate\": \"string\"\n            },\n            {\n              \"limitAmount\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"preset\": \"monthly\",\n              \"timezone\": \"string\",\n              \"startDate\": \"string\"\n            }\n          ],\n          \"transactionSizeLimit\": {\n            \"minimum\": {\n              \"amountCents\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"maximum\": {\n              \"amountCents\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          }\n        },\n        \"countryRule\": {\n          \"countries\": [\n            \"string\",\n            \"string\"\n          ],\n          \"restriction\": \"allowlist\"\n        },\n        \"merchantCategoryCodeRule\": {\n          \"merchantCategoryCodes\": [\n            \"string\",\n            \"string\"\n          ],\n          \"restriction\": \"allowlist\"\n        }\n      },\n      \"userData\": {},\n      \"cardProductId\": \"string\",\n      \"modifiers\": [\n        {\n          \"name\": \"only_allow_recurring_payments\",\n          \"value\": false\n        },\n        {\n          \"name\": \"only_allow_recurring_payments\",\n          \"value\": true\n        }\n      ]\n    }\n  ],\n  \"metadata\": {\n    \"nextCursor\": \"string\",\n    \"count\": 1666.9611772331582\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2f886397-bf14-44e4-ac3a-3397a6a34aff",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "card"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filter:legalEntityId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter:accountId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter:virtualAccountId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter:status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter:cardGroupId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter:cardGroupName",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter:modifier",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortDirection",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"name\": \"string\",\n  \"identifier\": \"string\",\n  \"rawStatus\": 4687.687848323893,\n  \"meta\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\",\n    \"key_2\": 2256.886413599355,\n    \"key_3\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "dbe8d5b0-dce2-4096-ae50-00a2cf9c2c2b",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "card"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filter:legalEntityId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter:accountId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter:virtualAccountId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter:status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter:cardGroupId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter:cardGroupName",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter:modifier",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortDirection",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"name\": \"string\",\n  \"identifier\": \"string\",\n  \"rawStatus\": 4687.687848323893,\n  \"meta\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\",\n    \"key_2\": 2256.886413599355,\n    \"key_3\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "846aeb4a-fd4c-4255-a93c-e7e602febd2b",
+              "name": "TooManyRequests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "card"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filter:legalEntityId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter:accountId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter:virtualAccountId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter:status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter:cardGroupId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter:cardGroupName",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter:modifier",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortDirection",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"name\": \"string\",\n  \"identifier\": \"string\",\n  \"rawStatus\": 4687.687848323893,\n  \"meta\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\",\n    \"key_2\": 2256.886413599355,\n    \"key_3\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "589d588e-f9cd-4e9f-ada3-8663dae3e7a0",
+              "name": "Internal Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "card"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filter:legalEntityId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter:accountId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter:virtualAccountId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter:status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter:cardGroupId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter:cardGroupName",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter:modifier",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortDirection",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"name\": \"string\",\n  \"identifier\": \"string\",\n  \"rawStatus\": 4687.687848323893,\n  \"meta\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\",\n    \"key_2\": 2256.886413599355,\n    \"key_3\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ad762f8b-58cd-4f9d-b43e-6a5a19ec175a",
+          "name": "Create a card",
+          "request": {
+            "name": "Create a card",
+            "description": {
+              "content": "Create a card",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "card"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-API-Key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"type\": \"<string>\",\n  \"accountId\": \"<string>\",\n  \"virtualAccountId\": \"<string>\",\n  \"spendingConstraint\": {\n    \"merchantCategoryRule\": {\n      \"merchantCategories\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"restriction\": \"<string>\"\n    },\n    \"merchantRule\": {\n      \"merchants\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"restriction\": \"<string>\"\n    },\n    \"spendingRule\": {\n      \"utilizationLimit\": {\n        \"limitAmount\": {\n          \"amountCents\": \"<integer>\"\n        },\n        \"preset\": \"<string>\",\n        \"timezone\": \"<string>\",\n        \"startDate\": \"<string>\"\n      },\n      \"utilizationLimitV2\": [\n        {\n          \"limitAmount\": {\n            \"amountCents\": \"<integer>\"\n          },\n          \"preset\": \"<string>\",\n          \"timezone\": \"<string>\",\n          \"startDate\": \"<string>\"\n        },\n        {\n          \"limitAmount\": {\n            \"amountCents\": \"<integer>\"\n          },\n          \"preset\": \"<string>\",\n          \"timezone\": \"<string>\",\n          \"startDate\": \"<string>\"\n        }\n      ],\n      \"transactionSizeLimit\": {\n        \"minimum\": {\n          \"amountCents\": \"<integer>\"\n        },\n        \"maximum\": {\n          \"amountCents\": \"<integer>\"\n        }\n      }\n    },\n    \"countryRule\": {\n      \"countries\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"restriction\": \"<string>\"\n    },\n    \"merchantCategoryCodeRule\": {\n      \"merchantCategoryCodes\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"restriction\": \"<string>\"\n    }\n  },\n  \"isSingleUse\": \"<boolean>\",\n  \"userData\": {\n    \"key_0\": 3174.314569838218,\n    \"key_1\": false\n  },\n  \"cardGroupId\": \"<string>\",\n  \"cardProductId\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "7ea3695f-b3f2-4574-90c2-f31643469eef",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "card"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"type\": \"<string>\",\n  \"accountId\": \"<string>\",\n  \"virtualAccountId\": \"<string>\",\n  \"spendingConstraint\": {\n    \"merchantCategoryRule\": {\n      \"merchantCategories\": [\n        \"string\",\n        \"string\"\n      ],\n      \"restriction\": \"blacklist\"\n    },\n    \"merchantRule\": {\n      \"merchants\": [\n        \"string\",\n        \"string\"\n      ],\n      \"restriction\": \"blacklist\"\n    },\n    \"spendingRule\": {\n      \"utilizationLimit\": {\n        \"limitAmount\": {\n          \"amountCents\": 6491\n        },\n        \"preset\": \"yearly\",\n        \"timezone\": \"string\",\n        \"startDate\": \"string\"\n      },\n      \"utilizationLimitV2\": [\n        {\n          \"limitAmount\": {\n            \"amountCents\": 9770\n          },\n          \"preset\": \"yearly\",\n          \"timezone\": \"string\",\n          \"startDate\": \"string\"\n        },\n        {\n          \"limitAmount\": {\n            \"amountCents\": 9897\n          },\n          \"preset\": \"yearly\",\n          \"timezone\": \"string\",\n          \"startDate\": \"string\"\n        }\n      ],\n      \"transactionSizeLimit\": {\n        \"minimum\": {\n          \"amountCents\": 1921\n        },\n        \"maximum\": {\n          \"amountCents\": 616\n        }\n      }\n    },\n    \"countryRule\": {\n      \"countries\": [\n        \"string\",\n        \"string\"\n      ],\n      \"restriction\": \"allowlist\"\n    },\n    \"merchantCategoryCodeRule\": {\n      \"merchantCategoryCodes\": [\n        \"string\",\n        \"string\"\n      ],\n      \"restriction\": \"blacklist\"\n    }\n  },\n  \"isSingleUse\": \"<boolean>\",\n  \"userData\": {\n    \"key_0\": \"string\",\n    \"key_1\": false\n  },\n  \"cardGroupId\": \"<string>\",\n  \"cardProductId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"accountId\": \"string\",\n  \"last4\": \"string\",\n  \"name\": \"string\",\n  \"expiryMonth\": \"string\",\n  \"expiryYear\": \"string\",\n  \"status\": \"active\",\n  \"isPhysical\": false,\n  \"virtualAccountId\": \"string\",\n  \"isSingleUse\": false,\n  \"pan\": \"string\",\n  \"cvv\": \"string\",\n  \"cardGroupId\": \"string\",\n  \"cardGroupName\": \"string\",\n  \"createdAt\": \"2003-08-23T21:59:23.962Z\",\n  \"spendingConstraint\": {\n    \"merchantCategoryRule\": {\n      \"merchantCategories\": [\n        \"string\",\n        \"string\"\n      ],\n      \"restriction\": \"blacklist\"\n    },\n    \"merchantRule\": {\n      \"merchants\": [\n        \"string\",\n        \"string\"\n      ],\n      \"restriction\": \"allowlist\"\n    },\n    \"spendingRule\": {\n      \"utilizationLimit\": {\n        \"limitAmount\": {\n          \"amountCents\": 1188\n        },\n        \"preset\": \"yearly\",\n        \"timezone\": \"string\",\n        \"startDate\": \"string\"\n      },\n      \"utilizationLimitV2\": [\n        {\n          \"limitAmount\": {\n            \"amountCents\": 6909\n          },\n          \"preset\": \"monthly\",\n          \"timezone\": \"string\",\n          \"startDate\": \"string\"\n        },\n        {\n          \"limitAmount\": {\n            \"amountCents\": 9423\n          },\n          \"preset\": \"weekly\",\n          \"timezone\": \"string\",\n          \"startDate\": \"string\"\n        }\n      ],\n      \"transactionSizeLimit\": {\n        \"minimum\": {\n          \"amountCents\": 7954\n        },\n        \"maximum\": {\n          \"amountCents\": 4336\n        }\n      }\n    },\n    \"countryRule\": {\n      \"countries\": [\n        \"string\",\n        \"string\"\n      ],\n      \"restriction\": \"allowlist\"\n    },\n    \"merchantCategoryCodeRule\": {\n      \"merchantCategoryCodes\": [\n        \"string\",\n        \"string\"\n      ],\n      \"restriction\": \"blacklist\"\n    }\n  },\n  \"userData\": {},\n  \"cardProductId\": \"string\",\n  \"modifiers\": [\n    {\n      \"name\": \"only_allow_recurring_payments\",\n      \"value\": true\n    },\n    {\n      \"name\": \"only_allow_recurring_payments\",\n      \"value\": false\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "48fb32e1-a196-4d20-b737-1e56eec6b030",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "card"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"type\": \"<string>\",\n  \"accountId\": \"<string>\",\n  \"virtualAccountId\": \"<string>\",\n  \"spendingConstraint\": {\n    \"merchantCategoryRule\": {\n      \"merchantCategories\": [\n        \"string\",\n        \"string\"\n      ],\n      \"restriction\": \"blacklist\"\n    },\n    \"merchantRule\": {\n      \"merchants\": [\n        \"string\",\n        \"string\"\n      ],\n      \"restriction\": \"blacklist\"\n    },\n    \"spendingRule\": {\n      \"utilizationLimit\": {\n        \"limitAmount\": {\n          \"amountCents\": 6491\n        },\n        \"preset\": \"yearly\",\n        \"timezone\": \"string\",\n        \"startDate\": \"string\"\n      },\n      \"utilizationLimitV2\": [\n        {\n          \"limitAmount\": {\n            \"amountCents\": 9770\n          },\n          \"preset\": \"yearly\",\n          \"timezone\": \"string\",\n          \"startDate\": \"string\"\n        },\n        {\n          \"limitAmount\": {\n            \"amountCents\": 9897\n          },\n          \"preset\": \"yearly\",\n          \"timezone\": \"string\",\n          \"startDate\": \"string\"\n        }\n      ],\n      \"transactionSizeLimit\": {\n        \"minimum\": {\n          \"amountCents\": 1921\n        },\n        \"maximum\": {\n          \"amountCents\": 616\n        }\n      }\n    },\n    \"countryRule\": {\n      \"countries\": [\n        \"string\",\n        \"string\"\n      ],\n      \"restriction\": \"allowlist\"\n    },\n    \"merchantCategoryCodeRule\": {\n      \"merchantCategoryCodes\": [\n        \"string\",\n        \"string\"\n      ],\n      \"restriction\": \"blacklist\"\n    }\n  },\n  \"isSingleUse\": \"<boolean>\",\n  \"userData\": {\n    \"key_0\": \"string\",\n    \"key_1\": false\n  },\n  \"cardGroupId\": \"<string>\",\n  \"cardProductId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"name\": \"string\",\n  \"identifier\": \"string\",\n  \"rawStatus\": 4687.687848323893,\n  \"meta\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\",\n    \"key_2\": 2256.886413599355,\n    \"key_3\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "117b2b3b-d3f3-4465-97a1-6fdcb0bf6a5d",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "card"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"type\": \"<string>\",\n  \"accountId\": \"<string>\",\n  \"virtualAccountId\": \"<string>\",\n  \"spendingConstraint\": {\n    \"merchantCategoryRule\": {\n      \"merchantCategories\": [\n        \"string\",\n        \"string\"\n      ],\n      \"restriction\": \"blacklist\"\n    },\n    \"merchantRule\": {\n      \"merchants\": [\n        \"string\",\n        \"string\"\n      ],\n      \"restriction\": \"blacklist\"\n    },\n    \"spendingRule\": {\n      \"utilizationLimit\": {\n        \"limitAmount\": {\n          \"amountCents\": 6491\n        },\n        \"preset\": \"yearly\",\n        \"timezone\": \"string\",\n        \"startDate\": \"string\"\n      },\n      \"utilizationLimitV2\": [\n        {\n          \"limitAmount\": {\n            \"amountCents\": 9770\n          },\n          \"preset\": \"yearly\",\n          \"timezone\": \"string\",\n          \"startDate\": \"string\"\n        },\n        {\n          \"limitAmount\": {\n            \"amountCents\": 9897\n          },\n          \"preset\": \"yearly\",\n          \"timezone\": \"string\",\n          \"startDate\": \"string\"\n        }\n      ],\n      \"transactionSizeLimit\": {\n        \"minimum\": {\n          \"amountCents\": 1921\n        },\n        \"maximum\": {\n          \"amountCents\": 616\n        }\n      }\n    },\n    \"countryRule\": {\n      \"countries\": [\n        \"string\",\n        \"string\"\n      ],\n      \"restriction\": \"allowlist\"\n    },\n    \"merchantCategoryCodeRule\": {\n      \"merchantCategoryCodes\": [\n        \"string\",\n        \"string\"\n      ],\n      \"restriction\": \"blacklist\"\n    }\n  },\n  \"isSingleUse\": \"<boolean>\",\n  \"userData\": {\n    \"key_0\": \"string\",\n    \"key_1\": false\n  },\n  \"cardGroupId\": \"<string>\",\n  \"cardProductId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"name\": \"string\",\n  \"identifier\": \"string\",\n  \"rawStatus\": 4687.687848323893,\n  \"meta\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\",\n    \"key_2\": 2256.886413599355,\n    \"key_3\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2e8b6bcd-fc3d-47f3-8f33-113c0d06a773",
+              "name": "TooManyRequests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "card"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"type\": \"<string>\",\n  \"accountId\": \"<string>\",\n  \"virtualAccountId\": \"<string>\",\n  \"spendingConstraint\": {\n    \"merchantCategoryRule\": {\n      \"merchantCategories\": [\n        \"string\",\n        \"string\"\n      ],\n      \"restriction\": \"blacklist\"\n    },\n    \"merchantRule\": {\n      \"merchants\": [\n        \"string\",\n        \"string\"\n      ],\n      \"restriction\": \"blacklist\"\n    },\n    \"spendingRule\": {\n      \"utilizationLimit\": {\n        \"limitAmount\": {\n          \"amountCents\": 6491\n        },\n        \"preset\": \"yearly\",\n        \"timezone\": \"string\",\n        \"startDate\": \"string\"\n      },\n      \"utilizationLimitV2\": [\n        {\n          \"limitAmount\": {\n            \"amountCents\": 9770\n          },\n          \"preset\": \"yearly\",\n          \"timezone\": \"string\",\n          \"startDate\": \"string\"\n        },\n        {\n          \"limitAmount\": {\n            \"amountCents\": 9897\n          },\n          \"preset\": \"yearly\",\n          \"timezone\": \"string\",\n          \"startDate\": \"string\"\n        }\n      ],\n      \"transactionSizeLimit\": {\n        \"minimum\": {\n          \"amountCents\": 1921\n        },\n        \"maximum\": {\n          \"amountCents\": 616\n        }\n      }\n    },\n    \"countryRule\": {\n      \"countries\": [\n        \"string\",\n        \"string\"\n      ],\n      \"restriction\": \"allowlist\"\n    },\n    \"merchantCategoryCodeRule\": {\n      \"merchantCategoryCodes\": [\n        \"string\",\n        \"string\"\n      ],\n      \"restriction\": \"blacklist\"\n    }\n  },\n  \"isSingleUse\": \"<boolean>\",\n  \"userData\": {\n    \"key_0\": \"string\",\n    \"key_1\": false\n  },\n  \"cardGroupId\": \"<string>\",\n  \"cardProductId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"name\": \"string\",\n  \"identifier\": \"string\",\n  \"rawStatus\": 4687.687848323893,\n  \"meta\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\",\n    \"key_2\": 2256.886413599355,\n    \"key_3\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b7e31ff2-bf30-476f-be8f-bd8dc58e1967",
+              "name": "Internal Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "card"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"type\": \"<string>\",\n  \"accountId\": \"<string>\",\n  \"virtualAccountId\": \"<string>\",\n  \"spendingConstraint\": {\n    \"merchantCategoryRule\": {\n      \"merchantCategories\": [\n        \"string\",\n        \"string\"\n      ],\n      \"restriction\": \"blacklist\"\n    },\n    \"merchantRule\": {\n      \"merchants\": [\n        \"string\",\n        \"string\"\n      ],\n      \"restriction\": \"blacklist\"\n    },\n    \"spendingRule\": {\n      \"utilizationLimit\": {\n        \"limitAmount\": {\n          \"amountCents\": 6491\n        },\n        \"preset\": \"yearly\",\n        \"timezone\": \"string\",\n        \"startDate\": \"string\"\n      },\n      \"utilizationLimitV2\": [\n        {\n          \"limitAmount\": {\n            \"amountCents\": 9770\n          },\n          \"preset\": \"yearly\",\n          \"timezone\": \"string\",\n          \"startDate\": \"string\"\n        },\n        {\n          \"limitAmount\": {\n            \"amountCents\": 9897\n          },\n          \"preset\": \"yearly\",\n          \"timezone\": \"string\",\n          \"startDate\": \"string\"\n        }\n      ],\n      \"transactionSizeLimit\": {\n        \"minimum\": {\n          \"amountCents\": 1921\n        },\n        \"maximum\": {\n          \"amountCents\": 616\n        }\n      }\n    },\n    \"countryRule\": {\n      \"countries\": [\n        \"string\",\n        \"string\"\n      ],\n      \"restriction\": \"allowlist\"\n    },\n    \"merchantCategoryCodeRule\": {\n      \"merchantCategoryCodes\": [\n        \"string\",\n        \"string\"\n      ],\n      \"restriction\": \"blacklist\"\n    }\n  },\n  \"isSingleUse\": \"<boolean>\",\n  \"userData\": {\n    \"key_0\": \"string\",\n    \"key_1\": false\n  },\n  \"cardGroupId\": \"<string>\",\n  \"cardProductId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"name\": \"string\",\n  \"identifier\": \"string\",\n  \"rawStatus\": 4687.687848323893,\n  \"meta\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\",\n    \"key_2\": 2256.886413599355,\n    \"key_3\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0f26c408-2e9f-413b-b3d4-92300273e793",
+          "name": "Update a card",
+          "request": {
+            "name": "Update a card",
+            "description": {
+              "content": "Update a card",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "card",
+                ":cardId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "cardId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-API-Key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"status\": \"<string>\",\n  \"cardGroupId\": \"<string>\",\n  \"spendingConstraint\": {\n    \"merchantCategoryRule\": {\n      \"merchantCategories\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"restriction\": \"<string>\"\n    },\n    \"merchantRule\": {\n      \"merchants\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"restriction\": \"<string>\"\n    },\n    \"spendingRule\": {\n      \"utilizationLimit\": {\n        \"limitAmount\": {\n          \"amountCents\": \"<integer>\"\n        },\n        \"preset\": \"<string>\",\n        \"timezone\": \"<string>\",\n        \"startDate\": \"<string>\"\n      },\n      \"utilizationLimitV2\": [\n        {\n          \"limitAmount\": {\n            \"amountCents\": \"<integer>\"\n          },\n          \"preset\": \"<string>\",\n          \"timezone\": \"<string>\",\n          \"startDate\": \"<string>\"\n        },\n        {\n          \"limitAmount\": {\n            \"amountCents\": \"<integer>\"\n          },\n          \"preset\": \"<string>\",\n          \"timezone\": \"<string>\",\n          \"startDate\": \"<string>\"\n        }\n      ],\n      \"transactionSizeLimit\": {\n        \"minimum\": {\n          \"amountCents\": \"<integer>\"\n        },\n        \"maximum\": {\n          \"amountCents\": \"<integer>\"\n        }\n      }\n    },\n    \"countryRule\": {\n      \"countries\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"restriction\": \"<string>\"\n    },\n    \"merchantCategoryCodeRule\": {\n      \"merchantCategoryCodes\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"restriction\": \"<string>\"\n    }\n  },\n  \"userData\": {\n    \"key_0\": 5662.419219493296,\n    \"key_1\": \"string\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "8db806d2-bf74-4d3e-8da0-ccf0ca090ade",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "card",
+                    ":cardId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "cardId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"status\": \"paused\",\n  \"cardGroupId\": \"<string>\",\n  \"spendingConstraint\": {\n    \"merchantCategoryRule\": {\n      \"merchantCategories\": [\n        \"string\",\n        \"string\"\n      ],\n      \"restriction\": \"blacklist\"\n    },\n    \"merchantRule\": {\n      \"merchants\": [\n        \"string\",\n        \"string\"\n      ],\n      \"restriction\": \"allowlist\"\n    },\n    \"spendingRule\": {\n      \"utilizationLimit\": {\n        \"limitAmount\": {\n          \"amountCents\": 8396\n        },\n        \"preset\": \"collective\",\n        \"timezone\": \"string\",\n        \"startDate\": \"string\"\n      },\n      \"utilizationLimitV2\": [\n        {\n          \"limitAmount\": {\n            \"amountCents\": 9176\n          },\n          \"preset\": \"daily\",\n          \"timezone\": \"string\",\n          \"startDate\": \"string\"\n        },\n        {\n          \"limitAmount\": {\n            \"amountCents\": 1534\n          },\n          \"preset\": \"daily\",\n          \"timezone\": \"string\",\n          \"startDate\": \"string\"\n        }\n      ],\n      \"transactionSizeLimit\": {\n        \"minimum\": {\n          \"amountCents\": 3279\n        },\n        \"maximum\": {\n          \"amountCents\": 5579\n        }\n      }\n    },\n    \"countryRule\": {\n      \"countries\": [\n        \"string\",\n        \"string\"\n      ],\n      \"restriction\": \"allowlist\"\n    },\n    \"merchantCategoryCodeRule\": {\n      \"merchantCategoryCodes\": [\n        \"string\",\n        \"string\"\n      ],\n      \"restriction\": \"blacklist\"\n    }\n  },\n  \"userData\": {\n    \"key_0\": 2772\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"accountId\": \"string\",\n  \"last4\": \"string\",\n  \"name\": \"string\",\n  \"expiryMonth\": \"string\",\n  \"expiryYear\": \"string\",\n  \"status\": \"active\",\n  \"isPhysical\": false,\n  \"virtualAccountId\": \"string\",\n  \"isSingleUse\": false,\n  \"pan\": \"string\",\n  \"cvv\": \"string\",\n  \"cardGroupId\": \"string\",\n  \"cardGroupName\": \"string\",\n  \"createdAt\": \"2003-08-23T21:59:23.962Z\",\n  \"spendingConstraint\": {\n    \"merchantCategoryRule\": {\n      \"merchantCategories\": [\n        \"string\",\n        \"string\"\n      ],\n      \"restriction\": \"blacklist\"\n    },\n    \"merchantRule\": {\n      \"merchants\": [\n        \"string\",\n        \"string\"\n      ],\n      \"restriction\": \"allowlist\"\n    },\n    \"spendingRule\": {\n      \"utilizationLimit\": {\n        \"limitAmount\": {\n          \"amountCents\": 1188\n        },\n        \"preset\": \"yearly\",\n        \"timezone\": \"string\",\n        \"startDate\": \"string\"\n      },\n      \"utilizationLimitV2\": [\n        {\n          \"limitAmount\": {\n            \"amountCents\": 6909\n          },\n          \"preset\": \"monthly\",\n          \"timezone\": \"string\",\n          \"startDate\": \"string\"\n        },\n        {\n          \"limitAmount\": {\n            \"amountCents\": 9423\n          },\n          \"preset\": \"weekly\",\n          \"timezone\": \"string\",\n          \"startDate\": \"string\"\n        }\n      ],\n      \"transactionSizeLimit\": {\n        \"minimum\": {\n          \"amountCents\": 7954\n        },\n        \"maximum\": {\n          \"amountCents\": 4336\n        }\n      }\n    },\n    \"countryRule\": {\n      \"countries\": [\n        \"string\",\n        \"string\"\n      ],\n      \"restriction\": \"allowlist\"\n    },\n    \"merchantCategoryCodeRule\": {\n      \"merchantCategoryCodes\": [\n        \"string\",\n        \"string\"\n      ],\n      \"restriction\": \"blacklist\"\n    }\n  },\n  \"userData\": {},\n  \"cardProductId\": \"string\",\n  \"modifiers\": [\n    {\n      \"name\": \"only_allow_recurring_payments\",\n      \"value\": true\n    },\n    {\n      \"name\": \"only_allow_recurring_payments\",\n      \"value\": false\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6df929fa-aec3-47dd-a496-56d12ae529f6",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "card",
+                    ":cardId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "cardId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"status\": \"paused\",\n  \"cardGroupId\": \"<string>\",\n  \"spendingConstraint\": {\n    \"merchantCategoryRule\": {\n      \"merchantCategories\": [\n        \"string\",\n        \"string\"\n      ],\n      \"restriction\": \"blacklist\"\n    },\n    \"merchantRule\": {\n      \"merchants\": [\n        \"string\",\n        \"string\"\n      ],\n      \"restriction\": \"allowlist\"\n    },\n    \"spendingRule\": {\n      \"utilizationLimit\": {\n        \"limitAmount\": {\n          \"amountCents\": 8396\n        },\n        \"preset\": \"collective\",\n        \"timezone\": \"string\",\n        \"startDate\": \"string\"\n      },\n      \"utilizationLimitV2\": [\n        {\n          \"limitAmount\": {\n            \"amountCents\": 9176\n          },\n          \"preset\": \"daily\",\n          \"timezone\": \"string\",\n          \"startDate\": \"string\"\n        },\n        {\n          \"limitAmount\": {\n            \"amountCents\": 1534\n          },\n          \"preset\": \"daily\",\n          \"timezone\": \"string\",\n          \"startDate\": \"string\"\n        }\n      ],\n      \"transactionSizeLimit\": {\n        \"minimum\": {\n          \"amountCents\": 3279\n        },\n        \"maximum\": {\n          \"amountCents\": 5579\n        }\n      }\n    },\n    \"countryRule\": {\n      \"countries\": [\n        \"string\",\n        \"string\"\n      ],\n      \"restriction\": \"allowlist\"\n    },\n    \"merchantCategoryCodeRule\": {\n      \"merchantCategoryCodes\": [\n        \"string\",\n        \"string\"\n      ],\n      \"restriction\": \"blacklist\"\n    }\n  },\n  \"userData\": {\n    \"key_0\": 2772\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"name\": \"string\",\n  \"identifier\": \"string\",\n  \"rawStatus\": 4687.687848323893,\n  \"meta\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\",\n    \"key_2\": 2256.886413599355,\n    \"key_3\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0ad99dfb-130c-47aa-97d1-3be748ac831e",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "card",
+                    ":cardId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "cardId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"status\": \"paused\",\n  \"cardGroupId\": \"<string>\",\n  \"spendingConstraint\": {\n    \"merchantCategoryRule\": {\n      \"merchantCategories\": [\n        \"string\",\n        \"string\"\n      ],\n      \"restriction\": \"blacklist\"\n    },\n    \"merchantRule\": {\n      \"merchants\": [\n        \"string\",\n        \"string\"\n      ],\n      \"restriction\": \"allowlist\"\n    },\n    \"spendingRule\": {\n      \"utilizationLimit\": {\n        \"limitAmount\": {\n          \"amountCents\": 8396\n        },\n        \"preset\": \"collective\",\n        \"timezone\": \"string\",\n        \"startDate\": \"string\"\n      },\n      \"utilizationLimitV2\": [\n        {\n          \"limitAmount\": {\n            \"amountCents\": 9176\n          },\n          \"preset\": \"daily\",\n          \"timezone\": \"string\",\n          \"startDate\": \"string\"\n        },\n        {\n          \"limitAmount\": {\n            \"amountCents\": 1534\n          },\n          \"preset\": \"daily\",\n          \"timezone\": \"string\",\n          \"startDate\": \"string\"\n        }\n      ],\n      \"transactionSizeLimit\": {\n        \"minimum\": {\n          \"amountCents\": 3279\n        },\n        \"maximum\": {\n          \"amountCents\": 5579\n        }\n      }\n    },\n    \"countryRule\": {\n      \"countries\": [\n        \"string\",\n        \"string\"\n      ],\n      \"restriction\": \"allowlist\"\n    },\n    \"merchantCategoryCodeRule\": {\n      \"merchantCategoryCodes\": [\n        \"string\",\n        \"string\"\n      ],\n      \"restriction\": \"blacklist\"\n    }\n  },\n  \"userData\": {\n    \"key_0\": 2772\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"name\": \"string\",\n  \"identifier\": \"string\",\n  \"rawStatus\": 4687.687848323893,\n  \"meta\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\",\n    \"key_2\": 2256.886413599355,\n    \"key_3\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8f5041c3-d5aa-4e59-94e0-5ef712b3af6a",
+              "name": "TooManyRequests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "card",
+                    ":cardId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "cardId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"status\": \"paused\",\n  \"cardGroupId\": \"<string>\",\n  \"spendingConstraint\": {\n    \"merchantCategoryRule\": {\n      \"merchantCategories\": [\n        \"string\",\n        \"string\"\n      ],\n      \"restriction\": \"blacklist\"\n    },\n    \"merchantRule\": {\n      \"merchants\": [\n        \"string\",\n        \"string\"\n      ],\n      \"restriction\": \"allowlist\"\n    },\n    \"spendingRule\": {\n      \"utilizationLimit\": {\n        \"limitAmount\": {\n          \"amountCents\": 8396\n        },\n        \"preset\": \"collective\",\n        \"timezone\": \"string\",\n        \"startDate\": \"string\"\n      },\n      \"utilizationLimitV2\": [\n        {\n          \"limitAmount\": {\n            \"amountCents\": 9176\n          },\n          \"preset\": \"daily\",\n          \"timezone\": \"string\",\n          \"startDate\": \"string\"\n        },\n        {\n          \"limitAmount\": {\n            \"amountCents\": 1534\n          },\n          \"preset\": \"daily\",\n          \"timezone\": \"string\",\n          \"startDate\": \"string\"\n        }\n      ],\n      \"transactionSizeLimit\": {\n        \"minimum\": {\n          \"amountCents\": 3279\n        },\n        \"maximum\": {\n          \"amountCents\": 5579\n        }\n      }\n    },\n    \"countryRule\": {\n      \"countries\": [\n        \"string\",\n        \"string\"\n      ],\n      \"restriction\": \"allowlist\"\n    },\n    \"merchantCategoryCodeRule\": {\n      \"merchantCategoryCodes\": [\n        \"string\",\n        \"string\"\n      ],\n      \"restriction\": \"blacklist\"\n    }\n  },\n  \"userData\": {\n    \"key_0\": 2772\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"name\": \"string\",\n  \"identifier\": \"string\",\n  \"rawStatus\": 4687.687848323893,\n  \"meta\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\",\n    \"key_2\": 2256.886413599355,\n    \"key_3\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "367752bc-6338-45e4-822d-64a93ccbbe22",
+              "name": "Internal Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "card",
+                    ":cardId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "cardId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"status\": \"paused\",\n  \"cardGroupId\": \"<string>\",\n  \"spendingConstraint\": {\n    \"merchantCategoryRule\": {\n      \"merchantCategories\": [\n        \"string\",\n        \"string\"\n      ],\n      \"restriction\": \"blacklist\"\n    },\n    \"merchantRule\": {\n      \"merchants\": [\n        \"string\",\n        \"string\"\n      ],\n      \"restriction\": \"allowlist\"\n    },\n    \"spendingRule\": {\n      \"utilizationLimit\": {\n        \"limitAmount\": {\n          \"amountCents\": 8396\n        },\n        \"preset\": \"collective\",\n        \"timezone\": \"string\",\n        \"startDate\": \"string\"\n      },\n      \"utilizationLimitV2\": [\n        {\n          \"limitAmount\": {\n            \"amountCents\": 9176\n          },\n          \"preset\": \"daily\",\n          \"timezone\": \"string\",\n          \"startDate\": \"string\"\n        },\n        {\n          \"limitAmount\": {\n            \"amountCents\": 1534\n          },\n          \"preset\": \"daily\",\n          \"timezone\": \"string\",\n          \"startDate\": \"string\"\n        }\n      ],\n      \"transactionSizeLimit\": {\n        \"minimum\": {\n          \"amountCents\": 3279\n        },\n        \"maximum\": {\n          \"amountCents\": 5579\n        }\n      }\n    },\n    \"countryRule\": {\n      \"countries\": [\n        \"string\",\n        \"string\"\n      ],\n      \"restriction\": \"allowlist\"\n    },\n    \"merchantCategoryCodeRule\": {\n      \"merchantCategoryCodes\": [\n        \"string\",\n        \"string\"\n      ],\n      \"restriction\": \"blacklist\"\n    }\n  },\n  \"userData\": {\n    \"key_0\": 2772\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"name\": \"string\",\n  \"identifier\": \"string\",\n  \"rawStatus\": 4687.687848323893,\n  \"meta\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\",\n    \"key_2\": 2256.886413599355,\n    \"key_3\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9b4084ac-64f5-4880-9015-0a541986731b",
+          "name": "Fetch details for a single card by card ID",
+          "request": {
+            "name": "Fetch details for a single card by card ID",
+            "description": {
+              "content": "Fetch details for a single card by card ID",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "card",
+                ":cardId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "include_pan",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "include_cvv",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "cardId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-API-Key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "a7133b3b-89fd-4e93-a47c-9638777cab5c",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "card",
+                    ":cardId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "include_pan",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "include_cvv",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "cardId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"accountId\": \"string\",\n  \"last4\": \"string\",\n  \"name\": \"string\",\n  \"expiryMonth\": \"string\",\n  \"expiryYear\": \"string\",\n  \"status\": \"active\",\n  \"isPhysical\": false,\n  \"virtualAccountId\": \"string\",\n  \"isSingleUse\": false,\n  \"pan\": \"string\",\n  \"cvv\": \"string\",\n  \"cardGroupId\": \"string\",\n  \"cardGroupName\": \"string\",\n  \"createdAt\": \"2003-08-23T21:59:23.962Z\",\n  \"spendingConstraint\": {\n    \"merchantCategoryRule\": {\n      \"merchantCategories\": [\n        \"string\",\n        \"string\"\n      ],\n      \"restriction\": \"blacklist\"\n    },\n    \"merchantRule\": {\n      \"merchants\": [\n        \"string\",\n        \"string\"\n      ],\n      \"restriction\": \"allowlist\"\n    },\n    \"spendingRule\": {\n      \"utilizationLimit\": {\n        \"limitAmount\": {\n          \"amountCents\": 1188\n        },\n        \"preset\": \"yearly\",\n        \"timezone\": \"string\",\n        \"startDate\": \"string\"\n      },\n      \"utilizationLimitV2\": [\n        {\n          \"limitAmount\": {\n            \"amountCents\": 6909\n          },\n          \"preset\": \"monthly\",\n          \"timezone\": \"string\",\n          \"startDate\": \"string\"\n        },\n        {\n          \"limitAmount\": {\n            \"amountCents\": 9423\n          },\n          \"preset\": \"weekly\",\n          \"timezone\": \"string\",\n          \"startDate\": \"string\"\n        }\n      ],\n      \"transactionSizeLimit\": {\n        \"minimum\": {\n          \"amountCents\": 7954\n        },\n        \"maximum\": {\n          \"amountCents\": 4336\n        }\n      }\n    },\n    \"countryRule\": {\n      \"countries\": [\n        \"string\",\n        \"string\"\n      ],\n      \"restriction\": \"allowlist\"\n    },\n    \"merchantCategoryCodeRule\": {\n      \"merchantCategoryCodes\": [\n        \"string\",\n        \"string\"\n      ],\n      \"restriction\": \"blacklist\"\n    }\n  },\n  \"userData\": {},\n  \"cardProductId\": \"string\",\n  \"modifiers\": [\n    {\n      \"name\": \"only_allow_recurring_payments\",\n      \"value\": true\n    },\n    {\n      \"name\": \"only_allow_recurring_payments\",\n      \"value\": false\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e9da6907-faf6-415b-ad80-5083be20f6b6",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "card",
+                    ":cardId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "include_pan",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "include_cvv",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "cardId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"name\": \"string\",\n  \"identifier\": \"string\",\n  \"rawStatus\": 4687.687848323893,\n  \"meta\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\",\n    \"key_2\": 2256.886413599355,\n    \"key_3\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b4eb49ee-eede-4d72-959e-b721908e32b9",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "card",
+                    ":cardId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "include_pan",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "include_cvv",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "cardId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"name\": \"string\",\n  \"identifier\": \"string\",\n  \"rawStatus\": 4687.687848323893,\n  \"meta\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\",\n    \"key_2\": 2256.886413599355,\n    \"key_3\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b9dfcdde-5b91-4197-84e1-324baad1a6cf",
+              "name": "TooManyRequests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "card",
+                    ":cardId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "include_pan",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "include_cvv",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "cardId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"name\": \"string\",\n  \"identifier\": \"string\",\n  \"rawStatus\": 4687.687848323893,\n  \"meta\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\",\n    \"key_2\": 2256.886413599355,\n    \"key_3\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d9fd0aa3-5b02-4e5c-97ed-e55952f733cf",
+              "name": "Internal Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "card",
+                    ":cardId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "include_pan",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "include_cvv",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "cardId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"name\": \"string\",\n  \"identifier\": \"string\",\n  \"rawStatus\": 4687.687848323893,\n  \"meta\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\",\n    \"key_2\": 2256.886413599355,\n    \"key_3\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a83b5dba-80b3-46ff-91b3-1201f3199a3c",
+          "name": "Get a card's current utilization",
+          "request": {
+            "name": "Get a card's current utilization",
+            "description": {
+              "content": "Get a card's current utilization",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "card",
+                ":cardId",
+                "utilization"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "cardId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-API-Key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "38bafab3-8bf9-4f06-b633-9e485fe012a8",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "card",
+                    ":cardId",
+                    "utilization"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "cardId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"spend\": {\n    \"amountCents\": 5012\n  },\n  \"nextResetDate\": \"2025-04-28T01:43:43.774Z\",\n  \"availableBalance\": {\n    \"amountCents\": 5694\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4999928d-5963-4f5b-bb8a-83dc447cd53e",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "card",
+                    ":cardId",
+                    "utilization"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "cardId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"name\": \"string\",\n  \"identifier\": \"string\",\n  \"rawStatus\": 4687.687848323893,\n  \"meta\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\",\n    \"key_2\": 2256.886413599355,\n    \"key_3\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0328862d-e4e2-4021-a213-047e53e59121",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "card",
+                    ":cardId",
+                    "utilization"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "cardId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"name\": \"string\",\n  \"identifier\": \"string\",\n  \"rawStatus\": 4687.687848323893,\n  \"meta\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\",\n    \"key_2\": 2256.886413599355,\n    \"key_3\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "754610a6-7f84-43c1-ab5c-99a82c179f57",
+              "name": "TooManyRequests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "card",
+                    ":cardId",
+                    "utilization"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "cardId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"name\": \"string\",\n  \"identifier\": \"string\",\n  \"rawStatus\": 4687.687848323893,\n  \"meta\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\",\n    \"key_2\": 2256.886413599355,\n    \"key_3\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "16721579-c7cb-453d-8988-6379b96726cb",
+              "name": "Internal Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "card",
+                    ":cardId",
+                    "utilization"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "cardId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"name\": \"string\",\n  \"identifier\": \"string\",\n  \"rawStatus\": 4687.687848323893,\n  \"meta\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\",\n    \"key_2\": 2256.886413599355,\n    \"key_3\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bc3aeba3-48be-4921-8d41-50a180e69953",
+          "name": "Get all modifiers for a card.",
+          "request": {
+            "name": "Get all modifiers for a card.",
+            "description": {
+              "content": "Get all modifiers for a card.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "card",
+                ":cardId",
+                "modifier"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "cardId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-API-Key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "3801a634-4dd9-4eff-91c6-f815205723a0",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "card",
+                    ":cardId",
+                    "modifier"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "cardId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"modifiers\": [\n    {\n      \"name\": \"only_allow_recurring_payments\",\n      \"value\": true\n    },\n    {\n      \"name\": \"only_allow_recurring_payments\",\n      \"value\": true\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "82f49349-0ab4-4e32-926a-ef8f430e427e",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "card",
+                    ":cardId",
+                    "modifier"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "cardId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"name\": \"string\",\n  \"identifier\": \"string\",\n  \"rawStatus\": 4687.687848323893,\n  \"meta\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\",\n    \"key_2\": 2256.886413599355,\n    \"key_3\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3c5747d0-0515-40e5-b742-2b4ff81c8898",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "card",
+                    ":cardId",
+                    "modifier"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "cardId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"name\": \"string\",\n  \"identifier\": \"string\",\n  \"rawStatus\": 4687.687848323893,\n  \"meta\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\",\n    \"key_2\": 2256.886413599355,\n    \"key_3\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8cdacbb4-36e1-413a-8736-126a532a168f",
+              "name": "TooManyRequests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "card",
+                    ":cardId",
+                    "modifier"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "cardId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"name\": \"string\",\n  \"identifier\": \"string\",\n  \"rawStatus\": 4687.687848323893,\n  \"meta\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\",\n    \"key_2\": 2256.886413599355,\n    \"key_3\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "98af749d-64b9-4ea7-84e5-747dc4db275c",
+              "name": "Internal Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "card",
+                    ":cardId",
+                    "modifier"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "cardId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"name\": \"string\",\n  \"identifier\": \"string\",\n  \"rawStatus\": 4687.687848323893,\n  \"meta\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\",\n    \"key_2\": 2256.886413599355,\n    \"key_3\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8a1016c1-7df6-4fca-a415-2b15fe6758f5",
+          "name": "Set a modifier for a card.",
+          "request": {
+            "name": "Set a modifier for a card.",
+            "description": {
+              "content": "Set a modifier for a card.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "card",
+                ":cardId",
+                "modifier"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "cardId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-API-Key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"value\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "5d917d80-55f4-4a51-887b-ec1674fc3517",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "card",
+                    ":cardId",
+                    "modifier"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "cardId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"value\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6cd3e759-c15e-4a4f-8ab8-9624d0a7ddcd",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "card",
+                    ":cardId",
+                    "modifier"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "cardId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"value\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"name\": \"string\",\n  \"identifier\": \"string\",\n  \"rawStatus\": 4687.687848323893,\n  \"meta\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\",\n    \"key_2\": 2256.886413599355,\n    \"key_3\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c05ec773-6e12-4b64-a581-946f13e92e47",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "card",
+                    ":cardId",
+                    "modifier"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "cardId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"value\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"name\": \"string\",\n  \"identifier\": \"string\",\n  \"rawStatus\": 4687.687848323893,\n  \"meta\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\",\n    \"key_2\": 2256.886413599355,\n    \"key_3\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8070b8a2-ee20-4917-855f-9a1a8d8a1f53",
+              "name": "TooManyRequests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "card",
+                    ":cardId",
+                    "modifier"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "cardId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"value\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"name\": \"string\",\n  \"identifier\": \"string\",\n  \"rawStatus\": 4687.687848323893,\n  \"meta\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\",\n    \"key_2\": 2256.886413599355,\n    \"key_3\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "190474f5-2991-4301-8100-1cab8802fbea",
+              "name": "Internal Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "card",
+                    ":cardId",
+                    "modifier"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "cardId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"value\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"name\": \"string\",\n  \"identifier\": \"string\",\n  \"rawStatus\": 4687.687848323893,\n  \"meta\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\",\n    \"key_2\": 2256.886413599355,\n    \"key_3\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "17f195f2-6a67-451c-a8ac-6209e30e4416",
+          "name": "Apply a partial update to a card's spending constraint while preserving current properties applied. Properties set to \"null\" will be removed from the spending constraint.",
+          "request": {
+            "name": "Apply a partial update to a card's spending constraint while preserving current properties applied. Properties set to \"null\" will be removed from the spending constraint.",
+            "description": {
+              "content": "Apply a partial update to a card's spending constraint while preserving current properties applied. Properties set to \"null\" will be removed from the spending constraint.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "card",
+                ":cardId",
+                "spending-constraint"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "cardId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-API-Key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"merchantCategoryRule\": {\n    \"merchantCategories\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"restriction\": \"<string>\"\n  },\n  \"merchantRule\": {\n    \"merchants\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"restriction\": \"<string>\"\n  },\n  \"spendingRule\": {\n    \"utilizationLimit\": {\n      \"timezone\": \"<string>\",\n      \"limitAmount\": {\n        \"amountCents\": \"<integer>\"\n      },\n      \"preset\": \"<string>\",\n      \"startDate\": \"<string>\"\n    },\n    \"utilizationLimitV2\": [\n      {\n        \"timezone\": \"<string>\",\n        \"limitAmount\": {\n          \"amountCents\": \"<integer>\"\n        },\n        \"preset\": \"<string>\",\n        \"startDate\": \"<string>\"\n      },\n      {\n        \"timezone\": \"<string>\",\n        \"limitAmount\": {\n          \"amountCents\": \"<integer>\"\n        },\n        \"preset\": \"<string>\",\n        \"startDate\": \"<string>\"\n      }\n    ],\n    \"transactionSizeLimit\": {\n      \"minimum\": {\n        \"amountCents\": \"<integer>\"\n      },\n      \"maximum\": {\n        \"amountCents\": \"<integer>\"\n      }\n    }\n  },\n  \"countryRule\": {\n    \"countries\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"restriction\": \"<string>\"\n  },\n  \"merchantCategoryCodeRule\": {\n    \"merchantCategoryCodes\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"restriction\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "2e80cfc2-098b-4fc8-8f9f-5f8eebf3a824",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "card",
+                    ":cardId",
+                    "spending-constraint"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "cardId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"merchantCategoryRule\": {\n    \"merchantCategories\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"restriction\": \"blacklist\"\n  },\n  \"merchantRule\": {\n    \"merchants\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"restriction\": \"allowlist\"\n  },\n  \"spendingRule\": {\n    \"utilizationLimit\": {\n      \"timezone\": \"<string>\",\n      \"limitAmount\": {\n        \"amountCents\": 6130\n      },\n      \"preset\": \"<string>\",\n      \"startDate\": \"<string>\"\n    },\n    \"utilizationLimitV2\": [\n      {\n        \"timezone\": \"<string>\",\n        \"limitAmount\": {\n          \"amountCents\": 8270\n        },\n        \"preset\": \"<string>\",\n        \"startDate\": \"<string>\"\n      },\n      {\n        \"timezone\": \"<string>\",\n        \"limitAmount\": {\n          \"amountCents\": 3117\n        },\n        \"preset\": \"<string>\",\n        \"startDate\": \"<string>\"\n      }\n    ],\n    \"transactionSizeLimit\": {\n      \"minimum\": {\n        \"amountCents\": 172\n      },\n      \"maximum\": {\n        \"amountCents\": 2663\n      }\n    }\n  },\n  \"countryRule\": {\n    \"countries\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"restriction\": \"allowlist\"\n  },\n  \"merchantCategoryCodeRule\": {\n    \"merchantCategoryCodes\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"restriction\": \"blacklist\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"merchantCategoryRule\": {\n    \"merchantCategories\": [\n      \"string\",\n      \"string\"\n    ],\n    \"restriction\": \"blacklist\"\n  },\n  \"merchantRule\": {\n    \"merchants\": [\n      \"string\",\n      \"string\"\n    ],\n    \"restriction\": \"allowlist\"\n  },\n  \"spendingRule\": {\n    \"utilizationLimit\": {\n      \"limitAmount\": {\n        \"amountCents\": 5457\n      },\n      \"preset\": \"weekly\",\n      \"timezone\": \"string\",\n      \"startDate\": \"string\"\n    },\n    \"utilizationLimitV2\": [\n      {\n        \"limitAmount\": {\n          \"amountCents\": 5570\n        },\n        \"preset\": \"monthly\",\n        \"timezone\": \"string\",\n        \"startDate\": \"string\"\n      },\n      {\n        \"limitAmount\": {\n          \"amountCents\": 304\n        },\n        \"preset\": \"weekly\",\n        \"timezone\": \"string\",\n        \"startDate\": \"string\"\n      }\n    ],\n    \"transactionSizeLimit\": {\n      \"minimum\": {\n        \"amountCents\": 2755\n      },\n      \"maximum\": {\n        \"amountCents\": 3311\n      }\n    }\n  },\n  \"countryRule\": {\n    \"countries\": [\n      \"string\",\n      \"string\"\n    ],\n    \"restriction\": \"blacklist\"\n  },\n  \"merchantCategoryCodeRule\": {\n    \"merchantCategoryCodes\": [\n      \"string\",\n      \"string\"\n    ],\n    \"restriction\": \"allowlist\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "da2bcfe6-d1ba-48e0-a644-af8ce4279b3d",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "card",
+                    ":cardId",
+                    "spending-constraint"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "cardId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"merchantCategoryRule\": {\n    \"merchantCategories\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"restriction\": \"blacklist\"\n  },\n  \"merchantRule\": {\n    \"merchants\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"restriction\": \"allowlist\"\n  },\n  \"spendingRule\": {\n    \"utilizationLimit\": {\n      \"timezone\": \"<string>\",\n      \"limitAmount\": {\n        \"amountCents\": 6130\n      },\n      \"preset\": \"<string>\",\n      \"startDate\": \"<string>\"\n    },\n    \"utilizationLimitV2\": [\n      {\n        \"timezone\": \"<string>\",\n        \"limitAmount\": {\n          \"amountCents\": 8270\n        },\n        \"preset\": \"<string>\",\n        \"startDate\": \"<string>\"\n      },\n      {\n        \"timezone\": \"<string>\",\n        \"limitAmount\": {\n          \"amountCents\": 3117\n        },\n        \"preset\": \"<string>\",\n        \"startDate\": \"<string>\"\n      }\n    ],\n    \"transactionSizeLimit\": {\n      \"minimum\": {\n        \"amountCents\": 172\n      },\n      \"maximum\": {\n        \"amountCents\": 2663\n      }\n    }\n  },\n  \"countryRule\": {\n    \"countries\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"restriction\": \"allowlist\"\n  },\n  \"merchantCategoryCodeRule\": {\n    \"merchantCategoryCodes\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"restriction\": \"blacklist\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"name\": \"string\",\n  \"identifier\": \"string\",\n  \"rawStatus\": 4687.687848323893,\n  \"meta\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\",\n    \"key_2\": 2256.886413599355,\n    \"key_3\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ae4be9bb-c5b9-447f-861a-917cf5094bf7",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "card",
+                    ":cardId",
+                    "spending-constraint"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "cardId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"merchantCategoryRule\": {\n    \"merchantCategories\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"restriction\": \"blacklist\"\n  },\n  \"merchantRule\": {\n    \"merchants\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"restriction\": \"allowlist\"\n  },\n  \"spendingRule\": {\n    \"utilizationLimit\": {\n      \"timezone\": \"<string>\",\n      \"limitAmount\": {\n        \"amountCents\": 6130\n      },\n      \"preset\": \"<string>\",\n      \"startDate\": \"<string>\"\n    },\n    \"utilizationLimitV2\": [\n      {\n        \"timezone\": \"<string>\",\n        \"limitAmount\": {\n          \"amountCents\": 8270\n        },\n        \"preset\": \"<string>\",\n        \"startDate\": \"<string>\"\n      },\n      {\n        \"timezone\": \"<string>\",\n        \"limitAmount\": {\n          \"amountCents\": 3117\n        },\n        \"preset\": \"<string>\",\n        \"startDate\": \"<string>\"\n      }\n    ],\n    \"transactionSizeLimit\": {\n      \"minimum\": {\n        \"amountCents\": 172\n      },\n      \"maximum\": {\n        \"amountCents\": 2663\n      }\n    }\n  },\n  \"countryRule\": {\n    \"countries\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"restriction\": \"allowlist\"\n  },\n  \"merchantCategoryCodeRule\": {\n    \"merchantCategoryCodes\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"restriction\": \"blacklist\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"name\": \"string\",\n  \"identifier\": \"string\",\n  \"rawStatus\": 4687.687848323893,\n  \"meta\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\",\n    \"key_2\": 2256.886413599355,\n    \"key_3\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "03a0cf56-52dd-403c-ad5e-da3ee7abde6e",
+              "name": "TooManyRequests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "card",
+                    ":cardId",
+                    "spending-constraint"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "cardId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"merchantCategoryRule\": {\n    \"merchantCategories\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"restriction\": \"blacklist\"\n  },\n  \"merchantRule\": {\n    \"merchants\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"restriction\": \"allowlist\"\n  },\n  \"spendingRule\": {\n    \"utilizationLimit\": {\n      \"timezone\": \"<string>\",\n      \"limitAmount\": {\n        \"amountCents\": 6130\n      },\n      \"preset\": \"<string>\",\n      \"startDate\": \"<string>\"\n    },\n    \"utilizationLimitV2\": [\n      {\n        \"timezone\": \"<string>\",\n        \"limitAmount\": {\n          \"amountCents\": 8270\n        },\n        \"preset\": \"<string>\",\n        \"startDate\": \"<string>\"\n      },\n      {\n        \"timezone\": \"<string>\",\n        \"limitAmount\": {\n          \"amountCents\": 3117\n        },\n        \"preset\": \"<string>\",\n        \"startDate\": \"<string>\"\n      }\n    ],\n    \"transactionSizeLimit\": {\n      \"minimum\": {\n        \"amountCents\": 172\n      },\n      \"maximum\": {\n        \"amountCents\": 2663\n      }\n    }\n  },\n  \"countryRule\": {\n    \"countries\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"restriction\": \"allowlist\"\n  },\n  \"merchantCategoryCodeRule\": {\n    \"merchantCategoryCodes\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"restriction\": \"blacklist\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"name\": \"string\",\n  \"identifier\": \"string\",\n  \"rawStatus\": 4687.687848323893,\n  \"meta\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\",\n    \"key_2\": 2256.886413599355,\n    \"key_3\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ce531b2d-d525-4b90-85b4-d57c6d653bf4",
+              "name": "Internal Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "card",
+                    ":cardId",
+                    "spending-constraint"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "cardId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"merchantCategoryRule\": {\n    \"merchantCategories\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"restriction\": \"blacklist\"\n  },\n  \"merchantRule\": {\n    \"merchants\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"restriction\": \"allowlist\"\n  },\n  \"spendingRule\": {\n    \"utilizationLimit\": {\n      \"timezone\": \"<string>\",\n      \"limitAmount\": {\n        \"amountCents\": 6130\n      },\n      \"preset\": \"<string>\",\n      \"startDate\": \"<string>\"\n    },\n    \"utilizationLimitV2\": [\n      {\n        \"timezone\": \"<string>\",\n        \"limitAmount\": {\n          \"amountCents\": 8270\n        },\n        \"preset\": \"<string>\",\n        \"startDate\": \"<string>\"\n      },\n      {\n        \"timezone\": \"<string>\",\n        \"limitAmount\": {\n          \"amountCents\": 3117\n        },\n        \"preset\": \"<string>\",\n        \"startDate\": \"<string>\"\n      }\n    ],\n    \"transactionSizeLimit\": {\n      \"minimum\": {\n        \"amountCents\": 172\n      },\n      \"maximum\": {\n        \"amountCents\": 2663\n      }\n    }\n  },\n  \"countryRule\": {\n    \"countries\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"restriction\": \"allowlist\"\n  },\n  \"merchantCategoryCodeRule\": {\n    \"merchantCategoryCodes\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"restriction\": \"blacklist\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"name\": \"string\",\n  \"identifier\": \"string\",\n  \"rawStatus\": 4687.687848323893,\n  \"meta\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\",\n    \"key_2\": 2256.886413599355,\n    \"key_3\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6c4e5428-fe50-4984-a9d3-3b918b43d254",
+          "name": "Fully replace a card's spending constraint.",
+          "request": {
+            "name": "Fully replace a card's spending constraint.",
+            "description": {
+              "content": "Fully replace a card's spending constraint.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "card",
+                ":cardId",
+                "spending-constraint"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "cardId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-API-Key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"merchantCategoryRule\": {\n    \"merchantCategories\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"restriction\": \"<string>\"\n  },\n  \"merchantRule\": {\n    \"merchants\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"restriction\": \"<string>\"\n  },\n  \"spendingRule\": {\n    \"utilizationLimit\": {\n      \"limitAmount\": {\n        \"amountCents\": \"<integer>\"\n      },\n      \"preset\": \"<string>\",\n      \"timezone\": \"<string>\",\n      \"startDate\": \"<string>\"\n    },\n    \"utilizationLimitV2\": [\n      {\n        \"limitAmount\": {\n          \"amountCents\": \"<integer>\"\n        },\n        \"preset\": \"<string>\",\n        \"timezone\": \"<string>\",\n        \"startDate\": \"<string>\"\n      },\n      {\n        \"limitAmount\": {\n          \"amountCents\": \"<integer>\"\n        },\n        \"preset\": \"<string>\",\n        \"timezone\": \"<string>\",\n        \"startDate\": \"<string>\"\n      }\n    ],\n    \"transactionSizeLimit\": {\n      \"minimum\": {\n        \"amountCents\": \"<integer>\"\n      },\n      \"maximum\": {\n        \"amountCents\": \"<integer>\"\n      }\n    }\n  },\n  \"countryRule\": {\n    \"countries\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"restriction\": \"<string>\"\n  },\n  \"merchantCategoryCodeRule\": {\n    \"merchantCategoryCodes\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"restriction\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "7219fe3a-e194-46d7-a7ea-d82a7d68aa0a",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "card",
+                    ":cardId",
+                    "spending-constraint"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "cardId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"merchantCategoryRule\": {\n    \"merchantCategories\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"restriction\": \"allowlist\"\n  },\n  \"merchantRule\": {\n    \"merchants\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"restriction\": \"blacklist\"\n  },\n  \"spendingRule\": {\n    \"utilizationLimit\": {\n      \"limitAmount\": {\n        \"amountCents\": 4423\n      },\n      \"preset\": \"<string>\",\n      \"timezone\": \"<string>\",\n      \"startDate\": \"<string>\"\n    },\n    \"utilizationLimitV2\": [\n      {\n        \"limitAmount\": {\n          \"amountCents\": 7811\n        },\n        \"preset\": \"<string>\",\n        \"timezone\": \"<string>\",\n        \"startDate\": \"<string>\"\n      },\n      {\n        \"limitAmount\": {\n          \"amountCents\": 6877\n        },\n        \"preset\": \"<string>\",\n        \"timezone\": \"<string>\",\n        \"startDate\": \"<string>\"\n      }\n    ],\n    \"transactionSizeLimit\": {\n      \"minimum\": {\n        \"amountCents\": 8514\n      },\n      \"maximum\": {\n        \"amountCents\": 1813\n      }\n    }\n  },\n  \"countryRule\": {\n    \"countries\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"restriction\": \"blacklist\"\n  },\n  \"merchantCategoryCodeRule\": {\n    \"merchantCategoryCodes\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"restriction\": \"blacklist\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"merchantCategoryRule\": {\n    \"merchantCategories\": [\n      \"string\",\n      \"string\"\n    ],\n    \"restriction\": \"blacklist\"\n  },\n  \"merchantRule\": {\n    \"merchants\": [\n      \"string\",\n      \"string\"\n    ],\n    \"restriction\": \"allowlist\"\n  },\n  \"spendingRule\": {\n    \"utilizationLimit\": {\n      \"limitAmount\": {\n        \"amountCents\": 5457\n      },\n      \"preset\": \"weekly\",\n      \"timezone\": \"string\",\n      \"startDate\": \"string\"\n    },\n    \"utilizationLimitV2\": [\n      {\n        \"limitAmount\": {\n          \"amountCents\": 5570\n        },\n        \"preset\": \"monthly\",\n        \"timezone\": \"string\",\n        \"startDate\": \"string\"\n      },\n      {\n        \"limitAmount\": {\n          \"amountCents\": 304\n        },\n        \"preset\": \"weekly\",\n        \"timezone\": \"string\",\n        \"startDate\": \"string\"\n      }\n    ],\n    \"transactionSizeLimit\": {\n      \"minimum\": {\n        \"amountCents\": 2755\n      },\n      \"maximum\": {\n        \"amountCents\": 3311\n      }\n    }\n  },\n  \"countryRule\": {\n    \"countries\": [\n      \"string\",\n      \"string\"\n    ],\n    \"restriction\": \"blacklist\"\n  },\n  \"merchantCategoryCodeRule\": {\n    \"merchantCategoryCodes\": [\n      \"string\",\n      \"string\"\n    ],\n    \"restriction\": \"allowlist\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9504ab29-1d5d-4894-a16b-703be704b756",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "card",
+                    ":cardId",
+                    "spending-constraint"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "cardId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"merchantCategoryRule\": {\n    \"merchantCategories\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"restriction\": \"allowlist\"\n  },\n  \"merchantRule\": {\n    \"merchants\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"restriction\": \"blacklist\"\n  },\n  \"spendingRule\": {\n    \"utilizationLimit\": {\n      \"limitAmount\": {\n        \"amountCents\": 4423\n      },\n      \"preset\": \"<string>\",\n      \"timezone\": \"<string>\",\n      \"startDate\": \"<string>\"\n    },\n    \"utilizationLimitV2\": [\n      {\n        \"limitAmount\": {\n          \"amountCents\": 7811\n        },\n        \"preset\": \"<string>\",\n        \"timezone\": \"<string>\",\n        \"startDate\": \"<string>\"\n      },\n      {\n        \"limitAmount\": {\n          \"amountCents\": 6877\n        },\n        \"preset\": \"<string>\",\n        \"timezone\": \"<string>\",\n        \"startDate\": \"<string>\"\n      }\n    ],\n    \"transactionSizeLimit\": {\n      \"minimum\": {\n        \"amountCents\": 8514\n      },\n      \"maximum\": {\n        \"amountCents\": 1813\n      }\n    }\n  },\n  \"countryRule\": {\n    \"countries\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"restriction\": \"blacklist\"\n  },\n  \"merchantCategoryCodeRule\": {\n    \"merchantCategoryCodes\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"restriction\": \"blacklist\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"name\": \"string\",\n  \"identifier\": \"string\",\n  \"rawStatus\": 4687.687848323893,\n  \"meta\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\",\n    \"key_2\": 2256.886413599355,\n    \"key_3\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "09fdcb53-071b-4db1-b1e2-3f80d97a28fa",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "card",
+                    ":cardId",
+                    "spending-constraint"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "cardId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"merchantCategoryRule\": {\n    \"merchantCategories\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"restriction\": \"allowlist\"\n  },\n  \"merchantRule\": {\n    \"merchants\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"restriction\": \"blacklist\"\n  },\n  \"spendingRule\": {\n    \"utilizationLimit\": {\n      \"limitAmount\": {\n        \"amountCents\": 4423\n      },\n      \"preset\": \"<string>\",\n      \"timezone\": \"<string>\",\n      \"startDate\": \"<string>\"\n    },\n    \"utilizationLimitV2\": [\n      {\n        \"limitAmount\": {\n          \"amountCents\": 7811\n        },\n        \"preset\": \"<string>\",\n        \"timezone\": \"<string>\",\n        \"startDate\": \"<string>\"\n      },\n      {\n        \"limitAmount\": {\n          \"amountCents\": 6877\n        },\n        \"preset\": \"<string>\",\n        \"timezone\": \"<string>\",\n        \"startDate\": \"<string>\"\n      }\n    ],\n    \"transactionSizeLimit\": {\n      \"minimum\": {\n        \"amountCents\": 8514\n      },\n      \"maximum\": {\n        \"amountCents\": 1813\n      }\n    }\n  },\n  \"countryRule\": {\n    \"countries\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"restriction\": \"blacklist\"\n  },\n  \"merchantCategoryCodeRule\": {\n    \"merchantCategoryCodes\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"restriction\": \"blacklist\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"name\": \"string\",\n  \"identifier\": \"string\",\n  \"rawStatus\": 4687.687848323893,\n  \"meta\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\",\n    \"key_2\": 2256.886413599355,\n    \"key_3\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cc009193-34ed-45d9-a44e-db3bb23ad7d7",
+              "name": "TooManyRequests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "card",
+                    ":cardId",
+                    "spending-constraint"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "cardId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"merchantCategoryRule\": {\n    \"merchantCategories\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"restriction\": \"allowlist\"\n  },\n  \"merchantRule\": {\n    \"merchants\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"restriction\": \"blacklist\"\n  },\n  \"spendingRule\": {\n    \"utilizationLimit\": {\n      \"limitAmount\": {\n        \"amountCents\": 4423\n      },\n      \"preset\": \"<string>\",\n      \"timezone\": \"<string>\",\n      \"startDate\": \"<string>\"\n    },\n    \"utilizationLimitV2\": [\n      {\n        \"limitAmount\": {\n          \"amountCents\": 7811\n        },\n        \"preset\": \"<string>\",\n        \"timezone\": \"<string>\",\n        \"startDate\": \"<string>\"\n      },\n      {\n        \"limitAmount\": {\n          \"amountCents\": 6877\n        },\n        \"preset\": \"<string>\",\n        \"timezone\": \"<string>\",\n        \"startDate\": \"<string>\"\n      }\n    ],\n    \"transactionSizeLimit\": {\n      \"minimum\": {\n        \"amountCents\": 8514\n      },\n      \"maximum\": {\n        \"amountCents\": 1813\n      }\n    }\n  },\n  \"countryRule\": {\n    \"countries\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"restriction\": \"blacklist\"\n  },\n  \"merchantCategoryCodeRule\": {\n    \"merchantCategoryCodes\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"restriction\": \"blacklist\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"name\": \"string\",\n  \"identifier\": \"string\",\n  \"rawStatus\": 4687.687848323893,\n  \"meta\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\",\n    \"key_2\": 2256.886413599355,\n    \"key_3\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3df5d35a-10cb-4f5b-b7f5-0f65daf22443",
+              "name": "Internal Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "card",
+                    ":cardId",
+                    "spending-constraint"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "cardId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"merchantCategoryRule\": {\n    \"merchantCategories\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"restriction\": \"allowlist\"\n  },\n  \"merchantRule\": {\n    \"merchants\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"restriction\": \"blacklist\"\n  },\n  \"spendingRule\": {\n    \"utilizationLimit\": {\n      \"limitAmount\": {\n        \"amountCents\": 4423\n      },\n      \"preset\": \"<string>\",\n      \"timezone\": \"<string>\",\n      \"startDate\": \"<string>\"\n    },\n    \"utilizationLimitV2\": [\n      {\n        \"limitAmount\": {\n          \"amountCents\": 7811\n        },\n        \"preset\": \"<string>\",\n        \"timezone\": \"<string>\",\n        \"startDate\": \"<string>\"\n      },\n      {\n        \"limitAmount\": {\n          \"amountCents\": 6877\n        },\n        \"preset\": \"<string>\",\n        \"timezone\": \"<string>\",\n        \"startDate\": \"<string>\"\n      }\n    ],\n    \"transactionSizeLimit\": {\n      \"minimum\": {\n        \"amountCents\": 8514\n      },\n      \"maximum\": {\n        \"amountCents\": 1813\n      }\n    }\n  },\n  \"countryRule\": {\n    \"countries\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"restriction\": \"blacklist\"\n  },\n  \"merchantCategoryCodeRule\": {\n    \"merchantCategoryCodes\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"restriction\": \"blacklist\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"name\": \"string\",\n  \"identifier\": \"string\",\n  \"rawStatus\": 4687.687848323893,\n  \"meta\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\",\n    \"key_2\": 2256.886413599355,\n    \"key_3\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.slash.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-API-Key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "1016a3c8-8b4a-4d37-9a6d-80ed45fbd853",
+    "name": "Slash Public Account Card API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API description",
+      "type": "text/plain"
+    }
+  }
+}
