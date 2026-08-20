@@ -46,6 +46,18 @@ tags:
 - Company
 - Banking
 - Payments
+- Financial-Services
+- Fintech
+- Corporate Cards
+- Business Banking
+- Invoicing
+- Expense Management
+- Treasury
+- FDX
+tags_raw:
+- Company
+- Banking
+- Payments
 - Financial Services
 - Fintech
 - Corporate Cards
@@ -322,6 +334,8 @@ apis:
   humanURL: https://docs.slash.com
   baseURL: https://api.slash.com
   tags:
+  - Customers
+  tags_raw:
   - Customer
   properties:
   - type: OpenAPI
@@ -450,6 +464,8 @@ apis:
   humanURL: https://docs.slash.com
   baseURL: https://api.slash.com
   tags:
+  - FDX
+  tags_raw:
   - Fdx
   properties:
   - type: OpenAPI
@@ -610,6 +626,8 @@ apis:
   humanURL: https://docs.slash.com
   baseURL: https://api.slash.com
   tags:
+  - Authentication
+  tags_raw:
   - Oauth2
   properties:
   - type: OpenAPI
