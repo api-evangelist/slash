@@ -12,6 +12,18 @@ description: >-
   expense reports, webhooks, and FDX-compliant financial data access — plus an
   official hosted MCP server, Agent Requests with human-in-the-loop approval,
   and Python and Node.js SDKs for AI-agent and programmatic integration.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: unknown
   onboarding: self-serve
