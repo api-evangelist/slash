@@ -923,6 +923,9 @@ apis:
   - type: AgenticAccess
     url: agentic-access/slash-agentic-access.yml
 common:
+- type: CapabilityMap
+  url: capabilities/slash-capability-edges.yml
+  name: Slash Business Capability Map
 - type: Overlay
   url: overlays/slash-openapi-overlay.yaml
 - type: PostmanWorkspace
