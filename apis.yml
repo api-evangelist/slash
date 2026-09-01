@@ -476,7 +476,7 @@ apis:
   humanURL: https://docs.slash.com
   baseURL: https://api.slash.com
   tags:
-  - Fdx
+  - FDX
   tags_raw:
   - Fdx
   properties:
