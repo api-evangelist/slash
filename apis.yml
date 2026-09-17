@@ -634,40 +634,6 @@ apis:
     url: asyncapi/slash-webhooks.yml
   - type: AgenticAccess
     url: agentic-access/slash-agentic-access.yml
-- aid: slash:slash-oauth2-api
-  name: Slash Oauth2 API
-  description: The Oauth2 API from Slash — 2 operation(s) for oauth2.
-  humanURL: https://docs.slash.com
-  baseURL: https://api.slash.com
-  tags:
-  - Authentication
-  tags_raw:
-  - Oauth2
-  properties:
-  - type: OpenAPI
-    url: openapi/slash-oauth2-api-openapi.yml
-  - type: Documentation
-    url: https://docs.slash.com
-  - type: APIReference
-    url: https://docs.slash.com/api-reference
-  - type: GettingStarted
-    url: https://docs.slash.com/introduction
-  - type: Authentication
-    url: authentication/slash-authentication.yml
-  - type: OAuthScopes
-    url: scopes/slash-scopes.yml
-  - type: Conventions
-    url: conventions/slash-conventions.yml
-  - type: Idempotency
-    url: conventions/slash-conventions.yml
-  - type: ErrorCatalog
-    url: errors/slash-problem-types.yml
-  - type: DataModel
-    url: data-model/slash-data-model.yml
-  - type: Webhooks
-    url: asyncapi/slash-webhooks.yml
-  - type: AgenticAccess
-    url: agentic-access/slash-agentic-access.yml
 - aid: slash:slash-task-api
   name: Slash Task API
   description: The Task API from Slash — 4 operation(s) for task.
@@ -902,6 +868,38 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/slash-well-known-api-openapi.yml
+  - type: Documentation
+    url: https://docs.slash.com
+  - type: APIReference
+    url: https://docs.slash.com/api-reference
+  - type: GettingStarted
+    url: https://docs.slash.com/introduction
+  - type: Authentication
+    url: authentication/slash-authentication.yml
+  - type: OAuthScopes
+    url: scopes/slash-scopes.yml
+  - type: Conventions
+    url: conventions/slash-conventions.yml
+  - type: Idempotency
+    url: conventions/slash-conventions.yml
+  - type: ErrorCatalog
+    url: errors/slash-problem-types.yml
+  - type: DataModel
+    url: data-model/slash-data-model.yml
+  - type: Webhooks
+    url: asyncapi/slash-webhooks.yml
+  - type: AgenticAccess
+    url: agentic-access/slash-agentic-access.yml
+- aid: slash:slash-oauth2-api
+  name: Slash Oauth2 API
+  description: The Oauth2 API from Slash — 2 operation(s) for oauth2.
+  humanURL: https://docs.slash.com
+  baseURL: https://api.slash.com
+  tags:
+  - Oauth2
+  properties:
+  - type: OpenAPI
+    url: openapi/slash-oauth2-api-openapi.yml
   - type: Documentation
     url: https://docs.slash.com
   - type: APIReference
