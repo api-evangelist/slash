@@ -188,6 +188,8 @@ apis:
   humanURL: https://docs.slash.com
   baseURL: https://api.slash.com
   tags:
+  - Cards
+  tags_raw:
   - Card
   properties:
   - type: OpenAPI
@@ -512,6 +514,8 @@ apis:
   humanURL: https://docs.slash.com
   baseURL: https://api.slash.com
   tags:
+  - Invoices
+  tags_raw:
   - Invoice
   properties:
   - type: OpenAPI
@@ -576,6 +580,8 @@ apis:
   humanURL: https://docs.slash.com
   baseURL: https://api.slash.com
   tags:
+  - Merchants
+  tags_raw:
   - Merchant
   properties:
   - type: OpenAPI
@@ -800,6 +806,8 @@ apis:
   humanURL: https://docs.slash.com
   baseURL: https://api.slash.com
   tags:
+  - Virtual Accounts
+  tags_raw:
   - Virtual Account
   properties:
   - type: OpenAPI
@@ -896,6 +904,8 @@ apis:
   humanURL: https://docs.slash.com
   baseURL: https://api.slash.com
   tags:
+  - Authentication
+  tags_raw:
   - Oauth2
   properties:
   - type: OpenAPI
