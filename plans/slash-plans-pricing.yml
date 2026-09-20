@@ -1,0 +1,34 @@
+# Pricing transcribed from the provider's own page — see provenance. Numbers are quoted, not derived.
+generated: '2026-09-20'
+method: searched
+source: https://www.slash.com/pricing
+sources:
+- https://www.slash.com/pricing
+provenance:
+  tool: planning/api-economics/harvest_pricing.py
+  run: 20260920T120546
+  grounding: every price_text was found verbatim in the fetched page text
+audience: business-product
+pricing_basis: tiered-subscription
+published: true
+note: Business banking pricing page with two tiers (Free, Pro) plus per-transaction fees; Slash API and
+  Card management API listed as plan features without separate API pricing.
+plan_count: 2
+currency: USD
+plans:
+- name: Free
+  price_text: $0 / month
+  price: 0
+  currency: USD
+  period: month
+  included_quota: Same-day ACH transfers — $1; Domestic wire transfers — $6; Outgoing Fednow/RTP — $5;
+    Unlimited virtual cards; International wire transfers — $25; Foreign transaction fee (card) — 1% (min
+    $0.4); Instant deposit fee 0.2% (max $50)
+- name: Pro
+  price_text: $25 / month
+  price: 25
+  currency: USD
+  period: month
+  included_quota: Same-day ACH transfers — $0; Domestic wire transfers — $0; Outgoing Fednow/RTP — $0;
+    Unlimited virtual cards; International wire transfers — $25; Foreign transaction fee (card) — 1% (min
+    $0.4); Instant deposit fee 0.2% (max $50)
