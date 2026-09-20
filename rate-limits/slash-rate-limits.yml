@@ -1,0 +1,16 @@
+# Rate limits transcribed from the provider's own documentation — see provenance. Quoted, not derived.
+generated: '2026-09-20'
+method: searched
+source: https://docs.slash.com/api-reference/merchant-get
+sources:
+- https://docs.slash.com/api-reference/merchant-get
+provenance:
+  tool: planning/api-economics/harvest_ratelimits.py
+  run: 20260920T133210
+  grounding: every limit_text was found verbatim in the fetched page text
+published: false
+note: API reference page for GET /merchant; no numeric rate limits stated. A 429 response code is listed
+  among possible responses.
+limit_count: 0
+limits: []
+exceeded_status: 429

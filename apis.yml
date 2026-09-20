@@ -933,6 +933,8 @@ apis:
   - type: AgenticAccess
     url: agentic-access/slash-agentic-access.yml
 common:
+- type: RateLimits
+  url: rate-limits/slash-rate-limits.yml
 - type: Plans
   url: plans/slash-plans-pricing.yml
 - type: CapabilityMap
