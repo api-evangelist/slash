@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Slash Public Account Analytics API
+  title: Slash Public Analytics API
   description: API description
   version: 0.0.1
   contact: {}
@@ -30,9 +30,9 @@ paths:
         **Data Freshness**: Data may be up to 1 hour behind real-time.
 
 
-        Use `SHOW TABLES` to list available tables and `DESCRIBE <table>` to see columns.
+        Use `SHOW TABLES` to list available tables and `DESCRIBE
 
-        '
+        ` to see columns.'
       requestBody:
         required: true
         content:
@@ -85,6 +85,10 @@ paths:
       - bearer: []
       tags:
       - Analytics
+      summary: Create analytics
+      x-summary-source: derived
+      operationId: postAnalytics
+      x-operation-id-source: derived
 components:
   schemas:
     paths.analytics._dto.PostRequest:

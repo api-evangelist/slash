@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Slash Public Account Transfers API
+  title: Slash Public Transfers API
   description: API description
   version: 0.0.1
   contact: {}
@@ -18,7 +18,32 @@ paths:
   /transfers/book-transfer:
     x-reference-path: paths/transfers/book-transfer/route.yaml
     post:
-      description: "Initiate a *book transfer* — an instant, intra‐Slash money movement\nbetween two accounts the caller has access to.\n\n`from` and `to` accept any Slash account id the caller can address:\n  - `sa_group_*` — a Slash account group's primary cash account\n  - `sub_*`      — a virtual account inside a Slash account group\n\nThe legal entity owning `from` must equal the request's `x-legal-entity`\nheader (the source-scope guard for user-scoped API keys), and the caller\nmust be a member of both `from` and `to`'s legal entities. Cross-legal-\nentity transfers between entities you own are supported; sending to a\nthird party is not (see closed-loop-payment, coming soon).\n\nPayment is settled instantly on Slash's ledger — no banking-network rail\nis touched. For ACH/wire/RTP, use the rail-specific endpoint.\n"
+      description: 'Initiate a *book transfer* — an instant, intra‐Slash money movement
+
+        between two accounts the caller has access to.
+
+
+        `from` and `to` accept any Slash account id the caller can address:
+
+        - `sa_group_*` — a Slash account group''s primary cash account
+
+        - `sub_*` — a virtual account inside a Slash account group
+
+
+        The legal entity owning `from` must equal the request''s `x-legal-entity`
+
+        header (the source-scope guard for user-scoped API keys), and the caller
+
+        must be a member of both `from` and `to`''s legal entities. Cross-legal-
+
+        entity transfers between entities you own are supported; sending to a
+
+        third party is not (see closed-loop-payment, coming soon).
+
+
+        Payment is settled instantly on Slash''s ledger — no banking-network rail
+
+        is touched. For ACH/wire/RTP, use the rail-specific endpoint.'
       parameters:
       - name: X-Idempotency-Key
         in: header
@@ -110,6 +135,10 @@ paths:
       - bearer: []
       tags:
       - Transfers
+      summary: Create transfers book transfer
+      x-summary-source: derived
+      operationId: postTransfersBookTransfer
+      x-operation-id-source: derived
 components:
   schemas:
     Error:

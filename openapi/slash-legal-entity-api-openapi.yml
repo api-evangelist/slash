@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Slash Public Account Legal Entity API
+  title: Slash Public Legal Entity API
   description: API description
   version: 0.0.1
   contact: {}
@@ -75,45 +75,12 @@ paths:
       - bearer: []
       tags:
       - Legal Entity
+      summary: Get legal entity
+      x-summary-source: derived
+      operationId: getLegalEntity
+      x-operation-id-source: derived
 components:
   schemas:
-    LegalEntity:
-      type: object
-      description: 'A legal entity is an entity (either a person or a business) that can own accounts.
-
-        If you are using the API with an API key, your API key will only be associated with one legal entity, so you will not need to specify the legal entity ID in most endpoints.
-
-        If you are using the API with an OAuth2 access token, you can filter the results of most endpoints to only show data for a specific legal entity by specifying the legal entity ID in the URL.
-
-        '
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        structure:
-          type: string
-          description: Will be empty in rare cases where the legal entity has not yet been fully created.
-          enum:
-          - person
-          - llc
-          - lp
-          - llp
-          - gp
-          - partnership
-          - cooperative
-          - ccorp
-          - scorp
-          - other
-      required:
-      - id
-      - name
-      x-entrypoint:
-        virtualPath: schemas/LegalEntity
-        sourcePath: schemas/LegalEntity.yaml
-        title: LegalEntity
-        origin: ./src/publicApi
-      title: LegalEntity
     Error:
       type: object
       properties:
@@ -155,6 +122,43 @@ components:
         title: PaginationResponse
         origin: ./src/publicApi
       title: PaginationResponse
+    LegalEntity:
+      type: object
+      description: 'A legal entity is an entity (either a person or a business) that can own accounts.
+
+        If you are using the API with an API key, your API key will only be associated with one legal entity, so you will not need to specify the legal entity ID in most endpoints.
+
+        If you are using the API with an OAuth2 access token, you can filter the results of most endpoints to only show data for a specific legal entity by specifying the legal entity ID in the URL.
+
+        '
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        structure:
+          type: string
+          description: Will be empty in rare cases where the legal entity has not yet been fully created.
+          enum:
+          - person
+          - llc
+          - lp
+          - llp
+          - gp
+          - partnership
+          - cooperative
+          - ccorp
+          - scorp
+          - other
+      required:
+      - id
+      - name
+      x-entrypoint:
+        virtualPath: schemas/LegalEntity
+        sourcePath: schemas/LegalEntity.yaml
+        title: LegalEntity
+        origin: ./src/publicApi
+      title: LegalEntity
   securitySchemes:
     api_key:
       type: apiKey

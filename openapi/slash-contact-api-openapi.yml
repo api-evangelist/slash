@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Slash Public Account Contact API
+  title: Slash Public Contact API
   description: API description
   version: 0.0.1
   contact: {}
@@ -94,6 +94,10 @@ paths:
       - bearer: []
       tags:
       - Contact
+      summary: Get contact
+      x-summary-source: derived
+      operationId: getContact
+      x-operation-id-source: derived
     post:
       description: Create a new contact for your legal entity. Contacts are used as invoice recipients.
       parameters:
@@ -187,6 +191,10 @@ paths:
       - bearer: []
       tags:
       - Contact
+      summary: Create contact
+      x-summary-source: derived
+      operationId: postContact
+      x-operation-id-source: derived
   /contact/{contactId}:
     x-reference-path: paths/contact/{contactId}/route.yaml
     get:
@@ -249,6 +257,10 @@ paths:
       - bearer: []
       tags:
       - Contact
+      summary: Get contact by contact id
+      x-summary-source: derived
+      operationId: getContactByContactId
+      x-operation-id-source: derived
     patch:
       description: Update a contact's information.
       parameters:
@@ -349,6 +361,10 @@ paths:
       - bearer: []
       tags:
       - Contact
+      summary: Update contact by contact id
+      x-summary-source: derived
+      operationId: patchContactByContactId
+      x-operation-id-source: derived
   /contact/{contactId}/ach-debit-recurring:
     x-reference-path: paths/contact/{contactId}/ach-debit-recurring/route.yaml
     get:
@@ -407,33 +423,12 @@ paths:
       - bearer: []
       tags:
       - Contact
+      summary: Get contact by contact id ach debit recurring
+      x-summary-source: derived
+      operationId: getContactByContactIdAchDebitRecurring
+      x-operation-id-source: derived
 components:
   schemas:
-    Error:
-      type: object
-      properties:
-        message:
-          type: string
-        name:
-          type: string
-        identifier:
-          type: string
-        rawStatus:
-          type: number
-        meta:
-          type: object
-          additionalProperties: true
-      required:
-      - message
-      - name
-      - identifier
-      - rawStatus
-      x-entrypoint:
-        origin: ./src/publicApi
-        sourcePath: ./src/publicApi/main.yaml
-        title: Error
-        virtualPath: components/Error
-      title: Error
     Contact:
       type: object
       description: A contact represents a counterparty (customer, vendor, etc.) associated with a legal entity.
@@ -477,6 +472,31 @@ components:
         title: Contact
         origin: ./src/publicApi
       title: Contact
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+        name:
+          type: string
+        identifier:
+          type: string
+        rawStatus:
+          type: number
+        meta:
+          type: object
+          additionalProperties: true
+      required:
+      - message
+      - name
+      - identifier
+      - rawStatus
+      x-entrypoint:
+        origin: ./src/publicApi
+        sourcePath: ./src/publicApi/main.yaml
+        title: Error
+        virtualPath: components/Error
+      title: Error
     Pagination.PaginationResponse:
       type: object
       description: Response sent when requesting a list of data

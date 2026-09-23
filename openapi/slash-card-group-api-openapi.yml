@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Slash Public Account Card Group API
+  title: Slash Public Card Group API
   description: API description
   version: 0.0.1
   contact: {}
@@ -103,6 +103,10 @@ paths:
       - bearer: []
       tags:
       - Card Group
+      summary: Get card group
+      x-summary-source: derived
+      operationId: getCardGroup
+      x-operation-id-source: derived
     post:
       description: Create a card group.
       requestBody:
@@ -167,6 +171,10 @@ paths:
       - bearer: []
       tags:
       - Card Group
+      summary: Create card group
+      x-summary-source: derived
+      operationId: postCardGroup
+      x-operation-id-source: derived
   /card-group/{cardGroupId}:
     parameters:
     - name: cardGroupId
@@ -236,6 +244,10 @@ paths:
       - bearer: []
       tags:
       - Card Group
+      summary: Update card group by card group id
+      x-summary-source: derived
+      operationId: patchCardGroupByCardGroupId
+      x-operation-id-source: derived
     get:
       description: Fetch details for a single card group by card group ID
       responses:
@@ -279,6 +291,10 @@ paths:
       - bearer: []
       tags:
       - Card Group
+      summary: Get card group by card group id
+      x-summary-source: derived
+      operationId: getCardGroupByCardGroupId
+      x-operation-id-source: derived
   /card-group/{cardGroupId}/utilization:
     parameters:
     - name: cardGroupId
@@ -330,6 +346,10 @@ paths:
       - bearer: []
       tags:
       - Card Group
+      summary: Get card group by card group id utilization
+      x-summary-source: derived
+      operationId: getCardGroupByCardGroupIdUtilization
+      x-operation-id-source: derived
   /card-group/{cardGroupId}/spending-constraint:
     parameters:
     - name: cardGroupId
@@ -392,6 +412,10 @@ paths:
       - bearer: []
       tags:
       - Card Group
+      summary: Update card group by card group id spending constraint
+      x-summary-source: derived
+      operationId: patchCardGroupByCardGroupIdSpendingConstraint
+      x-operation-id-source: derived
     put:
       description: Fully replace a card group's spending constraint.
       requestBody:
@@ -446,75 +470,69 @@ paths:
       - bearer: []
       tags:
       - Card Group
+      summary: Replace card group by card group id spending constraint
+      x-summary-source: derived
+      operationId: putCardGroupByCardGroupIdSpendingConstraint
+      x-operation-id-source: derived
 components:
   schemas:
-    Restriction:
-      type: string
-      enum:
-      - allowlist
-      - blacklist
-      x-entrypoint:
-        virtualPath: schemas/Restriction
-        sourcePath: schemas/Restriction.yaml
-        title: Restriction
-        origin: ./src/publicApi
-      title: Restriction
-    Money:
-      type: object
-      description: Represents a monetary value
-      properties:
-        amountCents:
-          type: integer
-          description: The amount in cents
-      required:
-      - amountCents
-      x-entrypoint:
-        virtualPath: schemas/Money
-        sourcePath: schemas/Money.yaml
-        title: Money
-        origin: ./src/publicApi
-      title: Money
-    Pagination.PaginationResponse:
-      type: object
-      description: Response sent when requesting a list of data
-      properties:
-        nextCursor:
-          type: string
-          description: The cursor to use to retrieve the next page of data. If this is not sent, there is no more data to retrieve.
-        count:
-          type: number
-          description: The number of items in the current page of data.
-      x-entrypoint:
-        virtualPath: schemas/Pagination/PaginationResponse
-        sourcePath: schemas/Pagination/PaginationResponse.yaml
-        title: PaginationResponse
-        origin: ./src/publicApi
-      title: PaginationResponse
-    Error:
+    CardGroup:
       type: object
       properties:
-        message:
+        id:
           type: string
         name:
           type: string
-        identifier:
+        virtualAccountId:
           type: string
-        rawStatus:
-          type: number
-        meta:
-          type: object
-          additionalProperties: true
+          description: The ID of the virtual account that the card group is associated with
+        spendingConstraint:
+          $ref: '#/components/schemas/SpendingConstraint'
+          x-entrypoint:
+            virtualPath: schemas/SpendingConstraint
+            sourcePath: schemas/SpendingConstraint.yaml
+            title: SpendingConstraint
+            origin: ./src/publicApi
       required:
-      - message
+      - id
       - name
-      - identifier
-      - rawStatus
       x-entrypoint:
+        virtualPath: schemas/CardGroup
+        sourcePath: schemas/CardGroup.yaml
+        title: CardGroup
         origin: ./src/publicApi
-        sourcePath: ./src/publicApi/main.yaml
-        title: Error
-        virtualPath: components/Error
-      title: Error
+      title: CardGroup
+    CardGroupUtilization:
+      type: object
+      properties:
+        nextResetDate:
+          type: string
+          format: date-time
+          description: The date the next reset will occur, undefined if collective
+        spend:
+          $ref: '#/components/schemas/Money'
+          description: The amount of money spent in the current period
+          x-entrypoint:
+            virtualPath: schemas/Money
+            sourcePath: schemas/Money.yaml
+            title: Money
+            origin: ./src/publicApi
+        availableBalance:
+          $ref: '#/components/schemas/Money'
+          description: The amount of money available in the current period. Only returned if the card or card group has a spend limit.
+          x-entrypoint:
+            virtualPath: schemas/Money
+            sourcePath: schemas/Money.yaml
+            title: Money
+            origin: ./src/publicApi
+      required:
+      - spend
+      x-entrypoint:
+        virtualPath: schemas/CardGroupUtilization
+        sourcePath: schemas/CardGroupUtilization.yaml
+        title: CardGroupUtilization
+        origin: ./src/publicApi
+      title: CardGroupUtilization
     SpendingConstraint:
       type: object
       description: A constraint that can be applied to a CardGroupSpendingRule
@@ -675,63 +693,21 @@ components:
         title: SpendingConstraint
         origin: ./src/publicApi
       title: SpendingConstraint
-    CardGroupUtilization:
+    Money:
       type: object
+      description: Represents a monetary value
       properties:
-        nextResetDate:
-          type: string
-          format: date-time
-          description: The date the next reset will occur, undefined if collective
-        spend:
-          $ref: '#/components/schemas/Money'
-          description: The amount of money spent in the current period
-          x-entrypoint:
-            virtualPath: schemas/Money
-            sourcePath: schemas/Money.yaml
-            title: Money
-            origin: ./src/publicApi
-        availableBalance:
-          $ref: '#/components/schemas/Money'
-          description: The amount of money available in the current period. Only returned if the card or card group has a spend limit.
-          x-entrypoint:
-            virtualPath: schemas/Money
-            sourcePath: schemas/Money.yaml
-            title: Money
-            origin: ./src/publicApi
+        amountCents:
+          type: integer
+          description: The amount in cents
       required:
-      - spend
+      - amountCents
       x-entrypoint:
-        virtualPath: schemas/CardGroupUtilization
-        sourcePath: schemas/CardGroupUtilization.yaml
-        title: CardGroupUtilization
+        virtualPath: schemas/Money
+        sourcePath: schemas/Money.yaml
+        title: Money
         origin: ./src/publicApi
-      title: CardGroupUtilization
-    CardGroup:
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        virtualAccountId:
-          type: string
-          description: The ID of the virtual account that the card group is associated with
-        spendingConstraint:
-          $ref: '#/components/schemas/SpendingConstraint'
-          x-entrypoint:
-            virtualPath: schemas/SpendingConstraint
-            sourcePath: schemas/SpendingConstraint.yaml
-            title: SpendingConstraint
-            origin: ./src/publicApi
-      required:
-      - id
-      - name
-      x-entrypoint:
-        virtualPath: schemas/CardGroup
-        sourcePath: schemas/CardGroup.yaml
-        title: CardGroup
-        origin: ./src/publicApi
-      title: CardGroup
+      title: Money
     PartialSpendingConstraint:
       type: object
       description: A partial spending constraint update that can be applied to a CardGroupSpendingRule
@@ -874,6 +850,58 @@ components:
         title: PartialSpendingConstraint
         origin: ./src/publicApi
       title: PartialSpendingConstraint
+    Restriction:
+      type: string
+      enum:
+      - allowlist
+      - blacklist
+      x-entrypoint:
+        virtualPath: schemas/Restriction
+        sourcePath: schemas/Restriction.yaml
+        title: Restriction
+        origin: ./src/publicApi
+      title: Restriction
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+        name:
+          type: string
+        identifier:
+          type: string
+        rawStatus:
+          type: number
+        meta:
+          type: object
+          additionalProperties: true
+      required:
+      - message
+      - name
+      - identifier
+      - rawStatus
+      x-entrypoint:
+        origin: ./src/publicApi
+        sourcePath: ./src/publicApi/main.yaml
+        title: Error
+        virtualPath: components/Error
+      title: Error
+    Pagination.PaginationResponse:
+      type: object
+      description: Response sent when requesting a list of data
+      properties:
+        nextCursor:
+          type: string
+          description: The cursor to use to retrieve the next page of data. If this is not sent, there is no more data to retrieve.
+        count:
+          type: number
+          description: The number of items in the current page of data.
+      x-entrypoint:
+        virtualPath: schemas/Pagination/PaginationResponse
+        sourcePath: schemas/Pagination/PaginationResponse.yaml
+        title: PaginationResponse
+        origin: ./src/publicApi
+      title: PaginationResponse
   securitySchemes:
     api_key:
       type: apiKey

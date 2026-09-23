@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Slash Public Account Merchant API
+  title: Slash Public Merchant API
   description: API description
   version: 0.0.1
   contact: {}
@@ -88,6 +88,10 @@ paths:
       - bearer: []
       tags:
       - Merchant
+      summary: Get merchant
+      x-summary-source: derived
+      operationId: getMerchant
+      x-operation-id-source: derived
   /merchant/{merchantId}:
     parameters:
     - name: merchantId
@@ -139,6 +143,10 @@ paths:
       - bearer: []
       tags:
       - Merchant
+      summary: Get merchant by merchant id
+      x-summary-source: derived
+      operationId: getMerchantByMerchantId
+      x-operation-id-source: derived
 components:
   schemas:
     Error:
@@ -166,6 +174,22 @@ components:
         title: Error
         virtualPath: components/Error
       title: Error
+    Pagination.PaginationResponse:
+      type: object
+      description: Response sent when requesting a list of data
+      properties:
+        nextCursor:
+          type: string
+          description: The cursor to use to retrieve the next page of data. If this is not sent, there is no more data to retrieve.
+        count:
+          type: number
+          description: The number of items in the current page of data.
+      x-entrypoint:
+        virtualPath: schemas/Pagination/PaginationResponse
+        sourcePath: schemas/Pagination/PaginationResponse.yaml
+        title: PaginationResponse
+        origin: ./src/publicApi
+      title: PaginationResponse
     Merchant:
       title: Merchant
       type: object
@@ -184,22 +208,6 @@ components:
         sourcePath: schemas/Merchant.yaml
         title: Merchant
         origin: ./src/publicApi
-    Pagination.PaginationResponse:
-      type: object
-      description: Response sent when requesting a list of data
-      properties:
-        nextCursor:
-          type: string
-          description: The cursor to use to retrieve the next page of data. If this is not sent, there is no more data to retrieve.
-        count:
-          type: number
-          description: The number of items in the current page of data.
-      x-entrypoint:
-        virtualPath: schemas/Pagination/PaginationResponse
-        sourcePath: schemas/Pagination/PaginationResponse.yaml
-        title: PaginationResponse
-        origin: ./src/publicApi
-      title: PaginationResponse
   securitySchemes:
     api_key:
       type: apiKey

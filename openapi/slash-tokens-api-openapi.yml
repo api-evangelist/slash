@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Slash Public Account Tokens API
+  title: Slash Public Tokens API
   description: API description
   version: 0.0.1
   contact: {}
@@ -87,6 +87,8 @@ paths:
       security: []
       tags:
       - Tokens
+      operationId: getTokensPrices
+      x-operation-id-source: derived
 components:
   schemas:
     Error:

@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Slash Public Account .well Known API
+  title: Slash Public .well Known API
   description: API description
   version: 0.0.1
   contact: {}
@@ -94,8 +94,28 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
+      summary: Get well known openid configuration
+      x-summary-source: derived
+      operationId: getWellKnownOpenidConfiguration
+      x-operation-id-source: derived
 components:
   schemas:
+    DeveloperApplicationScope:
+      type: string
+      enum:
+      - openid
+      - offline_access
+      - profile
+      - email
+      - address
+      - phone
+      - user.identity.view
+      x-entrypoint:
+        virtualPath: schemas/DeveloperApplicationScope
+        sourcePath: schemas/DeveloperApplicationScope.yaml
+        title: DeveloperApplicationScope
+        origin: ./src/publicApi
+      title: DeveloperApplicationScope
     Error:
       type: object
       properties:
@@ -121,22 +141,6 @@ components:
         title: Error
         virtualPath: components/Error
       title: Error
-    DeveloperApplicationScope:
-      type: string
-      enum:
-      - openid
-      - offline_access
-      - profile
-      - email
-      - address
-      - phone
-      - user.identity.view
-      x-entrypoint:
-        virtualPath: schemas/DeveloperApplicationScope
-        sourcePath: schemas/DeveloperApplicationScope.yaml
-        title: DeveloperApplicationScope
-        origin: ./src/publicApi
-      title: DeveloperApplicationScope
   securitySchemes:
     api_key:
       type: apiKey
