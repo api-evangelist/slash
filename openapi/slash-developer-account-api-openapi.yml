@@ -96,6 +96,76 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    DeveloperApplication.PermissionKeyTypes.PermissionPolicyKey:
+      oneOf:
+      - $ref: '#/components/schemas/DeveloperApplication.PermissionKeyTypes.LegalEntityPermissionPolicyKey'
+        x-entrypoint:
+          virtualPath: schemas/DeveloperApplication/PermissionKeyTypes/LegalEntityPermissionPolicyKey
+          sourcePath: schemas/DeveloperApplication/PermissionKeyTypes/LegalEntityPermissionPolicyKey.yaml
+          title: LegalEntityPermissionPolicyKey
+          origin: ./src/publicApi
+      - $ref: '#/components/schemas/DeveloperApplication.PermissionKeyTypes.SlashAccountPermissionPolicyKey'
+        x-entrypoint:
+          virtualPath: schemas/DeveloperApplication/PermissionKeyTypes/SlashAccountPermissionPolicyKey
+          sourcePath: schemas/DeveloperApplication/PermissionKeyTypes/SlashAccountPermissionPolicyKey.yaml
+          title: SlashAccountPermissionPolicyKey
+          origin: ./src/publicApi
+      x-entrypoint:
+        virtualPath: schemas/DeveloperApplication/PermissionKeyTypes/PermissionPolicyKey
+        sourcePath: schemas/DeveloperApplication/PermissionKeyTypes/PermissionPolicyKey.yaml
+        title: PermissionPolicyKey
+        origin: ./src/publicApi
+      title: PermissionPolicyKey
+    DeveloperApplication.DeveloperApplicationModel:
+      type: object
+      properties:
+        id:
+          type: string
+        developerAccountId:
+          type: string
+        name:
+          type: string
+        status:
+          $ref: '#/components/schemas/DeveloperApplication.DeveloperApplicationStatus'
+          x-entrypoint:
+            virtualPath: schemas/DeveloperApplication/DeveloperApplicationStatus
+            sourcePath: schemas/DeveloperApplication/DeveloperApplicationStatus.yaml
+            title: DeveloperApplicationStatus
+            origin: ./src/publicApi
+        type:
+          $ref: '#/components/schemas/DeveloperApplication.DeveloperApplicationType'
+          x-entrypoint:
+            virtualPath: schemas/DeveloperApplication/DeveloperApplicationType
+            sourcePath: schemas/DeveloperApplication/DeveloperApplicationType.yaml
+            title: DeveloperApplicationType
+            origin: ./src/publicApi
+        data:
+          $ref: '#/components/schemas/DeveloperApplication.DeveloperApplicationData'
+          x-entrypoint:
+            virtualPath: schemas/DeveloperApplication/DeveloperApplicationData
+            sourcePath: schemas/DeveloperApplication/DeveloperApplicationData.yaml
+            title: DeveloperApplicationData
+            origin: ./src/publicApi
+        timestamp:
+          type: string
+        oauthClientId:
+          type: string
+        oauthClientSecret:
+          type: string
+      required:
+      - id
+      - developerAccountId
+      - name
+      - status
+      - type
+      - data
+      - timestamp
+      x-entrypoint:
+        virtualPath: schemas/DeveloperApplication/DeveloperApplicationModel
+        sourcePath: schemas/DeveloperApplication/DeveloperApplicationModel.yaml
+        title: DeveloperApplicationModel
+        origin: ./src/publicApi
+      title: DeveloperApplicationModel
     DeveloperApplication.PermissionKeyTypes.LegalEntityPermissionPolicyKey:
       type: string
       enum:
@@ -137,26 +207,6 @@ components:
         title: LegalEntityPermissionPolicyKey
         origin: ./src/publicApi
       title: LegalEntityPermissionPolicyKey
-    DeveloperApplication.PermissionKeyTypes.PermissionPolicyKey:
-      oneOf:
-      - $ref: '#/components/schemas/DeveloperApplication.PermissionKeyTypes.LegalEntityPermissionPolicyKey'
-        x-entrypoint:
-          virtualPath: schemas/DeveloperApplication/PermissionKeyTypes/LegalEntityPermissionPolicyKey
-          sourcePath: schemas/DeveloperApplication/PermissionKeyTypes/LegalEntityPermissionPolicyKey.yaml
-          title: LegalEntityPermissionPolicyKey
-          origin: ./src/publicApi
-      - $ref: '#/components/schemas/DeveloperApplication.PermissionKeyTypes.SlashAccountPermissionPolicyKey'
-        x-entrypoint:
-          virtualPath: schemas/DeveloperApplication/PermissionKeyTypes/SlashAccountPermissionPolicyKey
-          sourcePath: schemas/DeveloperApplication/PermissionKeyTypes/SlashAccountPermissionPolicyKey.yaml
-          title: SlashAccountPermissionPolicyKey
-          origin: ./src/publicApi
-      x-entrypoint:
-        virtualPath: schemas/DeveloperApplication/PermissionKeyTypes/PermissionPolicyKey
-        sourcePath: schemas/DeveloperApplication/PermissionKeyTypes/PermissionPolicyKey.yaml
-        title: PermissionPolicyKey
-        origin: ./src/publicApi
-      title: PermissionPolicyKey
     DeveloperApplication.DeveloperApplicationData:
       type: object
       properties:
@@ -212,66 +262,6 @@ components:
         title: DeveloperApplicationData
         origin: ./src/publicApi
       title: DeveloperApplicationData
-    DeveloperApplication.DeveloperApplicationType:
-      type: string
-      enum:
-      - service
-      x-entrypoint:
-        virtualPath: schemas/DeveloperApplication/DeveloperApplicationType
-        sourcePath: schemas/DeveloperApplication/DeveloperApplicationType.yaml
-        title: DeveloperApplicationType
-        origin: ./src/publicApi
-      title: DeveloperApplicationType
-    DeveloperApplication.DeveloperApplicationModel:
-      type: object
-      properties:
-        id:
-          type: string
-        developerAccountId:
-          type: string
-        name:
-          type: string
-        status:
-          $ref: '#/components/schemas/DeveloperApplication.DeveloperApplicationStatus'
-          x-entrypoint:
-            virtualPath: schemas/DeveloperApplication/DeveloperApplicationStatus
-            sourcePath: schemas/DeveloperApplication/DeveloperApplicationStatus.yaml
-            title: DeveloperApplicationStatus
-            origin: ./src/publicApi
-        type:
-          $ref: '#/components/schemas/DeveloperApplication.DeveloperApplicationType'
-          x-entrypoint:
-            virtualPath: schemas/DeveloperApplication/DeveloperApplicationType
-            sourcePath: schemas/DeveloperApplication/DeveloperApplicationType.yaml
-            title: DeveloperApplicationType
-            origin: ./src/publicApi
-        data:
-          $ref: '#/components/schemas/DeveloperApplication.DeveloperApplicationData'
-          x-entrypoint:
-            virtualPath: schemas/DeveloperApplication/DeveloperApplicationData
-            sourcePath: schemas/DeveloperApplication/DeveloperApplicationData.yaml
-            title: DeveloperApplicationData
-            origin: ./src/publicApi
-        timestamp:
-          type: string
-        oauthClientId:
-          type: string
-        oauthClientSecret:
-          type: string
-      required:
-      - id
-      - developerAccountId
-      - name
-      - status
-      - type
-      - data
-      - timestamp
-      x-entrypoint:
-        virtualPath: schemas/DeveloperApplication/DeveloperApplicationModel
-        sourcePath: schemas/DeveloperApplication/DeveloperApplicationModel.yaml
-        title: DeveloperApplicationModel
-        origin: ./src/publicApi
-      title: DeveloperApplicationModel
     DeveloperApplication.PermissionKeyTypes.SlashAccountPermissionPolicyKey:
       type: string
       enum:
@@ -301,6 +291,28 @@ components:
         title: SlashAccountPermissionPolicyKey
         origin: ./src/publicApi
       title: SlashAccountPermissionPolicyKey
+    DeveloperApplication.DeveloperApplicationType:
+      type: string
+      enum:
+      - service
+      x-entrypoint:
+        virtualPath: schemas/DeveloperApplication/DeveloperApplicationType
+        sourcePath: schemas/DeveloperApplication/DeveloperApplicationType.yaml
+        title: DeveloperApplicationType
+        origin: ./src/publicApi
+      title: DeveloperApplicationType
+    DeveloperApplication.DeveloperApplicationStatus:
+      type: string
+      enum:
+      - test
+      - under_review
+      - production
+      x-entrypoint:
+        virtualPath: schemas/DeveloperApplication/DeveloperApplicationStatus
+        sourcePath: schemas/DeveloperApplication/DeveloperApplicationStatus.yaml
+        title: DeveloperApplicationStatus
+        origin: ./src/publicApi
+      title: DeveloperApplicationStatus
     Error:
       type: object
       properties:
@@ -326,18 +338,6 @@ components:
         title: Error
         virtualPath: components/Error
       title: Error
-    DeveloperApplication.DeveloperApplicationStatus:
-      type: string
-      enum:
-      - test
-      - under_review
-      - production
-      x-entrypoint:
-        virtualPath: schemas/DeveloperApplication/DeveloperApplicationStatus
-        sourcePath: schemas/DeveloperApplication/DeveloperApplicationStatus.yaml
-        title: DeveloperApplicationStatus
-        origin: ./src/publicApi
-      title: DeveloperApplicationStatus
   securitySchemes:
     api_key:
       type: apiKey

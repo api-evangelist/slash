@@ -694,37 +694,153 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    CardGroupUtilization:
+    Restriction:
+      type: string
+      enum:
+      - allowlist
+      - blacklist
+      x-entrypoint:
+        virtualPath: schemas/Restriction
+        sourcePath: schemas/Restriction.yaml
+        title: Restriction
+        origin: ./src/publicApi
+      title: Restriction
+    CardStatus:
+      type: string
+      enum:
+      - active
+      - paused
+      - inactive
+      - closed
+      x-entrypoint:
+        virtualPath: schemas/CardStatus
+        sourcePath: schemas/CardStatus.yaml
+        title: CardStatus
+        origin: ./src/publicApi
+      title: CardStatus
+    Card:
       type: object
       properties:
-        nextResetDate:
+        id:
+          type: string
+        accountId:
+          type: string
+          description: The account that this card is associated with
+        virtualAccountId:
+          type: string
+          description: The virtual account that this card is associated with
+        last4:
+          type: string
+          description: The last 4 digits of the card number
+        name:
+          type: string
+          description: The name assigned to the card that appears on the user dashboard
+        expiryMonth:
+          type: string
+          description: The month the card expires formatted as MM (01, 02, ..., 12)
+        expiryYear:
+          type: string
+          description: The year the card expires formatted as YYYY (2024, 2025, ...)
+        status:
+          allOf:
+          - $ref: '#/components/schemas/CardStatus'
+            x-entrypoint:
+              virtualPath: schemas/CardStatus
+              sourcePath: schemas/CardStatus.yaml
+              title: CardStatus
+              origin: ./src/publicApi
+          - description: The status of the card
+        isPhysical:
+          type: boolean
+          description: When true, a physical card has been issued. Otherwise, this is a virtual card.
+        isSingleUse:
+          type: boolean
+          description: When true, the card will be automatically closed after a single authorization attempt. Note that the card will be closed even if the authorization declines or drops
+        pan:
+          type: string
+          description: This field contains the full PAN which will only be sent on a request for a single card when you set the query param "include_pan" to "true"
+        cvv:
+          type: string
+          description: This field will contain full CVV which will only be sent on a request for a single card when you set the query param "include_pan" to "true"
+        cardGroupId:
+          type: string
+          description: The card group the card belongs to.
+        cardGroupName:
+          type: string
+          description: The name of the card group the card belongs to.
+        createdAt:
           type: string
           format: date-time
-          description: The date the next reset will occur, undefined if collective
-        spend:
-          $ref: '#/components/schemas/Money'
-          description: The amount of money spent in the current period
+        spendingConstraint:
+          $ref: '#/components/schemas/SpendingConstraint'
+          description: The spending constraint applied to the card
           x-entrypoint:
-            virtualPath: schemas/Money
-            sourcePath: schemas/Money.yaml
-            title: Money
+            virtualPath: schemas/SpendingConstraint
+            sourcePath: schemas/SpendingConstraint.yaml
+            title: SpendingConstraint
             origin: ./src/publicApi
-        availableBalance:
-          $ref: '#/components/schemas/Money'
-          description: The amount of money available in the current period. Only returned if the card or card group has a spend limit.
-          x-entrypoint:
-            virtualPath: schemas/Money
-            sourcePath: schemas/Money.yaml
-            title: Money
-            origin: ./src/publicApi
+        userData:
+          type: object
+          description: Arbitrary information that can be attached to the card. See the [`PATCH /card/{cardId}`](api-reference/card-patch) endpoint for more details on how to add user data.
+        cardProductId:
+          type: string
+          description: The ID of the card product this card was created with.
+        modifiers:
+          type: array
+          items:
+            $ref: '#/components/schemas/CardModifier'
+            x-entrypoint:
+              virtualPath: schemas/CardModifier
+              sourcePath: schemas/CardModifier.yaml
+              title: CardModifier
+              origin: ./src/publicApi
+          description: The modifiers applied to this card. Modifiers control card behavior like restricting to recurring payments only.
       required:
-      - spend
+      - id
+      - accountId
+      - last4
+      - name
+      - expiryMonth
+      - expiryYear
+      - status
+      - isPhysical
       x-entrypoint:
-        virtualPath: schemas/CardGroupUtilization
-        sourcePath: schemas/CardGroupUtilization.yaml
-        title: CardGroupUtilization
+        virtualPath: schemas/Card
+        sourcePath: schemas/Card.yaml
+        title: Card
         origin: ./src/publicApi
-      title: CardGroupUtilization
+      title: Card
+    Pagination.PaginationResponse:
+      type: object
+      description: Response sent when requesting a list of data
+      properties:
+        nextCursor:
+          type: string
+          description: The cursor to use to retrieve the next page of data. If this is not sent, there is no more data to retrieve.
+        count:
+          type: number
+          description: The number of items in the current page of data.
+      x-entrypoint:
+        virtualPath: schemas/Pagination/PaginationResponse
+        sourcePath: schemas/Pagination/PaginationResponse.yaml
+        title: PaginationResponse
+        origin: ./src/publicApi
+      title: PaginationResponse
+    Money:
+      type: object
+      description: Represents a monetary value
+      properties:
+        amountCents:
+          type: integer
+          description: The amount in cents
+      required:
+      - amountCents
+      x-entrypoint:
+        virtualPath: schemas/Money
+        sourcePath: schemas/Money.yaml
+        title: Money
+        origin: ./src/publicApi
+      title: Money
     SpendingConstraint:
       type: object
       description: A constraint that can be applied to a CardGroupSpendingRule
@@ -885,34 +1001,37 @@ components:
         title: SpendingConstraint
         origin: ./src/publicApi
       title: SpendingConstraint
-    Money:
+    CardGroupUtilization:
       type: object
-      description: Represents a monetary value
       properties:
-        amountCents:
-          type: integer
-          description: The amount in cents
+        nextResetDate:
+          type: string
+          format: date-time
+          description: The date the next reset will occur, undefined if collective
+        spend:
+          $ref: '#/components/schemas/Money'
+          description: The amount of money spent in the current period
+          x-entrypoint:
+            virtualPath: schemas/Money
+            sourcePath: schemas/Money.yaml
+            title: Money
+            origin: ./src/publicApi
+        availableBalance:
+          $ref: '#/components/schemas/Money'
+          description: The amount of money available in the current period. Only returned if the card or card group has a spend limit.
+          x-entrypoint:
+            virtualPath: schemas/Money
+            sourcePath: schemas/Money.yaml
+            title: Money
+            origin: ./src/publicApi
       required:
-      - amountCents
+      - spend
       x-entrypoint:
-        virtualPath: schemas/Money
-        sourcePath: schemas/Money.yaml
-        title: Money
+        virtualPath: schemas/CardGroupUtilization
+        sourcePath: schemas/CardGroupUtilization.yaml
+        title: CardGroupUtilization
         origin: ./src/publicApi
-      title: Money
-    CardStatus:
-      type: string
-      enum:
-      - active
-      - paused
-      - inactive
-      - closed
-      x-entrypoint:
-        virtualPath: schemas/CardStatus
-        sourcePath: schemas/CardStatus.yaml
-        title: CardStatus
-        origin: ./src/publicApi
-      title: CardStatus
+      title: CardGroupUtilization
     PartialSpendingConstraint:
       type: object
       description: A partial spending constraint update that can be applied to a CardGroupSpendingRule
@@ -1055,109 +1174,26 @@ components:
         title: PartialSpendingConstraint
         origin: ./src/publicApi
       title: PartialSpendingConstraint
-    Card:
-      type: object
-      properties:
-        id:
-          type: string
-        accountId:
-          type: string
-          description: The account that this card is associated with
-        virtualAccountId:
-          type: string
-          description: The virtual account that this card is associated with
-        last4:
-          type: string
-          description: The last 4 digits of the card number
-        name:
-          type: string
-          description: The name assigned to the card that appears on the user dashboard
-        expiryMonth:
-          type: string
-          description: The month the card expires formatted as MM (01, 02, ..., 12)
-        expiryYear:
-          type: string
-          description: The year the card expires formatted as YYYY (2024, 2025, ...)
-        status:
-          allOf:
-          - $ref: '#/components/schemas/CardStatus'
-            x-entrypoint:
-              virtualPath: schemas/CardStatus
-              sourcePath: schemas/CardStatus.yaml
-              title: CardStatus
-              origin: ./src/publicApi
-          - description: The status of the card
-        isPhysical:
-          type: boolean
-          description: When true, a physical card has been issued. Otherwise, this is a virtual card.
-        isSingleUse:
-          type: boolean
-          description: When true, the card will be automatically closed after a single authorization attempt. Note that the card will be closed even if the authorization declines or drops
-        pan:
-          type: string
-          description: This field contains the full PAN which will only be sent on a request for a single card when you set the query param "include_pan" to "true"
-        cvv:
-          type: string
-          description: This field will contain full CVV which will only be sent on a request for a single card when you set the query param "include_pan" to "true"
-        cardGroupId:
-          type: string
-          description: The card group the card belongs to.
-        cardGroupName:
-          type: string
-          description: The name of the card group the card belongs to.
-        createdAt:
-          type: string
-          format: date-time
-        spendingConstraint:
-          $ref: '#/components/schemas/SpendingConstraint'
-          description: The spending constraint applied to the card
-          x-entrypoint:
-            virtualPath: schemas/SpendingConstraint
-            sourcePath: schemas/SpendingConstraint.yaml
-            title: SpendingConstraint
-            origin: ./src/publicApi
-        userData:
-          type: object
-          description: Arbitrary information that can be attached to the card. See the [`PATCH /card/{cardId}`](api-reference/card-patch) endpoint for more details on how to add user data.
-        cardProductId:
-          type: string
-          description: The ID of the card product this card was created with.
-        modifiers:
-          type: array
-          items:
-            $ref: '#/components/schemas/CardModifier'
-            x-entrypoint:
-              virtualPath: schemas/CardModifier
-              sourcePath: schemas/CardModifier.yaml
-              title: CardModifier
-              origin: ./src/publicApi
-          description: The modifiers applied to this card. Modifiers control card behavior like restricting to recurring payments only.
-      required:
-      - id
-      - accountId
-      - last4
-      - name
-      - expiryMonth
-      - expiryYear
-      - status
-      - isPhysical
+    CardModifier:
+      oneOf:
+      - type: object
+        required:
+        - name
+        - value
+        properties:
+          name:
+            type: string
+            enum:
+            - only_allow_recurring_payments
+          value:
+            description: Whether to only allow recurring payments. The default value for newly created cards is false.
+            type: boolean
       x-entrypoint:
-        virtualPath: schemas/Card
-        sourcePath: schemas/Card.yaml
-        title: Card
+        virtualPath: schemas/CardModifier
+        sourcePath: schemas/CardModifier.yaml
+        title: CardModifier
         origin: ./src/publicApi
-      title: Card
-    Restriction:
-      type: string
-      enum:
-      - allowlist
-      - blacklist
-      x-entrypoint:
-        virtualPath: schemas/Restriction
-        sourcePath: schemas/Restriction.yaml
-        title: Restriction
-        origin: ./src/publicApi
-      title: Restriction
+      title: CardModifier
     Error:
       type: object
       properties:
@@ -1183,42 +1219,6 @@ components:
         title: Error
         virtualPath: components/Error
       title: Error
-    CardModifier:
-      oneOf:
-      - type: object
-        required:
-        - name
-        - value
-        properties:
-          name:
-            type: string
-            enum:
-            - only_allow_recurring_payments
-          value:
-            description: Whether to only allow recurring payments. The default value for newly created cards is false.
-            type: boolean
-      x-entrypoint:
-        virtualPath: schemas/CardModifier
-        sourcePath: schemas/CardModifier.yaml
-        title: CardModifier
-        origin: ./src/publicApi
-      title: CardModifier
-    Pagination.PaginationResponse:
-      type: object
-      description: Response sent when requesting a list of data
-      properties:
-        nextCursor:
-          type: string
-          description: The cursor to use to retrieve the next page of data. If this is not sent, there is no more data to retrieve.
-        count:
-          type: number
-          description: The number of items in the current page of data.
-      x-entrypoint:
-        virtualPath: schemas/Pagination/PaginationResponse
-        sourcePath: schemas/Pagination/PaginationResponse.yaml
-        title: PaginationResponse
-        origin: ./src/publicApi
-      title: PaginationResponse
   securitySchemes:
     api_key:
       type: apiKey

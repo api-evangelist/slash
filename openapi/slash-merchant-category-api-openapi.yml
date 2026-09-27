@@ -88,22 +88,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    MerchantCategory:
-      title: MerchantCategory
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-      required:
-      - id
-      - name
-      x-entrypoint:
-        virtualPath: schemas/MerchantCategory
-        sourcePath: schemas/MerchantCategory.yaml
-        title: MerchantCategory
-        origin: ./src/publicApi
     Error:
       type: object
       properties:
@@ -129,6 +113,22 @@ components:
         title: Error
         virtualPath: components/Error
       title: Error
+    MerchantCategory:
+      title: MerchantCategory
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+      required:
+      - id
+      - name
+      x-entrypoint:
+        virtualPath: schemas/MerchantCategory
+        sourcePath: schemas/MerchantCategory.yaml
+        title: MerchantCategory
+        origin: ./src/publicApi
     Pagination.PaginationResponse:
       type: object
       description: Response sent when requesting a list of data

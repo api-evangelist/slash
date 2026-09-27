@@ -386,18 +386,19 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    paths.task._dto.TaskResponse:
-      $ref: '#/components/schemas/slashfi.models.entity.Task.ITaskWithActionsModel.yaml'
+    slashfi.models.entity.Task.ITaskAttributeMetaModel.yaml:
+      title: ITaskAttributeMetaModel
+      type: object
+      properties:
+        isRequired:
+          type: boolean
+          description: True when this attribute must be set for this task instance.
       x-entrypoint:
-        virtualPath: entity/Task/ITaskWithActionsModel
-        sourcePath: entity/Task/ITaskWithActionsModel.yaml
-        title: ITaskWithActionsModel
+        virtualPath: entity/Task/ITaskAttributeMetaModel
+        sourcePath: entity/Task/ITaskAttributeMetaModel.yaml
+        title: ITaskAttributeMetaModel
         origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
         globalImport: true
-        typescript:
-          importPath: import  * as models from '@slashfi/models';
-          symbolValue: models.entity.Task.ITaskWithActionsModel
-          typeValue: models.entity.Task.ITaskWithActionsModel
     slashfi.models.entity.Task.ITaskActionModel.yaml:
       title: ITaskActionModel
       type: object
@@ -515,6 +516,22 @@ components:
         title: ITaskModel
         origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
         globalImport: true
+    Pagination.PaginationResponse:
+      type: object
+      description: Response sent when requesting a list of data
+      properties:
+        nextCursor:
+          type: string
+          description: The cursor to use to retrieve the next page of data. If this is not sent, there is no more data to retrieve.
+        count:
+          type: number
+          description: The number of items in the current page of data.
+      x-entrypoint:
+        virtualPath: schemas/Pagination/PaginationResponse
+        sourcePath: schemas/Pagination/PaginationResponse.yaml
+        title: PaginationResponse
+        origin: ./src/publicApi
+      title: PaginationResponse
     slashfi.models.entity.Task.ITaskWithActionsModel.yaml:
       title: ITaskWithActionsModel
       description: '`ITaskModel` enriched with the caller''s per-task action list. Returned by surfaces that do caller-specific authorization (today the internal app''s GET /task, which resolves allowed actions from the current user''s role on the task). Not emitted by the public API — external consumers receive the bare `ITaskModel` shape.
@@ -549,19 +566,6 @@ components:
         title: ITaskWithActionsModel
         origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
         globalImport: true
-    slashfi.models.entity.Task.ITaskAttributeMetaModel.yaml:
-      title: ITaskAttributeMetaModel
-      type: object
-      properties:
-        isRequired:
-          type: boolean
-          description: True when this attribute must be set for this task instance.
-      x-entrypoint:
-        virtualPath: entity/Task/ITaskAttributeMetaModel
-        sourcePath: entity/Task/ITaskAttributeMetaModel.yaml
-        title: ITaskAttributeMetaModel
-        origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
-        globalImport: true
     Error:
       type: object
       properties:
@@ -587,22 +591,18 @@ components:
         title: Error
         virtualPath: components/Error
       title: Error
-    Pagination.PaginationResponse:
-      type: object
-      description: Response sent when requesting a list of data
-      properties:
-        nextCursor:
-          type: string
-          description: The cursor to use to retrieve the next page of data. If this is not sent, there is no more data to retrieve.
-        count:
-          type: number
-          description: The number of items in the current page of data.
+    paths.task._dto.TaskResponse:
+      $ref: '#/components/schemas/slashfi.models.entity.Task.ITaskWithActionsModel.yaml'
       x-entrypoint:
-        virtualPath: schemas/Pagination/PaginationResponse
-        sourcePath: schemas/Pagination/PaginationResponse.yaml
-        title: PaginationResponse
-        origin: ./src/publicApi
-      title: PaginationResponse
+        virtualPath: entity/Task/ITaskWithActionsModel
+        sourcePath: entity/Task/ITaskWithActionsModel.yaml
+        title: ITaskWithActionsModel
+        origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+        globalImport: true
+        typescript:
+          importPath: import  * as models from '@slashfi/models';
+          symbolValue: models.entity.Task.ITaskWithActionsModel
+          typeValue: models.entity.Task.ITaskWithActionsModel
   securitySchemes:
     api_key:
       type: apiKey

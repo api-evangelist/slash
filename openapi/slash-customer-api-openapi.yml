@@ -433,22 +433,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    Pagination.PaginationResponse:
-      type: object
-      description: Response sent when requesting a list of data
-      properties:
-        nextCursor:
-          type: string
-          description: The cursor to use to retrieve the next page of data. If this is not sent, there is no more data to retrieve.
-        count:
-          type: number
-          description: The number of items in the current page of data.
-      x-entrypoint:
-        virtualPath: schemas/Pagination/PaginationResponse
-        sourcePath: schemas/Pagination/PaginationResponse.yaml
-        title: PaginationResponse
-        origin: ./src/publicApi
-      title: PaginationResponse
     Error:
       type: object
       properties:
@@ -474,36 +458,6 @@ components:
         title: Error
         virtualPath: components/Error
       title: Error
-    slashfi.models.entity.IAddressModel.yaml:
-      title: IAddressModel
-      type: object
-      properties:
-        addressLine:
-          type: string
-        addressLine2:
-          type: string
-        addressCity:
-          type: string
-        addressState:
-          type: string
-        addressZip:
-          type: string
-        addressCountry:
-          type: string
-          minLength: 2
-          maxLength: 2
-          description: ISO 3166-1 Alpha-2 Country Code (e.g., US, FR, UK, DE, ...).
-      required:
-      - addressLine
-      - addressCity
-      - addressState
-      - addressZip
-      x-entrypoint:
-        virtualPath: entity/IAddressModel
-        sourcePath: entity/IAddressModel.yaml
-        title: IAddressModel
-        origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
-        globalImport: true
     Customer:
       type: object
       description: A customer represents a billing recipient associated with a legal entity.
@@ -545,6 +499,52 @@ components:
         title: Customer
         origin: ./src/publicApi
       title: Customer
+    slashfi.models.entity.IAddressModel.yaml:
+      title: IAddressModel
+      type: object
+      properties:
+        addressLine:
+          type: string
+        addressLine2:
+          type: string
+        addressCity:
+          type: string
+        addressState:
+          type: string
+        addressZip:
+          type: string
+        addressCountry:
+          type: string
+          minLength: 2
+          maxLength: 2
+          description: ISO 3166-1 Alpha-2 Country Code (e.g., US, FR, UK, DE, ...).
+      required:
+      - addressLine
+      - addressCity
+      - addressState
+      - addressZip
+      x-entrypoint:
+        virtualPath: entity/IAddressModel
+        sourcePath: entity/IAddressModel.yaml
+        title: IAddressModel
+        origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+        globalImport: true
+    Pagination.PaginationResponse:
+      type: object
+      description: Response sent when requesting a list of data
+      properties:
+        nextCursor:
+          type: string
+          description: The cursor to use to retrieve the next page of data. If this is not sent, there is no more data to retrieve.
+        count:
+          type: number
+          description: The number of items in the current page of data.
+      x-entrypoint:
+        virtualPath: schemas/Pagination/PaginationResponse
+        sourcePath: schemas/Pagination/PaginationResponse.yaml
+        title: PaginationResponse
+        origin: ./src/publicApi
+      title: PaginationResponse
   securitySchemes:
     api_key:
       type: apiKey

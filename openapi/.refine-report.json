@@ -31,9 +31,7 @@
     "slash-virtual-account-api-openapi.yml",
     "slash-webhook-api-openapi.yml"
   ],
-  "archived": [
-    "deleted 1 superseded output(s) from the previous generation"
-  ],
+  "archived": [],
   "errors": [],
   "warnings": [],
   "notes": [
@@ -168,8 +166,7 @@
     "slash-openapi-original.json: declared missing tag: Transfers",
     "slash-openapi-original.json: declared missing tag: Virtual Account",
     "slash-openapi-original.json: declared missing tag: Webhook",
-    "superseded outputs removed: slash-o-auth2-api-openapi.yml",
-    "apis.yml register: written (+1 apis, 26 total)"
+    "apis.yml register: already-registered"
   ],
   "skipped": [
     "slash-account-api-openapi.yml: previously refined output, superseded by openapi/_original/",
@@ -189,7 +186,7 @@
     "slash-legal-entity-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "slash-merchant-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "slash-merchant-category-api-openapi.yml: previously refined output, superseded by openapi/_original/",
-    "slash-o-auth2-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "slash-oauth2-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "slash-task-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "slash-tokens-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "slash-transaction-api-openapi.yml: previously refined output, superseded by openapi/_original/",

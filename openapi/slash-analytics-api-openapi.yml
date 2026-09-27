@@ -91,20 +91,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    paths.analytics._dto.PostRequest:
-      type: object
-      properties:
-        query:
-          type: string
-          description: SQL query to execute
-      required:
-      - query
-      x-entrypoint:
-        virtualPath: paths/analytics/_dto/PostRequest
-        sourcePath: paths/analytics/_dto/PostRequest.yaml
-        title: PostRequest
-        origin: ./src/publicApi
-      title: PostRequest
     Error:
       type: object
       properties:
@@ -160,6 +146,20 @@ components:
         title: PostResponse
         origin: ./src/publicApi
       title: PostResponse
+    paths.analytics._dto.PostRequest:
+      type: object
+      properties:
+        query:
+          type: string
+          description: SQL query to execute
+      required:
+      - query
+      x-entrypoint:
+        virtualPath: paths/analytics/_dto/PostRequest
+        sourcePath: paths/analytics/_dto/PostRequest.yaml
+        title: PostRequest
+        origin: ./src/publicApi
+      title: PostRequest
   securitySchemes:
     api_key:
       type: apiKey

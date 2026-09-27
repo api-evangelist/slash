@@ -476,6 +476,33 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    Restriction:
+      type: string
+      enum:
+      - allowlist
+      - blacklist
+      x-entrypoint:
+        virtualPath: schemas/Restriction
+        sourcePath: schemas/Restriction.yaml
+        title: Restriction
+        origin: ./src/publicApi
+      title: Restriction
+    Pagination.PaginationResponse:
+      type: object
+      description: Response sent when requesting a list of data
+      properties:
+        nextCursor:
+          type: string
+          description: The cursor to use to retrieve the next page of data. If this is not sent, there is no more data to retrieve.
+        count:
+          type: number
+          description: The number of items in the current page of data.
+      x-entrypoint:
+        virtualPath: schemas/Pagination/PaginationResponse
+        sourcePath: schemas/Pagination/PaginationResponse.yaml
+        title: PaginationResponse
+        origin: ./src/publicApi
+      title: PaginationResponse
     CardGroup:
       type: object
       properties:
@@ -502,37 +529,21 @@ components:
         title: CardGroup
         origin: ./src/publicApi
       title: CardGroup
-    CardGroupUtilization:
+    Money:
       type: object
+      description: Represents a monetary value
       properties:
-        nextResetDate:
-          type: string
-          format: date-time
-          description: The date the next reset will occur, undefined if collective
-        spend:
-          $ref: '#/components/schemas/Money'
-          description: The amount of money spent in the current period
-          x-entrypoint:
-            virtualPath: schemas/Money
-            sourcePath: schemas/Money.yaml
-            title: Money
-            origin: ./src/publicApi
-        availableBalance:
-          $ref: '#/components/schemas/Money'
-          description: The amount of money available in the current period. Only returned if the card or card group has a spend limit.
-          x-entrypoint:
-            virtualPath: schemas/Money
-            sourcePath: schemas/Money.yaml
-            title: Money
-            origin: ./src/publicApi
+        amountCents:
+          type: integer
+          description: The amount in cents
       required:
-      - spend
+      - amountCents
       x-entrypoint:
-        virtualPath: schemas/CardGroupUtilization
-        sourcePath: schemas/CardGroupUtilization.yaml
-        title: CardGroupUtilization
+        virtualPath: schemas/Money
+        sourcePath: schemas/Money.yaml
+        title: Money
         origin: ./src/publicApi
-      title: CardGroupUtilization
+      title: Money
     SpendingConstraint:
       type: object
       description: A constraint that can be applied to a CardGroupSpendingRule
@@ -693,21 +704,37 @@ components:
         title: SpendingConstraint
         origin: ./src/publicApi
       title: SpendingConstraint
-    Money:
+    CardGroupUtilization:
       type: object
-      description: Represents a monetary value
       properties:
-        amountCents:
-          type: integer
-          description: The amount in cents
+        nextResetDate:
+          type: string
+          format: date-time
+          description: The date the next reset will occur, undefined if collective
+        spend:
+          $ref: '#/components/schemas/Money'
+          description: The amount of money spent in the current period
+          x-entrypoint:
+            virtualPath: schemas/Money
+            sourcePath: schemas/Money.yaml
+            title: Money
+            origin: ./src/publicApi
+        availableBalance:
+          $ref: '#/components/schemas/Money'
+          description: The amount of money available in the current period. Only returned if the card or card group has a spend limit.
+          x-entrypoint:
+            virtualPath: schemas/Money
+            sourcePath: schemas/Money.yaml
+            title: Money
+            origin: ./src/publicApi
       required:
-      - amountCents
+      - spend
       x-entrypoint:
-        virtualPath: schemas/Money
-        sourcePath: schemas/Money.yaml
-        title: Money
+        virtualPath: schemas/CardGroupUtilization
+        sourcePath: schemas/CardGroupUtilization.yaml
+        title: CardGroupUtilization
         origin: ./src/publicApi
-      title: Money
+      title: CardGroupUtilization
     PartialSpendingConstraint:
       type: object
       description: A partial spending constraint update that can be applied to a CardGroupSpendingRule
@@ -850,17 +877,6 @@ components:
         title: PartialSpendingConstraint
         origin: ./src/publicApi
       title: PartialSpendingConstraint
-    Restriction:
-      type: string
-      enum:
-      - allowlist
-      - blacklist
-      x-entrypoint:
-        virtualPath: schemas/Restriction
-        sourcePath: schemas/Restriction.yaml
-        title: Restriction
-        origin: ./src/publicApi
-      title: Restriction
     Error:
       type: object
       properties:
@@ -886,22 +902,6 @@ components:
         title: Error
         virtualPath: components/Error
       title: Error
-    Pagination.PaginationResponse:
-      type: object
-      description: Response sent when requesting a list of data
-      properties:
-        nextCursor:
-          type: string
-          description: The cursor to use to retrieve the next page of data. If this is not sent, there is no more data to retrieve.
-        count:
-          type: number
-          description: The number of items in the current page of data.
-      x-entrypoint:
-        virtualPath: schemas/Pagination/PaginationResponse
-        sourcePath: schemas/Pagination/PaginationResponse.yaml
-        title: PaginationResponse
-        origin: ./src/publicApi
-      title: PaginationResponse
   securitySchemes:
     api_key:
       type: apiKey

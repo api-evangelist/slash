@@ -163,6 +163,31 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+        name:
+          type: string
+        identifier:
+          type: string
+        rawStatus:
+          type: number
+        meta:
+          type: object
+          additionalProperties: true
+      required:
+      - message
+      - name
+      - identifier
+      - rawStatus
+      x-entrypoint:
+        origin: ./src/publicApi
+        sourcePath: ./src/publicApi/main.yaml
+        title: Error
+        virtualPath: components/Error
+      title: Error
     AgentRequest:
       type: object
       description: A pending or completed agent request
@@ -235,31 +260,6 @@ components:
         title: AgentRequest
         origin: ./src/publicApi
       title: AgentRequest
-    Error:
-      type: object
-      properties:
-        message:
-          type: string
-        name:
-          type: string
-        identifier:
-          type: string
-        rawStatus:
-          type: number
-        meta:
-          type: object
-          additionalProperties: true
-      required:
-      - message
-      - name
-      - identifier
-      - rawStatus
-      x-entrypoint:
-        origin: ./src/publicApi
-        sourcePath: ./src/publicApi/main.yaml
-        title: Error
-        virtualPath: components/Error
-      title: Error
     Pagination.PaginationResponse:
       type: object
       description: Response sent when requesting a list of data
