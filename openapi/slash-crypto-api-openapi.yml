@@ -142,41 +142,6 @@ components:
         title: Error
         virtualPath: components/Error
       title: Error
-    Crypto.Wallet:
-      type: object
-      properties:
-        id:
-          type: string
-        type:
-          type: string
-          enum:
-          - off_ramp
-        status:
-          type: string
-          enum:
-          - pending_active
-          - active
-          - deactivated
-        subaccountId:
-          type: string
-        slashAccountGroupId:
-          type: string
-        timestamp:
-          type: string
-          format: date-time
-      required:
-      - id
-      - type
-      - status
-      - subaccountId
-      - slashAccountGroupId
-      - timestamp
-      x-entrypoint:
-        virtualPath: schemas/Crypto/Wallet
-        sourcePath: schemas/Crypto/Wallet.yaml
-        title: Wallet
-        origin: ./src/publicApi
-      title: Wallet
     Crypto.Address:
       type: object
       properties:
@@ -235,6 +200,41 @@ components:
         title: Address
         origin: ./src/publicApi
       title: Address
+    Crypto.Wallet:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+          enum:
+          - off_ramp
+        status:
+          type: string
+          enum:
+          - pending_active
+          - active
+          - deactivated
+        subaccountId:
+          type: string
+        slashAccountGroupId:
+          type: string
+        timestamp:
+          type: string
+          format: date-time
+      required:
+      - id
+      - type
+      - status
+      - subaccountId
+      - slashAccountGroupId
+      - timestamp
+      x-entrypoint:
+        virtualPath: schemas/Crypto/Wallet
+        sourcePath: schemas/Crypto/Wallet.yaml
+        title: Wallet
+        origin: ./src/publicApi
+      title: Wallet
   securitySchemes:
     api_key:
       type: apiKey

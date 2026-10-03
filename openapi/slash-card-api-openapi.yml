@@ -705,19 +705,22 @@ components:
         title: Restriction
         origin: ./src/publicApi
       title: Restriction
-    CardStatus:
-      type: string
-      enum:
-      - active
-      - paused
-      - inactive
-      - closed
+    Pagination.PaginationResponse:
+      type: object
+      description: Response sent when requesting a list of data
+      properties:
+        nextCursor:
+          type: string
+          description: The cursor to use to retrieve the next page of data. If this is not sent, there is no more data to retrieve.
+        count:
+          type: number
+          description: The number of items in the current page of data.
       x-entrypoint:
-        virtualPath: schemas/CardStatus
-        sourcePath: schemas/CardStatus.yaml
-        title: CardStatus
+        virtualPath: schemas/Pagination/PaginationResponse
+        sourcePath: schemas/Pagination/PaginationResponse.yaml
+        title: PaginationResponse
         origin: ./src/publicApi
-      title: CardStatus
+      title: PaginationResponse
     Card:
       type: object
       properties:
@@ -810,37 +813,37 @@ components:
         title: Card
         origin: ./src/publicApi
       title: Card
-    Pagination.PaginationResponse:
+    CardGroupUtilization:
       type: object
-      description: Response sent when requesting a list of data
       properties:
-        nextCursor:
+        nextResetDate:
           type: string
-          description: The cursor to use to retrieve the next page of data. If this is not sent, there is no more data to retrieve.
-        count:
-          type: number
-          description: The number of items in the current page of data.
-      x-entrypoint:
-        virtualPath: schemas/Pagination/PaginationResponse
-        sourcePath: schemas/Pagination/PaginationResponse.yaml
-        title: PaginationResponse
-        origin: ./src/publicApi
-      title: PaginationResponse
-    Money:
-      type: object
-      description: Represents a monetary value
-      properties:
-        amountCents:
-          type: integer
-          description: The amount in cents
+          format: date-time
+          description: The date the next reset will occur, undefined if collective
+        spend:
+          $ref: '#/components/schemas/Money'
+          description: The amount of money spent in the current period
+          x-entrypoint:
+            virtualPath: schemas/Money
+            sourcePath: schemas/Money.yaml
+            title: Money
+            origin: ./src/publicApi
+        availableBalance:
+          $ref: '#/components/schemas/Money'
+          description: The amount of money available in the current period. Only returned if the card or card group has a spend limit.
+          x-entrypoint:
+            virtualPath: schemas/Money
+            sourcePath: schemas/Money.yaml
+            title: Money
+            origin: ./src/publicApi
       required:
-      - amountCents
+      - spend
       x-entrypoint:
-        virtualPath: schemas/Money
-        sourcePath: schemas/Money.yaml
-        title: Money
+        virtualPath: schemas/CardGroupUtilization
+        sourcePath: schemas/CardGroupUtilization.yaml
+        title: CardGroupUtilization
         origin: ./src/publicApi
-      title: Money
+      title: CardGroupUtilization
     SpendingConstraint:
       type: object
       description: A constraint that can be applied to a CardGroupSpendingRule
@@ -1001,37 +1004,26 @@ components:
         title: SpendingConstraint
         origin: ./src/publicApi
       title: SpendingConstraint
-    CardGroupUtilization:
-      type: object
-      properties:
-        nextResetDate:
-          type: string
-          format: date-time
-          description: The date the next reset will occur, undefined if collective
-        spend:
-          $ref: '#/components/schemas/Money'
-          description: The amount of money spent in the current period
-          x-entrypoint:
-            virtualPath: schemas/Money
-            sourcePath: schemas/Money.yaml
-            title: Money
-            origin: ./src/publicApi
-        availableBalance:
-          $ref: '#/components/schemas/Money'
-          description: The amount of money available in the current period. Only returned if the card or card group has a spend limit.
-          x-entrypoint:
-            virtualPath: schemas/Money
-            sourcePath: schemas/Money.yaml
-            title: Money
-            origin: ./src/publicApi
-      required:
-      - spend
+    CardModifier:
+      oneOf:
+      - type: object
+        required:
+        - name
+        - value
+        properties:
+          name:
+            type: string
+            enum:
+            - only_allow_recurring_payments
+          value:
+            description: Whether to only allow recurring payments. The default value for newly created cards is false.
+            type: boolean
       x-entrypoint:
-        virtualPath: schemas/CardGroupUtilization
-        sourcePath: schemas/CardGroupUtilization.yaml
-        title: CardGroupUtilization
+        virtualPath: schemas/CardModifier
+        sourcePath: schemas/CardModifier.yaml
+        title: CardModifier
         origin: ./src/publicApi
-      title: CardGroupUtilization
+      title: CardModifier
     PartialSpendingConstraint:
       type: object
       description: A partial spending constraint update that can be applied to a CardGroupSpendingRule
@@ -1174,26 +1166,6 @@ components:
         title: PartialSpendingConstraint
         origin: ./src/publicApi
       title: PartialSpendingConstraint
-    CardModifier:
-      oneOf:
-      - type: object
-        required:
-        - name
-        - value
-        properties:
-          name:
-            type: string
-            enum:
-            - only_allow_recurring_payments
-          value:
-            description: Whether to only allow recurring payments. The default value for newly created cards is false.
-            type: boolean
-      x-entrypoint:
-        virtualPath: schemas/CardModifier
-        sourcePath: schemas/CardModifier.yaml
-        title: CardModifier
-        origin: ./src/publicApi
-      title: CardModifier
     Error:
       type: object
       properties:
@@ -1219,6 +1191,34 @@ components:
         title: Error
         virtualPath: components/Error
       title: Error
+    CardStatus:
+      type: string
+      enum:
+      - active
+      - paused
+      - inactive
+      - closed
+      x-entrypoint:
+        virtualPath: schemas/CardStatus
+        sourcePath: schemas/CardStatus.yaml
+        title: CardStatus
+        origin: ./src/publicApi
+      title: CardStatus
+    Money:
+      type: object
+      description: Represents a monetary value
+      properties:
+        amountCents:
+          type: integer
+          description: The amount in cents
+      required:
+      - amountCents
+      x-entrypoint:
+        virtualPath: schemas/Money
+        sourcePath: schemas/Money.yaml
+        title: Money
+        origin: ./src/publicApi
+      title: Money
   securitySchemes:
     api_key:
       type: apiKey

@@ -756,313 +756,174 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    paths.fdx.accounts._dto.CommercialAccount:
-      type: object
-      description: A commercial account. For example, a business deposit account.
-      properties:
-        accountId:
-          type: string
-          description: Long-term persistent identity of the account, though not an account number.
-        accountNumberDisplay:
-          type: string
-          description: A masked version of the account number, which includes the last 4 digits in plain text.
-        productName:
-          type: string
-          description: Marketed product name for this account. You can use this in UIs to assist in account selection. For example, "Slash Platinum".
-        nickname:
-          type: string
-          description: A nickname or label for the account. This will be unique to the account, even if the user has multiple accounts with the same product name. You can use this in UIs to assist in account selection.
-        status:
-          type: string
-          enum:
-          - CLOSED
-          - DELINQUENT
-          - NEGATIVECURRENTBALANCE
-          - OPEN
-          - PAID
-          - PENDINGCLOSE
-          - PENDINGOPEN
-          - RESTRICTED
-        currency:
-          type: object
-          properties:
-            currencyCode:
-              type: string
-              description: The ISO 4217 currency code for the currency that the account is denominated in. For example, "USD" for US Dollars.
-          required:
-          - currencyCode
-        accountType:
-          type: string
-          enum:
-          - COMMERCIALDEPOSIT
-          - COMMERCIALLOAN
-          - COMMERCIALLINEOFCREDIT
-          - COMMERCIALINVESTMENT
-      required:
-      - accountId
-      - productName
-      - status
-      - currency
-      - accountType
-      x-entrypoint:
-        virtualPath: paths/fdx/accounts/_dto/CommercialAccount
-        sourcePath: paths/fdx/accounts/_dto/CommercialAccount.yaml
-        title: CommercialAccount
-        origin: ./src/publicApi
-      title: CommercialAccount
-    paths.fdx.accounts._dto.AnnuityAccount:
-      type: object
-      description: An annuity account. For example, a fixed or variable annuity account.
-      properties:
-        accountId:
-          type: string
-          description: Long-term persistent identity of the account, though not an account number.
-        accountNumberDisplay:
-          type: string
-          description: A masked version of the account number, which includes the last 4 digits in plain text.
-        productName:
-          type: string
-          description: Marketed product name for this account. You can use this in UIs to assist in account selection. For example, "Slash Platinum".
-        nickname:
-          type: string
-          description: A nickname or label for the account. This will be unique to the account, even if the user has multiple accounts with the same product name. You can use this in UIs to assist in account selection.
-        status:
-          type: string
-          enum:
-          - CLOSED
-          - DELINQUENT
-          - NEGATIVECURRENTBALANCE
-          - OPEN
-          - PAID
-          - PENDINGCLOSE
-          - PENDINGOPEN
-          - RESTRICTED
-        currency:
-          type: object
-          properties:
-            currencyCode:
-              type: string
-              description: The ISO 4217 currency code for the currency that the account is denominated in. For example, "USD" for US Dollars.
-          required:
-          - currencyCode
-        accountType:
-          type: string
-          enum:
-          - ANNUITY
-          - FIXEDANNUITY
-          - VARIABLEANNUITY
-      required:
-      - accountId
-      - productName
-      - status
-      - currency
-      - accountType
-      x-entrypoint:
-        virtualPath: paths/fdx/accounts/_dto/AnnuityAccount
-        sourcePath: paths/fdx/accounts/_dto/AnnuityAccount.yaml
-        title: AnnuityAccount
-        origin: ./src/publicApi
-      title: AnnuityAccount
-    paths.fdx.accounts._dto.InvestmentAccount:
-      type: object
-      description: An investment account. For example, a 401K or IRA.
-      properties:
-        accountId:
-          type: string
-          description: Long-term persistent identity of the account, though not an account number.
-        accountNumberDisplay:
-          type: string
-          description: A masked version of the account number, which includes the last 4 digits in plain text.
-        productName:
-          type: string
-          description: Marketed product name for this account. You can use this in UIs to assist in account selection. For example, "Slash Platinum".
-        nickname:
-          type: string
-          description: A nickname or label for the account. This will be unique to the account, even if the user has multiple accounts with the same product name. You can use this in UIs to assist in account selection.
-        status:
-          type: string
-          enum:
-          - CLOSED
-          - DELINQUENT
-          - NEGATIVECURRENTBALANCE
-          - OPEN
-          - PAID
-          - PENDINGCLOSE
-          - PENDINGOPEN
-          - RESTRICTED
-        currency:
-          type: object
-          properties:
-            currencyCode:
-              type: string
-              description: The ISO 4217 currency code for the currency that the account is denominated in. For example, "USD" for US Dollars.
-          required:
-          - currencyCode
-        accountType:
-          type: string
-          enum:
-          - 401A
-          - 401K
-          - 403B
-          - '529'
-          - BROKERAGEPRODUCT
-          - COVERDELL
-          - DIGITALASSET
-          - DEFINEDBENEFIT
-          - ESOP
-          - GUARDIAN
-          - INSTITUTIONALTRUST
-          - IRA
-          - KEOGH
-          - NONQUALIFIEDPLAN
-          - OTHERINVESTMENT
-          - ROLLOVER
-          - ROTH
-          - SARSEP
-          - TAXABLE
-          - TDA
-          - TRUST
-          - TERM
-          - UGMA
-          - UTMA
-      required:
-      - accountId
-      - productName
-      - status
-      - currency
-      - accountType
-      x-entrypoint:
-        virtualPath: paths/fdx/accounts/_dto/InvestmentAccount
-        sourcePath: paths/fdx/accounts/_dto/InvestmentAccount.yaml
-        title: InvestmentAccount
-        origin: ./src/publicApi
-      title: InvestmentAccount
-    paths.fdx.accounts._dto.LineOfCreditAccount:
-      type: object
-      description: A line-of-credit account. For example, a credit card or home equity line of credit.
-      properties:
-        accountId:
-          type: string
-          description: Long-term persistent identity of the account, though not an account number.
-        accountNumberDisplay:
-          type: string
-          description: A masked version of the account number, which includes the last 4 digits in plain text.
-        productName:
-          type: string
-          description: Marketed product name for this account. You can use this in UIs to assist in account selection. For example, "Slash Platinum".
-        nickname:
-          type: string
-          description: A nickname or label for the account. This will be unique to the account, even if the user has multiple accounts with the same product name. You can use this in UIs to assist in account selection.
-        status:
-          type: string
-          enum:
-          - CLOSED
-          - DELINQUENT
-          - NEGATIVECURRENTBALANCE
-          - OPEN
-          - PAID
-          - PENDINGCLOSE
-          - PENDINGOPEN
-          - RESTRICTED
-        currency:
-          type: object
-          properties:
-            currencyCode:
-              type: string
-              description: The ISO 4217 currency code for the currency that the account is denominated in. For example, "USD" for US Dollars.
-          required:
-          - currencyCode
-        accountType:
-          type: string
-          enum:
-          - LINEOFCREDIT
-          - CHARGE
-          - CREDITCARD
-          - HOMELINEOFCREDIT
-      required:
-      - accountId
-      - productName
-      - status
-      - currency
-      - accountType
-      x-entrypoint:
-        virtualPath: paths/fdx/accounts/_dto/LineOfCreditAccount
-        sourcePath: paths/fdx/accounts/_dto/LineOfCreditAccount.yaml
-        title: LineOfCreditAccount
-        origin: ./src/publicApi
-      title: LineOfCreditAccount
-    paths.fdx.accounts._param_accountId.transactions._dto.DepositTransaction:
+    paths.fdx.accounts._dto.InvestmentAccountBalance:
       type: object
       properties:
-        transactionId:
-          type: string
-          description: Long-term persistent identity of the transaction.
-        referenceTransactionId:
-          type: string
-          description: For reverse postings, the identity of the transaction being reversed. For the correction transaction, the identity of the reversing post. For credit card posting transactions, the identity of the authorization transaction
-        postedTimestamp:
-          type: string
-          description: The ISO 8601 date and time that the transaction was posted to the account. This will be included if status is POSTED.
-        transactionTimestamp:
-          type: string
-          description: The ISO 8601 date and time that the transaction was initiated.
-        description:
-          type: string
-          description: A description of the transaction.
-        debitCreditMemo:
-          type: string
-          description: The posting type of a transaction. The transaction amount is an absolute value, and this parameter indicates the direction of the transaction. This will always be DEBIT or CREDIT.
-          enum:
-          - DEBIT
-          - CREDIT
-          - MEMO
-        category:
-          type: string
-          description: The merchant category code (MCC) of the transaction, if available.
-        subCategory:
-          type: string
-          description: Additional information about the transaction category, if available.
-        status:
-          type: string
-          description: The status of the transaction. This will always be PENDING or POSTED.
-          enum:
-          - AUTHORIZATION
-          - MEMO
-          - PENDING
-          - POSTED
-        amount:
+        availableCashBalance:
           type: number
-          description: The amount of money in the account currency in that currency's standard unit (e.g. dollars for USD). The amount is an absolute value. The debitCreditMemo parameter indicates the direction of the transaction.
-        foreignAmount:
+          description: The amount of cash available in the account across all sub-accounts, including sweep funds, in the standard unit of the currency (e.g., dollars for USD).
+        balanceAsOf:
+          type: string
+          description: The date and time the balance was last updated.
+        currentValue:
           type: number
-          description: This value is only included if the transaction's currency is different than the account's default currency.
-        foreignCurrency:
-          $ref: '#/components/schemas/paths.fdx.accounts._param_accountId.transactions._dto.Iso4217CurrencyCode'
-          description: ISO 4217 currency code. This value is only included if the transaction's currency is different than the account's default currency.
-          x-entrypoint:
-            virtualPath: paths/fdx/accounts/{accountId}/transactions/_dto/Iso4217CurrencyCode
-            sourcePath: paths/fdx/accounts/{accountId}/transactions/_dto/Iso4217CurrencyCode.yaml
-            title: Iso4217CurrencyCode
-            origin: ./src/publicApi
-        payee:
-          type: string
-          maxLength: 255
-        checkNumber:
-          type: string
-          description: The check number of the transaction, if available. Only included if this is a check transaction.
+          description: The total current value of all investments in the standard unit of the currency (e.g., dollars for USD).
+        holdings:
+          type: array
+          description: The holdings in the account.
+          items:
+            type: object
+            properties:
+              securityId:
+                type: string
+                description: The unique identifier of the security. Either securityId and securityIdType or symbol will be provided.
+              securityIdType:
+                type: string
+                description: The type of the security identifier.
+                enum:
+                - CINS
+                - CMC
+                - CME
+                - CUSIP
+                - ISIN
+                - ITSA
+                - NASDAQ
+                - SEDOL
+                - SICC
+                - VALOR
+                - WKN
+              holdingName:
+                type: string
+                description: The name of the security.
+              holdingType:
+                type: string
+                description: The type of the holding.
+                enum:
+                - ANNUITY
+                - BOND
+                - CD
+                - DIGITALASSET
+                - MUTUALFUND
+                - OPTION
+                - OTHER
+                - STOCK
+              holdingSubType:
+                type: string
+                enum:
+                - CASH
+                - MONEYMARKET
+              symbol:
+                type: string
+                description: The symbol of the security. Either securityId and securityIdType or symbol will be provided.
+              purchasedPrice:
+                type: number
+                description: The price at which the security was purchased in the standard unit of the currency (e.g., dollars for USD).
+              currentUnitPrice:
+                type: number
+                description: The current unit price of the security in the standard unit of the currency (e.g., dollars for USD).
+              currentUnitPriceDate:
+                type: string
+                format: date
+                description: The date (YYYY-MM-DD) the current unit price was last updated.
+              units:
+                type: number
+                description: The number of units of the security held.
+              marketValue:
+                type: number
+                description: The market value of the holding in the standard unit of the currency (e.g., dollars for USD).
+              faceValue:
+                type: number
+                description: The face value of the holding in the standard unit of the currency (e.g., dollars for USD).
+              cashAccount:
+                type: boolean
+                description: If true, indicates that this holding is used to maintain proceeds from sales, dividends, and other cash postings to the investment account.
+              currency:
+                type: object
+                properties:
+                  currencyCode:
+                    type: string
+                    description: The ISO 4217 currency code.
+                required:
+                - currencyCode
+              fiAttributes:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                    value:
+                      type: string
+                  required:
+                  - name
+                  - value
+            required:
+            - marketValue
+            - cashAccount
       required:
-      - transactionId
-      - transactionTimestamp
-      - description
-      - debitCreditMemo
-      - status
-      - amount
+      - availableCashBalance
+      - currentValue
       x-entrypoint:
-        virtualPath: paths/fdx/accounts/{accountId}/transactions/_dto/DepositTransaction
-        sourcePath: paths/fdx/accounts/{accountId}/transactions/_dto/DepositTransaction.yaml
-        title: DepositTransaction
+        virtualPath: paths/fdx/accounts/_dto/InvestmentAccountBalance
+        sourcePath: paths/fdx/accounts/_dto/InvestmentAccountBalance.yaml
+        title: InvestmentAccountBalance
         origin: ./src/publicApi
-      title: DepositTransaction
+      title: InvestmentAccountBalance
+    paths.fdx.accounts._dto.LoanAccountBalance:
+      type: object
+      properties:
+        principalBalance:
+          type: number
+          description: The principal balance of the loan account in the standard unit of the currency (e.g., dollars for USD). Principal balance is the amount of the loan that is still owed.
+        escrowBalance:
+          type: number
+          description: The escrow balance of the loan account in the standard unit of the currency (e.g., dollars for USD). Escrow balance is the amount of money held in escrow to pay for property taxes and insurance.
+        originalPrincipal:
+          type: number
+          description: The original principal balance of the loan account in the standard unit of the currency (e.g., dollars for USD). Original principal balance is the amount of the loan when it was first taken out.
+        originatingDate:
+          type: string
+          description: The date the loan was originated.
+        loanTerm:
+          type: string
+          description: The term of the loan in months.
+        nextPaymentAmount:
+          type: number
+          description: The amount of the next payment due on the loan in the standard unit of the currency (e.g., dollars for USD).
+        nextPaymentDate:
+          type: string
+          description: The date the next payment is due.
+        lastPaymentAmount:
+          type: number
+          description: The amount of the last payment made on the loan in the standard unit of the currency (e.g., dollars for USD).
+        lastPaymentDate:
+          type: string
+          description: The date the last payment was made.
+        maturityDate:
+          type: string
+          description: The date the loan is scheduled to be paid off.
+        interestPaidYearToDate:
+          type: number
+          description: The amount of interest paid on the loan year-to-date in the standard unit of the currency (e.g., dollars for USD).
+        interestRate:
+          type: number
+          description: The interest rate on the loan as a floating point number. For example, 0.05 for 5%.
+        interestRateType:
+          type: string
+          enum:
+          - FIXED
+          - VARIABLE
+          description: The type of interest rate on the loan.
+      required:
+      - principalBalance
+      - interestRate
+      - interestRateType
+      x-entrypoint:
+        virtualPath: paths/fdx/accounts/_dto/LoanAccountBalance
+        sourcePath: paths/fdx/accounts/_dto/LoanAccountBalance.yaml
+        title: LoanAccountBalance
+        origin: ./src/publicApi
+      title: LoanAccountBalance
     paths.fdx.accounts._param_accountId.transactions._dto.Iso4217CurrencyCode:
       type: string
       description: ISO 4217 currency code, per the FDX / Plaid Core Exchange specification.
@@ -1253,6 +1114,192 @@ components:
         title: Iso4217CurrencyCode
         origin: ./src/publicApi
       title: Iso4217CurrencyCode
+    paths.fdx.accounts._dto.LineOfCreditAccountBalance:
+      type: object
+      properties:
+        creditLine:
+          type: number
+          description: The total credit line available on the account in the standard unit of the currency (e.g., dollars for USD).
+        availableCredit:
+          type: number
+          description: The currently available credit on the account in the standard unit of the currency (e.g., dollars for USD).
+        nextPaymentAmount:
+          type: number
+          description: The amount of the next payment due on the account in the standard unit of the currency (e.g., dollars for USD).
+        nextPaymentDate:
+          type: string
+          description: The date the next payment is due.
+        principalBalance:
+          type: number
+          description: The principal balance on the account in the standard unit of the currency (e.g., dollars for USD).
+        currentBalance:
+          type: number
+          description: The current balance on the account in the standard unit of the currency (e.g., dollars for USD). This includes any outstanding charges, fees, and interest.
+        minimumPaymentAmount:
+          type: number
+          description: The minimum payment due on the account in the standard unit of the currency (e.g., dollars for USD).
+        lastPaymentAmount:
+          type: number
+          description: The amount of the last payment made on the account in the standard unit of the currency (e.g., dollars for USD).
+        lastPaymentDate:
+          type: string
+          description: The date the last payment was made.
+        pastDueAmount:
+          type: number
+          description: The amount past due on the account in the standard unit of the currency (e.g., dollars for USD).
+        lastStmtBalance:
+          type: number
+          description: The balance on the account as of the last statement date in the standard unit of the currency (e.g., dollars for USD).
+        lastStmtDate:
+          type: string
+          description: The date of the last statement.
+        purchasesApr:
+          type: number
+          description: The annual percentage rate (APR) for purchases on the account.
+        advancesApr:
+          type: number
+          description: The annual percentage rate (APR) for cash advances on the account.
+      required:
+      - availableCredit
+      - currentBalance
+      x-entrypoint:
+        virtualPath: paths/fdx/accounts/_dto/LineOfCreditAccountBalance
+        sourcePath: paths/fdx/accounts/_dto/LineOfCreditAccountBalance.yaml
+        title: LineOfCreditAccountBalance
+        origin: ./src/publicApi
+      title: LineOfCreditAccountBalance
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+        name:
+          type: string
+        identifier:
+          type: string
+        rawStatus:
+          type: number
+        meta:
+          type: object
+          additionalProperties: true
+      required:
+      - message
+      - name
+      - identifier
+      - rawStatus
+      x-entrypoint:
+        origin: ./src/publicApi
+        sourcePath: ./src/publicApi/main.yaml
+        title: Error
+        virtualPath: components/Error
+      title: Error
+    paths.fdx.accounts._dto.InsuranceAccount:
+      type: object
+      description: An insurance account. For example, whole life insurance or short-term disability.
+      properties:
+        accountId:
+          type: string
+          description: Long-term persistent identity of the account, though not an account number.
+        accountNumberDisplay:
+          type: string
+          description: A masked version of the account number, which includes the last 4 digits in plain text.
+        productName:
+          type: string
+          description: Marketed product name for this account. You can use this in UIs to assist in account selection. For example, "Slash Platinum".
+        nickname:
+          type: string
+          description: A nickname or label for the account. This will be unique to the account, even if the user has multiple accounts with the same product name. You can use this in UIs to assist in account selection.
+        status:
+          type: string
+          enum:
+          - CLOSED
+          - DELINQUENT
+          - NEGATIVECURRENTBALANCE
+          - OPEN
+          - PAID
+          - PENDINGCLOSE
+          - PENDINGOPEN
+          - RESTRICTED
+        currency:
+          type: object
+          properties:
+            currencyCode:
+              type: string
+              description: The ISO 4217 currency code for the currency that the account is denominated in. For example, "USD" for US Dollars.
+          required:
+          - currencyCode
+        accountType:
+          type: string
+          enum:
+          - LONGTERMDISABILITY
+          - SHORTTERMDISABILITY
+          - UNIVERSALLIFE
+          - WHOLELIFE
+      required:
+      - accountId
+      - productName
+      - status
+      - currency
+      - accountType
+      x-entrypoint:
+        virtualPath: paths/fdx/accounts/_dto/InsuranceAccount
+        sourcePath: paths/fdx/accounts/_dto/InsuranceAccount.yaml
+        title: InsuranceAccount
+        origin: ./src/publicApi
+      title: InsuranceAccount
+    paths.fdx.accounts._dto.AnnuityAccount:
+      type: object
+      description: An annuity account. For example, a fixed or variable annuity account.
+      properties:
+        accountId:
+          type: string
+          description: Long-term persistent identity of the account, though not an account number.
+        accountNumberDisplay:
+          type: string
+          description: A masked version of the account number, which includes the last 4 digits in plain text.
+        productName:
+          type: string
+          description: Marketed product name for this account. You can use this in UIs to assist in account selection. For example, "Slash Platinum".
+        nickname:
+          type: string
+          description: A nickname or label for the account. This will be unique to the account, even if the user has multiple accounts with the same product name. You can use this in UIs to assist in account selection.
+        status:
+          type: string
+          enum:
+          - CLOSED
+          - DELINQUENT
+          - NEGATIVECURRENTBALANCE
+          - OPEN
+          - PAID
+          - PENDINGCLOSE
+          - PENDINGOPEN
+          - RESTRICTED
+        currency:
+          type: object
+          properties:
+            currencyCode:
+              type: string
+              description: The ISO 4217 currency code for the currency that the account is denominated in. For example, "USD" for US Dollars.
+          required:
+          - currencyCode
+        accountType:
+          type: string
+          enum:
+          - ANNUITY
+          - FIXEDANNUITY
+          - VARIABLEANNUITY
+      required:
+      - accountId
+      - productName
+      - status
+      - currency
+      - accountType
+      x-entrypoint:
+        virtualPath: paths/fdx/accounts/_dto/AnnuityAccount
+        sourcePath: paths/fdx/accounts/_dto/AnnuityAccount.yaml
+        title: AnnuityAccount
+        origin: ./src/publicApi
+      title: AnnuityAccount
     paths.fdx.accounts._param_accountId.transactions._dto.LineOfCreditTransaction:
       type: object
       properties:
@@ -1331,9 +1378,9 @@ components:
         title: LineOfCreditTransaction
         origin: ./src/publicApi
       title: LineOfCreditTransaction
-    paths.fdx.accounts._dto.InsuranceAccount:
+    paths.fdx.accounts._dto.LoanAccount:
       type: object
-      description: An insurance account. For example, whole life insurance or short-term disability.
+      description: A loan account. For example, mortgage, student loan or auto loan.
       properties:
         accountId:
           type: string
@@ -1369,10 +1416,15 @@ components:
         accountType:
           type: string
           enum:
-          - LONGTERMDISABILITY
-          - SHORTTERMDISABILITY
-          - UNIVERSALLIFE
-          - WHOLELIFE
+          - AUTOLOAN
+          - HOMEEQUITYLOAN
+          - INSTALLMENT
+          - LOAN
+          - MILITARYLOAN
+          - MORTGAGE
+          - PERSONALLOAN
+          - SMBLOAN
+          - STUDENTLOAN
       required:
       - accountId
       - productName
@@ -1380,11 +1432,65 @@ components:
       - currency
       - accountType
       x-entrypoint:
-        virtualPath: paths/fdx/accounts/_dto/InsuranceAccount
-        sourcePath: paths/fdx/accounts/_dto/InsuranceAccount.yaml
-        title: InsuranceAccount
+        virtualPath: paths/fdx/accounts/_dto/LoanAccount
+        sourcePath: paths/fdx/accounts/_dto/LoanAccount.yaml
+        title: LoanAccount
         origin: ./src/publicApi
-      title: InsuranceAccount
+      title: LoanAccount
+    paths.fdx.accounts._dto.CommercialAccount:
+      type: object
+      description: A commercial account. For example, a business deposit account.
+      properties:
+        accountId:
+          type: string
+          description: Long-term persistent identity of the account, though not an account number.
+        accountNumberDisplay:
+          type: string
+          description: A masked version of the account number, which includes the last 4 digits in plain text.
+        productName:
+          type: string
+          description: Marketed product name for this account. You can use this in UIs to assist in account selection. For example, "Slash Platinum".
+        nickname:
+          type: string
+          description: A nickname or label for the account. This will be unique to the account, even if the user has multiple accounts with the same product name. You can use this in UIs to assist in account selection.
+        status:
+          type: string
+          enum:
+          - CLOSED
+          - DELINQUENT
+          - NEGATIVECURRENTBALANCE
+          - OPEN
+          - PAID
+          - PENDINGCLOSE
+          - PENDINGOPEN
+          - RESTRICTED
+        currency:
+          type: object
+          properties:
+            currencyCode:
+              type: string
+              description: The ISO 4217 currency code for the currency that the account is denominated in. For example, "USD" for US Dollars.
+          required:
+          - currencyCode
+        accountType:
+          type: string
+          enum:
+          - COMMERCIALDEPOSIT
+          - COMMERCIALLOAN
+          - COMMERCIALLINEOFCREDIT
+          - COMMERCIALINVESTMENT
+      required:
+      - accountId
+      - productName
+      - status
+      - currency
+      - accountType
+      x-entrypoint:
+        virtualPath: paths/fdx/accounts/_dto/CommercialAccount
+        sourcePath: paths/fdx/accounts/_dto/CommercialAccount.yaml
+        title: CommercialAccount
+        origin: ./src/publicApi
+      title: CommercialAccount
     paths.fdx.accounts._param_accountId.transactions._dto.InvestmentTransaction:
       type: object
       properties:
@@ -1608,88 +1714,9 @@ components:
         title: DepositAccount
         origin: ./src/publicApi
       title: DepositAccount
-    paths.fdx.accounts._dto.LineOfCreditAccountBalance:
+    paths.fdx.accounts._dto.LineOfCreditAccount:
       type: object
-      properties:
-        creditLine:
-          type: number
-          description: The total credit line available on the account in the standard unit of the currency (e.g., dollars for USD).
-        availableCredit:
-          type: number
-          description: The currently available credit on the account in the standard unit of the currency (e.g., dollars for USD).
-        nextPaymentAmount:
-          type: number
-          description: The amount of the next payment due on the account in the standard unit of the currency (e.g., dollars for USD).
-        nextPaymentDate:
-          type: string
-          description: The date the next payment is due.
-        principalBalance:
-          type: number
-          description: The principal balance on the account in the standard unit of the currency (e.g., dollars for USD).
-        currentBalance:
-          type: number
-          description: The current balance on the account in the standard unit of the currency (e.g., dollars for USD). This includes any outstanding charges, fees, and interest.
-        minimumPaymentAmount:
-          type: number
-          description: The minimum payment due on the account in the standard unit of the currency (e.g., dollars for USD).
-        lastPaymentAmount:
-          type: number
-          description: The amount of the last payment made on the account in the standard unit of the currency (e.g., dollars for USD).
-        lastPaymentDate:
-          type: string
-          description: The date the last payment was made.
-        pastDueAmount:
-          type: number
-          description: The amount past due on the account in the standard unit of the currency (e.g., dollars for USD).
-        lastStmtBalance:
-          type: number
-          description: The balance on the account as of the last statement date in the standard unit of the currency (e.g., dollars for USD).
-        lastStmtDate:
-          type: string
-          description: The date of the last statement.
-        purchasesApr:
-          type: number
-          description: The annual percentage rate (APR) for purchases on the account.
-        advancesApr:
-          type: number
-          description: The annual percentage rate (APR) for cash advances on the account.
-      required:
-      - availableCredit
-      - currentBalance
-      x-entrypoint:
-        virtualPath: paths/fdx/accounts/_dto/LineOfCreditAccountBalance
-        sourcePath: paths/fdx/accounts/_dto/LineOfCreditAccountBalance.yaml
-        title: LineOfCreditAccountBalance
-        origin: ./src/publicApi
-      title: LineOfCreditAccountBalance
-    Error:
-      type: object
-      properties:
-        message:
-          type: string
-        name:
-          type: string
-        identifier:
-          type: string
-        rawStatus:
-          type: number
-        meta:
-          type: object
-          additionalProperties: true
-      required:
-      - message
-      - name
-      - identifier
-      - rawStatus
-      x-entrypoint:
-        origin: ./src/publicApi
-        sourcePath: ./src/publicApi/main.yaml
-        title: Error
-        virtualPath: components/Error
-      title: Error
-    paths.fdx.accounts._dto.LoanAccount:
-      type: object
-      description: A loan account. For example, mortgage, student loan or auto loan.
+      description: A line-of-credit account. For example, a credit card or home equity line of credit.
       properties:
         accountId:
           type: string
@@ -1725,15 +1752,10 @@ components:
         accountType:
           type: string
           enum:
-          - AUTOLOAN
-          - HOMEEQUITYLOAN
-          - INSTALLMENT
-          - LOAN
-          - MILITARYLOAN
-          - MORTGAGE
-          - PERSONALLOAN
-          - SMBLOAN
-          - STUDENTLOAN
+          - LINEOFCREDIT
+          - CHARGE
+          - CREDITCARD
+          - HOMELINEOFCREDIT
       required:
       - accountId
       - productName
@@ -1741,124 +1763,29 @@ components:
       - currency
       - accountType
       x-entrypoint:
-        virtualPath: paths/fdx/accounts/_dto/LoanAccount
-        sourcePath: paths/fdx/accounts/_dto/LoanAccount.yaml
-        title: LoanAccount
+        virtualPath: paths/fdx/accounts/_dto/LineOfCreditAccount
+        sourcePath: paths/fdx/accounts/_dto/LineOfCreditAccount.yaml
+        title: LineOfCreditAccount
         origin: ./src/publicApi
-      title: LoanAccount
-    paths.fdx.accounts._dto.InvestmentAccountBalance:
+      title: LineOfCreditAccount
+    paths.fdx.accounts._dto.DepositAccountBalance:
       type: object
       properties:
-        availableCashBalance:
+        currentBalance:
           type: number
-          description: The amount of cash available in the account across all sub-accounts, including sweep funds, in the standard unit of the currency (e.g., dollars for USD).
-        balanceAsOf:
-          type: string
-          description: The date and time the balance was last updated.
-        currentValue:
+          description: The current balance of the account in the standard unit of the currency (e.g., dollars for USD). Current balance is the balance that is currently in the account, including any pending transactions.
+        availableBalance:
           type: number
-          description: The total current value of all investments in the standard unit of the currency (e.g., dollars for USD).
-        holdings:
-          type: array
-          description: The holdings in the account.
-          items:
-            type: object
-            properties:
-              securityId:
-                type: string
-                description: The unique identifier of the security. Either securityId and securityIdType or symbol will be provided.
-              securityIdType:
-                type: string
-                description: The type of the security identifier.
-                enum:
-                - CINS
-                - CMC
-                - CME
-                - CUSIP
-                - ISIN
-                - ITSA
-                - NASDAQ
-                - SEDOL
-                - SICC
-                - VALOR
-                - WKN
-              holdingName:
-                type: string
-                description: The name of the security.
-              holdingType:
-                type: string
-                description: The type of the holding.
-                enum:
-                - ANNUITY
-                - BOND
-                - CD
-                - DIGITALASSET
-                - MUTUALFUND
-                - OPTION
-                - OTHER
-                - STOCK
-              holdingSubType:
-                type: string
-                enum:
-                - CASH
-                - MONEYMARKET
-              symbol:
-                type: string
-                description: The symbol of the security. Either securityId and securityIdType or symbol will be provided.
-              purchasedPrice:
-                type: number
-                description: The price at which the security was purchased in the standard unit of the currency (e.g., dollars for USD).
-              currentUnitPrice:
-                type: number
-                description: The current unit price of the security in the standard unit of the currency (e.g., dollars for USD).
-              currentUnitPriceDate:
-                type: string
-                format: date
-                description: The date (YYYY-MM-DD) the current unit price was last updated.
-              units:
-                type: number
-                description: The number of units of the security held.
-              marketValue:
-                type: number
-                description: The market value of the holding in the standard unit of the currency (e.g., dollars for USD).
-              faceValue:
-                type: number
-                description: The face value of the holding in the standard unit of the currency (e.g., dollars for USD).
-              cashAccount:
-                type: boolean
-                description: If true, indicates that this holding is used to maintain proceeds from sales, dividends, and other cash postings to the investment account.
-              currency:
-                type: object
-                properties:
-                  currencyCode:
-                    type: string
-                    description: The ISO 4217 currency code.
-                required:
-                - currencyCode
-              fiAttributes:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    name:
-                      type: string
-                    value:
-                      type: string
-                  required:
-                  - name
-                  - value
-            required:
-            - marketValue
-            - cashAccount
+          description: The available balance of the account in the standard unit of the currency (e.g., dollars for USD). Available balance is the balance that is available to spend/withdraw.
       required:
-      - availableCashBalance
-      - currentValue
+      - currentBalance
+      - availableBalance
       x-entrypoint:
-        virtualPath: paths/fdx/accounts/_dto/InvestmentAccountBalance
-        sourcePath: paths/fdx/accounts/_dto/InvestmentAccountBalance.yaml
-        title: InvestmentAccountBalance
+        virtualPath: paths/fdx/accounts/_dto/DepositAccountBalance
+        sourcePath: paths/fdx/accounts/_dto/DepositAccountBalance.yaml
+        title: DepositAccountBalance
         origin: ./src/publicApi
-      title: InvestmentAccountBalance
+      title: DepositAccountBalance
     paths.fdx.accounts._dto.Account:
       oneOf:
       - type: object
@@ -1944,6 +1871,229 @@ components:
         title: Account
         origin: ./src/publicApi
       title: Account
+    paths.fdx.accounts._param_accountId.transactions._dto.LoanTransaction:
+      type: object
+      properties:
+        transactionId:
+          type: string
+          description: Long-term persistent identity of the transaction.
+        referenceTransactionId:
+          type: string
+          description: For reverse postings, the identity of the transaction being reversed. For the correction transaction, the identity of the reversing post. For credit card posting transactions, the identity of the authorization transaction
+        postedTimestamp:
+          type: string
+          description: The ISO 8601 date and time that the transaction was posted to the account. This will be included if status is POSTED.
+        transactionTimestamp:
+          type: string
+          description: The ISO 8601 date and time that the transaction was initiated.
+        description:
+          type: string
+          description: A description of the transaction.
+        debitCreditMemo:
+          type: string
+          description: The posting type of a transaction. The transaction amount is an absolute value, and this parameter indicates the direction of the transaction. This will always be DEBIT or CREDIT.
+          enum:
+          - DEBIT
+          - CREDIT
+          - MEMO
+        category:
+          type: string
+          description: The merchant category code (MCC) of the transaction, if available.
+        subCategory:
+          type: string
+          description: Additional information about the transaction category, if available.
+        status:
+          type: string
+          description: The status of the transaction. This will always be PENDING or POSTED.
+          enum:
+          - AUTHORIZATION
+          - MEMO
+          - PENDING
+          - POSTED
+        amount:
+          type: number
+          description: The amount of money in the account currency in that currency's standard unit (e.g. dollars for USD). The amount is an absolute value. The debitCreditMemo parameter indicates the direction of the transaction.
+        foreignAmount:
+          type: number
+          description: This value is only included if the transaction's currency is different than the account's default currency.
+        foreignCurrency:
+          $ref: '#/components/schemas/paths.fdx.accounts._param_accountId.transactions._dto.Iso4217CurrencyCode'
+          description: ISO 4217 currency code. This value is only included if the transaction's currency is different than the account's default currency.
+          x-entrypoint:
+            virtualPath: paths/fdx/accounts/{accountId}/transactions/_dto/Iso4217CurrencyCode
+            sourcePath: paths/fdx/accounts/{accountId}/transactions/_dto/Iso4217CurrencyCode.yaml
+            title: Iso4217CurrencyCode
+            origin: ./src/publicApi
+        transactionType:
+          type: string
+          enum:
+          - ADJUSTMENT
+          - FEE
+          - INTEREST
+          - PAYMENT
+          - LUMP_SUM_PAYMENT
+          - SKIP_PAYMENT
+          - DOUBLE_UP_PAYMENT
+          - PAYOFF
+      required:
+      - transactionId
+      - transactionTimestamp
+      - description
+      - debitCreditMemo
+      - status
+      - amount
+      x-entrypoint:
+        virtualPath: paths/fdx/accounts/{accountId}/transactions/_dto/LoanTransaction
+        sourcePath: paths/fdx/accounts/{accountId}/transactions/_dto/LoanTransaction.yaml
+        title: LoanTransaction
+        origin: ./src/publicApi
+      title: LoanTransaction
+    paths.fdx.accounts._param_accountId.transactions._dto.DepositTransaction:
+      type: object
+      properties:
+        transactionId:
+          type: string
+          description: Long-term persistent identity of the transaction.
+        referenceTransactionId:
+          type: string
+          description: For reverse postings, the identity of the transaction being reversed. For the correction transaction, the identity of the reversing post. For credit card posting transactions, the identity of the authorization transaction
+        postedTimestamp:
+          type: string
+          description: The ISO 8601 date and time that the transaction was posted to the account. This will be included if status is POSTED.
+        transactionTimestamp:
+          type: string
+          description: The ISO 8601 date and time that the transaction was initiated.
+        description:
+          type: string
+          description: A description of the transaction.
+        debitCreditMemo:
+          type: string
+          description: The posting type of a transaction. The transaction amount is an absolute value, and this parameter indicates the direction of the transaction. This will always be DEBIT or CREDIT.
+          enum:
+          - DEBIT
+          - CREDIT
+          - MEMO
+        category:
+          type: string
+          description: The merchant category code (MCC) of the transaction, if available.
+        subCategory:
+          type: string
+          description: Additional information about the transaction category, if available.
+        status:
+          type: string
+          description: The status of the transaction. This will always be PENDING or POSTED.
+          enum:
+          - AUTHORIZATION
+          - MEMO
+          - PENDING
+          - POSTED
+        amount:
+          type: number
+          description: The amount of money in the account currency in that currency's standard unit (e.g. dollars for USD). The amount is an absolute value. The debitCreditMemo parameter indicates the direction of the transaction.
+        foreignAmount:
+          type: number
+          description: This value is only included if the transaction's currency is different than the account's default currency.
+        foreignCurrency:
+          $ref: '#/components/schemas/paths.fdx.accounts._param_accountId.transactions._dto.Iso4217CurrencyCode'
+          description: ISO 4217 currency code. This value is only included if the transaction's currency is different than the account's default currency.
+          x-entrypoint:
+            virtualPath: paths/fdx/accounts/{accountId}/transactions/_dto/Iso4217CurrencyCode
+            sourcePath: paths/fdx/accounts/{accountId}/transactions/_dto/Iso4217CurrencyCode.yaml
+            title: Iso4217CurrencyCode
+            origin: ./src/publicApi
+        payee:
+          type: string
+          maxLength: 255
+        checkNumber:
+          type: string
+          description: The check number of the transaction, if available. Only included if this is a check transaction.
+      required:
+      - transactionId
+      - transactionTimestamp
+      - description
+      - debitCreditMemo
+      - status
+      - amount
+      x-entrypoint:
+        virtualPath: paths/fdx/accounts/{accountId}/transactions/_dto/DepositTransaction
+        sourcePath: paths/fdx/accounts/{accountId}/transactions/_dto/DepositTransaction.yaml
+        title: DepositTransaction
+        origin: ./src/publicApi
+      title: DepositTransaction
+    paths.fdx.accounts._dto.InvestmentAccount:
+      type: object
+      description: An investment account. For example, a 401K or IRA.
+      properties:
+        accountId:
+          type: string
+          description: Long-term persistent identity of the account, though not an account number.
+        accountNumberDisplay:
+          type: string
+          description: A masked version of the account number, which includes the last 4 digits in plain text.
+        productName:
+          type: string
+          description: Marketed product name for this account. You can use this in UIs to assist in account selection. For example, "Slash Platinum".
+        nickname:
+          type: string
+          description: A nickname or label for the account. This will be unique to the account, even if the user has multiple accounts with the same product name. You can use this in UIs to assist in account selection.
+        status:
+          type: string
+          enum:
+          - CLOSED
+          - DELINQUENT
+          - NEGATIVECURRENTBALANCE
+          - OPEN
+          - PAID
+          - PENDINGCLOSE
+          - PENDINGOPEN
+          - RESTRICTED
+        currency:
+          type: object
+          properties:
+            currencyCode:
+              type: string
+              description: The ISO 4217 currency code for the currency that the account is denominated in. For example, "USD" for US Dollars.
+          required:
+          - currencyCode
+        accountType:
+          type: string
+          enum:
+          - 401A
+          - 401K
+          - 403B
+          - '529'
+          - BROKERAGEPRODUCT
+          - COVERDELL
+          - DIGITALASSET
+          - DEFINEDBENEFIT
+          - ESOP
+          - GUARDIAN
+          - INSTITUTIONALTRUST
+          - IRA
+          - KEOGH
+          - NONQUALIFIEDPLAN
+          - OTHERINVESTMENT
+          - ROLLOVER
+          - ROTH
+          - SARSEP
+          - TAXABLE
+          - TDA
+          - TRUST
+          - TERM
+          - UGMA
+          - UTMA
+      required:
+      - accountId
+      - productName
+      - status
+      - currency
+      - accountType
+      x-entrypoint:
+        virtualPath: paths/fdx/accounts/_dto/InvestmentAccount
+        sourcePath: paths/fdx/accounts/_dto/InvestmentAccount.yaml
+        title: InvestmentAccount
+        origin: ./src/publicApi
+      title: InvestmentAccount
     paths.fdx.accounts._dto.AccountWithBalance:
       oneOf:
       - type: object
@@ -2024,156 +2174,6 @@ components:
         title: AccountWithBalance
         origin: ./src/publicApi
       title: AccountWithBalance
-    paths.fdx.accounts._dto.LoanAccountBalance:
-      type: object
-      properties:
-        principalBalance:
-          type: number
-          description: The principal balance of the loan account in the standard unit of the currency (e.g., dollars for USD). Principal balance is the amount of the loan that is still owed.
-        escrowBalance:
-          type: number
-          description: The escrow balance of the loan account in the standard unit of the currency (e.g., dollars for USD). Escrow balance is the amount of money held in escrow to pay for property taxes and insurance.
-        originalPrincipal:
-          type: number
-          description: The original principal balance of the loan account in the standard unit of the currency (e.g., dollars for USD). Original principal balance is the amount of the loan when it was first taken out.
-        originatingDate:
-          type: string
-          description: The date the loan was originated.
-        loanTerm:
-          type: string
-          description: The term of the loan in months.
-        nextPaymentAmount:
-          type: number
-          description: The amount of the next payment due on the loan in the standard unit of the currency (e.g., dollars for USD).
-        nextPaymentDate:
-          type: string
-          description: The date the next payment is due.
-        lastPaymentAmount:
-          type: number
-          description: The amount of the last payment made on the loan in the standard unit of the currency (e.g., dollars for USD).
-        lastPaymentDate:
-          type: string
-          description: The date the last payment was made.
-        maturityDate:
-          type: string
-          description: The date the loan is scheduled to be paid off.
-        interestPaidYearToDate:
-          type: number
-          description: The amount of interest paid on the loan year-to-date in the standard unit of the currency (e.g., dollars for USD).
-        interestRate:
-          type: number
-          description: The interest rate on the loan as a floating point number. For example, 0.05 for 5%.
-        interestRateType:
-          type: string
-          enum:
-          - FIXED
-          - VARIABLE
-          description: The type of interest rate on the loan.
-      required:
-      - principalBalance
-      - interestRate
-      - interestRateType
-      x-entrypoint:
-        virtualPath: paths/fdx/accounts/_dto/LoanAccountBalance
-        sourcePath: paths/fdx/accounts/_dto/LoanAccountBalance.yaml
-        title: LoanAccountBalance
-        origin: ./src/publicApi
-      title: LoanAccountBalance
-    paths.fdx.accounts._param_accountId.transactions._dto.LoanTransaction:
-      type: object
-      properties:
-        transactionId:
-          type: string
-          description: Long-term persistent identity of the transaction.
-        referenceTransactionId:
-          type: string
-          description: For reverse postings, the identity of the transaction being reversed. For the correction transaction, the identity of the reversing post. For credit card posting transactions, the identity of the authorization transaction
-        postedTimestamp:
-          type: string
-          description: The ISO 8601 date and time that the transaction was posted to the account. This will be included if status is POSTED.
-        transactionTimestamp:
-          type: string
-          description: The ISO 8601 date and time that the transaction was initiated.
-        description:
-          type: string
-          description: A description of the transaction.
-        debitCreditMemo:
-          type: string
-          description: The posting type of a transaction. The transaction amount is an absolute value, and this parameter indicates the direction of the transaction. This will always be DEBIT or CREDIT.
-          enum:
-          - DEBIT
-          - CREDIT
-          - MEMO
-        category:
-          type: string
-          description: The merchant category code (MCC) of the transaction, if available.
-        subCategory:
-          type: string
-          description: Additional information about the transaction category, if available.
-        status:
-          type: string
-          description: The status of the transaction. This will always be PENDING or POSTED.
-          enum:
-          - AUTHORIZATION
-          - MEMO
-          - PENDING
-          - POSTED
-        amount:
-          type: number
-          description: The amount of money in the account currency in that currency's standard unit (e.g. dollars for USD). The amount is an absolute value. The debitCreditMemo parameter indicates the direction of the transaction.
-        foreignAmount:
-          type: number
-          description: This value is only included if the transaction's currency is different than the account's default currency.
-        foreignCurrency:
-          $ref: '#/components/schemas/paths.fdx.accounts._param_accountId.transactions._dto.Iso4217CurrencyCode'
-          description: ISO 4217 currency code. This value is only included if the transaction's currency is different than the account's default currency.
-          x-entrypoint:
-            virtualPath: paths/fdx/accounts/{accountId}/transactions/_dto/Iso4217CurrencyCode
-            sourcePath: paths/fdx/accounts/{accountId}/transactions/_dto/Iso4217CurrencyCode.yaml
-            title: Iso4217CurrencyCode
-            origin: ./src/publicApi
-        transactionType:
-          type: string
-          enum:
-          - ADJUSTMENT
-          - FEE
-          - INTEREST
-          - PAYMENT
-          - LUMP_SUM_PAYMENT
-          - SKIP_PAYMENT
-          - DOUBLE_UP_PAYMENT
-          - PAYOFF
-      required:
-      - transactionId
-      - transactionTimestamp
-      - description
-      - debitCreditMemo
-      - status
-      - amount
-      x-entrypoint:
-        virtualPath: paths/fdx/accounts/{accountId}/transactions/_dto/LoanTransaction
-        sourcePath: paths/fdx/accounts/{accountId}/transactions/_dto/LoanTransaction.yaml
-        title: LoanTransaction
-        origin: ./src/publicApi
-      title: LoanTransaction
-    paths.fdx.accounts._dto.DepositAccountBalance:
-      type: object
-      properties:
-        currentBalance:
-          type: number
-          description: The current balance of the account in the standard unit of the currency (e.g., dollars for USD). Current balance is the balance that is currently in the account, including any pending transactions.
-        availableBalance:
-          type: number
-          description: The available balance of the account in the standard unit of the currency (e.g., dollars for USD). Available balance is the balance that is available to spend/withdraw.
-      required:
-      - currentBalance
-      - availableBalance
-      x-entrypoint:
-        virtualPath: paths/fdx/accounts/_dto/DepositAccountBalance
-        sourcePath: paths/fdx/accounts/_dto/DepositAccountBalance.yaml
-        title: DepositAccountBalance
-        origin: ./src/publicApi
-      title: DepositAccountBalance
   securitySchemes:
     api_key:
       type: apiKey

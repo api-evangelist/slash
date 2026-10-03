@@ -618,483 +618,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    TransactionMerchantLocation:
-      type: object
-      properties:
-        city:
-          type: string
-          description: The city of the merchant.
-        state:
-          type: string
-          description: The state/province of the merchant.
-        country:
-          type: string
-          description: The country of the merchant.
-        zip:
-          type: string
-          description: The ZIP/postal code of the merchant.
-      required:
-      - city
-      - state
-      - country
-      - zip
-      x-entrypoint:
-        virtualPath: schemas/TransactionMerchantLocation
-        sourcePath: schemas/TransactionMerchantLocation.yaml
-        title: TransactionMerchantLocation
-        origin: ./src/publicApi
-      title: TransactionMerchantLocation
-    TransactionStatus:
-      type: string
-      description: '- `pending`: The transaction is pending and has not been posted to the account yet (the account''s posted balance doesn''t reflect the transaction yet, but the account''s available balance does).
-
-        - `posted`: The transaction has been posted to the account and the account''s posted balance and available balances both reflect the transaction.
-
-        - `failed`: The transaction failed to post to the account and no longer affects the account''s available or posted balances.
-
-        '
-      enum:
-      - pending
-      - posted
-      - failed
-      x-entrypoint:
-        virtualPath: schemas/TransactionStatus
-        sourcePath: schemas/TransactionStatus.yaml
-        title: TransactionStatus
-        origin: ./src/publicApi
-      title: TransactionStatus
-    Restriction:
-      type: string
-      enum:
-      - allowlist
-      - blacklist
-      x-entrypoint:
-        virtualPath: schemas/Restriction
-        sourcePath: schemas/Restriction.yaml
-        title: Restriction
-        origin: ./src/publicApi
-      title: Restriction
-    CardStatus:
-      type: string
-      enum:
-      - active
-      - paused
-      - inactive
-      - closed
-      x-entrypoint:
-        virtualPath: schemas/CardStatus
-        sourcePath: schemas/CardStatus.yaml
-        title: CardStatus
-        origin: ./src/publicApi
-      title: CardStatus
-    TransactionMerchant:
-      type: object
-      properties:
-        description:
-          type: string
-          description: The raw description provided by the merchant for the transaction.
-        categoryCode:
-          type: string
-          description: The merchant's category code (MCC)
-        location:
-          $ref: '#/components/schemas/TransactionMerchantLocation'
-          description: Location details for the merchant/transaction.
-          x-entrypoint:
-            virtualPath: schemas/TransactionMerchantLocation
-            sourcePath: schemas/TransactionMerchantLocation.yaml
-            title: TransactionMerchantLocation
-            origin: ./src/publicApi
-      required:
-      - description
-      - categoryCode
-      x-entrypoint:
-        virtualPath: schemas/TransactionMerchant
-        sourcePath: schemas/TransactionMerchant.yaml
-        title: TransactionMerchant
-        origin: ./src/publicApi
-      title: TransactionMerchant
-    FeeTransaction:
-      type: object
-      properties:
-        id:
-          type: string
-        dateCharged:
-          type: string
-        feeAmountCents:
-          type: number
-        feeType:
-          type: string
-        accountId:
-          type: string
-        originalTransaction:
-          $ref: '#/components/schemas/Transaction'
-          x-entrypoint:
-            virtualPath: schemas/Transaction
-            sourcePath: schemas/Transaction.yaml
-            title: Transaction
-            origin: ./src/publicApi
-        card:
-          $ref: '#/components/schemas/Card'
-          x-entrypoint:
-            virtualPath: schemas/Card
-            sourcePath: schemas/Card.yaml
-            title: Card
-            origin: ./src/publicApi
-      required:
-      - id
-      - dateCharged
-      - feeAmountCents
-      - feeType
-      - accountId
-      x-entrypoint:
-        virtualPath: schemas/FeeTransaction
-        sourcePath: schemas/FeeTransaction.yaml
-        title: FeeTransaction
-        origin: ./src/publicApi
-      title: FeeTransaction
-    Card:
-      type: object
-      properties:
-        id:
-          type: string
-        accountId:
-          type: string
-          description: The account that this card is associated with
-        virtualAccountId:
-          type: string
-          description: The virtual account that this card is associated with
-        last4:
-          type: string
-          description: The last 4 digits of the card number
-        name:
-          type: string
-          description: The name assigned to the card that appears on the user dashboard
-        expiryMonth:
-          type: string
-          description: The month the card expires formatted as MM (01, 02, ..., 12)
-        expiryYear:
-          type: string
-          description: The year the card expires formatted as YYYY (2024, 2025, ...)
-        status:
-          allOf:
-          - $ref: '#/components/schemas/CardStatus'
-            x-entrypoint:
-              virtualPath: schemas/CardStatus
-              sourcePath: schemas/CardStatus.yaml
-              title: CardStatus
-              origin: ./src/publicApi
-          - description: The status of the card
-        isPhysical:
-          type: boolean
-          description: When true, a physical card has been issued. Otherwise, this is a virtual card.
-        isSingleUse:
-          type: boolean
-          description: When true, the card will be automatically closed after a single authorization attempt. Note that the card will be closed even if the authorization declines or drops
-        pan:
-          type: string
-          description: This field contains the full PAN which will only be sent on a request for a single card when you set the query param "include_pan" to "true"
-        cvv:
-          type: string
-          description: This field will contain full CVV which will only be sent on a request for a single card when you set the query param "include_pan" to "true"
-        cardGroupId:
-          type: string
-          description: The card group the card belongs to.
-        cardGroupName:
-          type: string
-          description: The name of the card group the card belongs to.
-        createdAt:
-          type: string
-          format: date-time
-        spendingConstraint:
-          $ref: '#/components/schemas/SpendingConstraint'
-          description: The spending constraint applied to the card
-          x-entrypoint:
-            virtualPath: schemas/SpendingConstraint
-            sourcePath: schemas/SpendingConstraint.yaml
-            title: SpendingConstraint
-            origin: ./src/publicApi
-        userData:
-          type: object
-          description: Arbitrary information that can be attached to the card. See the [`PATCH /card/{cardId}`](api-reference/card-patch) endpoint for more details on how to add user data.
-        cardProductId:
-          type: string
-          description: The ID of the card product this card was created with.
-        modifiers:
-          type: array
-          items:
-            $ref: '#/components/schemas/CardModifier'
-            x-entrypoint:
-              virtualPath: schemas/CardModifier
-              sourcePath: schemas/CardModifier.yaml
-              title: CardModifier
-              origin: ./src/publicApi
-          description: The modifiers applied to this card. Modifiers control card behavior like restricting to recurring payments only.
-      required:
-      - id
-      - accountId
-      - last4
-      - name
-      - expiryMonth
-      - expiryYear
-      - status
-      - isPhysical
-      x-entrypoint:
-        virtualPath: schemas/Card
-        sourcePath: schemas/Card.yaml
-        title: Card
-        origin: ./src/publicApi
-      title: Card
-    Pagination.PaginationResponse:
-      type: object
-      description: Response sent when requesting a list of data
-      properties:
-        nextCursor:
-          type: string
-          description: The cursor to use to retrieve the next page of data. If this is not sent, there is no more data to retrieve.
-        count:
-          type: number
-          description: The number of items in the current page of data.
-      x-entrypoint:
-        virtualPath: schemas/Pagination/PaginationResponse
-        sourcePath: schemas/Pagination/PaginationResponse.yaml
-        title: PaginationResponse
-        origin: ./src/publicApi
-      title: PaginationResponse
-    TransactionDetailedStatus:
-      type: string
-      description: '- `pending_approval`: Used for any transaction type that is pending approval. This does not affect the account''s available or posted balances.
-
-        - `pending`: Used for any transaction type that has not posted to the account yet, but is affecting the account''s available balance.
-
-        - `canceled`: Used for any transaction that was canceled.
-
-        - `failed`: Used for any transaction that failed to post to the account.
-
-        - `settled`: Used for any transaction that has posted to the account, except for card refunds, which use the `refund` status, and ACH returns, which use the `returned` status.
-
-        - `declined`: Used for card transactions that were declined.
-
-        - `refund`: Used for card transactions that were refunded, increasing the account''s available and posted balances.
-
-        - `reversed`: Used for card transactions that were authorized, but reversed by the merchant.
-
-        - `returned`: Used for ACH returns. In the case of an ACH return, there are two possibilities: (1) if the ACH settled and then returned, then there will be one transaction with status `settled` for the ACH settling, and one transaction with status `returned` for the ACH return. Both of these are posted transactions. (2) if the ACH returned before settling, then there will only be one transaction with status `canceled`.
-
-        - `dispute`: Used for disputed card transactions.
-
-        '
-      enum:
-      - pending
-      - pending_approval
-      - in_review
-      - canceled
-      - failed
-      - settled
-      - declined
-      - refund
-      - reversed
-      - returned
-      - dispute
-      x-entrypoint:
-        virtualPath: schemas/TransactionDetailedStatus
-        sourcePath: schemas/TransactionDetailedStatus.yaml
-        title: TransactionDetailedStatus
-        origin: ./src/publicApi
-      title: TransactionDetailedStatus
-    TransactionCashbackInfo:
-      type: object
-      description: Cashback earned for this transaction. This is only present when cashback is known and currently applies to eligible card transactions.
-      properties:
-        amountCents:
-          type: number
-          description: The cashback amount earned for this transaction, in cents.
-        rate:
-          type: number
-          description: The cashback rate applied to this transaction.
-      required:
-      - amountCents
-      - rate
-      x-entrypoint:
-        virtualPath: schemas/TransactionCashbackInfo
-        sourcePath: schemas/TransactionCashbackInfo.yaml
-        title: TransactionCashbackInfo
-        origin: ./src/publicApi
-      title: TransactionCashbackInfo
-    Money:
-      type: object
-      description: Represents a monetary value
-      properties:
-        amountCents:
-          type: integer
-          description: The amount in cents
-      required:
-      - amountCents
-      x-entrypoint:
-        virtualPath: schemas/Money
-        sourcePath: schemas/Money.yaml
-        title: Money
-        origin: ./src/publicApi
-      title: Money
-    SpendingConstraint:
-      type: object
-      description: A constraint that can be applied to a CardGroupSpendingRule
-      properties:
-        merchantCategoryRule:
-          type: object
-          nullable: true
-          properties:
-            merchantCategories:
-              type: array
-              items:
-                type: string
-            restriction:
-              $ref: '#/components/schemas/Restriction'
-              x-entrypoint:
-                virtualPath: schemas/Restriction
-                sourcePath: schemas/Restriction.yaml
-                title: Restriction
-                origin: ./src/publicApi
-          required:
-          - merchantCategories
-          - restriction
-        merchantRule:
-          type: object
-          nullable: true
-          properties:
-            merchants:
-              type: array
-              items:
-                type: string
-            restriction:
-              $ref: '#/components/schemas/Restriction'
-              x-entrypoint:
-                virtualPath: schemas/Restriction
-                sourcePath: schemas/Restriction.yaml
-                title: Restriction
-                origin: ./src/publicApi
-          required:
-          - merchants
-          - restriction
-        spendingRule:
-          type: object
-          nullable: true
-          properties:
-            utilizationLimit:
-              type: object
-              properties:
-                timezone:
-                  type: string
-                  description: IANA timezone string. Limits always reset at midnight of the timezone specified. If no timezone is specified, then UTC time is used.
-                limitAmount:
-                  $ref: '#/components/schemas/Money'
-                  x-entrypoint:
-                    virtualPath: schemas/Money
-                    sourcePath: schemas/Money.yaml
-                    title: Money
-                    origin: ./src/publicApi
-                preset:
-                  type: string
-                  enum:
-                  - daily
-                  - weekly
-                  - monthly
-                  - yearly
-                  - collective
-                startDate:
-                  type: string
-                  description: Format ISO-8601. A day that equals today or the past. This is optional.If the `preset` is "daily", this value is ignored. If the `preset` is "weekly", "monthly" or "yearly", then the this value is used to compute when the limit should start limit.
-              required:
-              - limitAmount
-              - preset
-            utilizationLimitV2:
-              type: array
-              items:
-                type: object
-                properties:
-                  timezone:
-                    type: string
-                    description: IANA timezone string. Limits always reset at midnight of the timezone specified. If no timezone is specified, then UTC time is used.
-                  limitAmount:
-                    $ref: '#/components/schemas/Money'
-                    x-entrypoint:
-                      virtualPath: schemas/Money
-                      sourcePath: schemas/Money.yaml
-                      title: Money
-                      origin: ./src/publicApi
-                  preset:
-                    type: string
-                    enum:
-                    - daily
-                    - weekly
-                    - monthly
-                    - yearly
-                    - collective
-                  startDate:
-                    type: string
-                    description: Format ISO-8601. A day that equals today or the past. This is optional.If the `preset` is "daily", this value is ignored. If the `preset` is "weekly", "monthly" or "yearly", then the this value is used to compute when the limit should start limit.
-                required:
-                - limitAmount
-                - preset
-            transactionSizeLimit:
-              type: object
-              properties:
-                minimum:
-                  $ref: '#/components/schemas/Money'
-                  x-entrypoint:
-                    virtualPath: schemas/Money
-                    sourcePath: schemas/Money.yaml
-                    title: Money
-                    origin: ./src/publicApi
-                maximum:
-                  $ref: '#/components/schemas/Money'
-                  x-entrypoint:
-                    virtualPath: schemas/Money
-                    sourcePath: schemas/Money.yaml
-                    title: Money
-                    origin: ./src/publicApi
-        countryRule:
-          type: object
-          nullable: true
-          properties:
-            countries:
-              description: A 2 digit country code
-              type: array
-              items:
-                type: string
-            restriction:
-              $ref: '#/components/schemas/Restriction'
-              x-entrypoint:
-                virtualPath: schemas/Restriction
-                sourcePath: schemas/Restriction.yaml
-                title: Restriction
-                origin: ./src/publicApi
-          required:
-          - countries
-          - restriction
-        merchantCategoryCodeRule:
-          type: object
-          nullable: true
-          properties:
-            merchantCategoryCodes:
-              type: array
-              items:
-                type: string
-            restriction:
-              $ref: '#/components/schemas/Restriction'
-              x-entrypoint:
-                virtualPath: schemas/Restriction
-                sourcePath: schemas/Restriction.yaml
-                title: Restriction
-                origin: ./src/publicApi
-          required:
-          - merchantCategoryCodes
-          - restriction
-      x-entrypoint:
-        virtualPath: schemas/SpendingConstraint
-        sourcePath: schemas/SpendingConstraint.yaml
-        title: SpendingConstraint
-        origin: ./src/publicApi
-      title: SpendingConstraint
     Error:
       type: object
       properties:
@@ -1120,26 +643,50 @@ components:
         title: Error
         virtualPath: components/Error
       title: Error
-    CardModifier:
-      oneOf:
-      - type: object
-        required:
-        - name
-        - value
-        properties:
-          name:
-            type: string
-            enum:
-            - only_allow_recurring_payments
-          value:
-            description: Whether to only allow recurring payments. The default value for newly created cards is false.
-            type: boolean
+    TransactionCashbackInfo:
+      type: object
+      description: Cashback earned for this transaction. This is only present when cashback is known and currently applies to eligible card transactions.
+      properties:
+        amountCents:
+          type: number
+          description: The cashback amount earned for this transaction, in cents.
+        rate:
+          type: number
+          description: The cashback rate applied to this transaction.
+      required:
+      - amountCents
+      - rate
       x-entrypoint:
-        virtualPath: schemas/CardModifier
-        sourcePath: schemas/CardModifier.yaml
-        title: CardModifier
+        virtualPath: schemas/TransactionCashbackInfo
+        sourcePath: schemas/TransactionCashbackInfo.yaml
+        title: TransactionCashbackInfo
         origin: ./src/publicApi
-      title: CardModifier
+      title: TransactionCashbackInfo
+    OriginalCurrency:
+      type: object
+      description: 'The original currency of the transaction. This is only applicable to transactions. If this field is not sent, the original currency is in USD.
+
+        '
+      properties:
+        code:
+          type: string
+          description: The original currency code of the transaction
+        amountCents:
+          type: number
+          description: The amount of the transaction in its original currency in cents.
+        conversionRate:
+          type: number
+          description: The conversion rate used to convert the transaction amount from its original currency to the account currency. The currency rate is computed at the time of the transaction.
+      required:
+      - code
+      - amountCents
+      - conversionRate
+      x-entrypoint:
+        virtualPath: schemas/OriginalCurrency
+        sourcePath: schemas/OriginalCurrency.yaml
+        title: OriginalCurrency
+        origin: ./src/publicApi
+      title: OriginalCurrency
     Transaction:
       type: object
       properties:
@@ -1452,6 +999,135 @@ components:
         title: Transaction
         origin: ./src/publicApi
       title: Transaction
+    TransactionMerchant:
+      type: object
+      properties:
+        description:
+          type: string
+          description: The raw description provided by the merchant for the transaction.
+        categoryCode:
+          type: string
+          description: The merchant's category code (MCC)
+        location:
+          $ref: '#/components/schemas/TransactionMerchantLocation'
+          description: Location details for the merchant/transaction.
+          x-entrypoint:
+            virtualPath: schemas/TransactionMerchantLocation
+            sourcePath: schemas/TransactionMerchantLocation.yaml
+            title: TransactionMerchantLocation
+            origin: ./src/publicApi
+      required:
+      - description
+      - categoryCode
+      x-entrypoint:
+        virtualPath: schemas/TransactionMerchant
+        sourcePath: schemas/TransactionMerchant.yaml
+        title: TransactionMerchant
+        origin: ./src/publicApi
+      title: TransactionMerchant
+    Restriction:
+      type: string
+      enum:
+      - allowlist
+      - blacklist
+      x-entrypoint:
+        virtualPath: schemas/Restriction
+        sourcePath: schemas/Restriction.yaml
+        title: Restriction
+        origin: ./src/publicApi
+      title: Restriction
+    Card:
+      type: object
+      properties:
+        id:
+          type: string
+        accountId:
+          type: string
+          description: The account that this card is associated with
+        virtualAccountId:
+          type: string
+          description: The virtual account that this card is associated with
+        last4:
+          type: string
+          description: The last 4 digits of the card number
+        name:
+          type: string
+          description: The name assigned to the card that appears on the user dashboard
+        expiryMonth:
+          type: string
+          description: The month the card expires formatted as MM (01, 02, ..., 12)
+        expiryYear:
+          type: string
+          description: The year the card expires formatted as YYYY (2024, 2025, ...)
+        status:
+          allOf:
+          - $ref: '#/components/schemas/CardStatus'
+            x-entrypoint:
+              virtualPath: schemas/CardStatus
+              sourcePath: schemas/CardStatus.yaml
+              title: CardStatus
+              origin: ./src/publicApi
+          - description: The status of the card
+        isPhysical:
+          type: boolean
+          description: When true, a physical card has been issued. Otherwise, this is a virtual card.
+        isSingleUse:
+          type: boolean
+          description: When true, the card will be automatically closed after a single authorization attempt. Note that the card will be closed even if the authorization declines or drops
+        pan:
+          type: string
+          description: This field contains the full PAN which will only be sent on a request for a single card when you set the query param "include_pan" to "true"
+        cvv:
+          type: string
+          description: This field will contain full CVV which will only be sent on a request for a single card when you set the query param "include_pan" to "true"
+        cardGroupId:
+          type: string
+          description: The card group the card belongs to.
+        cardGroupName:
+          type: string
+          description: The name of the card group the card belongs to.
+        createdAt:
+          type: string
+          format: date-time
+        spendingConstraint:
+          $ref: '#/components/schemas/SpendingConstraint'
+          description: The spending constraint applied to the card
+          x-entrypoint:
+            virtualPath: schemas/SpendingConstraint
+            sourcePath: schemas/SpendingConstraint.yaml
+            title: SpendingConstraint
+            origin: ./src/publicApi
+        userData:
+          type: object
+          description: Arbitrary information that can be attached to the card. See the [`PATCH /card/{cardId}`](api-reference/card-patch) endpoint for more details on how to add user data.
+        cardProductId:
+          type: string
+          description: The ID of the card product this card was created with.
+        modifiers:
+          type: array
+          items:
+            $ref: '#/components/schemas/CardModifier'
+            x-entrypoint:
+              virtualPath: schemas/CardModifier
+              sourcePath: schemas/CardModifier.yaml
+              title: CardModifier
+              origin: ./src/publicApi
+          description: The modifiers applied to this card. Modifiers control card behavior like restricting to recurring payments only.
+      required:
+      - id
+      - accountId
+      - last4
+      - name
+      - expiryMonth
+      - expiryYear
+      - status
+      - isPhysical
+      x-entrypoint:
+        virtualPath: schemas/Card
+        sourcePath: schemas/Card.yaml
+        title: Card
+        origin: ./src/publicApi
+      title: Card
     TransactionFxFeeInfo:
       type: object
       description: Foreign exchange fee charged for this transaction. This is only present when an FX fee has been created for the transaction.
@@ -1467,31 +1143,355 @@ components:
         title: TransactionFxFeeInfo
         origin: ./src/publicApi
       title: TransactionFxFeeInfo
-    OriginalCurrency:
-      type: object
-      description: 'The original currency of the transaction. This is only applicable to transactions. If this field is not sent, the original currency is in USD.
+    TransactionStatus:
+      type: string
+      description: '- `pending`: The transaction is pending and has not been posted to the account yet (the account''s posted balance doesn''t reflect the transaction yet, but the account''s available balance does).
+
+        - `posted`: The transaction has been posted to the account and the account''s posted balance and available balances both reflect the transaction.
+
+        - `failed`: The transaction failed to post to the account and no longer affects the account''s available or posted balances.
 
         '
-      properties:
-        code:
-          type: string
-          description: The original currency code of the transaction
-        amountCents:
-          type: number
-          description: The amount of the transaction in its original currency in cents.
-        conversionRate:
-          type: number
-          description: The conversion rate used to convert the transaction amount from its original currency to the account currency. The currency rate is computed at the time of the transaction.
-      required:
-      - code
-      - amountCents
-      - conversionRate
+      enum:
+      - pending
+      - posted
+      - failed
       x-entrypoint:
-        virtualPath: schemas/OriginalCurrency
-        sourcePath: schemas/OriginalCurrency.yaml
-        title: OriginalCurrency
+        virtualPath: schemas/TransactionStatus
+        sourcePath: schemas/TransactionStatus.yaml
+        title: TransactionStatus
         origin: ./src/publicApi
-      title: OriginalCurrency
+      title: TransactionStatus
+    TransactionMerchantLocation:
+      type: object
+      properties:
+        city:
+          type: string
+          description: The city of the merchant.
+        state:
+          type: string
+          description: The state/province of the merchant.
+        country:
+          type: string
+          description: The country of the merchant.
+        zip:
+          type: string
+          description: The ZIP/postal code of the merchant.
+      required:
+      - city
+      - state
+      - country
+      - zip
+      x-entrypoint:
+        virtualPath: schemas/TransactionMerchantLocation
+        sourcePath: schemas/TransactionMerchantLocation.yaml
+        title: TransactionMerchantLocation
+        origin: ./src/publicApi
+      title: TransactionMerchantLocation
+    CardModifier:
+      oneOf:
+      - type: object
+        required:
+        - name
+        - value
+        properties:
+          name:
+            type: string
+            enum:
+            - only_allow_recurring_payments
+          value:
+            description: Whether to only allow recurring payments. The default value for newly created cards is false.
+            type: boolean
+      x-entrypoint:
+        virtualPath: schemas/CardModifier
+        sourcePath: schemas/CardModifier.yaml
+        title: CardModifier
+        origin: ./src/publicApi
+      title: CardModifier
+    FeeTransaction:
+      type: object
+      properties:
+        id:
+          type: string
+        dateCharged:
+          type: string
+        feeAmountCents:
+          type: number
+        feeType:
+          type: string
+        accountId:
+          type: string
+        originalTransaction:
+          $ref: '#/components/schemas/Transaction'
+          x-entrypoint:
+            virtualPath: schemas/Transaction
+            sourcePath: schemas/Transaction.yaml
+            title: Transaction
+            origin: ./src/publicApi
+        card:
+          $ref: '#/components/schemas/Card'
+          x-entrypoint:
+            virtualPath: schemas/Card
+            sourcePath: schemas/Card.yaml
+            title: Card
+            origin: ./src/publicApi
+      required:
+      - id
+      - dateCharged
+      - feeAmountCents
+      - feeType
+      - accountId
+      x-entrypoint:
+        virtualPath: schemas/FeeTransaction
+        sourcePath: schemas/FeeTransaction.yaml
+        title: FeeTransaction
+        origin: ./src/publicApi
+      title: FeeTransaction
+    Pagination.PaginationResponse:
+      type: object
+      description: Response sent when requesting a list of data
+      properties:
+        nextCursor:
+          type: string
+          description: The cursor to use to retrieve the next page of data. If this is not sent, there is no more data to retrieve.
+        count:
+          type: number
+          description: The number of items in the current page of data.
+      x-entrypoint:
+        virtualPath: schemas/Pagination/PaginationResponse
+        sourcePath: schemas/Pagination/PaginationResponse.yaml
+        title: PaginationResponse
+        origin: ./src/publicApi
+      title: PaginationResponse
+    SpendingConstraint:
+      type: object
+      description: A constraint that can be applied to a CardGroupSpendingRule
+      properties:
+        merchantCategoryRule:
+          type: object
+          nullable: true
+          properties:
+            merchantCategories:
+              type: array
+              items:
+                type: string
+            restriction:
+              $ref: '#/components/schemas/Restriction'
+              x-entrypoint:
+                virtualPath: schemas/Restriction
+                sourcePath: schemas/Restriction.yaml
+                title: Restriction
+                origin: ./src/publicApi
+          required:
+          - merchantCategories
+          - restriction
+        merchantRule:
+          type: object
+          nullable: true
+          properties:
+            merchants:
+              type: array
+              items:
+                type: string
+            restriction:
+              $ref: '#/components/schemas/Restriction'
+              x-entrypoint:
+                virtualPath: schemas/Restriction
+                sourcePath: schemas/Restriction.yaml
+                title: Restriction
+                origin: ./src/publicApi
+          required:
+          - merchants
+          - restriction
+        spendingRule:
+          type: object
+          nullable: true
+          properties:
+            utilizationLimit:
+              type: object
+              properties:
+                timezone:
+                  type: string
+                  description: IANA timezone string. Limits always reset at midnight of the timezone specified. If no timezone is specified, then UTC time is used.
+                limitAmount:
+                  $ref: '#/components/schemas/Money'
+                  x-entrypoint:
+                    virtualPath: schemas/Money
+                    sourcePath: schemas/Money.yaml
+                    title: Money
+                    origin: ./src/publicApi
+                preset:
+                  type: string
+                  enum:
+                  - daily
+                  - weekly
+                  - monthly
+                  - yearly
+                  - collective
+                startDate:
+                  type: string
+                  description: Format ISO-8601. A day that equals today or the past. This is optional.If the `preset` is "daily", this value is ignored. If the `preset` is "weekly", "monthly" or "yearly", then the this value is used to compute when the limit should start limit.
+              required:
+              - limitAmount
+              - preset
+            utilizationLimitV2:
+              type: array
+              items:
+                type: object
+                properties:
+                  timezone:
+                    type: string
+                    description: IANA timezone string. Limits always reset at midnight of the timezone specified. If no timezone is specified, then UTC time is used.
+                  limitAmount:
+                    $ref: '#/components/schemas/Money'
+                    x-entrypoint:
+                      virtualPath: schemas/Money
+                      sourcePath: schemas/Money.yaml
+                      title: Money
+                      origin: ./src/publicApi
+                  preset:
+                    type: string
+                    enum:
+                    - daily
+                    - weekly
+                    - monthly
+                    - yearly
+                    - collective
+                  startDate:
+                    type: string
+                    description: Format ISO-8601. A day that equals today or the past. This is optional.If the `preset` is "daily", this value is ignored. If the `preset` is "weekly", "monthly" or "yearly", then the this value is used to compute when the limit should start limit.
+                required:
+                - limitAmount
+                - preset
+            transactionSizeLimit:
+              type: object
+              properties:
+                minimum:
+                  $ref: '#/components/schemas/Money'
+                  x-entrypoint:
+                    virtualPath: schemas/Money
+                    sourcePath: schemas/Money.yaml
+                    title: Money
+                    origin: ./src/publicApi
+                maximum:
+                  $ref: '#/components/schemas/Money'
+                  x-entrypoint:
+                    virtualPath: schemas/Money
+                    sourcePath: schemas/Money.yaml
+                    title: Money
+                    origin: ./src/publicApi
+        countryRule:
+          type: object
+          nullable: true
+          properties:
+            countries:
+              description: A 2 digit country code
+              type: array
+              items:
+                type: string
+            restriction:
+              $ref: '#/components/schemas/Restriction'
+              x-entrypoint:
+                virtualPath: schemas/Restriction
+                sourcePath: schemas/Restriction.yaml
+                title: Restriction
+                origin: ./src/publicApi
+          required:
+          - countries
+          - restriction
+        merchantCategoryCodeRule:
+          type: object
+          nullable: true
+          properties:
+            merchantCategoryCodes:
+              type: array
+              items:
+                type: string
+            restriction:
+              $ref: '#/components/schemas/Restriction'
+              x-entrypoint:
+                virtualPath: schemas/Restriction
+                sourcePath: schemas/Restriction.yaml
+                title: Restriction
+                origin: ./src/publicApi
+          required:
+          - merchantCategoryCodes
+          - restriction
+      x-entrypoint:
+        virtualPath: schemas/SpendingConstraint
+        sourcePath: schemas/SpendingConstraint.yaml
+        title: SpendingConstraint
+        origin: ./src/publicApi
+      title: SpendingConstraint
+    TransactionDetailedStatus:
+      type: string
+      description: '- `pending_approval`: Used for any transaction type that is pending approval. This does not affect the account''s available or posted balances.
+
+        - `pending`: Used for any transaction type that has not posted to the account yet, but is affecting the account''s available balance.
+
+        - `canceled`: Used for any transaction that was canceled.
+
+        - `failed`: Used for any transaction that failed to post to the account.
+
+        - `settled`: Used for any transaction that has posted to the account, except for card refunds, which use the `refund` status, and ACH returns, which use the `returned` status.
+
+        - `declined`: Used for card transactions that were declined.
+
+        - `refund`: Used for card transactions that were refunded, increasing the account''s available and posted balances.
+
+        - `reversed`: Used for card transactions that were authorized, but reversed by the merchant.
+
+        - `returned`: Used for ACH returns. In the case of an ACH return, there are two possibilities: (1) if the ACH settled and then returned, then there will be one transaction with status `settled` for the ACH settling, and one transaction with status `returned` for the ACH return. Both of these are posted transactions. (2) if the ACH returned before settling, then there will only be one transaction with status `canceled`.
+
+        - `dispute`: Used for disputed card transactions.
+
+        '
+      enum:
+      - pending
+      - pending_approval
+      - in_review
+      - canceled
+      - failed
+      - settled
+      - declined
+      - refund
+      - reversed
+      - returned
+      - dispute
+      x-entrypoint:
+        virtualPath: schemas/TransactionDetailedStatus
+        sourcePath: schemas/TransactionDetailedStatus.yaml
+        title: TransactionDetailedStatus
+        origin: ./src/publicApi
+      title: TransactionDetailedStatus
+    CardStatus:
+      type: string
+      enum:
+      - active
+      - paused
+      - inactive
+      - closed
+      x-entrypoint:
+        virtualPath: schemas/CardStatus
+        sourcePath: schemas/CardStatus.yaml
+        title: CardStatus
+        origin: ./src/publicApi
+      title: CardStatus
+    Money:
+      type: object
+      description: Represents a monetary value
+      properties:
+        amountCents:
+          type: integer
+          description: The amount in cents
+      required:
+      - amountCents
+      x-entrypoint:
+        virtualPath: schemas/Money
+        sourcePath: schemas/Money.yaml
+        title: Money
+        origin: ./src/publicApi
+      title: Money
   securitySchemes:
     api_key:
       type: apiKey

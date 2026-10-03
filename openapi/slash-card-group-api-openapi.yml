@@ -487,63 +487,6 @@ components:
         title: Restriction
         origin: ./src/publicApi
       title: Restriction
-    Pagination.PaginationResponse:
-      type: object
-      description: Response sent when requesting a list of data
-      properties:
-        nextCursor:
-          type: string
-          description: The cursor to use to retrieve the next page of data. If this is not sent, there is no more data to retrieve.
-        count:
-          type: number
-          description: The number of items in the current page of data.
-      x-entrypoint:
-        virtualPath: schemas/Pagination/PaginationResponse
-        sourcePath: schemas/Pagination/PaginationResponse.yaml
-        title: PaginationResponse
-        origin: ./src/publicApi
-      title: PaginationResponse
-    CardGroup:
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        virtualAccountId:
-          type: string
-          description: The ID of the virtual account that the card group is associated with
-        spendingConstraint:
-          $ref: '#/components/schemas/SpendingConstraint'
-          x-entrypoint:
-            virtualPath: schemas/SpendingConstraint
-            sourcePath: schemas/SpendingConstraint.yaml
-            title: SpendingConstraint
-            origin: ./src/publicApi
-      required:
-      - id
-      - name
-      x-entrypoint:
-        virtualPath: schemas/CardGroup
-        sourcePath: schemas/CardGroup.yaml
-        title: CardGroup
-        origin: ./src/publicApi
-      title: CardGroup
-    Money:
-      type: object
-      description: Represents a monetary value
-      properties:
-        amountCents:
-          type: integer
-          description: The amount in cents
-      required:
-      - amountCents
-      x-entrypoint:
-        virtualPath: schemas/Money
-        sourcePath: schemas/Money.yaml
-        title: Money
-        origin: ./src/publicApi
-      title: Money
     SpendingConstraint:
       type: object
       description: A constraint that can be applied to a CardGroupSpendingRule
@@ -877,6 +820,48 @@ components:
         title: PartialSpendingConstraint
         origin: ./src/publicApi
       title: PartialSpendingConstraint
+    CardGroup:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        virtualAccountId:
+          type: string
+          description: The ID of the virtual account that the card group is associated with
+        spendingConstraint:
+          $ref: '#/components/schemas/SpendingConstraint'
+          x-entrypoint:
+            virtualPath: schemas/SpendingConstraint
+            sourcePath: schemas/SpendingConstraint.yaml
+            title: SpendingConstraint
+            origin: ./src/publicApi
+      required:
+      - id
+      - name
+      x-entrypoint:
+        virtualPath: schemas/CardGroup
+        sourcePath: schemas/CardGroup.yaml
+        title: CardGroup
+        origin: ./src/publicApi
+      title: CardGroup
+    Pagination.PaginationResponse:
+      type: object
+      description: Response sent when requesting a list of data
+      properties:
+        nextCursor:
+          type: string
+          description: The cursor to use to retrieve the next page of data. If this is not sent, there is no more data to retrieve.
+        count:
+          type: number
+          description: The number of items in the current page of data.
+      x-entrypoint:
+        virtualPath: schemas/Pagination/PaginationResponse
+        sourcePath: schemas/Pagination/PaginationResponse.yaml
+        title: PaginationResponse
+        origin: ./src/publicApi
+      title: PaginationResponse
     Error:
       type: object
       properties:
@@ -902,6 +887,21 @@ components:
         title: Error
         virtualPath: components/Error
       title: Error
+    Money:
+      type: object
+      description: Represents a monetary value
+      properties:
+        amountCents:
+          type: integer
+          description: The amount in cents
+      required:
+      - amountCents
+      x-entrypoint:
+        virtualPath: schemas/Money
+        sourcePath: schemas/Money.yaml
+        title: Money
+        origin: ./src/publicApi
+      title: Money
   securitySchemes:
     api_key:
       type: apiKey

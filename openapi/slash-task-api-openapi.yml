@@ -386,68 +386,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    slashfi.models.entity.Task.ITaskAttributeMetaModel.yaml:
-      title: ITaskAttributeMetaModel
-      type: object
-      properties:
-        isRequired:
-          type: boolean
-          description: True when this attribute must be set for this task instance.
-      x-entrypoint:
-        virtualPath: entity/Task/ITaskAttributeMetaModel
-        sourcePath: entity/Task/ITaskAttributeMetaModel.yaml
-        title: ITaskAttributeMetaModel
-        origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
-        globalImport: true
-    slashfi.models.entity.Task.ITaskActionModel.yaml:
-      title: ITaskActionModel
-      type: object
-      description: 'An action the current caller can perform on a task, resolved per task + caller by the internal app''s GET /task endpoint.
-
-        '
-      properties:
-        key:
-          type: string
-          description: Stable action identifier used when dispatching via POST /task/{id}/act.
-        label:
-          type: string
-          description: Human-readable button label.
-        style:
-          type: string
-          enum:
-          - primary
-          - danger
-          description: UI button style hint.
-        role:
-          type: string
-          enum:
-          - actor
-          - originator
-          - observer
-          description: Stakeholder role the action was resolved through.
-        isDisabled:
-          type: boolean
-          description: 'Whether the action can currently be executed. `true` means the task is in a state that blocks the action — e.g. a completion action whose task still has unsatisfied `meta.isRequired` attributes. Clients should render the button disabled (with `missingAttributes` explaining why) and avoid dispatching it; the act endpoint will also reject with a 400 if called.
-
-            '
-        missingAttributes:
-          type: array
-          description: 'When `isDisabled` is `true` because required attributes aren''t populated, the attribute keys that still need values. Empty when the action isn''t gated or when all requirements are met.
-
-            '
-          items:
-            type: string
-      required:
-      - key
-      - label
-      - isDisabled
-      - missingAttributes
-      x-entrypoint:
-        virtualPath: entity/Task/ITaskActionModel
-        sourcePath: entity/Task/ITaskActionModel.yaml
-        title: ITaskActionModel
-        origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
-        globalImport: true
     slashfi.models.entity.Task.ITaskModel.yaml:
       title: ITaskModel
       type: object
@@ -516,22 +454,55 @@ components:
         title: ITaskModel
         origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
         globalImport: true
-    Pagination.PaginationResponse:
+    slashfi.models.entity.Task.ITaskActionModel.yaml:
+      title: ITaskActionModel
       type: object
-      description: Response sent when requesting a list of data
+      description: 'An action the current caller can perform on a task, resolved per task + caller by the internal app''s GET /task endpoint.
+
+        '
       properties:
-        nextCursor:
+        key:
           type: string
-          description: The cursor to use to retrieve the next page of data. If this is not sent, there is no more data to retrieve.
-        count:
-          type: number
-          description: The number of items in the current page of data.
+          description: Stable action identifier used when dispatching via POST /task/{id}/act.
+        label:
+          type: string
+          description: Human-readable button label.
+        style:
+          type: string
+          enum:
+          - primary
+          - danger
+          description: UI button style hint.
+        role:
+          type: string
+          enum:
+          - actor
+          - originator
+          - observer
+          description: Stakeholder role the action was resolved through.
+        isDisabled:
+          type: boolean
+          description: 'Whether the action can currently be executed. `true` means the task is in a state that blocks the action — e.g. a completion action whose task still has unsatisfied `meta.isRequired` attributes. Clients should render the button disabled (with `missingAttributes` explaining why) and avoid dispatching it; the act endpoint will also reject with a 400 if called.
+
+            '
+        missingAttributes:
+          type: array
+          description: 'When `isDisabled` is `true` because required attributes aren''t populated, the attribute keys that still need values. Empty when the action isn''t gated or when all requirements are met.
+
+            '
+          items:
+            type: string
+      required:
+      - key
+      - label
+      - isDisabled
+      - missingAttributes
       x-entrypoint:
-        virtualPath: schemas/Pagination/PaginationResponse
-        sourcePath: schemas/Pagination/PaginationResponse.yaml
-        title: PaginationResponse
-        origin: ./src/publicApi
-      title: PaginationResponse
+        virtualPath: entity/Task/ITaskActionModel
+        sourcePath: entity/Task/ITaskActionModel.yaml
+        title: ITaskActionModel
+        origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+        globalImport: true
     slashfi.models.entity.Task.ITaskWithActionsModel.yaml:
       title: ITaskWithActionsModel
       description: '`ITaskModel` enriched with the caller''s per-task action list. Returned by surfaces that do caller-specific authorization (today the internal app''s GET /task, which resolves allowed actions from the current user''s role on the task). Not emitted by the public API — external consumers receive the bare `ITaskModel` shape.
@@ -566,6 +537,47 @@ components:
         title: ITaskWithActionsModel
         origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
         globalImport: true
+    slashfi.models.entity.Task.ITaskAttributeMetaModel.yaml:
+      title: ITaskAttributeMetaModel
+      type: object
+      properties:
+        isRequired:
+          type: boolean
+          description: True when this attribute must be set for this task instance.
+      x-entrypoint:
+        virtualPath: entity/Task/ITaskAttributeMetaModel
+        sourcePath: entity/Task/ITaskAttributeMetaModel.yaml
+        title: ITaskAttributeMetaModel
+        origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+        globalImport: true
+    paths.task._dto.TaskResponse:
+      $ref: '#/components/schemas/slashfi.models.entity.Task.ITaskWithActionsModel.yaml'
+      x-entrypoint:
+        virtualPath: entity/Task/ITaskWithActionsModel
+        sourcePath: entity/Task/ITaskWithActionsModel.yaml
+        title: ITaskWithActionsModel
+        origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
+        globalImport: true
+        typescript:
+          importPath: import  * as models from '@slashfi/models';
+          symbolValue: models.entity.Task.ITaskWithActionsModel
+          typeValue: models.entity.Task.ITaskWithActionsModel
+    Pagination.PaginationResponse:
+      type: object
+      description: Response sent when requesting a list of data
+      properties:
+        nextCursor:
+          type: string
+          description: The cursor to use to retrieve the next page of data. If this is not sent, there is no more data to retrieve.
+        count:
+          type: number
+          description: The number of items in the current page of data.
+      x-entrypoint:
+        virtualPath: schemas/Pagination/PaginationResponse
+        sourcePath: schemas/Pagination/PaginationResponse.yaml
+        title: PaginationResponse
+        origin: ./src/publicApi
+      title: PaginationResponse
     Error:
       type: object
       properties:
@@ -591,18 +603,6 @@ components:
         title: Error
         virtualPath: components/Error
       title: Error
-    paths.task._dto.TaskResponse:
-      $ref: '#/components/schemas/slashfi.models.entity.Task.ITaskWithActionsModel.yaml'
-      x-entrypoint:
-        virtualPath: entity/Task/ITaskWithActionsModel
-        sourcePath: entity/Task/ITaskWithActionsModel.yaml
-        title: ITaskWithActionsModel
-        origin: /home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas
-        globalImport: true
-        typescript:
-          importPath: import  * as models from '@slashfi/models';
-          symbolValue: models.entity.Task.ITaskWithActionsModel
-          typeValue: models.entity.Task.ITaskWithActionsModel
   securitySchemes:
     api_key:
       type: apiKey

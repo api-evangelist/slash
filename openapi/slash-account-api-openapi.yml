@@ -424,6 +424,63 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    Balance:
+      type: object
+      properties:
+        accountId:
+          type: string
+          description: The ID of the account associated with the balance.
+        type:
+          type: string
+          description: 'The type of balance.
+
+            - "cash" represents the excess balance not used as collateral for the charge card. Not applicable to debit accounts.
+
+            - "credit" represents the balance that can be spent on the charge card. Not applicable to debit accounts.
+
+            - "debit" represents the balance that can be spent or withdrawn. Not applicable to charge card accounts.
+
+            '
+          enum:
+          - cash
+          - credit
+          - debit
+        available:
+          allOf:
+          - $ref: '#/components/schemas/Money'
+            x-entrypoint:
+              virtualPath: schemas/Money
+              sourcePath: schemas/Money.yaml
+              title: Money
+              origin: ./src/publicApi
+          - description: "The amount of money that is immediately available to use. \n- For \"credit\" balances, this is the immediately available amount that can be spent on the charge card.\n- For \"cash\" balances, this value represents the immediately available excess cash that is not being used as collateral for the charge card. You can choose to transfer more than these funds to your bank account, but any amount not coverable by the available balance will be removed from the charge card's collateral balance (the \"credit\" balance).\n- For \"debit\" balances, this is the amount of money available that can be spent or withdrawn immediately.\n"
+        posted:
+          allOf:
+          - $ref: '#/components/schemas/Money'
+            x-entrypoint:
+              virtualPath: schemas/Money
+              sourcePath: schemas/Money.yaml
+              title: Money
+              origin: ./src/publicApi
+          - description: 'The amount of money that has been posted to the account. This value does not include any pending transactions and instead represents the amount of money that has been posted to the balance.
+
+              '
+        timestamp:
+          type: string
+          format: date-time
+          description: The UTC timestamp associated with the balance. Since the balance can change rapidly, the timestamp is included to indicate the time when the balance was computed.
+      required:
+      - accountId
+      - type
+      - available
+      - posted
+      - timestamp
+      x-entrypoint:
+        virtualPath: schemas/Balance
+        sourcePath: schemas/Balance.yaml
+        title: Balance
+        origin: ./src/publicApi
+      title: Balance
     AuthorizationWebhook:
       type: object
       properties:
@@ -488,6 +545,81 @@ components:
         title: PaginationResponse
         origin: ./src/publicApi
       title: PaginationResponse
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+        name:
+          type: string
+        identifier:
+          type: string
+        rawStatus:
+          type: number
+        meta:
+          type: object
+          additionalProperties: true
+      required:
+      - message
+      - name
+      - identifier
+      - rawStatus
+      x-entrypoint:
+        origin: ./src/publicApi
+        sourcePath: ./src/publicApi/main.yaml
+        title: Error
+        virtualPath: components/Error
+      title: Error
+    AuthorizationWebhookConfig:
+      description: 'Configuration specific to the authorization webhook, discriminated on `fallbackBehavior`.
+
+
+        The fallback behavior is used when the webhook cannot produce an answer — it fails to send a response in time, sends an invalid response, or cannot be reached (including while Slash is operating in a degraded mode where external webhooks cannot be consulted):
+
+        - `reject`: the transaction is declined.
+
+        - `default`: the transaction continues through Slash''s standard authorization flow (balance and limit checks still apply). If a `when` condition is provided, only transactions matching the condition continue; non-matching transactions are declined.
+
+        '
+      oneOf:
+      - type: object
+        description: Always decline the transaction when the webhook cannot produce an answer.
+        properties:
+          fallbackBehavior:
+            type: string
+            enum:
+            - reject
+            description: The transaction will be declined.
+        required:
+        - fallbackBehavior
+      - type: object
+        description: 'Continue the transaction through the standard authorization flow when the webhook cannot produce an answer — for every transaction, or only for transactions matching the optional `when` condition.
+
+          '
+        properties:
+          fallbackBehavior:
+            type: string
+            enum:
+            - default
+            description: The transaction will continue to run through the standard authorization flow (e.g. the balance check).
+          when:
+            $ref: '#/components/schemas/AuthorizationWebhookCondition'
+            description: 'Optional condition restricting which transactions the `default` fallback applies to: matching transactions continue through the standard authorization flow, non-matching transactions are declined. Omit to apply the `default` fallback to every transaction.
+
+              '
+            x-entrypoint:
+              virtualPath: schemas/AuthorizationWebhookCondition
+              sourcePath: schemas/AuthorizationWebhookCondition.yaml
+              title: AuthorizationWebhookCondition
+              origin: ./src/publicApi
+        required:
+        - fallbackBehavior
+      x-entrypoint:
+        virtualPath: schemas/AuthorizationWebhookConfig
+        sourcePath: schemas/AuthorizationWebhookConfig.yaml
+        title: AuthorizationWebhookConfig
+        origin: ./src/publicApi
+      title: AuthorizationWebhookConfig
     AuthorizationWebhookCondition:
       description: 'A condition expression evaluated against a card authorization, used to decide whether the `default` fallback behavior applies to that transaction.
 
@@ -593,78 +725,6 @@ components:
         title: AuthorizationWebhookCondition
         origin: ./src/publicApi
       title: AuthorizationWebhookCondition
-    Money:
-      type: object
-      description: Represents a monetary value
-      properties:
-        amountCents:
-          type: integer
-          description: The amount in cents
-      required:
-      - amountCents
-      x-entrypoint:
-        virtualPath: schemas/Money
-        sourcePath: schemas/Money.yaml
-        title: Money
-        origin: ./src/publicApi
-      title: Money
-    Balance:
-      type: object
-      properties:
-        accountId:
-          type: string
-          description: The ID of the account associated with the balance.
-        type:
-          type: string
-          description: 'The type of balance.
-
-            - "cash" represents the excess balance not used as collateral for the charge card. Not applicable to debit accounts.
-
-            - "credit" represents the balance that can be spent on the charge card. Not applicable to debit accounts.
-
-            - "debit" represents the balance that can be spent or withdrawn. Not applicable to charge card accounts.
-
-            '
-          enum:
-          - cash
-          - credit
-          - debit
-        available:
-          allOf:
-          - $ref: '#/components/schemas/Money'
-            x-entrypoint:
-              virtualPath: schemas/Money
-              sourcePath: schemas/Money.yaml
-              title: Money
-              origin: ./src/publicApi
-          - description: "The amount of money that is immediately available to use. \n- For \"credit\" balances, this is the immediately available amount that can be spent on the charge card.\n- For \"cash\" balances, this value represents the immediately available excess cash that is not being used as collateral for the charge card. You can choose to transfer more than these funds to your bank account, but any amount not coverable by the available balance will be removed from the charge card's collateral balance (the \"credit\" balance).\n- For \"debit\" balances, this is the amount of money available that can be spent or withdrawn immediately.\n"
-        posted:
-          allOf:
-          - $ref: '#/components/schemas/Money'
-            x-entrypoint:
-              virtualPath: schemas/Money
-              sourcePath: schemas/Money.yaml
-              title: Money
-              origin: ./src/publicApi
-          - description: 'The amount of money that has been posted to the account. This value does not include any pending transactions and instead represents the amount of money that has been posted to the balance.
-
-              '
-        timestamp:
-          type: string
-          format: date-time
-          description: The UTC timestamp associated with the balance. Since the balance can change rapidly, the timestamp is included to indicate the time when the balance was computed.
-      required:
-      - accountId
-      - type
-      - available
-      - posted
-      - timestamp
-      x-entrypoint:
-        virtualPath: schemas/Balance
-        sourcePath: schemas/Balance.yaml
-        title: Balance
-        origin: ./src/publicApi
-      title: Balance
     Account:
       type: object
       properties:
@@ -716,81 +776,21 @@ components:
         title: Account
         origin: ./src/publicApi
       title: Account
-    Error:
+    Money:
       type: object
+      description: Represents a monetary value
       properties:
-        message:
-          type: string
-        name:
-          type: string
-        identifier:
-          type: string
-        rawStatus:
-          type: number
-        meta:
-          type: object
-          additionalProperties: true
+        amountCents:
+          type: integer
+          description: The amount in cents
       required:
-      - message
-      - name
-      - identifier
-      - rawStatus
+      - amountCents
       x-entrypoint:
+        virtualPath: schemas/Money
+        sourcePath: schemas/Money.yaml
+        title: Money
         origin: ./src/publicApi
-        sourcePath: ./src/publicApi/main.yaml
-        title: Error
-        virtualPath: components/Error
-      title: Error
-    AuthorizationWebhookConfig:
-      description: 'Configuration specific to the authorization webhook, discriminated on `fallbackBehavior`.
-
-
-        The fallback behavior is used when the webhook cannot produce an answer — it fails to send a response in time, sends an invalid response, or cannot be reached (including while Slash is operating in a degraded mode where external webhooks cannot be consulted):
-
-        - `reject`: the transaction is declined.
-
-        - `default`: the transaction continues through Slash''s standard authorization flow (balance and limit checks still apply). If a `when` condition is provided, only transactions matching the condition continue; non-matching transactions are declined.
-
-        '
-      oneOf:
-      - type: object
-        description: Always decline the transaction when the webhook cannot produce an answer.
-        properties:
-          fallbackBehavior:
-            type: string
-            enum:
-            - reject
-            description: The transaction will be declined.
-        required:
-        - fallbackBehavior
-      - type: object
-        description: 'Continue the transaction through the standard authorization flow when the webhook cannot produce an answer — for every transaction, or only for transactions matching the optional `when` condition.
-
-          '
-        properties:
-          fallbackBehavior:
-            type: string
-            enum:
-            - default
-            description: The transaction will continue to run through the standard authorization flow (e.g. the balance check).
-          when:
-            $ref: '#/components/schemas/AuthorizationWebhookCondition'
-            description: 'Optional condition restricting which transactions the `default` fallback applies to: matching transactions continue through the standard authorization flow, non-matching transactions are declined. Omit to apply the `default` fallback to every transaction.
-
-              '
-            x-entrypoint:
-              virtualPath: schemas/AuthorizationWebhookCondition
-              sourcePath: schemas/AuthorizationWebhookCondition.yaml
-              title: AuthorizationWebhookCondition
-              origin: ./src/publicApi
-        required:
-        - fallbackBehavior
-      x-entrypoint:
-        virtualPath: schemas/AuthorizationWebhookConfig
-        sourcePath: schemas/AuthorizationWebhookConfig.yaml
-        title: AuthorizationWebhookConfig
-        origin: ./src/publicApi
-      title: AuthorizationWebhookConfig
+      title: Money
   securitySchemes:
     api_key:
       type: apiKey

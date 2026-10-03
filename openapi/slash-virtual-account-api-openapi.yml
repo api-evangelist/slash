@@ -367,6 +367,96 @@ components:
         title: VirtualAccountCommissionRule
         origin: ./src/publicApi
       title: VirtualAccountCommissionRule
+    VirtualAccount:
+      type: object
+      properties:
+        virtualAccount:
+          $ref: '#/components/schemas/VirtualAccountModel'
+          description: The virtual account itself
+          x-entrypoint:
+            virtualPath: schemas/VirtualAccountModel
+            sourcePath: schemas/VirtualAccountModel.yaml
+            title: VirtualAccountModel
+            origin: ./src/publicApi
+        balance:
+          $ref: '#/components/schemas/Money'
+          description: The total balance of the virtual account
+          x-entrypoint:
+            virtualPath: schemas/Money
+            sourcePath: schemas/Money.yaml
+            title: Money
+            origin: ./src/publicApi
+        spend:
+          $ref: '#/components/schemas/Money'
+          description: The total spend of the virtual account
+          x-entrypoint:
+            virtualPath: schemas/Money
+            sourcePath: schemas/Money.yaml
+            title: Money
+            origin: ./src/publicApi
+        commissionRule:
+          $ref: '#/components/schemas/VirtualAccountCommissionRule'
+          description: The commission rule applied to the virtual account, if any
+          x-entrypoint:
+            virtualPath: schemas/VirtualAccountCommissionRule
+            sourcePath: schemas/VirtualAccountCommissionRule.yaml
+            title: VirtualAccountCommissionRule
+            origin: ./src/publicApi
+      required:
+      - virtualAccount
+      - balance
+      - spend
+      x-entrypoint:
+        virtualPath: schemas/VirtualAccount
+        sourcePath: schemas/VirtualAccount.yaml
+        title: VirtualAccount
+        origin: ./src/publicApi
+      title: VirtualAccount
+    VirtualAccountModel:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The ID of the virtual account.
+        name:
+          type: string
+          description: The name of the virtual account.
+        accountNumber:
+          type: string
+          description: The account number of the virtual account.
+        routingNumber:
+          type: string
+          description: The routing number of the virtual account.
+        accountId:
+          type: string
+          description: The account ID of the Slash account the virtual account is associated with.
+        closedAt:
+          type: string
+          description: The date the virtual account was closed; will be null if account was never closed.
+        accountType:
+          type: string
+          enum:
+          - default
+          - primary
+          description: 'The account type of the virtual account. Since virtual accounts and Slash accounts exist at the same hierarchy level,
+
+            an account type of ''primary'' means it is the main Slash account, while an account type of ''default'' means it is a virtual account
+
+            under the main account.
+
+            '
+      description: The virtual account object
+      required:
+      - id
+      - name
+      - accountId
+      - accountType
+      x-entrypoint:
+        virtualPath: schemas/VirtualAccountModel
+        sourcePath: schemas/VirtualAccountModel.yaml
+        title: VirtualAccountModel
+        origin: ./src/publicApi
+      title: VirtualAccountModel
     Pagination.PaginationResponse:
       type: object
       description: Response sent when requesting a list of data
@@ -383,21 +473,31 @@ components:
         title: PaginationResponse
         origin: ./src/publicApi
       title: PaginationResponse
-    Money:
+    Error:
       type: object
-      description: Represents a monetary value
       properties:
-        amountCents:
-          type: integer
-          description: The amount in cents
+        message:
+          type: string
+        name:
+          type: string
+        identifier:
+          type: string
+        rawStatus:
+          type: number
+        meta:
+          type: object
+          additionalProperties: true
       required:
-      - amountCents
+      - message
+      - name
+      - identifier
+      - rawStatus
       x-entrypoint:
-        virtualPath: schemas/Money
-        sourcePath: schemas/Money.yaml
-        title: Money
         origin: ./src/publicApi
-      title: Money
+        sourcePath: ./src/publicApi/main.yaml
+        title: Error
+        virtualPath: components/Error
+      title: Error
     VirtualAccountCommissionDetails:
       oneOf:
       - type: object
@@ -460,121 +560,21 @@ components:
         title: VirtualAccountCommissionDetails
         origin: ./src/publicApi
       title: VirtualAccountCommissionDetails
-    VirtualAccountModel:
+    Money:
       type: object
+      description: Represents a monetary value
       properties:
-        id:
-          type: string
-          description: The ID of the virtual account.
-        name:
-          type: string
-          description: The name of the virtual account.
-        accountNumber:
-          type: string
-          description: The account number of the virtual account.
-        routingNumber:
-          type: string
-          description: The routing number of the virtual account.
-        accountId:
-          type: string
-          description: The account ID of the Slash account the virtual account is associated with.
-        closedAt:
-          type: string
-          description: The date the virtual account was closed; will be null if account was never closed.
-        accountType:
-          type: string
-          enum:
-          - default
-          - primary
-          description: 'The account type of the virtual account. Since virtual accounts and Slash accounts exist at the same hierarchy level,
-
-            an account type of ''primary'' means it is the main Slash account, while an account type of ''default'' means it is a virtual account
-
-            under the main account.
-
-            '
-      description: The virtual account object
+        amountCents:
+          type: integer
+          description: The amount in cents
       required:
-      - id
-      - name
-      - accountId
-      - accountType
+      - amountCents
       x-entrypoint:
-        virtualPath: schemas/VirtualAccountModel
-        sourcePath: schemas/VirtualAccountModel.yaml
-        title: VirtualAccountModel
+        virtualPath: schemas/Money
+        sourcePath: schemas/Money.yaml
+        title: Money
         origin: ./src/publicApi
-      title: VirtualAccountModel
-    Error:
-      type: object
-      properties:
-        message:
-          type: string
-        name:
-          type: string
-        identifier:
-          type: string
-        rawStatus:
-          type: number
-        meta:
-          type: object
-          additionalProperties: true
-      required:
-      - message
-      - name
-      - identifier
-      - rawStatus
-      x-entrypoint:
-        origin: ./src/publicApi
-        sourcePath: ./src/publicApi/main.yaml
-        title: Error
-        virtualPath: components/Error
-      title: Error
-    VirtualAccount:
-      type: object
-      properties:
-        virtualAccount:
-          $ref: '#/components/schemas/VirtualAccountModel'
-          description: The virtual account itself
-          x-entrypoint:
-            virtualPath: schemas/VirtualAccountModel
-            sourcePath: schemas/VirtualAccountModel.yaml
-            title: VirtualAccountModel
-            origin: ./src/publicApi
-        balance:
-          $ref: '#/components/schemas/Money'
-          description: The total balance of the virtual account
-          x-entrypoint:
-            virtualPath: schemas/Money
-            sourcePath: schemas/Money.yaml
-            title: Money
-            origin: ./src/publicApi
-        spend:
-          $ref: '#/components/schemas/Money'
-          description: The total spend of the virtual account
-          x-entrypoint:
-            virtualPath: schemas/Money
-            sourcePath: schemas/Money.yaml
-            title: Money
-            origin: ./src/publicApi
-        commissionRule:
-          $ref: '#/components/schemas/VirtualAccountCommissionRule'
-          description: The commission rule applied to the virtual account, if any
-          x-entrypoint:
-            virtualPath: schemas/VirtualAccountCommissionRule
-            sourcePath: schemas/VirtualAccountCommissionRule.yaml
-            title: VirtualAccountCommissionRule
-            origin: ./src/publicApi
-      required:
-      - virtualAccount
-      - balance
-      - spend
-      x-entrypoint:
-        virtualPath: schemas/VirtualAccount
-        sourcePath: schemas/VirtualAccount.yaml
-        title: VirtualAccount
-        origin: ./src/publicApi
-      title: VirtualAccount
+      title: Money
   securitySchemes:
     api_key:
       type: apiKey
