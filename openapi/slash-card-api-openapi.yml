@@ -694,17 +694,26 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    Restriction:
-      type: string
-      enum:
-      - allowlist
-      - blacklist
+    CardModifier:
+      oneOf:
+      - type: object
+        required:
+        - name
+        - value
+        properties:
+          name:
+            type: string
+            enum:
+            - only_allow_recurring_payments
+          value:
+            description: Whether to only allow recurring payments. The default value for newly created cards is false.
+            type: boolean
       x-entrypoint:
-        virtualPath: schemas/Restriction
-        sourcePath: schemas/Restriction.yaml
-        title: Restriction
+        virtualPath: schemas/CardModifier
+        sourcePath: schemas/CardModifier.yaml
+        title: CardModifier
         origin: ./src/publicApi
-      title: Restriction
+      title: CardModifier
     Pagination.PaginationResponse:
       type: object
       description: Response sent when requesting a list of data
@@ -721,6 +730,46 @@ components:
         title: PaginationResponse
         origin: ./src/publicApi
       title: PaginationResponse
+    Money:
+      type: object
+      description: Represents a monetary value
+      properties:
+        amountCents:
+          type: integer
+          description: The amount in cents
+      required:
+      - amountCents
+      x-entrypoint:
+        virtualPath: schemas/Money
+        sourcePath: schemas/Money.yaml
+        title: Money
+        origin: ./src/publicApi
+      title: Money
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+        name:
+          type: string
+        identifier:
+          type: string
+        rawStatus:
+          type: number
+        meta:
+          type: object
+          additionalProperties: true
+      required:
+      - message
+      - name
+      - identifier
+      - rawStatus
+      x-entrypoint:
+        origin: ./src/publicApi
+        sourcePath: ./src/publicApi/main.yaml
+        title: Error
+        virtualPath: components/Error
+      title: Error
     Card:
       type: object
       properties:
@@ -813,37 +862,6 @@ components:
         title: Card
         origin: ./src/publicApi
       title: Card
-    CardGroupUtilization:
-      type: object
-      properties:
-        nextResetDate:
-          type: string
-          format: date-time
-          description: The date the next reset will occur, undefined if collective
-        spend:
-          $ref: '#/components/schemas/Money'
-          description: The amount of money spent in the current period
-          x-entrypoint:
-            virtualPath: schemas/Money
-            sourcePath: schemas/Money.yaml
-            title: Money
-            origin: ./src/publicApi
-        availableBalance:
-          $ref: '#/components/schemas/Money'
-          description: The amount of money available in the current period. Only returned if the card or card group has a spend limit.
-          x-entrypoint:
-            virtualPath: schemas/Money
-            sourcePath: schemas/Money.yaml
-            title: Money
-            origin: ./src/publicApi
-      required:
-      - spend
-      x-entrypoint:
-        virtualPath: schemas/CardGroupUtilization
-        sourcePath: schemas/CardGroupUtilization.yaml
-        title: CardGroupUtilization
-        origin: ./src/publicApi
-      title: CardGroupUtilization
     SpendingConstraint:
       type: object
       description: A constraint that can be applied to a CardGroupSpendingRule
@@ -1004,26 +1022,48 @@ components:
         title: SpendingConstraint
         origin: ./src/publicApi
       title: SpendingConstraint
-    CardModifier:
-      oneOf:
-      - type: object
-        required:
-        - name
-        - value
-        properties:
-          name:
-            type: string
-            enum:
-            - only_allow_recurring_payments
-          value:
-            description: Whether to only allow recurring payments. The default value for newly created cards is false.
-            type: boolean
+    Restriction:
+      type: string
+      enum:
+      - allowlist
+      - blacklist
       x-entrypoint:
-        virtualPath: schemas/CardModifier
-        sourcePath: schemas/CardModifier.yaml
-        title: CardModifier
+        virtualPath: schemas/Restriction
+        sourcePath: schemas/Restriction.yaml
+        title: Restriction
         origin: ./src/publicApi
-      title: CardModifier
+      title: Restriction
+    CardGroupUtilization:
+      type: object
+      properties:
+        nextResetDate:
+          type: string
+          format: date-time
+          description: The date the next reset will occur, undefined if collective
+        spend:
+          $ref: '#/components/schemas/Money'
+          description: The amount of money spent in the current period
+          x-entrypoint:
+            virtualPath: schemas/Money
+            sourcePath: schemas/Money.yaml
+            title: Money
+            origin: ./src/publicApi
+        availableBalance:
+          $ref: '#/components/schemas/Money'
+          description: The amount of money available in the current period. Only returned if the card or card group has a spend limit.
+          x-entrypoint:
+            virtualPath: schemas/Money
+            sourcePath: schemas/Money.yaml
+            title: Money
+            origin: ./src/publicApi
+      required:
+      - spend
+      x-entrypoint:
+        virtualPath: schemas/CardGroupUtilization
+        sourcePath: schemas/CardGroupUtilization.yaml
+        title: CardGroupUtilization
+        origin: ./src/publicApi
+      title: CardGroupUtilization
     PartialSpendingConstraint:
       type: object
       description: A partial spending constraint update that can be applied to a CardGroupSpendingRule
@@ -1166,31 +1206,6 @@ components:
         title: PartialSpendingConstraint
         origin: ./src/publicApi
       title: PartialSpendingConstraint
-    Error:
-      type: object
-      properties:
-        message:
-          type: string
-        name:
-          type: string
-        identifier:
-          type: string
-        rawStatus:
-          type: number
-        meta:
-          type: object
-          additionalProperties: true
-      required:
-      - message
-      - name
-      - identifier
-      - rawStatus
-      x-entrypoint:
-        origin: ./src/publicApi
-        sourcePath: ./src/publicApi/main.yaml
-        title: Error
-        virtualPath: components/Error
-      title: Error
     CardStatus:
       type: string
       enum:
@@ -1204,21 +1219,6 @@ components:
         title: CardStatus
         origin: ./src/publicApi
       title: CardStatus
-    Money:
-      type: object
-      description: Represents a monetary value
-      properties:
-        amountCents:
-          type: integer
-          description: The amount in cents
-      required:
-      - amountCents
-      x-entrypoint:
-        virtualPath: schemas/Money
-        sourcePath: schemas/Money.yaml
-        title: Money
-        origin: ./src/publicApi
-      title: Money
   securitySchemes:
     api_key:
       type: apiKey

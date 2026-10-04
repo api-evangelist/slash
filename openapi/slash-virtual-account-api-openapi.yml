@@ -339,79 +339,22 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    VirtualAccountCommissionRule:
+    Pagination.PaginationResponse:
       type: object
+      description: Response sent when requesting a list of data
       properties:
-        id:
+        nextCursor:
           type: string
-          description: The ID of the commission rule
-        virtualAccountId:
-          type: string
-          description: The ID of the virtual account the commission rule is applied to
-        commissionDetails:
-          $ref: '#/components/schemas/VirtualAccountCommissionDetails'
-          description: Describes details of the commission rule.
-          x-entrypoint:
-            virtualPath: schemas/VirtualAccountCommissionDetails
-            sourcePath: schemas/VirtualAccountCommissionDetails.yaml
-            title: VirtualAccountCommissionDetails
-            origin: ./src/publicApi
-      description: The virtual account commission rule object
-      required:
-      - id
-      - virtualAccountId
-      - commissionDetails
+          description: The cursor to use to retrieve the next page of data. If this is not sent, there is no more data to retrieve.
+        count:
+          type: number
+          description: The number of items in the current page of data.
       x-entrypoint:
-        virtualPath: schemas/VirtualAccountCommissionRule
-        sourcePath: schemas/VirtualAccountCommissionRule.yaml
-        title: VirtualAccountCommissionRule
+        virtualPath: schemas/Pagination/PaginationResponse
+        sourcePath: schemas/Pagination/PaginationResponse.yaml
+        title: PaginationResponse
         origin: ./src/publicApi
-      title: VirtualAccountCommissionRule
-    VirtualAccount:
-      type: object
-      properties:
-        virtualAccount:
-          $ref: '#/components/schemas/VirtualAccountModel'
-          description: The virtual account itself
-          x-entrypoint:
-            virtualPath: schemas/VirtualAccountModel
-            sourcePath: schemas/VirtualAccountModel.yaml
-            title: VirtualAccountModel
-            origin: ./src/publicApi
-        balance:
-          $ref: '#/components/schemas/Money'
-          description: The total balance of the virtual account
-          x-entrypoint:
-            virtualPath: schemas/Money
-            sourcePath: schemas/Money.yaml
-            title: Money
-            origin: ./src/publicApi
-        spend:
-          $ref: '#/components/schemas/Money'
-          description: The total spend of the virtual account
-          x-entrypoint:
-            virtualPath: schemas/Money
-            sourcePath: schemas/Money.yaml
-            title: Money
-            origin: ./src/publicApi
-        commissionRule:
-          $ref: '#/components/schemas/VirtualAccountCommissionRule'
-          description: The commission rule applied to the virtual account, if any
-          x-entrypoint:
-            virtualPath: schemas/VirtualAccountCommissionRule
-            sourcePath: schemas/VirtualAccountCommissionRule.yaml
-            title: VirtualAccountCommissionRule
-            origin: ./src/publicApi
-      required:
-      - virtualAccount
-      - balance
-      - spend
-      x-entrypoint:
-        virtualPath: schemas/VirtualAccount
-        sourcePath: schemas/VirtualAccount.yaml
-        title: VirtualAccount
-        origin: ./src/publicApi
-      title: VirtualAccount
+      title: PaginationResponse
     VirtualAccountModel:
       type: object
       properties:
@@ -457,22 +400,49 @@ components:
         title: VirtualAccountModel
         origin: ./src/publicApi
       title: VirtualAccountModel
-    Pagination.PaginationResponse:
+    VirtualAccountCommissionRule:
       type: object
-      description: Response sent when requesting a list of data
       properties:
-        nextCursor:
+        id:
           type: string
-          description: The cursor to use to retrieve the next page of data. If this is not sent, there is no more data to retrieve.
-        count:
-          type: number
-          description: The number of items in the current page of data.
+          description: The ID of the commission rule
+        virtualAccountId:
+          type: string
+          description: The ID of the virtual account the commission rule is applied to
+        commissionDetails:
+          $ref: '#/components/schemas/VirtualAccountCommissionDetails'
+          description: Describes details of the commission rule.
+          x-entrypoint:
+            virtualPath: schemas/VirtualAccountCommissionDetails
+            sourcePath: schemas/VirtualAccountCommissionDetails.yaml
+            title: VirtualAccountCommissionDetails
+            origin: ./src/publicApi
+      description: The virtual account commission rule object
+      required:
+      - id
+      - virtualAccountId
+      - commissionDetails
       x-entrypoint:
-        virtualPath: schemas/Pagination/PaginationResponse
-        sourcePath: schemas/Pagination/PaginationResponse.yaml
-        title: PaginationResponse
+        virtualPath: schemas/VirtualAccountCommissionRule
+        sourcePath: schemas/VirtualAccountCommissionRule.yaml
+        title: VirtualAccountCommissionRule
         origin: ./src/publicApi
-      title: PaginationResponse
+      title: VirtualAccountCommissionRule
+    Money:
+      type: object
+      description: Represents a monetary value
+      properties:
+        amountCents:
+          type: integer
+          description: The amount in cents
+      required:
+      - amountCents
+      x-entrypoint:
+        virtualPath: schemas/Money
+        sourcePath: schemas/Money.yaml
+        title: Money
+        origin: ./src/publicApi
+      title: Money
     Error:
       type: object
       properties:
@@ -560,21 +530,51 @@ components:
         title: VirtualAccountCommissionDetails
         origin: ./src/publicApi
       title: VirtualAccountCommissionDetails
-    Money:
+    VirtualAccount:
       type: object
-      description: Represents a monetary value
       properties:
-        amountCents:
-          type: integer
-          description: The amount in cents
+        virtualAccount:
+          $ref: '#/components/schemas/VirtualAccountModel'
+          description: The virtual account itself
+          x-entrypoint:
+            virtualPath: schemas/VirtualAccountModel
+            sourcePath: schemas/VirtualAccountModel.yaml
+            title: VirtualAccountModel
+            origin: ./src/publicApi
+        balance:
+          $ref: '#/components/schemas/Money'
+          description: The total balance of the virtual account
+          x-entrypoint:
+            virtualPath: schemas/Money
+            sourcePath: schemas/Money.yaml
+            title: Money
+            origin: ./src/publicApi
+        spend:
+          $ref: '#/components/schemas/Money'
+          description: The total spend of the virtual account
+          x-entrypoint:
+            virtualPath: schemas/Money
+            sourcePath: schemas/Money.yaml
+            title: Money
+            origin: ./src/publicApi
+        commissionRule:
+          $ref: '#/components/schemas/VirtualAccountCommissionRule'
+          description: The commission rule applied to the virtual account, if any
+          x-entrypoint:
+            virtualPath: schemas/VirtualAccountCommissionRule
+            sourcePath: schemas/VirtualAccountCommissionRule.yaml
+            title: VirtualAccountCommissionRule
+            origin: ./src/publicApi
       required:
-      - amountCents
+      - virtualAccount
+      - balance
+      - spend
       x-entrypoint:
-        virtualPath: schemas/Money
-        sourcePath: schemas/Money.yaml
-        title: Money
+        virtualPath: schemas/VirtualAccount
+        sourcePath: schemas/VirtualAccount.yaml
+        title: VirtualAccount
         origin: ./src/publicApi
-      title: Money
+      title: VirtualAccount
   securitySchemes:
     api_key:
       type: apiKey
