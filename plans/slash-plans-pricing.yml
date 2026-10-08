@@ -36,3 +36,25 @@ plans:
   included_quota: Same-day ACH transfers — $0; Domestic wire transfers — $0; Outgoing Fednow/RTP — $0;
     Unlimited virtual cards; International wire transfers — $25; Foreign transaction fee (card) — 1% (min
     $0.4); Instant deposit fee 0.2% (max $50)
+x-canonical:
+  generated: '2026-10-08'
+  vocabulary: all/0-working/economics/plans-canonical.yml
+  models:
+  - free
+  - subscription
+  units: []
+  plans:
+  - name: Free
+    access: other
+    model: free
+    model_how: derived
+    units: []
+    periods:
+    - month
+  - name: Pro
+    access: other
+    model: subscription
+    model_how: derived
+    units: []
+    periods:
+    - month
