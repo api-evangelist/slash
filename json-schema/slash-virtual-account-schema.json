@@ -1,0 +1,243 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/slash/main/json-schema/slash-virtual-account-schema.json",
+  "title": "VirtualAccount",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/slash-virtual-account-api-openapi.yml#/components/schemas/VirtualAccount",
+  "type": "object",
+  "properties": {
+    "virtualAccount": {
+      "$ref": "#/$defs/VirtualAccountModel",
+      "description": "The virtual account itself",
+      "x-entrypoint": {
+        "virtualPath": "schemas/VirtualAccountModel",
+        "sourcePath": "schemas/VirtualAccountModel.yaml",
+        "title": "VirtualAccountModel",
+        "origin": "./src/publicApi"
+      }
+    },
+    "balance": {
+      "$ref": "#/$defs/Money",
+      "description": "The total balance of the virtual account",
+      "x-entrypoint": {
+        "virtualPath": "schemas/Money",
+        "sourcePath": "schemas/Money.yaml",
+        "title": "Money",
+        "origin": "./src/publicApi"
+      }
+    },
+    "spend": {
+      "$ref": "#/$defs/Money",
+      "description": "The total spend of the virtual account",
+      "x-entrypoint": {
+        "virtualPath": "schemas/Money",
+        "sourcePath": "schemas/Money.yaml",
+        "title": "Money",
+        "origin": "./src/publicApi"
+      }
+    },
+    "commissionRule": {
+      "$ref": "#/$defs/VirtualAccountCommissionRule",
+      "description": "The commission rule applied to the virtual account, if any",
+      "x-entrypoint": {
+        "virtualPath": "schemas/VirtualAccountCommissionRule",
+        "sourcePath": "schemas/VirtualAccountCommissionRule.yaml",
+        "title": "VirtualAccountCommissionRule",
+        "origin": "./src/publicApi"
+      }
+    }
+  },
+  "required": [
+    "virtualAccount",
+    "balance",
+    "spend"
+  ],
+  "x-entrypoint": {
+    "virtualPath": "schemas/VirtualAccount",
+    "sourcePath": "schemas/VirtualAccount.yaml",
+    "title": "VirtualAccount",
+    "origin": "./src/publicApi"
+  },
+  "$defs": {
+    "Money": {
+      "type": "object",
+      "description": "Represents a monetary value",
+      "properties": {
+        "amountCents": {
+          "type": "integer",
+          "description": "The amount in cents"
+        }
+      },
+      "required": [
+        "amountCents"
+      ],
+      "x-entrypoint": {
+        "virtualPath": "schemas/Money",
+        "sourcePath": "schemas/Money.yaml",
+        "title": "Money",
+        "origin": "./src/publicApi"
+      },
+      "title": "Money"
+    },
+    "VirtualAccountCommissionDetails": {
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "enum": [
+                "flatFee"
+              ],
+              "description": "The type of the commission rule. A type of flat_fee will take a flat fee from the virtual account and transfer it to the primary account\nwith the frequency of the collection defined as monthly or yearly.\n"
+            },
+            "amount": {
+              "$ref": "#/$defs/Money",
+              "description": "The amount of money to be diverted from the virtual account if the type of rule is flat_fee.",
+              "x-entrypoint": {
+                "virtualPath": "schemas/Money",
+                "sourcePath": "schemas/Money.yaml",
+                "title": "Money",
+                "origin": "./src/publicApi"
+              }
+            },
+            "frequency": {
+              "type": "string",
+              "enum": [
+                "monthly",
+                "yearly"
+              ],
+              "description": "The frequency from the start date that the rule will be applied. E.g. a start date of November 26, 2024 with a frequency of \"monthly\"\nwill have the rule applied on December 26, 2024. If the frequency was \"yearly\", the rule would be applied again on November 26, 2025.\n"
+            },
+            "startDate": {
+              "type": "string",
+              "format": "date-time",
+              "description": "The date that the rule will begin to take effect."
+            }
+          },
+          "required": [
+            "type",
+            "frequency",
+            "amount"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "enum": [
+                "takeRate"
+              ],
+              "description": "The type of the commission rule. A type of take_rate will take a percent of the virtual account's funds and divert them to\nthe primary account.\n"
+            },
+            "takeRate": {
+              "type": "number",
+              "description": "The percentage of funds to divert from the virtual account to the primary account."
+            }
+          },
+          "required": [
+            "type",
+            "takeRate"
+          ]
+        }
+      ],
+      "x-entrypoint": {
+        "virtualPath": "schemas/VirtualAccountCommissionDetails",
+        "sourcePath": "schemas/VirtualAccountCommissionDetails.yaml",
+        "title": "VirtualAccountCommissionDetails",
+        "origin": "./src/publicApi"
+      },
+      "title": "VirtualAccountCommissionDetails"
+    },
+    "VirtualAccountCommissionRule": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "The ID of the commission rule"
+        },
+        "virtualAccountId": {
+          "type": "string",
+          "description": "The ID of the virtual account the commission rule is applied to"
+        },
+        "commissionDetails": {
+          "$ref": "#/$defs/VirtualAccountCommissionDetails",
+          "description": "Describes details of the commission rule.",
+          "x-entrypoint": {
+            "virtualPath": "schemas/VirtualAccountCommissionDetails",
+            "sourcePath": "schemas/VirtualAccountCommissionDetails.yaml",
+            "title": "VirtualAccountCommissionDetails",
+            "origin": "./src/publicApi"
+          }
+        }
+      },
+      "description": "The virtual account commission rule object",
+      "required": [
+        "id",
+        "virtualAccountId",
+        "commissionDetails"
+      ],
+      "x-entrypoint": {
+        "virtualPath": "schemas/VirtualAccountCommissionRule",
+        "sourcePath": "schemas/VirtualAccountCommissionRule.yaml",
+        "title": "VirtualAccountCommissionRule",
+        "origin": "./src/publicApi"
+      },
+      "title": "VirtualAccountCommissionRule"
+    },
+    "VirtualAccountModel": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "The ID of the virtual account."
+        },
+        "name": {
+          "type": "string",
+          "description": "The name of the virtual account."
+        },
+        "accountNumber": {
+          "type": "string",
+          "description": "The account number of the virtual account."
+        },
+        "routingNumber": {
+          "type": "string",
+          "description": "The routing number of the virtual account."
+        },
+        "accountId": {
+          "type": "string",
+          "description": "The account ID of the Slash account the virtual account is associated with."
+        },
+        "closedAt": {
+          "type": "string",
+          "description": "The date the virtual account was closed; will be null if account was never closed."
+        },
+        "accountType": {
+          "type": "string",
+          "enum": [
+            "default",
+            "primary"
+          ],
+          "description": "The account type of the virtual account. Since virtual accounts and Slash accounts exist at the same hierarchy level,\nan account type of 'primary' means it is the main Slash account, while an account type of 'default' means it is a virtual account\nunder the main account.\n"
+        }
+      },
+      "description": "The virtual account object",
+      "required": [
+        "id",
+        "name",
+        "accountId",
+        "accountType"
+      ],
+      "x-entrypoint": {
+        "virtualPath": "schemas/VirtualAccountModel",
+        "sourcePath": "schemas/VirtualAccountModel.yaml",
+        "title": "VirtualAccountModel",
+        "origin": "./src/publicApi"
+      },
+      "title": "VirtualAccountModel"
+    }
+  }
+}

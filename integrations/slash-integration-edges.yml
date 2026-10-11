@@ -1,5 +1,5 @@
 generated: '2026-10-12'
-method: none
+method: searched
 source:
 - https://zapier.com/apps/slash/integrations
 - https://n8n.io/integrations/slash/
@@ -9,8 +9,26 @@ checked:
 - https://composio.dev/toolkits/slash
 - https://monid.ai/tools/slash
 - https://n8n.io/integrations/slash/
+- https://www.slash.com/accounting
+- https://www.slash.com/integrations
 - https://zapier.com/apps/slash/integrations
-summary: null
+summary: Slash claims accounting sync with QuickBooks and Xero on its own /accounting page; no marketplace listings
+  on Zapier, n8n, Composio or Monid. slash.com/integrations returns 404.
 marketplace_apps: []
-edges: []
+edges:
+- partner_name: QuickBooks
+  partner: quickbooks
+  type: claimed
+  direction: provider-built
+  category: accounting
+  evidence: https://www.slash.com/accounting
+  use_case: Auto-categorize transactions, set up smart mappings, and seamlessly sync with QuickBooks, Xero, and
+    more.
+- partner_name: Xero
+  partner: xero
+  type: claimed
+  direction: provider-built
+  category: accounting
+  evidence: https://www.slash.com/accounting
+  use_case: Categorize card and bank transactions on Slash and sync to Quickbooks, Xero, and more.
 templates: []

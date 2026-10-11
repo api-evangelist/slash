@@ -1,0 +1,130 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/slash/main/json-schema/slash-slashfi-models-entity-invoice-invoice-settings-data-yaml-schema.json",
+  "title": "InvoiceSettingsData",
+  "description": "Invoice display settings for a legal entity.",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/slash-invoice-api-openapi.yml#/components/schemas/slashfi.models.entity.Invoice.InvoiceSettingsData.yaml",
+  "type": "object",
+  "properties": {
+    "companyName": {
+      "type": "string",
+      "description": "The company name to display on invoices.",
+      "minLength": 1
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "The email address to display on invoices.",
+      "minLength": 1
+    },
+    "address": {
+      "$ref": "#/$defs/slashfi.models.entity.IAddressModel.yaml",
+      "description": "The company address to display on invoices.",
+      "x-entrypoint": {
+        "virtualPath": "entity/IAddressModel",
+        "sourcePath": "entity/IAddressModel.yaml",
+        "title": "IAddressModel",
+        "origin": "/home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas",
+        "globalImport": true
+      }
+    },
+    "defaultMemo": {
+      "type": "string",
+      "description": "Default memo text to pre-fill when creating new invoices.",
+      "maxLength": 500
+    },
+    "invoiceTerms": {
+      "type": "string",
+      "description": "Terms text to display on invoices. Only shown when INVOICE_TERMS_MAR_2026 feature flag is enabled.",
+      "maxLength": 2000
+    },
+    "defaultPaymentTermsDays": {
+      "type": "integer",
+      "description": "Default payment terms in days (Net N). Used to auto-calculate due date from issue date when creating invoices.",
+      "minimum": 0
+    },
+    "logoDocumentId": {
+      "type": "string",
+      "description": "Document ID of the company logo to display on invoices."
+    },
+    "unitPriceDecimalPlaces": {
+      "type": "integer",
+      "description": "Number of decimal places allowed for unit prices (in dollars). Defaults to 2 if not set.",
+      "minimum": 2,
+      "maximum": 6
+    },
+    "branding": {
+      "type": "object",
+      "description": "Custom branding settings for invoice styling. Extensible for future branding options.",
+      "properties": {
+        "backgroundColor": {
+          "type": "string",
+          "description": "Hex color code for header background and accent elements (e.g., pay button).",
+          "pattern": "^#[0-9A-Fa-f]{6}$"
+        },
+        "titleColor": {
+          "type": "string",
+          "description": "Hex color code for title text, amounts, and section headings.",
+          "pattern": "^#[0-9A-Fa-f]{6}$"
+        }
+      }
+    }
+  },
+  "required": [
+    "companyName",
+    "email",
+    "address"
+  ],
+  "x-entrypoint": {
+    "virtualPath": "entity/Invoice/InvoiceSettingsData",
+    "sourcePath": "entity/Invoice/InvoiceSettingsData.yaml",
+    "title": "InvoiceSettingsData",
+    "origin": "/home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas",
+    "globalImport": true
+  },
+  "$defs": {
+    "slashfi.models.entity.IAddressModel.yaml": {
+      "title": "IAddressModel",
+      "type": "object",
+      "properties": {
+        "addressLine": {
+          "type": "string"
+        },
+        "addressLine2": {
+          "type": "string"
+        },
+        "addressCity": {
+          "type": "string"
+        },
+        "addressState": {
+          "type": "string"
+        },
+        "addressZip": {
+          "type": "string"
+        },
+        "addressCountry": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 2,
+          "description": "ISO 3166-1 Alpha-2 Country Code (e.g., US, FR, UK, DE, ...)."
+        }
+      },
+      "required": [
+        "addressLine",
+        "addressCity",
+        "addressState",
+        "addressZip"
+      ],
+      "x-entrypoint": {
+        "virtualPath": "entity/IAddressModel",
+        "sourcePath": "entity/IAddressModel.yaml",
+        "title": "IAddressModel",
+        "origin": "/home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas",
+        "globalImport": true
+      }
+    }
+  }
+}

@@ -1,0 +1,645 @@
+generated: '2026-10-12'
+method: derived
+source:
+- https://docs.slash.com/docs/mcp.md
+- openapi/
+note: Slash documents that its MCP server exposes one tool per JSON API endpoint, named after HTTP method and path (GET /account/{accountId}/balance -> get_account_accountId_balance). Tool names here are
+  derived by that documented rule from the OpenAPI; the live tools/list requires an API key and was not called.
+surfaces:
+  openapi: openapi/
+  mcp: 'https://mcp.slash.com/mcp (gated: apiKey)'
+crosswalk:
+- tool: get_account
+  category: account-api
+  rest:
+  - getAccount
+  binding: GET /account
+  confidence: medium
+- tool: get_account_accountId
+  category: account-api
+  rest:
+  - getAccountByAccountId
+  binding: GET /account/{accountId}
+  confidence: medium
+- tool: get_account_accountId_balance
+  category: account-api
+  rest:
+  - getAccountByAccountIdBalance
+  binding: GET /account/{accountId}/balance
+  confidence: medium
+- tool: get_account_accountId_authorization_webhook
+  category: account-api
+  rest:
+  - getAccountByAccountIdAuthorizationWebhook
+  binding: GET /account/{accountId}/authorization-webhook
+  confidence: medium
+- tool: put_account_accountId_authorization_webhook
+  category: account-api
+  rest:
+  - putAccountByAccountIdAuthorizationWebhook
+  binding: PUT /account/{accountId}/authorization-webhook
+  confidence: medium
+- tool: patch_account_accountId_authorization_webhook
+  category: account-api
+  rest:
+  - patchAccountByAccountIdAuthorizationWebhook
+  binding: PATCH /account/{accountId}/authorization-webhook
+  confidence: medium
+- tool: get_agent_request
+  category: agent-requests-api
+  rest:
+  - getAgentRequest
+  binding: GET /agent-request
+  confidence: medium
+- tool: get_agent_request_agentRequestId
+  category: agent-requests-api
+  rest:
+  - getAgentRequestByAgentRequestId
+  binding: GET /agent-request/{agentRequestId}
+  confidence: medium
+- tool: post_analytics
+  category: analytics-api
+  rest:
+  - postAnalytics
+  binding: POST /analytics
+  confidence: medium
+- tool: get_card
+  category: card-api
+  rest:
+  - getCard
+  binding: GET /card
+  confidence: medium
+- tool: post_card
+  category: card-api
+  rest:
+  - postCard
+  binding: POST /card
+  confidence: medium
+- tool: patch_card_cardId
+  category: card-api
+  rest:
+  - patchCardByCardId
+  binding: PATCH /card/{cardId}
+  confidence: medium
+- tool: get_card_cardId
+  category: card-api
+  rest:
+  - getCardByCardId
+  binding: GET /card/{cardId}
+  confidence: medium
+- tool: get_card_cardId_utilization
+  category: card-api
+  rest:
+  - getCardByCardIdUtilization
+  binding: GET /card/{cardId}/utilization
+  confidence: medium
+- tool: get_card_cardId_modifier
+  category: card-api
+  rest:
+  - getCardByCardIdModifier
+  binding: GET /card/{cardId}/modifier
+  confidence: medium
+- tool: put_card_cardId_modifier
+  category: card-api
+  rest:
+  - putCardByCardIdModifier
+  binding: PUT /card/{cardId}/modifier
+  confidence: medium
+- tool: patch_card_cardId_spending_constraint
+  category: card-api
+  rest:
+  - patchCardByCardIdSpendingConstraint
+  binding: PATCH /card/{cardId}/spending-constraint
+  confidence: medium
+- tool: put_card_cardId_spending_constraint
+  category: card-api
+  rest:
+  - putCardByCardIdSpendingConstraint
+  binding: PUT /card/{cardId}/spending-constraint
+  confidence: medium
+- tool: get_card_group
+  category: card-group-api
+  rest:
+  - getCardGroup
+  binding: GET /card-group
+  confidence: medium
+- tool: post_card_group
+  category: card-group-api
+  rest:
+  - postCardGroup
+  binding: POST /card-group
+  confidence: medium
+- tool: patch_card_group_cardGroupId
+  category: card-group-api
+  rest:
+  - patchCardGroupByCardGroupId
+  binding: PATCH /card-group/{cardGroupId}
+  confidence: medium
+- tool: get_card_group_cardGroupId
+  category: card-group-api
+  rest:
+  - getCardGroupByCardGroupId
+  binding: GET /card-group/{cardGroupId}
+  confidence: medium
+- tool: get_card_group_cardGroupId_utilization
+  category: card-group-api
+  rest:
+  - getCardGroupByCardGroupIdUtilization
+  binding: GET /card-group/{cardGroupId}/utilization
+  confidence: medium
+- tool: patch_card_group_cardGroupId_spending_constraint
+  category: card-group-api
+  rest:
+  - patchCardGroupByCardGroupIdSpendingConstraint
+  binding: PATCH /card-group/{cardGroupId}/spending-constraint
+  confidence: medium
+- tool: put_card_group_cardGroupId_spending_constraint
+  category: card-group-api
+  rest:
+  - putCardGroupByCardGroupIdSpendingConstraint
+  binding: PUT /card-group/{cardGroupId}/spending-constraint
+  confidence: medium
+- tool: get_card_product
+  category: card-product-api
+  rest:
+  - getCardProduct
+  binding: GET /card-product
+  confidence: medium
+- tool: get_contact
+  category: contact-api
+  rest:
+  - getContact
+  binding: GET /contact
+  confidence: medium
+- tool: post_contact
+  category: contact-api
+  rest:
+  - postContact
+  binding: POST /contact
+  confidence: medium
+- tool: get_contact_contactId
+  category: contact-api
+  rest:
+  - getContactByContactId
+  binding: GET /contact/{contactId}
+  confidence: medium
+- tool: patch_contact_contactId
+  category: contact-api
+  rest:
+  - patchContactByContactId
+  binding: PATCH /contact/{contactId}
+  confidence: medium
+- tool: get_contact_contactId_ach_debit_recurring
+  category: contact-api
+  rest:
+  - getContactByContactIdAchDebitRecurring
+  binding: GET /contact/{contactId}/ach-debit-recurring
+  confidence: medium
+- tool: post_crypto_offramp
+  category: crypto-api
+  rest:
+  - postCryptoOfframp
+  binding: POST /crypto/offramp
+  confidence: medium
+- tool: get_customer
+  category: customer-api
+  rest:
+  - getCustomer
+  binding: GET /customer
+  confidence: medium
+- tool: post_customer
+  category: customer-api
+  rest:
+  - postCustomer
+  binding: POST /customer
+  confidence: medium
+- tool: get_customer_customerId
+  category: customer-api
+  rest:
+  - getCustomerByCustomerId
+  binding: GET /customer/{customerId}
+  confidence: medium
+- tool: patch_customer_customerId
+  category: customer-api
+  rest:
+  - patchCustomerByCustomerId
+  binding: PATCH /customer/{customerId}
+  confidence: medium
+- tool: get_customer_customerId_ach_debit_recurring
+  category: customer-api
+  rest:
+  - getCustomerByCustomerIdAchDebitRecurring
+  binding: GET /customer/{customerId}/ach-debit-recurring
+  confidence: medium
+- tool: post_developer_account_developerAccountId_application
+  category: developer-account-api
+  rest:
+  - postDeveloperAccountByDeveloperAccountIdApplication
+  binding: POST /developer-account/{developerAccountId}/application
+  confidence: medium
+- tool: get_developer_application_developerApplicationId
+  category: developer-application-api
+  rest:
+  - getDeveloperApplicationByDeveloperApplicationId
+  binding: GET /developer-application/{developerApplicationId}
+  confidence: medium
+- tool: patch_developer_application_developerApplicationId
+  category: developer-application-api
+  rest:
+  - patchDeveloperApplicationByDeveloperApplicationId
+  binding: PATCH /developer-application/{developerApplicationId}
+  confidence: medium
+- tool: post_developer_application_developerApplicationId_secret
+  category: developer-application-api
+  rest:
+  - postDeveloperApplicationByDeveloperApplicationIdSecret
+  binding: POST /developer-application/{developerApplicationId}/secret
+  confidence: medium
+- tool: get_expense_report
+  category: expense-report-api
+  rest:
+  - getExpenseReport
+  binding: GET /expense-report
+  confidence: medium
+- tool: post_expense_report
+  category: expense-report-api
+  rest:
+  - postExpenseReport
+  binding: POST /expense-report
+  confidence: medium
+- tool: get_expense_report_expenseReportId
+  category: expense-report-api
+  rest:
+  - getExpenseReportByExpenseReportId
+  binding: GET /expense-report/{expenseReportId}
+  confidence: medium
+- tool: patch_expense_report_expenseReportId
+  category: expense-report-api
+  rest:
+  - patchExpenseReportByExpenseReportId
+  binding: PATCH /expense-report/{expenseReportId}
+  confidence: medium
+- tool: post_expense_report_expenseReportId_approve
+  category: expense-report-api
+  rest:
+  - postExpenseReportByExpenseReportIdApprove
+  binding: POST /expense-report/{expenseReportId}/approve
+  confidence: medium
+- tool: post_expense_report_expenseReportId_reject
+  category: expense-report-api
+  rest:
+  - postExpenseReportByExpenseReportIdReject
+  binding: POST /expense-report/{expenseReportId}/reject
+  confidence: medium
+- tool: post_expense_report_receipt
+  category: expense-report-api
+  rest:
+  - postExpenseReportReceipt
+  binding: POST /expense-report/receipt
+  confidence: medium
+- tool: patch_expense_report_bulk_action
+  category: expense-report-api
+  rest:
+  - patchExpenseReportBulkAction
+  binding: PATCH /expense-report/bulk-action
+  confidence: medium
+- tool: get_expense_report_reimbursement_sources
+  category: expense-report-api
+  rest:
+  - getExpenseReportReimbursementSources
+  binding: GET /expense-report/reimbursement-sources
+  confidence: medium
+- tool: get_fdx_customers_current
+  category: fdx-api
+  rest:
+  - getFdxCustomersCurrent
+  binding: GET /fdx/customers/current
+  confidence: medium
+- tool: get_fdx_accounts
+  category: fdx-api
+  rest:
+  - getFdxAccounts
+  binding: GET /fdx/accounts
+  confidence: medium
+- tool: get_fdx_accounts_accountId
+  category: fdx-api
+  rest:
+  - getFdxAccountsByAccountId
+  binding: GET /fdx/accounts/{accountId}
+  confidence: medium
+- tool: get_fdx_accounts_accountId_contact
+  category: fdx-api
+  rest:
+  - getFdxAccountsByAccountIdContact
+  binding: GET /fdx/accounts/{accountId}/contact
+  confidence: medium
+- tool: get_fdx_accounts_accountId_statements
+  category: fdx-api
+  rest:
+  - getFdxAccountsByAccountIdStatements
+  binding: GET /fdx/accounts/{accountId}/statements
+  confidence: medium
+- tool: get_fdx_accounts_accountId_statements_statementId
+  category: fdx-api
+  rest:
+  - getFdxAccountsByAccountIdStatementsByStatementId
+  binding: GET /fdx/accounts/{accountId}/statements/{statementId}
+  confidence: medium
+- tool: get_fdx_accounts_accountId_transactions
+  category: fdx-api
+  rest:
+  - getFdxAccountsByAccountIdTransactions
+  binding: GET /fdx/accounts/{accountId}/transactions
+  confidence: medium
+- tool: get_fdx_accounts_accountId_payment_networks
+  category: fdx-api
+  rest:
+  - getFdxAccountsByAccountIdPaymentNetworks
+  binding: GET /fdx/accounts/{accountId}/payment-networks
+  confidence: medium
+- tool: get_invoice
+  category: invoice-api
+  rest:
+  - getInvoice
+  binding: GET /invoice
+  confidence: medium
+- tool: post_invoice
+  category: invoice-api
+  rest:
+  - postInvoice
+  binding: POST /invoice
+  confidence: medium
+- tool: get_invoice_invoiceId
+  category: invoice-api
+  rest:
+  - getInvoiceByInvoiceId
+  binding: GET /invoice/{invoiceId}
+  confidence: medium
+- tool: patch_invoice_invoiceId
+  category: invoice-api
+  rest:
+  - patchInvoiceByInvoiceId
+  binding: PATCH /invoice/{invoiceId}
+  confidence: medium
+- tool: post_invoice_invoiceId_void
+  category: invoice-api
+  rest:
+  - postInvoiceByInvoiceIdVoid
+  binding: POST /invoice/{invoiceId}/void
+  confidence: medium
+- tool: post_invoice_invoiceId_reconcile
+  category: invoice-api
+  rest:
+  - postInvoiceByInvoiceIdReconcile
+  binding: POST /invoice/{invoiceId}/reconcile
+  confidence: medium
+- tool: post_invoice_invoiceId_unreconcile
+  category: invoice-api
+  rest:
+  - postInvoiceByInvoiceIdUnreconcile
+  binding: POST /invoice/{invoiceId}/unreconcile
+  confidence: medium
+- tool: get_invoice_invoiceId_send_reminder
+  category: invoice-api
+  rest:
+  - getInvoiceByInvoiceIdSendReminder
+  binding: GET /invoice/{invoiceId}/send-reminder
+  confidence: medium
+- tool: post_invoice_invoiceId_send_reminder
+  category: invoice-api
+  rest:
+  - postInvoiceByInvoiceIdSendReminder
+  binding: POST /invoice/{invoiceId}/send-reminder
+  confidence: medium
+- tool: get_invoice_settings
+  category: invoice-api
+  rest:
+  - getInvoiceSettings
+  binding: GET /invoice/settings
+  confidence: medium
+- tool: put_invoice_settings
+  category: invoice-api
+  rest:
+  - putInvoiceSettings
+  binding: PUT /invoice/settings
+  confidence: medium
+- tool: post_invoice_settings_logo
+  category: invoice-api
+  rest:
+  - postInvoiceSettingsLogo
+  binding: POST /invoice/settings/logo
+  confidence: medium
+- tool: get_invoice_validate_number
+  category: invoice-api
+  rest:
+  - getInvoiceValidateNumber
+  binding: GET /invoice/validate-number
+  confidence: medium
+- tool: get_invoice_series
+  category: invoice-api
+  rest:
+  - getInvoiceSeries
+  binding: GET /invoice/series
+  confidence: medium
+- tool: post_invoice_series
+  category: invoice-api
+  rest:
+  - postInvoiceSeries
+  binding: POST /invoice/series
+  confidence: medium
+- tool: get_invoice_series_invoiceSeriesId
+  category: invoice-api
+  rest:
+  - getInvoiceSeriesByInvoiceSeriesId
+  binding: GET /invoice/series/{invoiceSeriesId}
+  confidence: medium
+- tool: patch_invoice_series_invoiceSeriesId
+  category: invoice-api
+  rest:
+  - patchInvoiceSeriesByInvoiceSeriesId
+  binding: PATCH /invoice/series/{invoiceSeriesId}
+  confidence: medium
+- tool: post_invoice_series_invoiceSeriesId_cancel
+  category: invoice-api
+  rest:
+  - postInvoiceSeriesByInvoiceSeriesIdCancel
+  binding: POST /invoice/series/{invoiceSeriesId}/cancel
+  confidence: medium
+- tool: post_invoice_series_invoiceSeriesId_skip_next
+  category: invoice-api
+  rest:
+  - postInvoiceSeriesByInvoiceSeriesIdSkipNext
+  binding: POST /invoice/series/{invoiceSeriesId}/skip-next
+  confidence: medium
+- tool: get_legal_entity
+  category: legal-entity-api
+  rest:
+  - getLegalEntity
+  binding: GET /legal-entity
+  confidence: medium
+- tool: get_merchant
+  category: merchant-api
+  rest:
+  - getMerchant
+  binding: GET /merchant
+  confidence: medium
+- tool: get_merchant_merchantId
+  category: merchant-api
+  rest:
+  - getMerchantByMerchantId
+  binding: GET /merchant/{merchantId}
+  confidence: medium
+- tool: get_merchant_category
+  category: merchant-category-api
+  rest:
+  - getMerchantCategory
+  binding: GET /merchant-category
+  confidence: medium
+- tool: post_oauth2_token
+  category: oauth2-api
+  rest:
+  - postOauth2Token
+  binding: POST /oauth2/token
+  confidence: medium
+- tool: get_oauth2_userinfo
+  category: oauth2-api
+  rest:
+  - getOauth2Userinfo
+  binding: GET /oauth2/userinfo
+  confidence: medium
+- tool: post_oauth2_userinfo
+  category: oauth2-api
+  rest:
+  - postOauth2Userinfo
+  binding: POST /oauth2/userinfo
+  confidence: medium
+- tool: get_task
+  category: task-api
+  rest:
+  - getTask
+  binding: GET /task
+  confidence: medium
+- tool: get_task_schema
+  category: task-api
+  rest:
+  - getTaskSchema
+  binding: GET /task/schema
+  confidence: medium
+- tool: get_task_taskId
+  category: task-api
+  rest:
+  - getTaskByTaskId
+  binding: GET /task/{taskId}
+  confidence: medium
+- tool: post_task_taskId_act
+  category: task-api
+  rest:
+  - postTaskByTaskIdAct
+  binding: POST /task/{taskId}/act
+  confidence: medium
+- tool: get_tokens_prices
+  category: tokens-api
+  rest:
+  - getTokensPrices
+  binding: GET /tokens/prices
+  confidence: medium
+- tool: get_transaction
+  category: transaction-api
+  rest:
+  - getTransaction
+  binding: GET /transaction
+  confidence: medium
+- tool: get_transaction_aggregation
+  category: transaction-api
+  rest:
+  - getTransactionAggregation
+  binding: GET /transaction/aggregation
+  confidence: medium
+- tool: get_transaction_transactionId
+  category: transaction-api
+  rest:
+  - getTransactionByTransactionId
+  binding: GET /transaction/{transactionId}
+  confidence: medium
+- tool: patch_transaction_transactionId_note
+  category: transaction-api
+  rest:
+  - patchTransactionByTransactionIdNote
+  binding: PATCH /transaction/{transactionId}/note
+  confidence: medium
+- tool: get_transaction_transactionId_fee_details
+  category: transaction-api
+  rest:
+  - getTransactionByTransactionIdFeeDetails
+  binding: GET /transaction/{transactionId}/fee-details
+  confidence: medium
+- tool: post_transfer_virtual_account
+  category: transfer-api
+  rest:
+  - postTransferVirtualAccount
+  binding: POST /transfer/virtual-account
+  confidence: medium
+- tool: post_transfers_book_transfer
+  category: transfers-api
+  rest:
+  - postTransfersBookTransfer
+  binding: POST /transfers/book-transfer
+  confidence: medium
+- tool: get_virtual_account
+  category: virtual-account-api
+  rest:
+  - getVirtualAccount
+  binding: GET /virtual-account
+  confidence: medium
+- tool: post_virtual_account
+  category: virtual-account-api
+  rest:
+  - postVirtualAccount
+  binding: POST /virtual-account
+  confidence: medium
+- tool: get_virtual_account_virtualAccountId
+  category: virtual-account-api
+  rest:
+  - getVirtualAccountByVirtualAccountId
+  binding: GET /virtual-account/{virtualAccountId}
+  confidence: medium
+- tool: patch_virtual_account_virtualAccountId
+  category: virtual-account-api
+  rest:
+  - patchVirtualAccountByVirtualAccountId
+  binding: PATCH /virtual-account/{virtualAccountId}
+  confidence: medium
+- tool: get_webhook
+  category: webhook-api
+  rest:
+  - getWebhook
+  binding: GET /webhook
+  confidence: medium
+- tool: post_webhook
+  category: webhook-api
+  rest:
+  - postWebhook
+  binding: POST /webhook
+  confidence: medium
+- tool: get_webhook_webhookId
+  category: webhook-api
+  rest:
+  - getWebhookByWebhookId
+  binding: GET /webhook/{webhookId}
+  confidence: medium
+- tool: patch_webhook_webhookId
+  category: webhook-api
+  rest:
+  - patchWebhookByWebhookId
+  binding: PATCH /webhook/{webhookId}
+  confidence: medium
+- tool: get_.well_known_openid_configuration
+  category: well-known-api
+  rest:
+  - getWellKnownOpenidConfiguration
+  binding: GET /.well-known/openid-configuration
+  confidence: medium
+mcp_only: []
+coverage:
+  tools: 105
+  bound: 105

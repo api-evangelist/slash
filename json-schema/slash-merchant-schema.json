@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/slash/main/json-schema/slash-merchant-schema.json",
+  "title": "Merchant",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/slash-merchant-api-openapi.yml#/components/schemas/Merchant",
+  "type": "object",
+  "required": [
+    "id",
+    "name"
+  ],
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "url": {
+      "type": "string"
+    }
+  },
+  "x-entrypoint": {
+    "virtualPath": "schemas/Merchant",
+    "sourcePath": "schemas/Merchant.yaml",
+    "title": "Merchant",
+    "origin": "./src/publicApi"
+  }
+}

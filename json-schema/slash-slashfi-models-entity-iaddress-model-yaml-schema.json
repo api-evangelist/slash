@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/slash/main/json-schema/slash-slashfi-models-entity-iaddress-model-yaml-schema.json",
+  "title": "IAddressModel",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/slash-contact-api-openapi.yml#/components/schemas/slashfi.models.entity.IAddressModel.yaml",
+  "type": "object",
+  "properties": {
+    "addressLine": {
+      "type": "string"
+    },
+    "addressLine2": {
+      "type": "string"
+    },
+    "addressCity": {
+      "type": "string"
+    },
+    "addressState": {
+      "type": "string"
+    },
+    "addressZip": {
+      "type": "string"
+    },
+    "addressCountry": {
+      "type": "string",
+      "minLength": 2,
+      "maxLength": 2,
+      "description": "ISO 3166-1 Alpha-2 Country Code (e.g., US, FR, UK, DE, ...)."
+    }
+  },
+  "required": [
+    "addressLine",
+    "addressCity",
+    "addressState",
+    "addressZip"
+  ],
+  "x-entrypoint": {
+    "virtualPath": "entity/IAddressModel",
+    "sourcePath": "entity/IAddressModel.yaml",
+    "title": "IAddressModel",
+    "origin": "/home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas",
+    "globalImport": true
+  }
+}

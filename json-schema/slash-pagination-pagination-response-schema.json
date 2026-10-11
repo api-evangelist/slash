@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/slash/main/json-schema/slash-pagination-pagination-response-schema.json",
+  "title": "PaginationResponse",
+  "description": "Response sent when requesting a list of data",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/slash-account-api-openapi.yml#/components/schemas/Pagination.PaginationResponse",
+  "type": "object",
+  "properties": {
+    "nextCursor": {
+      "type": "string",
+      "description": "The cursor to use to retrieve the next page of data. If this is not sent, there is no more data to retrieve."
+    },
+    "count": {
+      "type": "number",
+      "description": "The number of items in the current page of data."
+    }
+  },
+  "x-entrypoint": {
+    "virtualPath": "schemas/Pagination/PaginationResponse",
+    "sourcePath": "schemas/Pagination/PaginationResponse.yaml",
+    "title": "PaginationResponse",
+    "origin": "./src/publicApi"
+  }
+}

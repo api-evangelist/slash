@@ -1,0 +1,246 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/slash/main/json-schema/slash-partial-spending-constraint-schema.json",
+  "title": "PartialSpendingConstraint",
+  "description": "A partial spending constraint update that can be applied to a CardGroupSpendingRule",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/slash-card-api-openapi.yml#/components/schemas/PartialSpendingConstraint",
+  "type": "object",
+  "properties": {
+    "merchantCategoryRule": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "properties": {
+        "merchantCategories": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "restriction": {
+          "$ref": "#/$defs/Restriction",
+          "x-entrypoint": {
+            "virtualPath": "schemas/Restriction",
+            "sourcePath": "schemas/Restriction.yaml",
+            "title": "Restriction",
+            "origin": "./src/publicApi"
+          }
+        }
+      }
+    },
+    "merchantRule": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "properties": {
+        "merchants": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "restriction": {
+          "$ref": "#/$defs/Restriction",
+          "x-entrypoint": {
+            "virtualPath": "schemas/Restriction",
+            "sourcePath": "schemas/Restriction.yaml",
+            "title": "Restriction",
+            "origin": "./src/publicApi"
+          }
+        }
+      }
+    },
+    "spendingRule": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "properties": {
+        "utilizationLimit": {
+          "type": "object",
+          "properties": {
+            "timezone": {
+              "type": "string",
+              "description": "IANA timezone string. Limits always reset at midnight of the timezone specified. If no timezone is specified, then UTC time is used."
+            },
+            "limitAmount": {
+              "$ref": "#/$defs/Money",
+              "x-entrypoint": {
+                "virtualPath": "schemas/Money",
+                "sourcePath": "schemas/Money.yaml",
+                "title": "Money",
+                "origin": "./src/publicApi"
+              }
+            },
+            "preset": {
+              "type": "string",
+              "enum": [
+                "daily",
+                "weekly",
+                "monthly",
+                "yearly",
+                "collective"
+              ]
+            },
+            "startDate": {
+              "type": "string",
+              "description": "Format ISO-8601. A day that equals today or the past. This is optional.If the `preset` is \"daily\", this value is ignored. If the `preset` is \"weekly\", \"monthly\" or \"yearly\", then the this value is used to compute when the limit should start limit."
+            }
+          }
+        },
+        "utilizationLimitV2": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "timezone": {
+                "type": "string",
+                "description": "IANA timezone string. Limits always reset at midnight of the timezone specified. If no timezone is specified, then UTC time is used."
+              },
+              "limitAmount": {
+                "$ref": "#/$defs/Money",
+                "x-entrypoint": {
+                  "virtualPath": "schemas/Money",
+                  "sourcePath": "schemas/Money.yaml",
+                  "title": "Money",
+                  "origin": "./src/publicApi"
+                }
+              },
+              "preset": {
+                "type": "string",
+                "enum": [
+                  "daily",
+                  "weekly",
+                  "monthly",
+                  "yearly",
+                  "collective"
+                ]
+              },
+              "startDate": {
+                "type": "string",
+                "description": "Format ISO-8601. A day that equals today or the past. This is optional.If the `preset` is \"daily\", this value is ignored. If the `preset` is \"weekly\", \"monthly\" or \"yearly\", then the this value is used to compute when the limit should start limit."
+              }
+            }
+          }
+        },
+        "transactionSizeLimit": {
+          "type": "object",
+          "properties": {
+            "minimum": {
+              "$ref": "#/$defs/Money",
+              "x-entrypoint": {
+                "virtualPath": "schemas/Money",
+                "sourcePath": "schemas/Money.yaml",
+                "title": "Money",
+                "origin": "./src/publicApi"
+              }
+            },
+            "maximum": {
+              "$ref": "#/$defs/Money",
+              "x-entrypoint": {
+                "virtualPath": "schemas/Money",
+                "sourcePath": "schemas/Money.yaml",
+                "title": "Money",
+                "origin": "./src/publicApi"
+              }
+            }
+          }
+        }
+      }
+    },
+    "countryRule": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "properties": {
+        "countries": {
+          "description": "A 2 digit country code",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "restriction": {
+          "$ref": "#/$defs/Restriction",
+          "x-entrypoint": {
+            "virtualPath": "schemas/Restriction",
+            "sourcePath": "schemas/Restriction.yaml",
+            "title": "Restriction",
+            "origin": "./src/publicApi"
+          }
+        }
+      }
+    },
+    "merchantCategoryCodeRule": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "properties": {
+        "merchantCategoryCodes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "restriction": {
+          "$ref": "#/$defs/Restriction",
+          "x-entrypoint": {
+            "virtualPath": "schemas/Restriction",
+            "sourcePath": "schemas/Restriction.yaml",
+            "title": "Restriction",
+            "origin": "./src/publicApi"
+          }
+        }
+      }
+    }
+  },
+  "x-entrypoint": {
+    "virtualPath": "schemas/PartialSpendingConstraint",
+    "sourcePath": "schemas/PartialSpendingConstraint.yaml",
+    "title": "PartialSpendingConstraint",
+    "origin": "./src/publicApi"
+  },
+  "$defs": {
+    "Money": {
+      "type": "object",
+      "description": "Represents a monetary value",
+      "properties": {
+        "amountCents": {
+          "type": "integer",
+          "description": "The amount in cents"
+        }
+      },
+      "required": [
+        "amountCents"
+      ],
+      "x-entrypoint": {
+        "virtualPath": "schemas/Money",
+        "sourcePath": "schemas/Money.yaml",
+        "title": "Money",
+        "origin": "./src/publicApi"
+      },
+      "title": "Money"
+    },
+    "Restriction": {
+      "type": "string",
+      "enum": [
+        "allowlist",
+        "blacklist"
+      ],
+      "x-entrypoint": {
+        "virtualPath": "schemas/Restriction",
+        "sourcePath": "schemas/Restriction.yaml",
+        "title": "Restriction",
+        "origin": "./src/publicApi"
+      },
+      "title": "Restriction"
+    }
+  }
+}

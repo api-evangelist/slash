@@ -1,0 +1,329 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/slash/main/json-schema/slash-slashfi-models-entity-expense-report-parsed-receipt-yaml-schema.json",
+  "title": "ParsedReceipt",
+  "description": "AI-extracted data from a receipt image or PDF",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/slash-expense-report-api-openapi.yml#/components/schemas/slashfi.models.entity.ExpenseReport.ParsedReceipt.yaml",
+  "type": "object",
+  "properties": {
+    "amount": {
+      "$ref": "#/$defs/slashfi.models.entity.ExpenseReport.ParsedReceiptAmount.yaml",
+      "x-entrypoint": {
+        "virtualPath": "entity/ExpenseReport/ParsedReceiptAmount",
+        "sourcePath": "entity/ExpenseReport/ParsedReceiptAmount.yaml",
+        "title": "ParsedReceiptAmount",
+        "origin": "/home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas",
+        "globalImport": true
+      }
+    },
+    "date": {
+      "$ref": "#/$defs/slashfi.models.entity.ExpenseReport.ParsedReceiptDate.yaml",
+      "x-entrypoint": {
+        "virtualPath": "entity/ExpenseReport/ParsedReceiptDate",
+        "sourcePath": "entity/ExpenseReport/ParsedReceiptDate.yaml",
+        "title": "ParsedReceiptDate",
+        "origin": "/home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas",
+        "globalImport": true
+      }
+    },
+    "merchant": {
+      "$ref": "#/$defs/slashfi.models.entity.ExpenseReport.ParsedReceiptMerchant.yaml",
+      "x-entrypoint": {
+        "virtualPath": "entity/ExpenseReport/ParsedReceiptMerchant",
+        "sourcePath": "entity/ExpenseReport/ParsedReceiptMerchant.yaml",
+        "title": "ParsedReceiptMerchant",
+        "origin": "/home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas",
+        "globalImport": true
+      }
+    }
+  },
+  "required": [
+    "amount",
+    "date",
+    "merchant"
+  ],
+  "x-entrypoint": {
+    "virtualPath": "entity/ExpenseReport/ParsedReceipt",
+    "sourcePath": "entity/ExpenseReport/ParsedReceipt.yaml",
+    "title": "ParsedReceipt",
+    "origin": "/home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas",
+    "globalImport": true
+  },
+  "$defs": {
+    "slashfi.models.entity.ExpenseReport.ParsedReceiptAmount.yaml": {
+      "type": "object",
+      "description": "Extracted amount information from a receipt",
+      "properties": {
+        "valueCents": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "description": "Total amount in cents (e.g., 1846 for $18.46)"
+        },
+        "currency": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "ISO 4217 currency code (defaults to USD)"
+        },
+        "confidence": {
+          "$ref": "#/$defs/slashfi.models.entity.ExpenseReport.ParsedReceiptConfidence.yaml",
+          "x-entrypoint": {
+            "virtualPath": "entity/ExpenseReport/ParsedReceiptConfidence",
+            "sourcePath": "entity/ExpenseReport/ParsedReceiptConfidence.yaml",
+            "title": "ParsedReceiptConfidence",
+            "origin": "/home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas",
+            "globalImport": true
+          }
+        },
+        "rawText": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Raw text extracted from receipt for this field"
+        }
+      },
+      "required": [
+        "confidence"
+      ],
+      "x-entrypoint": {
+        "virtualPath": "entity/ExpenseReport/ParsedReceiptAmount",
+        "sourcePath": "entity/ExpenseReport/ParsedReceiptAmount.yaml",
+        "title": "ParsedReceiptAmount",
+        "origin": "/home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas",
+        "globalImport": true
+      },
+      "title": "ParsedReceiptAmount"
+    },
+    "slashfi.models.entity.ExpenseReport.ParsedReceiptConfidence.yaml": {
+      "type": "string",
+      "enum": [
+        "high",
+        "medium",
+        "low",
+        "none"
+      ],
+      "description": "Confidence level for an extracted field:\n- high: Clearly visible and unambiguous\n- medium: Readable but may have minor issues (blur, partial visibility)\n- low: Partially visible, ambiguous, or assumptions were made\n- none: Not found or completely unreadable\n",
+      "x-entrypoint": {
+        "virtualPath": "entity/ExpenseReport/ParsedReceiptConfidence",
+        "sourcePath": "entity/ExpenseReport/ParsedReceiptConfidence.yaml",
+        "title": "ParsedReceiptConfidence",
+        "origin": "/home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas",
+        "globalImport": true
+      },
+      "title": "ParsedReceiptConfidence"
+    },
+    "slashfi.models.entity.ExpenseReport.ParsedReceiptDate.yaml": {
+      "type": "object",
+      "description": "Extracted date information from a receipt",
+      "properties": {
+        "value": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date",
+          "description": "Transaction date in YYYY-MM-DD format"
+        },
+        "confidence": {
+          "$ref": "#/$defs/slashfi.models.entity.ExpenseReport.ParsedReceiptConfidence.yaml",
+          "x-entrypoint": {
+            "virtualPath": "entity/ExpenseReport/ParsedReceiptConfidence",
+            "sourcePath": "entity/ExpenseReport/ParsedReceiptConfidence.yaml",
+            "title": "ParsedReceiptConfidence",
+            "origin": "/home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas",
+            "globalImport": true
+          }
+        },
+        "rawText": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Raw text extracted from receipt for this field"
+        }
+      },
+      "required": [
+        "confidence"
+      ],
+      "x-entrypoint": {
+        "virtualPath": "entity/ExpenseReport/ParsedReceiptDate",
+        "sourcePath": "entity/ExpenseReport/ParsedReceiptDate.yaml",
+        "title": "ParsedReceiptDate",
+        "origin": "/home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas",
+        "globalImport": true
+      },
+      "title": "ParsedReceiptDate"
+    },
+    "slashfi.models.entity.ExpenseReport.ParsedReceiptMerchant.yaml": {
+      "type": "object",
+      "description": "Extracted merchant information from a receipt",
+      "properties": {
+        "name": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Merchant name as extracted from receipt"
+        },
+        "merchantV2Id": {
+          "$ref": "#/$defs/slashfi.models.id.MerchantV2Id.yaml",
+          "nullable": true,
+          "description": "ID of matched MerchantV2 entity (if found via similarity search)",
+          "x-entrypoint": {
+            "virtualPath": "id/MerchantV2Id",
+            "sourcePath": "id/MerchantV2Id.yaml",
+            "title": "MerchantV2Id",
+            "origin": "/home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas",
+            "globalImport": true
+          }
+        },
+        "merchantV2": {
+          "$ref": "#/$defs/slashfi.models.entity.Merchant.MerchantV2.yaml",
+          "nullable": true,
+          "description": "Full MerchantV2 entity (if found via similarity search) - used for frontend cache population",
+          "x-entrypoint": {
+            "virtualPath": "entity/Merchant/MerchantV2",
+            "sourcePath": "entity/Merchant/MerchantV2.yaml",
+            "title": "MerchantV2",
+            "origin": "/home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas",
+            "globalImport": true
+          }
+        },
+        "confidence": {
+          "$ref": "#/$defs/slashfi.models.entity.ExpenseReport.ParsedReceiptConfidence.yaml",
+          "x-entrypoint": {
+            "virtualPath": "entity/ExpenseReport/ParsedReceiptConfidence",
+            "sourcePath": "entity/ExpenseReport/ParsedReceiptConfidence.yaml",
+            "title": "ParsedReceiptConfidence",
+            "origin": "/home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas",
+            "globalImport": true
+          }
+        },
+        "rawText": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Raw text extracted from receipt for this field"
+        }
+      },
+      "required": [
+        "confidence"
+      ],
+      "x-entrypoint": {
+        "virtualPath": "entity/ExpenseReport/ParsedReceiptMerchant",
+        "sourcePath": "entity/ExpenseReport/ParsedReceiptMerchant.yaml",
+        "title": "ParsedReceiptMerchant",
+        "origin": "/home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas",
+        "globalImport": true
+      },
+      "title": "ParsedReceiptMerchant"
+    },
+    "slashfi.models.entity.IMetadataModel.yaml": {
+      "type": "object",
+      "properties": {
+        "timestamp": {
+          "format": "date-time",
+          "type": "string"
+        }
+      },
+      "required": [
+        "timestamp"
+      ],
+      "x-entrypoint": {
+        "virtualPath": "entity/IMetadataModel",
+        "sourcePath": "entity/IMetadataModel.yaml",
+        "title": "IMetadataModel",
+        "origin": "/home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas",
+        "globalImport": true
+      },
+      "title": "IMetadataModel"
+    },
+    "slashfi.models.entity.Merchant.MerchantV2.yaml": {
+      "title": "MerchantV2",
+      "type": "object",
+      "required": [
+        "$entity",
+        "id",
+        "name",
+        "metadata",
+        "isLive",
+        "isInstantCashback"
+      ],
+      "properties": {
+        "$entity": {
+          "type": "string",
+          "enum": [
+            "merchant_v2"
+          ]
+        },
+        "id": {
+          "type": "string"
+        },
+        "heronId": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "iconUrl": {
+          "type": "string"
+        },
+        "logoUrl": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        },
+        "isLive": {
+          "type": "boolean"
+        },
+        "isInstantCashback": {
+          "type": "boolean"
+        },
+        "merchantCategoryId": {
+          "type": "string"
+        },
+        "metadata": {
+          "$ref": "#/$defs/slashfi.models.entity.IMetadataModel.yaml",
+          "x-entrypoint": {
+            "virtualPath": "entity/IMetadataModel",
+            "sourcePath": "entity/IMetadataModel.yaml",
+            "title": "IMetadataModel",
+            "origin": "/home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas",
+            "globalImport": true
+          }
+        }
+      },
+      "x-entrypoint": {
+        "virtualPath": "entity/Merchant/MerchantV2",
+        "sourcePath": "entity/Merchant/MerchantV2.yaml",
+        "title": "MerchantV2",
+        "origin": "/home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas",
+        "globalImport": true
+      }
+    },
+    "slashfi.models.id.MerchantV2Id.yaml": {
+      "type": "string",
+      "x-typescript": {
+        "typeLiteral": "merchant_v2_${string}"
+      },
+      "description": "Represent a Merchant V2 ID in the format of \"merchant_v2_102jifoij01\"",
+      "x-entrypoint": {
+        "virtualPath": "id/MerchantV2Id",
+        "sourcePath": "id/MerchantV2Id.yaml",
+        "title": "MerchantV2Id",
+        "origin": "/home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas",
+        "globalImport": true
+      },
+      "title": "MerchantV2Id"
+    }
+  }
+}

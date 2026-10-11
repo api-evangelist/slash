@@ -1,117 +1,293 @@
 # Slash
 
-## Docs
-
-- [Get account authorization webhook](https://docs.slash.com/api-reference/account-authorization-webhook-get.md): Retrieve the authorization webhook configuration for an account. This webhook is called during card authorization requests to allow external systems to approve or reject transactions in real-time.
-- [Partially update account authorization webhook](https://docs.slash.com/api-reference/account-authorization-webhook-patch.md): Partially update the authorization webhook configuration for an account. Only the provided fields will be updated.
-- [Set account authorization webhook](https://docs.slash.com/api-reference/account-authorization-webhook-put.md): Create or update the authorization webhook configuration for an account. This will upsert the webhook configuration, creating it if it doesn't exist or updating it if it does.
-- [List account balances](https://docs.slash.com/api-reference/account-balance-get.md): Retrieve a list of balances for an account.  The balances are returned in an array, with each item representing a balance for that account.
-- [List accounts](https://docs.slash.com/api-reference/account-get.md): List all accounts you have access to
-- [Get account](https://docs.slash.com/api-reference/account-get-by-id.md): Get a single account by Id
-- [List agent requests](https://docs.slash.com/api-reference/agent-request-get.md): List all agent requests created by this API key.
-- [Get agent request](https://docs.slash.com/api-reference/agent-request-get-by-id.md): Get the status and details of an agent request by ID.
-- [Query Analytics Data](https://docs.slash.com/api-reference/analytics-post.md): Execute a SQL query against the user's data.
-- [Authorization Webhook Overview](https://docs.slash.com/api-reference/authorization-webhook-overview.md): Use authorization webhooks to approve or decline card transactions in real-time.
-- [Create book transfer](https://docs.slash.com/api-reference/book-transfer-post.md): Initiate a *book transfer* — an instant, intra‐Slash money movement between two accounts the caller has access to.
-- [List cards](https://docs.slash.com/api-reference/card-get.md): List all cards you have access to.
-- [Retrieve card](https://docs.slash.com/api-reference/card-get-by-id.md): Fetch details for a single card by card ID
-- [List card groups](https://docs.slash.com/api-reference/card-group-get.md): Retrieve the list of card groups that the user owns.
-- [Get card group](https://docs.slash.com/api-reference/card-group-get-by-id.md): Fetch details for a single card group by card group ID
-- [Update card group](https://docs.slash.com/api-reference/card-group-patch.md): Update a card group
-- [Create card group](https://docs.slash.com/api-reference/card-group-post.md): Create a card group.
-- [Apply a partial update to a card group's spending constraint](https://docs.slash.com/api-reference/card-group-spending-constraint-patch.md): Apply a partial update to a card group's spending constraint while preserving current properties applied. Properties set to "null" will be removed from the spending constraint.
-- [Replace a card group's spending constraint](https://docs.slash.com/api-reference/card-group-spending-constraint-put.md): Fully replace a card group's spending constraint.
-- [Get card group utilization](https://docs.slash.com/api-reference/card-group-utilization-get.md): Get a card group's current utilization
-- [Get card modifiers](https://docs.slash.com/api-reference/card-modifier-get.md): Get all modifiers for a card.
-- [Set card modifier](https://docs.slash.com/api-reference/card-modifier-put.md): Set a modifier for a card.
-- [Update card](https://docs.slash.com/api-reference/card-patch.md): Update a card
-- [Create card](https://docs.slash.com/api-reference/card-post.md): Create a card
-- [List all card products](https://docs.slash.com/api-reference/card-product-get.md): Get all card products
-- [Apply a partial update to a card's spending constraint](https://docs.slash.com/api-reference/card-spending-constraint-patch.md): Apply a partial update to a card's spending constraint while preserving current properties applied. Properties set to "null" will be removed from the spending constraint.
-- [Replace a card's spending constraint](https://docs.slash.com/api-reference/card-spending-constraint-put.md): Fully replace a card's spending constraint.
-- [Get card utilization](https://docs.slash.com/api-reference/card-utilization-get.md): Get a card's current utilization
-- [Check ACH debit recurring status](https://docs.slash.com/api-reference/contact-ach-debit-recurring-get.md): Check whether a contact has an active recurring ACH debit authorization. When active, the issuer can automatically debit the payer's bank account for future invoices with auto-pull enabled.
-- [List contacts](https://docs.slash.com/api-reference/contact-get.md): List all contacts for your legal entity. Contacts represent counterparties (customers, vendors) that can be billed via invoices.
-- [Get contact](https://docs.slash.com/api-reference/contact-get-by-id.md): Get a single contact by ID.
-- [Update contact](https://docs.slash.com/api-reference/contact-patch.md): Update a contact's information.
-- [Create contact](https://docs.slash.com/api-reference/contact-post.md): Create a new contact for your legal entity. Contacts are used as invoice recipients.
-- [Check ACH debit recurring status](https://docs.slash.com/api-reference/customer-ach-debit-recurring-get.md): Check whether a customer has an active recurring ACH debit authorization. When active, the issuer can automatically debit the payer's bank account for future invoices with auto-pull enabled.
-- [List customers](https://docs.slash.com/api-reference/customer-get.md): List all customers for your legal entity. Customers represent billing recipients for invoices.
-- [Get customer](https://docs.slash.com/api-reference/customer-get-by-id.md): Get a single customer by ID.
-- [Update customer](https://docs.slash.com/api-reference/customer-patch.md): Update a customer's information.
-- [Create customer](https://docs.slash.com/api-reference/customer-post.md): Create a new customer for your legal entity. Customers are used as invoice recipients.
-- [Approve expense report](https://docs.slash.com/api-reference/expense-report-approve-post.md): Approve an expense report and initiate payout.
-- [Bulk action expense reports](https://docs.slash.com/api-reference/expense-report-bulk-action-patch.md): Perform bulk actions on expense reports.
-- [List expense reports](https://docs.slash.com/api-reference/expense-report-get.md): List expense reports for your legal entity. Supports pagination, filtering by status and submitter, and sorting.
-- [Get expense report](https://docs.slash.com/api-reference/expense-report-get-by-id.md): Get a single expense report by ID.
-- [Update expense report](https://docs.slash.com/api-reference/expense-report-patch.md): Update an existing expense report. Can only update reports with status `pending_review`. Set `status` to `cancelled` to cancel the report.
-- [Create expense report](https://docs.slash.com/api-reference/expense-report-post.md): Submit a new expense report for reimbursement.
-- [Upload receipt](https://docs.slash.com/api-reference/expense-report-receipt-post.md): Upload a receipt image for an expense report. The receipt will be parsed using AI to extract amount, date, and merchant information. Accepts PNG, JPEG, WebP, and PDF formats.
-- [Get reimbursement sources](https://docs.slash.com/api-reference/expense-report-reimbursement-sources-get.md): Get connected bank accounts for a user that can be used as reimbursement payout destinations. Pass the `userId` query parameter to specify which user's bank accounts to retrieve.
-- [Reject expense report](https://docs.slash.com/api-reference/expense-report-reject-post.md): Reject an expense report.
-- [List invoices](https://docs.slash.com/api-reference/invoice-get.md): List all invoices for your legal entity. Supports pagination and filtering by status, customer, and account.
-- [Get invoice](https://docs.slash.com/api-reference/invoice-get-by-id.md): Get a single invoice by ID.
-- [Update invoice](https://docs.slash.com/api-reference/invoice-patch.md): Update an existing invoice. You can update the account, details, payment methods, and auto-pull settings.
-- [Create invoice](https://docs.slash.com/api-reference/invoice-post.md): Create a new invoice.
-- [Reconcile invoice](https://docs.slash.com/api-reference/invoice-reconcile-post.md): Manually reconcile (link) transactions to an invoice. This marks the invoice as having received payment for the linked transactions.
-- [Cancel invoice series](https://docs.slash.com/api-reference/invoice-series-cancel-post.md): Cancel an invoice series. Already-generated invoices are not affected. The next scheduled (unpaid) invoice will be voided.
-- [List invoice series](https://docs.slash.com/api-reference/invoice-series-get.md): List all invoice series (recurring invoice configurations) for your legal entity. Supports pagination and filtering by status, customer, and account.
-- [Get invoice series](https://docs.slash.com/api-reference/invoice-series-get-by-id.md): Get a single invoice series by ID.
-- [Update invoice series](https://docs.slash.com/api-reference/invoice-series-patch.md): Update an existing invoice series. You can update the recurrence rule, payment terms, template, payment methods, and end condition. The contact cannot be changed after creation.
-- [Create invoice series](https://docs.slash.com/api-reference/invoice-series-post.md): Create a new invoice series (recurring invoice). The series will automatically generate invoices according to the specified recurrence rule.
-- [Skip next in series](https://docs.slash.com/api-reference/invoice-series-skip-next-post.md): Skip the next scheduled occurrence in a series. The scheduled invoice is voided and the series advances to the following occurrence.
-- [Get invoice settings](https://docs.slash.com/api-reference/invoice-settings-get.md): Get the current invoice display settings for your legal entity.
-- [Upload invoice logo](https://docs.slash.com/api-reference/invoice-settings-logo-post.md): Upload a logo image for invoice branding. Accepts PNG, JPEG, SVG, and WebP formats up to 2MB.
-- [Update invoice settings](https://docs.slash.com/api-reference/invoice-settings-put.md): Update invoice display settings for your legal entity. These settings control the branding and default values used when creating invoices.
-- [Unreconcile invoice](https://docs.slash.com/api-reference/invoice-unreconcile-post.md): Unreconcile (unlink) transactions from an invoice. This removes the payment association for the specified transactions.
-- [Validate invoice number](https://docs.slash.com/api-reference/invoice-validate-number-get.md): Check whether an invoice number is available (not already in use) for your legal entity.
-- [Void invoice](https://docs.slash.com/api-reference/invoice-void-post.md): Void an invoice. A voided invoice can no longer be paid.
-- [List legal entities](https://docs.slash.com/api-reference/legal-entity-get.md): List all legal entities you have access to
-- [List merchant categories](https://docs.slash.com/api-reference/merchant-category-get.md): Retrieve the list of available merchant category ids
-- [List merchants](https://docs.slash.com/api-reference/merchant-get.md): Retrieve the list of available merchant ids
-- [Get merchant](https://docs.slash.com/api-reference/merchant-get-by-id.md): Fetch details for a single merchant by ID
+- [Getting Started](https://docs.slash.com/introduction.md): Use the Slash API to access your account, transactions, cards and more.
+- [SDKs](https://docs.slash.com/docs/sdks.md): Official Slash SDKs for Python and Node.js
+- [MCP Server](https://docs.slash.com/docs/mcp.md): Connect AI agents to the Slash API using the Model Context Protocol
+- [Message Level Encryption (MLE)](https://docs.slash.com/docs/message-level-encryption.md): Encrypt API request and response payloads end-to-end.
+- [Changelog](https://docs.slash.com/changelog.md): The latest changes to the Slash API.
+- [Legal Entity](https://docs.slash.com/api-reference/schema-legalEntity.md)
 - [Account](https://docs.slash.com/api-reference/schema-account.md)
-- [Authorization Request Event](https://docs.slash.com/api-reference/schema-authorization-request-event.md)
-- [Authorization Webhook](https://docs.slash.com/api-reference/schema-authorization-webhook.md)
-- [Authorization Webhook Response](https://docs.slash.com/api-reference/schema-authorization-webhook-response.md)
+- [Virtual Account](https://docs.slash.com/api-reference/schema-virtualAccount.md)
 - [Balance](https://docs.slash.com/api-reference/schema-balance.md)
 - [Card](https://docs.slash.com/api-reference/schema-card.md)
-- [Card Group](https://docs.slash.com/api-reference/schema-card-group.md)
-- [Card Group Utilization](https://docs.slash.com/api-reference/schema-card-group-utilization.md)
+- [Cardholder](https://docs.slash.com/api-reference/schema-cardholder.md)
 - [Card Modifier](https://docs.slash.com/api-reference/schema-card-modifier.md)
-- [Contact](https://docs.slash.com/api-reference/schema-contact.md)
-- [Customer](https://docs.slash.com/api-reference/schema-customer.md)
-- [Invoice](https://docs.slash.com/api-reference/schema-invoice.md)
-- [Invoice Series](https://docs.slash.com/api-reference/schema-invoice-series.md)
-- [Legal Entity](https://docs.slash.com/api-reference/schema-legalEntity.md)
-- [Spending Constraint](https://docs.slash.com/api-reference/schema-spendingConstraint.md)
 - [Transaction](https://docs.slash.com/api-reference/schema-transaction.md)
-- [Virtual Account](https://docs.slash.com/api-reference/schema-virtualAccount.md)
+- [Spending Constraint](https://docs.slash.com/api-reference/schema-spendingConstraint.md)
+- [Card Group](https://docs.slash.com/api-reference/schema-card-group.md)
 - [Webhook](https://docs.slash.com/api-reference/schema-webhook.md)
 - [Webhook Event](https://docs.slash.com/api-reference/schema-webhook-event.md)
-- [Get Token Prices](https://docs.slash.com/api-reference/tokens-prices-get.md): Returns real-time prices for major crypto tokens. This endpoint is publicly accessible without authentication.
-- [Get transaction aggregations](https://docs.slash.com/api-reference/transaction-aggregation-get.md): Get transaction aggregations
+- [Card Group Utilization](https://docs.slash.com/api-reference/schema-card-group-utilization.md)
+- [Authorization Webhook](https://docs.slash.com/api-reference/schema-authorization-webhook.md)
+- [Authorization Request Event](https://docs.slash.com/api-reference/schema-authorization-request-event.md)
+- [Authorization Webhook Response](https://docs.slash.com/api-reference/schema-authorization-webhook-response.md)
+- [Invoice](https://docs.slash.com/api-reference/schema-invoice.md)
+- [Invoice Series](https://docs.slash.com/api-reference/schema-invoice-series.md)
+- [Contact](https://docs.slash.com/api-reference/schema-contact.md)
+- [Customer](https://docs.slash.com/api-reference/schema-customer.md)
+- [List legal entities](https://docs.slash.com/api-reference/legal-entity-get.md): List all legal entities you have access to
+- [List accounts](https://docs.slash.com/api-reference/account-get.md): List all accounts you have access to
+- [Get account](https://docs.slash.com/api-reference/account-get-by-id.md): Get a single account by Id
+- [List account balances](https://docs.slash.com/api-reference/account-balance-get.md): Retrieve a list of balances for an account.  The balances are returned in an array, with each item representing a balance for that account.
+- [Authorization Webhook Overview](https://docs.slash.com/api-reference/authorization-webhook-overview.md): Use authorization webhooks to approve or decline card transactions in real-time.
+- [Get account authorization webhook](https://docs.slash.com/api-reference/account-authorization-webhook-get.md): Retrieve the authorization webhook configuration for an account. This webhook is called during card authorization requests to allow external systems to approve or reject transactions in real-time.
+- [Set account authorization webhook](https://docs.slash.com/api-reference/account-authorization-webhook-put.md): Create or update the authorization webhook configuration for an account. This will upsert the webhook configuration, creating it if it doesn't exist or updating it if it does.
+- [Partially update account authorization webhook](https://docs.slash.com/api-reference/account-authorization-webhook-patch.md): Partially update the authorization webhook configuration for an account. Only the provided fields will be updated.
+- [List virtual accounts](https://docs.slash.com/api-reference/virtual-account-get.md): Retrieve a list of virtual accounts under an account. The virtual accounts are returned in an array, with each item representing a virtual account under that account.
+- [Create virtual account](https://docs.slash.com/api-reference/virtual-account-post.md)
+- [Get virtual account](https://docs.slash.com/api-reference/virtual-account-get-by-id.md): Retrieve a single virtual account by its ID.
+- [Update virtual account](https://docs.slash.com/api-reference/virtual-account-update.md): Update an existing virtual account
 - [List transactions](https://docs.slash.com/api-reference/transaction-get.md): Get all transactions
+- [Get transaction aggregations](https://docs.slash.com/api-reference/transaction-aggregation-get.md): Get transaction aggregations
 - [Get transaction](https://docs.slash.com/api-reference/transaction-get-by-id.md): Fetch details for a single transaction by ID
 - [Get transaction fee details](https://docs.slash.com/api-reference/transaction-get-fee-details.md): Fetch breakdown of a fee transaction
 - [Add or update a note for a transaction](https://docs.slash.com/api-reference/transaction-note-patch.md): Update note for a transaction
-- [Get Crypto offramp addresses](https://docs.slash.com/api-reference/transfer-crypto-offramp.md)
 - [Create virtual account transfer](https://docs.slash.com/api-reference/transfer-virtual-account-post.md): Transfer money between Virtual Accounts or fund a Virtual Account from a Primary Account
-- [List virtual accounts](https://docs.slash.com/api-reference/virtual-account-get.md): Retrieve a list of virtual accounts under an account. The virtual accounts are returned in an array, with each item representing a virtual account under that account.
-- [Get virtual account](https://docs.slash.com/api-reference/virtual-account-get-by-id.md): Retrieve a single virtual account by its ID.
-- [Create virtual account](https://docs.slash.com/api-reference/virtual-account-post.md)
-- [Update virtual account](https://docs.slash.com/api-reference/virtual-account-update.md): Update an existing virtual account
+- [Create book transfer](https://docs.slash.com/api-reference/book-transfer-post.md): Initiate a *book transfer* — an instant, intra‐Slash money movement between two accounts the caller has access to.
+- [Get Crypto offramp addresses](https://docs.slash.com/api-reference/transfer-crypto-offramp.md)
+- [List cards](https://docs.slash.com/api-reference/card-get.md): List all cards you have access to.
+- [Retrieve card](https://docs.slash.com/api-reference/card-get-by-id.md): Fetch details for a single card by card ID
+- [Create card](https://docs.slash.com/api-reference/card-post.md): Create a card
+- [Update card](https://docs.slash.com/api-reference/card-patch.md): Update a card
+- [Get card utilization](https://docs.slash.com/api-reference/card-utilization-get.md): Get a card's current utilization
+- [Apply a partial update to a card's spending constraint](https://docs.slash.com/api-reference/card-spending-constraint-patch.md): Apply a partial update to a card's spending constraint while preserving current properties applied. Properties set to "null" will be removed from the spending constraint.
+- [Replace a card's spending constraint](https://docs.slash.com/api-reference/card-spending-constraint-put.md): Fully replace a card's spending constraint.
+- [Get card modifiers](https://docs.slash.com/api-reference/card-modifier-get.md): Get all modifiers for a card.
+- [Set card modifier](https://docs.slash.com/api-reference/card-modifier-put.md): Set a modifier for a card.
+- [List all card products](https://docs.slash.com/api-reference/card-product-get.md): Get all card products
+- [List cardholders](https://docs.slash.com/api-reference/cardholder-get.md): List cardholders for the caller's legal entity. Use the returned `id` as `cardholderId` when creating a card.
+- [List card groups](https://docs.slash.com/api-reference/card-group-get.md): Retrieve the list of card groups that the user owns.
+- [Create card group](https://docs.slash.com/api-reference/card-group-post.md): Create a card group.
+- [Get card group](https://docs.slash.com/api-reference/card-group-get-by-id.md): Fetch details for a single card group by card group ID
+- [Update card group](https://docs.slash.com/api-reference/card-group-patch.md): Update a card group
+- [Apply a partial update to a card group's spending constraint](https://docs.slash.com/api-reference/card-group-spending-constraint-patch.md): Apply a partial update to a card group's spending constraint while preserving current properties applied. Properties set to "null" will be removed from the spending constraint.
+- [Replace a card group's spending constraint](https://docs.slash.com/api-reference/card-group-spending-constraint-put.md): Fully replace a card group's spending constraint.
+- [Get card group utilization](https://docs.slash.com/api-reference/card-group-utilization-get.md): Get a card group's current utilization
+- [List invoices](https://docs.slash.com/api-reference/invoice-get.md): List all invoices for your legal entity. Supports pagination and filtering by status, customer, and account.
+- [Create invoice](https://docs.slash.com/api-reference/invoice-post.md): Create a new invoice.
+- [Get invoice](https://docs.slash.com/api-reference/invoice-get-by-id.md): Get a single invoice by ID.
+- [Get invoice payment details](https://docs.slash.com/api-reference/invoice-payment-details-get.md): Get payment details for a single invoice.
+- [Update invoice](https://docs.slash.com/api-reference/invoice-patch.md): Update an existing invoice. You can update the account, details, payment methods, and auto-pull settings.
+- [Void invoice](https://docs.slash.com/api-reference/invoice-void-post.md): Void an invoice. A voided invoice can no longer be paid.
+- [Reconcile invoice](https://docs.slash.com/api-reference/invoice-reconcile-post.md): Manually reconcile (link) transactions to an invoice. This marks the invoice as having received payment for the linked transactions.
+- [Unreconcile invoice](https://docs.slash.com/api-reference/invoice-unreconcile-post.md): Unreconcile (unlink) transactions from an invoice. This removes the payment association for the specified transactions.
+- [Get invoice settings](https://docs.slash.com/api-reference/invoice-settings-get.md): Get the current invoice display settings for your legal entity.
+- [Update invoice settings](https://docs.slash.com/api-reference/invoice-settings-put.md): Update invoice display settings for your legal entity. These settings control the branding and default values used when creating invoices.
+- [Upload invoice logo](https://docs.slash.com/api-reference/invoice-settings-logo-post.md): Upload a logo image for invoice branding. Accepts PNG, JPEG, SVG, and WebP formats up to 2MB.
+- [Validate invoice number](https://docs.slash.com/api-reference/invoice-validate-number-get.md): Check whether an invoice number is available (not already in use) for your legal entity.
+- [List invoice series](https://docs.slash.com/api-reference/invoice-series-get.md): List all invoice series (recurring invoice configurations) for your legal entity. Supports pagination and filtering by status, customer, and account.
+- [Create invoice series](https://docs.slash.com/api-reference/invoice-series-post.md): Create a new invoice series (recurring invoice). The series will automatically generate invoices according to the specified recurrence rule.
+- [Get invoice series](https://docs.slash.com/api-reference/invoice-series-get-by-id.md): Get a single invoice series by ID.
+- [Update invoice series](https://docs.slash.com/api-reference/invoice-series-patch.md): Update an existing invoice series. You can update the recurrence rule, payment terms, template, payment methods, and end condition. The contact cannot be changed after creation.
+- [Cancel invoice series](https://docs.slash.com/api-reference/invoice-series-cancel-post.md): Cancel an invoice series. Already-generated invoices are not affected. The next scheduled (unpaid) invoice will be voided.
+- [Skip next in series](https://docs.slash.com/api-reference/invoice-series-skip-next-post.md): Skip the next scheduled occurrence in a series. The scheduled invoice is voided and the series advances to the following occurrence.
+- [List expense reports](https://docs.slash.com/api-reference/expense-report-get.md): List expense reports for your legal entity. Supports pagination, filtering by status and submitter, and sorting.
+- [Create expense report](https://docs.slash.com/api-reference/expense-report-post.md): Submit a new expense report for reimbursement.
+- [Get expense report](https://docs.slash.com/api-reference/expense-report-get-by-id.md): Get a single expense report by ID.
+- [Update expense report](https://docs.slash.com/api-reference/expense-report-patch.md): Update an existing expense report. Can only update reports with status `pending_review`. Set `status` to `cancelled` to cancel the report. The acting user is derived from your credentials. Bearer tokens and user-scoped API keys may update reports submitted by that user, or any report in the legal en…
+- [Approve expense report](https://docs.slash.com/api-reference/expense-report-approve-post.md): Approve an expense report and initiate payout.
+- [Reject expense report](https://docs.slash.com/api-reference/expense-report-reject-post.md): Reject an expense report.
+- [Upload receipt](https://docs.slash.com/api-reference/expense-report-receipt-post.md): Upload a receipt image for an expense report. The receipt will be parsed using AI to extract amount, date, and merchant information. Accepts PNG, JPEG, WebP, and PDF formats.
+- [Bulk action expense reports](https://docs.slash.com/api-reference/expense-report-bulk-action-patch.md): Perform bulk actions on expense reports.
+- [Get reimbursement sources](https://docs.slash.com/api-reference/expense-report-reimbursement-sources-get.md): Get connected bank accounts for a user that can be used as reimbursement payout destinations. Pass the `userId` query parameter to specify which user's bank accounts to retrieve.
+- [List customers](https://docs.slash.com/api-reference/customer-get.md): List all customers for your legal entity. Customers represent billing recipients for invoices.
+- [Create customer](https://docs.slash.com/api-reference/customer-post.md): Create a new customer for your legal entity. Customers are used as invoice recipients.
+- [Get customer](https://docs.slash.com/api-reference/customer-get-by-id.md): Get a single customer by ID.
+- [Update customer](https://docs.slash.com/api-reference/customer-patch.md): Update a customer's information.
+- [Check ACH debit recurring status](https://docs.slash.com/api-reference/customer-ach-debit-recurring-get.md): Check whether a customer has an active recurring ACH debit authorization. When active, the issuer can automatically debit the payer's bank account for future invoices with auto-pull enabled.
+- [List contacts](https://docs.slash.com/api-reference/contact-get.md): List all contacts for your legal entity. Contacts represent counterparties (customers, vendors) that can be billed via invoices.
+- [Create contact](https://docs.slash.com/api-reference/contact-post.md): Create a new contact for your legal entity. Contacts are used as invoice recipients.
+- [Get contact](https://docs.slash.com/api-reference/contact-get-by-id.md): Get a single contact by ID.
+- [Update contact](https://docs.slash.com/api-reference/contact-patch.md): Update a contact's information.
+- [Check ACH debit recurring status](https://docs.slash.com/api-reference/contact-ach-debit-recurring-get.md): Check whether a contact has an active recurring ACH debit authorization. When active, the issuer can automatically debit the payer's bank account for future invoices with auto-pull enabled.
+- [List merchants](https://docs.slash.com/api-reference/merchant-get.md): Retrieve the list of available merchant ids
+- [Get merchant](https://docs.slash.com/api-reference/merchant-get-by-id.md): Fetch details for a single merchant by ID
+- [List merchant categories](https://docs.slash.com/api-reference/merchant-category-get.md): Retrieve the list of available merchant category ids
+- [Overview](https://docs.slash.com/api-reference/webhook-overview.md): Use webhooks to receive real-time card and transaction event notifications.
 - [List webhooks](https://docs.slash.com/api-reference/webhook-get.md): Get all webhooks
 - [Get webhook](https://docs.slash.com/api-reference/webhook-get-by-id.md): Get a webhook endpoint by ID
-- [Overview](https://docs.slash.com/api-reference/webhook-overview.md): Use webhooks to receive real-time card and transaction event notifications.
-- [Update webhook](https://docs.slash.com/api-reference/webhook-patch.md): Update a webhook endpoint status.
 - [Create webhook](https://docs.slash.com/api-reference/webhook-post.md): Create a new webhook endpoint
-- [Changelog](https://docs.slash.com/changelog.md): The latest changes to the Slash API.
+- [Update webhook](https://docs.slash.com/api-reference/webhook-patch.md): Update a webhook endpoint's status, enabled events, or both atomically.
 - [Agent Requests](https://docs.slash.com/docs/agent-requests.md)
-- [MCP Server](https://docs.slash.com/docs/mcp.md): Connect AI agents to the Slash API using the Model Context Protocol
-- [SDKs](https://docs.slash.com/docs/sdks.md): Official Slash SDKs for Python and Node.js
-- [Getting Started](https://docs.slash.com/introduction.md): Use the Slash API to access your account, transactions, cards and more.
+- [List agent requests](https://docs.slash.com/api-reference/agent-request-get.md): List all agent requests created by this API key.
+- [Get agent request](https://docs.slash.com/api-reference/agent-request-get-by-id.md): Get the status and details of an agent request by ID.
+- [Get Token Prices](https://docs.slash.com/api-reference/tokens-prices-get.md): Returns real-time prices for major crypto tokens. This endpoint is publicly accessible without authentication.
+- [Quickstart](https://docs.slash.com/docs/payments/quickstart.md): Accept your first card payment with the Slash API.
+- [Payment Elements (SDK)](https://docs.slash.com/docs/payments/payment-elements.md)
+- [Idempotent Requests](https://docs.slash.com/docs/payments/idempotent-requests.md): Safely retry payment requests without creating duplicates.
+- [Payment Intent](https://docs.slash.com/api-reference/schema-payment-intent.md)
+- [Refund](https://docs.slash.com/api-reference/schema-refund.md)
+- [Create payment intent](https://docs.slash.com/api-reference/payment-intent-post.md): Create a payment intent for collection with the Slash Checkout SDK. When returned, the client secret authorizes the browser to load and confirm only this payment intent and must not be logged or stored in browser persistence.
+- [List payment intents](https://docs.slash.com/api-reference/payment-intent-get.md): List payment intents for your legal entity, newest first. Supports cursor pagination and filtering by status.
+- [Retrieve payment intent](https://docs.slash.com/api-reference/payment-intent-get-by-id.md): Get a single payment intent by ID. Use this to check whether a payment has settled (`status` becomes `succeeded`) as an alternative or reconciliation fallback to webhooks.
+- [Update payment intent](https://docs.slash.com/api-reference/payment-intent-patch.md): Update the fields of a pending payment intent. Payment intents that are processing or in a terminal state cannot be updated.
+- [Payment Intent Created](https://docs.slash.com/docs/payments/webhooks/payment-intent-created.md): Sent when a payment intent is created via `POST /payments/payment-intent`.
+- [Payment Intent Updated](https://docs.slash.com/docs/payments/webhooks/payment-intent-updated.md): Sent whenever a payment intent changes `status`.
+- [Create refund](https://docs.slash.com/api-reference/refund-post.md): Refund all or part of a succeeded payment. Optionally provide an `X-Idempotency-Key` header so retries with the same key and request return the existing refund.
+- [List refunds](https://docs.slash.com/api-reference/refund-get.md): List refunds for your legal entity, newest first. Supports cursor pagination and filtering by payment intent and status.
+- [Retrieve refund](https://docs.slash.com/api-reference/refund-get-by-id.md): Get a single refund by ID.
+- [Refund Created](https://docs.slash.com/docs/payments/webhooks/refund-created.md): Sent when a refund is created via `POST /payments/refund`.
+- [Refund Updated](https://docs.slash.com/docs/payments/webhooks/refund-updated.md): Sent whenever a refund changes `status`.
+- [Slash API overview](https://docs.slash.com/docs/v2/get-started/overview.md): Automate financial workflows across your Slash workspace.
+- [Quickstart](https://docs.slash.com/docs/v2/get-started/quickstart.md): List accounts, create a recipient, send an ACH, and follow it to settlement.
+- [Authentication](https://docs.slash.com/docs/v2/get-started/authentication.md): User API keys, the x-legal-entity header, and IP allowlisting.
+- [Pagination](https://docs.slash.com/docs/v2/get-started/pagination.md): Cursor pagination on list endpoints.
+- [Idempotency](https://docs.slash.com/docs/v2/get-started/idempotency.md): Prevent duplicate create attempts with X-Idempotency-Key.
+- [Errors](https://docs.slash.com/docs/v2/get-started/errors.md): Understand the error response shape and decide when to retry.
+- [Rate limits](https://docs.slash.com/docs/v2/get-started/rate-limits.md): Limits and how to handle 429 responses.
+- [Webhooks](https://docs.slash.com/docs/v2/webhooks/overview.md): Event types, signature verification, and idempotent handling.
+- [Event types](https://docs.slash.com/docs/v2/webhooks/event-types.md): Browse webhook events and inspect their payload schemas.
+- [Accounts and virtual accounts](https://docs.slash.com/docs/v2/concepts/accounts.md): Accounts, virtual accounts, balance components, and commission.
+- [Recipients and destinations](https://docs.slash.com/docs/v2/concepts/recipients-and-destinations.md): Recipients, their destinations, supported transfer types, and information requests.
+- [Transfers and transactions](https://docs.slash.com/docs/v2/concepts/transfers-and-transactions.md): How a transfer relates to the transactions it produces.
+- [Documents](https://docs.slash.com/docs/v2/concepts/documents.md): Upload a file once, then attach it to bills and accounting entries.
+- [Queued payments](https://docs.slash.com/docs/v2/money-movement/queued-payments.md): Create a payment while the recipient is still supplying payment details.
+- [Sending ACH](https://docs.slash.com/docs/v2/money-movement/ach/sending.md): Create an ACH transfer to a bank account destination.
+- [ACH lifecycle](https://docs.slash.com/docs/v2/money-movement/ach/lifecycle.md): Every ACH transfer status and what moves it.
+- [ACH returns](https://docs.slash.com/docs/v2/money-movement/ach/returns.md): How returns appear on the transfer and in transactions.
+- [Timing](https://docs.slash.com/docs/v2/money-movement/ach/timing.md): Submission timing and scheduled ACH transfers.
+- [Sending wires](https://docs.slash.com/docs/v2/money-movement/wires/sending.md): Create a domestic wire transfer.
+- [Wire lifecycle](https://docs.slash.com/docs/v2/money-movement/wires/lifecycle.md): Every wire transfer status and what moves it.
+- [Wire returns and reversals](https://docs.slash.com/docs/v2/money-movement/wires/returns.md): How returns appear on the transfer and in transactions.
+- [FX quotes](https://docs.slash.com/docs/v2/money-movement/international-wires/fx-quotes.md): Lock a rate for a foreign-currency wire.
+- [Sending international wires](https://docs.slash.com/docs/v2/money-movement/international-wires/sending.md): Create an international wire with or without an FX quote.
+- [Purpose codes](https://docs.slash.com/docs/v2/money-movement/international-wires/purpose-codes.md): Purpose codes required by destination country.
+- [Purpose code values](https://docs.slash.com/docs/v2/money-movement/international-wires/purpose-code-values.md): Country-specific and general purpose codes for international wires.
+- [International wire lifecycle](https://docs.slash.com/docs/v2/money-movement/international-wires/lifecycle.md): Every international wire status and what moves it.
+- [Sending realtime payments](https://docs.slash.com/docs/v2/money-movement/realtime/sending.md): Create a realtime transfer over RTP or FedNow.
+- [Realtime lifecycle](https://docs.slash.com/docs/v2/money-movement/realtime/lifecycle.md): Every realtime transfer status and what moves it.
+- [Sending book transfers](https://docs.slash.com/docs/v2/money-movement/book/sending.md): Move money between virtual accounts in the same account.
+- [Bills](https://docs.slash.com/docs/v2/bills/overview.md): Track what you owe vendors and pay it from Slash.
+- [Managing bills](https://docs.slash.com/docs/v2/bills/creating-and-ingesting.md): Create, edit, void and find bills.
+- [Receive bills by email](https://docs.slash.com/docs/v2/bills/inbox.md): Let vendors email invoices straight into Slash.
+- [Pay bills](https://docs.slash.com/docs/v2/bills/paying-bills.md): Pay a bill with a transfer, or record a payment you already made.
+- [Invoices](https://docs.slash.com/docs/v2/invoices/overview.md): Bill your customers and get paid into your Slash account.
+- [Create and send invoices](https://docs.slash.com/docs/v2/invoices/creating-and-sending.md): Issue an invoice now or on a date, keep it up to date, and set up what every invoice shows.
+- [Collect payment](https://docs.slash.com/docs/v2/invoices/collecting-payment.md): How invoice payments are matched, and how to record, remove or void them.
+- [Recurring invoices](https://docs.slash.com/docs/v2/invoices/recurring-invoices.md): Invoice a customer on a schedule with an invoice series.
+- [Accounting](https://docs.slash.com/docs/v2/accounting/overview.md): Code transactions and bills and sync them to your accounting platform.
+- [Dimensions and values](https://docs.slash.com/docs/v2/accounting/dimensions-and-coding.md): Find the accounts, vendors, classes and other values to code entries with.
+- [Code and sync entries](https://docs.slash.com/docs/v2/accounting/coding-and-syncing.md): Code an entry, approve it, and send it to the accounting platform.
+- [Automate coding](https://docs.slash.com/docs/v2/accounting/rules-and-automation.md): Code entries automatically with rules, AI suggestions and default values.
+- [List accounts](https://docs.slash.com/api-reference/list-accounts.md): List the Accounts accessible to the credential for the selected legal entity.
+- [Retrieve an account](https://docs.slash.com/api-reference/retrieve-an-account.md): Retrieve an Account and its user-facing balance components. Components are omitted when the credential cannot view balances.
+- [Create a virtual account](https://docs.slash.com/api-reference/create-a-virtual-account.md): Create a new balance-bearing virtual account inside an accessible non-Global USD bank Account.
+- [List virtual accounts](https://docs.slash.com/api-reference/list-virtual-accounts.md): List accessible balance-bearing virtual accounts for the selected legal entity across all of its Accounts.
+- [Retrieve a virtual account](https://docs.slash.com/api-reference/retrieve-a-virtual-account.md): Retrieve one accessible virtual account and its current balance.
+- [Update a virtual account](https://docs.slash.com/api-reference/update-a-virtual-account.md): Rename an accessible virtual account or replace its commission.
+- [Close a virtual account](https://docs.slash.com/api-reference/close-a-virtual-account.md): Close an accessible virtual account.
+- [List card transactions](https://docs.slash.com/api-reference/list-card-transactions.md): Returns the newest-first card transaction feed for the selected legal entity.
+- [Retrieve a card transaction](https://docs.slash.com/api-reference/retrieve-a-card-transaction.md): Retrieve the latest state of one accessible card transaction.
+- [List transactions](https://docs.slash.com/api-reference/transactions/list.md): Returns the newest-first transaction feed for the selected legal entity.
+- [Retrieve a transaction](https://docs.slash.com/api-reference/transactions/retrieve.md): Retrieve the latest state of one accessible transaction. Use the `agg_tx_` id returned by transfer creation or transaction listing.
+- [Update a transaction](https://docs.slash.com/api-reference/transactions/update.md): Update the user-editable note on one accessible transaction.
+- [Create a recipient](https://docs.slash.com/api-reference/create-a-recipient.md): Create a person or business to pay. Add destinations to it to send them money.
+- [List recipients](https://docs.slash.com/api-reference/list-recipients.md): List the selected legal entity's recipients, the people and businesses it pays.
+- [Retrieve a recipient](https://docs.slash.com/api-reference/retrieve-a-recipient.md): Retrieve one recipient.
+- [Archive a recipient](https://docs.slash.com/api-reference/recipients/archive.md): Archive a recipient and hide it and its destinations from default list results.
+- [Retrieve recipient tax details](https://docs.slash.com/api-reference/recipients/tax-details.md): Retrieve the tax details on file for one recipient.
+- [Create a destination](https://docs.slash.com/api-reference/create-a-destination.md): Save bank instructions on a recipient. Use the returned destination id in the matching per-rail transfer create endpoint.
+- [List destinations](https://docs.slash.com/api-reference/list-destinations.md): List saved bank destinations for the selected legal entity. The `supportedTransferTypes` field tells clients which transfer requests can use each destination.
+- [Retrieve a destination](https://docs.slash.com/api-reference/retrieve-a-destination.md): Retrieve saved bank instructions and supported transfer types.
+- [Archive a destination](https://docs.slash.com/api-reference/destinations/archive.md): Archive a destination and hide it from default list results.
+- [Request recipient details](https://docs.slash.com/api-reference/request-payment-details.md): Email an existing recipient a secure form asking for any combination of payment destination details, an address, and tax details.
+- [List information requests](https://docs.slash.com/api-reference/list-information-requests.md): List information requests belonging to recipients for the selected legal entity, newest first.
+- [Retrieve an information request](https://docs.slash.com/api-reference/retrieve-an-information-request.md): Retrieve the current state of an information request sent to a recipient. `submitted` means the recipient has submitted the secure form at least once.
+- [Cancel an information request](https://docs.slash.com/api-reference/cancel-an-information-request.md): Cancel a pending information request and notify the recipient. Canceling the request does not cancel transfers created from it.
+- [Create an ACH transfer](https://docs.slash.com/api-reference/transfers/ach/create.md): Send USD to a saved US bank account, or queue the transfer against an information request while waiting for the recipient's bank details.
+- [List ACH transfers](https://docs.slash.com/api-reference/transfers/ach/list.md): Return ACH transfers, including queued transfers awaiting bank details.
+- [Retrieve an ACH transfer](https://docs.slash.com/api-reference/transfers/ach/retrieve.md): Retrieve an ACH transfer. An id belonging to another transfer rail returns the same not-found response as an unknown id.
+- [Cancel an ACH transfer](https://docs.slash.com/api-reference/transfers/ach/cancel.md): Cancel an ACH transfer before it has been submitted to the payment network. A queued ACH can be canceled while awaiting destination details.
+- [Create a wire transfer](https://docs.slash.com/api-reference/transfers/wire/create.md): Send USD to a saved US bank account by domestic wire.
+- [List wire transfers](https://docs.slash.com/api-reference/transfers/wire/list.md): Return domestic wire transfers, newest first.
+- [Retrieve a wire transfer](https://docs.slash.com/api-reference/transfers/wire/retrieve.md): Retrieve a domestic wire transfer. An id belonging to another transfer rail returns the same not-found response as an unknown id.
+- [Create an international wire transfer](https://docs.slash.com/api-reference/transfers/international-wire/create.md): Send USD or a supported foreign currency to an international destination.
+- [List international wire transfers](https://docs.slash.com/api-reference/transfers/international-wire/list.md): Return international wire transfers, newest first.
+- [Retrieve an international wire transfer](https://docs.slash.com/api-reference/transfers/international-wire/retrieve.md): Retrieve an international wire transfer. An id belonging to another transfer rail returns the same not-found response as an unknown id.
+- [Create an FX quote](https://docs.slash.com/api-reference/transfers/international-wire/fx-quotes/create.md): Quote the USD debit for an exact foreign-currency amount.
+- [Retrieve an FX quote](https://docs.slash.com/api-reference/transfers/international-wire/fx-quotes/retrieve.md): Retrieve the current status and pricing of an FX quote.
+- [Create a realtime transfer](https://docs.slash.com/api-reference/transfers/realtime/create.md): Send USD to a saved RTP- or FedNow-capable destination.
+- [List realtime transfers](https://docs.slash.com/api-reference/transfers/realtime/list.md): Return RTP and FedNow transfers, newest first.
+- [Retrieve a realtime transfer](https://docs.slash.com/api-reference/transfers/realtime/retrieve.md): Retrieve an RTP or FedNow transfer. An id belonging to another transfer rail returns the same not-found response as an unknown id.
+- [Create a book transfer](https://docs.slash.com/api-reference/transfers/book/create.md): Move USD between virtual accounts in the same Account.
+- [List book transfers](https://docs.slash.com/api-reference/transfers/book/list.md): Return transfers between Slash balances, newest first.
+- [Retrieve a book transfer](https://docs.slash.com/api-reference/transfers/book/retrieve.md): Retrieve a book transfer. An id belonging to another transfer rail returns the same not-found response as an unknown id.
+- [List transfers](https://docs.slash.com/api-reference/transfers/list.md): Return transfers across every supported payment rail, newest first. Use `type` to select one rail.
+- [Retrieve a transfer](https://docs.slash.com/api-reference/transfers/retrieve.md): Retrieve the latest state of one accessible transfer.
+- [List bills](https://docs.slash.com/api-reference/bills/list.md): List bills, soonest due first; bills without a due date come first, and bills due the same day are ordered by id.
+- [Create a bill](https://docs.slash.com/api-reference/bills/create.md): Create a bill as a `draft`. Only the line items are required.
+- [Get a bill](https://docs.slash.com/api-reference/bills/retrieve.md): Get a bill with its line items, documents and payments.
+- [Update a bill](https://docs.slash.com/api-reference/bills/update.md): Update a bill. Only the fields you send change. Line items and amounts can only change while the bill is `draft` or `rejected`.
+- [Delete a bill](https://docs.slash.com/api-reference/bills/delete.md): Delete a bill that hasn't been paid: one that is `draft`, `rejected` or `pending_approval`.
+- [Void a bill](https://docs.slash.com/api-reference/bills/void.md): Cancel the bill's payments that are awaiting approval or scheduled and return it to `draft`.
+- [Link a payment to a bill](https://docs.slash.com/api-reference/bills/payments/add.md): Record a transfer or transaction you already made as a payment on the bill.
+- [Unlink a payment from a bill](https://docs.slash.com/api-reference/bills/payments/remove.md): Remove a payment from a bill without touching the money.
+- [Attach documents to a bill](https://docs.slash.com/api-reference/bills/documents/add.md): Attach uploaded documents to a bill. Documents already on the bill are ignored.
+- [Detach a document from a bill](https://docs.slash.com/api-reference/bills/documents/remove.md): Remove a document from a bill. The document itself is kept.
+- [Get the bill inbox](https://docs.slash.com/api-reference/bills/inbox/get.md): Get the legal entity's accounts payable email address and the senders allowed to email it. Invoices sent there become draft bills.
+- [Allowlist an inbox sender](https://docs.slash.com/api-reference/bills/inbox/senders/add.md): Allow an email address or a whole domain to send bills to the inbox. Public email domains such as `gmail.com` can't be allowed as a domain.
+- [Remove an inbox sender](https://docs.slash.com/api-reference/bills/inbox/senders/remove.md): Stop accepting bills from an allowed sender. Bills they already sent are kept.
+- [List invoices](https://docs.slash.com/api-reference/invoices/list.md): List invoices. Add `includeSummary=true` for the count and outstanding balance of every invoice the filters match.
+- [Create an invoice](https://docs.slash.com/api-reference/invoices/create.md): Create an invoice and email it to the customer, or schedule it with `scheduledSendDate`.
+- [Get an invoice](https://docs.slash.com/api-reference/invoices/retrieve.md): Get an invoice.
+- [Update an invoice](https://docs.slash.com/api-reference/invoices/update.md): Edit a `scheduled` or `unpaid` invoice.
+- [Send an invoice now](https://docs.slash.com/api-reference/invoices/send.md): Email a `scheduled` invoice now instead of on its `scheduledSendDate`. See [Schedule or send](/docs/v2/invoices/creating-and-sending#schedule-or-send).
+- [Send a payment reminder](https://docs.slash.com/api-reference/invoices/send-reminder.md): Email the customer a reminder for an `unpaid` or `partially_paid` invoice, at most once a day.
+- [Void an invoice](https://docs.slash.com/api-reference/invoices/void.md): Mark an invoice as `void` so it can no longer be paid.
+- [Get an invoice's payment instructions](https://docs.slash.com/api-reference/invoices/payment-instructions.md): Get the bank and crypto details a customer can pay the invoice to, as shown on its PDF and payment page.
+- [Record a payment on an invoice](https://docs.slash.com/api-reference/invoices/payments/add.md): Record that a sent invoice was paid, by a deposit Slash didn't match on its own or outside Slash.
+- [Remove a payment from an invoice](https://docs.slash.com/api-reference/invoices/payments/remove.md): Remove a payment from an invoice without touching the money.
+- [List invoice series](https://docs.slash.com/api-reference/invoices/series/list.md): List recurring invoice series.
+- [Create an invoice series](https://docs.slash.com/api-reference/invoices/series/create.md): Start invoicing a customer on a schedule. See [Create a series](/docs/v2/invoices/recurring-invoices#create-a-series).
+- [Get an invoice series](https://docs.slash.com/api-reference/invoices/series/retrieve.md): Get a recurring invoice series.
+- [Update an invoice series](https://docs.slash.com/api-reference/invoices/series/update.md): Edit an `active` series.
+- [Skip the next invoice in a series](https://docs.slash.com/api-reference/invoices/series/skip.md): Void an `active` series' scheduled invoice and schedule the one after it.
+- [Cancel an invoice series](https://docs.slash.com/api-reference/invoices/series/cancel.md): Stop an `active` series.
+- [List customers](https://docs.slash.com/api-reference/customers/list.md): List the customers you invoice. See [Customers](/docs/v2/invoices/overview#customers).
+- [Create a customer](https://docs.slash.com/api-reference/customers/create.md): Create a customer to invoice. See [Customers](/docs/v2/invoices/overview#customers).
+- [Get a customer](https://docs.slash.com/api-reference/customers/retrieve.md): Get a customer.
+- [Update a customer](https://docs.slash.com/api-reference/customers/update.md): Update a customer. Only the fields you send change. Existing invoices keep the name, email and address they were issued with until you edit them.
+- [Archive a customer](https://docs.slash.com/api-reference/customers/archive.md): Mark a customer as `archived`. Archiving an archived customer returns it unchanged.
+- [Unarchive a customer](https://docs.slash.com/api-reference/customers/unarchive.md): Mark an archived customer as `active` again. Unarchiving an active customer returns it unchanged.
+- [List catalog items](https://docs.slash.com/api-reference/invoices/catalog-items/list.md): List the products and services you invoice often.
+- [Create a catalog item](https://docs.slash.com/api-reference/invoices/catalog-items/create.md): Save a product or service to reuse on invoices. See [Catalog items](/docs/v2/invoices/creating-and-sending#catalog-items).
+- [Get a catalog item](https://docs.slash.com/api-reference/invoices/catalog-items/retrieve.md): Get a catalog item.
+- [Update a catalog item](https://docs.slash.com/api-reference/invoices/catalog-items/update.md): Update a catalog item. Only the fields you send change, and `null` clears `description`. Invoices that already use the item keep their line items.
+- [Archive a catalog item](https://docs.slash.com/api-reference/invoices/catalog-items/archive.md): Mark a catalog item as `archived`. Archiving an archived item returns it unchanged.
+- [Unarchive a catalog item](https://docs.slash.com/api-reference/invoices/catalog-items/unarchive.md): Mark an archived catalog item as `active` again. Unarchiving an active item returns it unchanged.
+- [Get invoice settings](https://docs.slash.com/api-reference/invoices/settings/retrieve.md): Get the sender details, defaults and branding new invoices use. Until you save settings, they come from the legal entity's business details.
+- [Update invoice settings](https://docs.slash.com/api-reference/invoices/settings/update.md): Update the sender details, defaults and branding.
+- [List accounting connections](https://docs.slash.com/api-reference/accounting/connections/list.md): List the accounting platforms the legal entity is connected to. Most have one; if there are several, pass `connectionId` to the other accounting endpoints.
+- [Get an accounting connection](https://docs.slash.com/api-reference/accounting/connections/retrieve.md): Get one accounting connection.
+- [Pull the latest records from the accounting platform](https://docs.slash.com/api-reference/accounting/connections/resync.md): Pull new and changed records, such as accounts and vendors, from the accounting platform without waiting for the scheduled refresh.
+- [List accounting dimensions](https://docs.slash.com/api-reference/accounting/dimensions/list.md): List the dimensions entries are coded with on one connection, such as `account`, `vendor` and custom fields, including ones that are turned off.
+- [Update an accounting dimension](https://docs.slash.com/api-reference/accounting/dimensions/update.md): Turn a dimension on or off, rename it, or set the default value new entries are coded with.
+- [List dimension values](https://docs.slash.com/api-reference/accounting/dimensions/values/list.md): List the values of one dimension, sorted by name. Values that are turned off are left out unless you pass `includeDisabled=true`.
+- [Get a dimension value](https://docs.slash.com/api-reference/accounting/dimensions/values/retrieve.md): Get one dimension value, whether it's turned on or off.
+- [Enable or disable a dimension value](https://docs.slash.com/api-reference/accounting/dimensions/values/update.md): Turn a value on or off for coding, for example to hide a retired account. Entries already coded with it keep it.
+- [Enable or disable many dimension values](https://docs.slash.com/api-reference/accounting/dimensions/values/bulk.md): Turn up to 100 values of one dimension on or off at once. The batch succeeds or fails as a whole.
+- [List accounting entries](https://docs.slash.com/api-reference/accounting/entries/list.md): List accounting entries, newest first. Use `status=in_review` for the review queue or `status=failed` for entries the platform rejected.
+- [Get an accounting entry](https://docs.slash.com/api-reference/accounting/entries/retrieve.md): Get one accounting entry with its line items, coding and attachments.
+- [Update an accounting entry](https://docs.slash.com/api-reference/accounting/entries/update.md): Code an entry: its memo, dimensions, custom fields and, for transaction entries, how it's split into lines.
+- [Mark an accounting entry ready to sync](https://docs.slash.com/api-reference/accounting/entries/mark-ready.md): Approve an entry for syncing.
+- [Move an accounting entry back to review](https://docs.slash.com/api-reference/accounting/entries/mark-in-review.md): Move an entry back to `in_review`.
+- [Sync an accounting entry](https://docs.slash.com/api-reference/accounting/entries/sync.md): Send an entry to the accounting platform. Read the entry to see the outcome: its `status` moves to `synced` or `failed`.
+- [Archive an accounting entry](https://docs.slash.com/api-reference/accounting/entries/archive.md): Set an entry aside so it's never synced. A record already on the accounting platform stays there.
+- [Run a status action on many accounting entries](https://docs.slash.com/api-reference/accounting/entries/bulk.md): Run one action (`mark_ready`, `mark_in_review`, `sync` or `archive`) on up to 100 entries.
+- [Attach a document to an accounting entry](https://docs.slash.com/api-reference/accounting/entries/attachments/add.md): Attach an uploaded document, such as a receipt, to an entry. It's sent to the accounting platform with the entry's next sync.
+- [Detach a document from an accounting entry](https://docs.slash.com/api-reference/accounting/entries/attachments/remove.md): Remove a document from an entry. The document itself is kept, and a copy already on the accounting platform stays there.
+- [List accounting mappings](https://docs.slash.com/api-reference/accounting/mappings/list.md): List the mappings that code entries automatically, including the ones the accounting intelligence agent created.
+- [Create or replace an accounting mapping](https://docs.slash.com/api-reference/accounting/mappings/upsert.md): Automatically code one dimension for everything from a source, such as a card or merchant.
+- [Delete an accounting mapping](https://docs.slash.com/api-reference/accounting/mappings/delete.md): Delete a mapping. Entries it already coded keep their values.
+- [Get accounting intelligence settings](https://docs.slash.com/api-reference/accounting/intelligence/retrieve.md): Get which dimensions the accounting intelligence agent codes automatically.
+- [Update accounting intelligence settings](https://docs.slash.com/api-reference/accounting/intelligence/update.md): Turn the accounting intelligence agent on or off, or choose which dimensions it codes. Changes apply to entries coded from now on.
+- [Upload a document](https://docs.slash.com/api-reference/documents/upload.md): Upload a PDF, PNG or JPEG of up to 25 MB as `multipart/form-data`.
+- [Get a document](https://docs.slash.com/api-reference/documents/retrieve.md): Get a document with a fresh `downloadUrl`, valid for about 15 minutes.
 
 ## OpenAPI Specs
 
-- [openapi](https://docs.slash.com/api-reference/openapi.json)
+- [openapi](https://api.slash.com/openapi)
+- [openapi-v2](/openapi-v2.json)
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

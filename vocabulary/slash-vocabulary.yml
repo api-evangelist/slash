@@ -1,0 +1,438 @@
+generated: '2026-10-12'
+method: derived
+generator: derive-vocabulary.py
+source:
+- openapi/slash-account-api-openapi.yml
+- openapi/slash-agent-requests-api-openapi.yml
+- openapi/slash-analytics-api-openapi.yml
+- openapi/slash-card-api-openapi.yml
+- openapi/slash-card-group-api-openapi.yml
+vocabulary:
+  name: Slash Domain Vocabulary
+  description: 'Terms declared by Slash''s own API contract: its resource groups, objects and enumerations, with the contract''s definitions.
+    Derived, not authored.'
+  version: '2026-10-12'
+  terms:
+  - term: PaginationResponse
+    definition: Response sent when requesting a list of data
+    tags:
+    - Object
+    source: openapi/slash-account-api-openapi.yml#/components/schemas/Pagination.PaginationResponse
+  - term: Money
+    definition: Represents a monetary value
+    tags:
+    - Object
+    source: openapi/slash-account-api-openapi.yml#/components/schemas/Money
+  - term: Error
+    definition: 'Object declared by the contract with fields: message, name, identifier, rawStatus, meta.'
+    tags:
+    - Object
+    source: openapi/slash-account-api-openapi.yml#/components/schemas/Error
+  - term: AuthorizationWebhookCondition
+    definition: 'A condition expression evaluated against a card authorization, used to decide whether the `default` fallback behavior applies
+      to that transaction. Conditions form a small expression tree: - Logical nodes (`and` / `or`) combine two sub-conditions and can be nested.
+      - Comparison leaves (`lte`, `lt`, `gte`, `gt`, `eq`) test the transaction amount (`amountCents`, the absolute amount in USD cents). - S'
+    tags:
+    - Object
+    source: openapi/slash-account-api-openapi.yml#/components/schemas/AuthorizationWebhookCondition
+  - term: AuthorizationWebhookConfig
+    definition: 'Configuration specific to the authorization webhook, discriminated on `fallbackBehavior`. The fallback behavior is used when
+      the webhook cannot produce an answer — it fails to send a response in time, sends an invalid response, or cannot be reached (including while
+      Slash is operating in a degraded mode where external webhooks cannot be consulted): - `reject`: the transaction is declined. - `defaul'
+    tags:
+    - Object
+    source: openapi/slash-account-api-openapi.yml#/components/schemas/AuthorizationWebhookConfig
+  - term: Balance
+    definition: 'Object declared by the contract with fields: accountId, type, available, posted, timestamp.'
+    tags:
+    - Object
+    source: openapi/slash-account-api-openapi.yml#/components/schemas/Balance
+  - term: AuthorizationWebhook
+    definition: 'Object declared by the contract with fields: webhookUrl, signingSecret, status, timeoutDurationMs, config, createdAt, updatedAt.'
+    tags:
+    - Object
+    source: openapi/slash-account-api-openapi.yml#/components/schemas/AuthorizationWebhook
+  - term: Account
+    definition: 'Object declared by the contract with fields: id, status, name, accountNumber, routingNumber, createdAt, type, balances.'
+    tags:
+    - Object
+    source: openapi/slash-account-api-openapi.yml#/components/schemas/Account
+  - term: AgentRequest
+    definition: A pending or completed agent request
+    tags:
+    - Object
+    source: openapi/slash-agent-requests-api-openapi.yml#/components/schemas/AgentRequest
+  - term: PostResponse
+    definition: 'Object declared by the contract with fields: columns, rows, rowCount, error.'
+    tags:
+    - Object
+    source: openapi/slash-analytics-api-openapi.yml#/components/schemas/paths.analytics._dto.PostResponse
+  - term: PostRequest
+    definition: 'Object declared by the contract with fields: query.'
+    tags:
+    - Object
+    source: openapi/slash-analytics-api-openapi.yml#/components/schemas/paths.analytics._dto.PostRequest
+  - term: Card
+    definition: 'Object declared by the contract with fields: id, accountId, virtualAccountId, last4, name, expiryMonth, expiryYear, status, isPhysical,
+      isSingleUse, pan, cvv. (7 more)'
+    tags:
+    - Object
+    source: openapi/slash-card-api-openapi.yml#/components/schemas/Card
+  - term: SpendingConstraint
+    definition: A constraint that can be applied to a CardGroupSpendingRule
+    tags:
+    - Object
+    source: openapi/slash-card-api-openapi.yml#/components/schemas/SpendingConstraint
+  - term: Restriction
+    definition: 'Enumeration declared by the contract with values: allowlist, blacklist.'
+    tags:
+    - Enumeration
+    source: openapi/slash-card-api-openapi.yml#/components/schemas/Restriction
+  - term: CardGroupUtilization
+    definition: 'Object declared by the contract with fields: nextResetDate, spend, availableBalance.'
+    tags:
+    - Object
+    source: openapi/slash-card-api-openapi.yml#/components/schemas/CardGroupUtilization
+  - term: PartialSpendingConstraint
+    definition: A partial spending constraint update that can be applied to a CardGroupSpendingRule
+    tags:
+    - Object
+    source: openapi/slash-card-api-openapi.yml#/components/schemas/PartialSpendingConstraint
+  - term: CardStatus
+    definition: 'Enumeration declared by the contract with values: active, paused, inactive, closed.'
+    tags:
+    - Enumeration
+    source: openapi/slash-card-api-openapi.yml#/components/schemas/CardStatus
+  - term: CardGroup
+    definition: 'Object declared by the contract with fields: id, name, virtualAccountId, spendingConstraint.'
+    tags:
+    - Object
+    source: openapi/slash-card-group-api-openapi.yml#/components/schemas/CardGroup
+  - term: CardProduct
+    definition: 'Object declared by the contract with fields: id, prefix, status.'
+    tags:
+    - Object
+    source: openapi/slash-card-product-api-openapi.yml#/components/schemas/CardProduct
+  - term: Contact
+    definition: A contact represents a counterparty (customer, vendor, etc.) associated with a legal entity.
+    tags:
+    - Object
+    source: openapi/slash-contact-api-openapi.yml#/components/schemas/Contact
+  - term: IAddressModel
+    definition: 'Object declared by the contract with fields: addressLine, addressLine2, addressCity, addressState, addressZip, addressCountry.'
+    tags:
+    - Object
+    source: openapi/slash-contact-api-openapi.yml#/components/schemas/slashfi.models.entity.IAddressModel.yaml
+  - term: Address
+    definition: 'Object declared by the contract with fields: id, walletId, status, currency, chain, address, method, blockchainMemo, timestamp.'
+    tags:
+    - Object
+    source: openapi/slash-crypto-api-openapi.yml#/components/schemas/Crypto.Address
+  - term: Wallet
+    definition: 'Object declared by the contract with fields: id, type, status, subaccountId, slashAccountGroupId, timestamp.'
+    tags:
+    - Object
+    source: openapi/slash-crypto-api-openapi.yml#/components/schemas/Crypto.Wallet
+  - term: Customer
+    definition: A customer represents a billing recipient associated with a legal entity.
+    tags:
+    - Object
+    source: openapi/slash-customer-api-openapi.yml#/components/schemas/Customer
+  - term: LegalEntityPermissionPolicyKey
+    definition: 'Enumeration declared by the contract with values: legal_entity.home.view, legal_entity.view, legal_entity.users.view, legal_entity.users.modify,
+      legal_entity.users.card_groups.view, legal_entity.users.card_groups.modify, legal_entity.subscriptions.view, legal_entity.subscriptions.modify,
+      legal_entity.accounting.view, legal_entity.accounting.modify, legal_entity.contacts.view, legal_entity.contacts.modify. (20 more)'
+    tags:
+    - Enumeration
+    source: openapi/slash-developer-account-api-openapi.yml#/components/schemas/DeveloperApplication.PermissionKeyTypes.LegalEntityPermissionPolicyKey
+  - term: DeveloperApplicationModel
+    definition: 'Object declared by the contract with fields: id, developerAccountId, name, status, type, data, timestamp, oauthClientId, oauthClientSecret.'
+    tags:
+    - Object
+    source: openapi/slash-developer-account-api-openapi.yml#/components/schemas/DeveloperApplication.DeveloperApplicationModel
+  - term: DeveloperApplicationStatus
+    definition: 'Enumeration declared by the contract with values: test, under_review, production.'
+    tags:
+    - Enumeration
+    source: openapi/slash-developer-account-api-openapi.yml#/components/schemas/DeveloperApplication.DeveloperApplicationStatus
+  - term: DeveloperApplicationType
+    definition: 'Enumeration declared by the contract with values: service.'
+    tags:
+    - Enumeration
+    source: openapi/slash-developer-account-api-openapi.yml#/components/schemas/DeveloperApplication.DeveloperApplicationType
+  - term: DeveloperApplicationData
+    definition: 'Object declared by the contract with fields: description, logoUrl, termsOfServiceUrl, privacyPolicyUrl, redirectUris, testUserEmails,
+      type, scopes, allowedOrigins.'
+    tags:
+    - Object
+    source: openapi/slash-developer-account-api-openapi.yml#/components/schemas/DeveloperApplication.DeveloperApplicationData
+  - term: SlashAccountPermissionPolicyKey
+    definition: 'Enumeration declared by the contract with values: slash_accounts.view, slash_accounts.home.view, slash_accounts.cards.physical.view,
+      slash_accounts.cards.physical.modify, slash_accounts.cards.virtual.view, slash_accounts.cards.virtual.modify, slash_accounts.incoming_transactions.view,
+      slash_accounts.transactions.view, slash_accounts.transactions.ach_pull.initiate, slash_accounts.transactions.ach_push.initiate, slash_accounts.transactions.wire.initiate,
+      slash_accounts.transactions.between_accounts.initiate. (8 more)'
+    tags:
+    - Enumeration
+    source: openapi/slash-developer-account-api-openapi.yml#/components/schemas/DeveloperApplication.PermissionKeyTypes.SlashAccountPermissionPolicyKey
+  - term: UserBankAccount
+    definition: Represent a UserBankAccount ID in the format of "ub_102jifoij01"
+    tags:
+    - Object
+    source: openapi/slash-expense-report-api-openapi.yml#/components/schemas/slashfi.models.id.UserBankAccount.yaml
+  - term: ExpenseReportMerchant
+    definition: The merchant associated with an expense report (either a merchantV2 or customMerchant)
+    tags:
+    - Object
+    source: openapi/slash-expense-report-api-openapi.yml#/components/schemas/slashfi.models.entity.ExpenseReport.ExpenseReportMerchant.yaml
+  - term: MerchantV2
+    definition: 'Object declared by the contract with fields: $entity, id, heronId, name, iconUrl, logoUrl, url, isLive, isInstantCashback, merchantCategoryId,
+      metadata.'
+    tags:
+    - Object
+    source: openapi/slash-expense-report-api-openapi.yml#/components/schemas/slashfi.models.entity.Merchant.MerchantV2.yaml
+  - term: MerchantV2Id
+    definition: Represent a Merchant V2 ID in the format of "merchant_v2_102jifoij01"
+    tags:
+    - Object
+    source: openapi/slash-expense-report-api-openapi.yml#/components/schemas/slashfi.models.id.MerchantV2Id.yaml
+  - term: ExpenseReportReview
+    definition: Review decision for an expense report
+    tags:
+    - Object
+    source: openapi/slash-expense-report-api-openapi.yml#/components/schemas/slashfi.models.entity.ExpenseReport.ExpenseReportReview.yaml
+  - term: ParsedReceipt
+    definition: AI-extracted data from a receipt image or PDF
+    tags:
+    - Object
+    source: openapi/slash-expense-report-api-openapi.yml#/components/schemas/slashfi.models.entity.ExpenseReport.ParsedReceipt.yaml
+  - term: ExpenseReportReviewId
+    definition: Represents an ExpenseReportReview ID in the format of "expense_report_review_102jifoij01"
+    tags:
+    - Object
+    source: openapi/slash-expense-report-api-openapi.yml#/components/schemas/slashfi.models.id.ExpenseReport.ExpenseReportReviewId.yaml
+  - term: DocumentSource
+    definition: 'Enumeration declared by the contract with values: uploaded, generated.'
+    tags:
+    - Enumeration
+    source: openapi/slash-expense-report-api-openapi.yml#/components/schemas/slashfi.models.enums.Document.DocumentSource.yaml
+  - term: IMoneyModel
+    definition: 'Object declared by the contract with fields: amount_cents, currency.'
+    tags:
+    - Object
+    source: openapi/slash-expense-report-api-openapi.yml#/components/schemas/slashfi.models.entity.IMoneyModel.yaml
+  - term: PublicTransactionSummary
+    definition: A minimal transaction summary for public API responses
+    tags:
+    - Object
+    source: openapi/slash-expense-report-api-openapi.yml#/components/schemas/slashfi.models.entity.ExpenseReport.PublicTransactionSummary.yaml
+  - term: PublicReimbursementSource
+    definition: A minimal bank account summary for public API responses
+    tags:
+    - Object
+    source: openapi/slash-expense-report-api-openapi.yml#/components/schemas/slashfi.models.entity.ExpenseReport.PublicReimbursementSource.yaml
+  - term: ExpenseReport
+    definition: An expense report submitted by an employee for reimbursement (matches database schema)
+    tags:
+    - Object
+    source: openapi/slash-expense-report-api-openapi.yml#/components/schemas/slashfi.models.entity.ExpenseReport.ExpenseReport.yaml
+  - term: DocumentStatus
+    definition: 'Enumeration declared by the contract with values: uploaded, uploading, not_generated, generating, generated, error, deleted.'
+    tags:
+    - Enumeration
+    source: openapi/slash-expense-report-api-openapi.yml#/components/schemas/slashfi.models.entity.Document.DocumentStatus.yaml
+  - term: DocumentType
+    definition: 'Enumeration declared by the contract with values: business_entity, user_identity, admin, affiliate_tax_document, transaction_monitoring_incident,
+      slash_statement, wire_ach, wire_ach_instruction, wire_ach_receipt, international_wire_receipt, sepa_instruction, fps_instruction. (52 more)'
+    tags:
+    - Enumeration
+    source: openapi/slash-expense-report-api-openapi.yml#/components/schemas/slashfi.models.enums.Document.DocumentType.yaml
+  - term: IUserBankAccountModel
+    definition: 'Object declared by the contract with fields: id, userId, latestStatus, lastSyncedAt, lastStatusChangeAt, accountName, officialAccountName,
+      accountOwnerName, type, subtype, mask, balance. (4 more)'
+    tags:
+    - Object
+    source: openapi/slash-expense-report-api-openapi.yml#/components/schemas/slashfi.models.entity.IUserBankAccountModel.yaml
+  - term: IMetadataModel
+    definition: 'Object declared by the contract with fields: timestamp.'
+    tags:
+    - Object
+    source: openapi/slash-expense-report-api-openapi.yml#/components/schemas/slashfi.models.entity.IMetadataModel.yaml
+  - term: IDocumentModel
+    definition: 'Object declared by the contract with fields: $entity, id, accountType, accountId, startDate, endDate, filename, status, error,
+      checksum, accessLevel, documentType. (5 more)'
+    tags:
+    - Object
+    source: openapi/slash-expense-report-api-openapi.yml#/components/schemas/slashfi.models.entity.Document.IDocumentModel.yaml
+  - term: ParsedReceiptConfidence
+    definition: 'Confidence level for an extracted field: - high: Clearly visible and unambiguous - medium: Readable but may have minor issues
+      (blur, partial visibility) - low: Partially visible, ambiguous, or assumptions were made - none: Not found or completely unreadable'
+    tags:
+    - Enumeration
+    source: openapi/slash-expense-report-api-openapi.yml#/components/schemas/slashfi.models.entity.ExpenseReport.ParsedReceiptConfidence.yaml
+  - term: User
+    definition: Represent a User ID in the format of "u_102jifoij01"
+    tags:
+    - Object
+    source: openapi/slash-expense-report-api-openapi.yml#/components/schemas/slashfi.models.id.User.yaml
+  - term: ExpenseReportStatus
+    definition: The status of an expense report
+    tags:
+    - Enumeration
+    source: openapi/slash-expense-report-api-openapi.yml#/components/schemas/slashfi.models.entity.ExpenseReport.ExpenseReportStatus.yaml
+  - term: CustomMerchantId
+    definition: Represent a Custom Merchant ID in the format of "custom_merchant_102jifoij01"
+    tags:
+    - Object
+    source: openapi/slash-expense-report-api-openapi.yml#/components/schemas/slashfi.models.id.CustomMerchant.CustomMerchantId.yaml
+  - term: PublicExpenseReportWithMetadata
+    definition: An expense report with enriched metadata, stripped for public API consumption
+    tags:
+    - Object
+    source: openapi/slash-expense-report-api-openapi.yml#/components/schemas/slashfi.models.entity.ExpenseReport.PublicExpenseReportWithMetadata.yaml
+  - term: ReimbursementSource
+    definition: A user bank account enriched with institution logo for reimbursement flows
+    tags:
+    - Object
+    source: openapi/slash-expense-report-api-openapi.yml#/components/schemas/slashfi.models.entity.ExpenseReport.ReimbursementSource.yaml
+  - term: UserBankAccountStatus
+    definition: 'Enumeration declared by the contract with values: active, login_required, inactive, unknown_error.'
+    tags:
+    - Enumeration
+    source: openapi/slash-expense-report-api-openapi.yml#/components/schemas/slashfi.models.enums.UserBankAccountStatus.yaml
+  - term: ParsedReceiptMerchant
+    definition: Extracted merchant information from a receipt
+    tags:
+    - Object
+    source: openapi/slash-expense-report-api-openapi.yml#/components/schemas/slashfi.models.entity.ExpenseReport.ParsedReceiptMerchant.yaml
+  - term: PublicUserSummary
+    definition: A minimal user identity for public API responses (id and name only)
+    tags:
+    - Object
+    source: openapi/slash-expense-report-api-openapi.yml#/components/schemas/slashfi.models.entity.ExpenseReport.PublicUserSummary.yaml
+  - term: ExpenseReportId
+    definition: Represents an ExpenseReport ID in the format of "expense_report_102jifoij01"
+    tags:
+    - Object
+    source: openapi/slash-expense-report-api-openapi.yml#/components/schemas/slashfi.models.id.ExpenseReport.ExpenseReportId.yaml
+  - term: ParsedReceiptDate
+    definition: Extracted date information from a receipt
+    tags:
+    - Object
+    source: openapi/slash-expense-report-api-openapi.yml#/components/schemas/slashfi.models.entity.ExpenseReport.ParsedReceiptDate.yaml
+  - term: ParsedReceiptAmount
+    definition: Extracted amount information from a receipt
+    tags:
+    - Object
+    source: openapi/slash-expense-report-api-openapi.yml#/components/schemas/slashfi.models.entity.ExpenseReport.ParsedReceiptAmount.yaml
+  - term: CustomMerchant
+    definition: Custom merchant schema
+    tags:
+    - Object
+    source: openapi/slash-expense-report-api-openapi.yml#/components/schemas/slashfi.models.entity.CustomMerchant.CustomMerchant.yaml
+  - term: LegalEntityId
+    definition: Represent a Legal Entity ID in the format of "le_102jifoij01"
+    tags:
+    - Object
+    source: openapi/slash-expense-report-api-openapi.yml#/components/schemas/slashfi.models.id.LegalEntityId.yaml
+  - term: InvestmentAccountBalance
+    definition: 'Object declared by the contract with fields: availableCashBalance, balanceAsOf, currentValue, holdings.'
+    tags:
+    - Object
+    source: openapi/slash-fdx-api-openapi.yml#/components/schemas/paths.fdx.accounts._dto.InvestmentAccountBalance
+  - term: DepositTransaction
+    definition: 'Object declared by the contract with fields: transactionId, referenceTransactionId, postedTimestamp, transactionTimestamp, description,
+      debitCreditMemo, category, subCategory, status, amount, foreignAmount, foreignCurrency. (2 more)'
+    tags:
+    - Object
+    source: openapi/slash-fdx-api-openapi.yml#/components/schemas/paths.fdx.accounts._param_accountId.transactions._dto.DepositTransaction
+  - term: DepositAccountBalance
+    definition: 'Object declared by the contract with fields: currentBalance, availableBalance.'
+    tags:
+    - Object
+    source: openapi/slash-fdx-api-openapi.yml#/components/schemas/paths.fdx.accounts._dto.DepositAccountBalance
+  - term: LineOfCreditAccount
+    definition: A line-of-credit account. For example, a credit card or home equity line of credit.
+    tags:
+    - Object
+    source: openapi/slash-fdx-api-openapi.yml#/components/schemas/paths.fdx.accounts._dto.LineOfCreditAccount
+  - term: InvestmentAccount
+    definition: An investment account. For example, a 401K or IRA.
+    tags:
+    - Object
+    source: openapi/slash-fdx-api-openapi.yml#/components/schemas/paths.fdx.accounts._dto.InvestmentAccount
+  - term: CommercialAccount
+    definition: A commercial account. For example, a business deposit account.
+    tags:
+    - Object
+    source: openapi/slash-fdx-api-openapi.yml#/components/schemas/paths.fdx.accounts._dto.CommercialAccount
+  - term: LoanAccount
+    definition: A loan account. For example, mortgage, student loan or auto loan.
+    tags:
+    - Object
+    source: openapi/slash-fdx-api-openapi.yml#/components/schemas/paths.fdx.accounts._dto.LoanAccount
+  - term: Iso4217CurrencyCode
+    definition: ISO 4217 currency code, per the FDX / Plaid Core Exchange specification.
+    tags:
+    - Enumeration
+    source: openapi/slash-fdx-api-openapi.yml#/components/schemas/paths.fdx.accounts._param_accountId.transactions._dto.Iso4217CurrencyCode
+  - term: AnnuityAccount
+    definition: An annuity account. For example, a fixed or variable annuity account.
+    tags:
+    - Object
+    source: openapi/slash-fdx-api-openapi.yml#/components/schemas/paths.fdx.accounts._dto.AnnuityAccount
+  - term: LineOfCreditTransaction
+    definition: 'Object declared by the contract with fields: transactionId, referenceTransactionId, postedTimestamp, transactionTimestamp, description,
+      debitCreditMemo, category, subCategory, status, amount, foreignAmount, foreignCurrency. (2 more)'
+    tags:
+    - Object
+    source: openapi/slash-fdx-api-openapi.yml#/components/schemas/paths.fdx.accounts._param_accountId.transactions._dto.LineOfCreditTransaction
+  - term: DepositAccount
+    definition: A deposit account. For example, a checking, savings or money market account.
+    tags:
+    - Object
+    source: openapi/slash-fdx-api-openapi.yml#/components/schemas/paths.fdx.accounts._dto.DepositAccount
+  - term: InvestmentTransaction
+    definition: 'Object declared by the contract with fields: transactionId, referenceTransactionId, postedTimestamp, transactionTimestamp, description,
+      debitCreditMemo, category, subCategory, status, amount, foreignAmount, foreignCurrency. (11 more)'
+    tags:
+    - Object
+    source: openapi/slash-fdx-api-openapi.yml#/components/schemas/paths.fdx.accounts._param_accountId.transactions._dto.InvestmentTransaction
+  - term: LineOfCreditAccountBalance
+    definition: 'Object declared by the contract with fields: creditLine, availableCredit, nextPaymentAmount, nextPaymentDate, principalBalance,
+      currentBalance, minimumPaymentAmount, lastPaymentAmount, lastPaymentDate, pastDueAmount, lastStmtBalance, lastStmtDate. (2 more)'
+    tags:
+    - Object
+    source: openapi/slash-fdx-api-openapi.yml#/components/schemas/paths.fdx.accounts._dto.LineOfCreditAccountBalance
+  - term: LoanAccountBalance
+    definition: 'Object declared by the contract with fields: principalBalance, escrowBalance, originalPrincipal, originatingDate, loanTerm, nextPaymentAmount,
+      nextPaymentDate, lastPaymentAmount, lastPaymentDate, maturityDate, interestPaidYearToDate, interestRate. (1 more)'
+    tags:
+    - Object
+    source: openapi/slash-fdx-api-openapi.yml#/components/schemas/paths.fdx.accounts._dto.LoanAccountBalance
+  - term: InsuranceAccount
+    definition: An insurance account. For example, whole life insurance or short-term disability.
+    tags:
+    - Object
+    source: openapi/slash-fdx-api-openapi.yml#/components/schemas/paths.fdx.accounts._dto.InsuranceAccount
+  - term: LoanTransaction
+    definition: 'Object declared by the contract with fields: transactionId, referenceTransactionId, postedTimestamp, transactionTimestamp, description,
+      debitCreditMemo, category, subCategory, status, amount, foreignAmount, foreignCurrency. (1 more)'
+    tags:
+    - Object
+    source: openapi/slash-fdx-api-openapi.yml#/components/schemas/paths.fdx.accounts._param_accountId.transactions._dto.LoanTransaction
+  - term: InvoiceAggregate
+    definition: Aggregate model for an invoice
+    tags:
+    - Object
+    source: openapi/slash-invoice-api-openapi.yml#/components/schemas/slashfi.models.entity.Invoice.InvoiceAggregate.yaml
+  - term: InvoiceDetails
+    definition: 'Object declared by the contract with fields: id, issuedAt, dueAt, invoiceTz, currency, lineItemsAndTotals, invoiceNumber, memo,
+      documentId, billedTo, version.'
+    tags:
+    - Object
+    source: openapi/slash-invoice-api-openapi.yml#/components/schemas/slashfi.models.entity.Invoice.InvoiceDetails.yaml
+  - term: PaymentMethodInboundInternationalWire
+    definition: 'Object declared by the contract with fields: method, config.'
+    tags:
+    - Object
+    source: openapi/slash-invoice-api-openapi.yml#/components/schemas/slashfi.models.entity.Invoice.PaymentMethod.PaymentMethodInboundInternationalWire.yaml

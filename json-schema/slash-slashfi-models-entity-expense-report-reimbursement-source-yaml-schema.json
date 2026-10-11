@@ -1,0 +1,273 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/slash/main/json-schema/slash-slashfi-models-entity-expense-report-reimbursement-source-yaml-schema.json",
+  "title": "ReimbursementSource",
+  "description": "A user bank account enriched with institution logo for reimbursement flows",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/slash-expense-report-api-openapi.yml#/components/schemas/slashfi.models.entity.ExpenseReport.ReimbursementSource.yaml",
+  "allOf": [
+    {
+      "$ref": "#/$defs/slashfi.models.entity.IUserBankAccountModel.yaml",
+      "x-entrypoint": {
+        "virtualPath": "entity/IUserBankAccountModel",
+        "sourcePath": "entity/IUserBankAccountModel.yaml",
+        "title": "IUserBankAccountModel",
+        "origin": "/home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas",
+        "globalImport": true
+      }
+    },
+    {
+      "type": "object",
+      "properties": {
+        "institutionLogo": {
+          "type": "string",
+          "description": "Base64 encoded institution logo (152x152 PNG). Not all institutions have logos available."
+        }
+      }
+    }
+  ],
+  "x-entrypoint": {
+    "virtualPath": "entity/ExpenseReport/ReimbursementSource",
+    "sourcePath": "entity/ExpenseReport/ReimbursementSource.yaml",
+    "title": "ReimbursementSource",
+    "origin": "/home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas",
+    "globalImport": true
+  },
+  "$defs": {
+    "slashfi.models.entity.IMetadataModel.yaml": {
+      "type": "object",
+      "properties": {
+        "timestamp": {
+          "format": "date-time",
+          "type": "string"
+        }
+      },
+      "required": [
+        "timestamp"
+      ],
+      "x-entrypoint": {
+        "virtualPath": "entity/IMetadataModel",
+        "sourcePath": "entity/IMetadataModel.yaml",
+        "title": "IMetadataModel",
+        "origin": "/home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas",
+        "globalImport": true
+      },
+      "title": "IMetadataModel"
+    },
+    "slashfi.models.entity.IMoneyModel.yaml": {
+      "title": "IMoneyModel",
+      "type": "object",
+      "properties": {
+        "amount_cents": {
+          "type": "number"
+        },
+        "currency": {
+          "type": "string",
+          "enum": [
+            "USD"
+          ]
+        }
+      },
+      "required": [
+        "amount_cents",
+        "currency"
+      ],
+      "x-entrypoint": {
+        "virtualPath": "entity/IMoneyModel",
+        "sourcePath": "entity/IMoneyModel.yaml",
+        "title": "IMoneyModel",
+        "origin": "/home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas",
+        "globalImport": true
+      }
+    },
+    "slashfi.models.entity.IUserBankAccountModel.yaml": {
+      "title": "IUserBankAccountModel",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "userId": {
+          "type": "string"
+        },
+        "latestStatus": {
+          "$ref": "#/$defs/slashfi.models.enums.UserBankAccountStatus.yaml",
+          "x-entrypoint": {
+            "virtualPath": "enums/UserBankAccountStatus",
+            "sourcePath": "enums/UserBankAccountStatus.yaml",
+            "title": "UserBankAccountStatus",
+            "origin": "/home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas",
+            "globalImport": true
+          }
+        },
+        "lastSyncedAt": {
+          "type": "string"
+        },
+        "lastStatusChangeAt": {
+          "type": "string"
+        },
+        "accountName": {
+          "type": "string"
+        },
+        "officialAccountName": {
+          "type": "string"
+        },
+        "accountOwnerName": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "subtype": {
+          "type": "string"
+        },
+        "mask": {
+          "type": "string"
+        },
+        "balance": {
+          "type": "object",
+          "properties": {
+            "amount": {
+              "$ref": "#/$defs/slashfi.models.entity.IMoneyModel.yaml",
+              "x-entrypoint": {
+                "virtualPath": "entity/IMoneyModel",
+                "sourcePath": "entity/IMoneyModel.yaml",
+                "title": "IMoneyModel",
+                "origin": "/home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas",
+                "globalImport": true
+              }
+            },
+            "lastBalanceCheckDate": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "amount",
+            "lastBalanceCheckDate"
+          ]
+        },
+        "latestBalanceCheck": {
+          "type": "object",
+          "properties": {
+            "availableAmount": {
+              "$ref": "#/$defs/slashfi.models.entity.IMoneyModel.yaml",
+              "x-entrypoint": {
+                "virtualPath": "entity/IMoneyModel",
+                "sourcePath": "entity/IMoneyModel.yaml",
+                "title": "IMoneyModel",
+                "origin": "/home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas",
+                "globalImport": true
+              }
+            },
+            "currentAmount": {
+              "$ref": "#/$defs/slashfi.models.entity.IMoneyModel.yaml",
+              "x-entrypoint": {
+                "virtualPath": "entity/IMoneyModel",
+                "sourcePath": "entity/IMoneyModel.yaml",
+                "title": "IMoneyModel",
+                "origin": "/home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas",
+                "globalImport": true
+              }
+            },
+            "limitAmount": {
+              "$ref": "#/$defs/slashfi.models.entity.IMoneyModel.yaml",
+              "x-entrypoint": {
+                "virtualPath": "entity/IMoneyModel",
+                "sourcePath": "entity/IMoneyModel.yaml",
+                "title": "IMoneyModel",
+                "origin": "/home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas",
+                "globalImport": true
+              }
+            }
+          },
+          "required": [
+            "currentAmount"
+          ]
+        },
+        "institution": {
+          "type": "object",
+          "required": [
+            "id",
+            "name"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "name": {
+              "type": "string"
+            }
+          }
+        },
+        "metadata": {
+          "$ref": "#/$defs/slashfi.models.entity.IMetadataModel.yaml",
+          "x-entrypoint": {
+            "virtualPath": "entity/IMetadataModel",
+            "sourcePath": "entity/IMetadataModel.yaml",
+            "title": "IMetadataModel",
+            "origin": "/home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas",
+            "globalImport": true
+          }
+        },
+        "error": {
+          "type": "object",
+          "properties": {
+            "errorCode": {
+              "type": "string"
+            },
+            "errorType": {
+              "type": "string"
+            },
+            "actionMessage": {
+              "type": "string"
+            },
+            "userActionCta": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "errorCode",
+            "errorType",
+            "actionMessage"
+          ]
+        }
+      },
+      "required": [
+        "id",
+        "userId",
+        "latestStatus",
+        "accountName",
+        "type",
+        "subtype",
+        "institution",
+        "metadata"
+      ],
+      "x-entrypoint": {
+        "virtualPath": "entity/IUserBankAccountModel",
+        "sourcePath": "entity/IUserBankAccountModel.yaml",
+        "title": "IUserBankAccountModel",
+        "origin": "/home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas",
+        "globalImport": true
+      }
+    },
+    "slashfi.models.enums.UserBankAccountStatus.yaml": {
+      "type": "string",
+      "enum": [
+        "active",
+        "login_required",
+        "inactive",
+        "unknown_error"
+      ],
+      "x-entrypoint": {
+        "virtualPath": "enums/UserBankAccountStatus",
+        "sourcePath": "enums/UserBankAccountStatus.yaml",
+        "title": "UserBankAccountStatus",
+        "origin": "/home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas",
+        "globalImport": true
+      },
+      "title": "UserBankAccountStatus"
+    }
+  }
+}

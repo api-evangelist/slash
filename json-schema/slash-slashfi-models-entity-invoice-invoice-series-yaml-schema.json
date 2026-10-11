@@ -1,0 +1,830 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/slash/main/json-schema/slash-slashfi-models-entity-invoice-invoice-series-yaml-schema.json",
+  "title": "InvoiceSeries",
+  "description": "Invoice series model for API responses",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/slash-invoice-api-openapi.yml#/components/schemas/slashfi.models.entity.Invoice.InvoiceSeries.yaml",
+  "type": "object",
+  "properties": {
+    "$entity": {
+      "type": "string",
+      "enum": [
+        "invoice_series"
+      ]
+    },
+    "id": {
+      "type": "string"
+    },
+    "status": {
+      "$ref": "#/$defs/slashfi.models.entity.Invoice.InvoiceSeriesStatus.yaml",
+      "x-entrypoint": {
+        "virtualPath": "entity/Invoice/InvoiceSeriesStatus",
+        "sourcePath": "entity/Invoice/InvoiceSeriesStatus.yaml",
+        "title": "InvoiceSeriesStatus",
+        "origin": "/home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas",
+        "globalImport": true
+      }
+    },
+    "recurrenceRule": {
+      "$ref": "#/$defs/slashfi.models.entity.Invoice.InvoiceSeriesRecurrenceRule.yaml",
+      "x-entrypoint": {
+        "virtualPath": "entity/Invoice/InvoiceSeriesRecurrenceRule",
+        "sourcePath": "entity/Invoice/InvoiceSeriesRecurrenceRule.yaml",
+        "title": "InvoiceSeriesRecurrenceRule",
+        "origin": "/home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas",
+        "globalImport": true
+      }
+    },
+    "paymentTermsDays": {
+      "type": "integer"
+    },
+    "invoiceTz": {
+      "type": "string"
+    },
+    "startDate": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "endCondition": {
+      "$ref": "#/$defs/slashfi.models.entity.Invoice.InvoiceSeriesEndCondition.yaml",
+      "x-entrypoint": {
+        "virtualPath": "entity/Invoice/InvoiceSeriesEndCondition",
+        "sourcePath": "entity/Invoice/InvoiceSeriesEndCondition.yaml",
+        "title": "InvoiceSeriesEndCondition",
+        "origin": "/home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas",
+        "globalImport": true
+      }
+    },
+    "nextScheduledDate": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time"
+    },
+    "template": {
+      "$ref": "#/$defs/slashfi.models.entity.Invoice.InvoiceSeriesTemplate.yaml",
+      "x-entrypoint": {
+        "virtualPath": "entity/Invoice/InvoiceSeriesTemplate",
+        "sourcePath": "entity/Invoice/InvoiceSeriesTemplate.yaml",
+        "title": "InvoiceSeriesTemplate",
+        "origin": "/home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas",
+        "globalImport": true
+      }
+    },
+    "paymentMethods": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/slashfi.models.entity.Invoice.InvoiceSlashPaymentMethodConfig.yaml",
+        "x-entrypoint": {
+          "virtualPath": "entity/Invoice/InvoiceSlashPaymentMethodConfig",
+          "sourcePath": "entity/Invoice/InvoiceSlashPaymentMethodConfig.yaml",
+          "title": "InvoiceSlashPaymentMethodConfig",
+          "origin": "/home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas",
+          "globalImport": true
+        }
+      }
+    },
+    "accountId": {
+      "type": "string"
+    },
+    "legalEntityContactId": {
+      "type": "string"
+    },
+    "legalEntityCustomerId": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "$entity",
+    "id",
+    "status",
+    "recurrenceRule",
+    "paymentTermsDays",
+    "invoiceTz",
+    "startDate",
+    "endCondition",
+    "template",
+    "paymentMethods",
+    "accountId"
+  ],
+  "x-entrypoint": {
+    "virtualPath": "entity/Invoice/InvoiceSeries",
+    "sourcePath": "entity/Invoice/InvoiceSeries.yaml",
+    "title": "InvoiceSeries",
+    "origin": "/home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas",
+    "globalImport": true
+  },
+  "$defs": {
+    "slashfi.models.entity.Invoice.InvoiceDiscount.yaml": {
+      "oneOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "type": {
+              "type": "string",
+              "enum": [
+                "percentage"
+              ]
+            },
+            "percent": {
+              "type": "number"
+            }
+          },
+          "required": [
+            "type",
+            "percent"
+          ]
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "type": {
+              "type": "string",
+              "enum": [
+                "fixed"
+              ]
+            },
+            "amountCents": {
+              "type": "number"
+            }
+          },
+          "required": [
+            "type",
+            "amountCents"
+          ]
+        }
+      ],
+      "x-entrypoint": {
+        "virtualPath": "entity/Invoice/InvoiceDiscount",
+        "sourcePath": "entity/Invoice/InvoiceDiscount.yaml",
+        "title": "InvoiceDiscount",
+        "origin": "/home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas",
+        "globalImport": true
+      },
+      "title": "InvoiceDiscount"
+    },
+    "slashfi.models.entity.Invoice.InvoiceLineItem.yaml": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "quantity": {
+          "type": "number"
+        },
+        "priceCents": {
+          "type": "number"
+        },
+        "catalogItemId": {
+          "type": "string",
+          "description": "Optional provenance stamp indicating this line item was populated from a catalog item. Cleared if the user manually edits the name or price after selection."
+        }
+      },
+      "required": [
+        "name",
+        "quantity",
+        "priceCents"
+      ],
+      "x-entrypoint": {
+        "virtualPath": "entity/Invoice/InvoiceLineItem",
+        "sourcePath": "entity/Invoice/InvoiceLineItem.yaml",
+        "title": "InvoiceLineItem",
+        "origin": "/home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas",
+        "globalImport": true
+      },
+      "title": "InvoiceLineItem"
+    },
+    "slashfi.models.entity.Invoice.InvoiceSeriesEndCondition.yaml": {
+      "description": "Discriminated union defining when a recurring invoice series stops generating invoices",
+      "oneOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "type": {
+              "type": "string",
+              "enum": [
+                "never"
+              ]
+            }
+          },
+          "required": [
+            "type"
+          ]
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "type": {
+              "type": "string",
+              "enum": [
+                "after_count"
+              ]
+            },
+            "count": {
+              "type": "integer",
+              "minimum": 1,
+              "description": "Number of invoices to generate before ending the series"
+            }
+          },
+          "required": [
+            "type",
+            "count"
+          ]
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "type": {
+              "type": "string",
+              "enum": [
+                "on_date"
+              ]
+            },
+            "date": {
+              "type": "string",
+              "format": "date",
+              "description": "ISO date string in the series timezone after which no more invoices are generated"
+            }
+          },
+          "required": [
+            "type",
+            "date"
+          ]
+        }
+      ],
+      "x-entrypoint": {
+        "virtualPath": "entity/Invoice/InvoiceSeriesEndCondition",
+        "sourcePath": "entity/Invoice/InvoiceSeriesEndCondition.yaml",
+        "title": "InvoiceSeriesEndCondition",
+        "origin": "/home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas",
+        "globalImport": true
+      },
+      "title": "InvoiceSeriesEndCondition"
+    },
+    "slashfi.models.entity.Invoice.InvoiceSeriesRecurrenceRule.yaml": {
+      "description": "Discriminated union defining when a recurring invoice series issues invoices",
+      "oneOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "type": {
+              "type": "string",
+              "enum": [
+                "weekly"
+              ]
+            },
+            "dayOfWeek": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 6,
+              "description": "Day of week (0 = Sunday, 6 = Saturday)"
+            }
+          },
+          "required": [
+            "type",
+            "dayOfWeek"
+          ]
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "type": {
+              "type": "string",
+              "enum": [
+                "monthly_day_of_month"
+              ]
+            },
+            "dayOfMonth": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 31,
+              "description": "Day of month. Clamped to last day of month at generation time (e.g. 31 becomes 28 in February)."
+            }
+          },
+          "required": [
+            "type",
+            "dayOfMonth"
+          ]
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "type": {
+              "type": "string",
+              "enum": [
+                "monthly_nth_weekday"
+              ]
+            },
+            "nth": {
+              "oneOf": [
+                {
+                  "type": "integer",
+                  "minimum": 1,
+                  "maximum": 4
+                },
+                {
+                  "type": "string",
+                  "enum": [
+                    "last"
+                  ]
+                }
+              ],
+              "description": "Which occurrence of the weekday in the month (1-4, or \"last\")"
+            },
+            "dayOfWeek": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 6,
+              "description": "Day of week (0 = Sunday, 6 = Saturday)"
+            }
+          },
+          "required": [
+            "type",
+            "nth",
+            "dayOfWeek"
+          ]
+        }
+      ],
+      "x-entrypoint": {
+        "virtualPath": "entity/Invoice/InvoiceSeriesRecurrenceRule",
+        "sourcePath": "entity/Invoice/InvoiceSeriesRecurrenceRule.yaml",
+        "title": "InvoiceSeriesRecurrenceRule",
+        "origin": "/home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas",
+        "globalImport": true
+      },
+      "title": "InvoiceSeriesRecurrenceRule"
+    },
+    "slashfi.models.entity.Invoice.InvoiceSeriesStatus.yaml": {
+      "type": "string",
+      "enum": [
+        "active",
+        "ended",
+        "cancelled"
+      ],
+      "x-entrypoint": {
+        "virtualPath": "entity/Invoice/InvoiceSeriesStatus",
+        "sourcePath": "entity/Invoice/InvoiceSeriesStatus.yaml",
+        "title": "InvoiceSeriesStatus",
+        "origin": "/home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas",
+        "globalImport": true
+      },
+      "title": "InvoiceSeriesStatus"
+    },
+    "slashfi.models.entity.Invoice.InvoiceSeriesTemplate.yaml": {
+      "description": "Template data used to generate each invoice in a recurring series",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "lineItemsAndTotals": {
+          "$ref": "#/$defs/slashfi.models.entity.Invoice.LineItemsAndTotalsInput.yaml",
+          "x-entrypoint": {
+            "virtualPath": "entity/Invoice/LineItemsAndTotalsInput",
+            "sourcePath": "entity/Invoice/LineItemsAndTotalsInput.yaml",
+            "title": "LineItemsAndTotalsInput",
+            "origin": "/home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas",
+            "globalImport": true
+          }
+        },
+        "memo": {
+          "type": "string",
+          "maxLength": 500
+        },
+        "ccEmails": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "maxItems": 10
+        }
+      },
+      "required": [
+        "lineItemsAndTotals"
+      ],
+      "x-entrypoint": {
+        "virtualPath": "entity/Invoice/InvoiceSeriesTemplate",
+        "sourcePath": "entity/Invoice/InvoiceSeriesTemplate.yaml",
+        "title": "InvoiceSeriesTemplate",
+        "origin": "/home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas",
+        "globalImport": true
+      },
+      "title": "InvoiceSeriesTemplate"
+    },
+    "slashfi.models.entity.Invoice.InvoiceSlashPaymentMethodConfig.yaml": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/slashfi.models.entity.Invoice.PaymentMethod.PaymentMethodAchDebit.yaml",
+          "x-entrypoint": {
+            "virtualPath": "entity/Invoice/PaymentMethod/PaymentMethodAchDebit",
+            "sourcePath": "entity/Invoice/PaymentMethod/PaymentMethodAchDebit.yaml",
+            "title": "PaymentMethodAchDebit",
+            "origin": "/home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas",
+            "globalImport": true
+          }
+        },
+        {
+          "$ref": "#/$defs/slashfi.models.entity.Invoice.PaymentMethod.PaymentMethodCardPayment.yaml",
+          "x-entrypoint": {
+            "virtualPath": "entity/Invoice/PaymentMethod/PaymentMethodCardPayment",
+            "sourcePath": "entity/Invoice/PaymentMethod/PaymentMethodCardPayment.yaml",
+            "title": "PaymentMethodCardPayment",
+            "origin": "/home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas",
+            "globalImport": true
+          }
+        },
+        {
+          "$ref": "#/$defs/slashfi.models.entity.Invoice.PaymentMethod.PaymentMethodCryptoDeposit.yaml",
+          "x-entrypoint": {
+            "virtualPath": "entity/Invoice/PaymentMethod/PaymentMethodCryptoDeposit",
+            "sourcePath": "entity/Invoice/PaymentMethod/PaymentMethodCryptoDeposit.yaml",
+            "title": "PaymentMethodCryptoDeposit",
+            "origin": "/home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas",
+            "globalImport": true
+          }
+        },
+        {
+          "$ref": "#/$defs/slashfi.models.entity.Invoice.PaymentMethod.PaymentMethodInboundAchTransfer.yaml",
+          "x-entrypoint": {
+            "virtualPath": "entity/Invoice/PaymentMethod/PaymentMethodInboundAchTransfer",
+            "sourcePath": "entity/Invoice/PaymentMethod/PaymentMethodInboundAchTransfer.yaml",
+            "title": "PaymentMethodInboundAchTransfer",
+            "origin": "/home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas",
+            "globalImport": true
+          }
+        },
+        {
+          "$ref": "#/$defs/slashfi.models.entity.Invoice.PaymentMethod.PaymentMethodInboundInternationalWire.yaml",
+          "x-entrypoint": {
+            "virtualPath": "entity/Invoice/PaymentMethod/PaymentMethodInboundInternationalWire",
+            "sourcePath": "entity/Invoice/PaymentMethod/PaymentMethodInboundInternationalWire.yaml",
+            "title": "PaymentMethodInboundInternationalWire",
+            "origin": "/home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas",
+            "globalImport": true
+          }
+        },
+        {
+          "$ref": "#/$defs/slashfi.models.entity.Invoice.PaymentMethod.PaymentMethodInboundRtp.yaml",
+          "x-entrypoint": {
+            "virtualPath": "entity/Invoice/PaymentMethod/PaymentMethodInboundRtp",
+            "sourcePath": "entity/Invoice/PaymentMethod/PaymentMethodInboundRtp.yaml",
+            "title": "PaymentMethodInboundRtp",
+            "origin": "/home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas",
+            "globalImport": true
+          }
+        },
+        {
+          "$ref": "#/$defs/slashfi.models.entity.Invoice.PaymentMethod.PaymentMethodInboundWireTransfer.yaml",
+          "x-entrypoint": {
+            "virtualPath": "entity/Invoice/PaymentMethod/PaymentMethodInboundWireTransfer",
+            "sourcePath": "entity/Invoice/PaymentMethod/PaymentMethodInboundWireTransfer.yaml",
+            "title": "PaymentMethodInboundWireTransfer",
+            "origin": "/home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas",
+            "globalImport": true
+          }
+        }
+      ],
+      "x-entrypoint": {
+        "virtualPath": "entity/Invoice/InvoiceSlashPaymentMethodConfig",
+        "sourcePath": "entity/Invoice/InvoiceSlashPaymentMethodConfig.yaml",
+        "title": "InvoiceSlashPaymentMethodConfig",
+        "origin": "/home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas",
+        "globalImport": true
+      },
+      "title": "InvoiceSlashPaymentMethodConfig"
+    },
+    "slashfi.models.entity.Invoice.InvoiceTax.yaml": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "percentage"
+          ]
+        },
+        "percent": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "type",
+        "percent"
+      ],
+      "x-entrypoint": {
+        "virtualPath": "entity/Invoice/InvoiceTax",
+        "sourcePath": "entity/Invoice/InvoiceTax.yaml",
+        "title": "InvoiceTax",
+        "origin": "/home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas",
+        "globalImport": true
+      },
+      "title": "InvoiceTax"
+    },
+    "slashfi.models.entity.Invoice.LineItemsAndTotalsInput.yaml": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "lineItems": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/slashfi.models.entity.Invoice.InvoiceLineItem.yaml",
+            "x-entrypoint": {
+              "virtualPath": "entity/Invoice/InvoiceLineItem",
+              "sourcePath": "entity/Invoice/InvoiceLineItem.yaml",
+              "title": "InvoiceLineItem",
+              "origin": "/home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas",
+              "globalImport": true
+            }
+          },
+          "minItems": 1
+        },
+        "discount": {
+          "$ref": "#/$defs/slashfi.models.entity.Invoice.InvoiceDiscount.yaml",
+          "nullable": true,
+          "x-entrypoint": {
+            "virtualPath": "entity/Invoice/InvoiceDiscount",
+            "sourcePath": "entity/Invoice/InvoiceDiscount.yaml",
+            "title": "InvoiceDiscount",
+            "origin": "/home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas",
+            "globalImport": true
+          }
+        },
+        "tax": {
+          "$ref": "#/$defs/slashfi.models.entity.Invoice.InvoiceTax.yaml",
+          "nullable": true,
+          "x-entrypoint": {
+            "virtualPath": "entity/Invoice/InvoiceTax",
+            "sourcePath": "entity/Invoice/InvoiceTax.yaml",
+            "title": "InvoiceTax",
+            "origin": "/home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas",
+            "globalImport": true
+          }
+        }
+      },
+      "required": [
+        "lineItems"
+      ],
+      "x-entrypoint": {
+        "virtualPath": "entity/Invoice/LineItemsAndTotalsInput",
+        "sourcePath": "entity/Invoice/LineItemsAndTotalsInput.yaml",
+        "title": "LineItemsAndTotalsInput",
+        "origin": "/home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas",
+        "globalImport": true
+      },
+      "title": "LineItemsAndTotalsInput"
+    },
+    "slashfi.models.entity.Invoice.PaymentMethod.PaymentMethodAchDebit.yaml": {
+      "type": "object",
+      "properties": {
+        "method": {
+          "type": "string",
+          "enum": [
+            "ach_debit"
+          ]
+        },
+        "config": {
+          "type": "object",
+          "properties": {
+            "passFeeToPayer": {
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "passFeeToPayer"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "method",
+        "config"
+      ],
+      "x-entrypoint": {
+        "virtualPath": "entity/Invoice/PaymentMethod/PaymentMethodAchDebit",
+        "sourcePath": "entity/Invoice/PaymentMethod/PaymentMethodAchDebit.yaml",
+        "title": "PaymentMethodAchDebit",
+        "origin": "/home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas",
+        "globalImport": true
+      },
+      "title": "PaymentMethodAchDebit"
+    },
+    "slashfi.models.entity.Invoice.PaymentMethod.PaymentMethodCardPayment.yaml": {
+      "type": "object",
+      "properties": {
+        "method": {
+          "type": "string",
+          "enum": [
+            "acquiring_payment"
+          ]
+        },
+        "config": {
+          "type": "object",
+          "properties": {
+            "passFeeToPayer": {
+              "type": "boolean",
+              "enum": [
+                false
+              ]
+            }
+          },
+          "required": [
+            "passFeeToPayer"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "method",
+        "config"
+      ],
+      "x-entrypoint": {
+        "virtualPath": "entity/Invoice/PaymentMethod/PaymentMethodCardPayment",
+        "sourcePath": "entity/Invoice/PaymentMethod/PaymentMethodCardPayment.yaml",
+        "title": "PaymentMethodCardPayment",
+        "origin": "/home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas",
+        "globalImport": true
+      },
+      "title": "PaymentMethodCardPayment"
+    },
+    "slashfi.models.entity.Invoice.PaymentMethod.PaymentMethodCryptoDeposit.yaml": {
+      "type": "object",
+      "properties": {
+        "method": {
+          "type": "string",
+          "enum": [
+            "crypto_deposit"
+          ]
+        },
+        "config": {
+          "type": "object",
+          "properties": {
+            "passFeeToPayer": {
+              "type": "boolean"
+            },
+            "fiatRail": {
+              "$ref": "#/$defs/slashfi.models.enums.OffRamp.Method.yaml",
+              "x-entrypoint": {
+                "virtualPath": "enums/OffRamp/Method",
+                "sourcePath": "enums/OffRamp/Method.yaml",
+                "title": "Method",
+                "origin": "/home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas",
+                "globalImport": true
+              }
+            }
+          },
+          "required": [
+            "passFeeToPayer"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "method",
+        "config"
+      ],
+      "x-entrypoint": {
+        "virtualPath": "entity/Invoice/PaymentMethod/PaymentMethodCryptoDeposit",
+        "sourcePath": "entity/Invoice/PaymentMethod/PaymentMethodCryptoDeposit.yaml",
+        "title": "PaymentMethodCryptoDeposit",
+        "origin": "/home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas",
+        "globalImport": true
+      },
+      "title": "PaymentMethodCryptoDeposit"
+    },
+    "slashfi.models.entity.Invoice.PaymentMethod.PaymentMethodInboundAchTransfer.yaml": {
+      "type": "object",
+      "properties": {
+        "method": {
+          "type": "string",
+          "enum": [
+            "inbound_ach_transfer"
+          ]
+        },
+        "config": {
+          "type": "object",
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "method",
+        "config"
+      ],
+      "x-entrypoint": {
+        "virtualPath": "entity/Invoice/PaymentMethod/PaymentMethodInboundAchTransfer",
+        "sourcePath": "entity/Invoice/PaymentMethod/PaymentMethodInboundAchTransfer.yaml",
+        "title": "PaymentMethodInboundAchTransfer",
+        "origin": "/home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas",
+        "globalImport": true
+      },
+      "title": "PaymentMethodInboundAchTransfer"
+    },
+    "slashfi.models.entity.Invoice.PaymentMethod.PaymentMethodInboundInternationalWire.yaml": {
+      "type": "object",
+      "properties": {
+        "method": {
+          "type": "string",
+          "enum": [
+            "inbound_international_wire"
+          ]
+        },
+        "config": {
+          "type": "object",
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "method",
+        "config"
+      ],
+      "x-entrypoint": {
+        "virtualPath": "entity/Invoice/PaymentMethod/PaymentMethodInboundInternationalWire",
+        "sourcePath": "entity/Invoice/PaymentMethod/PaymentMethodInboundInternationalWire.yaml",
+        "title": "PaymentMethodInboundInternationalWire",
+        "origin": "/home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas",
+        "globalImport": true
+      },
+      "title": "PaymentMethodInboundInternationalWire"
+    },
+    "slashfi.models.entity.Invoice.PaymentMethod.PaymentMethodInboundRtp.yaml": {
+      "type": "object",
+      "properties": {
+        "method": {
+          "type": "string",
+          "enum": [
+            "inbound_rtp"
+          ]
+        },
+        "config": {
+          "type": "object",
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "method",
+        "config"
+      ],
+      "x-entrypoint": {
+        "virtualPath": "entity/Invoice/PaymentMethod/PaymentMethodInboundRtp",
+        "sourcePath": "entity/Invoice/PaymentMethod/PaymentMethodInboundRtp.yaml",
+        "title": "PaymentMethodInboundRtp",
+        "origin": "/home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas",
+        "globalImport": true
+      },
+      "title": "PaymentMethodInboundRtp"
+    },
+    "slashfi.models.entity.Invoice.PaymentMethod.PaymentMethodInboundWireTransfer.yaml": {
+      "type": "object",
+      "properties": {
+        "method": {
+          "type": "string",
+          "enum": [
+            "inbound_wire_transfer"
+          ]
+        },
+        "config": {
+          "type": "object",
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "method",
+        "config"
+      ],
+      "x-entrypoint": {
+        "virtualPath": "entity/Invoice/PaymentMethod/PaymentMethodInboundWireTransfer",
+        "sourcePath": "entity/Invoice/PaymentMethod/PaymentMethodInboundWireTransfer.yaml",
+        "title": "PaymentMethodInboundWireTransfer",
+        "origin": "/home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas",
+        "globalImport": true
+      },
+      "title": "PaymentMethodInboundWireTransfer"
+    },
+    "slashfi.models.enums.OffRamp.Method.yaml": {
+      "type": "string",
+      "enum": [
+        "wire",
+        "ach",
+        "instant"
+      ],
+      "x-entrypoint": {
+        "virtualPath": "enums/OffRamp/Method",
+        "sourcePath": "enums/OffRamp/Method.yaml",
+        "title": "Method",
+        "origin": "/home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas",
+        "globalImport": true
+      },
+      "title": "Method"
+    }
+  }
+}

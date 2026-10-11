@@ -1,14 +1,15 @@
 ---
-name: Move money between Slash accounts
+name: slash-move-money
 description: Safely execute an intra-Slash book transfer or a virtual-account transfer, using idempotency keys so retries never double-spend.
 api: openapi/slash-openapi-original.json
 operations:
-  - GET /legal-entity
-  - GET /account
-  - GET /account/{accountId}/balance
-  - POST /transfers/book-transfer
-  - POST /transfer/virtual-account
-  - GET /transaction/{transactionId}
+- getLegalEntity
+- getAccount
+- getAccountByAccountIdBalance
+- postTransfersBookTransfer
+- postTransferVirtualAccount
+- getTransactionByTransactionId
+title: Move money between Slash accounts
 ---
 
 # Move money between Slash accounts

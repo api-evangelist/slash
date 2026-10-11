@@ -1,0 +1,97 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/slash/main/json-schema/slash-balance-schema.json",
+  "title": "Balance",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/slash-account-api-openapi.yml#/components/schemas/Balance",
+  "type": "object",
+  "properties": {
+    "accountId": {
+      "type": "string",
+      "description": "The ID of the account associated with the balance."
+    },
+    "type": {
+      "type": "string",
+      "description": "The type of balance.\n- \"cash\" represents the excess balance not used as collateral for the charge card. Not applicable to debit accounts.\n- \"credit\" represents the balance that can be spent on the charge card. Not applicable to debit accounts.\n- \"debit\" represents the balance that can be spent or withdrawn. Not applicable to charge card accounts.\n",
+      "enum": [
+        "cash",
+        "credit",
+        "debit"
+      ]
+    },
+    "available": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/Money",
+          "x-entrypoint": {
+            "virtualPath": "schemas/Money",
+            "sourcePath": "schemas/Money.yaml",
+            "title": "Money",
+            "origin": "./src/publicApi"
+          }
+        },
+        {
+          "description": "The amount of money that is immediately available to use. \n- For \"credit\" balances, this is the immediately available amount that can be spent on the charge card.\n- For \"cash\" balances, this value represents the immediately available excess cash that is not being used as collateral for the charge card. You can choose to transfer more than these funds to your bank account, but any amount not coverable by the available balance will be removed from the charge card's collateral balance (the \"credit\" balance).\n- For \"debit\" balances, this is the amount of money available that can be spent or withdrawn immediately.\n"
+        }
+      ]
+    },
+    "posted": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/Money",
+          "x-entrypoint": {
+            "virtualPath": "schemas/Money",
+            "sourcePath": "schemas/Money.yaml",
+            "title": "Money",
+            "origin": "./src/publicApi"
+          }
+        },
+        {
+          "description": "The amount of money that has been posted to the account. This value does not include any pending transactions and instead represents the amount of money that has been posted to the balance.\n"
+        }
+      ]
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The UTC timestamp associated with the balance. Since the balance can change rapidly, the timestamp is included to indicate the time when the balance was computed."
+    }
+  },
+  "required": [
+    "accountId",
+    "type",
+    "available",
+    "posted",
+    "timestamp"
+  ],
+  "x-entrypoint": {
+    "virtualPath": "schemas/Balance",
+    "sourcePath": "schemas/Balance.yaml",
+    "title": "Balance",
+    "origin": "./src/publicApi"
+  },
+  "$defs": {
+    "Money": {
+      "type": "object",
+      "description": "Represents a monetary value",
+      "properties": {
+        "amountCents": {
+          "type": "integer",
+          "description": "The amount in cents"
+        }
+      },
+      "required": [
+        "amountCents"
+      ],
+      "x-entrypoint": {
+        "virtualPath": "schemas/Money",
+        "sourcePath": "schemas/Money.yaml",
+        "title": "Money",
+        "origin": "./src/publicApi"
+      },
+      "title": "Money"
+    }
+  }
+}

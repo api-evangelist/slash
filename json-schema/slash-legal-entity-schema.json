@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/slash/main/json-schema/slash-legal-entity-schema.json",
+  "title": "LegalEntity",
+  "description": "A legal entity is an entity (either a person or a business) that can own accounts.\nIf you are using the API with an API key, your API key will only be associated with one legal entity, so you will not need to specify the legal entity ID in most endpoints.\nIf you are using the API with an OAuth2 access token, you can filter the results of most endpoints to only show data for a specific legal entity by specifying the legal entity ID in the URL.\n",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/slash-legal-entity-api-openapi.yml#/components/schemas/LegalEntity",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "structure": {
+      "type": "string",
+      "description": "Will be empty in rare cases where the legal entity has not yet been fully created.",
+      "enum": [
+        "person",
+        "llc",
+        "lp",
+        "llp",
+        "gp",
+        "partnership",
+        "cooperative",
+        "ccorp",
+        "scorp",
+        "other"
+      ]
+    }
+  },
+  "required": [
+    "id",
+    "name"
+  ],
+  "x-entrypoint": {
+    "virtualPath": "schemas/LegalEntity",
+    "sourcePath": "schemas/LegalEntity.yaml",
+    "title": "LegalEntity",
+    "origin": "./src/publicApi"
+  }
+}

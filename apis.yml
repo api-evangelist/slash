@@ -1,17 +1,14 @@
 aid: slash
+
 name: Slash
-description: >-
-  Slash is a business banking and finance platform for modern companies —
-  startups, agencies, e-commerce sellers, and enterprises — combining business
-  checking, unlimited virtual and physical corporate cards, ACH/wire and
-  real-time payments, global USD accounts, stablecoin on/off ramps, treasury,
-  invoicing, expense management, and reporting on one platform. Founded in 2021
-  and valued at $1.4B after a 2026 Series C led by Ribbit Capital, Slash exposes
-  a REST API (currently in Beta) covering accounts, virtual accounts, cards and
-  card groups, transactions, transfers, invoices, contacts and customers,
-  expense reports, webhooks, and FDX-compliant financial data access — plus an
-  official hosted MCP server, Agent Requests with human-in-the-loop approval,
-  and Python and Node.js SDKs for AI-agent and programmatic integration.
+
+description: Slash is a business banking and finance platform for modern companies — startups, agencies, e-commerce sellers, and enterprises —
+  combining business checking, unlimited virtual and physical corporate cards, ACH/wire and real-time payments, global USD accounts, stablecoin
+  on/off ramps, treasury, invoicing, expense management, and reporting on one platform. Founded in 2021 and valued at $1.4B after a 2026 Series
+  C led by Ribbit Capital, Slash exposes a REST API (currently in Beta) covering accounts, virtual accounts, cards and card groups, transactions,
+  transfers, invoices, contacts and customers, expense reports, webhooks, and FDX-compliant financial data access — plus an official hosted MCP
+  server, Agent Requests with human-in-the-loop approval, and Python and Node.js SDKs for AI-agent and programmatic integration.
+
 deliveryModel:
   model: saas
   open_source: false
@@ -24,6 +21,7 @@ deliveryModel:
   - pricing
   generated: '2026-08-28'
   method: derived
+
 accessModel:
   pricing: unknown
   onboarding: unknown
@@ -38,24 +36,36 @@ accessModel:
   - security
   generated: '2026-09-03'
   method: derived
+
 image: https://www.slash.com/images/social-previews/index.jpg
+
 url: https://raw.githubusercontent.com/api-evangelist/slash/refs/heads/main/apis.yml
+
 x-type: company
+
 x-source: vc-portfolio
+
 x-backed-by:
 - menlo-ventures
 - nea
 - ribbit-capital
+
 x-tier: enriched
+
 x-tier-reason: portfolio-lead-enriched
+
 specificationVersion: '0.23'
+
 created: '2026-07-17'
+
 modified: '2026-10-06'
+
 x-enrichment:
-  date: '2026-07-21'
+  date: '2026-10-12'
   status: enriched
-  artifacts_added: 24
-  pass: local-v1
+  artifacts_added: 2
+  pass: local-v5
+
 tags:
 - Company
 - Banking
@@ -68,6 +78,7 @@ tags:
 - Expense Management
 - Treasury
 - FDX
+
 tags_raw:
 - Company
 - Banking
@@ -81,11 +92,122 @@ tags_raw:
 - Treasury
 - FDX
 - Financial-Services
+
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
+
+common:
+- type: Spectral
+  url: rules/slash-rules.yml
+- type: JSONLD
+  url: json-ld/slash-context.jsonld
+- type: Vocabulary
+  url: vocabulary/slash-vocabulary.yml
+- type: Deprecation
+  url: lifecycle/slash-lifecycle.yml
+- type: StatusPage
+  url: https://slash.statuspage.io
+- type: DeclineCodes
+  url: errors/slash-decline-codes.yml
+- type: AgentCard
+  url: a2a/slash-a2a.yml
+- type: ToolCrosswalk
+  url: mcp/slash-tool-crosswalk.yml
+- type: Hosts
+  url: hosts/slash-hosts.yml
+- type: IntegrationEdges
+  url: integrations/slash-integration-edges.yml
+- type: Vendors
+  url: vendors/slash-vendors.yml
+- url: https://www.slash.com/blog/rss.xml
+  type: BlogRSS
+- type: RateLimits
+  url: rate-limits/slash-rate-limits.yml
+- type: Plans
+  url: plans/slash-plans-pricing.yml
+- type: CapabilityMap
+  url: capabilities/slash-capability-edges.yml
+  name: Slash Business Capability Map
+- type: Overlay
+  url: overlays/slash-openapi-overlay.yaml
+- type: PostmanWorkspace
+  url: https://www.postman.com/kinlaneapi/slash/overview
+- type: Website
+  url: https://slash.com
+- type: DeveloperPortal
+  url: https://docs.slash.com
+- type: Documentation
+  url: https://docs.slash.com
+- type: APIReference
+  url: https://docs.slash.com/api-reference
+- type: GettingStarted
+  url: https://docs.slash.com/introduction
+- type: ChangeLog
+  url: changelog/slash-changelog.yml
+- type: Changelog
+  url: https://docs.slash.com/changelog
+- type: Blog
+  url: https://www.slash.com/blog
+- type: Support
+  url: https://www.slash.com/help-center
+- type: GitHubOrganization
+  url: https://github.com/slashfi
+- type: Pricing
+  url: https://www.slash.com/pricing
+- type: SignUp
+  url: https://app.slash.com/register
+- type: Login
+  url: https://app.slash.com/login
+- type: TermsOfService
+  url: https://www.slash.com/legal/terms-of-service
+- type: PrivacyPolicy
+  url: https://www.slash.com/legal/privacy-policy
+- type: Packages
+  url: packages/slash-packages.yml
+- type: SDKs
+  url: packages/slash-packages.yml
+- type: MCPServer
+  url: mcp/slash-mcp.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: LLMsTxt
+  url: llms/slash-llms.txt
+- type: WellKnown
+  url: well-known/slash-well-known.yml
+- type: SecurityTxt
+  url: well-known/slash-security.txt
+- type: Conformance
+  url: conformance/slash-conformance.yml
+- type: Compliance
+  url: https://www.slash.com/company/security
+- type: Lifecycle
+  url: lifecycle/slash-lifecycle.yml
+- type: Authentication
+  url: authentication/slash-authentication.yml
+- type: OAuthScopes
+  url: scopes/slash-scopes.yml
+- type: Conventions
+  url: conventions/slash-conventions.yml
+- type: Idempotency
+  url: conventions/slash-conventions.yml
+- type: ErrorCatalog
+  url: errors/slash-problem-types.yml
+- type: DataModel
+  url: data-model/slash-data-model.yml
+- type: Webhooks
+  url: asyncapi/slash-webhooks.yml
+- type: AgenticAccess
+  url: agentic-access/slash-agentic-access.yml
+- type: VulnerabilityDisclosure
+  url: security/slash-vulnerability-disclosure.yml
+- type: Security
+  url: https://www.slash.com/company/security
+- type: DomainSecurity
+  url: security/slash-domain-security.yml
+
 apis:
 - aid: slash:slash-account-api
   name: Slash Account API
@@ -119,6 +241,16 @@ apis:
     url: asyncapi/slash-webhooks.yml
   - type: AgenticAccess
     url: agentic-access/slash-agentic-access.yml
+  - type: JSONSchema
+    url: json-schema/slash-balance-schema.json
+  - type: JSONSchema
+    url: json-schema/slash-authorization-webhook-config-schema.json
+  - type: JSONSchema
+    url: json-schema/slash-authorization-webhook-schema.json
+  - type: JSONSchema
+    url: json-schema/slash-account-schema.json
+  - type: JSONSchema
+    url: json-schema/slash-pagination-pagination-response-schema.json
 - aid: slash:slash-agent-requests-api
   name: Slash Agent Requests API
   description: The Agent Requests API from Slash — 2 operation(s) for agent requests.
@@ -151,6 +283,10 @@ apis:
     url: asyncapi/slash-webhooks.yml
   - type: AgenticAccess
     url: agentic-access/slash-agentic-access.yml
+  - type: JSONSchema
+    url: json-schema/slash-agent-request-schema.json
+  - type: JSONSchema
+    url: json-schema/slash-pagination-pagination-response-schema.json
 - aid: slash:slash-analytics-api
   name: Slash Analytics API
   description: The Analytics API from Slash — 1 operation(s) for analytics.
@@ -183,6 +319,10 @@ apis:
     url: asyncapi/slash-webhooks.yml
   - type: AgenticAccess
     url: agentic-access/slash-agentic-access.yml
+  - type: JSONSchema
+    url: json-schema/slash-paths-analytics-dto-post-response-schema.json
+  - type: JSONSchema
+    url: json-schema/slash-paths-analytics-dto-post-request-schema.json
 - aid: slash:slash-card-api
   name: Slash Card API
   description: The Card API from Slash — 5 operation(s) for card.
@@ -217,6 +357,18 @@ apis:
     url: asyncapi/slash-webhooks.yml
   - type: AgenticAccess
     url: agentic-access/slash-agentic-access.yml
+  - type: JSONSchema
+    url: json-schema/slash-spending-constraint-schema.json
+  - type: JSONSchema
+    url: json-schema/slash-partial-spending-constraint-schema.json
+  - type: JSONSchema
+    url: json-schema/slash-card-schema.json
+  - type: JSONSchema
+    url: json-schema/slash-card-group-utilization-schema.json
+  - type: JSONSchema
+    url: json-schema/slash-pagination-pagination-response-schema.json
+  - type: JSONSchema
+    url: json-schema/slash-card-modifier-schema.json
 - aid: slash:slash-card-group-api
   name: Slash Card Group API
   description: The Card Group API from Slash — 4 operation(s) for card group.
@@ -249,6 +401,16 @@ apis:
     url: asyncapi/slash-webhooks.yml
   - type: AgenticAccess
     url: agentic-access/slash-agentic-access.yml
+  - type: JSONSchema
+    url: json-schema/slash-spending-constraint-schema.json
+  - type: JSONSchema
+    url: json-schema/slash-partial-spending-constraint-schema.json
+  - type: JSONSchema
+    url: json-schema/slash-card-group-utilization-schema.json
+  - type: JSONSchema
+    url: json-schema/slash-card-group-schema.json
+  - type: JSONSchema
+    url: json-schema/slash-pagination-pagination-response-schema.json
 - aid: slash:slash-card-product-api
   name: Slash Card Product API
   description: The Card Product API from Slash — 1 operation(s) for card product.
@@ -281,6 +443,10 @@ apis:
     url: asyncapi/slash-webhooks.yml
   - type: AgenticAccess
     url: agentic-access/slash-agentic-access.yml
+  - type: JSONSchema
+    url: json-schema/slash-pagination-pagination-response-schema.json
+  - type: JSONSchema
+    url: json-schema/slash-card-product-schema.json
 - aid: slash:slash-contact-api
   name: Slash Contact API
   description: The Contact API from Slash — 3 operation(s) for contact.
@@ -313,6 +479,12 @@ apis:
     url: asyncapi/slash-webhooks.yml
   - type: AgenticAccess
     url: agentic-access/slash-agentic-access.yml
+  - type: JSONSchema
+    url: json-schema/slash-contact-schema.json
+  - type: JSONSchema
+    url: json-schema/slash-slashfi-models-entity-iaddress-model-yaml-schema.json
+  - type: JSONSchema
+    url: json-schema/slash-pagination-pagination-response-schema.json
 - aid: slash:slash-crypto-api
   name: Slash Crypto API
   description: The Crypto API from Slash — 1 operation(s) for crypto.
@@ -345,6 +517,10 @@ apis:
     url: asyncapi/slash-webhooks.yml
   - type: AgenticAccess
     url: agentic-access/slash-agentic-access.yml
+  - type: JSONSchema
+    url: json-schema/slash-crypto-address-schema.json
+  - type: JSONSchema
+    url: json-schema/slash-crypto-wallet-schema.json
 - aid: slash:slash-customer-api
   name: Slash Customer API
   description: The Customer API from Slash — 3 operation(s) for customer.
@@ -379,6 +555,12 @@ apis:
     url: asyncapi/slash-webhooks.yml
   - type: AgenticAccess
     url: agentic-access/slash-agentic-access.yml
+  - type: JSONSchema
+    url: json-schema/slash-customer-schema.json
+  - type: JSONSchema
+    url: json-schema/slash-slashfi-models-entity-iaddress-model-yaml-schema.json
+  - type: JSONSchema
+    url: json-schema/slash-pagination-pagination-response-schema.json
 - aid: slash:slash-developer-account-api
   name: Slash Developer Account API
   description: The Developer Account API from Slash — 1 operation(s) for developer account.
@@ -411,6 +593,12 @@ apis:
     url: asyncapi/slash-webhooks.yml
   - type: AgenticAccess
     url: agentic-access/slash-agentic-access.yml
+  - type: JSONSchema
+    url: json-schema/slash-developer-application-developer-application-data-schema.json
+  - type: JSONSchema
+    url: json-schema/slash-developer-application-developer-application-model-schema.json
+  - type: JSONSchema
+    url: json-schema/slash-developer-application-developer-application-type-schema.json
 - aid: slash:slash-developer-application-api
   name: Slash Developer Application API
   description: The Developer Application API from Slash — 2 operation(s) for developer application.
@@ -443,6 +631,10 @@ apis:
     url: asyncapi/slash-webhooks.yml
   - type: AgenticAccess
     url: agentic-access/slash-agentic-access.yml
+  - type: JSONSchema
+    url: json-schema/slash-developer-application-developer-application-data-schema.json
+  - type: JSONSchema
+    url: json-schema/slash-developer-application-developer-application-model-schema.json
 - aid: slash:slash-expense-report-api
   name: Slash Expense Report API
   description: The Expense Report API from Slash — 7 operation(s) for expense report.
@@ -475,6 +667,14 @@ apis:
     url: asyncapi/slash-webhooks.yml
   - type: AgenticAccess
     url: agentic-access/slash-agentic-access.yml
+  - type: JSONSchema
+    url: json-schema/slash-slashfi-models-entity-expense-report-public-expense-report-with-metadata-yaml-schema.json
+  - type: JSONSchema
+    url: json-schema/slash-slashfi-models-entity-expense-report-parsed-receipt-yaml-schema.json
+  - type: JSONSchema
+    url: json-schema/slash-slashfi-models-entity-expense-report-reimbursement-source-yaml-schema.json
+  - type: JSONSchema
+    url: json-schema/slash-pagination-pagination-response-schema.json
 - aid: slash:slash-fdx-api
   name: Slash Fdx API
   description: The Fdx API from Slash — 8 operation(s) for fdx.
@@ -509,6 +709,18 @@ apis:
     url: asyncapi/slash-webhooks.yml
   - type: AgenticAccess
     url: agentic-access/slash-agentic-access.yml
+  - type: JSONSchema
+    url: json-schema/slash-paths-fdx-accounts-param-account-id-transactions-dto-investment-transaction-schema.json
+  - type: JSONSchema
+    url: json-schema/slash-paths-fdx-accounts-param-account-id-transactions-dto-line-of-credit-transaction-schema.json
+  - type: JSONSchema
+    url: json-schema/slash-paths-fdx-accounts-param-account-id-transactions-dto-deposit-transaction-schema.json
+  - type: JSONSchema
+    url: json-schema/slash-paths-fdx-accounts-param-account-id-transactions-dto-loan-transaction-schema.json
+  - type: JSONSchema
+    url: json-schema/slash-paths-fdx-accounts-dto-account-with-balance-schema.json
+  - type: JSONSchema
+    url: json-schema/slash-paths-fdx-accounts-dto-account-schema.json
 - aid: slash:slash-invoice-api
   name: Slash Invoice API
   description: The Invoice API from Slash — 13 operation(s) for invoice.
@@ -543,6 +755,18 @@ apis:
     url: asyncapi/slash-webhooks.yml
   - type: AgenticAccess
     url: agentic-access/slash-agentic-access.yml
+  - type: JSONSchema
+    url: json-schema/slash-slashfi-models-entity-invoice-invoice-slash-payment-method-config-yaml-schema.json
+  - type: JSONSchema
+    url: json-schema/slash-slashfi-models-entity-invoice-invoice-series-yaml-schema.json
+  - type: JSONSchema
+    url: json-schema/slash-slashfi-models-entity-invoice-invoice-series-input-yaml-schema.json
+  - type: JSONSchema
+    url: json-schema/slash-slashfi-models-entity-invoice-invoice-settings-data-yaml-schema.json
+  - type: JSONSchema
+    url: json-schema/slash-slashfi-models-entity-invoice-invoice-details-input-yaml-schema.json
+  - type: JSONSchema
+    url: json-schema/slash-slashfi-models-entity-invoice-invoice-aggregate-yaml-schema.json
 - aid: slash:slash-legal-entity-api
   name: Slash Legal Entity API
   description: The Legal Entity API from Slash — 1 operation(s) for legal entity.
@@ -575,6 +799,10 @@ apis:
     url: asyncapi/slash-webhooks.yml
   - type: AgenticAccess
     url: agentic-access/slash-agentic-access.yml
+  - type: JSONSchema
+    url: json-schema/slash-legal-entity-schema.json
+  - type: JSONSchema
+    url: json-schema/slash-pagination-pagination-response-schema.json
 - aid: slash:slash-merchant-api
   name: Slash Merchant API
   description: The Merchant API from Slash — 2 operation(s) for merchant.
@@ -609,6 +837,10 @@ apis:
     url: asyncapi/slash-webhooks.yml
   - type: AgenticAccess
     url: agentic-access/slash-agentic-access.yml
+  - type: JSONSchema
+    url: json-schema/slash-pagination-pagination-response-schema.json
+  - type: JSONSchema
+    url: json-schema/slash-merchant-schema.json
 - aid: slash:slash-merchant-category-api
   name: Slash Merchant Category API
   description: The Merchant Category API from Slash — 1 operation(s) for merchant category.
@@ -641,6 +873,10 @@ apis:
     url: asyncapi/slash-webhooks.yml
   - type: AgenticAccess
     url: agentic-access/slash-agentic-access.yml
+  - type: JSONSchema
+    url: json-schema/slash-pagination-pagination-response-schema.json
+  - type: JSONSchema
+    url: json-schema/slash-merchant-category-schema.json
 - aid: slash:slash-task-api
   name: Slash Task API
   description: The Task API from Slash — 4 operation(s) for task.
@@ -673,6 +909,10 @@ apis:
     url: asyncapi/slash-webhooks.yml
   - type: AgenticAccess
     url: agentic-access/slash-agentic-access.yml
+  - type: JSONSchema
+    url: json-schema/slash-pagination-pagination-response-schema.json
+  - type: JSONSchema
+    url: json-schema/slash-paths-task-dto-task-response-schema.json
 - aid: slash:slash-tokens-api
   name: Slash Tokens API
   description: The Tokens API from Slash — 1 operation(s) for tokens.
@@ -737,6 +977,12 @@ apis:
     url: asyncapi/slash-webhooks.yml
   - type: AgenticAccess
     url: agentic-access/slash-agentic-access.yml
+  - type: JSONSchema
+    url: json-schema/slash-transaction-schema.json
+  - type: JSONSchema
+    url: json-schema/slash-fee-transaction-schema.json
+  - type: JSONSchema
+    url: json-schema/slash-pagination-pagination-response-schema.json
 - aid: slash:slash-transfer-api
   name: Slash Transfer API
   description: The Transfer API from Slash — 1 operation(s) for transfer.
@@ -835,6 +1081,16 @@ apis:
     url: asyncapi/slash-webhooks.yml
   - type: AgenticAccess
     url: agentic-access/slash-agentic-access.yml
+  - type: JSONSchema
+    url: json-schema/slash-virtual-account-commission-details-schema.json
+  - type: JSONSchema
+    url: json-schema/slash-virtual-account-schema.json
+  - type: JSONSchema
+    url: json-schema/slash-virtual-account-model-schema.json
+  - type: JSONSchema
+    url: json-schema/slash-virtual-account-commission-rule-schema.json
+  - type: JSONSchema
+    url: json-schema/slash-pagination-pagination-response-schema.json
 - aid: slash:slash-webhook-api
   name: Slash Webhook API
   description: The Webhook API from Slash — 2 operation(s) for webhook.
@@ -867,6 +1123,10 @@ apis:
     url: asyncapi/slash-webhooks.yml
   - type: AgenticAccess
     url: agentic-access/slash-agentic-access.yml
+  - type: JSONSchema
+    url: json-schema/slash-webhook-schema.json
+  - type: JSONSchema
+    url: json-schema/slash-pagination-pagination-response-schema.json
 - aid: slash:slash-well-known-api
   name: Slash .well Known API
   description: The .well Known API from Slash — 1 operation(s) for .well known.
@@ -899,6 +1159,8 @@ apis:
     url: asyncapi/slash-webhooks.yml
   - type: AgenticAccess
     url: agentic-access/slash-agentic-access.yml
+  - type: JSONSchema
+    url: json-schema/slash-developer-application-scope-schema.json
 - aid: slash:slash-oauth2-api
   name: Slash Oauth2 API
   description: The Oauth2 API from Slash — 2 operation(s) for oauth2.
@@ -933,89 +1195,5 @@ apis:
     url: asyncapi/slash-webhooks.yml
   - type: AgenticAccess
     url: agentic-access/slash-agentic-access.yml
-common:
-- url: https://www.slash.com/blog/rss.xml
-  type: BlogRSS
-- type: RateLimits
-  url: rate-limits/slash-rate-limits.yml
-- type: Plans
-  url: plans/slash-plans-pricing.yml
-- type: CapabilityMap
-  url: capabilities/slash-capability-edges.yml
-  name: Slash Business Capability Map
-- type: Overlay
-  url: overlays/slash-openapi-overlay.yaml
-- type: PostmanWorkspace
-  url: https://www.postman.com/kinlaneapi/slash/overview
-- type: Website
-  url: https://slash.com
-- type: DeveloperPortal
-  url: https://docs.slash.com
-- type: Documentation
-  url: https://docs.slash.com
-- type: APIReference
-  url: https://docs.slash.com/api-reference
-- type: GettingStarted
-  url: https://docs.slash.com/introduction
-- type: ChangeLog
-  url: changelog/slash-changelog.yml
-- type: Changelog
-  url: https://docs.slash.com/changelog
-- type: Blog
-  url: https://www.slash.com/blog
-- type: Support
-  url: https://www.slash.com/help-center
-- type: GitHubOrganization
-  url: https://github.com/slashfi
-- type: Pricing
-  url: https://www.slash.com/pricing
-- type: SignUp
-  url: https://app.slash.com/register
-- type: Login
-  url: https://app.slash.com/login
-- type: TermsOfService
-  url: https://www.slash.com/legal/terms-of-service
-- type: PrivacyPolicy
-  url: https://www.slash.com/legal/privacy-policy
-- type: Packages
-  url: packages/slash-packages.yml
-- type: SDKs
-  url: packages/slash-packages.yml
-- type: MCPServer
-  url: mcp/slash-mcp.yml
-- type: AgentSkill
-  url: skills/_index.yml
-- type: LLMsTxt
-  url: llms/slash-llms.txt
-- type: WellKnown
-  url: well-known/slash-well-known.yml
-- type: SecurityTxt
-  url: well-known/slash-security.txt
-- type: Conformance
-  url: conformance/slash-conformance.yml
-- type: Compliance
-  url: https://www.slash.com/company/security
-- type: Lifecycle
-  url: lifecycle/slash-lifecycle.yml
-- type: Authentication
-  url: authentication/slash-authentication.yml
-- type: OAuthScopes
-  url: scopes/slash-scopes.yml
-- type: Conventions
-  url: conventions/slash-conventions.yml
-- type: Idempotency
-  url: conventions/slash-conventions.yml
-- type: ErrorCatalog
-  url: errors/slash-problem-types.yml
-- type: DataModel
-  url: data-model/slash-data-model.yml
-- type: Webhooks
-  url: asyncapi/slash-webhooks.yml
-- type: AgenticAccess
-  url: agentic-access/slash-agentic-access.yml
-- type: VulnerabilityDisclosure
-  url: security/slash-vulnerability-disclosure.yml
-- type: Security
-  url: https://www.slash.com/company/security
-- type: DomainSecurity
-  url: security/slash-domain-security.yml
+  - type: JSONSchema
+    url: json-schema/slash-paths-oauth2-userinfo-dto-user-info-response-schema.json

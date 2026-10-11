@@ -1,0 +1,240 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/slash/main/json-schema/slash-authorization-webhook-schema.json",
+  "title": "AuthorizationWebhook",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/slash-account-api-openapi.yml#/components/schemas/AuthorizationWebhook",
+  "type": "object",
+  "properties": {
+    "webhookUrl": {
+      "type": "string",
+      "description": "The URL where authorization webhook events will be sent"
+    },
+    "signingSecret": {
+      "type": "string",
+      "description": "Secret used for signing webhook payloads"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "active",
+        "inactive"
+      ],
+      "description": "Current status of the webhook"
+    },
+    "timeoutDurationMs": {
+      "type": "integer",
+      "description": "The timeout duration in milliseconds for webhook requests"
+    },
+    "config": {
+      "$ref": "#/$defs/AuthorizationWebhookConfig",
+      "description": "Configuration specific to the authorization webhook",
+      "x-entrypoint": {
+        "virtualPath": "schemas/AuthorizationWebhookConfig",
+        "sourcePath": "schemas/AuthorizationWebhookConfig.yaml",
+        "title": "AuthorizationWebhookConfig",
+        "origin": "./src/publicApi"
+      }
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the webhook was created"
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the webhook was last updated"
+    }
+  },
+  "required": [
+    "webhookUrl",
+    "signingSecret",
+    "status",
+    "timeoutDurationMs",
+    "config",
+    "createdAt",
+    "updatedAt"
+  ],
+  "x-entrypoint": {
+    "virtualPath": "schemas/AuthorizationWebhook",
+    "sourcePath": "schemas/AuthorizationWebhook.yaml",
+    "title": "AuthorizationWebhook",
+    "origin": "./src/publicApi"
+  },
+  "$defs": {
+    "AuthorizationWebhookCondition": {
+      "description": "A condition expression evaluated against a card authorization, used to decide whether the `default` fallback behavior applies to that transaction.\n\nConditions form a small expression tree:\n- Logical nodes (`and` / `or`) combine two sub-conditions and can be nested.\n- Comparison leaves (`lte`, `lt`, `gte`, `gt`, `eq`) test the transaction amount (`amountCents`, the absolute amount in USD cents).\n- Set-membership leaves (`in`) test whether the transaction's `merchantCategoryCode` (4-digit MCC) or `merchantCountry` (ISO 3166-1 alpha-2, as delivered on the authorization request event's `merchant.location.country`) is one of the given values.\n\nA condition over a field the authorization request did not carry evaluates to false.\n",
+      "oneOf": [
+        {
+          "type": "object",
+          "description": "Logical node: combines two sub-conditions with `and` (both must match) or `or` (either must match). Sub-conditions may themselves be logical nodes.\n",
+          "properties": {
+            "operator": {
+              "type": "string",
+              "enum": [
+                "and",
+                "or"
+              ],
+              "description": "How the two sub-conditions are combined."
+            },
+            "left": {
+              "$ref": "#/$defs/AuthorizationWebhookCondition",
+              "description": "The first sub-condition.",
+              "x-entrypoint": {
+                "virtualPath": "schemas/AuthorizationWebhookCondition",
+                "sourcePath": "schemas/AuthorizationWebhookCondition.yaml",
+                "title": "AuthorizationWebhookCondition",
+                "origin": "./src/publicApi"
+              }
+            },
+            "right": {
+              "$ref": "#/$defs/AuthorizationWebhookCondition",
+              "description": "The second sub-condition.",
+              "x-entrypoint": {
+                "virtualPath": "schemas/AuthorizationWebhookCondition",
+                "sourcePath": "schemas/AuthorizationWebhookCondition.yaml",
+                "title": "AuthorizationWebhookCondition",
+                "origin": "./src/publicApi"
+              }
+            }
+          },
+          "required": [
+            "operator",
+            "left",
+            "right"
+          ]
+        },
+        {
+          "type": "object",
+          "description": "Amount comparison leaf: tests the absolute transaction amount in USD cents against `value`.\n",
+          "properties": {
+            "operator": {
+              "type": "string",
+              "enum": [
+                "lte",
+                "lt",
+                "gte",
+                "gt",
+                "eq"
+              ],
+              "description": "The comparison to apply: less-than-or-equal, less-than, greater-than-or-equal, greater-than, or equal."
+            },
+            "field": {
+              "type": "string",
+              "enum": [
+                "amountCents"
+              ],
+              "description": "The transaction field being compared. Amounts are compared as absolute values in USD cents."
+            },
+            "value": {
+              "type": "integer",
+              "description": "The amount in USD cents to compare against."
+            }
+          },
+          "required": [
+            "operator",
+            "field",
+            "value"
+          ]
+        },
+        {
+          "type": "object",
+          "description": "Set-membership leaf: tests whether the transaction's merchant category code or merchant country is one of `values`.\n",
+          "properties": {
+            "operator": {
+              "type": "string",
+              "enum": [
+                "in"
+              ],
+              "description": "Matches when the transaction's field value is one of `values`."
+            },
+            "field": {
+              "type": "string",
+              "enum": [
+                "merchantCategoryCode",
+                "merchantCountry"
+              ],
+              "description": "`merchantCategoryCode` is the 4-digit MCC; `merchantCountry` is the ISO 3166-1 alpha-2 merchant country."
+            },
+            "values": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "The set of values to match against."
+            }
+          },
+          "required": [
+            "operator",
+            "field",
+            "values"
+          ]
+        }
+      ],
+      "x-entrypoint": {
+        "virtualPath": "schemas/AuthorizationWebhookCondition",
+        "sourcePath": "schemas/AuthorizationWebhookCondition.yaml",
+        "title": "AuthorizationWebhookCondition",
+        "origin": "./src/publicApi"
+      },
+      "title": "AuthorizationWebhookCondition"
+    },
+    "AuthorizationWebhookConfig": {
+      "description": "Configuration specific to the authorization webhook, discriminated on `fallbackBehavior`.\n\nThe fallback behavior is used when the webhook cannot produce an answer — it fails to send a response in time, sends an invalid response, or cannot be reached (including while Slash is operating in a degraded mode where external webhooks cannot be consulted):\n- `reject`: the transaction is declined.\n- `default`: the transaction continues through Slash's standard authorization flow (balance and limit checks still apply). If a `when` condition is provided, only transactions matching the condition continue; non-matching transactions are declined.\n",
+      "oneOf": [
+        {
+          "type": "object",
+          "description": "Always decline the transaction when the webhook cannot produce an answer.",
+          "properties": {
+            "fallbackBehavior": {
+              "type": "string",
+              "enum": [
+                "reject"
+              ],
+              "description": "The transaction will be declined."
+            }
+          },
+          "required": [
+            "fallbackBehavior"
+          ]
+        },
+        {
+          "type": "object",
+          "description": "Continue the transaction through the standard authorization flow when the webhook cannot produce an answer — for every transaction, or only for transactions matching the optional `when` condition.\n",
+          "properties": {
+            "fallbackBehavior": {
+              "type": "string",
+              "enum": [
+                "default"
+              ],
+              "description": "The transaction will continue to run through the standard authorization flow (e.g. the balance check)."
+            },
+            "when": {
+              "$ref": "#/$defs/AuthorizationWebhookCondition",
+              "description": "Optional condition restricting which transactions the `default` fallback applies to: matching transactions continue through the standard authorization flow, non-matching transactions are declined. Omit to apply the `default` fallback to every transaction.\n",
+              "x-entrypoint": {
+                "virtualPath": "schemas/AuthorizationWebhookCondition",
+                "sourcePath": "schemas/AuthorizationWebhookCondition.yaml",
+                "title": "AuthorizationWebhookCondition",
+                "origin": "./src/publicApi"
+              }
+            }
+          },
+          "required": [
+            "fallbackBehavior"
+          ]
+        }
+      ],
+      "x-entrypoint": {
+        "virtualPath": "schemas/AuthorizationWebhookConfig",
+        "sourcePath": "schemas/AuthorizationWebhookConfig.yaml",
+        "title": "AuthorizationWebhookConfig",
+        "origin": "./src/publicApi"
+      },
+      "title": "AuthorizationWebhookConfig"
+    }
+  }
+}

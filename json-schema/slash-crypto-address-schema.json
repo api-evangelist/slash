@@ -1,0 +1,81 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/slash/main/json-schema/slash-crypto-address-schema.json",
+  "title": "Address",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/slash-crypto-api-openapi.yml#/components/schemas/Crypto.Address",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "walletId": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "pending_active",
+        "active",
+        "deactivated"
+      ]
+    },
+    "currency": {
+      "type": "string",
+      "enum": [
+        "usdc",
+        "usdt"
+      ]
+    },
+    "chain": {
+      "type": "string",
+      "enum": [
+        "ethereum",
+        "avalanche",
+        "base",
+        "ethereum",
+        "optimism",
+        "polygon",
+        "arbitrum",
+        "solana",
+        "stellar",
+        "base",
+        "tron"
+      ]
+    },
+    "address": {
+      "type": "string"
+    },
+    "method": {
+      "type": "string",
+      "enum": [
+        "wire",
+        "ach"
+      ]
+    },
+    "blockchainMemo": {
+      "type": "string"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": [
+    "id",
+    "walletId",
+    "currency",
+    "chain",
+    "address",
+    "timestamp",
+    "status"
+  ],
+  "x-entrypoint": {
+    "virtualPath": "schemas/Crypto/Address",
+    "sourcePath": "schemas/Crypto/Address.yaml",
+    "title": "Address",
+    "origin": "./src/publicApi"
+  }
+}

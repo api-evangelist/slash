@@ -1,0 +1,107 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/slash/main/json-schema/slash-agent-request-schema.json",
+  "title": "AgentRequest",
+  "description": "A pending or completed agent request",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/slash-agent-requests-api-openapi.yml#/components/schemas/AgentRequest",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier for the agent request"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "pending",
+        "approved",
+        "rejected",
+        "expired",
+        "executed",
+        "failed",
+        "running"
+      ],
+      "description": "Current status of the request"
+    },
+    "display": {
+      "type": "object",
+      "description": "Human-readable display information",
+      "properties": {
+        "title": {
+          "type": "string",
+          "description": "A brief title describing the action"
+        },
+        "description": {
+          "type": "string",
+          "description": "Detailed description of what the action will do"
+        },
+        "sections": {
+          "type": "array",
+          "description": "Key-value details about the request",
+          "items": {
+            "type": "object",
+            "properties": {
+              "label": {
+                "type": "string"
+              },
+              "value": {
+                "oneOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "oldValue": {
+                        "type": "string"
+                      },
+                      "newValue": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "newValue"
+                    ]
+                  }
+                ]
+              }
+            },
+            "required": [
+              "label",
+              "value"
+            ]
+          }
+        }
+      },
+      "required": [
+        "title",
+        "sections"
+      ]
+    },
+    "result": {
+      "type": "object",
+      "description": "The result of the executed action. Only present when status is \"executed\".",
+      "additionalProperties": true
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the request was created"
+    }
+  },
+  "required": [
+    "id",
+    "status",
+    "display",
+    "createdAt"
+  ],
+  "x-entrypoint": {
+    "virtualPath": "schemas/AgentRequest",
+    "sourcePath": "schemas/AgentRequest.yaml",
+    "title": "AgentRequest",
+    "origin": "./src/publicApi"
+  }
+}

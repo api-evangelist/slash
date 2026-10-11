@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/slash/main/json-schema/slash-card-modifier-schema.json",
+  "title": "CardModifier",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/slash-card-api-openapi.yml#/components/schemas/CardModifier",
+  "oneOf": [
+    {
+      "type": "object",
+      "required": [
+        "name",
+        "value"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "enum": [
+            "only_allow_recurring_payments"
+          ]
+        },
+        "value": {
+          "description": "Whether to only allow recurring payments. The default value for newly created cards is false.",
+          "type": "boolean"
+        }
+      }
+    }
+  ],
+  "x-entrypoint": {
+    "virtualPath": "schemas/CardModifier",
+    "sourcePath": "schemas/CardModifier.yaml",
+    "title": "CardModifier",
+    "origin": "./src/publicApi"
+  }
+}

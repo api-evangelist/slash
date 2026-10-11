@@ -1,0 +1,255 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/slash/main/json-schema/slash-slashfi-models-entity-invoice-invoice-details-input-yaml-schema.json",
+  "title": "InvoiceDetailsInput",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/slash-invoice-api-openapi.yml#/components/schemas/slashfi.models.entity.Invoice.InvoiceDetailsInput.yaml",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "issuedAt": {
+      "type": "string",
+      "format": "date"
+    },
+    "dueAt": {
+      "type": "string",
+      "format": "date"
+    },
+    "invoiceTz": {
+      "type": "string",
+      "description": "IANA timezone identifier used for interpreting invoice dates"
+    },
+    "lineItemsAndTotals": {
+      "$ref": "#/$defs/slashfi.models.entity.Invoice.LineItemsAndTotalsInput.yaml",
+      "x-entrypoint": {
+        "virtualPath": "entity/Invoice/LineItemsAndTotalsInput",
+        "sourcePath": "entity/Invoice/LineItemsAndTotalsInput.yaml",
+        "title": "LineItemsAndTotalsInput",
+        "origin": "/home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas",
+        "globalImport": true
+      }
+    },
+    "invoiceNumber": {
+      "$ref": "#/$defs/slashfi.models.entity.Invoice.InvoiceNumber.yaml",
+      "x-entrypoint": {
+        "virtualPath": "entity/Invoice/InvoiceNumber",
+        "sourcePath": "entity/Invoice/InvoiceNumber.yaml",
+        "title": "InvoiceNumber",
+        "origin": "/home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas",
+        "globalImport": true
+      }
+    },
+    "memo": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 500
+    },
+    "version": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Current version of the invoice details for optimistic locking. Required on updates, ignored on create."
+    },
+    "ccEmails": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "maxItems": 10
+    }
+  },
+  "required": [
+    "issuedAt",
+    "dueAt",
+    "invoiceTz",
+    "lineItemsAndTotals",
+    "invoiceNumber"
+  ],
+  "x-entrypoint": {
+    "virtualPath": "entity/Invoice/InvoiceDetailsInput",
+    "sourcePath": "entity/Invoice/InvoiceDetailsInput.yaml",
+    "title": "InvoiceDetailsInput",
+    "origin": "/home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas",
+    "globalImport": true
+  },
+  "$defs": {
+    "slashfi.models.entity.Invoice.InvoiceDiscount.yaml": {
+      "oneOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "type": {
+              "type": "string",
+              "enum": [
+                "percentage"
+              ]
+            },
+            "percent": {
+              "type": "number"
+            }
+          },
+          "required": [
+            "type",
+            "percent"
+          ]
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "type": {
+              "type": "string",
+              "enum": [
+                "fixed"
+              ]
+            },
+            "amountCents": {
+              "type": "number"
+            }
+          },
+          "required": [
+            "type",
+            "amountCents"
+          ]
+        }
+      ],
+      "x-entrypoint": {
+        "virtualPath": "entity/Invoice/InvoiceDiscount",
+        "sourcePath": "entity/Invoice/InvoiceDiscount.yaml",
+        "title": "InvoiceDiscount",
+        "origin": "/home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas",
+        "globalImport": true
+      },
+      "title": "InvoiceDiscount"
+    },
+    "slashfi.models.entity.Invoice.InvoiceLineItem.yaml": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "quantity": {
+          "type": "number"
+        },
+        "priceCents": {
+          "type": "number"
+        },
+        "catalogItemId": {
+          "type": "string",
+          "description": "Optional provenance stamp indicating this line item was populated from a catalog item. Cleared if the user manually edits the name or price after selection."
+        }
+      },
+      "required": [
+        "name",
+        "quantity",
+        "priceCents"
+      ],
+      "x-entrypoint": {
+        "virtualPath": "entity/Invoice/InvoiceLineItem",
+        "sourcePath": "entity/Invoice/InvoiceLineItem.yaml",
+        "title": "InvoiceLineItem",
+        "origin": "/home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas",
+        "globalImport": true
+      },
+      "title": "InvoiceLineItem"
+    },
+    "slashfi.models.entity.Invoice.InvoiceNumber.yaml": {
+      "type": "string",
+      "pattern": "^[A-Z0-9-_]+$",
+      "minLength": 1,
+      "maxLength": 50,
+      "description": "A user-defined invoice identifier. Allows uppercase letters (A-Z), numbers (0-9), dashes (-), and underscores (_).\n",
+      "x-entrypoint": {
+        "virtualPath": "entity/Invoice/InvoiceNumber",
+        "sourcePath": "entity/Invoice/InvoiceNumber.yaml",
+        "title": "InvoiceNumber",
+        "origin": "/home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas",
+        "globalImport": true
+      },
+      "title": "InvoiceNumber"
+    },
+    "slashfi.models.entity.Invoice.InvoiceTax.yaml": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "percentage"
+          ]
+        },
+        "percent": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "type",
+        "percent"
+      ],
+      "x-entrypoint": {
+        "virtualPath": "entity/Invoice/InvoiceTax",
+        "sourcePath": "entity/Invoice/InvoiceTax.yaml",
+        "title": "InvoiceTax",
+        "origin": "/home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas",
+        "globalImport": true
+      },
+      "title": "InvoiceTax"
+    },
+    "slashfi.models.entity.Invoice.LineItemsAndTotalsInput.yaml": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "lineItems": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/slashfi.models.entity.Invoice.InvoiceLineItem.yaml",
+            "x-entrypoint": {
+              "virtualPath": "entity/Invoice/InvoiceLineItem",
+              "sourcePath": "entity/Invoice/InvoiceLineItem.yaml",
+              "title": "InvoiceLineItem",
+              "origin": "/home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas",
+              "globalImport": true
+            }
+          },
+          "minItems": 1
+        },
+        "discount": {
+          "$ref": "#/$defs/slashfi.models.entity.Invoice.InvoiceDiscount.yaml",
+          "nullable": true,
+          "x-entrypoint": {
+            "virtualPath": "entity/Invoice/InvoiceDiscount",
+            "sourcePath": "entity/Invoice/InvoiceDiscount.yaml",
+            "title": "InvoiceDiscount",
+            "origin": "/home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas",
+            "globalImport": true
+          }
+        },
+        "tax": {
+          "$ref": "#/$defs/slashfi.models.entity.Invoice.InvoiceTax.yaml",
+          "nullable": true,
+          "x-entrypoint": {
+            "virtualPath": "entity/Invoice/InvoiceTax",
+            "sourcePath": "entity/Invoice/InvoiceTax.yaml",
+            "title": "InvoiceTax",
+            "origin": "/home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas",
+            "globalImport": true
+          }
+        }
+      },
+      "required": [
+        "lineItems"
+      ],
+      "x-entrypoint": {
+        "virtualPath": "entity/Invoice/LineItemsAndTotalsInput",
+        "sourcePath": "entity/Invoice/LineItemsAndTotalsInput.yaml",
+        "title": "LineItemsAndTotalsInput",
+        "origin": "/home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas",
+        "globalImport": true
+      },
+      "title": "LineItemsAndTotalsInput"
+    }
+  }
+}

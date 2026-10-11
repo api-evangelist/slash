@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/slash/main/json-schema/slash-virtual-account-model-schema.json",
+  "title": "VirtualAccountModel",
+  "description": "The virtual account object",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/slash-virtual-account-api-openapi.yml#/components/schemas/VirtualAccountModel",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The ID of the virtual account."
+    },
+    "name": {
+      "type": "string",
+      "description": "The name of the virtual account."
+    },
+    "accountNumber": {
+      "type": "string",
+      "description": "The account number of the virtual account."
+    },
+    "routingNumber": {
+      "type": "string",
+      "description": "The routing number of the virtual account."
+    },
+    "accountId": {
+      "type": "string",
+      "description": "The account ID of the Slash account the virtual account is associated with."
+    },
+    "closedAt": {
+      "type": "string",
+      "description": "The date the virtual account was closed; will be null if account was never closed."
+    },
+    "accountType": {
+      "type": "string",
+      "enum": [
+        "default",
+        "primary"
+      ],
+      "description": "The account type of the virtual account. Since virtual accounts and Slash accounts exist at the same hierarchy level,\nan account type of 'primary' means it is the main Slash account, while an account type of 'default' means it is a virtual account\nunder the main account.\n"
+    }
+  },
+  "required": [
+    "id",
+    "name",
+    "accountId",
+    "accountType"
+  ],
+  "x-entrypoint": {
+    "virtualPath": "schemas/VirtualAccountModel",
+    "sourcePath": "schemas/VirtualAccountModel.yaml",
+    "title": "VirtualAccountModel",
+    "origin": "./src/publicApi"
+  }
+}

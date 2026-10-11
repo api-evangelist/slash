@@ -1,0 +1,111 @@
+generated: '2026-10-12'
+method: derived
+source: the pre-flight dossier, apis.yml pointers, spec servers, well-known, vendors -- nothing fetched here
+generator: derive-hosts.py
+summary:
+  hosts: 8
+  own: 5
+  other_domain: 1
+  platform: 2
+  roles:
+  - api
+  - identity
+  - other
+  - portal
+  - source
+  - status
+  - support
+  - website
+hosts:
+- host: api.slash.com
+  found_by:
+  - apis[]
+  types: []
+  serves:
+  - api
+  registrable_domain: slash.com
+  role: api
+  relation: own
+- host: app.slash.com
+  found_by:
+  - pointer
+  types:
+  - SignUp
+  - Login
+  serves: []
+  registrable_domain: slash.com
+  role: identity
+  relation: own
+- host: docs.slash.com
+  found_by:
+  - pointer
+  - apis[]
+  - vendor-detect
+  types:
+  - DeveloperPortal
+  - Documentation
+  - APIReference
+  - GettingStarted
+  - Changelog
+  serves:
+  - docs
+  - cdn
+  vendor: cloudflare
+  registrable_domain: slash.com
+  role: portal
+  relation: own
+- host: github.com
+  found_by:
+  - pointer
+  types:
+  - GitHubOrganization
+  serves: []
+  registrable_domain: github.com
+  role: source
+  relation: platform
+- host: slash.com
+  found_by:
+  - pointer
+  - vendor-detect
+  types:
+  - Website
+  serves:
+  - hosting
+  vendor: vercel
+  registrable_domain: slash.com
+  role: website
+  relation: own
+- host: slash.statuspage.io
+  found_by:
+  - pointer
+  types:
+  - StatusPage
+  serves: []
+  registrable_domain: statuspage.io
+  role: status
+  relation: other-domain
+- host: www.postman.com
+  found_by:
+  - pointer
+  types:
+  - PostmanWorkspace
+  serves: []
+  registrable_domain: postman.com
+  role: other
+  relation: platform
+- host: www.slash.com
+  found_by:
+  - pointer
+  types:
+  - BlogRSS
+  - Blog
+  - Support
+  - Pricing
+  - TermsOfService
+  - PrivacyPolicy
+  - Compliance
+  - Security
+  serves: []
+  registrable_domain: slash.com
+  role: support
+  relation: own

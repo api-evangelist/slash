@@ -1,0 +1,654 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/slash/main/json-schema/slash-paths-fdx-accounts-dto-account-schema.json",
+  "title": "Account",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/slash-fdx-api-openapi.yml#/components/schemas/paths.fdx.accounts._dto.Account",
+  "oneOf": [
+    {
+      "type": "object",
+      "properties": {
+        "depositAccount": {
+          "$ref": "#/$defs/paths.fdx.accounts._dto.DepositAccount",
+          "x-entrypoint": {
+            "virtualPath": "paths/fdx/accounts/_dto/DepositAccount",
+            "sourcePath": "paths/fdx/accounts/_dto/DepositAccount.yaml",
+            "title": "DepositAccount",
+            "origin": "./src/publicApi"
+          }
+        }
+      },
+      "required": [
+        "depositAccount"
+      ]
+    },
+    {
+      "type": "object",
+      "properties": {
+        "loanAccount": {
+          "$ref": "#/$defs/paths.fdx.accounts._dto.LoanAccount",
+          "x-entrypoint": {
+            "virtualPath": "paths/fdx/accounts/_dto/LoanAccount",
+            "sourcePath": "paths/fdx/accounts/_dto/LoanAccount.yaml",
+            "title": "LoanAccount",
+            "origin": "./src/publicApi"
+          }
+        }
+      },
+      "required": [
+        "loanAccount"
+      ]
+    },
+    {
+      "type": "object",
+      "properties": {
+        "locAccount": {
+          "$ref": "#/$defs/paths.fdx.accounts._dto.LineOfCreditAccount",
+          "x-entrypoint": {
+            "virtualPath": "paths/fdx/accounts/_dto/LineOfCreditAccount",
+            "sourcePath": "paths/fdx/accounts/_dto/LineOfCreditAccount.yaml",
+            "title": "LineOfCreditAccount",
+            "origin": "./src/publicApi"
+          }
+        }
+      },
+      "required": [
+        "locAccount"
+      ]
+    },
+    {
+      "type": "object",
+      "properties": {
+        "investmentAccount": {
+          "$ref": "#/$defs/paths.fdx.accounts._dto.InvestmentAccount",
+          "x-entrypoint": {
+            "virtualPath": "paths/fdx/accounts/_dto/InvestmentAccount",
+            "sourcePath": "paths/fdx/accounts/_dto/InvestmentAccount.yaml",
+            "title": "InvestmentAccount",
+            "origin": "./src/publicApi"
+          }
+        }
+      },
+      "required": [
+        "investmentAccount"
+      ]
+    },
+    {
+      "type": "object",
+      "properties": {
+        "insuranceAccount": {
+          "$ref": "#/$defs/paths.fdx.accounts._dto.InsuranceAccount",
+          "x-entrypoint": {
+            "virtualPath": "paths/fdx/accounts/_dto/InsuranceAccount",
+            "sourcePath": "paths/fdx/accounts/_dto/InsuranceAccount.yaml",
+            "title": "InsuranceAccount",
+            "origin": "./src/publicApi"
+          }
+        }
+      },
+      "required": [
+        "insuranceAccount"
+      ]
+    },
+    {
+      "type": "object",
+      "properties": {
+        "annuityAccount": {
+          "$ref": "#/$defs/paths.fdx.accounts._dto.AnnuityAccount",
+          "x-entrypoint": {
+            "virtualPath": "paths/fdx/accounts/_dto/AnnuityAccount",
+            "sourcePath": "paths/fdx/accounts/_dto/AnnuityAccount.yaml",
+            "title": "AnnuityAccount",
+            "origin": "./src/publicApi"
+          }
+        }
+      },
+      "required": [
+        "annuityAccount"
+      ]
+    },
+    {
+      "type": "object",
+      "properties": {
+        "commercialAccount": {
+          "$ref": "#/$defs/paths.fdx.accounts._dto.CommercialAccount",
+          "x-entrypoint": {
+            "virtualPath": "paths/fdx/accounts/_dto/CommercialAccount",
+            "sourcePath": "paths/fdx/accounts/_dto/CommercialAccount.yaml",
+            "title": "CommercialAccount",
+            "origin": "./src/publicApi"
+          }
+        }
+      },
+      "required": [
+        "commercialAccount"
+      ]
+    }
+  ],
+  "x-entrypoint": {
+    "virtualPath": "paths/fdx/accounts/_dto/Account",
+    "sourcePath": "paths/fdx/accounts/_dto/Account.yaml",
+    "title": "Account",
+    "origin": "./src/publicApi"
+  },
+  "$defs": {
+    "paths.fdx.accounts._dto.AnnuityAccount": {
+      "type": "object",
+      "description": "An annuity account. For example, a fixed or variable annuity account.",
+      "properties": {
+        "accountId": {
+          "type": "string",
+          "description": "Long-term persistent identity of the account, though not an account number."
+        },
+        "accountNumberDisplay": {
+          "type": "string",
+          "description": "A masked version of the account number, which includes the last 4 digits in plain text."
+        },
+        "productName": {
+          "type": "string",
+          "description": "Marketed product name for this account. You can use this in UIs to assist in account selection. For example, \"Slash Platinum\"."
+        },
+        "nickname": {
+          "type": "string",
+          "description": "A nickname or label for the account. This will be unique to the account, even if the user has multiple accounts with the same product name. You can use this in UIs to assist in account selection."
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "CLOSED",
+            "DELINQUENT",
+            "NEGATIVECURRENTBALANCE",
+            "OPEN",
+            "PAID",
+            "PENDINGCLOSE",
+            "PENDINGOPEN",
+            "RESTRICTED"
+          ]
+        },
+        "currency": {
+          "type": "object",
+          "properties": {
+            "currencyCode": {
+              "type": "string",
+              "description": "The ISO 4217 currency code for the currency that the account is denominated in. For example, \"USD\" for US Dollars."
+            }
+          },
+          "required": [
+            "currencyCode"
+          ]
+        },
+        "accountType": {
+          "type": "string",
+          "enum": [
+            "ANNUITY",
+            "FIXEDANNUITY",
+            "VARIABLEANNUITY"
+          ]
+        }
+      },
+      "required": [
+        "accountId",
+        "productName",
+        "status",
+        "currency",
+        "accountType"
+      ],
+      "x-entrypoint": {
+        "virtualPath": "paths/fdx/accounts/_dto/AnnuityAccount",
+        "sourcePath": "paths/fdx/accounts/_dto/AnnuityAccount.yaml",
+        "title": "AnnuityAccount",
+        "origin": "./src/publicApi"
+      },
+      "title": "AnnuityAccount"
+    },
+    "paths.fdx.accounts._dto.CommercialAccount": {
+      "type": "object",
+      "description": "A commercial account. For example, a business deposit account.",
+      "properties": {
+        "accountId": {
+          "type": "string",
+          "description": "Long-term persistent identity of the account, though not an account number."
+        },
+        "accountNumberDisplay": {
+          "type": "string",
+          "description": "A masked version of the account number, which includes the last 4 digits in plain text."
+        },
+        "productName": {
+          "type": "string",
+          "description": "Marketed product name for this account. You can use this in UIs to assist in account selection. For example, \"Slash Platinum\"."
+        },
+        "nickname": {
+          "type": "string",
+          "description": "A nickname or label for the account. This will be unique to the account, even if the user has multiple accounts with the same product name. You can use this in UIs to assist in account selection."
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "CLOSED",
+            "DELINQUENT",
+            "NEGATIVECURRENTBALANCE",
+            "OPEN",
+            "PAID",
+            "PENDINGCLOSE",
+            "PENDINGOPEN",
+            "RESTRICTED"
+          ]
+        },
+        "currency": {
+          "type": "object",
+          "properties": {
+            "currencyCode": {
+              "type": "string",
+              "description": "The ISO 4217 currency code for the currency that the account is denominated in. For example, \"USD\" for US Dollars."
+            }
+          },
+          "required": [
+            "currencyCode"
+          ]
+        },
+        "accountType": {
+          "type": "string",
+          "enum": [
+            "COMMERCIALDEPOSIT",
+            "COMMERCIALLOAN",
+            "COMMERCIALLINEOFCREDIT",
+            "COMMERCIALINVESTMENT"
+          ]
+        }
+      },
+      "required": [
+        "accountId",
+        "productName",
+        "status",
+        "currency",
+        "accountType"
+      ],
+      "x-entrypoint": {
+        "virtualPath": "paths/fdx/accounts/_dto/CommercialAccount",
+        "sourcePath": "paths/fdx/accounts/_dto/CommercialAccount.yaml",
+        "title": "CommercialAccount",
+        "origin": "./src/publicApi"
+      },
+      "title": "CommercialAccount"
+    },
+    "paths.fdx.accounts._dto.DepositAccount": {
+      "type": "object",
+      "description": "A deposit account. For example, a checking, savings or money market account.",
+      "properties": {
+        "accountId": {
+          "type": "string",
+          "description": "Long-term persistent identity of the account, though not an account number."
+        },
+        "accountNumberDisplay": {
+          "type": "string",
+          "description": "A masked version of the account number, which includes the last 4 digits in plain text."
+        },
+        "productName": {
+          "type": "string",
+          "description": "Marketed product name for this account. You can use this in UIs to assist in account selection. For example, \"Slash Platinum\"."
+        },
+        "nickname": {
+          "type": "string",
+          "description": "A nickname or label for the account. This will be unique to the account, even if the user has multiple accounts with the same product name. You can use this in UIs to assist in account selection."
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "CLOSED",
+            "DELINQUENT",
+            "NEGATIVECURRENTBALANCE",
+            "OPEN",
+            "PAID",
+            "PENDINGCLOSE",
+            "PENDINGOPEN",
+            "RESTRICTED"
+          ]
+        },
+        "currency": {
+          "type": "object",
+          "properties": {
+            "currencyCode": {
+              "type": "string",
+              "description": "The ISO 4217 currency code for the currency that the account is denominated in. For example, \"USD\" for US Dollars."
+            }
+          },
+          "required": [
+            "currencyCode"
+          ]
+        },
+        "accountType": {
+          "type": "string",
+          "enum": [
+            "CHECKING",
+            "SAVINGS",
+            "CD",
+            "ESCROW",
+            "MONEYMARKET",
+            "OTHERDEPOSIT"
+          ]
+        }
+      },
+      "required": [
+        "accountId",
+        "productName",
+        "status",
+        "currency",
+        "accountType"
+      ],
+      "x-entrypoint": {
+        "virtualPath": "paths/fdx/accounts/_dto/DepositAccount",
+        "sourcePath": "paths/fdx/accounts/_dto/DepositAccount.yaml",
+        "title": "DepositAccount",
+        "origin": "./src/publicApi"
+      },
+      "title": "DepositAccount"
+    },
+    "paths.fdx.accounts._dto.InsuranceAccount": {
+      "type": "object",
+      "description": "An insurance account. For example, whole life insurance or short-term disability.",
+      "properties": {
+        "accountId": {
+          "type": "string",
+          "description": "Long-term persistent identity of the account, though not an account number."
+        },
+        "accountNumberDisplay": {
+          "type": "string",
+          "description": "A masked version of the account number, which includes the last 4 digits in plain text."
+        },
+        "productName": {
+          "type": "string",
+          "description": "Marketed product name for this account. You can use this in UIs to assist in account selection. For example, \"Slash Platinum\"."
+        },
+        "nickname": {
+          "type": "string",
+          "description": "A nickname or label for the account. This will be unique to the account, even if the user has multiple accounts with the same product name. You can use this in UIs to assist in account selection."
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "CLOSED",
+            "DELINQUENT",
+            "NEGATIVECURRENTBALANCE",
+            "OPEN",
+            "PAID",
+            "PENDINGCLOSE",
+            "PENDINGOPEN",
+            "RESTRICTED"
+          ]
+        },
+        "currency": {
+          "type": "object",
+          "properties": {
+            "currencyCode": {
+              "type": "string",
+              "description": "The ISO 4217 currency code for the currency that the account is denominated in. For example, \"USD\" for US Dollars."
+            }
+          },
+          "required": [
+            "currencyCode"
+          ]
+        },
+        "accountType": {
+          "type": "string",
+          "enum": [
+            "LONGTERMDISABILITY",
+            "SHORTTERMDISABILITY",
+            "UNIVERSALLIFE",
+            "WHOLELIFE"
+          ]
+        }
+      },
+      "required": [
+        "accountId",
+        "productName",
+        "status",
+        "currency",
+        "accountType"
+      ],
+      "x-entrypoint": {
+        "virtualPath": "paths/fdx/accounts/_dto/InsuranceAccount",
+        "sourcePath": "paths/fdx/accounts/_dto/InsuranceAccount.yaml",
+        "title": "InsuranceAccount",
+        "origin": "./src/publicApi"
+      },
+      "title": "InsuranceAccount"
+    },
+    "paths.fdx.accounts._dto.InvestmentAccount": {
+      "type": "object",
+      "description": "An investment account. For example, a 401K or IRA.",
+      "properties": {
+        "accountId": {
+          "type": "string",
+          "description": "Long-term persistent identity of the account, though not an account number."
+        },
+        "accountNumberDisplay": {
+          "type": "string",
+          "description": "A masked version of the account number, which includes the last 4 digits in plain text."
+        },
+        "productName": {
+          "type": "string",
+          "description": "Marketed product name for this account. You can use this in UIs to assist in account selection. For example, \"Slash Platinum\"."
+        },
+        "nickname": {
+          "type": "string",
+          "description": "A nickname or label for the account. This will be unique to the account, even if the user has multiple accounts with the same product name. You can use this in UIs to assist in account selection."
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "CLOSED",
+            "DELINQUENT",
+            "NEGATIVECURRENTBALANCE",
+            "OPEN",
+            "PAID",
+            "PENDINGCLOSE",
+            "PENDINGOPEN",
+            "RESTRICTED"
+          ]
+        },
+        "currency": {
+          "type": "object",
+          "properties": {
+            "currencyCode": {
+              "type": "string",
+              "description": "The ISO 4217 currency code for the currency that the account is denominated in. For example, \"USD\" for US Dollars."
+            }
+          },
+          "required": [
+            "currencyCode"
+          ]
+        },
+        "accountType": {
+          "type": "string",
+          "enum": [
+            "401A",
+            "401K",
+            "403B",
+            "529",
+            "BROKERAGEPRODUCT",
+            "COVERDELL",
+            "DIGITALASSET",
+            "DEFINEDBENEFIT",
+            "ESOP",
+            "GUARDIAN",
+            "INSTITUTIONALTRUST",
+            "IRA",
+            "KEOGH",
+            "NONQUALIFIEDPLAN",
+            "OTHERINVESTMENT",
+            "ROLLOVER",
+            "ROTH",
+            "SARSEP",
+            "TAXABLE",
+            "TDA",
+            "TRUST",
+            "TERM",
+            "UGMA",
+            "UTMA"
+          ]
+        }
+      },
+      "required": [
+        "accountId",
+        "productName",
+        "status",
+        "currency",
+        "accountType"
+      ],
+      "x-entrypoint": {
+        "virtualPath": "paths/fdx/accounts/_dto/InvestmentAccount",
+        "sourcePath": "paths/fdx/accounts/_dto/InvestmentAccount.yaml",
+        "title": "InvestmentAccount",
+        "origin": "./src/publicApi"
+      },
+      "title": "InvestmentAccount"
+    },
+    "paths.fdx.accounts._dto.LineOfCreditAccount": {
+      "type": "object",
+      "description": "A line-of-credit account. For example, a credit card or home equity line of credit.",
+      "properties": {
+        "accountId": {
+          "type": "string",
+          "description": "Long-term persistent identity of the account, though not an account number."
+        },
+        "accountNumberDisplay": {
+          "type": "string",
+          "description": "A masked version of the account number, which includes the last 4 digits in plain text."
+        },
+        "productName": {
+          "type": "string",
+          "description": "Marketed product name for this account. You can use this in UIs to assist in account selection. For example, \"Slash Platinum\"."
+        },
+        "nickname": {
+          "type": "string",
+          "description": "A nickname or label for the account. This will be unique to the account, even if the user has multiple accounts with the same product name. You can use this in UIs to assist in account selection."
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "CLOSED",
+            "DELINQUENT",
+            "NEGATIVECURRENTBALANCE",
+            "OPEN",
+            "PAID",
+            "PENDINGCLOSE",
+            "PENDINGOPEN",
+            "RESTRICTED"
+          ]
+        },
+        "currency": {
+          "type": "object",
+          "properties": {
+            "currencyCode": {
+              "type": "string",
+              "description": "The ISO 4217 currency code for the currency that the account is denominated in. For example, \"USD\" for US Dollars."
+            }
+          },
+          "required": [
+            "currencyCode"
+          ]
+        },
+        "accountType": {
+          "type": "string",
+          "enum": [
+            "LINEOFCREDIT",
+            "CHARGE",
+            "CREDITCARD",
+            "HOMELINEOFCREDIT"
+          ]
+        }
+      },
+      "required": [
+        "accountId",
+        "productName",
+        "status",
+        "currency",
+        "accountType"
+      ],
+      "x-entrypoint": {
+        "virtualPath": "paths/fdx/accounts/_dto/LineOfCreditAccount",
+        "sourcePath": "paths/fdx/accounts/_dto/LineOfCreditAccount.yaml",
+        "title": "LineOfCreditAccount",
+        "origin": "./src/publicApi"
+      },
+      "title": "LineOfCreditAccount"
+    },
+    "paths.fdx.accounts._dto.LoanAccount": {
+      "type": "object",
+      "description": "A loan account. For example, mortgage, student loan or auto loan.",
+      "properties": {
+        "accountId": {
+          "type": "string",
+          "description": "Long-term persistent identity of the account, though not an account number."
+        },
+        "accountNumberDisplay": {
+          "type": "string",
+          "description": "A masked version of the account number, which includes the last 4 digits in plain text."
+        },
+        "productName": {
+          "type": "string",
+          "description": "Marketed product name for this account. You can use this in UIs to assist in account selection. For example, \"Slash Platinum\"."
+        },
+        "nickname": {
+          "type": "string",
+          "description": "A nickname or label for the account. This will be unique to the account, even if the user has multiple accounts with the same product name. You can use this in UIs to assist in account selection."
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "CLOSED",
+            "DELINQUENT",
+            "NEGATIVECURRENTBALANCE",
+            "OPEN",
+            "PAID",
+            "PENDINGCLOSE",
+            "PENDINGOPEN",
+            "RESTRICTED"
+          ]
+        },
+        "currency": {
+          "type": "object",
+          "properties": {
+            "currencyCode": {
+              "type": "string",
+              "description": "The ISO 4217 currency code for the currency that the account is denominated in. For example, \"USD\" for US Dollars."
+            }
+          },
+          "required": [
+            "currencyCode"
+          ]
+        },
+        "accountType": {
+          "type": "string",
+          "enum": [
+            "AUTOLOAN",
+            "HOMEEQUITYLOAN",
+            "INSTALLMENT",
+            "LOAN",
+            "MILITARYLOAN",
+            "MORTGAGE",
+            "PERSONALLOAN",
+            "SMBLOAN",
+            "STUDENTLOAN"
+          ]
+        }
+      },
+      "required": [
+        "accountId",
+        "productName",
+        "status",
+        "currency",
+        "accountType"
+      ],
+      "x-entrypoint": {
+        "virtualPath": "paths/fdx/accounts/_dto/LoanAccount",
+        "sourcePath": "paths/fdx/accounts/_dto/LoanAccount.yaml",
+        "title": "LoanAccount",
+        "origin": "./src/publicApi"
+      },
+      "title": "LoanAccount"
+    }
+  }
+}

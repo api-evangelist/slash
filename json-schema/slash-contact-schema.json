@@ -1,0 +1,62 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/slash/main/json-schema/slash-contact-schema.json",
+  "title": "Contact",
+  "description": "A contact represents a counterparty (customer, vendor, etc.) associated with a legal entity.",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/slash-contact-api-openapi.yml#/components/schemas/Contact",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier for the contact."
+    },
+    "name": {
+      "type": "string",
+      "description": "Display name of the contact."
+    },
+    "recipientType": {
+      "type": "string",
+      "description": "The relationship type of the contact.",
+      "enum": [
+        "contact",
+        "vendor"
+      ]
+    },
+    "recipientLegalName": {
+      "type": "string",
+      "description": "Legal name of the recipient."
+    },
+    "recipientEmail": {
+      "type": "string",
+      "description": "Email address of the recipient."
+    },
+    "address": {
+      "type": "object",
+      "description": "Address of the contact.",
+      "additionalProperties": true
+    },
+    "data": {
+      "type": "object",
+      "description": "Payment destination data (bank account, crypto address, etc.).",
+      "additionalProperties": true
+    },
+    "archivedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the contact was archived. Null/absent when active."
+    }
+  },
+  "required": [
+    "id",
+    "name"
+  ],
+  "x-entrypoint": {
+    "virtualPath": "schemas/Contact",
+    "sourcePath": "schemas/Contact.yaml",
+    "title": "Contact",
+    "origin": "./src/publicApi"
+  }
+}

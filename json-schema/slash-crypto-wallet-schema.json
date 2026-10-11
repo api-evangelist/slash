@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/slash/main/json-schema/slash-crypto-wallet-schema.json",
+  "title": "Wallet",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/slash-crypto-api-openapi.yml#/components/schemas/Crypto.Wallet",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "off_ramp"
+      ]
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "pending_active",
+        "active",
+        "deactivated"
+      ]
+    },
+    "subaccountId": {
+      "type": "string"
+    },
+    "slashAccountGroupId": {
+      "type": "string"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": [
+    "id",
+    "type",
+    "status",
+    "subaccountId",
+    "slashAccountGroupId",
+    "timestamp"
+  ],
+  "x-entrypoint": {
+    "virtualPath": "schemas/Crypto/Wallet",
+    "sourcePath": "schemas/Crypto/Wallet.yaml",
+    "title": "Wallet",
+    "origin": "./src/publicApi"
+  }
+}

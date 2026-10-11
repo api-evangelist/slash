@@ -1,14 +1,15 @@
 ---
-name: Issue and control a corporate card
+name: slash-issue-and-control-card
 description: Create a virtual or physical Slash card, apply a spending constraint, and monitor its utilization.
 api: openapi/slash-openapi-original.json
 operations:
-  - GET /account
-  - GET /card-product
-  - POST /card
-  - PUT /card/{cardId}/spending-constraint
-  - GET /card/{cardId}/utilization
-  - GET /card/{cardId}
+- getAccount
+- getCardProduct
+- postCard
+- putCardByCardIdSpendingConstraint
+- getCardByCardIdUtilization
+- getCardByCardId
+title: Issue and control a corporate card
 ---
 
 # Issue and control a corporate card

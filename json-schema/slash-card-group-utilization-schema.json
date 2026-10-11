@@ -1,0 +1,68 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/slash/main/json-schema/slash-card-group-utilization-schema.json",
+  "title": "CardGroupUtilization",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/slash-card-api-openapi.yml#/components/schemas/CardGroupUtilization",
+  "type": "object",
+  "properties": {
+    "nextResetDate": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The date the next reset will occur, undefined if collective"
+    },
+    "spend": {
+      "$ref": "#/$defs/Money",
+      "description": "The amount of money spent in the current period",
+      "x-entrypoint": {
+        "virtualPath": "schemas/Money",
+        "sourcePath": "schemas/Money.yaml",
+        "title": "Money",
+        "origin": "./src/publicApi"
+      }
+    },
+    "availableBalance": {
+      "$ref": "#/$defs/Money",
+      "description": "The amount of money available in the current period. Only returned if the card or card group has a spend limit.",
+      "x-entrypoint": {
+        "virtualPath": "schemas/Money",
+        "sourcePath": "schemas/Money.yaml",
+        "title": "Money",
+        "origin": "./src/publicApi"
+      }
+    }
+  },
+  "required": [
+    "spend"
+  ],
+  "x-entrypoint": {
+    "virtualPath": "schemas/CardGroupUtilization",
+    "sourcePath": "schemas/CardGroupUtilization.yaml",
+    "title": "CardGroupUtilization",
+    "origin": "./src/publicApi"
+  },
+  "$defs": {
+    "Money": {
+      "type": "object",
+      "description": "Represents a monetary value",
+      "properties": {
+        "amountCents": {
+          "type": "integer",
+          "description": "The amount in cents"
+        }
+      },
+      "required": [
+        "amountCents"
+      ],
+      "x-entrypoint": {
+        "virtualPath": "schemas/Money",
+        "sourcePath": "schemas/Money.yaml",
+        "title": "Money",
+        "origin": "./src/publicApi"
+      },
+      "title": "Money"
+    }
+  }
+}

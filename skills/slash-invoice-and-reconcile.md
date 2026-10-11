@@ -1,15 +1,16 @@
 ---
-name: Invoice a customer and reconcile payment
+name: slash-invoice-and-reconcile
 description: Create a customer, issue an invoice, and reconcile it against the transactions that paid it.
 api: openapi/slash-openapi-original.json
 operations:
-  - POST /customer
-  - GET /invoice/validate-number
-  - POST /invoice
-  - GET /invoice/{invoiceId}
-  - GET /transaction
-  - POST /invoice/{invoiceId}/reconcile
-  - POST /invoice/{invoiceId}/void
+- postCustomer
+- getInvoiceValidateNumber
+- postInvoice
+- getInvoiceByInvoiceId
+- getTransaction
+- postInvoiceByInvoiceIdReconcile
+- postInvoiceByInvoiceIdVoid
+title: Invoice a customer and reconcile payment
 ---
 
 # Invoice a customer and reconcile payment

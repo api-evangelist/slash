@@ -1,0 +1,71 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/slash/main/json-schema/slash-account-schema.json",
+  "title": "Account",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/slash-account-api-openapi.yml#/components/schemas/Account",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "open",
+        "closed"
+      ]
+    },
+    "name": {
+      "type": "string"
+    },
+    "accountNumber": {
+      "type": "string"
+    },
+    "routingNumber": {
+      "type": "string"
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "type": {
+      "type": "string",
+      "description": "The type of account. - \"debit\" represents a debit card account - \"charge_card\" represents a charge card account",
+      "enum": [
+        "debit",
+        "charge_card"
+      ]
+    },
+    "balances": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "description": "The balances on the account. See the Balance object for more details.\n",
+        "enum": [
+          "debit",
+          "cash",
+          "credit"
+        ]
+      }
+    }
+  },
+  "required": [
+    "id",
+    "type",
+    "status",
+    "name",
+    "accountNumber",
+    "routingNumber",
+    "createdAt",
+    "balances"
+  ],
+  "x-entrypoint": {
+    "virtualPath": "schemas/Account",
+    "sourcePath": "schemas/Account.yaml",
+    "title": "Account",
+    "origin": "./src/publicApi"
+  }
+}

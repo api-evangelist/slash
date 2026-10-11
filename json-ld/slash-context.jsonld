@@ -1,0 +1,1335 @@
+{
+  "@context": {
+    "@vocab": "https://slash.com/schema#",
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dcterms": "http://purl.org/dc/terms/",
+    "slash": "https://slash.com/schema#",
+    "Pagination.PaginationResponse": "slash:Pagination.PaginationResponse",
+    "nextCursor": {
+      "@id": "slash:nextCursor",
+      "@type": "xsd:string"
+    },
+    "count": {
+      "@id": "slash:count",
+      "@type": "xsd:decimal"
+    },
+    "Money": "slash:Money",
+    "amountCents": {
+      "@id": "slash:amountCents",
+      "@type": "xsd:integer"
+    },
+    "Error": "slash:Error",
+    "message": {
+      "@id": "slash:message",
+      "@type": "xsd:string"
+    },
+    "name": {
+      "@id": "slash:name",
+      "@type": "xsd:string"
+    },
+    "identifier": {
+      "@id": "slash:identifier",
+      "@type": "xsd:string"
+    },
+    "rawStatus": {
+      "@id": "slash:rawStatus",
+      "@type": "xsd:decimal"
+    },
+    "meta": {
+      "@id": "slash:meta"
+    },
+    "Balance": "slash:Balance",
+    "accountId": {
+      "@id": "slash:accountId",
+      "@type": "xsd:string"
+    },
+    "type": {
+      "@id": "slash:type",
+      "@type": "xsd:string"
+    },
+    "available": {
+      "@id": "slash:available"
+    },
+    "posted": {
+      "@id": "slash:posted"
+    },
+    "timestamp": {
+      "@id": "slash:timestamp",
+      "@type": "xsd:dateTime"
+    },
+    "AuthorizationWebhook": "slash:AuthorizationWebhook",
+    "webhookUrl": {
+      "@id": "slash:webhookUrl",
+      "@type": "xsd:string"
+    },
+    "signingSecret": {
+      "@id": "slash:signingSecret",
+      "@type": "xsd:string"
+    },
+    "status": {
+      "@id": "slash:status",
+      "@type": "xsd:string"
+    },
+    "timeoutDurationMs": {
+      "@id": "slash:timeoutDurationMs",
+      "@type": "xsd:integer"
+    },
+    "config": {
+      "@id": "slash:config",
+      "@type": "@id"
+    },
+    "createdAt": {
+      "@id": "slash:createdAt",
+      "@type": "xsd:dateTime"
+    },
+    "updatedAt": {
+      "@id": "slash:updatedAt",
+      "@type": "xsd:dateTime"
+    },
+    "Account": "slash:Account",
+    "id": {
+      "@id": "slash:id",
+      "@type": "xsd:string"
+    },
+    "accountNumber": {
+      "@id": "slash:accountNumber",
+      "@type": "xsd:string"
+    },
+    "routingNumber": {
+      "@id": "slash:routingNumber",
+      "@type": "xsd:string"
+    },
+    "balances": {
+      "@id": "slash:balances",
+      "@container": "@list"
+    },
+    "AgentRequest": "slash:AgentRequest",
+    "display": {
+      "@id": "slash:display"
+    },
+    "result": {
+      "@id": "slash:result"
+    },
+    "paths.analytics._dto.PostResponse": "slash:paths.analytics._dto.PostResponse",
+    "columns": {
+      "@id": "slash:columns",
+      "@container": "@list"
+    },
+    "rows": {
+      "@id": "slash:rows",
+      "@container": "@list"
+    },
+    "rowCount": {
+      "@id": "slash:rowCount",
+      "@type": "xsd:integer"
+    },
+    "error": {
+      "@id": "slash:error",
+      "@type": "xsd:string"
+    },
+    "paths.analytics._dto.PostRequest": "slash:paths.analytics._dto.PostRequest",
+    "query": {
+      "@id": "slash:query",
+      "@type": "xsd:string"
+    },
+    "Card": "slash:Card",
+    "virtualAccountId": {
+      "@id": "slash:virtualAccountId",
+      "@type": "xsd:string"
+    },
+    "last4": {
+      "@id": "slash:last4",
+      "@type": "xsd:string"
+    },
+    "expiryMonth": {
+      "@id": "slash:expiryMonth",
+      "@type": "xsd:string"
+    },
+    "expiryYear": {
+      "@id": "slash:expiryYear",
+      "@type": "xsd:string"
+    },
+    "isPhysical": {
+      "@id": "slash:isPhysical",
+      "@type": "xsd:boolean"
+    },
+    "isSingleUse": {
+      "@id": "slash:isSingleUse",
+      "@type": "xsd:boolean"
+    },
+    "pan": {
+      "@id": "slash:pan",
+      "@type": "xsd:string"
+    },
+    "cvv": {
+      "@id": "slash:cvv",
+      "@type": "xsd:string"
+    },
+    "cardGroupId": {
+      "@id": "slash:cardGroupId",
+      "@type": "xsd:string"
+    },
+    "cardGroupName": {
+      "@id": "slash:cardGroupName",
+      "@type": "xsd:string"
+    },
+    "spendingConstraint": {
+      "@id": "slash:spendingConstraint",
+      "@type": "@id"
+    },
+    "userData": {
+      "@id": "slash:userData"
+    },
+    "cardProductId": {
+      "@id": "slash:cardProductId",
+      "@type": "xsd:string"
+    },
+    "modifiers": {
+      "@id": "slash:modifiers",
+      "@container": "@list"
+    },
+    "SpendingConstraint": "slash:SpendingConstraint",
+    "merchantCategoryRule": {
+      "@id": "slash:merchantCategoryRule"
+    },
+    "merchantRule": {
+      "@id": "slash:merchantRule"
+    },
+    "spendingRule": {
+      "@id": "slash:spendingRule"
+    },
+    "countryRule": {
+      "@id": "slash:countryRule"
+    },
+    "merchantCategoryCodeRule": {
+      "@id": "slash:merchantCategoryCodeRule"
+    },
+    "Restriction": "slash:Restriction",
+    "CardGroupUtilization": "slash:CardGroupUtilization",
+    "nextResetDate": {
+      "@id": "slash:nextResetDate",
+      "@type": "xsd:dateTime"
+    },
+    "spend": {
+      "@id": "slash:spend",
+      "@type": "@id"
+    },
+    "availableBalance": {
+      "@id": "slash:availableBalance",
+      "@type": "@id"
+    },
+    "PartialSpendingConstraint": "slash:PartialSpendingConstraint",
+    "CardStatus": "slash:CardStatus",
+    "CardGroup": "slash:CardGroup",
+    "CardProduct": "slash:CardProduct",
+    "prefix": {
+      "@id": "slash:prefix",
+      "@type": "xsd:string"
+    },
+    "Contact": "slash:Contact",
+    "recipientType": {
+      "@id": "slash:recipientType",
+      "@type": "xsd:string"
+    },
+    "recipientLegalName": {
+      "@id": "slash:recipientLegalName",
+      "@type": "xsd:string"
+    },
+    "recipientEmail": {
+      "@id": "slash:recipientEmail",
+      "@type": "xsd:string"
+    },
+    "address": {
+      "@id": "slash:address"
+    },
+    "data": {
+      "@id": "slash:data"
+    },
+    "archivedAt": {
+      "@id": "slash:archivedAt",
+      "@type": "xsd:dateTime"
+    },
+    "slashfi.models.entity.IAddressModel.yaml": "slash:slashfi.models.entity.IAddressModel.yaml",
+    "addressLine": {
+      "@id": "slash:addressLine",
+      "@type": "xsd:string"
+    },
+    "addressLine2": {
+      "@id": "slash:addressLine2",
+      "@type": "xsd:string"
+    },
+    "addressCity": {
+      "@id": "slash:addressCity",
+      "@type": "xsd:string"
+    },
+    "addressState": {
+      "@id": "slash:addressState",
+      "@type": "xsd:string"
+    },
+    "addressZip": {
+      "@id": "slash:addressZip",
+      "@type": "xsd:string"
+    },
+    "addressCountry": {
+      "@id": "slash:addressCountry",
+      "@type": "xsd:string"
+    },
+    "Crypto.Address": "slash:Crypto.Address",
+    "walletId": {
+      "@id": "slash:walletId",
+      "@type": "xsd:string"
+    },
+    "currency": {
+      "@id": "slash:currency",
+      "@type": "xsd:string"
+    },
+    "chain": {
+      "@id": "slash:chain",
+      "@type": "xsd:string"
+    },
+    "method": {
+      "@id": "slash:method",
+      "@type": "xsd:string"
+    },
+    "blockchainMemo": {
+      "@id": "slash:blockchainMemo",
+      "@type": "xsd:string"
+    },
+    "Crypto.Wallet": "slash:Crypto.Wallet",
+    "subaccountId": {
+      "@id": "slash:subaccountId",
+      "@type": "xsd:string"
+    },
+    "slashAccountGroupId": {
+      "@id": "slash:slashAccountGroupId",
+      "@type": "xsd:string"
+    },
+    "Customer": "slash:Customer",
+    "email": {
+      "@id": "slash:email",
+      "@type": "xsd:string"
+    },
+    "phone": {
+      "@id": "slash:phone",
+      "@type": "xsd:string"
+    },
+    "customMetadata": {
+      "@id": "slash:customMetadata"
+    },
+    "DeveloperApplication.PermissionKeyTypes.LegalEntityPermissionPolicyKey": "slash:DeveloperApplication.PermissionKeyTypes.LegalEntityPermissionPolicyKey",
+    "DeveloperApplication.DeveloperApplicationModel": "slash:DeveloperApplication.DeveloperApplicationModel",
+    "developerAccountId": {
+      "@id": "slash:developerAccountId",
+      "@type": "xsd:string"
+    },
+    "oauthClientId": {
+      "@id": "slash:oauthClientId",
+      "@type": "xsd:string"
+    },
+    "oauthClientSecret": {
+      "@id": "slash:oauthClientSecret",
+      "@type": "xsd:string"
+    },
+    "DeveloperApplication.DeveloperApplicationStatus": "slash:DeveloperApplication.DeveloperApplicationStatus",
+    "DeveloperApplication.DeveloperApplicationType": "slash:DeveloperApplication.DeveloperApplicationType",
+    "DeveloperApplication.DeveloperApplicationData": "slash:DeveloperApplication.DeveloperApplicationData",
+    "description": {
+      "@id": "slash:description",
+      "@type": "xsd:string"
+    },
+    "logoUrl": {
+      "@id": "slash:logoUrl",
+      "@type": "xsd:string"
+    },
+    "termsOfServiceUrl": {
+      "@id": "slash:termsOfServiceUrl",
+      "@type": "xsd:string"
+    },
+    "privacyPolicyUrl": {
+      "@id": "slash:privacyPolicyUrl",
+      "@type": "xsd:string"
+    },
+    "redirectUris": {
+      "@id": "slash:redirectUris",
+      "@container": "@list"
+    },
+    "testUserEmails": {
+      "@id": "slash:testUserEmails",
+      "@container": "@list"
+    },
+    "scopes": {
+      "@id": "slash:scopes",
+      "@container": "@list"
+    },
+    "allowedOrigins": {
+      "@id": "slash:allowedOrigins",
+      "@container": "@list"
+    },
+    "DeveloperApplication.PermissionKeyTypes.SlashAccountPermissionPolicyKey": "slash:DeveloperApplication.PermissionKeyTypes.SlashAccountPermissionPolicyKey",
+    "slashfi.models.entity.Merchant.MerchantV2.yaml": "slash:slashfi.models.entity.Merchant.MerchantV2.yaml",
+    "heronId": {
+      "@id": "slash:heronId",
+      "@type": "xsd:string"
+    },
+    "iconUrl": {
+      "@id": "slash:iconUrl",
+      "@type": "xsd:string"
+    },
+    "url": {
+      "@id": "slash:url",
+      "@type": "xsd:string"
+    },
+    "isLive": {
+      "@id": "slash:isLive",
+      "@type": "xsd:boolean"
+    },
+    "isInstantCashback": {
+      "@id": "slash:isInstantCashback",
+      "@type": "xsd:boolean"
+    },
+    "merchantCategoryId": {
+      "@id": "slash:merchantCategoryId",
+      "@type": "xsd:string"
+    },
+    "metadata": {
+      "@id": "slash:metadata",
+      "@type": "@id"
+    },
+    "slashfi.models.entity.ExpenseReport.ExpenseReportReview.yaml": "slash:slashfi.models.entity.ExpenseReport.ExpenseReportReview.yaml",
+    "expenseReportId": {
+      "@id": "slash:expenseReportId",
+      "@type": "@id"
+    },
+    "decision": {
+      "@id": "slash:decision",
+      "@type": "xsd:string"
+    },
+    "reviewedByUserId": {
+      "@id": "slash:reviewedByUserId",
+      "@type": "@id"
+    },
+    "reviewedAt": {
+      "@id": "slash:reviewedAt",
+      "@type": "xsd:dateTime"
+    },
+    "rejectionReason": {
+      "@id": "slash:rejectionReason",
+      "@type": "xsd:string"
+    },
+    "slashfi.models.entity.ExpenseReport.ParsedReceipt.yaml": "slash:slashfi.models.entity.ExpenseReport.ParsedReceipt.yaml",
+    "amount": {
+      "@id": "slash:amount",
+      "@type": "@id"
+    },
+    "date": {
+      "@id": "slash:date",
+      "@type": "@id"
+    },
+    "merchant": {
+      "@id": "slash:merchant",
+      "@type": "@id"
+    },
+    "slashfi.models.enums.Document.DocumentSource.yaml": "slash:slashfi.models.enums.Document.DocumentSource.yaml",
+    "slashfi.models.entity.IMoneyModel.yaml": "slash:slashfi.models.entity.IMoneyModel.yaml",
+    "amount_cents": {
+      "@id": "slash:amount_cents",
+      "@type": "xsd:decimal"
+    },
+    "slashfi.models.entity.ExpenseReport.PublicTransactionSummary.yaml": "slash:slashfi.models.entity.ExpenseReport.PublicTransactionSummary.yaml",
+    "slashfi.models.entity.ExpenseReport.PublicReimbursementSource.yaml": "slash:slashfi.models.entity.ExpenseReport.PublicReimbursementSource.yaml",
+    "accountName": {
+      "@id": "slash:accountName",
+      "@type": "xsd:string"
+    },
+    "mask": {
+      "@id": "slash:mask",
+      "@type": "xsd:string"
+    },
+    "institution": {
+      "@id": "slash:institution"
+    },
+    "institutionLogo": {
+      "@id": "slash:institutionLogo",
+      "@type": "xsd:string"
+    },
+    "slashfi.models.entity.ExpenseReport.ExpenseReport.yaml": "slash:slashfi.models.entity.ExpenseReport.ExpenseReport.yaml",
+    "legalEntityId": {
+      "@id": "slash:legalEntityId",
+      "@type": "@id"
+    },
+    "submittedByUserId": {
+      "@id": "slash:submittedByUserId",
+      "@type": "@id"
+    },
+    "transactionDate": {
+      "@id": "slash:transactionDate",
+      "@type": "xsd:dateTime"
+    },
+    "merchantV2Id": {
+      "@id": "slash:merchantV2Id",
+      "@type": "@id"
+    },
+    "customMerchantId": {
+      "@id": "slash:customMerchantId",
+      "@type": "@id"
+    },
+    "memo": {
+      "@id": "slash:memo",
+      "@type": "xsd:string"
+    },
+    "destinationId": {
+      "@id": "slash:destinationId",
+      "@type": "@id"
+    },
+    "submittedAt": {
+      "@id": "slash:submittedAt",
+      "@type": "xsd:dateTime"
+    },
+    "fxRateToUsd": {
+      "@id": "slash:fxRateToUsd",
+      "@type": "xsd:string"
+    },
+    "fxRateUpdatedAt": {
+      "@id": "slash:fxRateUpdatedAt",
+      "@type": "xsd:dateTime"
+    },
+    "noReceiptReason": {
+      "@id": "slash:noReceiptReason",
+      "@type": "xsd:string"
+    },
+    "slashfi.models.entity.Document.DocumentStatus.yaml": "slash:slashfi.models.entity.Document.DocumentStatus.yaml",
+    "slashfi.models.enums.Document.DocumentType.yaml": "slash:slashfi.models.enums.Document.DocumentType.yaml",
+    "slashfi.models.entity.IUserBankAccountModel.yaml": "slash:slashfi.models.entity.IUserBankAccountModel.yaml",
+    "userId": {
+      "@id": "slash:userId",
+      "@type": "xsd:string"
+    },
+    "latestStatus": {
+      "@id": "slash:latestStatus",
+      "@type": "@id"
+    },
+    "lastSyncedAt": {
+      "@id": "slash:lastSyncedAt",
+      "@type": "xsd:string"
+    },
+    "lastStatusChangeAt": {
+      "@id": "slash:lastStatusChangeAt",
+      "@type": "xsd:string"
+    },
+    "officialAccountName": {
+      "@id": "slash:officialAccountName",
+      "@type": "xsd:string"
+    },
+    "accountOwnerName": {
+      "@id": "slash:accountOwnerName",
+      "@type": "xsd:string"
+    },
+    "subtype": {
+      "@id": "slash:subtype",
+      "@type": "xsd:string"
+    },
+    "balance": {
+      "@id": "slash:balance"
+    },
+    "latestBalanceCheck": {
+      "@id": "slash:latestBalanceCheck"
+    },
+    "slashfi.models.entity.IMetadataModel.yaml": "slash:slashfi.models.entity.IMetadataModel.yaml",
+    "slashfi.models.entity.Document.IDocumentModel.yaml": "slash:slashfi.models.entity.Document.IDocumentModel.yaml",
+    "accountType": {
+      "@id": "slash:accountType",
+      "@type": "xsd:string"
+    },
+    "startDate": {
+      "@id": "slash:startDate",
+      "@type": "xsd:string"
+    },
+    "endDate": {
+      "@id": "slash:endDate",
+      "@type": "xsd:string"
+    },
+    "filename": {
+      "@id": "slash:filename",
+      "@type": "xsd:string"
+    },
+    "checksum": {
+      "@id": "slash:checksum",
+      "@type": "xsd:string"
+    },
+    "accessLevel": {
+      "@id": "slash:accessLevel",
+      "@type": "xsd:string"
+    },
+    "documentType": {
+      "@id": "slash:documentType",
+      "@type": "@id"
+    },
+    "tags": {
+      "@id": "slash:tags",
+      "@container": "@list"
+    },
+    "category": {
+      "@id": "slash:category",
+      "@type": "xsd:string"
+    },
+    "documentSource": {
+      "@id": "slash:documentSource",
+      "@type": "@id"
+    },
+    "fileMetadata": {
+      "@id": "slash:fileMetadata"
+    },
+    "slashfi.models.entity.ExpenseReport.ParsedReceiptConfidence.yaml": "slash:slashfi.models.entity.ExpenseReport.ParsedReceiptConfidence.yaml",
+    "slashfi.models.entity.ExpenseReport.ExpenseReportStatus.yaml": "slash:slashfi.models.entity.ExpenseReport.ExpenseReportStatus.yaml",
+    "slashfi.models.enums.UserBankAccountStatus.yaml": "slash:slashfi.models.enums.UserBankAccountStatus.yaml",
+    "slashfi.models.entity.ExpenseReport.ParsedReceiptMerchant.yaml": "slash:slashfi.models.entity.ExpenseReport.ParsedReceiptMerchant.yaml",
+    "merchantV2": {
+      "@id": "slash:merchantV2",
+      "@type": "@id"
+    },
+    "confidence": {
+      "@id": "slash:confidence",
+      "@type": "@id"
+    },
+    "rawText": {
+      "@id": "slash:rawText",
+      "@type": "xsd:string"
+    },
+    "slashfi.models.entity.ExpenseReport.PublicUserSummary.yaml": "slash:slashfi.models.entity.ExpenseReport.PublicUserSummary.yaml",
+    "slashfi.models.entity.ExpenseReport.ParsedReceiptDate.yaml": "slash:slashfi.models.entity.ExpenseReport.ParsedReceiptDate.yaml",
+    "value": {
+      "@id": "slash:value",
+      "@type": "xsd:date"
+    },
+    "slashfi.models.entity.ExpenseReport.ParsedReceiptAmount.yaml": "slash:slashfi.models.entity.ExpenseReport.ParsedReceiptAmount.yaml",
+    "valueCents": {
+      "@id": "slash:valueCents",
+      "@type": "xsd:integer"
+    },
+    "slashfi.models.entity.CustomMerchant.CustomMerchant.yaml": "slash:slashfi.models.entity.CustomMerchant.CustomMerchant.yaml",
+    "addedByUserId": {
+      "@id": "slash:addedByUserId",
+      "@type": "@id"
+    },
+    "merchantName": {
+      "@id": "slash:merchantName",
+      "@type": "xsd:string"
+    },
+    "paths.fdx.accounts._dto.InvestmentAccountBalance": "slash:paths.fdx.accounts._dto.InvestmentAccountBalance",
+    "availableCashBalance": {
+      "@id": "slash:availableCashBalance",
+      "@type": "xsd:decimal"
+    },
+    "balanceAsOf": {
+      "@id": "slash:balanceAsOf",
+      "@type": "xsd:string"
+    },
+    "currentValue": {
+      "@id": "slash:currentValue",
+      "@type": "xsd:decimal"
+    },
+    "holdings": {
+      "@id": "slash:holdings",
+      "@container": "@list"
+    },
+    "paths.fdx.accounts._param_accountId.transactions._dto.DepositTransaction": "slash:paths.fdx.accounts._param_accountId.transactions._dto.DepositTransaction",
+    "transactionId": {
+      "@id": "slash:transactionId",
+      "@type": "xsd:string"
+    },
+    "referenceTransactionId": {
+      "@id": "slash:referenceTransactionId",
+      "@type": "xsd:string"
+    },
+    "postedTimestamp": {
+      "@id": "slash:postedTimestamp",
+      "@type": "xsd:string"
+    },
+    "transactionTimestamp": {
+      "@id": "slash:transactionTimestamp",
+      "@type": "xsd:string"
+    },
+    "debitCreditMemo": {
+      "@id": "slash:debitCreditMemo",
+      "@type": "xsd:string"
+    },
+    "subCategory": {
+      "@id": "slash:subCategory",
+      "@type": "xsd:string"
+    },
+    "foreignAmount": {
+      "@id": "slash:foreignAmount",
+      "@type": "xsd:decimal"
+    },
+    "foreignCurrency": {
+      "@id": "slash:foreignCurrency",
+      "@type": "@id"
+    },
+    "payee": {
+      "@id": "slash:payee",
+      "@type": "xsd:string"
+    },
+    "checkNumber": {
+      "@id": "slash:checkNumber",
+      "@type": "xsd:string"
+    },
+    "paths.fdx.accounts._dto.DepositAccountBalance": "slash:paths.fdx.accounts._dto.DepositAccountBalance",
+    "currentBalance": {
+      "@id": "slash:currentBalance",
+      "@type": "xsd:decimal"
+    },
+    "paths.fdx.accounts._dto.LineOfCreditAccount": "slash:paths.fdx.accounts._dto.LineOfCreditAccount",
+    "accountNumberDisplay": {
+      "@id": "slash:accountNumberDisplay",
+      "@type": "xsd:string"
+    },
+    "productName": {
+      "@id": "slash:productName",
+      "@type": "xsd:string"
+    },
+    "nickname": {
+      "@id": "slash:nickname",
+      "@type": "xsd:string"
+    },
+    "paths.fdx.accounts._dto.InvestmentAccount": "slash:paths.fdx.accounts._dto.InvestmentAccount",
+    "paths.fdx.accounts._dto.CommercialAccount": "slash:paths.fdx.accounts._dto.CommercialAccount",
+    "paths.fdx.accounts._dto.LoanAccount": "slash:paths.fdx.accounts._dto.LoanAccount",
+    "paths.fdx.accounts._param_accountId.transactions._dto.Iso4217CurrencyCode": "slash:paths.fdx.accounts._param_accountId.transactions._dto.Iso4217CurrencyCode",
+    "paths.fdx.accounts._dto.AnnuityAccount": "slash:paths.fdx.accounts._dto.AnnuityAccount",
+    "paths.fdx.accounts._param_accountId.transactions._dto.LineOfCreditTransaction": "slash:paths.fdx.accounts._param_accountId.transactions._dto.LineOfCreditTransaction",
+    "transactionType": {
+      "@id": "slash:transactionType",
+      "@type": "xsd:string"
+    },
+    "paths.fdx.accounts._dto.DepositAccount": "slash:paths.fdx.accounts._dto.DepositAccount",
+    "paths.fdx.accounts._param_accountId.transactions._dto.InvestmentTransaction": "slash:paths.fdx.accounts._param_accountId.transactions._dto.InvestmentTransaction",
+    "securityId": {
+      "@id": "slash:securityId",
+      "@type": "xsd:string"
+    },
+    "securityIdType": {
+      "@id": "slash:securityIdType",
+      "@type": "xsd:string"
+    },
+    "securityType": {
+      "@id": "slash:securityType",
+      "@type": "xsd:string"
+    },
+    "symbol": {
+      "@id": "slash:symbol",
+      "@type": "xsd:string"
+    },
+    "commission": {
+      "@id": "slash:commission",
+      "@type": "xsd:decimal"
+    },
+    "fees": {
+      "@id": "slash:fees",
+      "@type": "xsd:decimal"
+    },
+    "unitPrice": {
+      "@id": "slash:unitPrice",
+      "@type": "xsd:decimal"
+    },
+    "units": {
+      "@id": "slash:units",
+      "@type": "xsd:decimal"
+    },
+    "unitType": {
+      "@id": "slash:unitType",
+      "@type": "xsd:string"
+    },
+    "fiAttributes": {
+      "@id": "slash:fiAttributes",
+      "@container": "@list"
+    },
+    "paths.fdx.accounts._dto.LineOfCreditAccountBalance": "slash:paths.fdx.accounts._dto.LineOfCreditAccountBalance",
+    "creditLine": {
+      "@id": "slash:creditLine",
+      "@type": "xsd:decimal"
+    },
+    "availableCredit": {
+      "@id": "slash:availableCredit",
+      "@type": "xsd:decimal"
+    },
+    "nextPaymentAmount": {
+      "@id": "slash:nextPaymentAmount",
+      "@type": "xsd:decimal"
+    },
+    "nextPaymentDate": {
+      "@id": "slash:nextPaymentDate",
+      "@type": "xsd:string"
+    },
+    "principalBalance": {
+      "@id": "slash:principalBalance",
+      "@type": "xsd:decimal"
+    },
+    "minimumPaymentAmount": {
+      "@id": "slash:minimumPaymentAmount",
+      "@type": "xsd:decimal"
+    },
+    "lastPaymentAmount": {
+      "@id": "slash:lastPaymentAmount",
+      "@type": "xsd:decimal"
+    },
+    "lastPaymentDate": {
+      "@id": "slash:lastPaymentDate",
+      "@type": "xsd:string"
+    },
+    "pastDueAmount": {
+      "@id": "slash:pastDueAmount",
+      "@type": "xsd:decimal"
+    },
+    "lastStmtBalance": {
+      "@id": "slash:lastStmtBalance",
+      "@type": "xsd:decimal"
+    },
+    "lastStmtDate": {
+      "@id": "slash:lastStmtDate",
+      "@type": "xsd:string"
+    },
+    "purchasesApr": {
+      "@id": "slash:purchasesApr",
+      "@type": "xsd:decimal"
+    },
+    "advancesApr": {
+      "@id": "slash:advancesApr",
+      "@type": "xsd:decimal"
+    },
+    "paths.fdx.accounts._dto.LoanAccountBalance": "slash:paths.fdx.accounts._dto.LoanAccountBalance",
+    "escrowBalance": {
+      "@id": "slash:escrowBalance",
+      "@type": "xsd:decimal"
+    },
+    "originalPrincipal": {
+      "@id": "slash:originalPrincipal",
+      "@type": "xsd:decimal"
+    },
+    "originatingDate": {
+      "@id": "slash:originatingDate",
+      "@type": "xsd:string"
+    },
+    "loanTerm": {
+      "@id": "slash:loanTerm",
+      "@type": "xsd:string"
+    },
+    "maturityDate": {
+      "@id": "slash:maturityDate",
+      "@type": "xsd:string"
+    },
+    "interestPaidYearToDate": {
+      "@id": "slash:interestPaidYearToDate",
+      "@type": "xsd:decimal"
+    },
+    "interestRate": {
+      "@id": "slash:interestRate",
+      "@type": "xsd:decimal"
+    },
+    "interestRateType": {
+      "@id": "slash:interestRateType",
+      "@type": "xsd:string"
+    },
+    "paths.fdx.accounts._dto.InsuranceAccount": "slash:paths.fdx.accounts._dto.InsuranceAccount",
+    "paths.fdx.accounts._param_accountId.transactions._dto.LoanTransaction": "slash:paths.fdx.accounts._param_accountId.transactions._dto.LoanTransaction",
+    "slashfi.models.entity.Invoice.InvoiceAggregate.yaml": "slash:slashfi.models.entity.Invoice.InvoiceAggregate.yaml",
+    "invoice": {
+      "@id": "slash:invoice",
+      "@type": "@id"
+    },
+    "invoiceDetails": {
+      "@id": "slash:invoiceDetails",
+      "@type": "@id"
+    },
+    "invoiceAccount": {
+      "@id": "slash:invoiceAccount",
+      "@type": "@id"
+    },
+    "slashfi.models.entity.Invoice.InvoiceDetails.yaml": "slash:slashfi.models.entity.Invoice.InvoiceDetails.yaml",
+    "issuedAt": {
+      "@id": "slash:issuedAt",
+      "@type": "xsd:dateTime"
+    },
+    "dueAt": {
+      "@id": "slash:dueAt",
+      "@type": "xsd:dateTime"
+    },
+    "invoiceTz": {
+      "@id": "slash:invoiceTz",
+      "@type": "xsd:string"
+    },
+    "lineItemsAndTotals": {
+      "@id": "slash:lineItemsAndTotals",
+      "@type": "@id"
+    },
+    "invoiceNumber": {
+      "@id": "slash:invoiceNumber",
+      "@type": "@id"
+    },
+    "documentId": {
+      "@id": "slash:documentId",
+      "@type": "xsd:string"
+    },
+    "billedTo": {
+      "@id": "slash:billedTo"
+    },
+    "version": {
+      "@id": "slash:version",
+      "@type": "xsd:integer"
+    },
+    "slashfi.models.entity.Invoice.PaymentMethod.PaymentMethodInboundInternationalWire.yaml": "slash:slashfi.models.entity.Invoice.PaymentMethod.PaymentMethodInboundInternationalWire.yaml",
+    "slashfi.models.enums.Crypto.Chain.yaml": "slash:slashfi.models.enums.Crypto.Chain.yaml",
+    "slashfi.models.entity.Invoice.PaymentMethod.PaymentMethodInboundWireTransfer.yaml": "slash:slashfi.models.entity.Invoice.PaymentMethod.PaymentMethodInboundWireTransfer.yaml",
+    "slashfi.models.entity.Invoice.PaymentMethod.PaymentMethodCardPayment.yaml": "slash:slashfi.models.entity.Invoice.PaymentMethod.PaymentMethodCardPayment.yaml",
+    "slashfi.models.entity.Invoice.PaymentMethod.PaymentMethodInboundRtp.yaml": "slash:slashfi.models.entity.Invoice.PaymentMethod.PaymentMethodInboundRtp.yaml",
+    "slashfi.models.enums.SlashAccountGroupType.yaml": "slash:slashfi.models.enums.SlashAccountGroupType.yaml",
+    "slashfi.models.entity.Invoice.LineItemsAndTotals.yaml": "slash:slashfi.models.entity.Invoice.LineItemsAndTotals.yaml",
+    "lineItems": {
+      "@id": "slash:lineItems",
+      "@container": "@list"
+    },
+    "discount": {
+      "@id": "slash:discount",
+      "@type": "@id"
+    },
+    "tax": {
+      "@id": "slash:tax",
+      "@type": "@id"
+    },
+    "subtotalCents": {
+      "@id": "slash:subtotalCents",
+      "@type": "xsd:decimal"
+    },
+    "totalAmountCents": {
+      "@id": "slash:totalAmountCents",
+      "@type": "xsd:decimal"
+    },
+    "slashfi.models.entity.Invoice.PaymentMethod.PaymentMethodInboundAchTransfer.yaml": "slash:slashfi.models.entity.Invoice.PaymentMethod.PaymentMethodInboundAchTransfer.yaml",
+    "slashfi.models.entity.Invoice.InvoiceTax.yaml": "slash:slashfi.models.entity.Invoice.InvoiceTax.yaml",
+    "percent": {
+      "@id": "slash:percent",
+      "@type": "xsd:decimal"
+    },
+    "slashfi.models.entity.CardGroup.Restriction.yaml": "slash:slashfi.models.entity.CardGroup.Restriction.yaml",
+    "slashfi.models.entity.SlashAccount.Group.Model.yaml": "slash:slashfi.models.entity.SlashAccount.Group.Model.yaml",
+    "groupType": {
+      "@id": "slash:groupType",
+      "@type": "@id"
+    },
+    "groupName": {
+      "@id": "slash:groupName",
+      "@type": "xsd:string"
+    },
+    "provider": {
+      "@id": "slash:provider",
+      "@type": "@id"
+    },
+    "lockedAt": {
+      "@id": "slash:lockedAt",
+      "@type": "xsd:string"
+    },
+    "closedAt": {
+      "@id": "slash:closedAt",
+      "@type": "xsd:string"
+    },
+    "pendingClosedAt": {
+      "@id": "slash:pendingClosedAt",
+      "@type": "xsd:string"
+    },
+    "additionalData": {
+      "@id": "slash:additionalData"
+    },
+    "slashfi.models.entity.Invoice.PaymentMethod.PaymentMethodCryptoDeposit.yaml": "slash:slashfi.models.entity.Invoice.PaymentMethod.PaymentMethodCryptoDeposit.yaml",
+    "slashfi.models.entity.SlashWalletAccount.yaml": "slash:slashfi.models.entity.SlashWalletAccount.yaml",
+    "slashWalletId": {
+      "@id": "slash:slashWalletId",
+      "@type": "xsd:string"
+    },
+    "chains": {
+      "@id": "slash:chains",
+      "@container": "@list"
+    },
+    "protocol": {
+      "@id": "slash:protocol",
+      "@type": "xsd:string"
+    },
+    "providerId": {
+      "@id": "slash:providerId",
+      "@type": "xsd:string"
+    },
+    "slashfi.models.entity.Invoice.InvoiceSeriesInput.yaml": "slash:slashfi.models.entity.Invoice.InvoiceSeriesInput.yaml",
+    "legalEntityContactId": {
+      "@id": "slash:legalEntityContactId",
+      "@type": "xsd:string"
+    },
+    "legalEntityCustomerId": {
+      "@id": "slash:legalEntityCustomerId",
+      "@type": "xsd:string"
+    },
+    "recurrenceRule": {
+      "@id": "slash:recurrenceRule",
+      "@type": "@id"
+    },
+    "paymentTermsDays": {
+      "@id": "slash:paymentTermsDays",
+      "@type": "xsd:integer"
+    },
+    "endCondition": {
+      "@id": "slash:endCondition",
+      "@type": "@id"
+    },
+    "template": {
+      "@id": "slash:template",
+      "@type": "@id"
+    },
+    "paymentMethods": {
+      "@id": "slash:paymentMethods",
+      "@container": "@list"
+    },
+    "slashfi.models.enums.OffRamp.Method.yaml": "slash:slashfi.models.enums.OffRamp.Method.yaml",
+    "slashfi.models.entity.Invoice.InvoiceDetailsInput.yaml": "slash:slashfi.models.entity.Invoice.InvoiceDetailsInput.yaml",
+    "ccEmails": {
+      "@id": "slash:ccEmails",
+      "@container": "@list"
+    },
+    "slashfi.models.enums.SlashAccountProvider.yaml": "slash:slashfi.models.enums.SlashAccountProvider.yaml",
+    "slashfi.models.entity.Invoice.InvoiceLineItem.yaml": "slash:slashfi.models.entity.Invoice.InvoiceLineItem.yaml",
+    "quantity": {
+      "@id": "slash:quantity",
+      "@type": "xsd:decimal"
+    },
+    "priceCents": {
+      "@id": "slash:priceCents",
+      "@type": "xsd:decimal"
+    },
+    "catalogItemId": {
+      "@id": "slash:catalogItemId",
+      "@type": "xsd:string"
+    },
+    "slashfi.models.entity.Invoice.Status.yaml": "slash:slashfi.models.entity.Invoice.Status.yaml",
+    "slashfi.models.entity.Invoice.InvoiceSettings.yaml": "slash:slashfi.models.entity.Invoice.InvoiceSettings.yaml",
+    "settings": {
+      "@id": "slash:settings",
+      "@type": "@id"
+    },
+    "slashfi.models.enums.SlashAccountType.yaml": "slash:slashfi.models.enums.SlashAccountType.yaml",
+    "slashfi.models.entity.Invoice.InvoiceSeriesTemplate.yaml": "slash:slashfi.models.entity.Invoice.InvoiceSeriesTemplate.yaml",
+    "slashfi.models.entity.Invoice.InvoiceSeriesStatus.yaml": "slash:slashfi.models.entity.Invoice.InvoiceSeriesStatus.yaml",
+    "slashfi.models.entity.Invoice.InvoiceSeries.yaml": "slash:slashfi.models.entity.Invoice.InvoiceSeries.yaml",
+    "nextScheduledDate": {
+      "@id": "slash:nextScheduledDate",
+      "@type": "xsd:dateTime"
+    },
+    "slashfi.models.entity.Invoice.PaymentMethod.PaymentMethodAchDebit.yaml": "slash:slashfi.models.entity.Invoice.PaymentMethod.PaymentMethodAchDebit.yaml",
+    "slashfi.models.entity.Invoice.Invoice.yaml": "slash:slashfi.models.entity.Invoice.Invoice.yaml",
+    "collectedAmountCents": {
+      "@id": "slash:collectedAmountCents",
+      "@type": "xsd:decimal"
+    },
+    "invoiceDetailsId": {
+      "@id": "slash:invoiceDetailsId",
+      "@type": "xsd:string"
+    },
+    "invoicePaymentMethods": {
+      "@id": "slash:invoicePaymentMethods",
+      "@container": "@list"
+    },
+    "invoiceTransactions": {
+      "@id": "slash:invoiceTransactions",
+      "@container": "@list"
+    },
+    "invoiceSeriesId": {
+      "@id": "slash:invoiceSeriesId",
+      "@type": "xsd:string"
+    },
+    "scheduledSendDate": {
+      "@id": "slash:scheduledSendDate",
+      "@type": "xsd:dateTime"
+    },
+    "slashfi.models.entity.Invoice.LineItemsAndTotalsInput.yaml": "slash:slashfi.models.entity.Invoice.LineItemsAndTotalsInput.yaml",
+    "slashfi.models.entity.Invoice.InvoiceSettingsData.yaml": "slash:slashfi.models.entity.Invoice.InvoiceSettingsData.yaml",
+    "companyName": {
+      "@id": "slash:companyName",
+      "@type": "xsd:string"
+    },
+    "defaultMemo": {
+      "@id": "slash:defaultMemo",
+      "@type": "xsd:string"
+    },
+    "invoiceTerms": {
+      "@id": "slash:invoiceTerms",
+      "@type": "xsd:string"
+    },
+    "defaultPaymentTermsDays": {
+      "@id": "slash:defaultPaymentTermsDays",
+      "@type": "xsd:integer"
+    },
+    "logoDocumentId": {
+      "@id": "slash:logoDocumentId",
+      "@type": "xsd:string"
+    },
+    "unitPriceDecimalPlaces": {
+      "@id": "slash:unitPriceDecimalPlaces",
+      "@type": "xsd:integer"
+    },
+    "branding": {
+      "@id": "slash:branding"
+    },
+    "slashfi.models.entity.Subaccount.Model.yaml": "slash:slashfi.models.entity.Subaccount.Model.yaml",
+    "slashfi.models.entity.SlashAccount.Group.Avs.AvsConstraint.yaml": "slash:slashfi.models.entity.SlashAccount.Group.Avs.AvsConstraint.yaml",
+    "countryRestriction": {
+      "@id": "slash:countryRestriction"
+    },
+    "slashfi.models.entity.SlashAccount.Group.Avs.AvsSettings.yaml": "slash:slashfi.models.entity.SlashAccount.Group.Avs.AvsSettings.yaml",
+    "avsMode": {
+      "@id": "slash:avsMode",
+      "@type": "xsd:string"
+    },
+    "constraints": {
+      "@id": "slash:constraints",
+      "@type": "@id"
+    },
+    "avsAddress": {
+      "@id": "slash:avsAddress"
+    },
+    "LegalEntity": "slash:LegalEntity",
+    "structure": {
+      "@id": "slash:structure",
+      "@type": "xsd:string"
+    },
+    "Merchant": "slash:Merchant",
+    "MerchantCategory": "slash:MerchantCategory",
+    "paths.oauth2.userinfo._dto.UserInfoResponse": "slash:paths.oauth2.userinfo._dto.UserInfoResponse",
+    "sub": {
+      "@id": "slash:sub",
+      "@type": "xsd:string"
+    },
+    "phone_number": {
+      "@id": "slash:phone_number",
+      "@type": "xsd:string"
+    },
+    "slashfi.models.entity.Task.ITaskActionModel.yaml": "slash:slashfi.models.entity.Task.ITaskActionModel.yaml",
+    "key": {
+      "@id": "slash:key",
+      "@type": "xsd:string"
+    },
+    "label": {
+      "@id": "slash:label",
+      "@type": "xsd:string"
+    },
+    "style": {
+      "@id": "slash:style",
+      "@type": "xsd:string"
+    },
+    "role": {
+      "@id": "slash:role",
+      "@type": "xsd:string"
+    },
+    "isDisabled": {
+      "@id": "slash:isDisabled",
+      "@type": "xsd:boolean"
+    },
+    "missingAttributes": {
+      "@id": "slash:missingAttributes",
+      "@container": "@list"
+    },
+    "slashfi.models.entity.Task.ITaskModel.yaml": "slash:slashfi.models.entity.Task.ITaskModel.yaml",
+    "slashfi.models.entity.Task.ITaskAttributeMetaModel.yaml": "slash:slashfi.models.entity.Task.ITaskAttributeMetaModel.yaml",
+    "isRequired": {
+      "@id": "slash:isRequired",
+      "@type": "xsd:boolean"
+    },
+    "TransactionDetailedStatus": "slash:TransactionDetailedStatus",
+    "FeeTransaction": "slash:FeeTransaction",
+    "dateCharged": {
+      "@id": "slash:dateCharged",
+      "@type": "xsd:string"
+    },
+    "feeAmountCents": {
+      "@id": "slash:feeAmountCents",
+      "@type": "xsd:decimal"
+    },
+    "feeType": {
+      "@id": "slash:feeType",
+      "@type": "xsd:string"
+    },
+    "originalTransaction": {
+      "@id": "slash:originalTransaction",
+      "@type": "@id"
+    },
+    "card": {
+      "@id": "slash:card",
+      "@type": "@id"
+    },
+    "TransactionFxFeeInfo": "slash:TransactionFxFeeInfo",
+    "TransactionCashbackInfo": "slash:TransactionCashbackInfo",
+    "rate": {
+      "@id": "slash:rate",
+      "@type": "xsd:decimal"
+    },
+    "TransactionMerchantLocation": "slash:TransactionMerchantLocation",
+    "city": {
+      "@id": "slash:city",
+      "@type": "xsd:string"
+    },
+    "state": {
+      "@id": "slash:state",
+      "@type": "xsd:string"
+    },
+    "country": {
+      "@id": "slash:country",
+      "@type": "xsd:string"
+    },
+    "zip": {
+      "@id": "slash:zip",
+      "@type": "xsd:string"
+    },
+    "TransactionStatus": "slash:TransactionStatus",
+    "Transaction": "slash:Transaction",
+    "merchantDescription": {
+      "@id": "slash:merchantDescription",
+      "@type": "xsd:string"
+    },
+    "merchantData": {
+      "@id": "slash:merchantData",
+      "@type": "@id"
+    },
+    "detailedStatus": {
+      "@id": "slash:detailedStatus",
+      "@type": "@id"
+    },
+    "accountSubtype": {
+      "@id": "slash:accountSubtype",
+      "@type": "xsd:string"
+    },
+    "cardId": {
+      "@id": "slash:cardId",
+      "@type": "xsd:string"
+    },
+    "cashbackInfo": {
+      "@id": "slash:cashbackInfo",
+      "@type": "@id"
+    },
+    "fxFeeInfo": {
+      "@id": "slash:fxFeeInfo",
+      "@type": "@id"
+    },
+    "originalCurrency": {
+      "@id": "slash:originalCurrency",
+      "@type": "@id"
+    },
+    "orderId": {
+      "@id": "slash:orderId",
+      "@type": "xsd:string"
+    },
+    "referenceNumber": {
+      "@id": "slash:referenceNumber",
+      "@type": "xsd:string"
+    },
+    "authorizedAt": {
+      "@id": "slash:authorizedAt",
+      "@type": "xsd:string"
+    },
+    "declineReason": {
+      "@id": "slash:declineReason",
+      "@type": "xsd:string"
+    },
+    "approvalReason": {
+      "@id": "slash:approvalReason",
+      "@type": "xsd:string"
+    },
+    "providerAuthorizationId": {
+      "@id": "slash:providerAuthorizationId",
+      "@type": "xsd:string"
+    },
+    "wireInfo": {
+      "@id": "slash:wireInfo"
+    },
+    "achInfo": {
+      "@id": "slash:achInfo"
+    },
+    "rtpInfo": {
+      "@id": "slash:rtpInfo"
+    },
+    "sepaInfo": {
+      "@id": "slash:sepaInfo"
+    },
+    "pixInfo": {
+      "@id": "slash:pixInfo"
+    },
+    "speiInfo": {
+      "@id": "slash:speiInfo"
+    },
+    "fpsInfo": {
+      "@id": "slash:fpsInfo"
+    },
+    "feeInfo": {
+      "@id": "slash:feeInfo"
+    },
+    "cryptoInfo": {
+      "@id": "slash:cryptoInfo"
+    },
+    "TransactionMerchant": "slash:TransactionMerchant",
+    "categoryCode": {
+      "@id": "slash:categoryCode",
+      "@type": "xsd:string"
+    },
+    "location": {
+      "@id": "slash:location",
+      "@type": "@id"
+    },
+    "OriginalCurrency": "slash:OriginalCurrency",
+    "code": {
+      "@id": "slash:code",
+      "@type": "xsd:string"
+    },
+    "conversionRate": {
+      "@id": "slash:conversionRate",
+      "@type": "xsd:decimal"
+    },
+    "VirtualAccountModel": "slash:VirtualAccountModel",
+    "VirtualAccountCommissionRule": "slash:VirtualAccountCommissionRule",
+    "commissionDetails": {
+      "@id": "slash:commissionDetails",
+      "@type": "@id"
+    },
+    "VirtualAccount": "slash:VirtualAccount",
+    "virtualAccount": {
+      "@id": "slash:virtualAccount",
+      "@type": "@id"
+    },
+    "commissionRule": {
+      "@id": "slash:commissionRule",
+      "@type": "@id"
+    },
+    "Webhook": "slash:Webhook",
+    "pausedAt": {
+      "@id": "slash:pausedAt",
+      "@type": "xsd:string"
+    },
+    "backingOffUntil": {
+      "@id": "slash:backingOffUntil",
+      "@type": "xsd:string"
+    },
+    "disabledAt": {
+      "@id": "slash:disabledAt",
+      "@type": "xsd:string"
+    },
+    "enabledEvents": {
+      "@id": "slash:enabledEvents",
+      "@container": "@list"
+    },
+    "DeveloperApplicationScope": "slash:DeveloperApplicationScope"
+  },
+  "@type": "schema:Dataset",
+  "schema:name": "Slash API JSON-LD context",
+  "schema:description": "A JSON-LD @context for the objects Slash's own API contract declares: one class per component schema, one property per declared field, typed from the contract. Derived by script (derive-json-ld.py, 2026-10-12) from openapi/slash-account-api-openapi.yml, openapi/slash-agent-requests-api-openapi.yml, openapi/slash-analytics-api-openapi.yml.",
+  "dcterms:created": "2026-10-12",
+  "dcterms:source": [
+    "openapi/slash-account-api-openapi.yml",
+    "openapi/slash-agent-requests-api-openapi.yml",
+    "openapi/slash-analytics-api-openapi.yml",
+    "openapi/slash-card-api-openapi.yml",
+    "openapi/slash-card-group-api-openapi.yml"
+  ]
+}

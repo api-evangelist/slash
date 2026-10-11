@@ -1,0 +1,1128 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/slash/main/json-schema/slash-slashfi-models-entity-expense-report-public-expense-report-with-metadata-yaml-schema.json",
+  "title": "PublicExpenseReportWithMetadata",
+  "description": "An expense report with enriched metadata, stripped for public API consumption",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/slash-expense-report-api-openapi.yml#/components/schemas/slashfi.models.entity.ExpenseReport.PublicExpenseReportWithMetadata.yaml",
+  "type": "object",
+  "allOf": [
+    {
+      "$ref": "#/$defs/slashfi.models.entity.ExpenseReport.ExpenseReport.yaml",
+      "x-entrypoint": {
+        "virtualPath": "entity/ExpenseReport/ExpenseReport",
+        "sourcePath": "entity/ExpenseReport/ExpenseReport.yaml",
+        "title": "ExpenseReport",
+        "origin": "/home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas",
+        "globalImport": true
+      }
+    },
+    {
+      "type": "object",
+      "properties": {
+        "merchant": {
+          "$ref": "#/$defs/slashfi.models.entity.ExpenseReport.ExpenseReportMerchant.yaml",
+          "description": "The merchant associated with this expense (enriched from merchantV2Id or customMerchantId)",
+          "x-entrypoint": {
+            "virtualPath": "entity/ExpenseReport/ExpenseReportMerchant",
+            "sourcePath": "entity/ExpenseReport/ExpenseReportMerchant.yaml",
+            "title": "ExpenseReportMerchant",
+            "origin": "/home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas",
+            "globalImport": true
+          }
+        },
+        "documents": {
+          "type": "array",
+          "description": "Documents/receipts attached to this expense report with presigned URLs",
+          "items": {
+            "type": "object",
+            "properties": {
+              "document": {
+                "$ref": "#/$defs/slashfi.models.entity.Document.IDocumentModel.yaml",
+                "description": "The document metadata",
+                "x-entrypoint": {
+                  "virtualPath": "entity/Document/IDocumentModel",
+                  "sourcePath": "entity/Document/IDocumentModel.yaml",
+                  "title": "IDocumentModel",
+                  "origin": "/home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas",
+                  "globalImport": true
+                }
+              },
+              "url": {
+                "type": "string",
+                "description": "Presigned S3 URL for accessing the document"
+              }
+            },
+            "required": [
+              "document",
+              "url"
+            ]
+          }
+        },
+        "aggregatedTransaction": {
+          "$ref": "#/$defs/slashfi.models.entity.ExpenseReport.PublicTransactionSummary.yaml",
+          "description": "Minimal transaction summary for the payout",
+          "x-entrypoint": {
+            "virtualPath": "entity/ExpenseReport/PublicTransactionSummary",
+            "sourcePath": "entity/ExpenseReport/PublicTransactionSummary.yaml",
+            "title": "PublicTransactionSummary",
+            "origin": "/home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas",
+            "globalImport": true
+          }
+        },
+        "destination": {
+          "$ref": "#/$defs/slashfi.models.entity.ExpenseReport.PublicReimbursementSource.yaml",
+          "description": "Minimal bank account info for the reimbursement destination",
+          "x-entrypoint": {
+            "virtualPath": "entity/ExpenseReport/PublicReimbursementSource",
+            "sourcePath": "entity/ExpenseReport/PublicReimbursementSource.yaml",
+            "title": "PublicReimbursementSource",
+            "origin": "/home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas",
+            "globalImport": true
+          }
+        },
+        "submittedByUser": {
+          "$ref": "#/$defs/slashfi.models.entity.ExpenseReport.PublicUserSummary.yaml",
+          "description": "The user who submitted the expense report",
+          "x-entrypoint": {
+            "virtualPath": "entity/ExpenseReport/PublicUserSummary",
+            "sourcePath": "entity/ExpenseReport/PublicUserSummary.yaml",
+            "title": "PublicUserSummary",
+            "origin": "/home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas",
+            "globalImport": true
+          }
+        },
+        "reviewedByUser": {
+          "$ref": "#/$defs/slashfi.models.entity.ExpenseReport.PublicUserSummary.yaml",
+          "description": "The admin who reviewed the expense report",
+          "x-entrypoint": {
+            "virtualPath": "entity/ExpenseReport/PublicUserSummary",
+            "sourcePath": "entity/ExpenseReport/PublicUserSummary.yaml",
+            "title": "PublicUserSummary",
+            "origin": "/home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas",
+            "globalImport": true
+          }
+        },
+        "review": {
+          "$ref": "#/$defs/slashfi.models.entity.ExpenseReport.ExpenseReportReview.yaml",
+          "description": "The review decision for this expense report (if reviewed)",
+          "x-entrypoint": {
+            "virtualPath": "entity/ExpenseReport/ExpenseReportReview",
+            "sourcePath": "entity/ExpenseReport/ExpenseReportReview.yaml",
+            "title": "ExpenseReportReview",
+            "origin": "/home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas",
+            "globalImport": true
+          }
+        }
+      }
+    }
+  ],
+  "x-entrypoint": {
+    "virtualPath": "entity/ExpenseReport/PublicExpenseReportWithMetadata",
+    "sourcePath": "entity/ExpenseReport/PublicExpenseReportWithMetadata.yaml",
+    "title": "PublicExpenseReportWithMetadata",
+    "origin": "/home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas",
+    "globalImport": true
+  },
+  "$defs": {
+    "slashfi.models.entity.CustomMerchant.CustomMerchant.yaml": {
+      "type": "object",
+      "description": "Custom merchant schema",
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/slashfi.models.id.CustomMerchant.CustomMerchantId.yaml",
+          "description": "The ID of the custom merchant",
+          "x-entrypoint": {
+            "virtualPath": "id/CustomMerchant/CustomMerchantId",
+            "sourcePath": "id/CustomMerchant/CustomMerchantId.yaml",
+            "title": "CustomMerchantId",
+            "origin": "/home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas",
+            "globalImport": true
+          }
+        },
+        "legalEntityId": {
+          "$ref": "#/$defs/slashfi.models.id.LegalEntityId.yaml",
+          "description": "The ID of the legal entity this custom merchant belongs to",
+          "x-entrypoint": {
+            "virtualPath": "id/LegalEntityId",
+            "sourcePath": "id/LegalEntityId.yaml",
+            "title": "LegalEntityId",
+            "origin": "/home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas",
+            "globalImport": true
+          }
+        },
+        "addedByUserId": {
+          "$ref": "#/$defs/slashfi.models.id.User.yaml",
+          "description": "The ID of the user who added this custom merchant",
+          "x-entrypoint": {
+            "virtualPath": "id/User",
+            "sourcePath": "id/User.yaml",
+            "title": "User",
+            "origin": "/home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas",
+            "globalImport": true
+          }
+        },
+        "merchantName": {
+          "type": "string",
+          "description": "The name of the custom merchant"
+        },
+        "timestamp": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Metadata timestamp"
+        }
+      },
+      "required": [
+        "id",
+        "legalEntityId",
+        "addedByUserId",
+        "merchantName",
+        "timestamp"
+      ],
+      "x-entrypoint": {
+        "virtualPath": "entity/CustomMerchant/CustomMerchant",
+        "sourcePath": "entity/CustomMerchant/CustomMerchant.yaml",
+        "title": "CustomMerchant",
+        "origin": "/home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas",
+        "globalImport": true
+      },
+      "title": "CustomMerchant"
+    },
+    "slashfi.models.entity.Document.DocumentStatus.yaml": {
+      "type": "string",
+      "enum": [
+        "uploaded",
+        "uploading",
+        "not_generated",
+        "generating",
+        "generated",
+        "error",
+        "deleted"
+      ],
+      "x-entrypoint": {
+        "virtualPath": "entity/Document/DocumentStatus",
+        "sourcePath": "entity/Document/DocumentStatus.yaml",
+        "title": "DocumentStatus",
+        "origin": "/home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas",
+        "globalImport": true
+      },
+      "title": "DocumentStatus"
+    },
+    "slashfi.models.entity.Document.IDocumentModel.yaml": {
+      "type": "object",
+      "properties": {
+        "$entity": {
+          "type": "string",
+          "enum": [
+            "document"
+          ]
+        },
+        "id": {
+          "type": "string"
+        },
+        "accountType": {
+          "type": "string",
+          "enum": [
+            "legalEntity",
+            "slashAccount",
+            "slashAccountGroup",
+            "loan",
+            "card",
+            "dispute",
+            "productApplication",
+            "ach",
+            "wire",
+            "adminNote",
+            "businessIdentity",
+            "subaccount",
+            "atomicInvestSleeve",
+            "atomicInvestAccount",
+            "accountingEntry",
+            "slashWalletAccount",
+            "slashWallet",
+            "affiliatePayoutProfile",
+            "user",
+            "notification",
+            "expenseReport",
+            "globalUsdAch",
+            "globalUsdWire",
+            "globalUsdSwift",
+            "globalUsdCrypto",
+            "featureAnnouncement"
+          ]
+        },
+        "accountId": {
+          "type": "string"
+        },
+        "startDate": {
+          "type": "string"
+        },
+        "endDate": {
+          "type": "string"
+        },
+        "filename": {
+          "type": "string"
+        },
+        "status": {
+          "$ref": "#/$defs/slashfi.models.entity.Document.DocumentStatus.yaml",
+          "x-entrypoint": {
+            "virtualPath": "entity/Document/DocumentStatus",
+            "sourcePath": "entity/Document/DocumentStatus.yaml",
+            "title": "DocumentStatus",
+            "origin": "/home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas",
+            "globalImport": true
+          }
+        },
+        "error": {
+          "type": "string"
+        },
+        "checksum": {
+          "type": "string"
+        },
+        "accessLevel": {
+          "type": "string"
+        },
+        "documentType": {
+          "$ref": "#/$defs/slashfi.models.enums.Document.DocumentType.yaml",
+          "x-entrypoint": {
+            "virtualPath": "enums/Document/DocumentType",
+            "sourcePath": "enums/Document/DocumentType.yaml",
+            "title": "DocumentType",
+            "origin": "/home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas",
+            "globalImport": true
+          }
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "category": {
+          "type": "string",
+          "enum": [
+            "document",
+            "statement"
+          ]
+        },
+        "documentSource": {
+          "$ref": "#/$defs/slashfi.models.enums.Document.DocumentSource.yaml",
+          "x-entrypoint": {
+            "virtualPath": "enums/Document/DocumentSource",
+            "sourcePath": "enums/Document/DocumentSource.yaml",
+            "title": "DocumentSource",
+            "origin": "/home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas",
+            "globalImport": true
+          }
+        },
+        "fileMetadata": {
+          "type": "object",
+          "properties": {
+            "size": {
+              "type": "number"
+            },
+            "type": {
+              "type": "string"
+            }
+          }
+        },
+        "timestamp": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "$entity",
+        "id",
+        "accountType",
+        "accountId",
+        "startDate",
+        "endDate",
+        "status",
+        "category",
+        "documentType",
+        "accessLevel",
+        "timestamp"
+      ],
+      "x-entrypoint": {
+        "virtualPath": "entity/Document/IDocumentModel",
+        "sourcePath": "entity/Document/IDocumentModel.yaml",
+        "title": "IDocumentModel",
+        "origin": "/home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas",
+        "globalImport": true
+      },
+      "title": "IDocumentModel"
+    },
+    "slashfi.models.entity.ExpenseReport.ExpenseReport.yaml": {
+      "type": "object",
+      "description": "An expense report submitted by an employee for reimbursement (matches database schema)",
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/slashfi.models.id.ExpenseReport.ExpenseReportId.yaml",
+          "description": "The unique ID of the expense report",
+          "x-entrypoint": {
+            "virtualPath": "id/ExpenseReport/ExpenseReportId",
+            "sourcePath": "id/ExpenseReport/ExpenseReportId.yaml",
+            "title": "ExpenseReportId",
+            "origin": "/home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas",
+            "globalImport": true
+          }
+        },
+        "legalEntityId": {
+          "$ref": "#/$defs/slashfi.models.id.LegalEntityId.yaml",
+          "description": "The ID of the legal entity this expense report belongs to",
+          "x-entrypoint": {
+            "virtualPath": "id/LegalEntityId",
+            "sourcePath": "id/LegalEntityId.yaml",
+            "title": "LegalEntityId",
+            "origin": "/home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas",
+            "globalImport": true
+          }
+        },
+        "submittedByUserId": {
+          "$ref": "#/$defs/slashfi.models.id.User.yaml",
+          "description": "The ID of the user who submitted this expense report",
+          "x-entrypoint": {
+            "virtualPath": "id/User",
+            "sourcePath": "id/User.yaml",
+            "title": "User",
+            "origin": "/home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas",
+            "globalImport": true
+          }
+        },
+        "amountCents": {
+          "type": "integer",
+          "description": "The expense amount in cents"
+        },
+        "currency": {
+          "type": "string",
+          "description": "ISO currency code (e.g., 'USD')"
+        },
+        "transactionDate": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The date of the transaction being reimbursed"
+        },
+        "merchantV2Id": {
+          "$ref": "#/$defs/slashfi.models.id.MerchantV2Id.yaml",
+          "nullable": true,
+          "description": "Reference to MerchantV2 registry (mutually exclusive with customMerchantId)",
+          "x-entrypoint": {
+            "virtualPath": "id/MerchantV2Id",
+            "sourcePath": "id/MerchantV2Id.yaml",
+            "title": "MerchantV2Id",
+            "origin": "/home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas",
+            "globalImport": true
+          }
+        },
+        "customMerchantId": {
+          "$ref": "#/$defs/slashfi.models.id.CustomMerchant.CustomMerchantId.yaml",
+          "nullable": true,
+          "description": "Reference to custom merchant (mutually exclusive with merchantV2Id)",
+          "x-entrypoint": {
+            "virtualPath": "id/CustomMerchant/CustomMerchantId",
+            "sourcePath": "id/CustomMerchant/CustomMerchantId.yaml",
+            "title": "CustomMerchantId",
+            "origin": "/home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas",
+            "globalImport": true
+          }
+        },
+        "memo": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Description or notes for the expense"
+        },
+        "destinationId": {
+          "$ref": "#/$defs/slashfi.models.id.UserBankAccount.yaml",
+          "description": "The user's bank account ID for payout",
+          "x-entrypoint": {
+            "virtualPath": "id/UserBankAccount",
+            "sourcePath": "id/UserBankAccount.yaml",
+            "title": "UserBankAccount",
+            "origin": "/home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas",
+            "globalImport": true
+          }
+        },
+        "submittedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "When the expense report was submitted"
+        },
+        "status": {
+          "$ref": "#/$defs/slashfi.models.entity.ExpenseReport.ExpenseReportStatus.yaml",
+          "description": "Current status of the expense report",
+          "x-entrypoint": {
+            "virtualPath": "entity/ExpenseReport/ExpenseReportStatus",
+            "sourcePath": "entity/ExpenseReport/ExpenseReportStatus.yaml",
+            "title": "ExpenseReportStatus",
+            "origin": "/home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas",
+            "globalImport": true
+          }
+        },
+        "timestamp": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Metadata timestamp"
+        },
+        "fxRateToUsd": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "FX rate at submission time in format \"1 USD = X foreign\" (e.g., \"7.0286\" for CNY means 100 CNY / 7.0286 = $14.23 USD)"
+        },
+        "fxRateUpdatedAt": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time",
+          "description": "When the FX rate was captured"
+        },
+        "noReceiptReason": {
+          "type": "string",
+          "description": "Reason for not having a receipt. Should only be set when this report has no receipt (expense report documents) associated with it."
+        }
+      },
+      "required": [
+        "id",
+        "legalEntityId",
+        "submittedByUserId",
+        "amountCents",
+        "currency",
+        "transactionDate",
+        "destinationId",
+        "submittedAt",
+        "status",
+        "timestamp"
+      ],
+      "x-entrypoint": {
+        "virtualPath": "entity/ExpenseReport/ExpenseReport",
+        "sourcePath": "entity/ExpenseReport/ExpenseReport.yaml",
+        "title": "ExpenseReport",
+        "origin": "/home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas",
+        "globalImport": true
+      },
+      "title": "ExpenseReport"
+    },
+    "slashfi.models.entity.ExpenseReport.ExpenseReportMerchant.yaml": {
+      "description": "The merchant associated with an expense report (either a merchantV2 or customMerchant)",
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "enum": [
+                "merchantV2"
+              ]
+            },
+            "merchantV2": {
+              "$ref": "#/$defs/slashfi.models.entity.Merchant.MerchantV2.yaml",
+              "x-entrypoint": {
+                "virtualPath": "entity/Merchant/MerchantV2",
+                "sourcePath": "entity/Merchant/MerchantV2.yaml",
+                "title": "MerchantV2",
+                "origin": "/home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas",
+                "globalImport": true
+              }
+            }
+          },
+          "required": [
+            "type",
+            "merchantV2"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "enum": [
+                "customMerchant"
+              ]
+            },
+            "customMerchant": {
+              "$ref": "#/$defs/slashfi.models.entity.CustomMerchant.CustomMerchant.yaml",
+              "x-entrypoint": {
+                "virtualPath": "entity/CustomMerchant/CustomMerchant",
+                "sourcePath": "entity/CustomMerchant/CustomMerchant.yaml",
+                "title": "CustomMerchant",
+                "origin": "/home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas",
+                "globalImport": true
+              }
+            }
+          },
+          "required": [
+            "type",
+            "customMerchant"
+          ]
+        }
+      ],
+      "x-entrypoint": {
+        "virtualPath": "entity/ExpenseReport/ExpenseReportMerchant",
+        "sourcePath": "entity/ExpenseReport/ExpenseReportMerchant.yaml",
+        "title": "ExpenseReportMerchant",
+        "origin": "/home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas",
+        "globalImport": true
+      },
+      "title": "ExpenseReportMerchant"
+    },
+    "slashfi.models.entity.ExpenseReport.ExpenseReportReview.yaml": {
+      "type": "object",
+      "description": "Review decision for an expense report",
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/slashfi.models.id.ExpenseReport.ExpenseReportReviewId.yaml",
+          "description": "The unique ID of the expense report review",
+          "x-entrypoint": {
+            "virtualPath": "id/ExpenseReport/ExpenseReportReviewId",
+            "sourcePath": "id/ExpenseReport/ExpenseReportReviewId.yaml",
+            "title": "ExpenseReportReviewId",
+            "origin": "/home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas",
+            "globalImport": true
+          }
+        },
+        "expenseReportId": {
+          "$ref": "#/$defs/slashfi.models.id.ExpenseReport.ExpenseReportId.yaml",
+          "description": "The ID of the expense report being reviewed",
+          "x-entrypoint": {
+            "virtualPath": "id/ExpenseReport/ExpenseReportId",
+            "sourcePath": "id/ExpenseReport/ExpenseReportId.yaml",
+            "title": "ExpenseReportId",
+            "origin": "/home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas",
+            "globalImport": true
+          }
+        },
+        "decision": {
+          "type": "string",
+          "enum": [
+            "approved",
+            "rejected"
+          ],
+          "description": "The admin's decision on the expense report"
+        },
+        "reviewedByUserId": {
+          "$ref": "#/$defs/slashfi.models.id.User.yaml",
+          "description": "The ID of the user who reviewed the expense report",
+          "x-entrypoint": {
+            "virtualPath": "id/User",
+            "sourcePath": "id/User.yaml",
+            "title": "User",
+            "origin": "/home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas",
+            "globalImport": true
+          }
+        },
+        "reviewedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "When the review was made"
+        },
+        "rejectionReason": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Reason for rejection (only set when decision is 'rejected')"
+        },
+        "timestamp": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Metadata timestamp"
+        }
+      },
+      "required": [
+        "id",
+        "expenseReportId",
+        "decision",
+        "reviewedByUserId",
+        "reviewedAt",
+        "timestamp"
+      ],
+      "x-entrypoint": {
+        "virtualPath": "entity/ExpenseReport/ExpenseReportReview",
+        "sourcePath": "entity/ExpenseReport/ExpenseReportReview.yaml",
+        "title": "ExpenseReportReview",
+        "origin": "/home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas",
+        "globalImport": true
+      },
+      "title": "ExpenseReportReview"
+    },
+    "slashfi.models.entity.ExpenseReport.ExpenseReportStatus.yaml": {
+      "type": "string",
+      "description": "The status of an expense report",
+      "enum": [
+        "pending_review",
+        "cancelled",
+        "rejected",
+        "payment_processing",
+        "payment_completed",
+        "payment_failed"
+      ],
+      "x-entrypoint": {
+        "virtualPath": "entity/ExpenseReport/ExpenseReportStatus",
+        "sourcePath": "entity/ExpenseReport/ExpenseReportStatus.yaml",
+        "title": "ExpenseReportStatus",
+        "origin": "/home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas",
+        "globalImport": true
+      },
+      "title": "ExpenseReportStatus"
+    },
+    "slashfi.models.entity.ExpenseReport.PublicReimbursementSource.yaml": {
+      "type": "object",
+      "description": "A minimal bank account summary for public API responses",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "accountName": {
+          "type": "string"
+        },
+        "mask": {
+          "type": "string"
+        },
+        "institution": {
+          "type": "object",
+          "required": [
+            "id",
+            "name"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "name": {
+              "type": "string"
+            }
+          }
+        },
+        "institutionLogo": {
+          "type": "string",
+          "description": "Base64 encoded institution logo"
+        }
+      },
+      "required": [
+        "id",
+        "accountName",
+        "institution"
+      ],
+      "x-entrypoint": {
+        "virtualPath": "entity/ExpenseReport/PublicReimbursementSource",
+        "sourcePath": "entity/ExpenseReport/PublicReimbursementSource.yaml",
+        "title": "PublicReimbursementSource",
+        "origin": "/home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas",
+        "globalImport": true
+      },
+      "title": "PublicReimbursementSource"
+    },
+    "slashfi.models.entity.ExpenseReport.PublicTransactionSummary.yaml": {
+      "type": "object",
+      "description": "A minimal transaction summary for public API responses",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "date": {
+          "type": "string"
+        },
+        "amount": {
+          "$ref": "#/$defs/slashfi.models.entity.IMoneyModel.yaml",
+          "x-entrypoint": {
+            "virtualPath": "entity/IMoneyModel",
+            "sourcePath": "entity/IMoneyModel.yaml",
+            "title": "IMoneyModel",
+            "origin": "/home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas",
+            "globalImport": true
+          }
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "pending",
+            "pending_approval",
+            "settled",
+            "failed",
+            "refund",
+            "declined",
+            "dispute",
+            "canceled",
+            "returned",
+            "reversed",
+            "scheduled",
+            "in_review"
+          ]
+        }
+      },
+      "required": [
+        "id",
+        "date",
+        "amount",
+        "status"
+      ],
+      "x-entrypoint": {
+        "virtualPath": "entity/ExpenseReport/PublicTransactionSummary",
+        "sourcePath": "entity/ExpenseReport/PublicTransactionSummary.yaml",
+        "title": "PublicTransactionSummary",
+        "origin": "/home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas",
+        "globalImport": true
+      },
+      "title": "PublicTransactionSummary"
+    },
+    "slashfi.models.entity.ExpenseReport.PublicUserSummary.yaml": {
+      "type": "object",
+      "description": "A minimal user identity for public API responses (id and name only)",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "object",
+          "required": [
+            "first",
+            "last",
+            "full"
+          ],
+          "properties": {
+            "first": {
+              "type": "string"
+            },
+            "last": {
+              "type": "string"
+            },
+            "full": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "required": [
+        "id",
+        "name"
+      ],
+      "x-entrypoint": {
+        "virtualPath": "entity/ExpenseReport/PublicUserSummary",
+        "sourcePath": "entity/ExpenseReport/PublicUserSummary.yaml",
+        "title": "PublicUserSummary",
+        "origin": "/home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas",
+        "globalImport": true
+      },
+      "title": "PublicUserSummary"
+    },
+    "slashfi.models.entity.IMetadataModel.yaml": {
+      "type": "object",
+      "properties": {
+        "timestamp": {
+          "format": "date-time",
+          "type": "string"
+        }
+      },
+      "required": [
+        "timestamp"
+      ],
+      "x-entrypoint": {
+        "virtualPath": "entity/IMetadataModel",
+        "sourcePath": "entity/IMetadataModel.yaml",
+        "title": "IMetadataModel",
+        "origin": "/home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas",
+        "globalImport": true
+      },
+      "title": "IMetadataModel"
+    },
+    "slashfi.models.entity.IMoneyModel.yaml": {
+      "title": "IMoneyModel",
+      "type": "object",
+      "properties": {
+        "amount_cents": {
+          "type": "number"
+        },
+        "currency": {
+          "type": "string",
+          "enum": [
+            "USD"
+          ]
+        }
+      },
+      "required": [
+        "amount_cents",
+        "currency"
+      ],
+      "x-entrypoint": {
+        "virtualPath": "entity/IMoneyModel",
+        "sourcePath": "entity/IMoneyModel.yaml",
+        "title": "IMoneyModel",
+        "origin": "/home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas",
+        "globalImport": true
+      }
+    },
+    "slashfi.models.entity.Merchant.MerchantV2.yaml": {
+      "title": "MerchantV2",
+      "type": "object",
+      "required": [
+        "$entity",
+        "id",
+        "name",
+        "metadata",
+        "isLive",
+        "isInstantCashback"
+      ],
+      "properties": {
+        "$entity": {
+          "type": "string",
+          "enum": [
+            "merchant_v2"
+          ]
+        },
+        "id": {
+          "type": "string"
+        },
+        "heronId": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "iconUrl": {
+          "type": "string"
+        },
+        "logoUrl": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        },
+        "isLive": {
+          "type": "boolean"
+        },
+        "isInstantCashback": {
+          "type": "boolean"
+        },
+        "merchantCategoryId": {
+          "type": "string"
+        },
+        "metadata": {
+          "$ref": "#/$defs/slashfi.models.entity.IMetadataModel.yaml",
+          "x-entrypoint": {
+            "virtualPath": "entity/IMetadataModel",
+            "sourcePath": "entity/IMetadataModel.yaml",
+            "title": "IMetadataModel",
+            "origin": "/home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas",
+            "globalImport": true
+          }
+        }
+      },
+      "x-entrypoint": {
+        "virtualPath": "entity/Merchant/MerchantV2",
+        "sourcePath": "entity/Merchant/MerchantV2.yaml",
+        "title": "MerchantV2",
+        "origin": "/home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas",
+        "globalImport": true
+      }
+    },
+    "slashfi.models.enums.Document.DocumentSource.yaml": {
+      "type": "string",
+      "enum": [
+        "uploaded",
+        "generated"
+      ],
+      "x-entrypoint": {
+        "virtualPath": "enums/Document/DocumentSource",
+        "sourcePath": "enums/Document/DocumentSource.yaml",
+        "title": "DocumentSource",
+        "origin": "/home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas",
+        "globalImport": true
+      },
+      "title": "DocumentSource"
+    },
+    "slashfi.models.enums.Document.DocumentType.yaml": {
+      "type": "string",
+      "enum": [
+        "business_entity",
+        "user_identity",
+        "admin",
+        "affiliate_tax_document",
+        "transaction_monitoring_incident",
+        "slash_statement",
+        "wire_ach",
+        "wire_ach_instruction",
+        "wire_ach_receipt",
+        "international_wire_receipt",
+        "sepa_instruction",
+        "fps_instruction",
+        "spei_instruction",
+        "pay_by_slash_avatar",
+        "transaction_receipt",
+        "bank_letter",
+        "transactions_export",
+        "dispute_form",
+        "accounting_receipt",
+        "reimbursement_receipt",
+        "bill_invoice",
+        "legal_entity_contact_tax_document",
+        "atomic_invest_document",
+        "custom_question",
+        "beneficial_ownership_certificate",
+        "invoice",
+        "invoice_logo",
+        "column_customer_file",
+        "feature_announcement_image",
+        "proof_of_tax_residence",
+        "sms_attachment",
+        "venezuela_mercantile_registry",
+        "venezuela_rif_certificate",
+        "compliance_review",
+        "rfi_response",
+        "articles_of_incorporation",
+        "certificate_of_incorporation",
+        "bank_statement",
+        "certificate_of_good_standing",
+        "commercial_contract",
+        "domain_ownership_proof",
+        "ein_letter_proof",
+        "ein_pending_proof",
+        "entity_formation",
+        "financial_statements",
+        "invoice",
+        "licensing_information",
+        "operating_agreement",
+        "profit_loss_statement",
+        "receipt",
+        "ubo_involvement_proof",
+        "utility_bill",
+        "check_deposit_front",
+        "check_deposit_back",
+        "dba_proof",
+        "business_plan",
+        "pitch_deck",
+        "prospectus",
+        "marketing_materials",
+        "government_id_front",
+        "government_id_back",
+        "selfie",
+        "address_proof",
+        "admin_note"
+      ],
+      "x-entrypoint": {
+        "virtualPath": "enums/Document/DocumentType",
+        "sourcePath": "enums/Document/DocumentType.yaml",
+        "title": "DocumentType",
+        "origin": "/home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas",
+        "globalImport": true
+      },
+      "title": "DocumentType"
+    },
+    "slashfi.models.id.CustomMerchant.CustomMerchantId.yaml": {
+      "type": "string",
+      "pattern": "^custom_merchant_[a-z0-9]*",
+      "x-typescript": {
+        "typeLiteral": "custom_merchant_${string}"
+      },
+      "description": "Represent a Custom Merchant ID in the format of \"custom_merchant_102jifoij01\"",
+      "x-entrypoint": {
+        "virtualPath": "id/CustomMerchant/CustomMerchantId",
+        "sourcePath": "id/CustomMerchant/CustomMerchantId.yaml",
+        "title": "CustomMerchantId",
+        "origin": "/home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas",
+        "globalImport": true
+      },
+      "title": "CustomMerchantId"
+    },
+    "slashfi.models.id.ExpenseReport.ExpenseReportId.yaml": {
+      "type": "string",
+      "pattern": "^expense_report_[a-z0-9]*",
+      "x-typescript": {
+        "typeLiteral": "expense_report_${string}"
+      },
+      "description": "Represents an ExpenseReport ID in the format of \"expense_report_102jifoij01\"",
+      "x-entrypoint": {
+        "virtualPath": "id/ExpenseReport/ExpenseReportId",
+        "sourcePath": "id/ExpenseReport/ExpenseReportId.yaml",
+        "title": "ExpenseReportId",
+        "origin": "/home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas",
+        "globalImport": true
+      },
+      "title": "ExpenseReportId"
+    },
+    "slashfi.models.id.ExpenseReport.ExpenseReportReviewId.yaml": {
+      "type": "string",
+      "pattern": "^expense_report_review_[a-z0-9]*",
+      "x-typescript": {
+        "typeLiteral": "expense_report_review_${string}"
+      },
+      "description": "Represents an ExpenseReportReview ID in the format of \"expense_report_review_102jifoij01\"",
+      "x-entrypoint": {
+        "virtualPath": "id/ExpenseReport/ExpenseReportReviewId",
+        "sourcePath": "id/ExpenseReport/ExpenseReportReviewId.yaml",
+        "title": "ExpenseReportReviewId",
+        "origin": "/home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas",
+        "globalImport": true
+      },
+      "title": "ExpenseReportReviewId"
+    },
+    "slashfi.models.id.LegalEntityId.yaml": {
+      "type": "string",
+      "pattern": "^le_[a-z0-9]*",
+      "x-typescript": {
+        "typeLiteral": "le_${string}"
+      },
+      "description": "Represent a Legal Entity ID in the format of \"le_102jifoij01\"",
+      "x-entrypoint": {
+        "virtualPath": "id/LegalEntityId",
+        "sourcePath": "id/LegalEntityId.yaml",
+        "title": "LegalEntityId",
+        "origin": "/home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas",
+        "globalImport": true
+      },
+      "title": "LegalEntityId"
+    },
+    "slashfi.models.id.MerchantV2Id.yaml": {
+      "type": "string",
+      "x-typescript": {
+        "typeLiteral": "merchant_v2_${string}"
+      },
+      "description": "Represent a Merchant V2 ID in the format of \"merchant_v2_102jifoij01\"",
+      "x-entrypoint": {
+        "virtualPath": "id/MerchantV2Id",
+        "sourcePath": "id/MerchantV2Id.yaml",
+        "title": "MerchantV2Id",
+        "origin": "/home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas",
+        "globalImport": true
+      },
+      "title": "MerchantV2Id"
+    },
+    "slashfi.models.id.User.yaml": {
+      "type": "string",
+      "pattern": "^u_[a-z0-9]*",
+      "x-typescript": {
+        "typeLiteral": "u_${string}"
+      },
+      "description": "Represent a User ID in the format of \"u_102jifoij01\"",
+      "x-entrypoint": {
+        "virtualPath": "id/User",
+        "sourcePath": "id/User.yaml",
+        "title": "User",
+        "origin": "/home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas",
+        "globalImport": true
+      },
+      "title": "User"
+    },
+    "slashfi.models.id.UserBankAccount.yaml": {
+      "type": "string",
+      "pattern": "^ub_[a-z0-9]*",
+      "x-typescript": {
+        "typeLiteral": "ub_${string}"
+      },
+      "description": "Represent a UserBankAccount ID in the format of \"ub_102jifoij01\"",
+      "x-entrypoint": {
+        "virtualPath": "id/UserBankAccount",
+        "sourcePath": "id/UserBankAccount.yaml",
+        "title": "UserBankAccount",
+        "origin": "/home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas",
+        "globalImport": true
+      },
+      "title": "UserBankAccount"
+    }
+  }
+}

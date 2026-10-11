@@ -1,0 +1,71 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/slash/main/json-schema/slash-webhook-schema.json",
+  "title": "Webhook",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/slash-webhook-api-openapi.yml#/components/schemas/Webhook",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "createdAt": {
+      "type": "string"
+    },
+    "archivedAt": {
+      "type": "string"
+    },
+    "url": {
+      "type": "string",
+      "description": "The URL that will receive the webhook payload"
+    },
+    "name": {
+      "type": "string",
+      "description": "The name of the webhook"
+    },
+    "status": {
+      "type": "string",
+      "description": "The current status of the webhook endpoint:\n- `active`: The webhook is enabled and receiving events normally.\n- `paused`: The webhook has been paused by the user. Events are queued and will be delivered when the endpoint is set back to `active`.\n- `backing-off`: The system is temporarily backing off due to delivery failures. Delivery will be automatically retried at `backingOffUntil`. You can also immediately re-enable by setting status to `active` via the PATCH endpoint.\n- `disabled`: The webhook has been automatically disabled due to repeated delivery failures. Re-enable by setting status to `active` via the PATCH endpoint.\n",
+      "enum": [
+        "active",
+        "paused",
+        "backing-off",
+        "disabled"
+      ]
+    },
+    "pausedAt": {
+      "type": "string",
+      "description": "When the endpoint was paused by the user (ISO 8601 timestamp)"
+    },
+    "backingOffUntil": {
+      "type": "string",
+      "description": "When the system will automatically retry delivery (ISO 8601 timestamp). Only present when status is `backing-off`."
+    },
+    "disabledAt": {
+      "type": "string",
+      "description": "When the endpoint was automatically disabled due to repeated failures (ISO 8601 timestamp). Only present when status is `disabled`."
+    },
+    "enabledEvents": {
+      "type": "array",
+      "description": "Public webhook event types this endpoint receives. Omitted means all events.",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "required": [
+    "id",
+    "createdAt",
+    "url",
+    "name",
+    "status"
+  ],
+  "x-entrypoint": {
+    "virtualPath": "schemas/Webhook",
+    "sourcePath": "schemas/Webhook.yaml",
+    "title": "Webhook",
+    "origin": "./src/publicApi"
+  }
+}

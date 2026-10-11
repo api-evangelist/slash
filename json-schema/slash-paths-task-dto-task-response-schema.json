@@ -1,0 +1,214 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/slash/main/json-schema/slash-paths-task-dto-task-response-schema.json",
+  "title": "paths.task._dto.TaskResponse",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/slash-task-api-openapi.yml#/components/schemas/paths.task._dto.TaskResponse",
+  "$ref": "#/$defs/slashfi.models.entity.Task.ITaskWithActionsModel.yaml",
+  "x-entrypoint": {
+    "virtualPath": "entity/Task/ITaskWithActionsModel",
+    "sourcePath": "entity/Task/ITaskWithActionsModel.yaml",
+    "title": "ITaskWithActionsModel",
+    "origin": "/home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas",
+    "globalImport": true,
+    "typescript": {
+      "importPath": "import  * as models from '@slashfi/models';",
+      "symbolValue": "models.entity.Task.ITaskWithActionsModel",
+      "typeValue": "models.entity.Task.ITaskWithActionsModel"
+    }
+  },
+  "$defs": {
+    "slashfi.models.entity.Task.ITaskActionModel.yaml": {
+      "title": "ITaskActionModel",
+      "type": "object",
+      "description": "An action the current caller can perform on a task, resolved per task + caller by the internal app's GET /task endpoint.\n",
+      "properties": {
+        "key": {
+          "type": "string",
+          "description": "Stable action identifier used when dispatching via POST /task/{id}/act."
+        },
+        "label": {
+          "type": "string",
+          "description": "Human-readable button label."
+        },
+        "style": {
+          "type": "string",
+          "enum": [
+            "primary",
+            "danger"
+          ],
+          "description": "UI button style hint."
+        },
+        "role": {
+          "type": "string",
+          "enum": [
+            "actor",
+            "originator",
+            "observer"
+          ],
+          "description": "Stakeholder role the action was resolved through."
+        },
+        "isDisabled": {
+          "type": "boolean",
+          "description": "Whether the action can currently be executed. `true` means the task is in a state that blocks the action — e.g. a completion action whose task still has unsatisfied `meta.isRequired` attributes. Clients should render the button disabled (with `missingAttributes` explaining why) and avoid dispatching it; the act endpoint will also reject with a 400 if called.\n"
+        },
+        "missingAttributes": {
+          "type": "array",
+          "description": "When `isDisabled` is `true` because required attributes aren't populated, the attribute keys that still need values. Empty when the action isn't gated or when all requirements are met.\n",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "key",
+        "label",
+        "isDisabled",
+        "missingAttributes"
+      ],
+      "x-entrypoint": {
+        "virtualPath": "entity/Task/ITaskActionModel",
+        "sourcePath": "entity/Task/ITaskActionModel.yaml",
+        "title": "ITaskActionModel",
+        "origin": "/home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas",
+        "globalImport": true
+      }
+    },
+    "slashfi.models.entity.Task.ITaskAttributeMetaModel.yaml": {
+      "title": "ITaskAttributeMetaModel",
+      "type": "object",
+      "properties": {
+        "isRequired": {
+          "type": "boolean",
+          "description": "True when this attribute must be set for this task instance."
+        }
+      },
+      "x-entrypoint": {
+        "virtualPath": "entity/Task/ITaskAttributeMetaModel",
+        "sourcePath": "entity/Task/ITaskAttributeMetaModel.yaml",
+        "title": "ITaskAttributeMetaModel",
+        "origin": "/home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas",
+        "globalImport": true
+      }
+    },
+    "slashfi.models.entity.Task.ITaskModel.yaml": {
+      "title": "ITaskModel",
+      "type": "object",
+      "description": "Public shape of a task row on the wire. Serialized identically by every task-returning endpoint (list, single-task GET, etc.) so the same consumer type works across surfaces.\nConsumers that resolve per-caller action capability (today: the internal app's GET /task) extend this with the `actions` list via `ITaskWithActionsModel`. The public API only returns the base shape — it doesn't expose caller-specific state.\n",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique task ID."
+        },
+        "type": {
+          "type": "string",
+          "description": "Task type key (e.g. `payment_approval`, `expense_submission`). The `data` and `meta` shapes vary by type — use GET /task/schema to discover the attribute shape per type.\n"
+        },
+        "status": {
+          "type": "string",
+          "description": "Normalized task status.",
+          "enum": [
+            "action_required",
+            "pending",
+            "completed",
+            "rejected",
+            "expired",
+            "canceled"
+          ]
+        },
+        "data": {
+          "type": "object",
+          "description": "Primitive attribute values for the task. Keys and value types vary by `type`; hidden/internal attributes are stripped before the response leaves the server.\n",
+          "additionalProperties": true
+        },
+        "meta": {
+          "type": "object",
+          "description": "Per-instance attribute branding, keyed by attribute name. Today the only branding key is `isRequired`, which signals whether the attribute must be satisfied for the task to complete. Absent attribute keys mean the schema default applies.\n",
+          "additionalProperties": {
+            "$ref": "#/$defs/slashfi.models.entity.Task.ITaskAttributeMetaModel.yaml",
+            "x-entrypoint": {
+              "virtualPath": "entity/Task/ITaskAttributeMetaModel",
+              "sourcePath": "entity/Task/ITaskAttributeMetaModel.yaml",
+              "title": "ITaskAttributeMetaModel",
+              "origin": "/home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas",
+              "globalImport": true
+            }
+          }
+        },
+        "timestamp": {
+          "type": "string",
+          "format": "date-time",
+          "description": "ISO-8601 timestamp of when the task was created."
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "ISO-8601 timestamp of the latest meaningful task status/data update."
+        }
+      },
+      "required": [
+        "id",
+        "type",
+        "status",
+        "data",
+        "meta",
+        "timestamp",
+        "updatedAt"
+      ],
+      "x-entrypoint": {
+        "virtualPath": "entity/Task/ITaskModel",
+        "sourcePath": "entity/Task/ITaskModel.yaml",
+        "title": "ITaskModel",
+        "origin": "/home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas",
+        "globalImport": true
+      }
+    },
+    "slashfi.models.entity.Task.ITaskWithActionsModel.yaml": {
+      "title": "ITaskWithActionsModel",
+      "description": "`ITaskModel` enriched with the caller's per-task action list. Returned by surfaces that do caller-specific authorization (today the internal app's GET /task, which resolves allowed actions from the current user's role on the task). Not emitted by the public API — external consumers receive the bare `ITaskModel` shape.\n",
+      "allOf": [
+        {
+          "$ref": "#/$defs/slashfi.models.entity.Task.ITaskModel.yaml",
+          "x-entrypoint": {
+            "virtualPath": "entity/Task/ITaskModel",
+            "sourcePath": "entity/Task/ITaskModel.yaml",
+            "title": "ITaskModel",
+            "origin": "/home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas",
+            "globalImport": true
+          }
+        },
+        {
+          "type": "object",
+          "properties": {
+            "actions": {
+              "type": "array",
+              "description": "Actions the current caller can perform on this task.",
+              "items": {
+                "$ref": "#/$defs/slashfi.models.entity.Task.ITaskActionModel.yaml",
+                "x-entrypoint": {
+                  "virtualPath": "entity/Task/ITaskActionModel",
+                  "sourcePath": "entity/Task/ITaskActionModel.yaml",
+                  "title": "ITaskActionModel",
+                  "origin": "/home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas",
+                  "globalImport": true
+                }
+              }
+            }
+          },
+          "required": [
+            "actions"
+          ]
+        }
+      ],
+      "x-entrypoint": {
+        "virtualPath": "entity/Task/ITaskWithActionsModel",
+        "sourcePath": "entity/Task/ITaskWithActionsModel.yaml",
+        "title": "ITaskWithActionsModel",
+        "origin": "/home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas",
+        "globalImport": true
+      }
+    }
+  }
+}

@@ -7,8 +7,8 @@ authentication:
   header: X-API-Key
   docs: https://docs.slash.com/introduction
   key_types:
-    - legal-entity-scoped   # pinned to one legal entity
-    - user-scoped           # spans every entity the user can access; requires x-legal-entity header
+  - legal-entity-scoped
+  - user-scoped
   tenancy_header:
     name: x-legal-entity
     required_for: user-scoped keys (except GET /legal-entity)
@@ -18,14 +18,17 @@ authentication:
 idempotency:
   supported: true
   header: X-Idempotency-Key
-  scope: >-
-    Write endpoints that move money or create resources. Replaying with the same
-    key returns the original result; same key + different body returns 409 Conflict.
+  scope: &id001
+  - POST /transfers/book-transfer
+  - POST /transfer/virtual-account
   key_format: fresh UUID per logical operation
-  required_on:
-    - POST /transfers/book-transfer
-    - POST /transfer/virtual-account
+  required_on: *id001
   docs: https://docs.slash.com/introduction
+  coverage: partial
+  mechanism: request header / body token declared in the OpenAPI
+  evidence: X-Idempotency-Key on 2 of 48 mutating operations
+  verified: derived
+  scope_note: Write endpoints that move money or create resources. Replaying with the same key returns the original result; same key + different body returns 409 Conflict.
 error_envelope:
   format: custom-json
   not_rfc9457: true

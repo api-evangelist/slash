@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/slash/main/json-schema/slash-customer-schema.json",
+  "title": "Customer",
+  "description": "A customer represents a billing recipient associated with a legal entity.",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/slash-customer-api-openapi.yml#/components/schemas/Customer",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier for the customer."
+    },
+    "name": {
+      "type": "string",
+      "description": "Display name of the customer."
+    },
+    "email": {
+      "type": "string",
+      "description": "Email address of the customer."
+    },
+    "phone": {
+      "type": "string",
+      "description": "Phone number of the customer."
+    },
+    "address": {
+      "type": "object",
+      "description": "Address of the customer.",
+      "additionalProperties": true
+    },
+    "customMetadata": {
+      "type": "object",
+      "description": "Custom metadata associated with the customer.",
+      "additionalProperties": true
+    },
+    "status": {
+      "type": "string",
+      "description": "Status of the customer.",
+      "enum": [
+        "active",
+        "archived"
+      ]
+    }
+  },
+  "required": [
+    "id",
+    "name",
+    "email",
+    "status"
+  ],
+  "x-entrypoint": {
+    "virtualPath": "schemas/Customer",
+    "sourcePath": "schemas/Customer.yaml",
+    "title": "Customer",
+    "origin": "./src/publicApi"
+  }
+}

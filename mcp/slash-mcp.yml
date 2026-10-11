@@ -1,4 +1,4 @@
-generated: '2026-07-21'
+generated: '2026-10-12'
 method: searched
 status: published
 source: https://docs.slash.com/docs/mcp
@@ -13,9 +13,8 @@ server:
   options:
   - name: rsaPublicKey
     required: false
-    description: Base64-encoded RSA public key (no PEM markers). When supplied, card PAN and CVV are RSA-OAEP
-      encrypted before being returned so the agent never sees raw card numbers. When omitted, card data
-      is returned as plaintext.
+    description: Base64-encoded RSA public key (no PEM markers). When supplied, card PAN and CVV are RSA-OAEP encrypted before being returned so the agent never sees raw card numbers. When omitted, card
+      data is returned as plaintext.
 tools:
 - name: list_endpoints
   description: Lists all Slash API endpoints with method, path, and description.
@@ -30,8 +29,7 @@ platforms:
 - Cursor
 - Codex
 - OpenClaw
-notes: Official hosted remote MCP server. It is a meta/gateway server (discover + schema + call) over
-  the full Slash Public API rather than one MCP tool per operation. Complements the Agent Requests flow
+notes: Official hosted remote MCP server. It is a meta/gateway server (discover + schema + call) over the full Slash Public API rather than one MCP tool per operation. Complements the Agent Requests flow
   (read-only keys can issue writes that defer to human-in-the-loop approval).
 deployment:
   mode: remote
@@ -40,3 +38,22 @@ deployment:
   probe: gated
   checked: '2026-08-12'
   source: catalog MCP census
+  auth: api-key
+tools_documented:
+  naming: one tool per JSON endpoint, named after its HTTP method and path
+  examples:
+  - get_account_accountId_balance
+  - get_legal_entity
+  - get_card_cardId
+  arguments:
+  - pathParams
+  - query
+  - headers
+  - body
+  - legalEntityId
+  replaces:
+  - list_endpoints
+  - get_endpoint_schema
+  - call_api_endpoint
+  source: https://docs.slash.com/docs/mcp.md
+  tool_count_derived: 105

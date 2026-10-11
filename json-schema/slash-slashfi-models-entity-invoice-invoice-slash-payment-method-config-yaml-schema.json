@@ -1,0 +1,332 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/slash/main/json-schema/slash-slashfi-models-entity-invoice-invoice-slash-payment-method-config-yaml-schema.json",
+  "title": "InvoiceSlashPaymentMethodConfig",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/slash-invoice-api-openapi.yml#/components/schemas/slashfi.models.entity.Invoice.InvoiceSlashPaymentMethodConfig.yaml",
+  "oneOf": [
+    {
+      "$ref": "#/$defs/slashfi.models.entity.Invoice.PaymentMethod.PaymentMethodAchDebit.yaml",
+      "x-entrypoint": {
+        "virtualPath": "entity/Invoice/PaymentMethod/PaymentMethodAchDebit",
+        "sourcePath": "entity/Invoice/PaymentMethod/PaymentMethodAchDebit.yaml",
+        "title": "PaymentMethodAchDebit",
+        "origin": "/home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas",
+        "globalImport": true
+      }
+    },
+    {
+      "$ref": "#/$defs/slashfi.models.entity.Invoice.PaymentMethod.PaymentMethodCardPayment.yaml",
+      "x-entrypoint": {
+        "virtualPath": "entity/Invoice/PaymentMethod/PaymentMethodCardPayment",
+        "sourcePath": "entity/Invoice/PaymentMethod/PaymentMethodCardPayment.yaml",
+        "title": "PaymentMethodCardPayment",
+        "origin": "/home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas",
+        "globalImport": true
+      }
+    },
+    {
+      "$ref": "#/$defs/slashfi.models.entity.Invoice.PaymentMethod.PaymentMethodCryptoDeposit.yaml",
+      "x-entrypoint": {
+        "virtualPath": "entity/Invoice/PaymentMethod/PaymentMethodCryptoDeposit",
+        "sourcePath": "entity/Invoice/PaymentMethod/PaymentMethodCryptoDeposit.yaml",
+        "title": "PaymentMethodCryptoDeposit",
+        "origin": "/home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas",
+        "globalImport": true
+      }
+    },
+    {
+      "$ref": "#/$defs/slashfi.models.entity.Invoice.PaymentMethod.PaymentMethodInboundAchTransfer.yaml",
+      "x-entrypoint": {
+        "virtualPath": "entity/Invoice/PaymentMethod/PaymentMethodInboundAchTransfer",
+        "sourcePath": "entity/Invoice/PaymentMethod/PaymentMethodInboundAchTransfer.yaml",
+        "title": "PaymentMethodInboundAchTransfer",
+        "origin": "/home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas",
+        "globalImport": true
+      }
+    },
+    {
+      "$ref": "#/$defs/slashfi.models.entity.Invoice.PaymentMethod.PaymentMethodInboundInternationalWire.yaml",
+      "x-entrypoint": {
+        "virtualPath": "entity/Invoice/PaymentMethod/PaymentMethodInboundInternationalWire",
+        "sourcePath": "entity/Invoice/PaymentMethod/PaymentMethodInboundInternationalWire.yaml",
+        "title": "PaymentMethodInboundInternationalWire",
+        "origin": "/home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas",
+        "globalImport": true
+      }
+    },
+    {
+      "$ref": "#/$defs/slashfi.models.entity.Invoice.PaymentMethod.PaymentMethodInboundRtp.yaml",
+      "x-entrypoint": {
+        "virtualPath": "entity/Invoice/PaymentMethod/PaymentMethodInboundRtp",
+        "sourcePath": "entity/Invoice/PaymentMethod/PaymentMethodInboundRtp.yaml",
+        "title": "PaymentMethodInboundRtp",
+        "origin": "/home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas",
+        "globalImport": true
+      }
+    },
+    {
+      "$ref": "#/$defs/slashfi.models.entity.Invoice.PaymentMethod.PaymentMethodInboundWireTransfer.yaml",
+      "x-entrypoint": {
+        "virtualPath": "entity/Invoice/PaymentMethod/PaymentMethodInboundWireTransfer",
+        "sourcePath": "entity/Invoice/PaymentMethod/PaymentMethodInboundWireTransfer.yaml",
+        "title": "PaymentMethodInboundWireTransfer",
+        "origin": "/home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas",
+        "globalImport": true
+      }
+    }
+  ],
+  "x-entrypoint": {
+    "virtualPath": "entity/Invoice/InvoiceSlashPaymentMethodConfig",
+    "sourcePath": "entity/Invoice/InvoiceSlashPaymentMethodConfig.yaml",
+    "title": "InvoiceSlashPaymentMethodConfig",
+    "origin": "/home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas",
+    "globalImport": true
+  },
+  "$defs": {
+    "slashfi.models.entity.Invoice.PaymentMethod.PaymentMethodAchDebit.yaml": {
+      "type": "object",
+      "properties": {
+        "method": {
+          "type": "string",
+          "enum": [
+            "ach_debit"
+          ]
+        },
+        "config": {
+          "type": "object",
+          "properties": {
+            "passFeeToPayer": {
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "passFeeToPayer"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "method",
+        "config"
+      ],
+      "x-entrypoint": {
+        "virtualPath": "entity/Invoice/PaymentMethod/PaymentMethodAchDebit",
+        "sourcePath": "entity/Invoice/PaymentMethod/PaymentMethodAchDebit.yaml",
+        "title": "PaymentMethodAchDebit",
+        "origin": "/home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas",
+        "globalImport": true
+      },
+      "title": "PaymentMethodAchDebit"
+    },
+    "slashfi.models.entity.Invoice.PaymentMethod.PaymentMethodCardPayment.yaml": {
+      "type": "object",
+      "properties": {
+        "method": {
+          "type": "string",
+          "enum": [
+            "acquiring_payment"
+          ]
+        },
+        "config": {
+          "type": "object",
+          "properties": {
+            "passFeeToPayer": {
+              "type": "boolean",
+              "enum": [
+                false
+              ]
+            }
+          },
+          "required": [
+            "passFeeToPayer"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "method",
+        "config"
+      ],
+      "x-entrypoint": {
+        "virtualPath": "entity/Invoice/PaymentMethod/PaymentMethodCardPayment",
+        "sourcePath": "entity/Invoice/PaymentMethod/PaymentMethodCardPayment.yaml",
+        "title": "PaymentMethodCardPayment",
+        "origin": "/home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas",
+        "globalImport": true
+      },
+      "title": "PaymentMethodCardPayment"
+    },
+    "slashfi.models.entity.Invoice.PaymentMethod.PaymentMethodCryptoDeposit.yaml": {
+      "type": "object",
+      "properties": {
+        "method": {
+          "type": "string",
+          "enum": [
+            "crypto_deposit"
+          ]
+        },
+        "config": {
+          "type": "object",
+          "properties": {
+            "passFeeToPayer": {
+              "type": "boolean"
+            },
+            "fiatRail": {
+              "$ref": "#/$defs/slashfi.models.enums.OffRamp.Method.yaml",
+              "x-entrypoint": {
+                "virtualPath": "enums/OffRamp/Method",
+                "sourcePath": "enums/OffRamp/Method.yaml",
+                "title": "Method",
+                "origin": "/home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas",
+                "globalImport": true
+              }
+            }
+          },
+          "required": [
+            "passFeeToPayer"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "method",
+        "config"
+      ],
+      "x-entrypoint": {
+        "virtualPath": "entity/Invoice/PaymentMethod/PaymentMethodCryptoDeposit",
+        "sourcePath": "entity/Invoice/PaymentMethod/PaymentMethodCryptoDeposit.yaml",
+        "title": "PaymentMethodCryptoDeposit",
+        "origin": "/home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas",
+        "globalImport": true
+      },
+      "title": "PaymentMethodCryptoDeposit"
+    },
+    "slashfi.models.entity.Invoice.PaymentMethod.PaymentMethodInboundAchTransfer.yaml": {
+      "type": "object",
+      "properties": {
+        "method": {
+          "type": "string",
+          "enum": [
+            "inbound_ach_transfer"
+          ]
+        },
+        "config": {
+          "type": "object",
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "method",
+        "config"
+      ],
+      "x-entrypoint": {
+        "virtualPath": "entity/Invoice/PaymentMethod/PaymentMethodInboundAchTransfer",
+        "sourcePath": "entity/Invoice/PaymentMethod/PaymentMethodInboundAchTransfer.yaml",
+        "title": "PaymentMethodInboundAchTransfer",
+        "origin": "/home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas",
+        "globalImport": true
+      },
+      "title": "PaymentMethodInboundAchTransfer"
+    },
+    "slashfi.models.entity.Invoice.PaymentMethod.PaymentMethodInboundInternationalWire.yaml": {
+      "type": "object",
+      "properties": {
+        "method": {
+          "type": "string",
+          "enum": [
+            "inbound_international_wire"
+          ]
+        },
+        "config": {
+          "type": "object",
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "method",
+        "config"
+      ],
+      "x-entrypoint": {
+        "virtualPath": "entity/Invoice/PaymentMethod/PaymentMethodInboundInternationalWire",
+        "sourcePath": "entity/Invoice/PaymentMethod/PaymentMethodInboundInternationalWire.yaml",
+        "title": "PaymentMethodInboundInternationalWire",
+        "origin": "/home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas",
+        "globalImport": true
+      },
+      "title": "PaymentMethodInboundInternationalWire"
+    },
+    "slashfi.models.entity.Invoice.PaymentMethod.PaymentMethodInboundRtp.yaml": {
+      "type": "object",
+      "properties": {
+        "method": {
+          "type": "string",
+          "enum": [
+            "inbound_rtp"
+          ]
+        },
+        "config": {
+          "type": "object",
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "method",
+        "config"
+      ],
+      "x-entrypoint": {
+        "virtualPath": "entity/Invoice/PaymentMethod/PaymentMethodInboundRtp",
+        "sourcePath": "entity/Invoice/PaymentMethod/PaymentMethodInboundRtp.yaml",
+        "title": "PaymentMethodInboundRtp",
+        "origin": "/home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas",
+        "globalImport": true
+      },
+      "title": "PaymentMethodInboundRtp"
+    },
+    "slashfi.models.entity.Invoice.PaymentMethod.PaymentMethodInboundWireTransfer.yaml": {
+      "type": "object",
+      "properties": {
+        "method": {
+          "type": "string",
+          "enum": [
+            "inbound_wire_transfer"
+          ]
+        },
+        "config": {
+          "type": "object",
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "method",
+        "config"
+      ],
+      "x-entrypoint": {
+        "virtualPath": "entity/Invoice/PaymentMethod/PaymentMethodInboundWireTransfer",
+        "sourcePath": "entity/Invoice/PaymentMethod/PaymentMethodInboundWireTransfer.yaml",
+        "title": "PaymentMethodInboundWireTransfer",
+        "origin": "/home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas",
+        "globalImport": true
+      },
+      "title": "PaymentMethodInboundWireTransfer"
+    },
+    "slashfi.models.enums.OffRamp.Method.yaml": {
+      "type": "string",
+      "enum": [
+        "wire",
+        "ach",
+        "instant"
+      ],
+      "x-entrypoint": {
+        "virtualPath": "enums/OffRamp/Method",
+        "sourcePath": "enums/OffRamp/Method.yaml",
+        "title": "Method",
+        "origin": "/home/packages/api-specs/server-api-v2/node_modules/@slashfi/models/schemas",
+        "globalImport": true
+      },
+      "title": "Method"
+    }
+  }
+}

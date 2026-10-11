@@ -1,0 +1,165 @@
+generated: '2026-10-12'
+method: searched
+source: https://www.slash.com/sitemap/card-decline-codes.xml
+scope: card-network decline/response codes explained on slash.com reference pages; not documented as a field of the Slash API error envelope
+decline_codes:
+- code: '01'
+  meaning: Refer to Issuer
+  action: see https://www.slash.com/card-decline-codes/01
+  description: Decline code 01 means the cardholder's bank wants to speak with the cardholder before approving this transaction — learn what it is and how to resolve it.
+  source: https://www.slash.com/card-decline-codes/01
+- code: '05'
+  meaning: Do Not Honor
+  action: see https://www.slash.com/card-decline-codes/05
+  description: Decline code 05, commonly known as "Do Not Honor," is one of the most frequently encountered card decline codes. It is a generic response from the cardholder's
+  source: https://www.slash.com/card-decline-codes/05
+- code: '06'
+  meaning: General Error
+  action: see https://www.slash.com/card-decline-codes/06
+  description: Decline code 06 means a general error occurred during transaction processing — learn what it is and how to resolve.
+  source: https://www.slash.com/card-decline-codes/06
+- code: '10'
+  meaning: Partial Approval
+  action: see https://www.slash.com/card-decline-codes/10
+  description: Decline code 10 means the issuing bank approved the transaction for a partial amount — learn what it is and how to resolve.
+  source: https://www.slash.com/card-decline-codes/10
+- code: '100'
+  meaning: Processor or Gateway-Specific Decline
+  action: see https://www.slash.com/card-decline-codes/100
+  description: Code 100 is a processor- or gateway-specific response that maps to an underlying standard decline — learn how to resolve.
+  source: https://www.slash.com/card-decline-codes/100
+- code: '12'
+  meaning: Invalid Transaction
+  action: see https://www.slash.com/card-decline-codes/12
+  description: Decline code 12 indicates the issuing bank does not recognize the transaction as valid. This is typically a processing error rather than a cardholder issue — th
+  source: https://www.slash.com/card-decline-codes/12
+- code: '13'
+  meaning: Invalid Amount
+  action: see https://www.slash.com/card-decline-codes/13
+  description: Decline code 13 indicates the transaction amount is invalid according to the issuing bank. This is a processing-level issue — the bank has rejected the amount i
+  source: https://www.slash.com/card-decline-codes/13
+- code: '14'
+  meaning: Invalid Card Number
+  action: see https://www.slash.com/card-decline-codes/14
+  description: Decline code 14 means the card number entered does not correspond to any valid card on file with the issuing bank. The payment network cannot route the transact
+  source: https://www.slash.com/card-decline-codes/14
+- code: '19'
+  meaning: Re-enter Transaction
+  action: see https://www.slash.com/card-decline-codes/19
+  description: Decline code 19 is a temporary error indicating a communication or processing glitch between the merchant's terminal, the payment processor, and the issuing ban
+  source: https://www.slash.com/card-decline-codes/19
+- code: '30'
+  meaning: Format Error
+  action: see https://www.slash.com/card-decline-codes/30
+  description: Decline code 30 means the transaction data sent to the payment network was malformed or contained fields that didn't conform to the required format.
+  source: https://www.slash.com/card-decline-codes/30
+- code: '41'
+  meaning: Lost Card
+  action: see https://www.slash.com/card-decline-codes/41
+  description: Decline code 41 indicates the card has been reported as lost by the cardholder. Once a card is flagged as lost, the issuing bank immediately blocks all transact
+  source: https://www.slash.com/card-decline-codes/41
+- code: '43'
+  meaning: Stolen Card
+  action: see https://www.slash.com/card-decline-codes/43
+  description: Decline code 43 means the card has been reported as stolen by the cardholder or identified as compromised by the issuing bank. All transactions are immediately
+  source: https://www.slash.com/card-decline-codes/43
+- code: '46'
+  meaning: Closed Account
+  action: see https://www.slash.com/card-decline-codes/46
+  description: Decline code 46 means the account associated with the card has been closed — learn what it is and how to resolve.
+  source: https://www.slash.com/card-decline-codes/46
+- code: '51'
+  meaning: Insufficient Funds
+  action: see https://www.slash.com/card-decline-codes/51
+  description: Decline code 51 indicates that the cardholder's account does not have sufficient funds to cover the transaction amount. Unlike the generic "Do Not Honor" (code
+  source: https://www.slash.com/card-decline-codes/51
+- code: '54'
+  meaning: Expired Card
+  action: see https://www.slash.com/card-decline-codes/54
+  description: Decline code 54 means the card being used has passed its expiration date. The issuing bank will not authorize transactions on an expired card, regardless of the
+  source: https://www.slash.com/card-decline-codes/54
+- code: '55'
+  meaning: Incorrect PIN
+  action: see https://www.slash.com/card-decline-codes/55
+  description: Decline code 55 indicates the personal identification number (PIN) entered during the transaction does not match the one on file with the issuing bank. This typ
+  source: https://www.slash.com/card-decline-codes/55
+- code: '56'
+  meaning: No Card Record
+  action: see https://www.slash.com/card-decline-codes/56
+  description: Decline code 56 means the card number submitted cannot be found in the issuing bank's records — learn what it is and how to resolve it.
+  source: https://www.slash.com/card-decline-codes/56
+- code: '57'
+  meaning: Transaction Not Permitted
+  action: see https://www.slash.com/card-decline-codes/57
+  description: Decline code 57 means the card is not allowed to perform the specific type of transaction being attempted. Unlike a generic decline, this code points to a misma
+  source: https://www.slash.com/card-decline-codes/57
+- code: '58'
+  meaning: Transaction Not Permitted to Terminal
+  action: see https://www.slash.com/card-decline-codes/58
+  description: Decline code 58 means the merchant's terminal or merchant account is not configured to accept this type of transaction — learn how to resolve.
+  source: https://www.slash.com/card-decline-codes/58
+- code: '59'
+  meaning: Suspected Fraud
+  action: see https://www.slash.com/card-decline-codes/59
+  description: Decline code 59 means the issuing bank's fraud system flagged this transaction as potentially fraudulent and declined it.
+  source: https://www.slash.com/card-decline-codes/59
+- code: '61'
+  meaning: Exceeds Withdrawal Limit
+  action: see https://www.slash.com/card-decline-codes/61
+  description: Decline code 61 indicates the transaction amount exceeds the cardholder's withdrawal or spending limit. Banks set daily, weekly, or per-transaction limits to pr
+  source: https://www.slash.com/card-decline-codes/61
+- code: '62'
+  meaning: Restricted Card
+  action: see https://www.slash.com/card-decline-codes/62
+  description: Decline code 62 means the card has been restricted by the issuing bank. Unlike a lost or stolen card block, a restriction is a targeted limitation — the card ma
+  source: https://www.slash.com/card-decline-codes/62
+- code: '63'
+  meaning: Security Violation
+  action: see https://www.slash.com/card-decline-codes/63
+  description: Decline code 63 indicates that the transaction has been flagged as a security violation by the issuing bank. The bank's fraud detection systems have identified
+  source: https://www.slash.com/card-decline-codes/63
+- code: '75'
+  meaning: Pin Tries Exceeded
+  action: see https://www.slash.com/card-decline-codes/75
+  description: Decline code 75 means an incorrect PIN was entered too many times and the card is locked for PIN-based transactions.
+  source: https://www.slash.com/card-decline-codes/75
+- code: '78'
+  meaning: Blocked First Use
+  action: see https://www.slash.com/card-decline-codes/78
+  description: Decline code 78 means the card has not been activated — learn about decline code 78 and how to resolve it.
+  source: https://www.slash.com/card-decline-codes/78
+- code: '79'
+  meaning: Already Reversed
+  action: see https://www.slash.com/card-decline-codes/79
+  description: Decline code 79 means a reversal of this transaction has already been processed — learn more and how to resolve it.
+  source: https://www.slash.com/card-decline-codes/79
+- code: '82'
+  meaning: CVV Validation Error
+  action: see https://www.slash.com/card-decline-codes/82
+  description: Decline code 82 means the CVV, CVC, iCVV, or dCVV value associated with the card failed validation against the issuing bank's records — learn how to resolve.
+  source: https://www.slash.com/card-decline-codes/82
+- code: '83'
+  meaning: Fraud (Card Absent)
+  action: see https://www.slash.com/card-decline-codes/83
+  description: Decline code 83 means the issuing bank flagged this card-not-present transaction as suspected fraud and declined it.
+  source: https://www.slash.com/card-decline-codes/83
+- code: '88'
+  meaning: Cryptographic Failure
+  action: see https://www.slash.com/card-decline-codes/88
+  description: Decline code 88 means a cryptographic validation failure occurred during the transaction — learn what it is and how to fix it.
+  source: https://www.slash.com/card-decline-codes/88
+- code: '91'
+  meaning: Issuer Unavailable
+  action: see https://www.slash.com/card-decline-codes/91
+  description: Decline code 91 means the cardholder's issuing bank is temporarily unavailable and cannot respond to the authorization request.
+  source: https://www.slash.com/card-decline-codes/91
+- code: '93'
+  meaning: Violation of Law
+  action: see https://www.slash.com/card-decline-codes/93
+  description: Decline code 93 means the transaction has been flagged as potentially violating applicable laws or regulations — learn more and how to resolve it.
+  source: https://www.slash.com/card-decline-codes/93
+- code: 9g
+  meaning: Processor-Specific Decline
+  action: see https://www.slash.com/card-decline-codes/9g
+  description: Decline code 9G is an alphanumeric processor-specific decline code — learn more and how to resolve it.
+  source: https://www.slash.com/card-decline-codes/9g
