@@ -1,0 +1,96 @@
+arazzo: 1.0.1
+info:
+  title: Slash to Xero transaction sync
+  summary: Pull posted Slash card and bank transactions and record each in Xero as a spent or received bank transaction.
+  description: >-
+    Recreates Slash's Xero accounting integration: list posted transactions on a Slash account,
+    read one transaction's detail, resolve the connected Xero tenant, and create the matching
+    Xero bank transaction. Note that Slash reports amountCents; Xero expects decimal units.
+  version: 1.0.0
+x-integration:
+  partner: xero
+  template: null
+  edge_evidence: https://www.slash.com/accounting
+  edge_type: claimed
+  method: generated
+  generated: '2026-10-12'
+  generator: pipeline step 25b (payments-integration-arazzo)
+sourceDescriptions:
+- name: slashTransaction
+  url: https://raw.githubusercontent.com/api-evangelist/slash/refs/heads/main/openapi/slash-transaction-api-openapi.yml
+  type: openapi
+- name: xeroIdentity
+  url: https://raw.githubusercontent.com/api-evangelist/xero/refs/heads/main/openapi/xero-identity-api-openapi.yml
+  type: openapi
+- name: xeroAccounting
+  url: https://raw.githubusercontent.com/api-evangelist/xero/refs/heads/main/openapi/xero-accounting-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: syncSlashTransactionToXero
+  summary: Sync a posted Slash transaction into Xero.
+  inputs:
+    type: object
+    required: [slashAccountId, xeroBankAccountId, xeroAccountCode]
+    properties:
+      slashAccountId: {type: string}
+      xeroBankAccountId: {type: string, description: Xero AccountID of the bank account mirroring the Slash account}
+      xeroAccountCode: {type: string, description: Xero account code to categorize the line to}
+  steps:
+  - stepId: listSlashTransactions
+    operationId: $sourceDescriptions.slashTransaction.getTransaction
+    parameters:
+    - name: filter:accountId
+      in: query
+      value: $inputs.slashAccountId
+    - name: filter:status
+      in: query
+      value: posted
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      transactionId: $response.body#/items/0/id
+  - stepId: getSlashTransaction
+    operationId: $sourceDescriptions.slashTransaction.getTransactionByTransactionId
+    parameters:
+    - name: transactionId
+      in: path
+      value: $steps.listSlashTransactions.outputs.transactionId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      amountCents: $response.body#/amountCents
+      description: $response.body#/description
+      date: $response.body#/date
+  - stepId: getXeroTenant
+    operationId: $sourceDescriptions.xeroIdentity.getConnections
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      tenantId: $response.body#/0/tenantId
+  - stepId: createXeroBankTransaction
+    operationId: $sourceDescriptions.xeroAccounting.createBankTransactions
+    parameters:
+    - name: xero-tenant-id
+      in: header
+      value: $steps.getXeroTenant.outputs.tenantId
+    requestBody:
+      contentType: application/json
+      payload:
+        BankTransactions:
+        - Type: SPEND
+          BankAccount:
+            AccountID: $inputs.xeroBankAccountId
+          Reference: $steps.listSlashTransactions.outputs.transactionId
+          LineItems:
+          - Description: $steps.getSlashTransaction.outputs.description
+            Quantity: 1
+            UnitAmount: $steps.getSlashTransaction.outputs.amountCents
+            AccountCode: $inputs.xeroAccountCode
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      bankTransactionId: $response.body#/BankTransactions/0/BankTransactionID
+  outputs:
+    slashTransactionId: $steps.listSlashTransactions.outputs.transactionId
+    xeroTenantId: $steps.getXeroTenant.outputs.tenantId
+    xeroBankTransactionId: $steps.createXeroBankTransaction.outputs.bankTransactionId

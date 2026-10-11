@@ -24,5 +24,5 @@
   type: claimed
   evidence: https://www.slash.com/accounting
   source: edge
-  status: pending-generation
-  arazzo: null
+  arazzo: slash-xero-sync-transactions.yml
+  status: arazzo
