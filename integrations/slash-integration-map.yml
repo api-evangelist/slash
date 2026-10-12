@@ -1,0 +1,70 @@
+# DERIVED by derive-integration-map.py (roadmap#949): each integration workflow, step by step,
+# resolved to spec file -> tag -> business capability (Turbo EA, CC BY 4.0) and the operation's
+# phrasing intent. Read from our own files; an unmapped link says why.
+slug: slash
+workflows:
+- file: slash-xero-sync-transactions.yml
+  title: Slash to Xero transaction sync
+  partner: xero
+  template: null
+  repos:
+  - slash
+  - xero
+  steps:
+  - step: listSlashTransactions
+    repo: slash
+    spec_file: slash-transaction-api-openapi.yml
+    operationId: getTransaction
+    tag: Transaction
+    capability_id: BC-1340.70
+    capability: Card Transaction Processing Management
+    capability_l1: BC-1340
+    intent: null
+    effect: null
+    unmapped: null
+  - step: getSlashTransaction
+    repo: slash
+    spec_file: slash-transaction-api-openapi.yml
+    operationId: getTransactionByTransactionId
+    tag: Transaction
+    capability_id: BC-1340.70
+    capability: Card Transaction Processing Management
+    capability_l1: BC-1340
+    intent: null
+    effect: null
+    unmapped: null
+  - step: getXeroTenant
+    repo: xero
+    spec_file: xero-identity-api-openapi.yml
+    operationId: getConnections
+    tag: Identity
+    capability_id: null
+    capability: null
+    capability_l1: null
+    intent: null
+    effect: null
+    unmapped: no capability edge for this spec file
+  - step: createXeroBankTransaction
+    repo: xero
+    spec_file: xero-accounting-api-openapi.yml
+    operationId: createBankTransactions
+    tag: Accounting
+    capability_id: BC-200
+    capability: Financial Management
+    capability_l1: BC-200
+    intent: null
+    effect: null
+    unmapped: null
+  connects:
+    slash:
+      capabilities:
+      - BC-1340.70
+      tags:
+      - Transaction
+    xero:
+      capabilities:
+      - BC-200
+      tags:
+      - Accounting
+      - Identity
+  intents: []
