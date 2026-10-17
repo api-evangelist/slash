@@ -149,6 +149,24 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    Merchant:
+      title: Merchant
+      type: object
+      required:
+      - id
+      - name
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        url:
+          type: string
+      x-entrypoint:
+        virtualPath: schemas/Merchant
+        sourcePath: schemas/Merchant.yaml
+        title: Merchant
+        origin: ./src/publicApi
     Error:
       type: object
       properties:
@@ -190,24 +208,6 @@ components:
         title: PaginationResponse
         origin: ./src/publicApi
       title: PaginationResponse
-    Merchant:
-      title: Merchant
-      type: object
-      required:
-      - id
-      - name
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        url:
-          type: string
-      x-entrypoint:
-        virtualPath: schemas/Merchant
-        sourcePath: schemas/Merchant.yaml
-        title: Merchant
-        origin: ./src/publicApi
   securitySchemes:
     api_key:
       type: apiKey

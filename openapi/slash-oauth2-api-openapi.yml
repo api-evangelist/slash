@@ -223,29 +223,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    paths.oauth2.userinfo._dto.UserInfoResponse:
-      type: object
-      properties:
-        sub:
-          type: string
-          description: The user's ID
-        name:
-          type: string
-          description: The user's full name
-        email:
-          type: string
-        phone_number:
-          type: string
-      required:
-      - sub
-      - name
-      - email
-      x-entrypoint:
-        virtualPath: paths/oauth2/userinfo/_dto/UserInfoResponse
-        sourcePath: paths/oauth2/userinfo/_dto/UserInfoResponse.yaml
-        title: UserInfoResponse
-        origin: ./src/publicApi
-      title: UserInfoResponse
     Error:
       type: object
       properties:
@@ -271,6 +248,29 @@ components:
         title: Error
         virtualPath: components/Error
       title: Error
+    paths.oauth2.userinfo._dto.UserInfoResponse:
+      type: object
+      properties:
+        sub:
+          type: string
+          description: The user's ID
+        name:
+          type: string
+          description: The user's full name
+        email:
+          type: string
+        phone_number:
+          type: string
+      required:
+      - sub
+      - name
+      - email
+      x-entrypoint:
+        virtualPath: paths/oauth2/userinfo/_dto/UserInfoResponse
+        sourcePath: paths/oauth2/userinfo/_dto/UserInfoResponse.yaml
+        title: UserInfoResponse
+        origin: ./src/publicApi
+      title: UserInfoResponse
   securitySchemes:
     api_key:
       type: apiKey
