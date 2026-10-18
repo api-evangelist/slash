@@ -491,6 +491,8 @@ apis:
   humanURL: https://docs.slash.com
   baseURL: https://api.slash.com
   tags:
+  - Cryptocurrency
+  tags_raw:
   - Crypto
   properties:
   - type: OpenAPI
