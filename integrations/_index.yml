@@ -26,3 +26,56 @@
   source: edge
   arazzo: slash-xero-sync-transactions.yml
   status: arazzo
+- slug: slash-a2a-protocol-own-agent-card
+  label: A2A protocol (own Agent Card)
+  partner_name: A2A protocol (own Agent Card)
+  category: A2A agent
+  type: register
+  channel: provider-built
+  evidence: https://docs.slash.com/.well-known/agent-card.json
+  source: edge
+  relationship: compatible
+  contract_reference:
+    register: provider's own /.well-known/agent-card.json
+    spec_file: null
+    standard: A2A
+    role: a2a-agent-card
+    registered_name: Slash
+    organization: Slash
+    matched_domain: slash.com
+    matched_by: own-domain
+    detected_by: sweep-ai-agents.py
+    detected: '2026-10-15'
+  status: not-a-workflow
+  arazzo: null
+- slug: slash-npm-registry
+  label: npm registry
+  partner: npm
+  partner_name: npm registry
+  category: official SDK (JavaScript/TypeScript)
+  type: register
+  channel: package-registry
+  evidence: https://www.npmjs.com/package/slash-sdk
+  source: edge
+  relationship: distribution-channel
+  contract_reference:
+    register: npm registry (public registry JSON)
+    spec_file: null
+    language: JavaScript/TypeScript
+    packages:
+    - name: slash-sdk
+      version: 0.1.1
+      released: '2026-03-06'
+      released_field: modified
+      lapsed: false
+      page: https://www.npmjs.com/package/slash-sdk
+      repo_leg: github-org:slashfi
+      publisher_leg: email:slash.com
+      matched_by: domain
+    current: true
+    signal_note: 'an official package on the registry: distribution, not an integration; lapsed = no release in
+      24 months'
+    detected_by: sweep-official-sdks.py
+    detected: '2026-10-18'
+  status: not-a-workflow
+  arazzo: null
